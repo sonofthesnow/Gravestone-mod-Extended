@@ -1,0 +1,80 @@
+buildscript {
+    repositories {
+        jcenter()
+        maven {
+            name = "forge"
+            url = "http://files.minecraftforge.net/maven"
+        }
+    }
+    dependencies {
+        classpath 'net.minecraftforge.gradle:ForgeGradle:2.1-SNAPSHOT'
+    }
+}
+apply plugin: 'net.minecraftforge.gradle.forge'
+
+tasks.withType(JavaCompile) {
+    sourceCompatibility = "1.8"
+    targetCompatibility = "1.8"
+}
+
+version = "1.0.0"
+archivesBaseName = "GraveStone-1.8.9-Extended"
+
+minecraft {
+    version = "1.8.9-11.15.1.1764"
+    runDir = "idea"
+
+    mappings = "snapshot_20160111"
+}
+
+//ext.apiGravestone = "./api/nightkosh.gravestone"
+
+sourceSets {
+    main {
+        java {
+//            srcDir project.apiGravestone
+        }
+    }
+}
+
+dependencies {
+    compile files("external_libs/GraveStone-1.8.9-Graves-1.0.0.jar")
+    // you may put jars on which you depend on in ./libs
+    // or you may define them like so..
+    //compile "some.group:artifact:version:classifier"
+    //compile "some.group:artifact:version"
+
+    // real examples
+    //compile 'com.mod-buildcraft:buildcraft:6.0.8:dev'  // adds buildcraft to the dev env
+    //compile 'com.googlecode.efficient-java-matrix-library:ejml:0.24' // adds ejml to the dev env
+
+    // for more info...
+    // http://www.gradle.org/docs/current/userguide/artifact_dependencies_tutorial.html
+    // http://www.gradle.org/docs/current/userguide/dependency_management.html
+}
+
+jar {
+    exclude('forestry/**')
+    exclude('sophisticated_wolves/**')
+    exclude('**/*.db')
+    exclude('assets/nightkosh.nightkosh.gravestone/techne_models/**')
+}
+
+processResources {
+    // this will ensure that this task is redone when the versions change.
+    inputs.property "version", project.version
+    inputs.property "mcversion", project.minecraft.version
+
+    // replace stuff in mcmod.info, nothing else
+    from(sourceSets.main.resources.srcDirs) {
+        include 'mcmod.info'
+
+        // replace version and mcversion
+        expand 'version': project.version, 'mcversion': project.minecraft.version
+    }
+
+    // copy everything else, thats not the mcmod.info
+    from(sourceSets.main.resources.srcDirs) {
+        exclude 'mcmod.info'
+    }
+}

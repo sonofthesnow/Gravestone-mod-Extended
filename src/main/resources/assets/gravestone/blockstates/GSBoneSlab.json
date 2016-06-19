@@ -1,0 +1,6 @@
+{
+    "variants": {
+        "half=bottom": { "model": "nightkosh.gravestone:GSBoneSlab_half_slab" },
+        "half=top":    { "model": "nightkosh.gravestone:GSBoneSlab_upper_slab" }
+    }
+}
