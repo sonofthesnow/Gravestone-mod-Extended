@@ -23,7 +23,7 @@ public class GravesCraftingManager {
 
 
     private static final GravesCraftingManager instance = new GravesCraftingManager();
-    private static final List<GravestoneRecipe> recipes = new ArrayList<GravestoneRecipe>();//TODO set recipes count
+    private static final List<GravestoneRecipe> recipes = new ArrayList<>();//TODO set recipes count
 
     private GravesCraftingManager() {
         addGravesRecipesForAllMaterials(EnumGraveType.VERTICAL_PLATE);

@@ -2,7 +2,9 @@ package nightkosh.gravestone_extended.gui.slider;
 
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import nightkosh.gravestone.ModGraveStone;
 import nightkosh.gravestone.api.grave.EnumGraveMaterial;
+import nightkosh.gravestone_extended.ModGravestoneExtended;
 import nightkosh.gravestone_extended.gui.GSChiselCraftingGui;
 
 /**
@@ -24,8 +26,9 @@ public class ChiselMaterialSlider extends AbstractSlider {
 
     @Override
     public String getString() {
-        return "";
-        //TODO ???
-//        return new StringBuilder(ModGravestoneExtended.proxy.getLocalizedString("material.title")).append(" ").append(EnumGraveMaterial.values()[this.getValueInt()].getLocalizedMaterial()).toString();
+        return new StringBuilder(ModGravestoneExtended.proxy.getLocalizedString("material.title"))
+                .append(" ")
+                .append(ModGraveStone.proxy.getLocalizedMaterial(EnumGraveMaterial.values()[this.getValueInt()]))
+                .toString();
     }
 }

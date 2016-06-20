@@ -12,6 +12,7 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import nightkosh.gravestone.ModGraveStone;
 import nightkosh.gravestone.api.grave.EnumGraveMaterial;
 import nightkosh.gravestone_extended.ModGravestoneExtended;
 import nightkosh.gravestone_extended.block.enums.EnumMemorials;
@@ -77,9 +78,9 @@ public class ItemBlockGSMemorial extends ItemBlock {
             EnumGraveMaterial material = EnumMemorials.getById(nbt.getInteger("Type")).getMaterial();
             if (material != EnumGraveMaterial.OTHER) {
                 StringBuilder materialStr = new StringBuilder();
-//                materialStr.append(ModGravestoneExtended.proxy.getLocalizedString("material.title"))
-//                        .append(" ")
-//                        .append(material.getLocalizedMaterial());//TODO ???
+                materialStr.append(ModGravestoneExtended.proxy.getLocalizedString("material.title"))
+                        .append(" ")
+                        .append(ModGraveStone.proxy.getLocalizedMaterial(material));
                 if (nbt.getBoolean("Mossy")) {
                     materialStr.append(", ")
                             .append(ModGravestoneExtended.proxy.getLocalizedString("material.mossy"));

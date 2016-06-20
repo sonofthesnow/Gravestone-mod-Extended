@@ -67,12 +67,6 @@ public class BlockPileOfBones extends BlockContainer {
         return false;
     }
 
-    //TODO
-//    @Override
-//    public int getRenderType() {
-//        return GraveStoneConfig.pileOfBonesRenderID;
-//    }
-
     @Override
     protected boolean canSilkHarvest() {
         return true;

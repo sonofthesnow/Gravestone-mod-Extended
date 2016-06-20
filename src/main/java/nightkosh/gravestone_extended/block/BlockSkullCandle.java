@@ -35,8 +35,6 @@ import java.util.Random;
  * @author NightKosh
  * @license Lesser GNU Public License v3 (http://www.gnu.org/licenses/lgpl.html)
  */
-//TODO
-//public class BlockGSSkullCandle extends BlockContainer implements IInfusionStabiliser {
 public class BlockSkullCandle extends BlockContainer {
 
     public static final PropertyEnum VARIANT = PropertyEnum.create("variant", EnumSkullCandle.class);
@@ -65,15 +63,6 @@ public class BlockSkullCandle extends BlockContainer {
     public boolean isFullCube() {
         return false;
     }
-
-    /**
-     * The type of render function that is called for this block
-     */
-    //TODO
-//    @Override
-//    public int getRenderType() {
-//        return GraveStoneConfig.skullCandleRenderID;
-//    }
 
     /**
      * Returns a new instance of a block's tile entity class. Called on placing
@@ -161,10 +150,4 @@ public class BlockSkullCandle extends BlockContainer {
             world.spawnParticle(EnumParticleTypes.SMOKE_NORMAL, xPos + dx, yPos, zPos + dz, 0, 0, 0);
         }
     }
-
-    //TODO
-//    @Override
-//    public boolean canStabaliseInfusion(World world, int x, int y, int z) {
-//        return true;
-//    }
 }

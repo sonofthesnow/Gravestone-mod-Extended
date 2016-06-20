@@ -1,9 +1,5 @@
 package nightkosh.gravestone_extended.block;
 
-import nightkosh.gravestone_extended.core.Tabs;
-import nightkosh.gravestone_extended.core.TimeHelper;
-import nightkosh.gravestone_extended.particle.EntityGreenFlameFX;
-import nightkosh.gravestone_extended.tileentity.TileEntityGSCandle;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
@@ -17,6 +13,10 @@ import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import nightkosh.gravestone_extended.core.Tabs;
+import nightkosh.gravestone_extended.core.TimeHelper;
+import nightkosh.gravestone_extended.particle.EntityGreenFlameFX;
+import nightkosh.gravestone_extended.tileentity.TileEntityGSCandle;
 
 import java.util.Random;
 
@@ -26,8 +26,6 @@ import java.util.Random;
  * @author NightKosh
  * @license Lesser GNU Public License v3 (http://www.gnu.org/licenses/lgpl.html)
  */
-//TODO
-//public class BlockGSCandle extends BlockContainer implements IInfusionStabiliser {
 public class BlockCandle extends BlockContainer {
 
     public BlockCandle() {
@@ -87,15 +85,6 @@ public class BlockCandle extends BlockContainer {
     }
 
     /**
-     * The type of render function that is called for this block
-     */
-    //TODO
-//    @Override
-//    public int getRenderType() {
-//        return GraveStoneConfig.candleRenderID;
-//    }
-
-    /**
      * Checks to see if its valid to put this block at the specified
      * coordinates. Args: world, x, y, z
      */
@@ -133,10 +122,4 @@ public class BlockCandle extends BlockContainer {
     public TileEntity createNewTileEntity(World world, int var2) {
         return new TileEntityGSCandle();
     }
-
-    //TODO
-//    @Override
-//    public boolean canStabaliseInfusion(World world, int x, int y, int z) {
-//        return true;
-//    }
 }

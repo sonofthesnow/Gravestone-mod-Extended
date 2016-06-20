@@ -71,8 +71,6 @@ public class BlockSpawner extends BlockMobSpawner {
      */
     @Override
     public int getRenderType() {
-        //TODO
-//        return GraveStoneConfig.spawnerRenderID;
         return -1;
     }
 

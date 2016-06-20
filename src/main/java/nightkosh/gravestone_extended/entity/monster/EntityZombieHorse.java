@@ -56,7 +56,6 @@ public class EntityZombieHorse extends EntityUndeadHorse {
         }
     }
 
-    //TODO
     protected void spawnZombieMob(EntityLivingBase entityLivingBase) {
         if (entityLivingBase instanceof EntityLiving) {
             EntityLiving entity = (EntityLiving) entityLivingBase;
