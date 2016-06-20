@@ -1,7 +1,5 @@
 package nightkosh.gravestone_extended.item.corpse;
 
-import nightkosh.gravestone_extended.ModGravestoneExtended;
-import nightkosh.gravestone_extended.core.compatibility.CompatibilitySophisticatedWolves;
 import net.minecraft.entity.passive.EntityWolf;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumDyeColor;
@@ -9,6 +7,9 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
+import nightkosh.gravestone_extended.ModGravestoneExtended;
+import nightkosh.gravestone_extended.core.compatibility.CompatibilitySophisticatedWolves;
+import sophisticated_wolves.api.EnumWolfSpecies;
 import sophisticated_wolves.api.ISophisticatedWolf;
 import sophisticated_wolves.api.SophisticatedWolvesAPI;
 
@@ -45,15 +46,15 @@ public class DogCorpseHelper extends CorpseHelper {
         nbt.setByte("Collar", (byte) dog.getCollarColor().getMetadata());
 
         if (CompatibilitySophisticatedWolves.isInstalled() && dog instanceof ISophisticatedWolf) {
-            nbt.setInteger("Species", ((ISophisticatedWolf) dog).getSpecies());
+            nbt.setInteger("Species", ((ISophisticatedWolf) dog).getSpecies().ordinal());
         }
     }
 
     public static void spawnDog(World world, int x, int y, int z, NBTTagCompound nbtTag, EntityPlayer player) {
         EntityWolf wolf;
         if (CompatibilitySophisticatedWolves.isInstalled() && nbtTag.hasKey("Species")) {
-            wolf = SophisticatedWolvesAPI.getSophisticatedWolf(world);
-            ((ISophisticatedWolf) wolf).updateSpecies(nbtTag.getInteger("Species"));
+            wolf = SophisticatedWolvesAPI.entityHandler.getNewSophisticatedWolf(world);
+            ((ISophisticatedWolf) wolf).updateSpecies(EnumWolfSpecies.getSpeciesByNum(nbtTag.getInteger("Species")));
         } else {
             wolf = new EntityWolf(world);
         }

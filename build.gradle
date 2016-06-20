@@ -28,11 +28,15 @@ minecraft {
 }
 
 //ext.apiGravestone = "./api/nightkosh.gravestone"
+ext.apiSophisticatedWolves = "./api/sophisticated_wolves"
+ext.apiThaumcraft = "./api/thaumcraft"
 
 sourceSets {
     main {
         java {
 //            srcDir project.apiGravestone
+            srcDir project.apiSophisticatedWolves
+            srcDir project.apiThaumcraft
         }
     }
 }
