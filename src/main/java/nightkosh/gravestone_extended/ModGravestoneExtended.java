@@ -17,6 +17,7 @@ import nightkosh.gravestone_extended.core.compatibility.Compatibility;
 import nightkosh.gravestone_extended.core.event.GSEventsHandler;
 import nightkosh.gravestone_extended.core.event.GSTickEventHandler;
 import nightkosh.gravestone_extended.core.proxy.CommonProxy;
+import nightkosh.gravestone_extended.helper.GraveGenerationHelper;
 
 /**
  * GraveStone mod
@@ -84,6 +85,8 @@ public class ModGravestoneExtended {
     @Mod.EventHandler
     public void postInit(FMLPostInitializationEvent event) {
         Compatibility.getInstance().checkMods();
+
+        GraveGenerationHelper.addMobsItemsHandlers();
     }
 
     @Mod.EventHandler

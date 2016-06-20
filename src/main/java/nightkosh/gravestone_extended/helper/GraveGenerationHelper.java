@@ -1,11 +1,6 @@
 package nightkosh.gravestone_extended.helper;
 
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.passive.EntityHorse;
-import net.minecraft.entity.passive.EntityOcelot;
-import net.minecraft.entity.passive.EntityTameable;
-import net.minecraft.entity.passive.EntityWolf;
-import net.minecraftforge.event.entity.living.LivingDeathEvent;
+import nightkosh.gravestone.api.GraveStoneAPI;
 import nightkosh.gravestone_extended.item.corpse.CorpseHelper;
 import nightkosh.gravestone_extended.item.enums.EnumCorpse;
 
@@ -20,7 +15,6 @@ import java.util.Random;
 public class GraveGenerationHelper extends nightkosh.gravestone.helper.GraveGenerationHelper{
 
     protected static final Random rand = new Random();
-
 
     protected static EnumGraveTypeByEntity getRandomGraveType(Random random) {
         if (random.nextInt(5) < 4) {
@@ -46,28 +40,10 @@ public class GraveGenerationHelper extends nightkosh.gravestone.helper.GraveGene
         }
     }
 
-
-    public static void createPetGrave(Entity entity, LivingDeathEvent event, long spawnTime) {
-        EntityTameable pet = (EntityTameable) entity;
-
-        if (pet.isTamed()) {
-            if (pet instanceof EntityWolf) {//TODO
-                createGrave(entity, event, CorpseHelper.getCorpse(entity, EnumCorpse.DOG), EnumGraveTypeByEntity.DOGS_GRAVES, false, spawnTime);
-            } else if (pet instanceof EntityOcelot) {
-                createGrave(entity, event, CorpseHelper.getCorpse(entity, EnumCorpse.CAT), EnumGraveTypeByEntity.CATS_GRAVES, false, spawnTime);
-            }
-        }
+    public static void addMobsItemsHandlers() {
+        GraveStoneAPI.graveGenerationAtDeath.addVillagerItemsHandler((villager, source) -> CorpseHelper.getCorpse(villager, EnumCorpse.VILLAGER));
+        GraveStoneAPI.graveGenerationAtDeath.addDogItemsHandler((dog, source) -> CorpseHelper.getCorpse(dog, EnumCorpse.DOG));
+        GraveStoneAPI.graveGenerationAtDeath.addCatItemsHandler((cat, source) -> CorpseHelper.getCorpse(cat, EnumCorpse.CAT));
+        GraveStoneAPI.graveGenerationAtDeath.addHorseItemsHandler((horse, source) -> CorpseHelper.getCorpse(horse, EnumCorpse.HORSE));
     }
-
-
-    public static void createHorseGrave(EntityHorse horse, LivingDeathEvent event, long spawnTime) {
-            //items.addAll(CorpseHelper.getCorpse(horse, EnumCorpse.HORSE));//TODO
-    }
-
-
-
-//    private static EnumGraveMaterial getGraveMaterialByAge(Entity entity, int age, EnumGraveTypeByEntity graveTypeByEntity) {
-//        return null;//TODO !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-//    }
-
 }

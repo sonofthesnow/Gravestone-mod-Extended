@@ -43,7 +43,6 @@ public class EntityBigFlameFX extends EntityFlameFX {
         int j = brightness >> 16 & 65535;
         int k = brightness & 65535;
 
-//        worldRenderer.putColorRGB_F(this.particleRed, this.particleGreen, this.particleBlue, this.particleAlpha);//TODO ???
         worldRenderer.pos((double)(xPos - x * scale - p_180434_7_ * scale), (double)(yPos - y * scale), (double)(zPos - z * scale - p_180434_8_ * scale)).tex((double) f1, (double) f3).color(this.particleRed, this.particleGreen, this.particleBlue, this.particleAlpha).lightmap(j, k).endVertex();
         worldRenderer.pos((double)(xPos - x * scale + p_180434_7_ * scale), (double)(yPos + y * scale), (double)(zPos - z * scale + p_180434_8_ * scale)).tex((double)f1, (double)f2).color(this.particleRed, this.particleGreen, this.particleBlue, this.particleAlpha).lightmap(j, k).endVertex();
         worldRenderer.pos((double)(xPos + x * scale + p_180434_7_ * scale), (double)(yPos + y * scale), (double)(zPos + z * scale + p_180434_8_ * scale)).tex((double) f, (double) f2).color(this.particleRed, this.particleGreen, this.particleBlue, this.particleAlpha).lightmap(j, k).endVertex();

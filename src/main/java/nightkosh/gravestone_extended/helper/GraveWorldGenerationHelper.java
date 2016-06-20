@@ -1,18 +1,15 @@
 package nightkosh.gravestone_extended.helper;
 
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockFlower;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.BlockPos;
-import net.minecraft.util.EnumFacing;
 import net.minecraft.world.World;
-import net.minecraftforge.common.IPlantable;
 import nightkosh.gravestone.api.grave.EnumGraveMaterial;
 import nightkosh.gravestone.api.grave.EnumGraveType;
 import nightkosh.gravestone.block.enums.EnumGraves;
 import nightkosh.gravestone.helper.DeathTextHelper;
 import nightkosh.gravestone.tileentity.GraveStoneDeathText;
+import nightkosh.gravestone.tileentity.TileEntityGraveStone;
 
 import java.util.List;
 import java.util.Random;
@@ -121,32 +118,15 @@ public class GraveWorldGenerationHelper extends GraveGenerationHelper {
         return damageText.toLowerCase().contains("magic");
     }
 
-    private static ItemStack getRandomFlower(World world, BlockPos pos, Random random, EnumGraves grave) {
+    private static ItemStack getRandomFlower(World world, BlockPos pos, Random random, EnumGraves grave) {//TODO ? - EnumGraves grave
         if (random.nextInt(4) == 0) {
             ItemStack flower = new ItemStack(GraveStoneHelper.FLOWERS.get(random.nextInt(GraveStoneHelper.FLOWERS.size())), 1);
-            if (canFlowerBePlaced(world, pos, flower, grave)) {
+            TileEntity te = world.getTileEntity(pos);
+            if (te != null && te instanceof TileEntityGraveStone && GraveStoneHelper.canFlowerBePlaced(world, pos, flower, (TileEntityGraveStone) te)) {
                 return flower;
             }
         }
         return null;
-    }
-
-    private static boolean canFlowerBePlacedOnGrave(EnumGraves grave) {
-        return grave != EnumGraves.SWORD && (grave.getGraveType() == EnumGraveType.VERTICAL_PLATE ||
-                grave.getGraveType() == EnumGraveType.CROSS);
-        //TODO celtic cross ????
-    }
-
-    private static boolean canFlowerBePlaced(World world, BlockPos pos, ItemStack itemStack, EnumGraves grave) {
-        if (canFlowerBePlacedOnGrave(grave)) {
-            Item item = itemStack.getItem();
-            if (Block.getBlockFromItem(item) instanceof BlockFlower) {
-                return true;
-            } else if (item instanceof IPlantable) {
-                return Block.getBlockFromItem(item).canSustainPlant(world, pos.down(), EnumFacing.UP, (IPlantable) item);
-            }
-        }
-        return false;
     }
 
     public static class GraveGenerationInfo {
