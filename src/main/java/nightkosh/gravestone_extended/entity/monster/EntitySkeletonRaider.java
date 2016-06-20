@@ -21,7 +21,7 @@ public class EntitySkeletonRaider extends EntityGSSkeleton {
     public IEntityLivingData onInitialSpawn(DifficultyInstance difficulty, IEntityLivingData data) {
         EntitySkeletonHorse horse = new EntitySkeletonHorse(this.worldObj);
         horse.copyLocationAndAnglesFrom(this);
-        horse.func_180482_a(difficulty, (IEntityLivingData) null);
+        horse.onInitialSpawn(difficulty, (IEntityLivingData) null);
 
         this.worldObj.spawnEntityInWorld(horse);
         this.mountEntity(horse);

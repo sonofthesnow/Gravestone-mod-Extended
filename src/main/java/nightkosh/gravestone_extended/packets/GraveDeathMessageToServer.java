@@ -12,7 +12,6 @@ import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 import nightkosh.gravestone.block.enums.EnumGraves;
 import nightkosh.gravestone.helper.DeathTextHelper;
 import nightkosh.gravestone.tileentity.TileEntityGrave;
-import nightkosh.gravestone_extended.block.enums.EnumMemorials;
 import nightkosh.gravestone_extended.tileentity.TileEntityGSMemorial;
 
 import java.util.Random;
@@ -77,7 +76,8 @@ public class GraveDeathMessageToServer implements IMessage, IMessageHandler<Grav
 
                     if (message.randomText) {
                         if (tileEntity instanceof TileEntityGSMemorial) {
-                            tileEntity.setDeathTextComponent(DeathTextHelper.getRandomDeathTextAndNameForMemorial(new Random(), EnumMemorials.getById(tileEntity.getGraveTypeNum())));
+//                            tileEntity.setDeathTextComponent(DeathTextHelper.getRandomDeathTextAndNameForMemorial(new Random(), EnumMemorials.getById(tileEntity.getGraveTypeNum())));//TODO
+                            tileEntity.setDeathTextComponent(DeathTextHelper.getRandomDeathTextAndNameForGrave(new Random(), EnumGraves.getById(1).getGraveType()));//TODO
                         } else {
                             tileEntity.setDeathTextComponent(DeathTextHelper.getRandomDeathTextAndNameForGrave(new Random(), EnumGraves.getById(tileEntity.getGraveTypeNum()).getGraveType()));
                         }

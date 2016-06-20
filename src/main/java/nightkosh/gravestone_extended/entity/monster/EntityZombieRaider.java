@@ -29,7 +29,7 @@ public class EntityZombieRaider extends EntityZombie {
         EntityUndeadHorse horse = new EntityZombieHorse(this.worldObj);
         ((PathNavigateGround) horse.getNavigator()).setCanSwim(true);
         horse.copyLocationAndAnglesFrom(this);
-        horse.func_180482_a(difficulty, (IEntityLivingData) null);
+        horse.onInitialSpawn(difficulty, (IEntityLivingData) null);
 
         this.worldObj.spawnEntityInWorld(horse);
         this.mountEntity(horse);
