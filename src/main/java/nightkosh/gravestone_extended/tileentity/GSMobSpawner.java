@@ -1,13 +1,14 @@
 package nightkosh.gravestone_extended.tileentity;
 
-import nightkosh.gravestone_extended.block.BlockSpawner;
-import nightkosh.gravestone_extended.block.enums.EnumSpawner;
-import nightkosh.gravestone_extended.core.MobSpawn;
-import nightkosh.gravestone_extended.core.logger.GSLogger;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
+import nightkosh.gravestone.tileentity.ISpawnerEntity;
+import nightkosh.gravestone_extended.block.BlockSpawner;
+import nightkosh.gravestone_extended.block.enums.EnumSpawner;
+import nightkosh.gravestone_extended.core.MobSpawn;
+import nightkosh.gravestone_extended.core.logger.GSLogger;
 
 /**
  * GraveStone mod

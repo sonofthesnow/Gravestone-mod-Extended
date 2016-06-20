@@ -1,6 +1,7 @@
 package nightkosh.gravestone_extended.tileentity;
 
 import net.minecraft.util.ITickable;
+import nightkosh.gravestone.tileentity.ISpawnerEntity;
 import nightkosh.gravestone.tileentity.TileEntityBase;
 import nightkosh.gravestone_extended.entity.helper.EntityGroupOfGravesMobSpawnerHelper;
 
