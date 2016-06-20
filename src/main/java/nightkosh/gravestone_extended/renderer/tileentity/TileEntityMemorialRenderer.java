@@ -28,7 +28,7 @@ import java.util.Map;
  * @license Lesser GNU Public License v3 (http://www.gnu.org/licenses/lgpl.html)
  */
 @SideOnly(Side.CLIENT)
-public class TileEntityGSMemorialRenderer extends TileEntityRenderer {
+public class TileEntityMemorialRenderer extends TileEntityRenderer {
 
     private static final Map<EnumMemorials, ResourceLocation> mossyTextures = Maps.newHashMap();
     private static final Map<EnumGraveMaterial, ResourceLocation> mossyPedestalTextures = Maps.newHashMap();
@@ -48,7 +48,7 @@ public class TileEntityGSMemorialRenderer extends TileEntityRenderer {
 
     //private static IModelCustom celticCross = AdvancedModelLoader.loadModel("/assets/nightkosh.gravestone/obj_models/CelticCross.obj");
 
-    public static TileEntityGSMemorialRenderer instance;
+    public static TileEntityMemorialRenderer instance;
 
     private static final TileEntityGSMemorial MEMORIAL_TE = new TileEntityGSMemorial();//TODO temporal hack
 
@@ -56,7 +56,7 @@ public class TileEntityGSMemorialRenderer extends TileEntityRenderer {
         MEMORIAL_TE.setGraveType(EnumMemorials.QUARTZ_OBELISK.ordinal());
     }
 
-    public TileEntityGSMemorialRenderer() {
+    public TileEntityMemorialRenderer() {
         instance = this;
     }
 

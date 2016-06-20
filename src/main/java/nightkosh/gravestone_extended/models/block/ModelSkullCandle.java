@@ -5,7 +5,7 @@ import net.minecraft.entity.Entity;
 import nightkosh.gravestone.models.ModelBaseAdapter;
 import nightkosh.gravestone.models.ModelRendererSkull;
 import nightkosh.gravestone_extended.core.Resources;
-import nightkosh.gravestone_extended.renderer.tileentity.TileEntityGSMemorialRenderer;
+import nightkosh.gravestone_extended.renderer.tileentity.TileEntityMemorialRenderer;
 import org.lwjgl.opengl.GL11;
 
 /**
@@ -43,7 +43,7 @@ public class ModelSkullCandle extends ModelBaseAdapter {
     public void renderAll() {
         skull.render(0.0625F);
 
-        TileEntityGSMemorialRenderer.instance.bindTextureByName(Resources.CANDLE);
+        TileEntityMemorialRenderer.instance.bindTextureByName(Resources.CANDLE);
 
         GL11.glPushMatrix();
         GL11.glTranslated(0, -0.34, -0.07);

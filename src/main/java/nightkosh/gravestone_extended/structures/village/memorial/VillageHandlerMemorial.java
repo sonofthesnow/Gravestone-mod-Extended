@@ -14,20 +14,20 @@ import java.util.Random;
  * @author NightKosh
  * @license Lesser GNU Public License v3 (http://www.gnu.org/licenses/lgpl.html)
  */
-public class VillageHandlerGSMemorial implements VillagerRegistry.IVillageCreationHandler {
+public class VillageHandlerMemorial implements VillagerRegistry.IVillageCreationHandler {
 
     @Override
     public StructureVillagePieces.PieceWeight getVillagePieceWeight(Random random, int size) {
-        return new StructureVillagePieces.PieceWeight(ComponentGSVillageMemorial.class, 3, MathHelper.getRandomIntegerInRange(random, 0, 1));
+        return new StructureVillagePieces.PieceWeight(ComponentVillageMemorial.class, 3, MathHelper.getRandomIntegerInRange(random, 0, 1));
     }
 
     @Override
     public Class getComponentClass() {
-        return ComponentGSVillageMemorial.class;
+        return ComponentVillageMemorial.class;
     }
 
     @Override
-    public Object buildComponent(StructureVillagePieces.PieceWeight villagePiece, StructureVillagePieces.Start startPiece, List pieces, Random random, int p1, int p2, int p3, EnumFacing facing, int p5) {
-        return ComponentGSVillageMemorial.buildComponent(startPiece, pieces, random, p1, p2, p3, facing, p5);
+    public StructureVillagePieces.Village buildComponent(StructureVillagePieces.PieceWeight villagePiece, StructureVillagePieces.Start startPiece, List pieces, Random random, int p1, int p2, int p3, EnumFacing facing, int p5) {
+        return ComponentVillageMemorial.buildComponent(startPiece, pieces, random, p1, p2, p3, facing, p5);
     }
 }

@@ -56,12 +56,6 @@ public abstract class EntityUndeadDog extends EntityUndeadPet {
         return this.height * 0.8F;
     }
 
-    @Override
-    @SideOnly(Side.CLIENT)
-    public void handleHealthUpdate(byte par1) {
-        super.handleHealthUpdate(par1);
-    }
-
     @SideOnly(Side.CLIENT)
     public float getTailRotation() {
         return (0.55F - (20 - this.dataWatcher.getWatchableObjectFloat(18)) * 0.02F) * (float) Math.PI;

@@ -2,7 +2,7 @@ package nightkosh.gravestone_extended.models.block.memorials;
 
 import nightkosh.gravestone_extended.core.Resources;
 import nightkosh.gravestone_extended.models.block.ModelMemorial;
-import nightkosh.gravestone_extended.renderer.tileentity.TileEntityGSMemorialRenderer;
+import nightkosh.gravestone_extended.renderer.tileentity.TileEntityMemorialRenderer;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.client.renderer.GlStateManager;
@@ -112,7 +112,7 @@ public class ModelCreeperStatueMemorial extends ModelMemorial {
 
         GL11.glTranslated(0, -0.5, 0);
         GL11.glScalef(scale, scale, scale);
-        TileEntityGSMemorialRenderer.instance.bindTextureByName(Resources.CREEPER_AURA);
+        TileEntityMemorialRenderer.instance.bindTextureByName(Resources.CREEPER_AURA);
 
         GlStateManager.depthMask(true);
         GlStateManager.matrixMode(GL11.GL_TEXTURE);

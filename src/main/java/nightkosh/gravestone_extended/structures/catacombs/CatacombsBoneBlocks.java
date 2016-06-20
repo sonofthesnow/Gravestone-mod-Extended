@@ -27,19 +27,19 @@ public class CatacombsBoneBlocks extends StructureComponent.BlockSelector {
         if (flag) {
             if (random.nextInt(5) == 0) {
                 if (random.nextInt(100) < 60) {
-                    this.field_151562_a = Block.boneBlock.getDefaultState().withProperty(BlockBoneBlock.VARIANT, EnumBoneBlock.CRAWLER_SKULL_BONE_BLOCK);
+                    this.blockstate = Block.boneBlock.getDefaultState().withProperty(BlockBoneBlock.VARIANT, EnumBoneBlock.CRAWLER_SKULL_BONE_BLOCK);
                 } else {
-                    this.field_151562_a = Block.boneBlock.getDefaultState().withProperty(BlockBoneBlock.VARIANT, EnumBoneBlock.SKULL_BONE_BLOCK);
+                    this.blockstate = Block.boneBlock.getDefaultState().withProperty(BlockBoneBlock.VARIANT, EnumBoneBlock.SKULL_BONE_BLOCK);
                 }
             } else {
                 if (random.nextInt(100) < 60) {
-                    this.field_151562_a = Block.boneBlock.getDefaultState().withProperty(BlockBoneBlock.VARIANT, EnumBoneBlock.CRAWLER_BONE_BLOCK);
+                    this.blockstate = Block.boneBlock.getDefaultState().withProperty(BlockBoneBlock.VARIANT, EnumBoneBlock.CRAWLER_BONE_BLOCK);
                 } else {
-                    this.field_151562_a = Block.boneBlock.getDefaultState();
+                    this.blockstate = Block.boneBlock.getDefaultState();
                 }
             }
         } else {
-            this.field_151562_a = Blocks.air.getDefaultState();
+            this.blockstate = Blocks.air.getDefaultState();
         }
     }
 }

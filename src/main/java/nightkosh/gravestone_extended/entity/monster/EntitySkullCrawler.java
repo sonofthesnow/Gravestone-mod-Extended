@@ -144,8 +144,8 @@ public class EntitySkullCrawler extends EntityMob {
      * creature will try to path to the block. Args: x, y, z
      */
     @Override
-    public float func_180484_a(BlockPos pos) {
-        return this.worldObj.getBlockState(new BlockPos(pos.down())).getBlock().equals(Block.boneBlock) ? 10 : super.func_180484_a(pos);
+    public float getBlockPathWeight(BlockPos pos) {
+        return this.worldObj.getBlockState(new BlockPos(pos.down())).getBlock().equals(Block.boneBlock) ? 10 : super.getBlockPathWeight(pos);
     }
 
     /**

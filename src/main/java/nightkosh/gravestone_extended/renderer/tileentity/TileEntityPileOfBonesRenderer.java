@@ -16,7 +16,7 @@ import org.lwjgl.opengl.GL11;
  * @license Lesser GNU Public License v3 (http://www.gnu.org/licenses/lgpl.html)
  */
 @SideOnly(Side.CLIENT)
-public class TileEntityGSPileOfBonesRenderer extends TileEntitySpecialRenderer {
+public class TileEntityPileOfBonesRenderer extends TileEntitySpecialRenderer {
 
     private ModelPileOfBones pileOfBonesModel = new ModelPileOfBones();
 

@@ -5,7 +5,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import nightkosh.gravestone.models.block.ModelGraveStone;
 import nightkosh.gravestone_extended.core.Resources;
-import nightkosh.gravestone_extended.renderer.tileentity.TileEntityGSMemorialRenderer;
+import nightkosh.gravestone_extended.renderer.tileentity.TileEntityMemorialRenderer;
 import org.lwjgl.opengl.GL11;
 
 /**
@@ -41,7 +41,7 @@ public class ModelSmallPedestal extends ModelGraveStone {
     public void renderAll() {
         unshiftModel();
         float par7 = 0.0625F;
-        TileEntityGSMemorialRenderer.instance.bindTextureByName(Resources.SMALL_PEDESTAL);
+        TileEntityMemorialRenderer.instance.bindTextureByName(Resources.SMALL_PEDESTAL);
         pedestal.render(par7);
         pedestal2.render(par7);
     }

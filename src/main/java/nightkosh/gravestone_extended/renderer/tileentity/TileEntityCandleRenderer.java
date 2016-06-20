@@ -16,7 +16,7 @@ import org.lwjgl.opengl.GL11;
  * @license Lesser GNU Public License v3 (http://www.gnu.org/licenses/lgpl.html)
  */
 @SideOnly(Side.CLIENT)
-public class TileEntityGSCandleRenderer extends TileEntitySpecialRenderer {
+public class TileEntityCandleRenderer extends TileEntitySpecialRenderer {
 
     private ModelCandle candleModel = new ModelCandle();
 

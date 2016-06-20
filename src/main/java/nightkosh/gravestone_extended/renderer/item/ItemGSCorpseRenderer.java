@@ -1,11 +1,6 @@
 package nightkosh.gravestone_extended.renderer.item;
 
 import com.google.common.collect.Maps;
-import nightkosh.gravestone_extended.core.Resources;
-import nightkosh.gravestone_extended.item.corpse.CatCorpseHelper;
-import nightkosh.gravestone_extended.item.corpse.HorseCorpseHelper;
-import nightkosh.gravestone_extended.item.corpse.VillagerCorpseHelper;
-import nightkosh.gravestone_extended.item.enums.EnumCorpse;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.ModelHorse;
 import net.minecraft.client.model.ModelOcelot;
@@ -16,8 +11,12 @@ import net.minecraft.entity.passive.EntityHorse;
 import net.minecraft.entity.passive.EntityWolf;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.client.IItemRenderer;
 import net.minecraftforge.fml.common.registry.VillagerRegistry;
+import nightkosh.gravestone_extended.core.Resources;
+import nightkosh.gravestone_extended.item.corpse.CatCorpseHelper;
+import nightkosh.gravestone_extended.item.corpse.HorseCorpseHelper;
+import nightkosh.gravestone_extended.item.corpse.VillagerCorpseHelper;
+import nightkosh.gravestone_extended.item.enums.EnumCorpse;
 import org.lwjgl.opengl.GL11;
 
 import java.util.Map;
@@ -28,7 +27,8 @@ import java.util.Map;
  * @author NightKosh
  * @license Lesser GNU Public License v3 (http://www.gnu.org/licenses/lgpl.html)
  */
-public class ItemGSCorpseRenderer implements IItemRenderer {
+public class ItemGSCorpseRenderer{ //TODO
+//implements IItemRenderer {
 
     private static final Map horsesTexturesMap = Maps.newHashMap();
     private static final ModelVillager villagerModel = new ModelVillager(0);
@@ -38,22 +38,22 @@ public class ItemGSCorpseRenderer implements IItemRenderer {
     private static EntityWolf dog;
     private static EntityHorse horse;
 
-    @Override
-    public boolean handleRenderType(ItemStack item, ItemRenderType type) {
-        return true;
-    }
-
-    @Override
-    public boolean shouldUseRenderHelper(ItemRenderType type, ItemStack item, ItemRendererHelper helper) {
-        return true;
-    }
-
-    @Override
-    public void renderItem(ItemRenderType type, ItemStack item, Object... data) {
-        GL11.glPushMatrix();
-        renderItem(item);
-        GL11.glPopMatrix();
-    }
+//    @Override
+//    public boolean handleRenderType(ItemStack item, ItemRenderType type) {
+//        return true;
+//    }
+//
+//    @Override
+//    public boolean shouldUseRenderHelper(ItemRenderType type, ItemStack item, ItemRendererHelper helper) {
+//        return true;
+//    }
+//
+//    @Override
+//    public void renderItem(ItemRenderType type, ItemStack item, Object... data) {
+//        GL11.glPushMatrix();
+//        renderItem(item);
+//        GL11.glPopMatrix();
+//    }
 
     public void renderItem(ItemStack item) {
         GL11.glRotatef(180, 1, 0, 0);

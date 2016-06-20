@@ -17,7 +17,7 @@ import org.lwjgl.opengl.GL11;
  * @license Lesser GNU Public License v3 (http://www.gnu.org/licenses/lgpl.html)
  */
 @SideOnly(Side.CLIENT)
-public class TileEntityGSSkullCandleRenderer extends TileEntitySpecialRenderer {
+public class TileEntitySkullCandleRenderer extends TileEntitySpecialRenderer {
 
     private ModelSkullCandle skullCandleModel = new ModelSkullCandle();
 

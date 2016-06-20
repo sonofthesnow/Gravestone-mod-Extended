@@ -46,7 +46,7 @@ public class VillageHandlerGSUndertaker implements VillagerRegistry.IVillageCrea
     }
 
     @Override
-    public Object buildComponent(StructureVillagePieces.PieceWeight villagePiece, StructureVillagePieces.Start startPiece, List pieces, Random random, int p1, int p2, int p3, EnumFacing facing, int p5) {
+    public StructureVillagePieces.Village buildComponent(StructureVillagePieces.PieceWeight villagePiece, StructureVillagePieces.Start startPiece, List pieces, Random random, int p1, int p2, int p3, EnumFacing facing, int p5) {
         return ComponentVillageUndertaker.buildComponent(startPiece, pieces, random, p1, p2, p3, facing, p5);
     }
 }

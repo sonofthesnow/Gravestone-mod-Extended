@@ -1,6 +1,6 @@
 package nightkosh.gravestone_extended.models.block;
 
-import nightkosh.gravestone_extended.renderer.tileentity.TileEntityGSSpawnerRenderer;
+import nightkosh.gravestone_extended.renderer.tileentity.TileEntitySpawnerRenderer;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.util.ResourceLocation;
@@ -47,35 +47,35 @@ public class ModelSpawnerPentagram extends ModelBase {
     public void renderAll() {
         pentagram.render(0.0625F);
 
-        TileEntityGSSpawnerRenderer.instance.bindTextureByName(candleTexture);
+        TileEntitySpawnerRenderer.instance.bindTextureByName(candleTexture);
         GL11.glPushMatrix();
         GL11.glTranslated(0, 0, 1);
         GL11.glRotated(180, 0, 1, 0);
         candle1.renderAll();
         GL11.glPopMatrix();
 
-        TileEntityGSSpawnerRenderer.instance.bindTextureByName(candleTexture);
+        TileEntitySpawnerRenderer.instance.bindTextureByName(candleTexture);
         GL11.glPushMatrix();
         GL11.glTranslated(0.95, 0, 0.3);
         GL11.glRotated(252, 0, 1, 0);
         candle2.renderAll();
         GL11.glPopMatrix();
 
-        TileEntityGSSpawnerRenderer.instance.bindTextureByName(candleTexture);
+        TileEntitySpawnerRenderer.instance.bindTextureByName(candleTexture);
         GL11.glPushMatrix();
         GL11.glTranslated(-0.95, 0, 0.3);
         GL11.glRotated(108, 0, 1, 0);
         candle3.renderAll();
         GL11.glPopMatrix();
 
-        TileEntityGSSpawnerRenderer.instance.bindTextureByName(candleTexture);
+        TileEntitySpawnerRenderer.instance.bindTextureByName(candleTexture);
         GL11.glPushMatrix();
         GL11.glTranslated(-0.59, 0, -0.8);
         GL11.glRotated(36, 0, 1, 0);
         candle4.renderAll();
         GL11.glPopMatrix();
 
-        TileEntityGSSpawnerRenderer.instance.bindTextureByName(candleTexture);
+        TileEntitySpawnerRenderer.instance.bindTextureByName(candleTexture);
         GL11.glPushMatrix();
         GL11.glTranslated(0.61, 0, -0.8);
         GL11.glRotated(-36, 0, 1, 0);

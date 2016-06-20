@@ -19,14 +19,14 @@ import java.util.Calendar;
  * @license Lesser GNU Public License v3 (http://www.gnu.org/licenses/lgpl.html)
  */
 @SideOnly(Side.CLIENT)
-public class TileEntityGSHauntedChestRenderer extends TileEntitySpecialRenderer {
+public class TileEntityHauntedChestRenderer extends TileEntitySpecialRenderer {
 
     private ModelChest chestModel = new ModelChest();
     private boolean isChristmas;
 
     private static final TileEntityGSHauntedChest CHEST_TE = new TileEntityGSHauntedChest();//TODO temporal hack
 
-    public TileEntityGSHauntedChestRenderer() {
+    public TileEntityHauntedChestRenderer() {
         Calendar calendar = Calendar.getInstance();
 
         if (calendar.get(2) + 1 == 12 && calendar.get(5) >= 24 && calendar.get(5) <= 26) {

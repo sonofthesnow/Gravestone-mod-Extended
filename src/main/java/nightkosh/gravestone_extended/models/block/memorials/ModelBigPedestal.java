@@ -7,7 +7,7 @@ package nightkosh.gravestone_extended.models.block.memorials;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.util.ResourceLocation;
 import nightkosh.gravestone.models.block.ModelGraveStone;
-import nightkosh.gravestone_extended.renderer.tileentity.TileEntityGSMemorialRenderer;
+import nightkosh.gravestone_extended.renderer.tileentity.TileEntityMemorialRenderer;
 import org.lwjgl.opengl.GL11;
 
 /**
@@ -73,7 +73,7 @@ public class ModelBigPedestal extends ModelGraveStone {
     public void renderAll() {
         unshiftModel();
         float f5 = 0.0625F;
-        TileEntityGSMemorialRenderer.instance.bindTextureByName(this.texture);
+        TileEntityMemorialRenderer.instance.bindTextureByName(this.texture);
         pedestal1.render(f5);
         pedestal2.render(f5);
         pedestal3.render(f5);

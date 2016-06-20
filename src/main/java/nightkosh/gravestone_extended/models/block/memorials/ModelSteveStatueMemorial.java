@@ -1,7 +1,7 @@
 package nightkosh.gravestone_extended.models.block.memorials;
 
 import nightkosh.gravestone_extended.models.block.ModelMemorial;
-import nightkosh.gravestone_extended.renderer.tileentity.TileEntityGSMemorialRenderer;
+import nightkosh.gravestone_extended.renderer.tileentity.TileEntityMemorialRenderer;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.ResourceLocation;
@@ -137,7 +137,7 @@ public class ModelSteveStatueMemorial extends ModelMemorial {
         if (armorTexture != null) {
             float scale = 1.1F;
             GL11.glScalef(scale, scale, scale);
-            TileEntityGSMemorialRenderer.instance.bindTextureByName(armorTexture);
+            TileEntityMemorialRenderer.instance.bindTextureByName(armorTexture);
             renderSteve();
         }
     }

@@ -267,7 +267,7 @@ public class ComponentVillageUndertaker extends StructureVillagePieces.Village i
         int zPos = this.getZWithOffset(x, z);
 
         BlockPos pos = new BlockPos(xPos, yPos, zPos);
-        if (boundingBox.func_175898_b(pos)) {
+        if (boundingBox.isVecInside(pos)) {
             world.setBlockState(pos, blockState, 2);
         }
     }

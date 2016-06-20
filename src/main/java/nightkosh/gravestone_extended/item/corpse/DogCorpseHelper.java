@@ -27,7 +27,7 @@ public class DogCorpseHelper extends CorpseHelper {
     }
 
     public static List<ItemStack> getDefaultCorpses(Item item, int type) {
-        List<ItemStack> list = new ArrayList<ItemStack>();
+        List<ItemStack> list = new ArrayList<>();
 
         ItemStack corpse = new ItemStack(item, 1, type);
         NBTTagCompound nbtTag = new NBTTagCompound();

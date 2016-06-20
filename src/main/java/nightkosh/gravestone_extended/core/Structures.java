@@ -3,8 +3,8 @@ package nightkosh.gravestone_extended.core;
 import nightkosh.gravestone_extended.config.ExtendedConfig;
 import nightkosh.gravestone_extended.core.logger.GSLogger;
 import nightkosh.gravestone_extended.structures.GraveStoneWorldGenerator;
-import nightkosh.gravestone_extended.structures.village.memorial.ComponentGSVillageMemorial;
-import nightkosh.gravestone_extended.structures.village.memorial.VillageHandlerGSMemorial;
+import nightkosh.gravestone_extended.structures.village.memorial.ComponentVillageMemorial;
+import nightkosh.gravestone_extended.structures.village.memorial.VillageHandlerMemorial;
 import nightkosh.gravestone_extended.structures.village.undertaker.ComponentVillageUndertaker;
 import nightkosh.gravestone_extended.structures.village.undertaker.VillageHandlerGSUndertaker;
 import net.minecraft.block.Block;
@@ -44,7 +44,7 @@ public class Structures {
         // register memorials
         if (ExtendedConfig.generateVillageMemorials) {
             try {
-                MapGenStructureIO.registerStructure(ComponentGSVillageMemorial.class, "GSVillageMemorial");
+                MapGenStructureIO.registerStructure(ComponentVillageMemorial.class, "GSVillageMemorial");
             } catch (Throwable e) {
                 GSLogger.logError("Can not register ComponentGSVillageMemorial");
                 e.printStackTrace();
@@ -65,7 +65,7 @@ public class Structures {
     private void generateStructures() {
         // register memorials
         if (ExtendedConfig.generateVillageMemorials) {
-            VillageHandlerGSMemorial villageMemorialHandler = new VillageHandlerGSMemorial();
+            VillageHandlerMemorial villageMemorialHandler = new VillageHandlerMemorial();
             VillagerRegistry.instance().registerVillageCreationHandler(villageMemorialHandler);
         }
 

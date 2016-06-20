@@ -58,32 +58,32 @@ public class ClientProxy extends CommonProxy {
     //TODO ???
     private void registerBlocksRenderers() {
         // register GraveStone renderer
-        ClientRegistry.registerTileEntity(TileEntityGSMemorial.class, "GSMemorial", new TileEntityGSMemorialRenderer());
+        ClientRegistry.registerTileEntity(TileEntityGSMemorial.class, "GSMemorial", new TileEntityMemorialRenderer());
 //        MinecraftForgeClient.registerItemRenderer(net.minecraft.item.Item.getItemFromBlock(Block.memorial), new ItemGSMemorialRenderer());
 
         // spawner renderer
-        ClientRegistry.registerTileEntity(TileEntityGSSpawner.class, "GSSpawner", new TileEntityGSSpawnerRenderer());
+        ClientRegistry.registerTileEntity(TileEntityGSSpawner.class, "GSSpawner", new TileEntitySpawnerRenderer());
 //        MinecraftForgeClient.registerItemRenderer(net.minecraft.item.Item.getItemFromBlock(Block.spawner), new ItemGSSpawnerRenderer());
 
         // register HauntedChest renderer
-        ClientRegistry.registerTileEntity(TileEntityGSHauntedChest.class, "GSHauntedChest", new TileEntityGSHauntedChestRenderer());
+        ClientRegistry.registerTileEntity(TileEntityGSHauntedChest.class, "GSHauntedChest", new TileEntityHauntedChestRenderer());
 
         // register SkullCandle renderer
-        ClientRegistry.registerTileEntity(TileEntityGSSkullCandle.class, "GSSkullCandle", new TileEntityGSSkullCandleRenderer());
+        ClientRegistry.registerTileEntity(TileEntityGSSkullCandle.class, "GSSkullCandle", new TileEntitySkullCandleRenderer());
 //        MinecraftForgeClient.registerItemRenderer(net.minecraft.item.Item.getItemFromBlock(Block.skullCandle), new ItemGSSkullCandleRenderer());
 
         // candle
-        ClientRegistry.registerTileEntity(TileEntityGSCandle.class, "GSCandle", new TileEntityGSCandleRenderer());
+        ClientRegistry.registerTileEntity(TileEntityGSCandle.class, "GSCandle", new TileEntityCandleRenderer());
 //        MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(GSBlock.candle), new ItemGSCandleRenderer());
 
         // pile of bones
-        ClientRegistry.registerTileEntity(TileEntityGSPileOfBones.class, "GSPileOfBones", new TileEntityGSPileOfBonesRenderer());
+        ClientRegistry.registerTileEntity(TileEntityGSPileOfBones.class, "GSPileOfBones", new TileEntityPileOfBonesRenderer());
 //        MinecraftForgeClient.registerItemRenderer(net.minecraft.item.Item.getItemFromBlock(Block.pileOfBones), new ItemGSPileOfBonesRenderer());
 
         // corpses
 //        MinecraftForgeClient.registerItemRenderer(Item.corpse, new ItemGSCorpseRenderer());
 
-        ClientRegistry.bindTileEntitySpecialRenderer(TileEntityGSAltar.class, new TileEntityGSRenderAltar());
+        ClientRegistry.bindTileEntitySpecialRenderer(TileEntityGSAltar.class, new TileEntityRenderAltar());
 
 
     }

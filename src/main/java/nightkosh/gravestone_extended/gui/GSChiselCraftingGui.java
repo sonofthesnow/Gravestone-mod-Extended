@@ -15,7 +15,7 @@ import nightkosh.gravestone_extended.core.Resources;
 import nightkosh.gravestone_extended.gui.container.ChiselContainer;
 import nightkosh.gravestone_extended.gui.slider.ChiselMaterialSlider;
 import nightkosh.gravestone_extended.gui.slider.ChiselTypeSlider;
-import nightkosh.gravestone_extended.renderer.tileentity.TileEntityGSMemorialRenderer;
+import nightkosh.gravestone_extended.renderer.tileentity.TileEntityMemorialRenderer;
 import org.lwjgl.opengl.GL11;
 
 /**
@@ -98,7 +98,7 @@ public class GSChiselCraftingGui extends GuiContainer {
             //TODO ???
 //            TileEntityGraveStoneRenderer.instance.renderGraveInGui(350, 0, player.worldObj, EnumGraves.getByTypeAndMaterial(graveType, material), isEnchanted, isMossy, false, null, par1);
         } else {
-            TileEntityGSMemorialRenderer.instance.renderMemorialInGui(350, 0, EnumMemorials.getByTypeAndMaterial(memorialType, material), isEnchanted, isMossy, null, 0, par1);
+            TileEntityMemorialRenderer.instance.renderMemorialInGui(350, 0, EnumMemorials.getByTypeAndMaterial(memorialType, material), isEnchanted, isMossy, null, 0, par1);
         }
     }
 

@@ -29,15 +29,15 @@ public class CatacombsPileOfBonesSelector extends StructureComponent.BlockSelect
         if (flag && random.nextFloat() <= PILE_OF_BONES_GENERATION_CHANCE) {
             if (random.nextInt(30) == 0) {
                 if (random.nextBoolean()) {
-                    this.field_151562_a = Block.pileOfBones.getDefaultState().withProperty(BlockPileOfBones.VARIANT, EnumPileOfBones.PILE_OF_BONES_WITH_SKULL_CRAWLER);
+                    this.blockstate = Block.pileOfBones.getDefaultState().withProperty(BlockPileOfBones.VARIANT, EnumPileOfBones.PILE_OF_BONES_WITH_SKULL_CRAWLER);
                 } else {
-                    this.field_151562_a = Block.pileOfBones.getDefaultState().withProperty(BlockPileOfBones.VARIANT, EnumPileOfBones.PILE_OF_BONES_WITH_SKULL);
+                    this.blockstate = Block.pileOfBones.getDefaultState().withProperty(BlockPileOfBones.VARIANT, EnumPileOfBones.PILE_OF_BONES_WITH_SKULL);
                 }
             } else {
-                this.field_151562_a = Block.pileOfBones.getDefaultState().withProperty(BlockPileOfBones.VARIANT, EnumPileOfBones.PILE_OF_BONES);
+                this.blockstate = Block.pileOfBones.getDefaultState().withProperty(BlockPileOfBones.VARIANT, EnumPileOfBones.PILE_OF_BONES);
             }
         } else {
-            this.field_151562_a = Blocks.air.getDefaultState();
+            this.blockstate = Blocks.air.getDefaultState();
         }
     }
 }

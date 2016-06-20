@@ -18,31 +18,35 @@ public class EntityBigFlameFX extends EntityFlameFX {
     }
 
     @Override
-    public void func_180434_a(WorldRenderer worldRenderer, Entity entity, float p_70539_2_, float p_70539_3_, float p_70539_4_, float p_70539_5_, float p_70539_6_, float p_70539_7_) {
-        float xz = (this.particleAge + p_70539_2_) / (float) this.particleMaxAge;
+    public void renderParticle(WorldRenderer worldRenderer, Entity entity, float partialTicks, float x, float y, float z, float p_180434_7_, float p_180434_8_) {
+        float xz = (this.particleAge + partialTicks) / (float) this.particleMaxAge;
         this.particleScale = 3.5F * (1 - xz * xz * 0.5F);
 
-        float f6 = (float) this.particleTextureIndexX / 16F;
-        float f7 = f6 + 0.0624375F;
-        float f8 = (float) this.particleTextureIndexY / 16F;
-        float f9 = f8 + 0.0624375F;
-        float f10 = 0.1F * this.particleScale;
+        float f = this.particleTextureIndexX / 16F;
+        float f1 = f + 0.0624375F;
+        float f2 = this.particleTextureIndexY / 16F;
+        float f3 = f2 + 0.0624375F;
+        float scale = 0.1F * this.particleScale;
 
         if (this.particleIcon != null) {
-            f6 = this.particleIcon.getMinU();
-            f7 = this.particleIcon.getMaxU();
-            f8 = this.particleIcon.getMinV();
-            f9 = this.particleIcon.getMaxV();
+            f = this.particleIcon.getMinU();
+            f1 = this.particleIcon.getMaxU();
+            f2 = this.particleIcon.getMinV();
+            f3 = this.particleIcon.getMaxV();
         }
 
-        float f11 = (float) (this.prevPosX + (this.posX - this.prevPosX) * (double) p_70539_2_ - interpPosX);
-        float f12 = (float) (this.prevPosY + (this.posY - this.prevPosY) * (double) p_70539_2_ - interpPosY);
-        float f13 = (float) (this.prevPosZ + (this.posZ - this.prevPosZ) * (double) p_70539_2_ - interpPosZ);
-        worldRenderer.putColorRGB_F(this.particleRed, this.particleGreen, this.particleBlue, (int) this.particleAlpha);//TODO ???
+        float xPos = (float) (this.prevPosX + (this.posX - this.prevPosX) * (double) partialTicks - interpPosX);
+        float yPos = (float) (this.prevPosY + (this.posY - this.prevPosY) * (double) partialTicks - interpPosY);
+        float zPos = (float) (this.prevPosZ + (this.posZ - this.prevPosZ) * (double) partialTicks - interpPosZ);
+
+        int brightness = this.getBrightnessForRender(partialTicks);
+        int j = brightness >> 16 & 65535;
+        int k = brightness & 65535;
+
 //        worldRenderer.putColorRGB_F(this.particleRed, this.particleGreen, this.particleBlue, this.particleAlpha);//TODO ???
-        worldRenderer.addVertexWithUV((double) (f11 - p_70539_3_ * f10 - p_70539_6_ * f10), (double) (f12 - p_70539_4_ * f10), (double) (f13 - p_70539_5_ * f10 - p_70539_7_ * f10), (double) f7, (double) f9);
-        worldRenderer.addVertexWithUV((double) (f11 - p_70539_3_ * f10 + p_70539_6_ * f10), (double) (f12 + p_70539_4_ * f10), (double) (f13 - p_70539_5_ * f10 + p_70539_7_ * f10), (double) f7, (double) f8);
-        worldRenderer.addVertexWithUV((double) (f11 + p_70539_3_ * f10 + p_70539_6_ * f10), (double) (f12 + p_70539_4_ * f10), (double) (f13 + p_70539_5_ * f10 + p_70539_7_ * f10), (double) f6, (double) f8);
-        worldRenderer.addVertexWithUV((double) (f11 + p_70539_3_ * f10 - p_70539_6_ * f10), (double) (f12 - p_70539_4_ * f10), (double) (f13 + p_70539_5_ * f10 - p_70539_7_ * f10), (double) f6, (double) f9);
+        worldRenderer.pos((double)(xPos - x * scale - p_180434_7_ * scale), (double)(yPos - y * scale), (double)(zPos - z * scale - p_180434_8_ * scale)).tex((double) f1, (double) f3).color(this.particleRed, this.particleGreen, this.particleBlue, this.particleAlpha).lightmap(j, k).endVertex();
+        worldRenderer.pos((double)(xPos - x * scale + p_180434_7_ * scale), (double)(yPos + y * scale), (double)(zPos - z * scale + p_180434_8_ * scale)).tex((double)f1, (double)f2).color(this.particleRed, this.particleGreen, this.particleBlue, this.particleAlpha).lightmap(j, k).endVertex();
+        worldRenderer.pos((double)(xPos + x * scale + p_180434_7_ * scale), (double)(yPos + y * scale), (double)(zPos + z * scale + p_180434_8_ * scale)).tex((double) f, (double) f2).color(this.particleRed, this.particleGreen, this.particleBlue, this.particleAlpha).lightmap(j, k).endVertex();
+        worldRenderer.pos((double)(xPos + x * scale - p_180434_7_ * scale), (double)(yPos - y * scale), (double)(zPos + z * scale - p_180434_8_ * scale)).tex((double) f, (double) f3).color(this.particleRed, this.particleGreen, this.particleBlue, this.particleAlpha).lightmap(j, k).endVertex();
     }
 }

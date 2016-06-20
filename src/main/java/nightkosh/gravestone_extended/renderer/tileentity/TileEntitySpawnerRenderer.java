@@ -17,17 +17,17 @@ import org.lwjgl.opengl.GL11;
  * @license Lesser GNU Public License v3 (http://www.gnu.org/licenses/lgpl.html)
  */
 @SideOnly(Side.CLIENT)
-public class TileEntityGSSpawnerRenderer extends TileEntityRenderer {
+public class TileEntitySpawnerRenderer extends TileEntityRenderer {
 
     private static ModelSpawnerPentagram witherSpawnerModel = new ModelSpawnerPentagram(Resources.WITHER_SKULL_CANDLE);
     private static ModelSpawnerPentagram skeletonSpawnerModel = new ModelSpawnerPentagram(Resources.SKELETON_SKULL_CANDLE);
     private static ModelSpawnerPentagram zombieSpawnerModel = new ModelSpawnerPentagram(Resources.ZOMBIE_SKULL_CANDLE);
 
-    public static TileEntityGSSpawnerRenderer instance;
+    public static TileEntitySpawnerRenderer instance;
 
     private static final TileEntityGSSpawner SPAWNER_TE = new TileEntityGSSpawner();//TODO temporal hack
 
-    public TileEntityGSSpawnerRenderer() {
+    public TileEntitySpawnerRenderer() {
         instance = this;
     }
 

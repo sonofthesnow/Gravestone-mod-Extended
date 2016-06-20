@@ -27,16 +27,16 @@ public class CatacombsStonesBlocks extends StructureComponent.BlockSelector {
             float randFloat = random.nextFloat();
 
             if (randFloat < 0.2F) {
-                this.field_151562_a = Blocks.stonebrick.getStateFromMeta(BlockStoneBrick.CRACKED_META);
+                this.blockstate = Blocks.stonebrick.getStateFromMeta(BlockStoneBrick.CRACKED_META);
             } else if (randFloat < 0.4F) {
-                this.field_151562_a = Blocks.stonebrick.getStateFromMeta(BlockStoneBrick.MOSSY_META);
+                this.blockstate = Blocks.stonebrick.getStateFromMeta(BlockStoneBrick.MOSSY_META);
             } else if (randFloat < 0.45F) {
-                this.field_151562_a = Blocks.monster_egg.getStateFromMeta(BlockSilverfish.EnumType.STONEBRICK.getMetadata());
+                this.blockstate = Blocks.monster_egg.getStateFromMeta(BlockSilverfish.EnumType.STONEBRICK.getMetadata());
             } else {
-                this.field_151562_a = Blocks.stonebrick.getDefaultState();
+                this.blockstate = Blocks.stonebrick.getDefaultState();
             }
         } else {
-            this.field_151562_a = Blocks.air.getDefaultState();
+            this.blockstate = Blocks.air.getDefaultState();
         }
     }
 }

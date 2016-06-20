@@ -23,23 +23,23 @@ import java.util.Random;
  * @author NightKosh
  * @license Lesser GNU Public License v3 (http://www.gnu.org/licenses/lgpl.html)
  */
-public class ComponentGSVillageMemorial extends StructureVillagePieces.Village {
+public class ComponentVillageMemorial extends StructureVillagePieces.Village {
 
     private int averageGroundLevel = -1;
     private static final int HEIGHT = 6;
 
-    public ComponentGSVillageMemorial() {
+    public ComponentVillageMemorial() {
     }
 
-    public ComponentGSVillageMemorial(StructureVillagePieces.Start startPiece, int componentType, Random random, StructureBoundingBox structureBoundingBox, EnumFacing direction) {
+    public ComponentVillageMemorial(StructureVillagePieces.Start startPiece, int componentType, Random random, StructureBoundingBox structureBoundingBox, EnumFacing direction) {
         super(startPiece, componentType);
         this.coordBaseMode = direction;
         this.boundingBox = structureBoundingBox;
     }
 
-    public static ComponentGSVillageMemorial buildComponent(StructureVillagePieces.Start startPiece, List list, Random random, int par3, int par4, int par5, EnumFacing direction, int componentType) {
-        StructureBoundingBox structureBoundingBox = StructureBoundingBox.func_175897_a(par3, par4, par5, 0, 0, 0, 5, HEIGHT, 5, direction);
-        return canVillageGoDeeper(structureBoundingBox) && StructureComponent.findIntersecting(list, structureBoundingBox) == null ? new ComponentGSVillageMemorial(startPiece, componentType, random, structureBoundingBox, direction) : null;
+    public static ComponentVillageMemorial buildComponent(StructureVillagePieces.Start startPiece, List list, Random random, int par3, int par4, int par5, EnumFacing direction, int componentType) {
+        StructureBoundingBox structureBoundingBox = StructureBoundingBox.getComponentToAddBoundingBox(par3, par4, par5, 0, 0, 0, 5, HEIGHT, 5, direction);
+        return canVillageGoDeeper(structureBoundingBox) && StructureComponent.findIntersecting(list, structureBoundingBox) == null ? new ComponentVillageMemorial(startPiece, componentType, random, structureBoundingBox, direction) : null;
     }
 
     /**
