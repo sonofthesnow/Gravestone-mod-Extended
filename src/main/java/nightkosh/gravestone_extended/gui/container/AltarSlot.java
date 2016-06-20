@@ -1,6 +1,6 @@
 package nightkosh.gravestone_extended.gui.container;
 
-import nightkosh.gravestone_extended.item.ItemGSCorpse;
+import nightkosh.gravestone_extended.item.ItemCorpse;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemArmor;
@@ -22,7 +22,7 @@ public class AltarSlot extends Slot {
 
     @Override
     public boolean isItemValid(ItemStack stack) {
-        return (stack.getItem() instanceof ItemGSCorpse ||
+        return (stack.getItem() instanceof ItemCorpse ||
                 stack.getItem() instanceof ItemTool ||
                 stack.getItem() instanceof ItemArmor ||
                 stack.getItem() instanceof ItemSword);

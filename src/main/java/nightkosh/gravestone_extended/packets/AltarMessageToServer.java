@@ -1,7 +1,7 @@
 package nightkosh.gravestone_extended.packets;
 
 import nightkosh.gravestone_extended.core.MessageHandler;
-import nightkosh.gravestone_extended.item.ItemGSCorpse;
+import nightkosh.gravestone_extended.item.ItemCorpse;
 import nightkosh.gravestone_extended.item.corpse.CorpseHelper;
 import nightkosh.gravestone_extended.tileentity.TileEntityGSAltar;
 import io.netty.buffer.ByteBuf;
@@ -92,7 +92,7 @@ public class AltarMessageToServer implements IMessage, IMessageHandler<AltarMess
                 TileEntityGSAltar tileEntity = (TileEntityGSAltar) te;
                 if (tileEntity.hasCorpse()) {
                     ItemStack corpse = tileEntity.getCorpse();
-                    if (corpse != null && corpse.getItem() instanceof ItemGSCorpse && CorpseHelper.canSpawnMob(player, corpse.getItemDamage())) {
+                    if (corpse != null && corpse.getItem() instanceof ItemCorpse && CorpseHelper.canSpawnMob(player, corpse.getItemDamage())) {
                         CorpseHelper.spawnMob(corpse.getItemDamage(), tileEntity.getWorld(), tileEntity.getPos().getX(), tileEntity.getPos().getY(), tileEntity.getPos().getZ(), corpse.getTagCompound(), player);
                         CorpseHelper.getExperience(player, corpse.getItemDamage());
                         MessageHandler.networkWrapper.sendTo(new AltarMessageToClient(), (EntityPlayerMP) player);

@@ -2,8 +2,8 @@ package nightkosh.gravestone_extended.core;
 
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import nightkosh.gravestone_extended.ModGravestoneExtended;
-import nightkosh.gravestone_extended.item.ItemGSChisel;
-import nightkosh.gravestone_extended.item.ItemGSCorpse;
+import nightkosh.gravestone_extended.item.ItemChisel;
+import nightkosh.gravestone_extended.item.ItemCorpse;
 import nightkosh.gravestone_extended.item.ItemGSMonsterPlacer;
 
 /**
@@ -23,10 +23,10 @@ public class ExtendedItem {
 
     public static void registration() {
         // chisel
-        chisel = new ItemGSChisel();
+        chisel = new ItemChisel();
         GameRegistry.registerItem(chisel, "GSChisel");
 
-        corpse = new ItemGSCorpse();
+        corpse = new ItemCorpse();
         GameRegistry.registerItem(corpse, "GSCorpse");
 
         spawnEgg = new ItemGSMonsterPlacer();

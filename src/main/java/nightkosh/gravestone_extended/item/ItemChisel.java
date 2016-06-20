@@ -1,16 +1,16 @@
 package nightkosh.gravestone_extended.item;
 
-import nightkosh.gravestone_extended.ModGravestoneExtended;
-import nightkosh.gravestone_extended.core.Block;
-import nightkosh.gravestone_extended.core.GuiHandler;
-import nightkosh.gravestone_extended.core.Tabs;
-import nightkosh.gravestone_extended.tileentity.TileEntityGSGrave;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemTool;
 import net.minecraft.util.BlockPos;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.world.World;
+import nightkosh.gravestone.tileentity.TileEntityGrave;
+import nightkosh.gravestone_extended.ModGravestoneExtended;
+import nightkosh.gravestone_extended.core.Block;
+import nightkosh.gravestone_extended.core.GuiHandler;
+import nightkosh.gravestone_extended.core.Tabs;
 
 /**
  * GraveStone mod
@@ -18,9 +18,9 @@ import net.minecraft.world.World;
  * @author NightKosh
  * @license Lesser GNU Public License v3 (http://www.gnu.org/licenses/lgpl.html)
  */
-public class ItemGSChisel extends ItemTool {
+public class ItemChisel extends ItemTool {
 
-    public ItemGSChisel() {
+    public ItemChisel() {
         super(1, ToolMaterial.IRON, null);
         setMaxStackSize(1);
         setCreativeTab(Tabs.otherItemsTab);
@@ -58,7 +58,7 @@ public class ItemGSChisel extends ItemTool {
 
     private boolean setGraveText(ItemStack stack, EntityPlayer player, World world, BlockPos pos, boolean isMemorial) {
         if (world.isRemote) {
-            TileEntityGSGrave tileEntity = (TileEntityGSGrave) world.getTileEntity(pos);
+            TileEntityGrave tileEntity = (TileEntityGrave) world.getTileEntity(pos);
 
             if (tileEntity != null && tileEntity.isEditable() && tileEntity.getDeathTextComponent().getDeathText().length() == 0) {
                 ModGravestoneExtended.proxy.openGraveTextGui(tileEntity);

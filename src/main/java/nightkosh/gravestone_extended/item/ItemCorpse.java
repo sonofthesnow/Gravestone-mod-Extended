@@ -20,9 +20,9 @@ import java.util.List;
  * @author NightKosh
  * @license Lesser GNU Public License v3 (http://www.gnu.org/licenses/lgpl.html)
  */
-public class ItemGSCorpse extends Item {
+public class ItemCorpse extends Item {
 
-    public ItemGSCorpse() {
+    public ItemCorpse() {
         super();
         setCreativeTab(Tabs.otherItemsTab);
         setUnlocalizedName("Corpse");

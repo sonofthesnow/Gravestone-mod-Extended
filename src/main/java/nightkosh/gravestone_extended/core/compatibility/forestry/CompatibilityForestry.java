@@ -20,21 +20,21 @@ public class CompatibilityForestry {
 
     }
 
-//    public static int getApicultureVillagerID() {
+    public static int getApicultureVillagerID() {//TODO
 //        if (isInstalled && ForestryAPI.forestryConstants != null) {
 //            return ForestryAPI.forestryConstants.getApicultureVillagerID();
 //        } else {
-//            return DEFAULT_BEEKEEPER_ID;
+            return DEFAULT_BEEKEEPER_ID;
 //        }
-//    }
+    }
 //
-//    public static int getArboricultureVillagerID() {
+    public static int getArboricultureVillagerID() {//TODO
 //        if (isInstalled && ForestryAPI.forestryConstants != null) {
 //            return ForestryAPI.forestryConstants.getArboricultureVillagerID();
 //        } else {
-//            return DEFAULT_LUMBERJACK_ID;
+            return DEFAULT_LUMBERJACK_ID;
 //        }
-//    }
+    }
 //
 //    public static void addBackpack() {
 //        if (isInstalled && BackpackManager.backpackInterface != null) {

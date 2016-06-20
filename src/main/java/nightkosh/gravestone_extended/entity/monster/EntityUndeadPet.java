@@ -134,7 +134,7 @@ public abstract class EntityUndeadPet extends EntityMob {
                 }
                 this.worldObj.removeEntity(entity);
 
-                zombieCat.func_180482_a(this.worldObj.getDifficultyForLocation(new BlockPos(this)), (IEntityLivingData) null);
+                zombieCat.onInitialSpawn(this.worldObj.getDifficultyForLocation(new BlockPos(this)), (IEntityLivingData) null);
                 this.worldObj.spawnEntityInWorld(zombieCat);
                 this.worldObj.playAuxSFXAtEntity((EntityPlayer) null, 1016, new BlockPos(this), 0);
 

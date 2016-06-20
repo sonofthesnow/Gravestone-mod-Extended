@@ -115,7 +115,7 @@ public abstract class EntityUndeadHorse extends EntityHorse {
                 entity.setFire(j * 4);
             }
 
-            this.func_174815_a(this, entity);
+            this.applyEnchantments(this, entity);
         }
 
         return flag;
@@ -165,12 +165,12 @@ public abstract class EntityUndeadHorse extends EntityHorse {
     }
 
     @Override
-    public IEntityLivingData func_180482_a(DifficultyInstance difficulty, IEntityLivingData livingData) {
-        Object entityLivingData = super.func_180482_a(difficulty, livingData);
+    public IEntityLivingData onInitialSpawn(DifficultyInstance difficulty, IEntityLivingData livingData) {
+        Object entityLivingData = super.onInitialSpawn(difficulty, livingData);
         int horseType = getUndeadHorseType().getId();
 
         if (entityLivingData instanceof EntityHorse.GroupData) {
-            ((EntityHorse.GroupData) entityLivingData).field_111107_a = horseType;
+            ((EntityHorse.GroupData) entityLivingData).horseType = horseType;
         } else {
             entityLivingData = new EntityHorse.GroupData(horseType, 0);
         }
@@ -310,7 +310,7 @@ public abstract class EntityUndeadHorse extends EntityHorse {
         int horseType = this.getHorseType();
 
         this.texturePrefix = this.texturePrefix + horseType + "_";
-        int horseArmorTextureNum = this.func_110241_cb();
+        int horseArmorTextureNum = this.getHorseArmorIndexSynced();
 
         if (horseArmorTextureNum >= horseArmorTextures.length) {
             this.field_175508_bO = false;

@@ -1,7 +1,7 @@
 package nightkosh.gravestone_extended.item.enums;
 
+import nightkosh.gravestone.block.enums.IBlockEnum;
 import nightkosh.gravestone_extended.ModGravestoneExtended;
-import nightkosh.gravestone_extended.block.enums.IBlockEnum;
 
 /**
  * GraveStone mod

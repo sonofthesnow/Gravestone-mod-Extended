@@ -34,7 +34,7 @@ import nightkosh.gravestone_extended.block.enums.EnumHangedMobs;
 import nightkosh.gravestone_extended.block.enums.EnumMemorials;
 import nightkosh.gravestone_extended.core.Block;
 import nightkosh.gravestone_extended.core.Tabs;
-import nightkosh.gravestone_extended.item.ItemGSCorpse;
+import nightkosh.gravestone_extended.item.ItemCorpse;
 import nightkosh.gravestone_extended.item.corpse.VillagerCorpseHelper;
 import nightkosh.gravestone_extended.item.enums.EnumCorpse;
 import nightkosh.gravestone_extended.particle.EntityBigFlameFX;
@@ -770,7 +770,7 @@ public class BlockMemorial extends BlockContainer {
             ItemStack item = player.inventory.getCurrentItem();
             if (item != null) {
                 if (te.getMemorialType().equals(EnumMemorials.GIBBET) || te.getMemorialType().equals(EnumMemorials.STOCKS) || te.getMemorialType().equals(EnumMemorials.BURNING_STAKE)) {
-                    if (item.getItem() instanceof ItemGSCorpse && EnumCorpse.getById((byte) item.getItemDamage()).equals(EnumCorpse.VILLAGER) && te.getHangedMob() == EnumHangedMobs.NONE) {
+                    if (item.getItem() instanceof ItemCorpse && EnumCorpse.getById((byte) item.getItemDamage()).equals(EnumCorpse.VILLAGER) && te.getHangedMob() == EnumHangedMobs.NONE) {
                         te.setHangedMob(EnumHangedMobs.VILLAGER);
                         te.setHangedVillagerProfession(VillagerCorpseHelper.getVillagerType(item.getTagCompound()));
                         item.stackSize--;
