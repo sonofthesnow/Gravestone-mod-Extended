@@ -58,6 +58,7 @@ dependencies {
 }
 
 jar {
+    exclude('gravestone/**')
     exclude('forestry/**')
     exclude('sophisticated_wolves/**')
     exclude('**/*.db')
