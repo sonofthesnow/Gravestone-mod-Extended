@@ -4,6 +4,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.World;
+import nightkosh.gravestone.tileentity.ISpawnerEntity;
 
 /**
  * GraveStone mod
@@ -48,7 +49,7 @@ public abstract class GSSpawner {
 
     protected int getNearbyMobsCount() {
         return spawnerEntity.getWorld().getEntitiesWithinAABB(this.spawnedMob.getClass(), AxisAlignedBB.fromBounds(spawnerEntity.getPos().getX(), spawnerEntity.getPos().getY(), spawnerEntity.getPos().getZ(),
-                spawnerEntity.getPos().getX() + 1, spawnerEntity.getPos().getY() + 1, spawnerEntity.getPos().getZ() + 1).expand(1.0D, 4.0D, getSpawnRange() * 2)).size();
+                spawnerEntity.getPos().getX() + 1, spawnerEntity.getPos().getY() + 1, spawnerEntity.getPos().getZ() + 1).expand(1, 4, getSpawnRange() * 2)).size();
     }
 
     protected boolean anyPlayerInRange() {

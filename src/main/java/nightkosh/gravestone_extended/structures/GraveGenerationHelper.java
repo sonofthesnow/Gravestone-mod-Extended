@@ -62,7 +62,7 @@ public class GraveGenerationHelper {
 
         if (tileEntity != null) {
 //            tileEntity.setGraveInfo(graveInfo);//TODO ???
-//            tileEntity.setSpawnerHelper(spanwerHelper);//TODO ???
+            tileEntity.setSpawnerHelper(spanwerHelper);
         }
     }
 

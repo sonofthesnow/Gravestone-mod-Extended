@@ -1,15 +1,14 @@
 package nightkosh.gravestone_extended.entity.helper;
 
 
-import net.minecraft.entity.Entity;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.BlockPos;
 import net.minecraft.world.World;
+import nightkosh.gravestone.helper.GroupOfGravesSpawnerHelper;
 import nightkosh.gravestone.tileentity.TileEntityGraveStone;
 import nightkosh.gravestone_extended.tileentity.GSGraveStoneSpawn;
-import nightkosh.gravestone_extended.tileentity.ISpawnerEntity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,7 +19,7 @@ import java.util.List;
  * @author NightKosh
  * @license Lesser GNU Public License v3 (http://www.gnu.org/licenses/lgpl.html)
  */
-public class EntityGroupOfGravesMobSpawnerHelper extends Entity implements ISpawnerEntity {
+public class EntityGroupOfGravesMobSpawnerHelper extends GroupOfGravesSpawnerHelper {
 
     private List<TileEntityGraveStone> gravesTEList;
     private GSGraveStoneSpawn graveStoneSpawn;

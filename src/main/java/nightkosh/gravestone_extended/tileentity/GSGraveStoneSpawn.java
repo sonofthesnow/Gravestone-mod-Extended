@@ -4,10 +4,12 @@ import net.minecraft.entity.Entity;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.world.World;
 import nightkosh.gravestone.block.enums.EnumGraves;
+import nightkosh.gravestone.tileentity.ISpawnerEntity;
 import nightkosh.gravestone.tileentity.TileEntityGraveStone;
 import nightkosh.gravestone_extended.config.ExtendedConfig;
 import nightkosh.gravestone_extended.core.MobSpawn;
 import nightkosh.gravestone_extended.core.TimeHelper;
+import nightkosh.gravestone_extended.entity.helper.EntityGroupOfGravesMobSpawnerHelper;
 
 /**
  * GraveStone mod
@@ -42,7 +44,7 @@ public class GSGraveStoneSpawn extends GSSpawner {
     @Override
     protected void serverUpdateLogic() {
         if (spawnerEntity.haveSpawnerHelper()) {
-            if (spawnerEntity.getSpawnerHelper().canMobsBeSpawned()) {
+            if (((EntityGroupOfGravesMobSpawnerHelper) spawnerEntity.getSpawnerHelper()).canMobsBeSpawned()) {
                 getAndSpawnMob();
             }
         } else if (isMobSpawnAllowed()) {
