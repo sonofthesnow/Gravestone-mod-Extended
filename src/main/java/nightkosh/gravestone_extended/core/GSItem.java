@@ -1,9 +1,9 @@
 package nightkosh.gravestone_extended.core;
 
+import net.minecraft.item.Item;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import nightkosh.gravestone_extended.ModGravestoneExtended;
 import nightkosh.gravestone_extended.item.ItemChisel;
-import nightkosh.gravestone_extended.item.ItemCorpse;
 import nightkosh.gravestone_extended.item.ItemGSMonsterPlacer;
 
 /**
@@ -12,22 +12,22 @@ import nightkosh.gravestone_extended.item.ItemGSMonsterPlacer;
  * @author NightKosh
  * @license Lesser GNU Public License v3 (http://www.gnu.org/licenses/lgpl.html)
  */
-public class ExtendedItem {
+public class GSItem {
 
-    public static net.minecraft.item.Item chisel;
-    public static net.minecraft.item.Item corpse;
-    public static net.minecraft.item.Item spawnEgg;
+    public static Item chisel;
+    public static Item corpse;
+    public static Item spawnEgg;
 
-    private ExtendedItem() {
+    private GSItem() {
     }
 
     public static void registration() {
         // chisel
         chisel = new ItemChisel();
         GameRegistry.registerItem(chisel, "GSChisel");
-
-        corpse = new ItemCorpse();
-        GameRegistry.registerItem(corpse, "GSCorpse");
+//TODO
+//        corpse = new ItemCorpse();
+//        GameRegistry.registerItem(corpse, "GSCorpse");
 
         spawnEgg = new ItemGSMonsterPlacer();
         GameRegistry.registerItem(spawnEgg, "GSSpawnEgg");
@@ -35,7 +35,7 @@ public class ExtendedItem {
         ModGravestoneExtended.proxy.registerItemsModels();
     }
 
-    public static void registryExternalItems(net.minecraft.item.Item item, String name) {
+    public static void registryExternalItems(Item item, String name) {
         GameRegistry.registerItem(item, name);
     }
 }

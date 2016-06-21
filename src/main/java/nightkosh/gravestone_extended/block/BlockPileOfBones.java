@@ -2,7 +2,7 @@ package nightkosh.gravestone_extended.block;
 
 import nightkosh.gravestone_extended.block.enums.EnumPileOfBones;
 import nightkosh.gravestone_extended.config.ExtendedConfig;
-import nightkosh.gravestone_extended.core.Block;
+import nightkosh.gravestone_extended.core.GSBlock;
 import nightkosh.gravestone_extended.core.Tabs;
 import nightkosh.gravestone_extended.entity.monster.EntitySkullCrawler;
 import nightkosh.gravestone_extended.tileentity.TileEntityGSPileOfBones;
@@ -107,7 +107,7 @@ public class BlockPileOfBones extends BlockContainer {
     }
 
     public static IBlockState getCrawlerBlockState() {
-        return Block.pileOfBones.getDefaultState().withProperty(BlockPileOfBones.VARIANT, EnumPileOfBones.PILE_OF_BONES_WITH_SKULL_CRAWLER);
+        return GSBlock.pileOfBones.getDefaultState().withProperty(BlockPileOfBones.VARIANT, EnumPileOfBones.PILE_OF_BONES_WITH_SKULL_CRAWLER);
     }
 
     /**
@@ -126,7 +126,7 @@ public class BlockPileOfBones extends BlockContainer {
     }
 
     protected ItemStack createStackedBlock(int meta) {
-        return new ItemStack(Block.pileOfBones, 1, meta);
+        return new ItemStack(GSBlock.pileOfBones, 1, meta);
     }
 
     @Override

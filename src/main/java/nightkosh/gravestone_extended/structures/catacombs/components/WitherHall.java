@@ -1,6 +1,6 @@
 package nightkosh.gravestone_extended.structures.catacombs.components;
 
-import nightkosh.gravestone_extended.core.Block;
+import nightkosh.gravestone_extended.core.GSBlock;
 import nightkosh.gravestone_extended.core.logger.GSLogger;
 import nightkosh.gravestone_extended.structures.BoundingBoxHelper;
 import nightkosh.gravestone_extended.structures.MobSpawnHelper;
@@ -152,7 +152,7 @@ public class WitherHall extends CatacombsBaseComponent {
         this.fillWithBlocks(world, boundingBox, 10, 4, 22, 12, 6, 22, Blocks.portal.getDefaultState(), false);
 
         // spawner
-        this.placeBlockAtCurrentPosition(world, Block.spawner.getDefaultState(), 11, 4, 18, boundingBox);
+        this.placeBlockAtCurrentPosition(world, GSBlock.spawner.getDefaultState(), 11, 4, 18, boundingBox);
 
         // treasure
         this.fillWithBlocks(world, boundingBox, 10, 3, 17, 12, 3, 19, Blocks.diamond_block.getDefaultState(), false);

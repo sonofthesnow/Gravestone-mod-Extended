@@ -1,7 +1,7 @@
 package nightkosh.gravestone_extended.structures.catacombs;
 
 import nightkosh.gravestone_extended.config.ExtendedConfig;
-import nightkosh.gravestone_extended.core.Block;
+import nightkosh.gravestone_extended.core.GSBlock;
 import nightkosh.gravestone_extended.core.logger.GSLogger;
 import nightkosh.gravestone_extended.structures.catacombs.components.CatacombsBaseComponent;
 import nightkosh.gravestone_extended.structures.catacombs.components.Stairs;
@@ -79,7 +79,7 @@ public class CatacombsLevel {
     }
 
     public static net.minecraft.block.Block getCatacombsStairsByLevelId(int level) {
-        return (level < 3) ? Blocks.stone_brick_stairs : Block.boneStairs;
+        return (level < 3) ? Blocks.stone_brick_stairs : GSBlock.boneStairs;
     }
 
     /*

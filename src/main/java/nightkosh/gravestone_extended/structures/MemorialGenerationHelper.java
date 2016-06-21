@@ -1,7 +1,7 @@
 package nightkosh.gravestone_extended.structures;
 
 import nightkosh.gravestone_extended.block.BlockMemorial;
-import nightkosh.gravestone_extended.core.Block;
+import nightkosh.gravestone_extended.core.GSBlock;
 import nightkosh.gravestone_extended.tileentity.TileEntityGSMemorial;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.util.BlockPos;
@@ -22,7 +22,7 @@ public class MemorialGenerationHelper {
     }
 
     public static void placeMemorial(ComponentGraveStone component, World world, Random random, int x, int y, int z, EnumFacing facing, int memorialType) {
-        placeMemorial(component, world, random, x, y, z, Block.memorial.getDefaultState().withProperty(BlockMemorial.FACING, facing), memorialType);
+        placeMemorial(component, world, random, x, y, z, GSBlock.memorial.getDefaultState().withProperty(BlockMemorial.FACING, facing), memorialType);
     }
 
     public static void placeMemorial(ComponentGraveStone component, World world, Random random, int x, int y, int z, IBlockState memorialState, int memorialType) {

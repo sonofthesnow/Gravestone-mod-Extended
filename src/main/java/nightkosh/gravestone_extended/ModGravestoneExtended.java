@@ -58,10 +58,10 @@ public class ModGravestoneExtended {
         Tabs.registration();
 
         // blocks registration
-        Block.registration();
+        GSBlock.registration();
 
         // items registration
-        ExtendedItem.registration();
+        GSItem.registration();
 
         // reciepes registration
         Recipes.registration();

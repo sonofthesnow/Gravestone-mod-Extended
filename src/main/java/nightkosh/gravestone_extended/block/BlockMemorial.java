@@ -32,7 +32,7 @@ import nightkosh.gravestone.inventory.GraveInventory;
 import nightkosh.gravestone_extended.ModGravestoneExtended;
 import nightkosh.gravestone_extended.block.enums.EnumHangedMobs;
 import nightkosh.gravestone_extended.block.enums.EnumMemorials;
-import nightkosh.gravestone_extended.core.Block;
+import nightkosh.gravestone_extended.core.GSBlock;
 import nightkosh.gravestone_extended.core.Tabs;
 import nightkosh.gravestone_extended.item.ItemCorpse;
 import nightkosh.gravestone_extended.item.corpse.VillagerCorpseHelper;
@@ -628,7 +628,7 @@ public class BlockMemorial extends BlockContainer {
                     for (byte shiftX = startX; shiftX < maxX; shiftX++) {
                         BlockPos newPos = new BlockPos(pos.getX() + shiftX, pos.getY() + shiftY, pos.getZ() + shiftZ);
                         if (world.getBlockState(newPos).getBlock() == Blocks.air) {
-                            world.setBlockState(newPos, Block.invisibleWall.getDefaultState());
+                            world.setBlockState(newPos, GSBlock.invisibleWall.getDefaultState());
                         }
                     }
                 }
@@ -684,7 +684,7 @@ public class BlockMemorial extends BlockContainer {
                 for (byte shiftZ = startZ; shiftZ < maxZ; shiftZ++) {
                     for (byte shiftX = startX; shiftX < maxX; shiftX++) {
                         BlockPos newPos = new BlockPos(pos.getX() + shiftX, pos.getY() + shiftY, pos.getZ() + shiftZ);
-                        if (world.getBlockState(newPos).getBlock() == Block.invisibleWall) {
+                        if (world.getBlockState(newPos).getBlock() == GSBlock.invisibleWall) {
                             world.setBlockState(new BlockPos(pos.getX() + shiftX, pos.getY() + shiftY, pos.getZ() + shiftZ), Blocks.air.getDefaultState());
                         }
                     }

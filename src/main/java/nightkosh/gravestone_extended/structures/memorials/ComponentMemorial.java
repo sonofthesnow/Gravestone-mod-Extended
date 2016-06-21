@@ -1,7 +1,7 @@
 package nightkosh.gravestone_extended.structures.memorials;
 
 import nightkosh.gravestone_extended.block.BlockMemorial;
-import nightkosh.gravestone_extended.core.Block;
+import nightkosh.gravestone_extended.core.GSBlock;
 import nightkosh.gravestone_extended.structures.BoundingBoxHelper;
 import nightkosh.gravestone_extended.structures.ComponentGraveStone;
 import nightkosh.gravestone_extended.structures.MemorialGenerationHelper;
@@ -60,7 +60,7 @@ public class ComponentMemorial extends ComponentGraveStone {
         this.fillWithBlocks(world, boundingBox, 0, 0, 0, 2, 0, 2, groundState, groundState, false);
         int memorialType = BlockMemorial.getMemorialType(world, pos, random, 0);
         MemorialGenerationHelper.placeMemorial(this, world, random, 1, 1, 1,
-                Block.memorial.getDefaultState().withProperty(BlockMemorial.FACING, this.coordBaseMode.getOpposite()), memorialType);
+                GSBlock.memorial.getDefaultState().withProperty(BlockMemorial.FACING, this.coordBaseMode.getOpposite()), memorialType);
 
         for (int x = 0; x < 3; x++) {
             for (int z = 0; z < 3; z++) {

@@ -1,7 +1,7 @@
 package nightkosh.gravestone_extended.structures.catacombs.components;
 
 import nightkosh.gravestone_extended.config.ExtendedConfig;
-import nightkosh.gravestone_extended.core.Block;
+import nightkosh.gravestone_extended.core.GSBlock;
 import nightkosh.gravestone_extended.structures.BoundingBoxHelper;
 import nightkosh.gravestone_extended.structures.MobSpawnHelper;
 import nightkosh.gravestone_extended.structures.ObjectsGenerationHelper;
@@ -102,8 +102,8 @@ public class EnderHall extends CatacombsBaseComponent {
         this.fillWithBlocks(world, boundingBox, 9, 1, 15, 9, 3, 15, Blocks.nether_brick.getDefaultState(), false);
 
         // trap floor
-        this.fillWithBlocks(world, boundingBox, 4, 0, 3, 8, 0, 3, Block.trap.getDefaultState(), false);
-        this.fillWithBlocks(world, boundingBox, 4, 0, 15, 8, 0, 15, Block.trap.getDefaultState(), false);
+        this.fillWithBlocks(world, boundingBox, 4, 0, 3, 8, 0, 3, GSBlock.trap.getDefaultState(), false);
+        this.fillWithBlocks(world, boundingBox, 4, 0, 15, 8, 0, 15, GSBlock.trap.getDefaultState(), false);
 
         // spawner
         ObjectsGenerationHelper.generateMinecraftSpawner(this, world, 3, 0, 3, "Enderman");

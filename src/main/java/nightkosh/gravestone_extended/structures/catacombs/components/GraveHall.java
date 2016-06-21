@@ -7,7 +7,7 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.world.World;
 import nightkosh.gravestone.block.BlockGraveStone;
 import nightkosh.gravestone_extended.config.ExtendedConfig;
-import nightkosh.gravestone_extended.core.Block;
+import nightkosh.gravestone_extended.core.GSBlock;
 import nightkosh.gravestone_extended.entity.helper.EntityGroupOfGravesMobSpawnerHelper;
 import nightkosh.gravestone_extended.structures.BoundingBoxHelper;
 import nightkosh.gravestone_extended.structures.GraveGenerationHelper;
@@ -149,7 +149,7 @@ public class GraveHall extends CatacombsBaseComponent {
         buildColumn(world, 11, 12);
 
         // graves
-        IBlockState graveState = Block.graveStone.getDefaultState();
+        IBlockState graveState = GSBlock.graveStone.getDefaultState();
         IBlockState leftGraveState = graveState.withProperty(BlockGraveStone.FACING, this.getLeftDirection(this.coordBaseMode));
         IBlockState rightGraveState = graveState.withProperty(BlockGraveStone.FACING, this.getRightDirection(this.coordBaseMode));
         IBlockState topGraveState = graveState.withProperty(BlockGraveStone.FACING, this.coordBaseMode.getOpposite());
@@ -197,8 +197,8 @@ public class GraveHall extends CatacombsBaseComponent {
         GraveGenerationHelper.placeGrave(this, world, random, 13, 4, 1, botGraveState, spawnerHelper, EnumGraveTypeByEntity.HUMAN_GRAVES);
 
         // trap floor
-        this.fillWithBlocks(world, boundingBox, 7, 0, 6, 9, 0, 6, Block.trap.getDefaultState(), false);
-        this.fillWithBlocks(world, boundingBox, 7, 0, 12, 9, 0, 12, Block.trap.getDefaultState(), false);
+        this.fillWithBlocks(world, boundingBox, 7, 0, 6, 9, 0, 6, GSBlock.trap.getDefaultState(), false);
+        this.fillWithBlocks(world, boundingBox, 7, 0, 12, 9, 0, 12, GSBlock.trap.getDefaultState(), false);
 
         // spawn bats
         MobSpawnHelper.spawnBats(world, random, boundingBox);

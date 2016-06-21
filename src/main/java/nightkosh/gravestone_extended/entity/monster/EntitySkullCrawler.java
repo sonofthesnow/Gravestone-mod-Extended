@@ -1,6 +1,6 @@
 package nightkosh.gravestone_extended.entity.monster;
 
-import nightkosh.gravestone_extended.core.Block;
+import nightkosh.gravestone_extended.core.GSBlock;
 import nightkosh.gravestone_extended.entity.ai.AIHideInBones;
 import nightkosh.gravestone_extended.entity.ai.AIHideInPilesOfBones;
 import nightkosh.gravestone_extended.entity.ai.AISummonSkullCrawler;
@@ -145,7 +145,7 @@ public class EntitySkullCrawler extends EntityMob {
      */
     @Override
     public float getBlockPathWeight(BlockPos pos) {
-        return this.worldObj.getBlockState(new BlockPos(pos.down())).getBlock().equals(Block.boneBlock) ? 10 : super.getBlockPathWeight(pos);
+        return this.worldObj.getBlockState(new BlockPos(pos.down())).getBlock().equals(GSBlock.boneBlock) ? 10 : super.getBlockPathWeight(pos);
     }
 
     /**

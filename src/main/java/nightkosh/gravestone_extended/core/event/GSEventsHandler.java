@@ -9,7 +9,7 @@ import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import nightkosh.gravestone_extended.config.ExtendedConfig;
-import nightkosh.gravestone_extended.core.Block;
+import nightkosh.gravestone_extended.core.GSBlock;
 import nightkosh.gravestone_extended.core.MobSpawn;
 import nightkosh.gravestone_extended.entity.monster.EntitySkullCrawler;
 import nightkosh.gravestone_extended.entity.monster.EntityWitherSkullCrawler;
@@ -42,7 +42,7 @@ public class GSEventsHandler {
             }
             if (event.entity instanceof EntityCreeper && ((EntityCreeper) event.entity).getPowered()) {
                 // drop creeper statue if entity is a charged creeper
-                Block.memorial.dropCreeperMemorial(event.entity.worldObj, new BlockPos(event.entity));
+                GSBlock.memorial.dropCreeperMemorial(event.entity.worldObj, new BlockPos(event.entity));
             }
         }
     }

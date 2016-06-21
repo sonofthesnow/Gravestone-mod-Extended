@@ -1,6 +1,6 @@
 package nightkosh.gravestone_extended.entity.ai;
 
-import nightkosh.gravestone_extended.core.Block;
+import nightkosh.gravestone_extended.core.GSBlock;
 import nightkosh.gravestone_extended.entity.monster.EntitySkullCrawler;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.ai.EntityAIBase;
@@ -49,8 +49,8 @@ public class AISummonSkullCrawler extends EntityAIBase {
                         BlockPos blockPos = blockpos.add(j, i, k);
                         IBlockState state = world.getBlockState(blockPos);
 
-                        if ((state.getBlock().equals(Block.boneBlock) && Block.boneBlock.isSkullCrawlerBlock(state)) ||
-                                (state.getBlock().equals(Block.pileOfBones) && Block.pileOfBones.isSkullCrawlerBlock(state))) {
+                        if ((state.getBlock().equals(GSBlock.boneBlock) && GSBlock.boneBlock.isSkullCrawlerBlock(state)) ||
+                                (state.getBlock().equals(GSBlock.pileOfBones) && GSBlock.pileOfBones.isSkullCrawlerBlock(state))) {
                             if (world.getGameRules().getBoolean("mobGriefing")) {
                                 world.destroyBlock(blockPos, true);
                             }

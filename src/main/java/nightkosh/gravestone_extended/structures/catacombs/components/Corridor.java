@@ -1,7 +1,7 @@
 package nightkosh.gravestone_extended.structures.catacombs.components;
 
 import nightkosh.gravestone_extended.config.ExtendedConfig;
-import nightkosh.gravestone_extended.core.Block;
+import nightkosh.gravestone_extended.core.GSBlock;
 import nightkosh.gravestone_extended.structures.BoundingBoxHelper;
 import nightkosh.gravestone_extended.structures.MobSpawnHelper;
 import net.minecraft.init.Blocks;
@@ -74,7 +74,7 @@ public class Corridor extends CatacombsBaseComponent {
         }
 
         // trap floor
-        this.fillWithBlocks(world, boundingBox, 0, 0, 0, 4, 0, 0, Block.trap.getDefaultState(), Block.trap.getDefaultState(), false);
+        this.fillWithBlocks(world, boundingBox, 0, 0, 0, 4, 0, 0, GSBlock.trap.getDefaultState(), GSBlock.trap.getDefaultState(), false);
 
         // neter ceiling
         this.fillWithBlocks(world, boundingBox, 0, 4, 0, 4, 4, 3, Blocks.nether_brick.getDefaultState(), false);

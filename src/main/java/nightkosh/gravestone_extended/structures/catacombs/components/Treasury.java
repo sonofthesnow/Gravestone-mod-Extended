@@ -1,7 +1,7 @@
 package nightkosh.gravestone_extended.structures.catacombs.components;
 
 import nightkosh.gravestone.block.BlockGraveStone;
-import nightkosh.gravestone_extended.core.Block;
+import nightkosh.gravestone_extended.core.GSBlock;
 import nightkosh.gravestone_extended.entity.helper.EntityGroupOfGravesMobSpawnerHelper;
 import nightkosh.gravestone.helper.GraveGenerationHelper.EnumGraveTypeByEntity;
 import nightkosh.gravestone_extended.helper.GraveInventoryHelper;
@@ -69,7 +69,7 @@ public class Treasury extends CatacombsBaseComponent {
         this.fillWithBlocks(world, boundingBox, 5, 1, 0, 5, 3, 0, Blocks.nether_brick.getDefaultState(), false);
 
         // graves
-        IBlockState graveState = Block.graveStone.getDefaultState();
+        IBlockState graveState = GSBlock.graveStone.getDefaultState();
         IBlockState leftGraveState = graveState.withProperty(BlockGraveStone.FACING, this.getLeftDirection(this.coordBaseMode));
         IBlockState rightGraveState = graveState.withProperty(BlockGraveStone.FACING, this.getRightDirection(this.coordBaseMode));
 

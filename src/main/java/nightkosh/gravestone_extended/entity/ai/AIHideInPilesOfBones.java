@@ -1,6 +1,6 @@
 package nightkosh.gravestone_extended.entity.ai;
 
-import nightkosh.gravestone_extended.core.Block;
+import nightkosh.gravestone_extended.core.GSBlock;
 import nightkosh.gravestone_extended.entity.monster.EntitySkullCrawler;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.ai.EntityAIWander;
@@ -68,7 +68,7 @@ public class AIHideInPilesOfBones extends EntityAIWander {
             } else {
                 World world = crawler.worldObj;
                 BlockPos blockPos = (new BlockPos(crawler.posX, crawler.posY + 0.5D, crawler.posZ)).offset(this.enumFacing);
-                world.setBlockState(blockPos, Block.pileOfBones.getCrawlerBlockState(), 3);
+                world.setBlockState(blockPos, GSBlock.pileOfBones.getCrawlerBlockState(), 3);
                 crawler.spawnExplosionParticle();
                 crawler.setDead();
             }

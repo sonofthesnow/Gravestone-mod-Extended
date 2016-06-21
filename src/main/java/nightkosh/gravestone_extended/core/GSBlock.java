@@ -14,7 +14,7 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
  * @author NightKosh
  * @license Lesser GNU Public License v3 (http://www.gnu.org/licenses/lgpl.html)
  */
-public class Block extends nightkosh.gravestone.core.GSBlock{
+public class GSBlock extends nightkosh.gravestone.core.GSBlock{
 
     public static final IBlockState DEFAULT_STONE_STATE = Blocks.stone.getDefaultState();
     public static final int DIORITE_META = Blocks.stone.getMetaFromState(DEFAULT_STONE_STATE.withProperty(BlockStone.VARIANT, BlockStone.EnumType.DIORITE_SMOOTH));

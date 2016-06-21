@@ -12,7 +12,7 @@ import net.minecraft.util.ITickable;
 import net.minecraft.world.World;
 import nightkosh.gravestone_extended.block.enums.EnumHauntedChest;
 import nightkosh.gravestone_extended.config.ExtendedConfig;
-import nightkosh.gravestone_extended.core.Block;
+import nightkosh.gravestone_extended.core.GSBlock;
 import nightkosh.gravestone_extended.core.MobSpawn;
 
 /**
@@ -97,7 +97,7 @@ public class TileEntityGSHauntedChest extends TileEntity implements ITickable {
         if (openTicks == 0) {
             if (this.isOpen && ExtendedConfig.replaceHauntedChest) {
                 this.worldObj.removeTileEntity(this.pos);
-                this.worldObj.setBlockState(this.pos, Blocks.chest.getStateFromMeta(Block.hauntedChest.getMetaFromState(worldObj.getBlockState(this.pos))));
+                this.worldObj.setBlockState(this.pos, Blocks.chest.getStateFromMeta(GSBlock.hauntedChest.getMetaFromState(worldObj.getBlockState(this.pos))));
             }
             this.isOpen = false;
         }

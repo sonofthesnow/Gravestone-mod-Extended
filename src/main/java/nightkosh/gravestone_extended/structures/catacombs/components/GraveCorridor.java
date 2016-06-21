@@ -7,7 +7,7 @@ import net.minecraft.world.World;
 import nightkosh.gravestone.block.BlockGraveStone;
 import nightkosh.gravestone.helper.GraveGenerationHelper.EnumGraveTypeByEntity;
 import nightkosh.gravestone_extended.config.ExtendedConfig;
-import nightkosh.gravestone_extended.core.Block;
+import nightkosh.gravestone_extended.core.GSBlock;
 import nightkosh.gravestone_extended.entity.helper.EntityGroupOfGravesMobSpawnerHelper;
 import nightkosh.gravestone_extended.structures.BoundingBoxHelper;
 import nightkosh.gravestone_extended.structures.GraveGenerationHelper;
@@ -56,7 +56,7 @@ public class GraveCorridor extends CatacombsBaseComponent {
         }
 
         // trap floor
-        this.fillWithBlocks(world, boundingBox, 1, 0, 0, 5, 0, 0, Block.trap.getDefaultState(), false);
+        this.fillWithBlocks(world, boundingBox, 1, 0, 0, 5, 0, 0, GSBlock.trap.getDefaultState(), false);
 
         // neter floor
         this.fillWithBlocks(world, boundingBox, 1, 0, 4, 5, 0, 4, Blocks.nether_brick.getDefaultState(), false);
@@ -78,7 +78,7 @@ public class GraveCorridor extends CatacombsBaseComponent {
         this.fillWithBlocks(world, boundingBox, 5, 1, 4, 5, 3, 4, Blocks.nether_brick.getDefaultState(), false);
 
         // graves
-        IBlockState graveState = Block.graveStone.getDefaultState();
+        IBlockState graveState = GSBlock.graveStone.getDefaultState();
         IBlockState leftGraveState = graveState.withProperty(BlockGraveStone.FACING, this.getLeftDirection(this.coordBaseMode));
         IBlockState rightGraveState = graveState.withProperty(BlockGraveStone.FACING, this.getRightDirection(this.coordBaseMode));
 

@@ -1,7 +1,7 @@
 package nightkosh.gravestone_extended.block;
 
 import nightkosh.gravestone_extended.block.enums.EnumSpawner;
-import nightkosh.gravestone_extended.core.Block;
+import nightkosh.gravestone_extended.core.GSBlock;
 import nightkosh.gravestone_extended.core.Tabs;
 import nightkosh.gravestone_extended.particle.EntityGreenFlameFX;
 import nightkosh.gravestone_extended.tileentity.TileEntityGSSpawner;
@@ -139,12 +139,12 @@ public class BlockSpawner extends BlockMobSpawner {
     public ItemStack getCustomItemsDropped(int meta) {
         switch (meta) {
             case 1:
-                return new ItemStack(Block.skullCandle, 1, 0);
+                return new ItemStack(GSBlock.skullCandle, 1, 0);
             case 2:
-                return new ItemStack(Block.skullCandle, 1, 2);
+                return new ItemStack(GSBlock.skullCandle, 1, 2);
             case 0:
             default:
-                return new ItemStack(Block.skullCandle, 1, 1);
+                return new ItemStack(GSBlock.skullCandle, 1, 1);
         }
     }
 

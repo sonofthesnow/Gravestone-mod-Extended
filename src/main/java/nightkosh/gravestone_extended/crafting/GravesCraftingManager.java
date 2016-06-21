@@ -7,7 +7,7 @@ import nightkosh.gravestone.api.grave.EnumGraveType;
 import nightkosh.gravestone.block.enums.EnumGraves;
 import nightkosh.gravestone_extended.block.enums.EnumMemorials;
 import nightkosh.gravestone_extended.config.ExtendedConfig;
-import nightkosh.gravestone_extended.core.Block;
+import nightkosh.gravestone_extended.core.GSBlock;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -53,7 +53,7 @@ public class GravesCraftingManager {
         for (int i = 0; i <= EnumGraveMaterial.ICE.ordinal(); i++) {
             recipes.add(new GravestoneRecipe(true, graveType, EnumGraveMaterial.values()[i],
                     new ArrayList<ItemStack>(Arrays.asList(new ItemStack(EnumGraveMaterial.values()[i].getBlock(), 1))),
-                    getStackWithNTB(Block.graveStone, EnumGraves.getByTypeAndMaterial(graveType, EnumGraveMaterial.values()[i]).ordinal())));
+                    getStackWithNTB(GSBlock.graveStone, EnumGraves.getByTypeAndMaterial(graveType, EnumGraveMaterial.values()[i]).ordinal())));
         }
     }
 
@@ -61,7 +61,7 @@ public class GravesCraftingManager {
         for (int i = 0; i <= EnumGraveMaterial.ICE.ordinal(); i++) {
             recipes.add(new GravestoneRecipe(true, memorialType, EnumGraveMaterial.values()[i],
                     new ArrayList<ItemStack>(Arrays.asList(new ItemStack(EnumGraveMaterial.values()[i].getBlock(), amountOfBlocks))),
-                    getStackWithNTB(Block.memorial, EnumMemorials.getByTypeAndMaterial(memorialType, EnumGraveMaterial.values()[i]).ordinal())));
+                    getStackWithNTB(GSBlock.memorial, EnumMemorials.getByTypeAndMaterial(memorialType, EnumGraveMaterial.values()[i]).ordinal())));
         }
     }
 

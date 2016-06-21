@@ -5,7 +5,7 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.world.World;
 import nightkosh.gravestone.block.BlockGraveStone;
 import nightkosh.gravestone_extended.block.enums.EnumPileOfBones;
-import nightkosh.gravestone_extended.core.Block;
+import nightkosh.gravestone_extended.core.GSBlock;
 import nightkosh.gravestone_extended.core.logger.GSLogger;
 import nightkosh.gravestone.helper.GraveGenerationHelper.EnumGraveTypeByEntity;
 import nightkosh.gravestone_extended.helper.GraveInventoryHelper;
@@ -39,7 +39,7 @@ public class ComponentOpenedGrave extends ComponentGraveStone {
             GSLogger.logInfo("Generate opened grave at " + gravePositionX + "x" + gravePositionZ);
 
             GraveGenerationHelper.placeGrave(this, world, random, 0, y, 2,
-                    Block.graveStone.getDefaultState().withProperty(BlockGraveStone.FACING, this.coordBaseMode.getOpposite()),
+                    GSBlock.graveStone.getDefaultState().withProperty(BlockGraveStone.FACING, this.coordBaseMode.getOpposite()),
                     null, EnumGraveTypeByEntity.HUMAN_GRAVES, GraveInventoryHelper.GraveContentType.RANDOM);
                     //, GraveInventory.GraveCorpseContentType.EMPTY); TODO
 

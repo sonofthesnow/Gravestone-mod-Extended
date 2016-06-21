@@ -2,7 +2,7 @@ package nightkosh.gravestone_extended.block;
 
 import nightkosh.gravestone_extended.block.enums.EnumBoneBlock;
 import nightkosh.gravestone_extended.config.ExtendedConfig;
-import nightkosh.gravestone_extended.core.Block;
+import nightkosh.gravestone_extended.core.GSBlock;
 import nightkosh.gravestone_extended.core.Tabs;
 import nightkosh.gravestone_extended.entity.monster.EntitySkullCrawler;
 import net.minecraft.block.material.Material;
@@ -83,8 +83,8 @@ public class BlockBoneBlock extends net.minecraft.block.Block {
     }
 
     public static boolean canContainCrawler(IBlockState state) {
-        return state.equals(Block.boneBlock.getDefaultState().withProperty(BlockBoneBlock.VARIANT, EnumBoneBlock.BONE_BLOCK)) ||
-                state.equals(Block.boneBlock.getDefaultState().withProperty(BlockBoneBlock.VARIANT, EnumBoneBlock.SKULL_BONE_BLOCK));
+        return state.equals(GSBlock.boneBlock.getDefaultState().withProperty(BlockBoneBlock.VARIANT, EnumBoneBlock.BONE_BLOCK)) ||
+                state.equals(GSBlock.boneBlock.getDefaultState().withProperty(BlockBoneBlock.VARIANT, EnumBoneBlock.SKULL_BONE_BLOCK));
     }
 
     public static IBlockState getCrawlerBlockState(IBlockState state) {

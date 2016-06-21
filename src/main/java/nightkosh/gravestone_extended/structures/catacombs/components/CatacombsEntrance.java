@@ -1,6 +1,6 @@
 package nightkosh.gravestone_extended.structures.catacombs.components;
 
-import nightkosh.gravestone_extended.core.Block;
+import nightkosh.gravestone_extended.core.GSBlock;
 import nightkosh.gravestone_extended.structures.BoundingBoxHelper;
 import net.minecraft.block.BlockStairs;
 import net.minecraft.block.state.IBlockState;
@@ -107,7 +107,7 @@ public class CatacombsEntrance extends CatacombsBaseComponent {
         this.fillWithBlocks(world, boundingBox, 0, shiftY, shiftZ + 1, 3, shiftY, shiftZ + zLength + 4, Blocks.nether_brick.getDefaultState(), false);
 
         // trap floor
-        this.fillWithBlocks(world, boundingBox, 0, shiftY - 4, shiftZ, 3, shiftY - 4, shiftZ + zLength + 4, Block.trap.getDefaultState(), false);
+        this.fillWithBlocks(world, boundingBox, 0, shiftY - 4, shiftZ, 3, shiftY - 4, shiftZ + zLength + 4, GSBlock.trap.getDefaultState(), false);
 
         for (int j = 0; j < corridorLength; j++) {
             // nether walls

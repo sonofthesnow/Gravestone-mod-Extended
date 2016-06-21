@@ -23,7 +23,7 @@ public class Tabs extends nightkosh.gravestone.core.Tabs {
         memorialsTab = new CreativeTabs("tabGSMemorials") {
             @Override
             public ItemStack getIconItemStack() {
-                ItemStack stack = new ItemStack(Block.memorial, 1, 0);
+                ItemStack stack = new ItemStack(GSBlock.memorial, 1, 0);
                 NBTTagCompound nbt = new NBTTagCompound();
                 nbt.setInteger("Type", EnumMemorials.STONE_CREEPER_STATUE.ordinal());
                 stack.setTagCompound(nbt);
@@ -33,20 +33,20 @@ public class Tabs extends nightkosh.gravestone.core.Tabs {
             @Override
             @SideOnly(Side.CLIENT)
             public Item getTabIconItem() {
-                return Item.getItemFromBlock(Block.memorial);
+                return Item.getItemFromBlock(GSBlock.memorial);
             }
         };
 
         otherItemsTab = new CreativeTabs("tabGSOther") {
             @Override
             public ItemStack getIconItemStack() {
-                return new ItemStack(Block.skullCandle, 1, 1);
+                return new ItemStack(GSBlock.skullCandle, 1, 1);
             }
 
             @Override
             @SideOnly(Side.CLIENT)
             public Item getTabIconItem() {
-                return Item.getItemFromBlock(Block.skullCandle);
+                return Item.getItemFromBlock(GSBlock.skullCandle);
             }
         };
     }

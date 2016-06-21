@@ -18,7 +18,7 @@ import nightkosh.gravestone.block.BlockGraveStone;
 import nightkosh.gravestone_extended.block.BlockSkullCandle;
 import nightkosh.gravestone_extended.block.enums.EnumSkullCandle;
 import nightkosh.gravestone_extended.config.ExtendedConfig;
-import nightkosh.gravestone_extended.core.Block;
+import nightkosh.gravestone_extended.core.GSBlock;
 import nightkosh.gravestone_extended.entity.helper.EntityGroupOfGravesMobSpawnerHelper;
 import nightkosh.gravestone.helper.GraveGenerationHelper.EnumGraveTypeByEntity;
 import nightkosh.gravestone_extended.structures.BoundingBoxHelper;
@@ -126,14 +126,14 @@ public class ComponentVillageUndertaker extends StructureVillagePieces.Village i
             this.setBlockState(world, gateState, 3, 1, 5, boundingBox);
 
             // candles
-            this.setBlockState(world, Block.candle.getDefaultState(), 1, 2, 1, boundingBox);
-            this.setBlockState(world, Block.candle.getDefaultState(), 1, 2, 4, boundingBox);
-            this.setBlockState(world, Block.candle.getDefaultState(), 2, 2, 5, boundingBox);
-            this.setBlockState(world, Block.candle.getDefaultState(), 4, 2, 5, boundingBox);
-            this.setBlockState(world, Block.candle.getDefaultState(), 7, 2, 0, boundingBox);
-            this.setBlockState(world, Block.candle.getDefaultState(), 9, 2, 0, boundingBox);
-            this.setBlockState(world, Block.candle.getDefaultState(), 1, 2, 13, boundingBox);
-            this.setBlockState(world, Block.candle.getDefaultState(), 11, 2, 13, boundingBox);
+            this.setBlockState(world, GSBlock.candle.getDefaultState(), 1, 2, 1, boundingBox);
+            this.setBlockState(world, GSBlock.candle.getDefaultState(), 1, 2, 4, boundingBox);
+            this.setBlockState(world, GSBlock.candle.getDefaultState(), 2, 2, 5, boundingBox);
+            this.setBlockState(world, GSBlock.candle.getDefaultState(), 4, 2, 5, boundingBox);
+            this.setBlockState(world, GSBlock.candle.getDefaultState(), 7, 2, 0, boundingBox);
+            this.setBlockState(world, GSBlock.candle.getDefaultState(), 9, 2, 0, boundingBox);
+            this.setBlockState(world, GSBlock.candle.getDefaultState(), 1, 2, 13, boundingBox);
+            this.setBlockState(world, GSBlock.candle.getDefaultState(), 11, 2, 13, boundingBox);
 
             // walls
             this.fillWithBlocks(world, boundingBox, 5, 1, 2, 5, 3, 2, darkClayState, darkClayState, false);
@@ -243,7 +243,7 @@ public class ComponentVillageUndertaker extends StructureVillagePieces.Village i
 
         this.setBlockState(world, gateState, startX + 6, 1, startZ + 9, structureBoundingBox);
 
-        IBlockState graveState = Block.graveStone.getDefaultState().withProperty(BlockGraveStone.FACING, this.coordBaseMode.getOpposite());
+        IBlockState graveState = GSBlock.graveStone.getDefaultState().withProperty(BlockGraveStone.FACING, this.coordBaseMode.getOpposite());
         EntityGroupOfGravesMobSpawnerHelper spawnerHelper = GraveGenerationHelper.createSpawnerHelper(world, boundingBox);
 
         for (int x = startX + 3; x < startX + 11; x += 2) {
@@ -315,8 +315,8 @@ public class ComponentVillageUndertaker extends StructureVillagePieces.Village i
 
     protected void generateSkullCandle(World world, StructureBoundingBox boundingBox, int x, int y, int z, EnumFacing direction) {
         BlockPos pos = new BlockPos(this.getXWithOffset(x, z), this.getYWithOffset(y), this.getZWithOffset(x, z));
-        if (world.getBlockState(pos).getBlock() != Block.skullCandle) {
-            IBlockState skullCandleState = nightkosh.gravestone_extended.core.Block.skullCandle.getDefaultState().withProperty(BlockSkullCandle.VARIANT, EnumSkullCandle.SKELETON_SKULL);
+        if (world.getBlockState(pos).getBlock() != GSBlock.skullCandle) {
+            IBlockState skullCandleState = GSBlock.skullCandle.getDefaultState().withProperty(BlockSkullCandle.VARIANT, EnumSkullCandle.SKELETON_SKULL);
             this.setBlockState(world, skullCandleState, x, y, z, boundingBox);
             TileEntityGSSkullCandle tileEntity = (TileEntityGSSkullCandle) world.getTileEntity(pos);
             if (tileEntity != null) {

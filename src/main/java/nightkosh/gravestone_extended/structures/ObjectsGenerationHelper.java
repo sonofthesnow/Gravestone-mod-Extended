@@ -19,7 +19,7 @@ import nightkosh.gravestone_extended.block.BlockPileOfBones;
 import nightkosh.gravestone_extended.block.BlockSpawner;
 import nightkosh.gravestone_extended.block.enums.EnumHauntedChest;
 import nightkosh.gravestone_extended.block.enums.EnumPileOfBones;
-import nightkosh.gravestone_extended.core.Block;
+import nightkosh.gravestone_extended.core.GSBlock;
 import nightkosh.gravestone_extended.core.Potion;
 import nightkosh.gravestone_extended.tileentity.TileEntityGSHauntedChest;
 import nightkosh.gravestone_extended.tileentity.TileEntityGSPileOfBones;
@@ -57,7 +57,7 @@ public class ObjectsGenerationHelper {
     }
 
     public static void generatePileOfBones(ComponentGraveStone component, World world, int xCoord, int yCoord, int zCoord, EnumFacing facing, EnumPileOfBones type) {
-        generatePileOfBones(component, world, xCoord, yCoord, zCoord, (byte) facing.getHorizontalIndex(), Block.pileOfBones.getDefaultState().withProperty(BlockPileOfBones.VARIANT, type));
+        generatePileOfBones(component, world, xCoord, yCoord, zCoord, (byte) facing.getHorizontalIndex(), GSBlock.pileOfBones.getDefaultState().withProperty(BlockPileOfBones.VARIANT, type));
     }
 
     /**
@@ -96,7 +96,7 @@ public class ObjectsGenerationHelper {
         int z = component.getZWithOffset(xCoord, zCoord);
 
         BlockPos pos = new BlockPos(x, y, z);
-        world.setBlockState(pos, Block.hauntedChest.getDefaultState().withProperty(BlockHauntedChest.FACING, facing), 2);
+        world.setBlockState(pos, GSBlock.hauntedChest.getDefaultState().withProperty(BlockHauntedChest.FACING, facing), 2);
         TileEntityGSHauntedChest te = (TileEntityGSHauntedChest) world.getTileEntity(pos);
         if (te != null) {
             te.setChestType(EnumHauntedChest.getById(random.nextInt(EnumHauntedChest.values().length)));
@@ -180,7 +180,7 @@ public class ObjectsGenerationHelper {
         int x = component.getXWithOffset(xCoord, zCoord);
         int z = component.getZWithOffset(xCoord, zCoord);
 
-        world.setBlockState(new BlockPos(x, y, z), Block.spawner.getDefaultState().withProperty(BlockSpawner.VARIANT,
+        world.setBlockState(new BlockPos(x, y, z), GSBlock.spawner.getDefaultState().withProperty(BlockSpawner.VARIANT,
                 BlockSpawner.MOB_SPAWNERS.get(random.nextInt(BlockSpawner.MOB_SPAWNERS.size()))), 2);
     }
 

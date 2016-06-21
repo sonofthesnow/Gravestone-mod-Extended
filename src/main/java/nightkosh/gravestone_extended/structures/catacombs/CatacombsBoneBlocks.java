@@ -2,7 +2,7 @@ package nightkosh.gravestone_extended.structures.catacombs;
 
 import nightkosh.gravestone_extended.block.BlockBoneBlock;
 import nightkosh.gravestone_extended.block.enums.EnumBoneBlock;
-import nightkosh.gravestone_extended.core.Block;
+import nightkosh.gravestone_extended.core.GSBlock;
 import net.minecraft.init.Blocks;
 import net.minecraft.world.gen.structure.StructureComponent;
 
@@ -27,15 +27,15 @@ public class CatacombsBoneBlocks extends StructureComponent.BlockSelector {
         if (flag) {
             if (random.nextInt(5) == 0) {
                 if (random.nextInt(100) < 60) {
-                    this.blockstate = Block.boneBlock.getDefaultState().withProperty(BlockBoneBlock.VARIANT, EnumBoneBlock.CRAWLER_SKULL_BONE_BLOCK);
+                    this.blockstate = GSBlock.boneBlock.getDefaultState().withProperty(BlockBoneBlock.VARIANT, EnumBoneBlock.CRAWLER_SKULL_BONE_BLOCK);
                 } else {
-                    this.blockstate = Block.boneBlock.getDefaultState().withProperty(BlockBoneBlock.VARIANT, EnumBoneBlock.SKULL_BONE_BLOCK);
+                    this.blockstate = GSBlock.boneBlock.getDefaultState().withProperty(BlockBoneBlock.VARIANT, EnumBoneBlock.SKULL_BONE_BLOCK);
                 }
             } else {
                 if (random.nextInt(100) < 60) {
-                    this.blockstate = Block.boneBlock.getDefaultState().withProperty(BlockBoneBlock.VARIANT, EnumBoneBlock.CRAWLER_BONE_BLOCK);
+                    this.blockstate = GSBlock.boneBlock.getDefaultState().withProperty(BlockBoneBlock.VARIANT, EnumBoneBlock.CRAWLER_BONE_BLOCK);
                 } else {
-                    this.blockstate = Block.boneBlock.getDefaultState();
+                    this.blockstate = GSBlock.boneBlock.getDefaultState();
                 }
             }
         } else {

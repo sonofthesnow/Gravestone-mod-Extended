@@ -8,7 +8,7 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.world.World;
 import nightkosh.gravestone.tileentity.TileEntityGrave;
 import nightkosh.gravestone_extended.ModGravestoneExtended;
-import nightkosh.gravestone_extended.core.Block;
+import nightkosh.gravestone_extended.core.GSBlock;
 import nightkosh.gravestone_extended.core.GuiHandler;
 import nightkosh.gravestone_extended.core.Tabs;
 
@@ -45,9 +45,9 @@ public class ItemChisel extends ItemTool {
      */
     @Override
     public boolean onItemUse(ItemStack stack, EntityPlayer player, World world, BlockPos pos, EnumFacing side, float hitX, float hitY, float hitZ) {
-        if (world.getBlockState(pos).getBlock().equals(Block.graveStone)) {
+        if (world.getBlockState(pos).getBlock().equals(GSBlock.graveStone)) {
             return setGraveText(stack, player, world, pos, false);
-        } else if (world.getBlockState(pos).getBlock().equals(Block.memorial)) {
+        } else if (world.getBlockState(pos).getBlock().equals(GSBlock.memorial)) {
             return setGraveText(stack, player, world, pos, true);
         } else {
             player.openGui(ModGravestoneExtended.instance, GuiHandler.CHISEL_CRAFTING_GUI_ID, world, pos.getX(), pos.getY(), pos.getZ());

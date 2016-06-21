@@ -1,6 +1,6 @@
 package nightkosh.gravestone_extended.structures.catacombs.components;
 
-import nightkosh.gravestone_extended.core.Block;
+import nightkosh.gravestone_extended.core.GSBlock;
 import nightkosh.gravestone_extended.structures.BoundingBoxHelper;
 import nightkosh.gravestone_extended.structures.ObjectsGenerationHelper;
 import net.minecraft.init.Blocks;
@@ -48,7 +48,7 @@ public class SpidersCorridor extends CatacombsBaseComponent {
             this.fillWithBlocks(world, boundingBox, 0, 4, 0 + z, 4, 4, 3 + z, Blocks.nether_brick.getDefaultState(), false);
 
             // trap floor
-            this.fillWithBlocks(world, boundingBox, 0, 0, 0 + z, 4, 0, 0 + z, Block.trap.getDefaultState(), false);
+            this.fillWithBlocks(world, boundingBox, 0, 0, 0 + z, 4, 0, 0 + z, GSBlock.trap.getDefaultState(), false);
 
             // block walls
             this.fillWithRandomizedBlocks(world, boundingBox, 0, 1, 1 + z, 0, 3, 3 + z, false, random, getCemeteryCatacombsStones());

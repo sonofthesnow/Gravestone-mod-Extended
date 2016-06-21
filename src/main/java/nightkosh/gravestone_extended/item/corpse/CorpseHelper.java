@@ -1,7 +1,7 @@
 package nightkosh.gravestone_extended.item.corpse;
 
 import nightkosh.gravestone_extended.ModGravestoneExtended;
-import nightkosh.gravestone_extended.core.ExtendedItem;
+import nightkosh.gravestone_extended.core.GSItem;
 import nightkosh.gravestone_extended.item.enums.EnumCorpse;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
@@ -101,7 +101,7 @@ public abstract class CorpseHelper {
         }
 
         List<ItemStack> corpse = new ArrayList<ItemStack>();
-        ItemStack stack = new ItemStack(ExtendedItem.corpse, 1, type.ordinal());
+        ItemStack stack = new ItemStack(GSItem.corpse, 1, type.ordinal());
         stack.setTagCompound(nbtTag);
         corpse.add(stack);
         return corpse;
