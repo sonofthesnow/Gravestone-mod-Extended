@@ -25,7 +25,7 @@ import nightkosh.gravestone_extended.helper.GraveGenerationHelper;
  * @author NightKosh
  * @license Lesser GNU Public License v3 (http://www.gnu.org/licenses/lgpl.html)
  */
-@Mod(modid = ModInfo.ID, name = ModInfo.NAME, version = ModInfo.VERSION)
+@Mod(modid = ModInfo.ID, name = ModInfo.NAME, version = ModInfo.VERSION, dependencies = "required-after:" + nightkosh.gravestone.api.ModInfo.ID + "@[1.0.1,);")
 public class ModGravestoneExtended {
 
     @Instance(ModInfo.ID)
