@@ -1,6 +1,6 @@
 {
     "parent": "block/cube_all",
     "textures": {
-        "all": "nightkosh.gravestone:blocks/skull_bone_block"
+        "all": "gravestone:blocks/skull_bone_block"
     }
 }

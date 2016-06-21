@@ -1,5 +1,5 @@
 {
     "variants": {
-        "normal": { "model": "nightkosh.gravestone:GSCandle" }
+        "normal": { "model": "gravestone:GSCandle" }
     }
 }

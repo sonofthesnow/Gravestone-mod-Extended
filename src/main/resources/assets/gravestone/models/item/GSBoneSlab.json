@@ -1,5 +1,5 @@
 {
-    "parent": "nightkosh.gravestone:block/GSBoneSlab_half_slab",
+    "parent": "gravestone:block/GSBoneSlab_half_slab",
     "display": {
         "thirdperson": {
             "rotation": [ 10, -45, 170 ],

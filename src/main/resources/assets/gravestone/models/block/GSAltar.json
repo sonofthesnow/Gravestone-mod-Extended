@@ -1,9 +1,9 @@
 {
     "textures": {
-        "particle": "nightkosh.gravestone:blocks/bone_block",
-        "bottom": "nightkosh.gravestone:blocks/bone_block",
-        "top": "nightkosh.gravestone:blocks/altar_top",
-        "side": "nightkosh.gravestone:blocks/altar_side"
+        "particle": "gravestone:blocks/bone_block",
+        "bottom": "gravestone:blocks/bone_block",
+        "top": "gravestone:blocks/altar_top",
+        "side": "gravestone:blocks/altar_side"
     },
     "elements": [
         {   "from": [ 0, 0, 0 ],

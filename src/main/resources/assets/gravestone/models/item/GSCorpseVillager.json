@@ -1,7 +1,7 @@
 {
     "parent": "builtin/generated",
     "textures": {
-        "layer0": "nightkosh.gravestone:items/villager_corpse"
+        "layer0": "gravestone:items/villager_corpse"
     },
     "display": {
         "thirdperson": {

@@ -1,5 +1,5 @@
 {
-    "parent": "nightkosh.gravestone:block/GSTrap_night_stone",
+    "parent": "gravestone:block/GSTrap_night_stone",
     "display": {
         "thirdperson": {
             "rotation": [ 10, -45, 170 ],

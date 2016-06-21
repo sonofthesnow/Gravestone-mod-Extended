@@ -1,5 +1,5 @@
 {
-    "parent": "nightkosh.gravestone:block/GSAltar",
+    "parent": "gravestone:block/GSAltar",
     "display": {
         "thirdperson": {
             "rotation": [ 10, -45, 170 ],

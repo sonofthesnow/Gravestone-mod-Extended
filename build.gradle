@@ -62,7 +62,7 @@ jar {
     exclude('forestry/**')
     exclude('sophisticated_wolves/**')
     exclude('**/*.db')
-    exclude('assets/nightkosh.nightkosh.gravestone/techne_models/**')
+    exclude('assets/gravestone/techne_models/**')
 }
 
 processResources {
