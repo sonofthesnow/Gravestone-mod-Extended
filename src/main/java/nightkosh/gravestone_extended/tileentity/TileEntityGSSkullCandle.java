@@ -5,6 +5,7 @@ import net.minecraft.network.NetworkManager;
 import net.minecraft.network.Packet;
 import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
 import nightkosh.gravestone.tileentity.TileEntityBase;
+import nightkosh.gravestone_extended.block.enums.EnumSkullCandle;
 
 /**
  * GraveStone mod
@@ -59,5 +60,18 @@ public class TileEntityGSSkullCandle extends TileEntityBase {
 
     public void setRotation(byte rotation) {
         this.rotation = rotation;
+    }
+
+    public static class Zombie extends TileEntityGSSkullCandle {
+        @Override
+        public int getBlockMetadata() {
+            return EnumSkullCandle.ZOMBIE_SKULL.ordinal();
+        }
+    }
+    public static class Wither extends TileEntityGSSkullCandle {
+        @Override
+        public int getBlockMetadata() {
+            return EnumSkullCandle.WITHER_SKULL.ordinal();
+        }
     }
 }

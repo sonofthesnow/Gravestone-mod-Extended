@@ -25,7 +25,7 @@ public class TileEntitySpawnerRenderer extends TileEntityRenderer {
 
     public static TileEntitySpawnerRenderer instance;
 
-    private static final TileEntityGSSpawner SPAWNER_TE = new TileEntityGSSpawner();//TODO temporal hack
+    private static final TileEntityGSSpawner SPAWNER_TE = new TileEntityGSSpawner();
 
     public TileEntitySpawnerRenderer() {
         instance = this;
@@ -37,8 +37,8 @@ public class TileEntitySpawnerRenderer extends TileEntityRenderer {
     public void renderSpawnerPentagramAt(TileEntityGSSpawner tileEntity, float x, float y, float z, float par8) {
         this.bindTexture(Resources.PENTAGRAM);
 
-        if (tileEntity == null) {//TODO temporal hack
-            tileEntity = SPAWNER_TE;
+        if (tileEntity == null) {
+            tileEntity = getDefaultTE();
         }
         GL11.glPushMatrix();
         if (tileEntity.getWorld() != null) {
@@ -49,7 +49,7 @@ public class TileEntitySpawnerRenderer extends TileEntityRenderer {
             GL11.glScalef(0.6F, -0.6F, -0.6F);
         }
         GL11.glTranslated(0, -0.01, 0);
-        byte type = 0;//(byte) tileEntity.getBlockMetadata();//TODO ???
+        byte type = (byte) tileEntity.getBlockMetadata();
         EnumSpawner spawnerType = EnumSpawner.getById(type);
         ModelSpawnerPentagram spawner = getSpawnerModel(spawnerType);
         spawner.renderAll();
@@ -70,6 +70,29 @@ public class TileEntitySpawnerRenderer extends TileEntityRenderer {
             case ZOMBIE_SPAWNER:
             default:
                 return zombieSpawnerModel;
+        }
+    }
+
+
+    protected TileEntityGSSpawner getDefaultTE() {
+        return SPAWNER_TE;
+    }
+
+    public static class Skeleton extends TileEntitySpawnerRenderer {
+        private static final TileEntityGSSpawner SPAWNER_TE = new TileEntityGSSpawner.Skeleton();
+
+        @Override
+        protected TileEntityGSSpawner getDefaultTE() {
+            return SPAWNER_TE;
+        }
+    }
+
+    public static class Zombie extends TileEntitySpawnerRenderer {
+        private static final TileEntityGSSpawner SPAWNER_TE = new TileEntityGSSpawner.Zombie();
+
+        @Override
+        protected TileEntityGSSpawner getDefaultTE() {
+            return SPAWNER_TE;
         }
     }
 }

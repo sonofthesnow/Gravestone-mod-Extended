@@ -3,6 +3,7 @@ package nightkosh.gravestone_extended.tileentity;
 import net.minecraft.util.ITickable;
 import nightkosh.gravestone.tileentity.ISpawnerEntity;
 import nightkosh.gravestone.tileentity.TileEntityBase;
+import nightkosh.gravestone_extended.block.enums.EnumSpawner;
 import nightkosh.gravestone_extended.entity.helper.EntityGroupOfGravesMobSpawnerHelper;
 
 /**
@@ -37,5 +38,19 @@ public class TileEntityGSSpawner extends TileEntityBase implements ITickable, IS
     @Override
     public EntityGroupOfGravesMobSpawnerHelper getSpawnerHelper() {
         return null;
+    }
+
+    public static class Skeleton extends TileEntityGSSpawner {
+        @Override
+        public int getBlockMetadata() {
+            return EnumSpawner.SKELETON_SPAWNER.ordinal();
+        }
+    }
+
+    public static class Zombie extends TileEntityGSSpawner {
+        @Override
+        public int getBlockMetadata() {
+            return EnumSpawner.ZOMBIE_SPAWNER.ordinal();
+        }
     }
 }

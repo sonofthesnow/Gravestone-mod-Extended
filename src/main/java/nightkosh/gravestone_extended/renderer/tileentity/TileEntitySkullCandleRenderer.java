@@ -21,13 +21,13 @@ public class TileEntitySkullCandleRenderer extends TileEntitySpecialRenderer {
 
     private ModelSkullCandle skullCandleModel = new ModelSkullCandle();
 
-    private static final TileEntityGSSkullCandle SKULL_CANDLE_TE = new TileEntityGSSkullCandle();//TODO temporal hack
+    private static final TileEntityGSSkullCandle SKULL_CANDLE_TE = new TileEntityGSSkullCandle();
 
     public void renderTileEntitySkullAt(TileEntityGSSkullCandle tileEntity, float x, float y, float z, float par8) {
         float rotation = 0;
         byte meta;
-        if (tileEntity == null) {//TODO temporal hack
-            tileEntity = SKULL_CANDLE_TE;
+        if (tileEntity == null) {
+            tileEntity = getDefaultTE();
         }
         if (tileEntity.getWorld() != null) {
             rotation = (tileEntity.getRotation() * 360) / 8F;
@@ -68,6 +68,27 @@ public class TileEntitySkullCandleRenderer extends TileEntitySpecialRenderer {
             case ZOMBIE_SKULL:
                 this.bindTexture(Resources.ZOMBIE_SKULL_CANDLE);
                 break;
+        }
+    }
+
+    protected TileEntityGSSkullCandle getDefaultTE() {
+        return SKULL_CANDLE_TE;
+    }
+
+    public static class Zombie extends TileEntitySkullCandleRenderer {
+        private static final TileEntityGSSkullCandle SKULL_CANDLE_TE = new TileEntityGSSkullCandle.Zombie();
+
+        @Override
+        protected TileEntityGSSkullCandle getDefaultTE() {
+            return SKULL_CANDLE_TE;
+        }
+    }
+    public static class Wither extends TileEntitySkullCandleRenderer {
+        private static final TileEntityGSSkullCandle SKULL_CANDLE_TE = new TileEntityGSSkullCandle.Wither();
+
+        @Override
+        protected TileEntityGSSkullCandle getDefaultTE() {
+            return SKULL_CANDLE_TE;
         }
     }
 }

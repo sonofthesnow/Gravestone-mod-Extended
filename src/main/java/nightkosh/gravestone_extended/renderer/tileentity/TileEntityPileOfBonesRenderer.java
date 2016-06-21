@@ -20,27 +20,24 @@ public class TileEntityPileOfBonesRenderer extends TileEntitySpecialRenderer {
 
     private ModelPileOfBones pileOfBonesModel = new ModelPileOfBones();
 
-    private static final TileEntityGSPileOfBones PILE_OF_BONES_TE = new TileEntityGSPileOfBones();//TODO temporal hack
+    private static final TileEntityGSPileOfBones PILE_OF_BONES_TE = new TileEntityGSPileOfBones();
 
     public void renderTileEntityCandleAt(TileEntityGSPileOfBones tileEntity, float x, float y, float z, float par8) {
         this.bindTexture(Resources.PILE_OF_BONES);
 
-        int meta;
-
-        if (tileEntity == null) {//TODO temporal hack
-            tileEntity = PILE_OF_BONES_TE;
+        if (tileEntity == null) {
+            tileEntity = getDefaultTE();
         }
 
+        int meta = tileEntity.getBlockMetadata();
         GL11.glPushMatrix();
         if (tileEntity.getWorld() == null) {
             GL11.glTranslatef(x + 0.5F, y + 2.7F, z + 0.5F);
             GL11.glScalef(1.8F, -1.8F, -1.8F);
-            GL11.glRotatef(-90, 0, 1, 0);
-            meta = tileEntity.getBlockMetadata();
+            GL11.glRotatef(0, 0, 1, 0);
         } else {
             GL11.glTranslatef(x + 0.5F, y + 1.5F, z + 0.5F);
             GL11.glScalef(1, -1, -1);
-            meta = tileEntity.getBlockMetadata();
             int direction = tileEntity.getDirection();
             switch (direction) {
                 case 1:
@@ -67,5 +64,26 @@ public class TileEntityPileOfBonesRenderer extends TileEntitySpecialRenderer {
     @Override
     public void renderTileEntityAt(TileEntity tileEntity, double x, double y, double z, float par8, int par9) {
         this.renderTileEntityCandleAt((TileEntityGSPileOfBones) tileEntity, (float) x, (float) y, (float) z, par8);
+    }
+
+    protected TileEntityGSPileOfBones getDefaultTE() {
+        return PILE_OF_BONES_TE;
+    }
+
+    public static class Skull extends TileEntityPileOfBonesRenderer {
+        private static final TileEntityGSPileOfBones PILE_OF_BONES_TE = new TileEntityGSPileOfBones.Skull();
+
+        @Override
+        protected TileEntityGSPileOfBones getDefaultTE() {
+            return PILE_OF_BONES_TE;
+        }
+    }
+    public static class Crawler extends TileEntityPileOfBonesRenderer {
+        private static final TileEntityGSPileOfBones PILE_OF_BONES_TE = new TileEntityGSPileOfBones.Crawler();
+
+        @Override
+        protected TileEntityGSPileOfBones getDefaultTE() {
+            return PILE_OF_BONES_TE;
+        }
     }
 }

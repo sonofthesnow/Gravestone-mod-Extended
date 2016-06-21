@@ -60,18 +60,24 @@ public class ClientProxy extends CommonProxy {
 
         // spawner renderer
         ClientRegistry.registerTileEntity(TileEntityGSSpawner.class, "GSSpawner", new TileEntitySpawnerRenderer());
+        ClientRegistry.registerTileEntity(TileEntityGSSpawner.Skeleton.class, "GSSpawnerSkeleton", new TileEntitySpawnerRenderer.Skeleton());
+        ClientRegistry.registerTileEntity(TileEntityGSSpawner.Zombie.class, "GSSpawnerZombie", new TileEntitySpawnerRenderer.Zombie());
 
         // register HauntedChest renderer
         ClientRegistry.registerTileEntity(TileEntityGSHauntedChest.class, "GSHauntedChest", new TileEntityHauntedChestRenderer());
 
         // register SkullCandle renderer
         ClientRegistry.registerTileEntity(TileEntityGSSkullCandle.class, "GSSkullCandle", new TileEntitySkullCandleRenderer());
+        ClientRegistry.registerTileEntity(TileEntityGSSkullCandle.Zombie.class, "GSSkullCandleZombie", new TileEntitySkullCandleRenderer.Zombie());
+        ClientRegistry.registerTileEntity(TileEntityGSSkullCandle.Wither.class, "GSSkullCandleWither", new TileEntitySkullCandleRenderer.Wither());
 
         // candle
         ClientRegistry.registerTileEntity(TileEntityGSCandle.class, "GSCandle", new TileEntityCandleRenderer());
 
         // pile of bones
         ClientRegistry.registerTileEntity(TileEntityGSPileOfBones.class, "GSPileOfBones", new TileEntityPileOfBonesRenderer());
+        ClientRegistry.registerTileEntity(TileEntityGSPileOfBones.Skull.class, "GSPileOfBonesSkull", new TileEntityPileOfBonesRenderer.Skull());
+        ClientRegistry.registerTileEntity(TileEntityGSPileOfBones.Crawler.class, "GSPileOfBonesCrawler", new TileEntityPileOfBonesRenderer.Crawler());
 
         // corpses
 //        MinecraftForgeClient.registerItemRenderer(Item.corpse, new ItemGSCorpseRenderer());
@@ -149,16 +155,16 @@ public class ClientProxy extends CommonProxy {
         registerModelsForTEBlocks(0, GSBlock.memorial, ResourcesModels.memorialModel, TileEntityGSMemorial.class);
         //spawners
         registerModelsForTEBlocks(EnumSpawner.WITHER_SPAWNER.ordinal(), GSBlock.spawner, ResourcesModels.spawnerModel, TileEntityGSSpawner.class);
-        registerModelsForTEBlocks(EnumSpawner.SKELETON_SPAWNER.ordinal(), GSBlock.spawner, ResourcesModels.spawnerModel, TileEntityGSSpawner.class);
-        registerModelsForTEBlocks(EnumSpawner.ZOMBIE_SPAWNER.ordinal(), GSBlock.spawner, ResourcesModels.spawnerModel, TileEntityGSSpawner.class);
+        registerModelsForTEBlocks(EnumSpawner.SKELETON_SPAWNER.ordinal(), GSBlock.spawner, ResourcesModels.spawnerModel, TileEntityGSSpawner.Skeleton.class);
+        registerModelsForTEBlocks(EnumSpawner.ZOMBIE_SPAWNER.ordinal(), GSBlock.spawner, ResourcesModels.spawnerModel, TileEntityGSSpawner.Zombie.class);
         //traps
         Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(Item.getItemFromBlock(GSBlock.trap), EnumTrap.NIGHT_STONE.ordinal(), ResourcesModels.nightStoneModel);
         Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(Item.getItemFromBlock(GSBlock.trap), EnumTrap.THUNDER_STONE.ordinal(), ResourcesModels.thunderStoneModel);
         ModelBakery.addVariantName(Item.getItemFromBlock(GSBlock.trap), "gravestone:GSTrap_night_stone", "gravestone:GSTrap_thunder_stone");
         //piles of bones
         registerModelsForTEBlocks(EnumPileOfBones.PILE_OF_BONES.ordinal(), GSBlock.pileOfBones, ResourcesModels.pileOfBonesModel, TileEntityGSPileOfBones.class);
-        registerModelsForTEBlocks(EnumPileOfBones.PILE_OF_BONES_WITH_SKULL.ordinal(), GSBlock.pileOfBones, ResourcesModels.pileOfBonesModel, TileEntityGSPileOfBones.class);
-        registerModelsForTEBlocks(EnumPileOfBones.PILE_OF_BONES_WITH_SKULL_CRAWLER.ordinal(), GSBlock.pileOfBones, ResourcesModels.pileOfBonesModel, TileEntityGSPileOfBones.class);
+        registerModelsForTEBlocks(EnumPileOfBones.PILE_OF_BONES_WITH_SKULL.ordinal(), GSBlock.pileOfBones, ResourcesModels.pileOfBonesModel, TileEntityGSPileOfBones.Skull.class);
+        registerModelsForTEBlocks(EnumPileOfBones.PILE_OF_BONES_WITH_SKULL_CRAWLER.ordinal(), GSBlock.pileOfBones, ResourcesModels.pileOfBonesModel, TileEntityGSPileOfBones.Crawler.class);
         //bone blocks
         Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(Item.getItemFromBlock(GSBlock.boneBlock), EnumBoneBlock.BONE_BLOCK.ordinal(), ResourcesModels.boneBlockModel);
         Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(Item.getItemFromBlock(GSBlock.boneBlock), EnumBoneBlock.SKULL_BONE_BLOCK.ordinal(), ResourcesModels.boneBlockWithSkullModel);
@@ -180,9 +186,8 @@ public class ClientProxy extends CommonProxy {
         ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(GSBlock.candle), 0, ResourcesModels.candleModel);
         //skull candle
         registerModelsForTEBlocks(EnumSkullCandle.SKELETON_SKULL.ordinal(), GSBlock.skullCandle, ResourcesModels.skullCandleModel, TileEntityGSSkullCandle.class);
-        registerModelsForTEBlocks(EnumSkullCandle.WITHER_SKULL.ordinal(), GSBlock.skullCandle, ResourcesModels.skullCandleModel, TileEntityGSSkullCandle.class);
-        registerModelsForTEBlocks(EnumSkullCandle.ZOMBIE_SKULL.ordinal(), GSBlock.skullCandle, ResourcesModels.skullCandleModel, TileEntityGSSkullCandle.class);
-
+        registerModelsForTEBlocks(EnumSkullCandle.WITHER_SKULL.ordinal(), GSBlock.skullCandle, ResourcesModels.skullCandleModel, TileEntityGSSkullCandle.Wither.class);
+        registerModelsForTEBlocks(EnumSkullCandle.ZOMBIE_SKULL.ordinal(), GSBlock.skullCandle, ResourcesModels.skullCandleModel, TileEntityGSSkullCandle.Zombie.class);
     }
 
     //TODO move in graves module

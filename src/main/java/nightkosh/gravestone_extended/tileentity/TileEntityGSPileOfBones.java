@@ -5,6 +5,7 @@ import net.minecraft.network.NetworkManager;
 import net.minecraft.network.Packet;
 import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
 import nightkosh.gravestone.tileentity.TileEntityBase;
+import nightkosh.gravestone_extended.block.enums.EnumPileOfBones;
 
 /**
  * GraveStone mod
@@ -48,5 +49,18 @@ public class TileEntityGSPileOfBones extends TileEntityBase {
         NBTTagCompound nbtTag = new NBTTagCompound();
         this.writeToNBT(nbtTag);
         return new S35PacketUpdateTileEntity(this.pos, 1, nbtTag);
+    }
+
+    public static class Skull extends TileEntityGSPileOfBones {
+        @Override
+        public int getBlockMetadata() {
+            return EnumPileOfBones.PILE_OF_BONES_WITH_SKULL.ordinal();
+        }
+    }
+    public static class Crawler extends TileEntityGSPileOfBones {
+        @Override
+        public int getBlockMetadata() {
+            return EnumPileOfBones.PILE_OF_BONES_WITH_SKULL_CRAWLER.ordinal();
+        }
     }
 }
