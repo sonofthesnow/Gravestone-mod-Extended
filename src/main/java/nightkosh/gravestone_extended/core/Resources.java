@@ -28,12 +28,11 @@ public class Resources extends nightkosh.gravestone.core.Resources{
     public static final String ALTAR_TOP = MOD_NAME + ":altar_top";
     public static final String ALTAR_SIDE = MOD_NAME + ":altar_side";
     // items
-    public static final String CHISEL = MOD_NAME + ":GSChisel";
+    public static final String CHISEL = MOD_NAME + ":" + GSItem.CHISEL;
 
     // gui
     public static final ResourceLocation ALTAR_GUI = new ResourceLocation(GUI_LOCATION + "altar_gui.png");
     public static final ResourceLocation CHISEL_GUI = new ResourceLocation(GUI_LOCATION + "chisel_gui.png");
-    public static final ResourceLocation CHEST_GUI = new ResourceLocation("textures/gui/container/generic_54.png");
 
     //potions
     public static final ResourceLocation POTIONS = new ResourceLocation(POTIONS_LOCATION + "potions.png");

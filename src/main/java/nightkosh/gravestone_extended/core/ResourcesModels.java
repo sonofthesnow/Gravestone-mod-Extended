@@ -21,9 +21,8 @@ public class ResourcesModels extends Resources {
     public static final ModelResourceLocation CORPSE_CAT = new ModelResourceLocation(MOD_NAME + ":GSCorpseCat", "inventory");
     public static final ModelResourceLocation CORPSE_HORSE = new ModelResourceLocation(MOD_NAME + ":GSCorpseHorse", "inventory");
 
-    public static final ModelResourceLocation spawnEggModel = new ModelResourceLocation(MOD_NAME + ":GSSpawnEgg", "inventory");
+    public static final ModelResourceLocation spawnEggModel = new ModelResourceLocation(MOD_NAME + ":" + GSItem.SPAWN_EGG , "inventory");
 
-    public static final ModelResourceLocation graveStoneModel = new ModelResourceLocation(MOD_NAME + ":GSGraveStone", "inventory");
     public static final ModelResourceLocation memorialModel = new ModelResourceLocation(MOD_NAME + ":GSMemorial", "inventory");
     public static final ModelResourceLocation spawnerModel = new ModelResourceLocation(MOD_NAME + ":GSSpawner", "inventory");
     //trap

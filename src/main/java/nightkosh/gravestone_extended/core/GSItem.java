@@ -18,19 +18,20 @@ public class GSItem {
     public static Item corpse;
     public static Item spawnEgg;
 
-    private GSItem() {
-    }
+
+    public static final String CHISEL = "GSChisel";
+    public static final String SPAWN_EGG = "GSSpawnEgg";
 
     public static void registration() {
         // chisel
         chisel = new ItemChisel();
-        GameRegistry.registerItem(chisel, "GSChisel");
+        GameRegistry.registerItem(chisel, CHISEL);
 //TODO
 //        corpse = new ItemCorpse();
 //        GameRegistry.registerItem(corpse, "GSCorpse");
 
         spawnEgg = new ItemGSMonsterPlacer();
-        GameRegistry.registerItem(spawnEgg, "GSSpawnEgg");
+        GameRegistry.registerItem(spawnEgg, SPAWN_EGG);
 
         ModGravestoneExtended.proxy.registerItemsModels();
     }

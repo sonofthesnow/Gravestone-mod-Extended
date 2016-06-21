@@ -24,7 +24,7 @@ public class ItemChisel extends ItemTool {
         super(1, ToolMaterial.IRON, null);
         setMaxStackSize(1);
         setCreativeTab(Tabs.otherItemsTab);
-        setUnlocalizedName("nightkosh.gravestone.chisel");
+        setUnlocalizedName("gravestone.chisel");
         setMaxDamage(50);
     }
 
