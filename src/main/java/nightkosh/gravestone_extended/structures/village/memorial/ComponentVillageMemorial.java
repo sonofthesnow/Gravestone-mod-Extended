@@ -2,7 +2,7 @@ package nightkosh.gravestone_extended.structures.village.memorial;
 
 import nightkosh.gravestone_extended.block.BlockMemorial;
 import nightkosh.gravestone_extended.core.GSBlock;
-import nightkosh.gravestone_extended.tileentity.TileEntityGSMemorial;
+import nightkosh.gravestone_extended.tileentity.TileEntityMemorial;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
 import net.minecraft.nbt.NBTTagCompound;
@@ -92,7 +92,7 @@ public class ComponentVillageMemorial extends StructureVillagePieces.Village {
         IBlockState memorialState = GSBlock.memorial.getDefaultState().withProperty(BlockMemorial.FACING, this.coordBaseMode.getOpposite());
         this.setBlockState(world, memorialState, x, y, z, boundingBox);
 
-        TileEntityGSMemorial tileEntity = (TileEntityGSMemorial) world.getTileEntity(pos);
+        TileEntityMemorial tileEntity = (TileEntityMemorial) world.getTileEntity(pos);
         if (tileEntity != null) {
             tileEntity.setGraveType(memorialType);
             if (isTortureMemorial) {

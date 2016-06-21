@@ -8,7 +8,7 @@ import nightkosh.gravestone_extended.gui.GSAltarGui;
 import nightkosh.gravestone_extended.gui.GSChiselCraftingGui;
 import nightkosh.gravestone_extended.gui.container.AltarContainer;
 import nightkosh.gravestone_extended.gui.container.ChiselContainer;
-import nightkosh.gravestone_extended.tileentity.TileEntityGSAltar;
+import nightkosh.gravestone_extended.tileentity.TileEntityAltar;
 
 /**
  * GraveStone mod
@@ -29,8 +29,8 @@ public class GuiHandler extends nightkosh.gravestone.core.GuiHandler {
                 return super.getServerGuiElement(id, player, world, x, y, z);
             case ALTAR_GUI_ID:
                 tileEntity = world.getTileEntity(new BlockPos(x, y, z));
-                if (tileEntity instanceof TileEntityGSAltar) {
-                    return new AltarContainer(player.inventory, (TileEntityGSAltar) tileEntity);
+                if (tileEntity instanceof TileEntityAltar) {
+                    return new AltarContainer(player.inventory, (TileEntityAltar) tileEntity);
                 }
                 break;
             case CHISEL_CRAFTING_GUI_ID:
@@ -47,8 +47,8 @@ public class GuiHandler extends nightkosh.gravestone.core.GuiHandler {
                 return super.getClientGuiElement(id, player, world, x, y, z);
             case ALTAR_GUI_ID:
                 tileEntity = world.getTileEntity(new BlockPos(x, y, z));
-                if (tileEntity instanceof TileEntityGSAltar) {
-                    return new GSAltarGui(player.inventory, (TileEntityGSAltar) tileEntity);
+                if (tileEntity instanceof TileEntityAltar) {
+                    return new GSAltarGui(player.inventory, (TileEntityAltar) tileEntity);
                 }
                 break;
             case CHISEL_CRAFTING_GUI_ID:

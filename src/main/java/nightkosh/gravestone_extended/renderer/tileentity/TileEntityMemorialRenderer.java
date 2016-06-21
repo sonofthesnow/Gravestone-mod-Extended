@@ -16,7 +16,7 @@ import nightkosh.gravestone_extended.block.enums.EnumMemorials;
 import nightkosh.gravestone_extended.core.Resources;
 import nightkosh.gravestone_extended.models.block.ModelMemorial;
 import nightkosh.gravestone_extended.models.block.memorials.*;
-import nightkosh.gravestone_extended.tileentity.TileEntityGSMemorial;
+import nightkosh.gravestone_extended.tileentity.TileEntityMemorial;
 import org.lwjgl.opengl.GL11;
 
 import java.util.Map;
@@ -50,7 +50,7 @@ public class TileEntityMemorialRenderer extends TileEntityRenderer {
 
     public static TileEntityMemorialRenderer instance;
 
-    private static final TileEntityGSMemorial MEMORIAL_TE = new TileEntityGSMemorial();//TODO temporal hack
+    private static final TileEntityMemorial MEMORIAL_TE = new TileEntityMemorial();//TODO temporal hack
 
     static {
         MEMORIAL_TE.setGraveType(EnumMemorials.QUARTZ_OBELISK.ordinal());
@@ -62,7 +62,7 @@ public class TileEntityMemorialRenderer extends TileEntityRenderer {
 
     @Override
     public void renderTileEntityAt(TileEntity te, double x, double y, double z, float f, int par9) {
-        TileEntityGSMemorial tileEntity = (TileEntityGSMemorial) te;
+        TileEntityMemorial tileEntity = (TileEntityMemorial) te;
 
         if (tileEntity == null) {//TODO temporal hack
             tileEntity = MEMORIAL_TE;

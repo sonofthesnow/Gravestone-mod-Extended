@@ -3,7 +3,7 @@ package nightkosh.gravestone_extended.block;
 import nightkosh.gravestone_extended.ModGravestoneExtended;
 import nightkosh.gravestone_extended.core.GuiHandler;
 import nightkosh.gravestone_extended.core.Tabs;
-import nightkosh.gravestone_extended.tileentity.TileEntityGSAltar;
+import nightkosh.gravestone_extended.tileentity.TileEntityAltar;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -37,7 +37,7 @@ public class BlockAltar extends BlockContainer {
     public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumFacing side, float hitX, float hitY, float hitZ) {
 //        ItemStack stack = player.getCurrentEquippedItem();
 
-        TileEntityGSAltar tileEntity = (TileEntityGSAltar) world.getTileEntity(pos);
+        TileEntityAltar tileEntity = (TileEntityAltar) world.getTileEntity(pos);
         if (tileEntity != null && !player.isSneaking()) {
 //            if (tileEntity.hasCorpse()) {
 //                if (!world.isRemote) {
@@ -85,12 +85,12 @@ public class BlockAltar extends BlockContainer {
 
     @Override
     public TileEntity createNewTileEntity(World world, int meta) {
-        return new TileEntityGSAltar();
+        return new TileEntityAltar();
     }
 
     @Override
     public void breakBlock(World world, BlockPos pos, IBlockState state) {
-        TileEntityGSAltar tileEntity = (TileEntityGSAltar) world.getTileEntity(pos);
+        TileEntityAltar tileEntity = (TileEntityAltar) world.getTileEntity(pos);
 
         if (tileEntity != null) {
             tileEntity.dropCorpse();

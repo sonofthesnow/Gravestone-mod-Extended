@@ -21,8 +21,8 @@ import nightkosh.gravestone_extended.block.enums.EnumHauntedChest;
 import nightkosh.gravestone_extended.block.enums.EnumPileOfBones;
 import nightkosh.gravestone_extended.core.GSBlock;
 import nightkosh.gravestone_extended.core.Potion;
-import nightkosh.gravestone_extended.tileentity.TileEntityGSHauntedChest;
-import nightkosh.gravestone_extended.tileentity.TileEntityGSPileOfBones;
+import nightkosh.gravestone_extended.tileentity.TileEntityHauntedChest;
+import nightkosh.gravestone_extended.tileentity.TileEntityPileOfBones;
 
 import java.util.List;
 import java.util.Random;
@@ -46,7 +46,7 @@ public class ObjectsGenerationHelper {
     public static void generatePileOfBones(ComponentGraveStone component, World world, int xCoord, int yCoord, int zCoord, byte facing, IBlockState state) {
         BlockPos pos = new BlockPos(component.getXWithOffset(xCoord, zCoord), component.getYWithOffset(yCoord), component.getZWithOffset(xCoord, zCoord));
         world.setBlockState(pos, state, 2);
-        TileEntityGSPileOfBones te = (TileEntityGSPileOfBones) world.getTileEntity(pos);
+        TileEntityPileOfBones te = (TileEntityPileOfBones) world.getTileEntity(pos);
         if (te != null) {
             te.setDirection(facing);
         }
@@ -97,7 +97,7 @@ public class ObjectsGenerationHelper {
 
         BlockPos pos = new BlockPos(x, y, z);
         world.setBlockState(pos, GSBlock.hauntedChest.getDefaultState().withProperty(BlockHauntedChest.FACING, facing), 2);
-        TileEntityGSHauntedChest te = (TileEntityGSHauntedChest) world.getTileEntity(pos);
+        TileEntityHauntedChest te = (TileEntityHauntedChest) world.getTileEntity(pos);
         if (te != null) {
             te.setChestType(EnumHauntedChest.getById(random.nextInt(EnumHauntedChest.values().length)));
         }

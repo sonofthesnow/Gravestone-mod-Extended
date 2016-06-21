@@ -4,7 +4,7 @@ import nightkosh.gravestone_extended.block.enums.EnumSpawner;
 import nightkosh.gravestone_extended.core.GSBlock;
 import nightkosh.gravestone_extended.core.Tabs;
 import nightkosh.gravestone_extended.particle.EntityGreenFlameFX;
-import nightkosh.gravestone_extended.tileentity.TileEntityGSSpawner;
+import nightkosh.gravestone_extended.tileentity.TileEntitySpawner;
 import net.minecraft.block.BlockMobSpawner;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyEnum;
@@ -63,7 +63,7 @@ public class BlockSpawner extends BlockMobSpawner {
      */
     @Override
     public TileEntity createNewTileEntity(World world, int var2) {
-        return new TileEntityGSSpawner();
+        return new TileEntitySpawner();
     }
 
     /**

@@ -5,7 +5,7 @@ import nightkosh.gravestone_extended.config.ExtendedConfig;
 import nightkosh.gravestone_extended.core.GSBlock;
 import nightkosh.gravestone_extended.core.Tabs;
 import nightkosh.gravestone_extended.entity.monster.EntitySkullCrawler;
-import nightkosh.gravestone_extended.tileentity.TileEntityGSPileOfBones;
+import nightkosh.gravestone_extended.tileentity.TileEntityPileOfBones;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
@@ -49,7 +49,7 @@ public class BlockPileOfBones extends BlockContainer {
 
     @Override
     public TileEntity createNewTileEntity(World world, int p_149915_2_) {
-        return new TileEntityGSPileOfBones();
+        return new TileEntityPileOfBones();
     }
 
     @Override
@@ -133,7 +133,7 @@ public class BlockPileOfBones extends BlockContainer {
     public void onBlockPlacedBy(World world, BlockPos pos, IBlockState state, EntityLivingBase entity, ItemStack stack) {
         world.setBlockState(pos, getStateFromMeta(stack.getItemDamage()), 2);
 
-        TileEntityGSPileOfBones te = (TileEntityGSPileOfBones) world.getTileEntity(pos);
+        TileEntityPileOfBones te = (TileEntityPileOfBones) world.getTileEntity(pos);
         if (te != null) {
             te.setDirection((byte) (MathHelper.floor_double((double) (entity.rotationYaw * 4 / 360F) + 0.5D) & 3));
         }

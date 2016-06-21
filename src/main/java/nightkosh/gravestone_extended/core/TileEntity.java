@@ -13,18 +13,18 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 public class TileEntity extends GSTileEntity{
 
     public static void registration() {
-        GameRegistry.registerTileEntity(TileEntityGSMemorial.class, "Memorial");
+        GameRegistry.registerTileEntity(TileEntityMemorial.class, "Memorial");
 
-        GameRegistry.registerTileEntity(TileEntityGSSpawner.class, "GS Spawner");
+        GameRegistry.registerTileEntity(TileEntitySpawner.class, "GS Spawner");
 
-        GameRegistry.registerTileEntity(TileEntityGSHauntedChest.class, "GSHaunted Chest");
+        GameRegistry.registerTileEntity(TileEntityHauntedChest.class, "GSHaunted Chest");
 
-        GameRegistry.registerTileEntity(TileEntityGSCandle.class, "GSTECandle");
+        GameRegistry.registerTileEntity(TileEntityCandle.class, "GSTECandle");
 
-        GameRegistry.registerTileEntity(TileEntityGSSkullCandle.class, "GSSkull Candle");
+        GameRegistry.registerTileEntity(TileEntitySkullCandle.class, "GSSkull Candle");
 
-        GameRegistry.registerTileEntity(TileEntityGSPileOfBones.class, "GSTEPileOfBones");
+        GameRegistry.registerTileEntity(TileEntityPileOfBones.class, "GSTEPileOfBones");
 
-        GameRegistry.registerTileEntity(TileEntityGSAltar.class, "GSAltarTE");
+        GameRegistry.registerTileEntity(TileEntityAltar.class, "GSAltarTE");
     }
 }

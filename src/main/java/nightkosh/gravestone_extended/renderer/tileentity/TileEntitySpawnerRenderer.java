@@ -7,7 +7,7 @@ import nightkosh.gravestone.renderer.tileentity.TileEntityRenderer;
 import nightkosh.gravestone_extended.block.enums.EnumSpawner;
 import nightkosh.gravestone_extended.core.Resources;
 import nightkosh.gravestone_extended.models.block.ModelSpawnerPentagram;
-import nightkosh.gravestone_extended.tileentity.TileEntityGSSpawner;
+import nightkosh.gravestone_extended.tileentity.TileEntitySpawner;
 import org.lwjgl.opengl.GL11;
 
 /**
@@ -25,7 +25,7 @@ public class TileEntitySpawnerRenderer extends TileEntityRenderer {
 
     public static TileEntitySpawnerRenderer instance;
 
-    private static final TileEntityGSSpawner SPAWNER_TE = new TileEntityGSSpawner();
+    private static final TileEntitySpawner SPAWNER_TE = new TileEntitySpawner();
 
     public TileEntitySpawnerRenderer() {
         instance = this;
@@ -34,7 +34,7 @@ public class TileEntitySpawnerRenderer extends TileEntityRenderer {
     /**
      * Render a skull tile entity.
      */
-    public void renderSpawnerPentagramAt(TileEntityGSSpawner tileEntity, float x, float y, float z, float par8) {
+    public void renderSpawnerPentagramAt(TileEntitySpawner tileEntity, float x, float y, float z, float par8) {
         this.bindTexture(Resources.PENTAGRAM);
 
         if (tileEntity == null) {
@@ -58,7 +58,7 @@ public class TileEntitySpawnerRenderer extends TileEntityRenderer {
 
     @Override
     public void renderTileEntityAt(TileEntity tileEntity, double x, double y, double z, float par8, int par9) {
-        this.renderSpawnerPentagramAt((TileEntityGSSpawner) tileEntity, (float) x, (float) y, (float) z, par8);
+        this.renderSpawnerPentagramAt((TileEntitySpawner) tileEntity, (float) x, (float) y, (float) z, par8);
     }
 
     private static ModelSpawnerPentagram getSpawnerModel(EnumSpawner spawnerType) {
@@ -74,24 +74,24 @@ public class TileEntitySpawnerRenderer extends TileEntityRenderer {
     }
 
 
-    protected TileEntityGSSpawner getDefaultTE() {
+    protected TileEntitySpawner getDefaultTE() {
         return SPAWNER_TE;
     }
 
     public static class Skeleton extends TileEntitySpawnerRenderer {
-        private static final TileEntityGSSpawner SPAWNER_TE = new TileEntityGSSpawner.Skeleton();
+        private static final TileEntitySpawner SPAWNER_TE = new TileEntitySpawner.Skeleton();
 
         @Override
-        protected TileEntityGSSpawner getDefaultTE() {
+        protected TileEntitySpawner getDefaultTE() {
             return SPAWNER_TE;
         }
     }
 
     public static class Zombie extends TileEntitySpawnerRenderer {
-        private static final TileEntityGSSpawner SPAWNER_TE = new TileEntityGSSpawner.Zombie();
+        private static final TileEntitySpawner SPAWNER_TE = new TileEntitySpawner.Zombie();
 
         @Override
-        protected TileEntityGSSpawner getDefaultTE() {
+        protected TileEntitySpawner getDefaultTE() {
             return SPAWNER_TE;
         }
     }

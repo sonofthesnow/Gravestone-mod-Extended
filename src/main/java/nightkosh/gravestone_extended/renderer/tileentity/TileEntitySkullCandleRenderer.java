@@ -3,7 +3,7 @@ package nightkosh.gravestone_extended.renderer.tileentity;
 import nightkosh.gravestone_extended.block.enums.EnumSkullCandle;
 import nightkosh.gravestone_extended.core.Resources;
 import nightkosh.gravestone_extended.models.block.ModelSkullCandle;
-import nightkosh.gravestone_extended.tileentity.TileEntityGSSkullCandle;
+import nightkosh.gravestone_extended.tileentity.TileEntitySkullCandle;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.fml.relauncher.Side;
@@ -21,9 +21,9 @@ public class TileEntitySkullCandleRenderer extends TileEntitySpecialRenderer {
 
     private ModelSkullCandle skullCandleModel = new ModelSkullCandle();
 
-    private static final TileEntityGSSkullCandle SKULL_CANDLE_TE = new TileEntityGSSkullCandle();
+    private static final TileEntitySkullCandle SKULL_CANDLE_TE = new TileEntitySkullCandle();
 
-    public void renderTileEntitySkullAt(TileEntityGSSkullCandle tileEntity, float x, float y, float z, float par8) {
+    public void renderTileEntitySkullAt(TileEntitySkullCandle tileEntity, float x, float y, float z, float par8) {
         float rotation = 0;
         byte meta;
         if (tileEntity == null) {
@@ -54,7 +54,7 @@ public class TileEntitySkullCandleRenderer extends TileEntitySpecialRenderer {
 
     @Override
     public void renderTileEntityAt(TileEntity tileEntity, double x, double y, double z, float par8, int par9) {
-        this.renderTileEntitySkullAt((TileEntityGSSkullCandle) tileEntity, (float) x, (float) y, (float) z, par8);
+        this.renderTileEntitySkullAt((TileEntitySkullCandle) tileEntity, (float) x, (float) y, (float) z, par8);
     }
 
     private void bindSkullCandleTexture(EnumSkullCandle skullType) {
@@ -71,23 +71,23 @@ public class TileEntitySkullCandleRenderer extends TileEntitySpecialRenderer {
         }
     }
 
-    protected TileEntityGSSkullCandle getDefaultTE() {
+    protected TileEntitySkullCandle getDefaultTE() {
         return SKULL_CANDLE_TE;
     }
 
     public static class Zombie extends TileEntitySkullCandleRenderer {
-        private static final TileEntityGSSkullCandle SKULL_CANDLE_TE = new TileEntityGSSkullCandle.Zombie();
+        private static final TileEntitySkullCandle SKULL_CANDLE_TE = new TileEntitySkullCandle.Zombie();
 
         @Override
-        protected TileEntityGSSkullCandle getDefaultTE() {
+        protected TileEntitySkullCandle getDefaultTE() {
             return SKULL_CANDLE_TE;
         }
     }
     public static class Wither extends TileEntitySkullCandleRenderer {
-        private static final TileEntityGSSkullCandle SKULL_CANDLE_TE = new TileEntityGSSkullCandle.Wither();
+        private static final TileEntitySkullCandle SKULL_CANDLE_TE = new TileEntitySkullCandle.Wither();
 
         @Override
-        protected TileEntityGSSkullCandle getDefaultTE() {
+        protected TileEntitySkullCandle getDefaultTE() {
             return SKULL_CANDLE_TE;
         }
     }

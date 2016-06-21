@@ -38,7 +38,7 @@ import nightkosh.gravestone_extended.item.ItemCorpse;
 import nightkosh.gravestone_extended.item.corpse.VillagerCorpseHelper;
 import nightkosh.gravestone_extended.item.enums.EnumCorpse;
 import nightkosh.gravestone_extended.particle.EntityBigFlameFX;
-import nightkosh.gravestone_extended.tileentity.TileEntityGSMemorial;
+import nightkosh.gravestone_extended.tileentity.TileEntityMemorial;
 
 import java.util.*;
 
@@ -562,7 +562,7 @@ public class BlockMemorial extends BlockContainer {
         state = state.withProperty(FACING, enumfacing);
         world.setBlockState(pos, state, 2);
 
-        TileEntityGSMemorial tileEntity = (TileEntityGSMemorial) world.getTileEntity(pos);
+        TileEntityMemorial tileEntity = (TileEntityMemorial) world.getTileEntity(pos);
 
         if (tileEntity != null) {
             if (itemStack.hasTagCompound()) {
@@ -592,7 +592,7 @@ public class BlockMemorial extends BlockContainer {
     }
 
     public static void placeWalls(World world, BlockPos pos) {
-        TileEntityGSMemorial tileEntity = (TileEntityGSMemorial) world.getTileEntity(pos);
+        TileEntityMemorial tileEntity = (TileEntityMemorial) world.getTileEntity(pos);
 
         if (tileEntity != null) {
             //TODO almost the same code in ItemBlockGSMemorial
@@ -656,7 +656,7 @@ public class BlockMemorial extends BlockContainer {
         byte startX = 0;
         byte startZ = 0;
 
-        TileEntityGSMemorial tileEntity = (TileEntityGSMemorial) world.getTileEntity(pos);
+        TileEntityMemorial tileEntity = (TileEntityMemorial) world.getTileEntity(pos);
 
         if (tileEntity != null) {
             switch (tileEntity.getMemorialType().getMemorialType()) {
@@ -697,7 +697,7 @@ public class BlockMemorial extends BlockContainer {
     public void setBlockBoundsBasedOnState(IBlockAccess access, BlockPos pos) {
         EnumFacing facing = (EnumFacing) access.getBlockState(pos).getValue(FACING);
         EnumMemorials.EnumMemorialType memorialType;
-        TileEntityGSMemorial tileEntity = (TileEntityGSMemorial) access.getTileEntity(pos);
+        TileEntityMemorial tileEntity = (TileEntityMemorial) access.getTileEntity(pos);
 
         if (tileEntity != null) {
             memorialType = tileEntity.getMemorialType().getMemorialType();
@@ -764,7 +764,7 @@ public class BlockMemorial extends BlockContainer {
 
     @Override
     public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumFacing side, float hitX, float hitY, float hitZ) {
-        TileEntityGSMemorial te = (TileEntityGSMemorial) world.getTileEntity(pos);
+        TileEntityMemorial te = (TileEntityMemorial) world.getTileEntity(pos);
 
         if (te != null) {
             ItemStack item = player.inventory.getCurrentItem();
@@ -824,7 +824,7 @@ public class BlockMemorial extends BlockContainer {
 
     @Override
     public TileEntity createNewTileEntity(World world, int var2) {
-        return new TileEntityGSMemorial(world);
+        return new TileEntityMemorial(world);
     }
 
     @Override
@@ -943,7 +943,7 @@ public class BlockMemorial extends BlockContainer {
 
     private ItemStack getBlockItemStack(World world, BlockPos pos) {
         ItemStack itemStack = this.createStackedBlock(this.getDefaultState());
-        TileEntityGSMemorial tileEntity = (TileEntityGSMemorial) world.getTileEntity(pos);
+        TileEntityMemorial tileEntity = (TileEntityMemorial) world.getTileEntity(pos);
 
         if (tileEntity != null) {
             NBTTagCompound nbt = new NBTTagCompound();
@@ -970,7 +970,7 @@ public class BlockMemorial extends BlockContainer {
 
     private ItemStack getBlockItemStackWithoutInfo(World world, BlockPos pos) {
         ItemStack itemStack = this.createStackedBlock(this.getDefaultState());
-        TileEntityGSMemorial tileEntity = (TileEntityGSMemorial) world.getTileEntity(pos);
+        TileEntityMemorial tileEntity = (TileEntityMemorial) world.getTileEntity(pos);
 
         if (tileEntity != null) {
             NBTTagCompound nbt = new NBTTagCompound();
@@ -1004,7 +1004,7 @@ public class BlockMemorial extends BlockContainer {
     @Override
     public ItemStack getPickBlock(MovingObjectPosition target, World world, BlockPos pos) {
         ItemStack itemStack = this.createStackedBlock(this.getDefaultState());
-        TileEntityGSMemorial tileEntity = (TileEntityGSMemorial) world.getTileEntity(pos);
+        TileEntityMemorial tileEntity = (TileEntityMemorial) world.getTileEntity(pos);
 
         if (tileEntity != null) {
             if (itemStack != null) {
@@ -1023,7 +1023,7 @@ public class BlockMemorial extends BlockContainer {
 
     @Override
     public int getLightValue(IBlockAccess access, BlockPos pos) {
-        TileEntityGSMemorial tileEntity = (TileEntityGSMemorial) access.getTileEntity(pos);
+        TileEntityMemorial tileEntity = (TileEntityMemorial) access.getTileEntity(pos);
 
         if (tileEntity != null && tileEntity.getMemorialType() == EnumMemorials.BURNING_STAKE && tileEntity.getHangedMob() != EnumHangedMobs.NONE) {
             return 15;
@@ -1035,7 +1035,7 @@ public class BlockMemorial extends BlockContainer {
     @Override
     @SideOnly(Side.CLIENT)
     public void randomDisplayTick(World world, BlockPos pos, IBlockState state, Random random) {
-        TileEntityGSMemorial tileEntity = (TileEntityGSMemorial) world.getTileEntity(pos);
+        TileEntityMemorial tileEntity = (TileEntityMemorial) world.getTileEntity(pos);
         if (tileEntity != null && tileEntity.getMemorialType() == EnumMemorials.BURNING_STAKE && tileEntity.getHangedMob() != EnumHangedMobs.NONE) {
             double xPos, zPos, yPos;
 

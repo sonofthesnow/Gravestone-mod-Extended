@@ -24,7 +24,7 @@ import nightkosh.gravestone.helper.GraveGenerationHelper.EnumGraveTypeByEntity;
 import nightkosh.gravestone_extended.structures.BoundingBoxHelper;
 import nightkosh.gravestone_extended.structures.GraveGenerationHelper;
 import nightkosh.gravestone_extended.structures.IComponentGraveStone;
-import nightkosh.gravestone_extended.tileentity.TileEntityGSSkullCandle;
+import nightkosh.gravestone_extended.tileentity.TileEntitySkullCandle;
 
 import java.util.List;
 import java.util.Random;
@@ -318,7 +318,7 @@ public class ComponentVillageUndertaker extends StructureVillagePieces.Village i
         if (world.getBlockState(pos).getBlock() != GSBlock.skullCandle) {
             IBlockState skullCandleState = GSBlock.skullCandle.getDefaultState().withProperty(BlockSkullCandle.VARIANT, EnumSkullCandle.SKELETON_SKULL);
             this.setBlockState(world, skullCandleState, x, y, z, boundingBox);
-            TileEntityGSSkullCandle tileEntity = (TileEntityGSSkullCandle) world.getTileEntity(pos);
+            TileEntitySkullCandle tileEntity = (TileEntitySkullCandle) world.getTileEntity(pos);
             if (tileEntity != null) {
                 tileEntity.setRotation(getSkullCandleDirection(direction));
             }

@@ -4,7 +4,7 @@ import nightkosh.gravestone_extended.block.enums.EnumSkullCandle;
 import nightkosh.gravestone_extended.core.Tabs;
 import nightkosh.gravestone_extended.core.TimeHelper;
 import nightkosh.gravestone_extended.particle.EntityGreenFlameFX;
-import nightkosh.gravestone_extended.tileentity.TileEntityGSSkullCandle;
+import nightkosh.gravestone_extended.tileentity.TileEntitySkullCandle;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
@@ -70,7 +70,7 @@ public class BlockSkullCandle extends BlockContainer {
      */
     @Override
     public TileEntity createNewTileEntity(World world, int var2) {
-        return new TileEntityGSSkullCandle();
+        return new TileEntitySkullCandle();
     }
 
     @Override
@@ -100,7 +100,7 @@ public class BlockSkullCandle extends BlockContainer {
     public void onBlockPlacedBy(World world, BlockPos pos, IBlockState state, EntityLivingBase entity, ItemStack stack) {
         world.setBlockState(pos, getStateFromMeta(stack.getItemDamage()), 2);
 
-        TileEntityGSSkullCandle tileEntity = (TileEntityGSSkullCandle) world.getTileEntity(pos);
+        TileEntitySkullCandle tileEntity = (TileEntitySkullCandle) world.getTileEntity(pos);
         if (tileEntity != null) {
             float skullRotation = entity.rotationYaw - 180 - 22.5F;
             if (skullRotation < 0) {
@@ -129,7 +129,7 @@ public class BlockSkullCandle extends BlockContainer {
     @Override
     @SideOnly(Side.CLIENT)
     public void randomDisplayTick(World world, BlockPos pos, IBlockState state, Random random) {
-        TileEntityGSSkullCandle tileEntity = (TileEntityGSSkullCandle) world.getTileEntity(pos);
+        TileEntitySkullCandle tileEntity = (TileEntitySkullCandle) world.getTileEntity(pos);
         if (tileEntity != null) {
             double xPos = pos.getX() + 0.5F;
             double yPos = pos.getY() + 0.85;

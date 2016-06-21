@@ -2,7 +2,7 @@ package nightkosh.gravestone_extended.renderer.tileentity;
 
 import nightkosh.gravestone_extended.core.Resources;
 import nightkosh.gravestone_extended.models.block.ModelPileOfBones;
-import nightkosh.gravestone_extended.tileentity.TileEntityGSPileOfBones;
+import nightkosh.gravestone_extended.tileentity.TileEntityPileOfBones;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.fml.relauncher.Side;
@@ -20,9 +20,9 @@ public class TileEntityPileOfBonesRenderer extends TileEntitySpecialRenderer {
 
     private ModelPileOfBones pileOfBonesModel = new ModelPileOfBones();
 
-    private static final TileEntityGSPileOfBones PILE_OF_BONES_TE = new TileEntityGSPileOfBones();
+    private static final TileEntityPileOfBones PILE_OF_BONES_TE = new TileEntityPileOfBones();
 
-    public void renderTileEntityCandleAt(TileEntityGSPileOfBones tileEntity, float x, float y, float z, float par8) {
+    public void renderTileEntityCandleAt(TileEntityPileOfBones tileEntity, float x, float y, float z, float par8) {
         this.bindTexture(Resources.PILE_OF_BONES);
 
         if (tileEntity == null) {
@@ -63,26 +63,26 @@ public class TileEntityPileOfBonesRenderer extends TileEntitySpecialRenderer {
 
     @Override
     public void renderTileEntityAt(TileEntity tileEntity, double x, double y, double z, float par8, int par9) {
-        this.renderTileEntityCandleAt((TileEntityGSPileOfBones) tileEntity, (float) x, (float) y, (float) z, par8);
+        this.renderTileEntityCandleAt((TileEntityPileOfBones) tileEntity, (float) x, (float) y, (float) z, par8);
     }
 
-    protected TileEntityGSPileOfBones getDefaultTE() {
+    protected TileEntityPileOfBones getDefaultTE() {
         return PILE_OF_BONES_TE;
     }
 
     public static class Skull extends TileEntityPileOfBonesRenderer {
-        private static final TileEntityGSPileOfBones PILE_OF_BONES_TE = new TileEntityGSPileOfBones.Skull();
+        private static final TileEntityPileOfBones PILE_OF_BONES_TE = new TileEntityPileOfBones.Skull();
 
         @Override
-        protected TileEntityGSPileOfBones getDefaultTE() {
+        protected TileEntityPileOfBones getDefaultTE() {
             return PILE_OF_BONES_TE;
         }
     }
     public static class Crawler extends TileEntityPileOfBonesRenderer {
-        private static final TileEntityGSPileOfBones PILE_OF_BONES_TE = new TileEntityGSPileOfBones.Crawler();
+        private static final TileEntityPileOfBones PILE_OF_BONES_TE = new TileEntityPileOfBones.Crawler();
 
         @Override
-        protected TileEntityGSPileOfBones getDefaultTE() {
+        protected TileEntityPileOfBones getDefaultTE() {
             return PILE_OF_BONES_TE;
         }
     }

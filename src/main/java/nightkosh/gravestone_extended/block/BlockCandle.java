@@ -16,7 +16,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import nightkosh.gravestone_extended.core.Tabs;
 import nightkosh.gravestone_extended.core.TimeHelper;
 import nightkosh.gravestone_extended.particle.EntityGreenFlameFX;
-import nightkosh.gravestone_extended.tileentity.TileEntityGSCandle;
+import nightkosh.gravestone_extended.tileentity.TileEntityCandle;
 
 import java.util.Random;
 
@@ -120,6 +120,6 @@ public class BlockCandle extends BlockContainer {
 
     @Override
     public TileEntity createNewTileEntity(World world, int var2) {
-        return new TileEntityGSCandle();
+        return new TileEntityCandle();
     }
 }

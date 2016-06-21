@@ -13,7 +13,7 @@ import nightkosh.gravestone_extended.block.enums.EnumPileOfBones;
  * @author NightKosh
  * @license Lesser GNU Public License v3 (http://www.gnu.org/licenses/lgpl.html)
  */
-public class TileEntityGSPileOfBones extends TileEntityBase {
+public class TileEntityPileOfBones extends TileEntityBase {
 
     private byte direction = 0;
 
@@ -51,13 +51,13 @@ public class TileEntityGSPileOfBones extends TileEntityBase {
         return new S35PacketUpdateTileEntity(this.pos, 1, nbtTag);
     }
 
-    public static class Skull extends TileEntityGSPileOfBones {
+    public static class Skull extends TileEntityPileOfBones {
         @Override
         public int getBlockMetadata() {
             return EnumPileOfBones.PILE_OF_BONES_WITH_SKULL.ordinal();
         }
     }
-    public static class Crawler extends TileEntityGSPileOfBones {
+    public static class Crawler extends TileEntityPileOfBones {
         @Override
         public int getBlockMetadata() {
             return EnumPileOfBones.PILE_OF_BONES_WITH_SKULL_CRAWLER.ordinal();

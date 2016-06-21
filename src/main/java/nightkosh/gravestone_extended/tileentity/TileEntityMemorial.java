@@ -22,17 +22,17 @@ import java.util.UUID;
  * @author NightKosh
  * @license Lesser GNU Public License v3 (http://www.gnu.org/licenses/lgpl.html)
  */
-public class TileEntityGSMemorial extends TileEntityGrave {
+public class TileEntityMemorial extends TileEntityGrave {
 
     private GameProfile playerProfile = null;
     private EnumHangedMobs hangedMob = EnumHangedMobs.NONE;
     private int hangedVillagerProfession = 0;
 
-    public TileEntityGSMemorial() {
+    public TileEntityMemorial() {
         super();
     }
 
-    public TileEntityGSMemorial(World world) {
+    public TileEntityMemorial(World world) {
         this();
         this.worldObj = world;
     }

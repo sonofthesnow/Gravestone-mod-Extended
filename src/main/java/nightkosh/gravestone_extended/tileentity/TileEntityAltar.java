@@ -20,7 +20,7 @@ import java.util.Random;
  * @author NightKosh
  * @license Lesser GNU Public License v3 (http://www.gnu.org/licenses/lgpl.html)
  */
-public class TileEntityGSAltar extends TileEntity implements IInventory {
+public class TileEntityAltar extends TileEntity implements IInventory {
     private ItemStack corpse = null;
 
     public boolean hasCorpse() {

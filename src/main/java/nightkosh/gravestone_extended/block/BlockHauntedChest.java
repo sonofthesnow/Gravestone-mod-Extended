@@ -28,7 +28,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import nightkosh.gravestone.inventory.GraveInventory;
 import nightkosh.gravestone_extended.block.enums.EnumHauntedChest;
 import nightkosh.gravestone_extended.core.Tabs;
-import nightkosh.gravestone_extended.tileentity.TileEntityGSHauntedChest;
+import nightkosh.gravestone_extended.tileentity.TileEntityHauntedChest;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -116,7 +116,7 @@ public class BlockHauntedChest extends BlockContainer {
         if (player instanceof FakePlayer) {
             return false;
         } else {
-            TileEntityGSHauntedChest te = (TileEntityGSHauntedChest) world.getTileEntity(pos);
+            TileEntityHauntedChest te = (TileEntityHauntedChest) world.getTileEntity(pos);
             if (te != null) {
                 te.openChest();
             }
@@ -126,7 +126,7 @@ public class BlockHauntedChest extends BlockContainer {
 
     @Override
     public TileEntity createNewTileEntity(World world, int var2) {
-        return new TileEntityGSHauntedChest();
+        return new TileEntityHauntedChest();
     }
 
     /**
@@ -139,7 +139,7 @@ public class BlockHauntedChest extends BlockContainer {
 
         world.setBlockState(pos, state, 3);
 
-        TileEntityGSHauntedChest tileEntity = (TileEntityGSHauntedChest) world.getTileEntity(pos);
+        TileEntityHauntedChest tileEntity = (TileEntityHauntedChest) world.getTileEntity(pos);
 
         if (tileEntity != null) {
             if (stack.getTagCompound() != null) {
@@ -189,7 +189,7 @@ public class BlockHauntedChest extends BlockContainer {
      */
     private ItemStack getBlockItemStack(World world, BlockPos pos, IBlockState state) {
         ItemStack itemStack = this.createStackedBlock(this.getDefaultState());
-        TileEntityGSHauntedChest tileEntity = (TileEntityGSHauntedChest) world.getTileEntity(pos);
+        TileEntityHauntedChest tileEntity = (TileEntityHauntedChest) world.getTileEntity(pos);
 
         if (tileEntity != null) {
             NBTTagCompound nbt = new NBTTagCompound();

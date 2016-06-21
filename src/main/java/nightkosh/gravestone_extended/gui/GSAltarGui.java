@@ -5,7 +5,7 @@ import nightkosh.gravestone_extended.core.MessageHandler;
 import nightkosh.gravestone_extended.core.Resources;
 import nightkosh.gravestone_extended.gui.container.AltarContainer;
 import nightkosh.gravestone_extended.packets.AltarMessageToServer;
-import nightkosh.gravestone_extended.tileentity.TileEntityGSAltar;
+import nightkosh.gravestone_extended.tileentity.TileEntityAltar;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.entity.player.EntityPlayer;
@@ -25,11 +25,11 @@ public class GSAltarGui extends GuiContainer {
     private final String resurrectionButtonStr = ModGravestoneExtended.proxy.getLocalizedString("gui.altar.resurrect");
     private AltarContainer container;
     private GuiButton resurrectionButton;
-    private TileEntityGSAltar tileEntity = null;
+    private TileEntityAltar tileEntity = null;
     private EntityPlayer player = null;
     private boolean isCreative = false;
 
-    public GSAltarGui(InventoryPlayer inventoryPlayer, TileEntityGSAltar tileEntity) {
+    public GSAltarGui(InventoryPlayer inventoryPlayer, TileEntityAltar tileEntity) {
         super(new AltarContainer(inventoryPlayer, tileEntity));
         this.tileEntity = tileEntity;
         this.player = inventoryPlayer.player;

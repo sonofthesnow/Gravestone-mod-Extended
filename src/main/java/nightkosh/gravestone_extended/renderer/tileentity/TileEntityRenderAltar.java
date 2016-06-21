@@ -1,7 +1,7 @@
 package nightkosh.gravestone_extended.renderer.tileentity;
 
 import nightkosh.gravestone_extended.renderer.item.ItemGSCorpseRenderer;
-import nightkosh.gravestone_extended.tileentity.TileEntityGSAltar;
+import nightkosh.gravestone_extended.tileentity.TileEntityAltar;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.item.ItemStack;
@@ -21,7 +21,7 @@ public class TileEntityRenderAltar extends TileEntitySpecialRenderer {
 
     private static final ItemGSCorpseRenderer corpseRenderer = new ItemGSCorpseRenderer();
 
-    public void renderTileEntityAt(TileEntityGSAltar te, double x, double y, double z, float f) {
+    public void renderTileEntityAt(TileEntityAltar te, double x, double y, double z, float f) {
         ItemStack corpse = te.getCorpse();
         if (corpse != null) {
             GL11.glPushMatrix();
@@ -45,6 +45,6 @@ public class TileEntityRenderAltar extends TileEntitySpecialRenderer {
 
     @Override
     public void renderTileEntityAt(TileEntity te, double x, double z, double y, float f, int p_180535_9_) {
-        this.renderTileEntityAt((TileEntityGSAltar) te, x, y, z, f);
+        this.renderTileEntityAt((TileEntityAltar) te, x, y, z, f);
     }
 }

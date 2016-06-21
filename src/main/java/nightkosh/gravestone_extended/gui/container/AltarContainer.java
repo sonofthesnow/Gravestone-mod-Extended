@@ -1,7 +1,7 @@
 package nightkosh.gravestone_extended.gui.container;
 
 import nightkosh.gravestone_extended.item.corpse.CorpseHelper;
-import nightkosh.gravestone_extended.tileentity.TileEntityGSAltar;
+import nightkosh.gravestone_extended.tileentity.TileEntityAltar;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;
@@ -17,12 +17,12 @@ import net.minecraft.nbt.NBTTagCompound;
  */
 public class AltarContainer extends Container {
 
-    protected TileEntityGSAltar tileEntity;
+    protected TileEntityAltar tileEntity;
     public static final int PLAYER_INVENTORY_ROWS_COUNT = 3;
     public static final int COLUMNS_COUNT = 9;
     public static final int SLOT_WIDTH = 18;
 
-    public AltarContainer(InventoryPlayer inventoryPlayer, TileEntityGSAltar te) {
+    public AltarContainer(InventoryPlayer inventoryPlayer, TileEntityAltar te) {
         tileEntity = te;
 
         this.addSlotToContainer(new AltarSlot(tileEntity, 0, 27, 27));

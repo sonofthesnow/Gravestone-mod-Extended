@@ -2,7 +2,7 @@ package nightkosh.gravestone_extended.renderer.tileentity;
 
 import nightkosh.gravestone_extended.core.Resources;
 import nightkosh.gravestone_extended.models.block.ModelCandle;
-import nightkosh.gravestone_extended.tileentity.TileEntityGSCandle;
+import nightkosh.gravestone_extended.tileentity.TileEntityCandle;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.fml.relauncher.Side;
@@ -20,7 +20,7 @@ public class TileEntityCandleRenderer extends TileEntitySpecialRenderer {
 
     private ModelCandle candleModel = new ModelCandle();
 
-    public void renderTileEntityCandleAt(TileEntityGSCandle tileEntity, float x, float y, float z, float par8) {
+    public void renderTileEntityCandleAt(TileEntityCandle tileEntity, float x, float y, float z, float par8) {
         this.bindTexture(Resources.CANDLE);
 
         GL11.glPushMatrix();//TODO tileEntity == null ??
@@ -39,6 +39,6 @@ public class TileEntityCandleRenderer extends TileEntitySpecialRenderer {
 
     @Override
     public void renderTileEntityAt(TileEntity tileEntity, double x, double y, double z, float par8, int par9) {
-        this.renderTileEntityCandleAt((TileEntityGSCandle) tileEntity, (float) x, (float) y, (float) z, par8);
+        this.renderTileEntityCandleAt((TileEntityCandle) tileEntity, (float) x, (float) y, (float) z, par8);
     }
 }

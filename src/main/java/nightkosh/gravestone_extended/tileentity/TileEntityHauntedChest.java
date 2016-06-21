@@ -21,7 +21,7 @@ import nightkosh.gravestone_extended.core.MobSpawn;
  * @author NightKosh
  * @license Lesser GNU Public License v3 (http://www.gnu.org/licenses/lgpl.html)
  */
-public class TileEntityGSHauntedChest extends TileEntity implements ITickable {
+public class TileEntityHauntedChest extends TileEntity implements ITickable {
 
     private int openTicks = 0;
     private boolean isOpen = false;
@@ -35,7 +35,7 @@ public class TileEntityGSHauntedChest extends TileEntity implements ITickable {
     public float prevLidAngle;
     private EnumHauntedChest chestType = EnumHauntedChest.BATS_CHEST;
 
-    public TileEntityGSHauntedChest() {
+    public TileEntityHauntedChest() {
     }
 
     /**

@@ -1,7 +1,7 @@
 package nightkosh.gravestone_extended.renderer.tileentity;
 
 import nightkosh.gravestone_extended.core.Resources;
-import nightkosh.gravestone_extended.tileentity.TileEntityGSHauntedChest;
+import nightkosh.gravestone_extended.tileentity.TileEntityHauntedChest;
 import net.minecraft.client.model.ModelChest;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.tileentity.TileEntity;
@@ -24,7 +24,7 @@ public class TileEntityHauntedChestRenderer extends TileEntitySpecialRenderer {
     private ModelChest chestModel = new ModelChest();
     private boolean isChristmas;
 
-    private static final TileEntityGSHauntedChest CHEST_TE = new TileEntityGSHauntedChest();//TODO temporal hack
+    private static final TileEntityHauntedChest CHEST_TE = new TileEntityHauntedChest();//TODO temporal hack
 
     public TileEntityHauntedChestRenderer() {
         Calendar calendar = Calendar.getInstance();
@@ -37,7 +37,7 @@ public class TileEntityHauntedChestRenderer extends TileEntitySpecialRenderer {
     /**
      * Renders the TileEntity for the chest at a position.
      */
-    public void renderTileEntityChestAt(TileEntityGSHauntedChest te, double par2, double par4, double par6, float par8) {
+    public void renderTileEntityChestAt(TileEntityHauntedChest te, double par2, double par4, double par6, float par8) {
         int metadata = 0;
 
         if(te == null) {//TODO temporal hack
@@ -95,6 +95,6 @@ public class TileEntityHauntedChestRenderer extends TileEntitySpecialRenderer {
 
     @Override
     public void renderTileEntityAt(TileEntity te, double x, double y, double z, float par8, int par9) {
-        this.renderTileEntityChestAt((TileEntityGSHauntedChest) te, x, y, z, par8);
+        this.renderTileEntityChestAt((TileEntityHauntedChest) te, x, y, z, par8);
     }
 }

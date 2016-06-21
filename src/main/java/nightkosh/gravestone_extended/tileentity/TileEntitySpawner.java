@@ -12,11 +12,11 @@ import nightkosh.gravestone_extended.entity.helper.EntityGroupOfGravesMobSpawner
  * @author NightKosh
  * @license Lesser GNU Public License v3 (http://www.gnu.org/licenses/lgpl.html)
  */
-public class TileEntityGSSpawner extends TileEntityBase implements ITickable, ISpawnerEntity {
+public class TileEntitySpawner extends TileEntityBase implements ITickable, ISpawnerEntity {
 
     protected GSMobSpawner spawner;
 
-    public TileEntityGSSpawner() {
+    public TileEntitySpawner() {
         spawner = new GSMobSpawner(this);
     }
 
@@ -40,14 +40,14 @@ public class TileEntityGSSpawner extends TileEntityBase implements ITickable, IS
         return null;
     }
 
-    public static class Skeleton extends TileEntityGSSpawner {
+    public static class Skeleton extends TileEntitySpawner {
         @Override
         public int getBlockMetadata() {
             return EnumSpawner.SKELETON_SPAWNER.ordinal();
         }
     }
 
-    public static class Zombie extends TileEntityGSSpawner {
+    public static class Zombie extends TileEntitySpawner {
         @Override
         public int getBlockMetadata() {
             return EnumSpawner.ZOMBIE_SPAWNER.ordinal();

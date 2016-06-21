@@ -13,7 +13,7 @@ import nightkosh.gravestone_extended.block.enums.EnumSkullCandle;
  * @author NightKosh
  * @license Lesser GNU Public License v3 (http://www.gnu.org/licenses/lgpl.html)
  */
-public class TileEntityGSSkullCandle extends TileEntityBase {
+public class TileEntitySkullCandle extends TileEntityBase {
 
     private byte rotation;
 
@@ -62,13 +62,13 @@ public class TileEntityGSSkullCandle extends TileEntityBase {
         this.rotation = rotation;
     }
 
-    public static class Zombie extends TileEntityGSSkullCandle {
+    public static class Zombie extends TileEntitySkullCandle {
         @Override
         public int getBlockMetadata() {
             return EnumSkullCandle.ZOMBIE_SKULL.ordinal();
         }
     }
-    public static class Wither extends TileEntityGSSkullCandle {
+    public static class Wither extends TileEntitySkullCandle {
         @Override
         public int getBlockMetadata() {
             return EnumSkullCandle.WITHER_SKULL.ordinal();
