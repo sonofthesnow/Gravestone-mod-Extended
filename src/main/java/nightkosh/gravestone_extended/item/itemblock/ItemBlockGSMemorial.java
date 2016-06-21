@@ -142,6 +142,7 @@ public class ItemBlockGSMemorial extends ItemBlock {
                 case CREEPER_STATUE:
                     maxY = 2;
                     break;
+                case CELTIC_CROSS:
                 case STEVE_STATUE:
                 case VILLAGER_STATUE:
                 case ANGEL_STATUE:

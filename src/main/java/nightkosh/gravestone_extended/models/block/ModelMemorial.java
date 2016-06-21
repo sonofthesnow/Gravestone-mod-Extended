@@ -13,9 +13,6 @@ import nightkosh.gravestone_extended.block.enums.EnumMemorials;
  */
 public abstract class ModelMemorial extends ModelGraveStone {
 
-    public void setPedestalTexture(ResourceLocation texture) {
-    }
-
     public void customRender(ResourceLocation texture, boolean enchanted) {
         if (enchanted) {
             renderEnchanted();

@@ -163,4 +163,13 @@ public class TileEntityMemorial extends TileEntityGrave {
             return input;
         }
     }
+
+    public static class Obelisk extends TileEntityMemorial {}
+    public static class CelticCross extends TileEntityMemorial {}
+    public static class SteveStatue extends TileEntityMemorial {}
+    public static class VillagerStatue extends TileEntityMemorial {}
+    public static class AngelStatue extends TileEntityMemorial {}
+    public static class DogStatue extends TileEntityMemorial {}
+    public static class CatStatue extends TileEntityMemorial {}
+    public static class CreeperStatue extends TileEntityMemorial {}
 }

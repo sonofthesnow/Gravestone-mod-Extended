@@ -10,6 +10,8 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import nightkosh.gravestone.api.grave.EnumGraveMaterial;
+import nightkosh.gravestone.models.block.ModelCelticCross;
+import nightkosh.gravestone.models.block.ModelGraveStone;
 import nightkosh.gravestone.renderer.tileentity.TileEntityRenderer;
 import nightkosh.gravestone_extended.block.enums.EnumHangedMobs;
 import nightkosh.gravestone_extended.block.enums.EnumMemorials;
@@ -36,6 +38,7 @@ public class TileEntityMemorialRenderer extends TileEntityRenderer {
     //    private static final Map<String, ResourceLocation> steveTextures = Maps.newHashMap();
     public static ModelMemorial cross = new ModelMemorialCross();
     public static ModelMemorial obelisk = new ModelMemorialObelisk();
+    public static ModelGraveStone celticCross = new ModelCelticCross();
     public static ModelMemorial steveStatue = new ModelSteveStatueMemorial();
     public static ModelMemorial villagerStatue = new ModelVillagerMemorial();
     public static ModelMemorial angelStatue = new ModelAngelStatueMemorial();
@@ -46,14 +49,11 @@ public class TileEntityMemorialRenderer extends TileEntityRenderer {
     public static ModelMemorial stocks = new ModelStocks();
     public static ModelMemorial burningStake = new ModelBurningStake();
 
-    //private static IModelCustom celticCross = AdvancedModelLoader.loadModel("/assets/nightkosh.gravestone/obj_models/CelticCross.obj");
-
     public static TileEntityMemorialRenderer instance;
 
-    private static final TileEntityMemorial MEMORIAL_TE = new TileEntityMemorial();//TODO temporal hack
-
+    private static final TileEntityMemorial MEMORIAL_TE = new TileEntityMemorial();
     static {
-        MEMORIAL_TE.setGraveType(EnumMemorials.QUARTZ_OBELISK.ordinal());
+        MEMORIAL_TE.setGraveType(EnumMemorials.STONE_CROSS.ordinal());
     }
 
     public TileEntityMemorialRenderer() {
@@ -64,8 +64,8 @@ public class TileEntityMemorialRenderer extends TileEntityRenderer {
     public void renderTileEntityAt(TileEntity te, double x, double y, double z, float f, int par9) {
         TileEntityMemorial tileEntity = (TileEntityMemorial) te;
 
-        if (tileEntity == null) {//TODO temporal hack
-            tileEntity = MEMORIAL_TE;
+        if (tileEntity == null) {
+            tileEntity = getDefaultTE();
         }
         EnumMemorials memorial = tileEntity.getMemorialType();
         int meta = 0;
@@ -141,32 +141,29 @@ public class TileEntityMemorialRenderer extends TileEntityRenderer {
 
     private void renderMemorial(EnumMemorials memorial, EnumMemorials.EnumMemorialType memorialType, boolean isEnchanted,
                                 boolean isMossy, EnumHangedMobs hangedMob, int hangedVillagerProfession) {
-//        if (memorialType == 9) {
-//            celticCross.renderAll();
-//        } else
-        ModelMemorial model = getModel(memorialType);
+        ModelGraveStone model = getModel(memorialType);
         model.setPedestalTexture(getPedestalTexture(memorial, isMossy));
         switch (memorialType) {
             case CREEPER_STATUE:
                 bindTextureByName(getTexture(memorial, memorial.getTexture(), isMossy));
-//                model.customRender(isEnchanted);//TODO ????
+                model.customRender(isEnchanted);
                 break;
             case STEVE_STATUE:
                 bindTextureByName(getTexture(memorial, memorial.getTexture(), isMossy));
-                model.customRender(getArmorTexture(memorial, isMossy), isEnchanted);
+                ((ModelMemorial) model).customRender(getArmorTexture(memorial, isMossy), isEnchanted);
                 break;
             case GIBBET:
             case STOCKS:
             case BURNING_STAKE:
                 bindTextureByName(memorial.getTexture());
-                model.customRender(memorial, hangedMob, hangedVillagerProfession);
+                ((ModelMemorial) model).customRender(memorial, hangedMob, hangedVillagerProfession);
                 break;
             default:
                 bindTextureByName(getTexture(memorial, memorial.getTexture(), isMossy));
                 if (isEnchanted) {
-//                    model.renderEnchanted();//TODO ????
+                    model.renderEnchanted();
                 } else {
-//                    model.renderAll();//TODO ????
+                    model.renderAll();
                 }
         }
 
@@ -278,19 +275,21 @@ public class TileEntityMemorialRenderer extends TileEntityRenderer {
             default:
                 return Resources.MEMORIAL_MOSSY_CROSS;
             case OBELISK:
-                return Resources.MEMORIAL_MOSSY_OBELISK;
+                return Resources.MOSSY_OBELISK;
+            case CELTIC_CROSS:
+                return Resources.MOSSY_CELTIC_CROSS;
             case STEVE_STATUE:
                 return Resources.MEMORIAL_MOSSY_STEVE_STATUE;
             case VILLAGER_STATUE:
-                return Resources.MEMORIAL_MOSSY_VILLAGER_STATUE;
+                return Resources.MOSSY_VILLAGER_STATUE;
             case ANGEL_STATUE:
                 return Resources.MEMORIAL_MOSSY_ANGEL_STATUE;
             case DOG_STATUE:
-                return Resources.MEMORIAL_MOSSY_DOG_STATUE;
+                return Resources.MOSSY_DOG_STATUE;
             case CAT_STATUE:
-                return Resources.MEMORIAL_MOSSY_CAT_STATUE;
+                return Resources.MOSSY_CAT_STATUE;
             case CREEPER_STATUE:
-                return Resources.MEMORIAL_MOSSY_CREEPER_STATUE;
+                return Resources.MOSSY_CREEPER_STATUE;
         }
     }
 
@@ -338,13 +337,15 @@ public class TileEntityMemorialRenderer extends TileEntityRenderer {
         }
     }
 
-    private static ModelMemorial getModel(EnumMemorials.EnumMemorialType memorialType) {
+    private static ModelGraveStone getModel(EnumMemorials.EnumMemorialType memorialType) {
         switch (memorialType) {
             case CROSS:
             default:
                 return cross;
             case OBELISK:
                 return obelisk;
+            case CELTIC_CROSS:
+                return celticCross;
             case STEVE_STATUE:
                 return steveStatue;
             case VILLAGER_STATUE:
@@ -363,6 +364,106 @@ public class TileEntityMemorialRenderer extends TileEntityRenderer {
                 return stocks;
             case BURNING_STAKE:
                 return burningStake;
+        }
+    }
+
+    protected TileEntityMemorial getDefaultTE() {
+        return MEMORIAL_TE;
+    }
+
+    public static class Obelisk extends TileEntityMemorialRenderer {
+        private static final TileEntityMemorial MEMORIAL_TE = new TileEntityMemorial();
+        static {
+            MEMORIAL_TE.setGraveType(EnumMemorials.QUARTZ_OBELISK.ordinal());
+        }
+
+        @Override
+        protected TileEntityMemorial getDefaultTE() {
+            return MEMORIAL_TE;
+        }
+    }
+
+    public static class CelticCross extends TileEntityMemorialRenderer {
+        private static final TileEntityMemorial MEMORIAL_TE = new TileEntityMemorial();
+        static {
+            MEMORIAL_TE.setGraveType(EnumMemorials.STONE_CELTIC_CROSS.ordinal());
+        }
+
+        @Override
+        protected TileEntityMemorial getDefaultTE() {
+            return MEMORIAL_TE;
+        }
+    }
+
+    public static class SteveStatue extends TileEntityMemorialRenderer {
+        private static final TileEntityMemorial MEMORIAL_TE = new TileEntityMemorial();
+        static {
+            MEMORIAL_TE.setGraveType(EnumMemorials.STONE_STEVE_STATUE.ordinal());
+        }
+
+        @Override
+        protected TileEntityMemorial getDefaultTE() {
+            return MEMORIAL_TE;
+        }
+    }
+
+    public static class VillagerStatue extends TileEntityMemorialRenderer {
+        private static final TileEntityMemorial MEMORIAL_TE = new TileEntityMemorial();
+        static {
+            MEMORIAL_TE.setGraveType(EnumMemorials.STONE_VILLAGER_STATUE.ordinal());
+        }
+
+        @Override
+        protected TileEntityMemorial getDefaultTE() {
+            return MEMORIAL_TE;
+        }
+    }
+
+    public static class AngelStatue extends TileEntityMemorialRenderer {
+        private static final TileEntityMemorial MEMORIAL_TE = new TileEntityMemorial();
+        static {
+            MEMORIAL_TE.setGraveType(EnumMemorials.STONE_ANGEL_STATUE.ordinal());
+        }
+
+        @Override
+        protected TileEntityMemorial getDefaultTE() {
+            return MEMORIAL_TE;
+        }
+    }
+
+    public static class DogStatue extends TileEntityMemorialRenderer {
+        private static final TileEntityMemorial MEMORIAL_TE = new TileEntityMemorial();
+        static {
+            MEMORIAL_TE.setGraveType(EnumMemorials.STONE_DOG_STATUE.ordinal());
+        }
+
+        @Override
+        protected TileEntityMemorial getDefaultTE() {
+            return MEMORIAL_TE;
+        }
+    }
+
+    public static class CatStatue extends TileEntityMemorialRenderer {
+        private static final TileEntityMemorial MEMORIAL_TE = new TileEntityMemorial();
+        static {
+            MEMORIAL_TE.setGraveType(EnumMemorials.STONE_CAT_STATUE.ordinal());
+        }
+
+        @Override
+        protected TileEntityMemorial getDefaultTE() {
+            return MEMORIAL_TE;
+        }
+    }
+
+    public static class CreeperStatue extends TileEntityMemorialRenderer {
+        private static final TileEntityMemorial MEMORIAL_TE = new TileEntityMemorial();
+        static {
+            MEMORIAL_TE.setGraveType(EnumMemorials.STONE_CREEPER_STATUE.ordinal());
+        }
+
+        @Override
+        protected TileEntityMemorial getDefaultTE() {
+            return MEMORIAL_TE;
         }
     }
 }

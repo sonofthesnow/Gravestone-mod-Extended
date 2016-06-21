@@ -88,6 +88,24 @@ public class BlockMemorial extends BlockContainer {
             EnumMemorials.QUARTZ_OBELISK.ordinal(),
             EnumMemorials.PRIZMARINE_OBELISK.ordinal(),
             EnumMemorials.ICE_OBELISK.ordinal(),
+            // celtic cross
+            EnumMemorials.WOODEN_CELTIC_CROSS.ordinal(),
+            EnumMemorials.SANDSTONE_CELTIC_CROSS.ordinal(),
+            EnumMemorials.RED_SANDSTONE_CELTIC_CROSS.ordinal(),
+            EnumMemorials.STONE_CELTIC_CROSS.ordinal(),
+            EnumMemorials.DIORITE_CELTIC_CROSS.ordinal(),
+            EnumMemorials.ANDESITE_CELTIC_CROSS.ordinal(),
+            EnumMemorials.GRANITE_CELTIC_CROSS.ordinal(),
+            EnumMemorials.IRON_CELTIC_CROSS.ordinal(),
+            EnumMemorials.GOLDEN_CELTIC_CROSS.ordinal(),
+            EnumMemorials.DIAMOND_CELTIC_CROSS.ordinal(),
+            EnumMemorials.EMERALD_CELTIC_CROSS.ordinal(),
+            EnumMemorials.LAPIS_CELTIC_CROSS.ordinal(),
+            EnumMemorials.REDSTONE_CELTIC_CROSS.ordinal(),
+            EnumMemorials.OBSIDIAN_CELTIC_CROSS.ordinal(),
+            EnumMemorials.QUARTZ_CELTIC_CROSS.ordinal(),
+            EnumMemorials.PRIZMARINE_CELTIC_CROSS.ordinal(),
+            EnumMemorials.ICE_CELTIC_CROSS.ordinal(),
             // ANGEL memorials
             EnumMemorials.WOODEN_STEVE_STATUE.ordinal(),
             EnumMemorials.SANDSTONE_STEVE_STATUE.ordinal(),
@@ -200,6 +218,7 @@ public class BlockMemorial extends BlockContainer {
     public static final EnumMemorials[] WOODEN_GENERATED_MEMORIALS = {
             EnumMemorials.WOODEN_CROSS,
             EnumMemorials.QUARTZ_OBELISK,
+            EnumMemorials.QUARTZ_CELTIC_CROSS,
             EnumMemorials.WOODEN_STEVE_STATUE,
             EnumMemorials.WOODEN_VILLAGER_STATUE,
             EnumMemorials.WOODEN_ANGEL_STATUE,
@@ -209,6 +228,7 @@ public class BlockMemorial extends BlockContainer {
     public static final EnumMemorials[] SANDSTONE_GENERATED_MEMORIALS = {
             EnumMemorials.SANDSTONE_CROSS,
             EnumMemorials.QUARTZ_OBELISK,
+            EnumMemorials.QUARTZ_CELTIC_CROSS,
             EnumMemorials.SANDSTONE_STEVE_STATUE,
             EnumMemorials.SANDSTONE_VILLAGER_STATUE,
             EnumMemorials.SANDSTONE_ANGEL_STATUE,
@@ -218,6 +238,7 @@ public class BlockMemorial extends BlockContainer {
     public static final EnumMemorials[] STONE_GENERATED_MEMORIALS = {
             EnumMemorials.STONE_CROSS,
             EnumMemorials.QUARTZ_OBELISK,
+            EnumMemorials.QUARTZ_CELTIC_CROSS,
             EnumMemorials.STONE_STEVE_STATUE,
             EnumMemorials.STONE_VILLAGER_STATUE,
             EnumMemorials.STONE_ANGEL_STATUE,
@@ -227,6 +248,7 @@ public class BlockMemorial extends BlockContainer {
     public static final EnumMemorials[] QUARTZ_GENERATED_MEMORIALS = {
             EnumMemorials.QUARTZ_CROSS,
             EnumMemorials.QUARTZ_OBELISK,
+            EnumMemorials.QUARTZ_CELTIC_CROSS,
             EnumMemorials.QUARTZ_STEVE_STATUE,
             EnumMemorials.QUARTZ_VILLAGER_STATUE,
             EnumMemorials.QUARTZ_ANGEL_STATUE,
@@ -235,7 +257,8 @@ public class BlockMemorial extends BlockContainer {
     };
     public static final EnumMemorials[] ICE_GENERATED_MEMORIALS = {
             EnumMemorials.ICE_CROSS,
-            EnumMemorials.QUARTZ_OBELISK,
+            EnumMemorials.ICE_OBELISK,
+            EnumMemorials.ICE_CELTIC_CROSS,
             EnumMemorials.ICE_STEVE_STATUE,
             EnumMemorials.ICE_VILLAGER_STATUE,
             EnumMemorials.ICE_ANGEL_STATUE,
@@ -615,6 +638,7 @@ public class BlockMemorial extends BlockContainer {
                 case CAT_STATUE:
                     maxY = 2;
                     break;
+                case CELTIC_CROSS:
                 case STEVE_STATUE:
                 case VILLAGER_STATUE:
                 case ANGEL_STATUE:
@@ -672,6 +696,7 @@ public class BlockMemorial extends BlockContainer {
                 case CAT_STATUE:
                     maxY = 2;
                     break;
+                case CELTIC_CROSS:
                 case STEVE_STATUE:
                 case VILLAGER_STATUE:
                 case ANGEL_STATUE:
@@ -710,6 +735,7 @@ public class BlockMemorial extends BlockContainer {
             case OBELISK:
                 this.setBlockBounds(-1, 0, -1, 2, 5, 2);
                 break;
+            case CELTIC_CROSS:
             case STEVE_STATUE:
             case VILLAGER_STATUE:
             case ANGEL_STATUE:
