@@ -39,34 +39,35 @@ public class Treasury extends CatacombsBaseComponent {
      */
     @Override
     public boolean addComponentParts(World world, Random random) {
+        BlockSelector stoneBricks = getCemeteryCatacombsStones();
         this.fillWithAir(world, boundingBox, 1, 1, 2, 5, 3, 6);
 
         // block floor
-        this.fillWithRandomizedBlocks(world, boundingBox, 0, 0, 1, 6, 0, 7, false, random, getCemeteryCatacombsStones());
+        this.fillWithRandomizedBlocks(world, boundingBox, 0, 0, 1, 6, 0, 7, false, random, stoneBricks);
 
         // web
         this.randomlyFillWithBlocks(world, boundingBox, random, WEB_GENERATION_CHANCE, 1, 1, 1, 5, 3, 6, Blocks.web.getDefaultState(), false);
 
         //block ceiling
-        this.fillWithRandomizedBlocks(world, boundingBox, 0, 4, 1, 6, 4, 7, false, random, getCemeteryCatacombsStones());
+        this.fillWithRandomizedBlocks(world, boundingBox, 0, 4, 1, 6, 4, 7, false, random, stoneBricks);
 
         // block walls
-        this.fillWithRandomizedBlocks(world, boundingBox, 0, 1, 2, 0, 3, 6, false, random, getCemeteryCatacombsStones());
-        this.fillWithRandomizedBlocks(world, boundingBox, 6, 1, 2, 6, 3, 6, false, random, getCemeteryCatacombsStones());
-        this.fillWithRandomizedBlocks(world, boundingBox, 0, 1, 1, 6, 3, 1, false, random, getCemeteryCatacombsStones());
-        this.fillWithRandomizedBlocks(world, boundingBox, 0, 1, 7, 6, 3, 7, false, random, getCemeteryCatacombsStones());
+        this.fillWithRandomizedBlocks(world, boundingBox, 0, 1, 2, 0, 3, 6, false, random, stoneBricks);
+        this.fillWithRandomizedBlocks(world, boundingBox, 6, 1, 2, 6, 3, 6, false, random, stoneBricks);
+        this.fillWithRandomizedBlocks(world, boundingBox, 0, 1, 1, 6, 3, 1, false, random, stoneBricks);
+        this.fillWithRandomizedBlocks(world, boundingBox, 0, 1, 7, 6, 3, 7, false, random, stoneBricks);
 
         // clear entrance
         this.fillWithAir(world, boundingBox, 2, 1, 1, 4, 3, 1);
 
         // block entrance
-        this.fillWithRandomizedBlocks(world, boundingBox, 2, 1, 0, 4, 3, 0, false, random, getCemeteryCatacombsStones());
+        this.fillWithRandomizedBlocks(world, boundingBox, 2, 1, 0, 4, 3, 0, false, random, stoneBricks);
 
         // nether entrance
-        this.fillWithBlocks(world, boundingBox, 1, 0, 0, 5, 0, 0, Blocks.nether_brick.getDefaultState(), false);
-        this.fillWithBlocks(world, boundingBox, 1, 4, 0, 5, 4, 0, Blocks.nether_brick.getDefaultState(), false);
-        this.fillWithBlocks(world, boundingBox, 1, 1, 0, 1, 3, 0, Blocks.nether_brick.getDefaultState(), false);
-        this.fillWithBlocks(world, boundingBox, 5, 1, 0, 5, 3, 0, Blocks.nether_brick.getDefaultState(), false);
+        this.fillWithBlocks(world, boundingBox, 1, 0, 0, 5, 0, 0, netherBrick);
+        this.fillWithBlocks(world, boundingBox, 1, 4, 0, 5, 4, 0, netherBrick);
+        this.fillWithBlocks(world, boundingBox, 1, 1, 0, 1, 3, 0, netherBrick);
+        this.fillWithBlocks(world, boundingBox, 5, 1, 0, 5, 3, 0, netherBrick);
 
         // graves
         IBlockState graveState = GSBlock.graveStone.getDefaultState();
@@ -83,13 +84,13 @@ public class Treasury extends CatacombsBaseComponent {
         GraveGenerationHelper.placeGrave(this, world, random, 5, 1, 6, rightGraveState, spawnerHelper, EnumGraveTypeByEntity.HUMAN_GRAVES, GraveInventoryHelper.GraveContentType.TREASURY);
 
         // TNT
-        this.fillWithBlocks(world, boundingBox, 0, 0, 3, 1, 0, 3, Blocks.tnt.getDefaultState(), false);
-        this.fillWithBlocks(world, boundingBox, 0, 0, 5, 1, 0, 5, Blocks.tnt.getDefaultState(), false);
+        this.fillWithBlocks(world, boundingBox, 0, 0, 3, 1, 0, 3, Blocks.tnt.getDefaultState());
+        this.fillWithBlocks(world, boundingBox, 0, 0, 5, 1, 0, 5, Blocks.tnt.getDefaultState());
         this.placeBlockAtCurrentPosition(world, Blocks.tnt.getDefaultState(), 0, 0, 4, boundingBox);
-        this.fillWithBlocks(world, boundingBox, 5, 0, 3, 6, 0, 3, Blocks.tnt.getDefaultState(), false);
-        this.fillWithBlocks(world, boundingBox, 5, 0, 5, 6, 0, 5, Blocks.tnt.getDefaultState(), false);
+        this.fillWithBlocks(world, boundingBox, 5, 0, 3, 6, 0, 3, Blocks.tnt.getDefaultState());
+        this.fillWithBlocks(world, boundingBox, 5, 0, 5, 6, 0, 5, Blocks.tnt.getDefaultState());
         this.placeBlockAtCurrentPosition(world, Blocks.tnt.getDefaultState(), 6, 0, 4, boundingBox);
-        this.fillWithBlocks(world, boundingBox, 3, 0, 6, 3, 0, 7, Blocks.tnt.getDefaultState(), false);
+        this.fillWithBlocks(world, boundingBox, 3, 0, 6, 3, 0, 7, Blocks.tnt.getDefaultState());
 
         // treasury chests
         ObjectsGenerationHelper.generateChest(this, world, random, 1, 1, 3, this.coordBaseMode, false, ObjectsGenerationHelper.EnumChestTypes.VALUABLE_CHESTS);
@@ -99,7 +100,7 @@ public class Treasury extends CatacombsBaseComponent {
         ObjectsGenerationHelper.generateChest(this, world, random, 3, 1, 6, this.coordBaseMode, false, ObjectsGenerationHelper.EnumChestTypes.VALUABLE_CHESTS);
 
         // treasury column
-        this.fillWithBlocks(world, boundingBox, 3, 1, 4, 3, 3, 4, getValuableBlock(random).getDefaultState(), false);
+        this.fillWithBlocks(world, boundingBox, 3, 1, 4, 3, 3, 4, getValuableBlock(random).getDefaultState());
 
         return true;
     }

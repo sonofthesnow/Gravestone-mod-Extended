@@ -66,7 +66,7 @@ public class MausoleumEntrance extends CatacombsBaseComponent {
 
         for (int x = 3; x < 5; x++) {
             for (int z = 8; z < 10; z++) {
-                this.fillDownwards(world, Blocks.nether_brick.getDefaultState(), x, -1, z, boundingBox);
+                this.fillDownwards(world, netherBrick, x, -1, z, boundingBox);
             }
         }
 
@@ -86,13 +86,13 @@ public class MausoleumEntrance extends CatacombsBaseComponent {
 
         for (int x = 3; x < 6; x++) {
             for (int z = 8; z < 11; z++) {
-                this.fillDownwards(world, Blocks.nether_brick.getDefaultState(), x, -1, z, boundingBox);
+                this.fillDownwards(world, netherBrick, x, -1, z, boundingBox);
             }
         }
 
         for (int x = 8; x < 11; x++) {
             for (int z = 8; z < 11; z++) {
-                this.fillDownwards(world, Blocks.nether_brick.getDefaultState(), x, -1, z, boundingBox);
+                this.fillDownwards(world, netherBrick, x, -1, z, boundingBox);
             }
         }
 

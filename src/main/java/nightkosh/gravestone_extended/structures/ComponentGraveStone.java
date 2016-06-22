@@ -63,6 +63,10 @@ public class ComponentGraveStone extends StructureComponent implements IComponen
         fillWithBlocks(world, boundingBox, startX, startY, startZ, endX, endY, endZ, state, state, replace);
     }
 
+    protected void fillWithBlocks(World world, StructureBoundingBox boundingBox, int startX, int startY, int startZ, int endX, int endY, int endZ, IBlockState state) {
+        fillWithBlocks(world, boundingBox, startX, startY, startZ, endX, endY, endZ, state, state, false);
+    }
+
     @Override
     protected void func_175805_a(World world, StructureBoundingBox boundingBox, Random random, float chance, int startX, int startY, int startZ, int endX, int endY, int endZ, IBlockState state1, IBlockState state2, boolean replace) {
         super.func_175805_a(world, boundingBox, random, chance, startX, startY, startZ, endX, endY, endZ, state1, state2, replace);

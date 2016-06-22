@@ -56,31 +56,31 @@ public class WitherHall extends CatacombsBaseComponent {
         this.fillWithAir(world, boundingBox, 1, 1, 2, 21, 9, 22);
 
         // nether floor
-        this.fillWithBlocks(world, boundingBox, 10, 0, 0, 12, 0, 4, Blocks.nether_brick.getDefaultState(), false);
-        this.fillWithBlocks(world, boundingBox, 5, 0, 5, 17, 0, 16, Blocks.nether_brick.getDefaultState(), false);
+        this.fillWithBlocks(world, boundingBox, 10, 0, 0, 12, 0, 4, netherBrick);
+        this.fillWithBlocks(world, boundingBox, 5, 0, 5, 17, 0, 16, netherBrick);
 
         // nether ceiling
-        this.fillWithBlocks(world, boundingBox, 1, 10, 1, 21, 10, 22, Blocks.nether_brick.getDefaultState(), false);
+        this.fillWithBlocks(world, boundingBox, 1, 10, 1, 21, 10, 22, netherBrick);
 
         // nether walls
-        this.fillWithBlocks(world, boundingBox, 0, 0, 1, 0, 10, 23, Blocks.nether_brick.getDefaultState(), false);
-        this.fillWithBlocks(world, boundingBox, 22, 0, 1, 22, 10, 23, Blocks.nether_brick.getDefaultState(), false);
-        this.fillWithBlocks(world, boundingBox, 1, 0, 1, 21, 10, 1, Blocks.nether_brick.getDefaultState(), false);
-        this.fillWithBlocks(world, boundingBox, 1, 0, 23, 21, 10, 23, Blocks.nether_brick.getDefaultState(), false);
+        this.fillWithBlocks(world, boundingBox, 0, 0, 1, 0, 10, 23, netherBrick);
+        this.fillWithBlocks(world, boundingBox, 22, 0, 1, 22, 10, 23, netherBrick);
+        this.fillWithBlocks(world, boundingBox, 1, 0, 1, 21, 10, 1, netherBrick);
+        this.fillWithBlocks(world, boundingBox, 1, 0, 23, 21, 10, 23, netherBrick);
 
         // entrance
         this.fillWithAir(world, boundingBox, 10, 1, 0, 12, 3, 1);
-        this.fillWithBlocks(world, boundingBox, 9, 0, 0, 9, 4, 0, Blocks.nether_brick.getDefaultState(), false);
-        this.fillWithBlocks(world, boundingBox, 13, 0, 0, 13, 4, 0, Blocks.nether_brick.getDefaultState(), false);
-        this.fillWithBlocks(world, boundingBox, 10, 4, 0, 12, 4, 0, Blocks.nether_brick.getDefaultState(), false);
+        this.fillWithBlocks(world, boundingBox, 9, 0, 0, 9, 4, 0, netherBrick);
+        this.fillWithBlocks(world, boundingBox, 13, 0, 0, 13, 4, 0, netherBrick);
+        this.fillWithBlocks(world, boundingBox, 10, 4, 0, 12, 4, 0, netherBrick);
 
         // lava floor
-        this.fillWithBlocks(world, boundingBox, 1, 0, 2, 9, 0, 4, Blocks.lava.getDefaultState(), false);
-        this.fillWithBlocks(world, boundingBox, 1, 0, 5, 4, 0, 19, Blocks.lava.getDefaultState(), false);
-        this.fillWithBlocks(world, boundingBox, 1, 0, 20, 8, 0, 22, Blocks.lava.getDefaultState(), false);
-        this.fillWithBlocks(world, boundingBox, 13, 0, 2, 21, 0, 4, Blocks.lava.getDefaultState(), false);
-        this.fillWithBlocks(world, boundingBox, 18, 0, 5, 21, 0, 19, Blocks.lava.getDefaultState(), false);
-        this.fillWithBlocks(world, boundingBox, 14, 0, 20, 21, 0, 22, Blocks.lava.getDefaultState(), false);
+        this.fillWithBlocks(world, boundingBox, 1, 0, 2, 9, 0, 4, Blocks.lava.getDefaultState());
+        this.fillWithBlocks(world, boundingBox, 1, 0, 5, 4, 0, 19, Blocks.lava.getDefaultState());
+        this.fillWithBlocks(world, boundingBox, 1, 0, 20, 8, 0, 22, Blocks.lava.getDefaultState());
+        this.fillWithBlocks(world, boundingBox, 13, 0, 2, 21, 0, 4, Blocks.lava.getDefaultState());
+        this.fillWithBlocks(world, boundingBox, 18, 0, 5, 21, 0, 19, Blocks.lava.getDefaultState());
+        this.fillWithBlocks(world, boundingBox, 14, 0, 20, 21, 0, 22, Blocks.lava.getDefaultState());
 
         // lava walls
         this.placeBlockAtCurrentPosition(world, Blocks.flowing_lava.getDefaultState(), 0, 6, 3, boundingBox);
@@ -123,21 +123,21 @@ public class WitherHall extends CatacombsBaseComponent {
         buildLight(world, 16, 18);
 
         // stairs
-        this.fillWithBlocks(world, boundingBox, 9, 1, 12, 13, 1, 14, Blocks.nether_brick.getDefaultState(), false);
-        this.fillWithBlocks(world, boundingBox, 9, 2, 13, 13, 2, 14, Blocks.nether_brick.getDefaultState(), false);
-        this.fillWithBlocks(world, boundingBox, 9, 3, 14, 13, 3, 14, Blocks.nether_brick.getDefaultState(), false);
+        this.fillWithBlocks(world, boundingBox, 9, 1, 12, 13, 1, 14, netherBrick);
+        this.fillWithBlocks(world, boundingBox, 9, 2, 13, 13, 2, 14, netherBrick);
+        this.fillWithBlocks(world, boundingBox, 9, 3, 14, 13, 3, 14, netherBrick);
 
-        this.fillWithBlocks(world, boundingBox, 10, 1, 12, 12, 1, 14, netherBrickStairsBotState, false);
-        this.fillWithBlocks(world, boundingBox, 10, 2, 13, 12, 2, 14, netherBrickStairsBotState, false);
-        this.fillWithBlocks(world, boundingBox, 10, 3, 14, 12, 3, 14, netherBrickStairsBotState, false);
+        this.fillWithBlocks(world, boundingBox, 10, 1, 12, 12, 1, 14, netherBrickStairsBotState);
+        this.fillWithBlocks(world, boundingBox, 10, 2, 13, 12, 2, 14, netherBrickStairsBotState);
+        this.fillWithBlocks(world, boundingBox, 10, 3, 14, 12, 3, 14, netherBrickStairsBotState);
 
         // wither place
-        this.fillWithBlocks(world, boundingBox, 8, 0, 15, 14, 3, 21, Blocks.nether_brick.getDefaultState(), false);
-        this.fillWithBlocks(world, boundingBox, 5, 0, 17, 7, 3, 19, Blocks.nether_brick.getDefaultState(), false);
-        this.fillWithBlocks(world, boundingBox, 15, 0, 17, 17, 3, 19, Blocks.nether_brick.getDefaultState(), false);
-        this.fillWithBlocks(world, boundingBox, 7, 0, 20, 7, 3, 20, Blocks.nether_brick.getDefaultState(), false);
-        this.fillWithBlocks(world, boundingBox, 15, 0, 20, 15, 3, 20, Blocks.nether_brick.getDefaultState(), false);
-        this.fillWithBlocks(world, boundingBox, 9, 0, 22, 13, 2, 22, Blocks.nether_brick.getDefaultState(), false);
+        this.fillWithBlocks(world, boundingBox, 8, 0, 15, 14, 3, 21, netherBrick);
+        this.fillWithBlocks(world, boundingBox, 5, 0, 17, 7, 3, 19, netherBrick);
+        this.fillWithBlocks(world, boundingBox, 15, 0, 17, 17, 3, 19, netherBrick);
+        this.fillWithBlocks(world, boundingBox, 7, 0, 20, 7, 3, 20, netherBrick);
+        this.fillWithBlocks(world, boundingBox, 15, 0, 20, 15, 3, 20, netherBrick);
+        this.fillWithBlocks(world, boundingBox, 9, 0, 22, 13, 2, 22, netherBrick);
 
         this.placeBlockAtCurrentPosition(world, Blocks.netherrack.getDefaultState(), 9, 3, 15, boundingBox);
         this.placeBlockAtCurrentPosition(world, Blocks.fire.getDefaultState(), 9, 4, 15, boundingBox);
@@ -145,17 +145,17 @@ public class WitherHall extends CatacombsBaseComponent {
         this.placeBlockAtCurrentPosition(world, Blocks.fire.getDefaultState(), 13, 4, 15, boundingBox);
 
         // portal
-        this.fillWithBlocks(world, boundingBox, 9, 3, 22, 13, 3, 22, Blocks.obsidian.getDefaultState(), false);
-        this.fillWithBlocks(world, boundingBox, 9, 7, 22, 13, 7, 22, Blocks.obsidian.getDefaultState(), false);
-        this.fillWithBlocks(world, boundingBox, 9, 4, 22, 9, 6, 22, Blocks.obsidian.getDefaultState(), false);
-        this.fillWithBlocks(world, boundingBox, 13, 4, 22, 13, 6, 22, Blocks.obsidian.getDefaultState(), false);
-        this.fillWithBlocks(world, boundingBox, 10, 4, 22, 12, 6, 22, Blocks.portal.getDefaultState(), false);
+        this.fillWithBlocks(world, boundingBox, 9, 3, 22, 13, 3, 22, Blocks.obsidian.getDefaultState());
+        this.fillWithBlocks(world, boundingBox, 9, 7, 22, 13, 7, 22, Blocks.obsidian.getDefaultState());
+        this.fillWithBlocks(world, boundingBox, 9, 4, 22, 9, 6, 22, Blocks.obsidian.getDefaultState());
+        this.fillWithBlocks(world, boundingBox, 13, 4, 22, 13, 6, 22, Blocks.obsidian.getDefaultState());
+        this.fillWithBlocks(world, boundingBox, 10, 4, 22, 12, 6, 22, Blocks.portal.getDefaultState());
 
         // spawner
         this.placeBlockAtCurrentPosition(world, GSBlock.spawner.getDefaultState(), 11, 4, 18, boundingBox);
 
         // treasure
-        this.fillWithBlocks(world, boundingBox, 10, 3, 17, 12, 3, 19, Blocks.diamond_block.getDefaultState(), false);
+        this.fillWithBlocks(world, boundingBox, 10, 3, 17, 12, 3, 19, Blocks.diamond_block.getDefaultState());
         this.placeBlockAtCurrentPosition(world, Blocks.emerald_block.getDefaultState(), 11, 3, 18, boundingBox);
 
         // spawn bats
@@ -196,8 +196,8 @@ public class WitherHall extends CatacombsBaseComponent {
     }
 
     private void buildColumnLeft(World world, int z) {
-        this.fillWithBlocks(world, boundingBox, 1, 0, z - 1, 2, 0, z + 1, Blocks.nether_brick.getDefaultState(), false);
-        this.fillWithBlocks(world, boundingBox, 1, 1, z, 1, 9, z, Blocks.nether_brick.getDefaultState(), false);
+        this.fillWithBlocks(world, boundingBox, 1, 0, z - 1, 2, 0, z + 1, netherBrick);
+        this.fillWithBlocks(world, boundingBox, 1, 1, z, 1, 9, z, netherBrick);
 
         // bot
         this.placeBlockAtCurrentPosition(world, netherBrickStairsBotState, 1, 1, z - 1, boundingBox);
@@ -215,8 +215,8 @@ public class WitherHall extends CatacombsBaseComponent {
     }
 
     private void buildColumnRight(World world, int z) {
-        this.fillWithBlocks(world, boundingBox, 20, 0, z - 1, 21, 0, z + 1, Blocks.nether_brick.getDefaultState(), false);
-        this.fillWithBlocks(world, boundingBox, 21, 1, z, 21, 9, z, Blocks.nether_brick.getDefaultState(), false);
+        this.fillWithBlocks(world, boundingBox, 20, 0, z - 1, 21, 0, z + 1, netherBrick);
+        this.fillWithBlocks(world, boundingBox, 21, 1, z, 21, 9, z, netherBrick);
 
         // bot
         this.placeBlockAtCurrentPosition(world, netherBrickStairsBotState, 20, 1, z - 1, boundingBox);

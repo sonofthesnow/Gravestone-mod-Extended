@@ -1,12 +1,11 @@
 package nightkosh.gravestone_extended.structures.catacombs.components;
 
-import nightkosh.gravestone_extended.core.GSBlock;
-import nightkosh.gravestone_extended.structures.BoundingBoxHelper;
 import net.minecraft.block.BlockStairs;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.world.World;
+import nightkosh.gravestone_extended.structures.BoundingBoxHelper;
 
 import java.util.Random;
 
@@ -61,6 +60,7 @@ public class CatacombsEntrance extends CatacombsBaseComponent {
      */
     @Override
     public boolean addComponentParts(World world, Random random) {
+        BlockSelector stoneBricks = getCemeteryCatacombsStones();
         int top = boundingBox.maxY - boundingBox.minY - 1;
         IBlockState netherBrickStairsBotState = Blocks.nether_brick_stairs.getDefaultState().withProperty(BlockStairs.FACING, this.coordBaseMode.getOpposite());
         IBlockState stairsTopState = Blocks.stone_brick_stairs.getDefaultState().withProperty(BlockStairs.FACING, this.coordBaseMode)
@@ -77,22 +77,22 @@ public class CatacombsEntrance extends CatacombsBaseComponent {
             this.fillWithAir(world, boundingBox, 1, shiftY - 2, shiftZ + 2, 2, shiftY - 2, shiftZ + 5);
 
             // nether walls
-            this.fillWithBlocks(world, boundingBox, 0, shiftY, shiftZ, 0, shiftY + 4, shiftZ, Blocks.nether_brick.getDefaultState(), false);
-            this.fillWithBlocks(world, boundingBox, 3, shiftY, shiftZ, 3, shiftY + 4, shiftZ, Blocks.nether_brick.getDefaultState(), false);
+            this.fillWithBlocks(world, boundingBox, 0, shiftY, shiftZ, 0, shiftY + 4, shiftZ, netherBrick);
+            this.fillWithBlocks(world, boundingBox, 3, shiftY, shiftZ, 3, shiftY + 4, shiftZ, netherBrick);
 
             // block walls
-            this.fillWithRandomizedBlocks(world, boundingBox, 0, shiftY - 2, shiftZ + 1, 0, shiftY + 3, shiftZ + 2, false, random, getCemeteryCatacombsStones());
-            this.fillWithRandomizedBlocks(world, boundingBox, 3, shiftY - 2, shiftZ + 1, 3, shiftY + 3, shiftZ + 2, false, random, getCemeteryCatacombsStones());
+            this.fillWithRandomizedBlocks(world, boundingBox, 0, shiftY - 2, shiftZ + 1, 0, shiftY + 3, shiftZ + 2, false, random, stoneBricks);
+            this.fillWithRandomizedBlocks(world, boundingBox, 3, shiftY - 2, shiftZ + 1, 3, shiftY + 3, shiftZ + 2, false, random, stoneBricks);
 
             // nether stairs
-            this.fillWithBlocks(world, boundingBox, 1, shiftY, shiftZ, 2, shiftY, shiftZ, netherBrickStairsBotState, false);
-            this.fillWithBlocks(world, boundingBox, 1, shiftY - 1, shiftZ + 1, 2, shiftY - 1, shiftZ + 1, netherBrickStairsBotState, false);
-            this.fillWithBlocks(world, boundingBox, 1, shiftY - 2, shiftZ + 2, 2, shiftY - 2, shiftZ + 2, netherBrickStairsBotState, false);
+            this.fillWithBlocks(world, boundingBox, 1, shiftY, shiftZ, 2, shiftY, shiftZ, netherBrickStairsBotState);
+            this.fillWithBlocks(world, boundingBox, 1, shiftY - 1, shiftZ + 1, 2, shiftY - 1, shiftZ + 1, netherBrickStairsBotState);
+            this.fillWithBlocks(world, boundingBox, 1, shiftY - 2, shiftZ + 2, 2, shiftY - 2, shiftZ + 2, netherBrickStairsBotState);
 
             // block stairs
-            this.fillWithBlocks(world, boundingBox, 1, shiftY, shiftZ + 4, 2, shiftY, shiftZ + 4, stairsTopState, false);
-            this.fillWithBlocks(world, boundingBox, 1, shiftY - 1, shiftZ + 5, 2, shiftY - 1, shiftZ + 5, stairsTopState, false);
-            this.fillWithBlocks(world, boundingBox, 1, shiftY - 2, shiftZ + 6, 2, shiftY - 2, shiftZ + 6, stairsTopState, false);
+            this.fillWithBlocks(world, boundingBox, 1, shiftY, shiftZ + 4, 2, shiftY, shiftZ + 4, stairsTopState);
+            this.fillWithBlocks(world, boundingBox, 1, shiftY - 1, shiftZ + 5, 2, shiftY - 1, shiftZ + 5, stairsTopState);
+            this.fillWithBlocks(world, boundingBox, 1, shiftY - 2, shiftZ + 6, 2, shiftY - 2, shiftZ + 6, stairsTopState);
         }
 
         shiftY += 1;
@@ -100,23 +100,23 @@ public class CatacombsEntrance extends CatacombsBaseComponent {
         int zLength = corridorLength * 3;
         this.fillWithAir(world, boundingBox, 1, shiftY - 2, shiftZ, 2, shiftY - 1, shiftZ);
         this.fillWithAir(world, boundingBox, 1, shiftY - 3, shiftZ + 1, 2, shiftY - 1, shiftZ + zLength + 4);
-        this.placeBlockAtCurrentPosition(world, Blocks.nether_brick.getDefaultState(), 0, shiftY, shiftZ, boundingBox);
-        this.placeBlockAtCurrentPosition(world, Blocks.nether_brick.getDefaultState(), 3, shiftY, shiftZ, boundingBox);
+        this.placeBlockAtCurrentPosition(world, netherBrick, 0, shiftY, shiftZ, boundingBox);
+        this.placeBlockAtCurrentPosition(world, netherBrick, 3, shiftY, shiftZ, boundingBox);
 
         // ceiling
-        this.fillWithBlocks(world, boundingBox, 0, shiftY, shiftZ + 1, 3, shiftY, shiftZ + zLength + 4, Blocks.nether_brick.getDefaultState(), false);
+        this.fillWithBlocks(world, boundingBox, 0, shiftY, shiftZ + 1, 3, shiftY, shiftZ + zLength + 4, netherBrick);
 
         // trap floor
-        this.fillWithBlocks(world, boundingBox, 0, shiftY - 4, shiftZ, 3, shiftY - 4, shiftZ + zLength + 4, GSBlock.trap.getDefaultState(), false);
+        this.fillWithBlocks(world, boundingBox, 0, shiftY - 4, shiftZ, 3, shiftY - 4, shiftZ + zLength + 4, nightStone);
 
         for (int j = 0; j < corridorLength; j++) {
             // nether walls
-            this.fillWithBlocks(world, boundingBox, 0, shiftY - 3, shiftZ, 0, shiftY - 1, shiftZ, Blocks.nether_brick.getDefaultState(), false);
-            this.fillWithBlocks(world, boundingBox, 3, shiftY - 3, shiftZ, 3, shiftY - 1, shiftZ, Blocks.nether_brick.getDefaultState(), false);
+            this.fillWithBlocks(world, boundingBox, 0, shiftY - 3, shiftZ, 0, shiftY - 1, shiftZ, netherBrick);
+            this.fillWithBlocks(world, boundingBox, 3, shiftY - 3, shiftZ, 3, shiftY - 1, shiftZ, netherBrick);
 
             // block walls
-            this.fillWithRandomizedBlocks(world, boundingBox, 0, shiftY - 3, shiftZ + 1, 0, shiftY - 1, shiftZ + 2, false, random, getCemeteryCatacombsStones());
-            this.fillWithRandomizedBlocks(world, boundingBox, 3, shiftY - 3, shiftZ + 1, 3, shiftY - 1, shiftZ + 2, false, random, getCemeteryCatacombsStones());
+            this.fillWithRandomizedBlocks(world, boundingBox, 0, shiftY - 3, shiftZ + 1, 0, shiftY - 1, shiftZ + 2, false, random, stoneBricks);
+            this.fillWithRandomizedBlocks(world, boundingBox, 3, shiftY - 3, shiftZ + 1, 3, shiftY - 1, shiftZ + 2, false, random, stoneBricks);
 
             // web
             this.randomlyFillWithBlocks(world, boundingBox, random, this.WEB_GENERATION_CHANCE, 1, shiftY - 3, shiftZ, 2, shiftY - 1, shiftZ + 2, Blocks.web.getDefaultState(), false);
@@ -124,7 +124,7 @@ public class CatacombsEntrance extends CatacombsBaseComponent {
         }
 
         shiftZ += 4;
-        this.fillWithRandomizedBlocks(world, boundingBox, 1, shiftY - 3, shiftZ, 2, shiftY - 1, shiftZ, false, random, getCemeteryCatacombsStones());
+        this.fillWithRandomizedBlocks(world, boundingBox, 1, shiftY - 3, shiftZ, 2, shiftY - 1, shiftZ, false, random, stoneBricks);
 
         return true;
     }

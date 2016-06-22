@@ -65,6 +65,7 @@ public class Crossing extends CatacombsBaseComponent {
      */
     @Override
     public boolean addComponentParts(World world, Random random) {
+        BlockSelector stoneBricks = getCemeteryCatacombsStones();
         this.fillWithAir(world, boundingBox, 1, 1, 1, 11, 4, 11);
 
         // web
@@ -75,61 +76,61 @@ public class Crossing extends CatacombsBaseComponent {
         }
 
         // trap floor
-        this.fillWithBlocks(world, boundingBox, 0, 0, 0, 0, 0, 12, Blocks.nether_brick.getDefaultState(), false);
-        this.fillWithBlocks(world, boundingBox, 4, 0, 0, 4, 0, 12, Blocks.nether_brick.getDefaultState(), false);
-        this.fillWithBlocks(world, boundingBox, 8, 0, 0, 8, 0, 12, Blocks.nether_brick.getDefaultState(), false);
-        this.fillWithBlocks(world, boundingBox, 12, 0, 0, 12, 0, 12, Blocks.nether_brick.getDefaultState(), false);
-        this.fillWithBlocks(world, boundingBox, 1, 0, 0, 11, 0, 0, Blocks.nether_brick.getDefaultState(), false);
-        this.fillWithBlocks(world, boundingBox, 1, 0, 4, 11, 0, 4, Blocks.nether_brick.getDefaultState(), false);
-        this.fillWithBlocks(world, boundingBox, 1, 0, 8, 11, 0, 8, Blocks.nether_brick.getDefaultState(), false);
-        this.fillWithBlocks(world, boundingBox, 1, 0, 12, 11, 0, 12, Blocks.nether_brick.getDefaultState(), false);
+        this.fillWithBlocks(world, boundingBox, 0, 0, 0, 0, 0, 12, netherBrick);
+        this.fillWithBlocks(world, boundingBox, 4, 0, 0, 4, 0, 12, netherBrick);
+        this.fillWithBlocks(world, boundingBox, 8, 0, 0, 8, 0, 12, netherBrick);
+        this.fillWithBlocks(world, boundingBox, 12, 0, 0, 12, 0, 12, netherBrick);
+        this.fillWithBlocks(world, boundingBox, 1, 0, 0, 11, 0, 0, netherBrick);
+        this.fillWithBlocks(world, boundingBox, 1, 0, 4, 11, 0, 4, netherBrick);
+        this.fillWithBlocks(world, boundingBox, 1, 0, 8, 11, 0, 8, netherBrick);
+        this.fillWithBlocks(world, boundingBox, 1, 0, 12, 11, 0, 12, netherBrick);
 
         // stoneBrick floor
-        this.fillWithRandomizedBlocks(world, boundingBox, 1, 0, 1, 3, 0, 3, false, random, getCemeteryCatacombsStones());
-        this.fillWithRandomizedBlocks(world, boundingBox, 1, 0, 5, 3, 0, 7, false, random, getCemeteryCatacombsStones());
-        this.fillWithRandomizedBlocks(world, boundingBox, 1, 0, 9, 3, 0, 11, false, random, getCemeteryCatacombsStones());
-        this.fillWithRandomizedBlocks(world, boundingBox, 5, 0, 1, 7, 0, 3, false, random, getCemeteryCatacombsStones());
-        this.fillWithRandomizedBlocks(world, boundingBox, 5, 0, 9, 7, 0, 11, false, random, getCemeteryCatacombsStones());
-        this.fillWithRandomizedBlocks(world, boundingBox, 9, 0, 1, 11, 0, 3, false, random, getCemeteryCatacombsStones());
-        this.fillWithRandomizedBlocks(world, boundingBox, 9, 0, 5, 11, 0, 7, false, random, getCemeteryCatacombsStones());
-        this.fillWithRandomizedBlocks(world, boundingBox, 9, 0, 9, 11, 0, 11, false, random, getCemeteryCatacombsStones());
+        this.fillWithRandomizedBlocks(world, boundingBox, 1, 0, 1, 3, 0, 3, false, random, stoneBricks);
+        this.fillWithRandomizedBlocks(world, boundingBox, 1, 0, 5, 3, 0, 7, false, random, stoneBricks);
+        this.fillWithRandomizedBlocks(world, boundingBox, 1, 0, 9, 3, 0, 11, false, random, stoneBricks);
+        this.fillWithRandomizedBlocks(world, boundingBox, 5, 0, 1, 7, 0, 3, false, random, stoneBricks);
+        this.fillWithRandomizedBlocks(world, boundingBox, 5, 0, 9, 7, 0, 11, false, random, stoneBricks);
+        this.fillWithRandomizedBlocks(world, boundingBox, 9, 0, 1, 11, 0, 3, false, random, stoneBricks);
+        this.fillWithRandomizedBlocks(world, boundingBox, 9, 0, 5, 11, 0, 7, false, random, stoneBricks);
+        this.fillWithRandomizedBlocks(world, boundingBox, 9, 0, 9, 11, 0, 11, false, random, stoneBricks);
 
         // nether ceiling
-        this.fillWithBlocks(world, boundingBox, 0, 5, 0, 0, 5, 12, Blocks.nether_brick.getDefaultState(), false);
-        this.fillWithBlocks(world, boundingBox, 4, 5, 0, 4, 5, 12, Blocks.nether_brick.getDefaultState(), false);
-        this.fillWithBlocks(world, boundingBox, 8, 5, 0, 8, 5, 12, Blocks.nether_brick.getDefaultState(), false);
-        this.fillWithBlocks(world, boundingBox, 12, 5, 0, 12, 5, 12, Blocks.nether_brick.getDefaultState(), false);
-        this.fillWithBlocks(world, boundingBox, 1, 5, 0, 11, 5, 0, Blocks.nether_brick.getDefaultState(), false);
-        this.fillWithBlocks(world, boundingBox, 1, 5, 4, 11, 5, 4, Blocks.nether_brick.getDefaultState(), false);
-        this.fillWithBlocks(world, boundingBox, 1, 5, 8, 11, 5, 8, Blocks.nether_brick.getDefaultState(), false);
-        this.fillWithBlocks(world, boundingBox, 1, 5, 12, 11, 5, 12, Blocks.nether_brick.getDefaultState(), false);
+        this.fillWithBlocks(world, boundingBox, 0, 5, 0, 0, 5, 12, netherBrick);
+        this.fillWithBlocks(world, boundingBox, 4, 5, 0, 4, 5, 12, netherBrick);
+        this.fillWithBlocks(world, boundingBox, 8, 5, 0, 8, 5, 12, netherBrick);
+        this.fillWithBlocks(world, boundingBox, 12, 5, 0, 12, 5, 12, netherBrick);
+        this.fillWithBlocks(world, boundingBox, 1, 5, 0, 11, 5, 0, netherBrick);
+        this.fillWithBlocks(world, boundingBox, 1, 5, 4, 11, 5, 4, netherBrick);
+        this.fillWithBlocks(world, boundingBox, 1, 5, 8, 11, 5, 8, netherBrick);
+        this.fillWithBlocks(world, boundingBox, 1, 5, 12, 11, 5, 12, netherBrick);
 
         // stoneBrick ceiling
-        this.fillWithRandomizedBlocks(world, boundingBox, 1, 5, 1, 3, 5, 3, false, random, getCemeteryCatacombsStones());
-        this.fillWithRandomizedBlocks(world, boundingBox, 1, 5, 5, 3, 5, 7, false, random, getCemeteryCatacombsStones());
-        this.fillWithRandomizedBlocks(world, boundingBox, 1, 5, 9, 3, 5, 11, false, random, getCemeteryCatacombsStones());
-        this.fillWithRandomizedBlocks(world, boundingBox, 5, 5, 1, 7, 5, 3, false, random, getCemeteryCatacombsStones());
-        this.fillWithRandomizedBlocks(world, boundingBox, 5, 5, 9, 7, 5, 11, false, random, getCemeteryCatacombsStones());
-        this.fillWithRandomizedBlocks(world, boundingBox, 9, 5, 1, 11, 5, 3, false, random, getCemeteryCatacombsStones());
-        this.fillWithRandomizedBlocks(world, boundingBox, 9, 5, 5, 11, 5, 7, false, random, getCemeteryCatacombsStones());
-        this.fillWithRandomizedBlocks(world, boundingBox, 9, 5, 9, 11, 5, 11, false, random, getCemeteryCatacombsStones());
+        this.fillWithRandomizedBlocks(world, boundingBox, 1, 5, 1, 3, 5, 3, false, random, stoneBricks);
+        this.fillWithRandomizedBlocks(world, boundingBox, 1, 5, 5, 3, 5, 7, false, random, stoneBricks);
+        this.fillWithRandomizedBlocks(world, boundingBox, 1, 5, 9, 3, 5, 11, false, random, stoneBricks);
+        this.fillWithRandomizedBlocks(world, boundingBox, 5, 5, 1, 7, 5, 3, false, random, stoneBricks);
+        this.fillWithRandomizedBlocks(world, boundingBox, 5, 5, 9, 7, 5, 11, false, random, stoneBricks);
+        this.fillWithRandomizedBlocks(world, boundingBox, 9, 5, 1, 11, 5, 3, false, random, stoneBricks);
+        this.fillWithRandomizedBlocks(world, boundingBox, 9, 5, 5, 11, 5, 7, false, random, stoneBricks);
+        this.fillWithRandomizedBlocks(world, boundingBox, 9, 5, 9, 11, 5, 11, false, random, stoneBricks);
 
         // cutted stoneBrick floor and ceiling
         IBlockState chiseledStoneState = Blocks.stonebrick.getDefaultState().withProperty(BlockStoneBrick.VARIANT, BlockStoneBrick.EnumType.CHISELED);
-        this.fillWithBlocks(world, boundingBox, 5, 0, 5, 7, 0, 7, chiseledStoneState, false);
-        this.fillWithBlocks(world, boundingBox, 5, 5, 5, 7, 5, 7, chiseledStoneState, false);
+        this.fillWithBlocks(world, boundingBox, 5, 0, 5, 7, 0, 7, chiseledStoneState);
+        this.fillWithBlocks(world, boundingBox, 5, 5, 5, 7, 5, 7, chiseledStoneState);
 
         // nether walls
-        this.fillWithBlocks(world, boundingBox, 0, 1, 0, 0, 4, 12, Blocks.nether_brick.getDefaultState(), false);
-        this.fillWithBlocks(world, boundingBox, 12, 1, 0, 12, 4, 12, Blocks.nether_brick.getDefaultState(), false);
-        this.fillWithBlocks(world, boundingBox, 1, 1, 12, 11, 4, 12, Blocks.nether_brick.getDefaultState(), false);
-        this.fillWithBlocks(world, boundingBox, 1, 1, 0, 11, 4, 0, Blocks.nether_brick.getDefaultState(), false);
+        this.fillWithBlocks(world, boundingBox, 0, 1, 0, 0, 4, 12, netherBrick);
+        this.fillWithBlocks(world, boundingBox, 12, 1, 0, 12, 4, 12, netherBrick);
+        this.fillWithBlocks(world, boundingBox, 1, 1, 12, 11, 4, 12, netherBrick);
+        this.fillWithBlocks(world, boundingBox, 1, 1, 0, 11, 4, 0, netherBrick);
 
         // columns
-        this.fillWithRandomizedBlocks(world, boundingBox, 4, 1, 8, 4, 4, 8, false, random, getCemeteryCatacombsStones());
-        this.fillWithRandomizedBlocks(world, boundingBox, 4, 1, 4, 4, 4, 4, false, random, getCemeteryCatacombsStones());
-        this.fillWithRandomizedBlocks(world, boundingBox, 8, 1, 8, 8, 4, 8, false, random, getCemeteryCatacombsStones());
-        this.fillWithRandomizedBlocks(world, boundingBox, 8, 1, 4, 8, 4, 4, false, random, getCemeteryCatacombsStones());
+        this.fillWithRandomizedBlocks(world, boundingBox, 4, 1, 8, 4, 4, 8, false, random, stoneBricks);
+        this.fillWithRandomizedBlocks(world, boundingBox, 4, 1, 4, 4, 4, 4, false, random, stoneBricks);
+        this.fillWithRandomizedBlocks(world, boundingBox, 8, 1, 8, 8, 4, 8, false, random, stoneBricks);
+        this.fillWithRandomizedBlocks(world, boundingBox, 8, 1, 4, 8, 4, 4, false, random, stoneBricks);
 
         // fire
         this.placeBlockAtCurrentPosition(world, Blocks.netherrack.getDefaultState(), 1, 1, 11, boundingBox);
@@ -161,9 +162,9 @@ public class Crossing extends CatacombsBaseComponent {
         this.placeBlockAtCurrentPosition(world, netherBrickStairsLeftState, 10, 1, 11, boundingBox);
 
         // fill exit
-        this.fillWithRandomizedBlocks(world, boundingBox, 5, 1, 12, 7, 3, 12, false, random, getCemeteryCatacombsStones());
-        this.fillWithRandomizedBlocks(world, boundingBox, 0, 1, 5, 0, 3, 7, false, random, getCemeteryCatacombsStones());
-        this.fillWithRandomizedBlocks(world, boundingBox, 12, 1, 5, 12, 3, 7, false, random, getCemeteryCatacombsStones());
+        this.fillWithRandomizedBlocks(world, boundingBox, 5, 1, 12, 7, 3, 12, false, random, stoneBricks);
+        this.fillWithRandomizedBlocks(world, boundingBox, 0, 1, 5, 0, 3, 7, false, random, stoneBricks);
+        this.fillWithRandomizedBlocks(world, boundingBox, 12, 1, 5, 12, 3, 7, false, random, stoneBricks);
 
         // clear enter
         this.fillWithAir(world, boundingBox, 5, 1, 0, 7, 3, 0);
