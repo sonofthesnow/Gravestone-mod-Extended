@@ -55,12 +55,12 @@ public class ComponentGraveStone extends StructureComponent implements IComponen
     }
 
     @Override
-    protected void fillWithBlocks(World world, StructureBoundingBox boundingBox, int startX, int startY, int startZ, int endX, int endY, int endZ, IBlockState state1, IBlockState state2, boolean replace) {
-        super.fillWithBlocks(world, boundingBox, startX, startY, startZ, endX, endY, endZ, state1, state2, replace);
+    protected void fillWithBlocks(World world, StructureBoundingBox boundingBox, int startX, int startY, int startZ, int endX, int endY, int endZ, IBlockState boundaryBlockState, IBlockState insideBlockState, boolean existingOnly) {
+        super.fillWithBlocks(world, boundingBox, startX, startY, startZ, endX, endY, endZ, boundaryBlockState, insideBlockState, existingOnly);
     }
 
-    protected void fillWithBlocks(World world, StructureBoundingBox boundingBox, int startX, int startY, int startZ, int endX, int endY, int endZ, IBlockState state, boolean replace) {
-        fillWithBlocks(world, boundingBox, startX, startY, startZ, endX, endY, endZ, state, state, replace);
+    protected void fillWithBlocks(World world, StructureBoundingBox boundingBox, int startX, int startY, int startZ, int endX, int endY, int endZ, IBlockState state, boolean existingOnly) {
+        fillWithBlocks(world, boundingBox, startX, startY, startZ, endX, endY, endZ, state, state, existingOnly);
     }
 
     protected void fillWithBlocks(World world, StructureBoundingBox boundingBox, int startX, int startY, int startZ, int endX, int endY, int endZ, IBlockState state) {
