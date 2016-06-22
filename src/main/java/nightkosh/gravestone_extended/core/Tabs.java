@@ -3,7 +3,6 @@ package nightkosh.gravestone_extended.core;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import nightkosh.gravestone_extended.block.enums.EnumMemorials;
@@ -23,11 +22,7 @@ public class Tabs extends nightkosh.gravestone.core.Tabs {
         memorialsTab = new CreativeTabs("tabGSMemorials") {
             @Override
             public ItemStack getIconItemStack() {
-                ItemStack stack = new ItemStack(GSBlock.memorial, 1, 0);
-                NBTTagCompound nbt = new NBTTagCompound();
-                nbt.setInteger("Type", EnumMemorials.STONE_CREEPER_STATUE.ordinal());
-                stack.setTagCompound(nbt);
-                return stack;
+                return new ItemStack(GSBlock.memorial, 1, EnumMemorials.STONE_CREEPER_STATUE.ordinal());
             }
 
             @Override

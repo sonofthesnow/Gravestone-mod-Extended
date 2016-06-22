@@ -43,6 +43,7 @@ public class Recipes {
 
         // memorials
         // gibbets
+        //TODO type
         GameRegistry.addRecipe(getStackWithNTB(GSBlock.memorial, EnumMemorials.GIBBET.ordinal(), "Type"), "ww ", "wr ", "wc ", 'w', Blocks.planks, 'r', Items.lead, 'c', GSItem.chisel);
         // stocks
         GameRegistry.addRecipe(getStackWithNTB(GSBlock.memorial, EnumMemorials.STOCKS.ordinal(), "Type"), "wsw", "wcw", 'w', Blocks.planks, 's', Blocks.wooden_slab, 'c', GSItem.chisel);

@@ -31,7 +31,7 @@ public class ItemGSMemorialRenderer{} //TODO
 //        TileEntityGSMemorial te = new TileEntityGSMemorial();
 //
 //        if (item.hasTagCompound()) {
-//            te.setGraveType(item.getTagCompound().getInteger("Type"));
+//            te.setGraveType(item.getTagCompound().getInteger("Type"));//TODO type
 //            if (item.getTagCompound().hasKey("Enchanted")) {
 //                te.setEnchanted(item.getTagCompound().getBoolean("Enchanted"));
 //            }

@@ -31,7 +31,7 @@ public class ItemGSGraveStoneRenderer{} //TODO
 //        TileEntityGSGraveStone te = new TileEntityGSGraveStone();
 //
 //        if (item.hasTagCompound()) {
-//            te.setGraveType(item.getTagCompound().getInteger("Type"));
+//            te.setGraveType(item.getTagCompound().getInteger("Type"));//TODO type
 //            if (item.getTagCompound().hasKey("Sword")) {
 //                te.setSword(ItemStack.loadItemStackFromNBT(item.getTagCompound().getCompoundTag("Sword")));
 //            }

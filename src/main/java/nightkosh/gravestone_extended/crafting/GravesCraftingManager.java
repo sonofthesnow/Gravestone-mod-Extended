@@ -1,7 +1,6 @@
 package nightkosh.gravestone_extended.crafting;
 
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
 import nightkosh.gravestone.api.grave.EnumGraveMaterial;
 import nightkosh.gravestone.api.grave.EnumGraveType;
 import nightkosh.gravestone.block.enums.EnumGraves;
@@ -88,11 +87,7 @@ public class GravesCraftingManager {
     }
 
     private static ItemStack getStackWithNTB(net.minecraft.block.Block block, int graveType) {
-        ItemStack stack = new ItemStack(block, 1, 0);
-        NBTTagCompound nbt = new NBTTagCompound();
-        nbt.setInteger("Type", graveType);
-        stack.setTagCompound(nbt);
-        return stack;
+        return new ItemStack(block, 1, graveType);
     }
 
     public static GravesCraftingManager getInstance() {
