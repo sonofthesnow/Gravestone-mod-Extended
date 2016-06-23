@@ -205,7 +205,7 @@ public abstract class CatacombsBaseComponent extends ComponentGraveStone {
      */
     @Override
     public void setBlockState(World world, IBlockState blockState, int xCoord, int yCoord, int zCoord, StructureBoundingBox boundingBox) {
-        fillDownwards(world, blockState, xCoord, yCoord, zCoord, boundingBox);
+        super.setBlockState(world, blockState, xCoord, yCoord, zCoord, boundingBox);
     }
 
     protected void fillDownwards(World world, IBlockState blockState, int xCoord, int yCoord, int zCoord, StructureBoundingBox boundingBox) {
