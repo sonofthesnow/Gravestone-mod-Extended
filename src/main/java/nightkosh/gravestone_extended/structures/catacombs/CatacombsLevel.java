@@ -37,8 +37,8 @@ public class CatacombsLevel {
     public static final int DEFAULT_MAX_ROOMS_COUNT_AT_3_LEVEL = 180;
     public static final int DEFAULT_MIN_ROOMS_COUNT_AT_4_LEVEL = 160;
     public static final int DEFAULT_MAX_ROOMS_COUNT_AT_4_LEVEL = 320;
-    private LinkedList levelComponents = new LinkedList();
-    private LinkedList endComponents = new LinkedList();
+    private List<CatacombsBaseComponent> levelComponents = new ArrayList<>();
+    private List<CatacombsBaseComponent> endComponents = new ArrayList<>();
 
     public CatacombsLevel(LinkedList<CatacombsBaseComponent> startComponents, int level, World world, Random random) {
         levelComponents = startComponents;
@@ -105,7 +105,7 @@ public class CatacombsLevel {
                             direction = component.getRightDirection();
                             break;
                     }
-                    resultComponentsCount += addComponent(newComponents, component, direction, exit.getSide());
+                    resultComponentsCount += addComponent(newComponents, component, direction, exit, exit.getSide());
                 }
             }
         } else if (endComponents.isEmpty()) {
@@ -122,8 +122,8 @@ public class CatacombsLevel {
     /*
      * Create and add new component if it available
      */
-    private int addComponent(List<CatacombsBaseComponent> newComponents, CatacombsBaseComponent component, EnumFacing direction, CatacombsBaseComponent.ComponentSide componentSide) {
-        CatacombsBaseComponent newComponent = tryCreateComponent(component, direction, componentSide);
+    private int addComponent(List<CatacombsBaseComponent> newComponents, CatacombsBaseComponent component, EnumFacing direction, CatacombsBaseComponent.Exit exit, CatacombsBaseComponent.ComponentSide componentSide) {
+        CatacombsBaseComponent newComponent = tryCreateComponent(component, direction, exit, componentSide);
 
         if (newComponent != null) {
             newComponents.add(newComponent);
@@ -155,13 +155,13 @@ public class CatacombsLevel {
             if (endsCount < ends || components.size() > 0) {
                 int j = random.nextInt(components.size());
                 component = components.get(j);
-                newComponent = tryCreateComponent(component, componentClass, component.getDirection(), level, CatacombsBaseComponent.ComponentSide.FRONT);
+                newComponent = tryCreateComponent(component, componentClass, component.getDirection(), level, CatacombsBaseComponent.ComponentSide.FRONT);//TODO
 
                 if (newComponent == null) {
-                    newComponent = tryCreateComponent(component, componentClass, component.getLeftDirection(), level, CatacombsBaseComponent.ComponentSide.LEFT);
+                    newComponent = tryCreateComponent(component, componentClass, component.getLeftDirection(), level, CatacombsBaseComponent.ComponentSide.LEFT);//TODO
 
                     if (newComponent == null) {
-                        newComponent = tryCreateComponent(component, componentClass, component.getRightDirection(), level, CatacombsBaseComponent.ComponentSide.RIGHT);
+                        newComponent = tryCreateComponent(component, componentClass, component.getRightDirection(), level, CatacombsBaseComponent.ComponentSide.RIGHT);//TODO
 
                         if (newComponent != null) {
                             levelComponents.add(newComponent);
@@ -190,18 +190,18 @@ public class CatacombsLevel {
 
         if (endsCount == 0) {
             component = currentComponents.get(random.nextInt(components.size()));
-            newComponent = CatacombsComponentsFactory.createComponent(component, random, component.getDirection(), level, componentClass, CatacombsBaseComponent.ComponentSide.FRONT);
+            newComponent = CatacombsComponentsFactory.createComponent(component, random, component.getDirection(), level, componentClass, CatacombsBaseComponent.ComponentSide.FRONT);//TODO
             levelComponents.add(newComponent);
             endComponents.add(newComponent);
         }
     }
 
-    private CatacombsBaseComponent tryCreateComponent(CatacombsBaseComponent component, Class componentClass, EnumFacing direction, int level, CatacombsBaseComponent.ComponentSide componentSide) {
+    private CatacombsBaseComponent tryCreateComponent(CatacombsBaseComponent component, Class componentClass, EnumFacing direction, int level, CatacombsBaseComponent.Exit exit) {
         if (componentsCount < 30 && componentClass == Treasury.class) {
             componentClass = CatacombsComponentsFactory.getCorridorType(random);
         }
 
-        CatacombsBaseComponent newComponent = CatacombsComponentsFactory.createComponent(component, random, direction, level, componentClass, componentSide);
+        CatacombsBaseComponent newComponent = CatacombsComponentsFactory.createComponent(component, random, direction, level, componentClass, exit);
 
         if (canBePlaced(newComponent)) {
             levelComponents.add(newComponent);
@@ -211,8 +211,8 @@ public class CatacombsLevel {
         }
     }
 
-    private CatacombsBaseComponent tryCreateComponent(CatacombsBaseComponent component, EnumFacing direction, CatacombsBaseComponent.ComponentSide componentSide) {
-        return tryCreateComponent(component, CatacombsComponentsFactory.getNextComponent(component.getClass(), componentSide, random, level), direction, level, componentSide);
+    private CatacombsBaseComponent tryCreateComponent(CatacombsBaseComponent component, EnumFacing direction, CatacombsBaseComponent.Exit exit, CatacombsBaseComponent.ComponentSide componentSide) {
+        return tryCreateComponent(component, CatacombsComponentsFactory.getNextComponent(component.getClass(), componentSide, random, level), direction, level, exit);
     }
 
     /**
@@ -249,7 +249,7 @@ public class CatacombsLevel {
     /**
      * Return end parts of level
      */
-    public LinkedList getEndParts() {
+    public List<CatacombsBaseComponent> getEndParts() {
         return endComponents;
     }
 }

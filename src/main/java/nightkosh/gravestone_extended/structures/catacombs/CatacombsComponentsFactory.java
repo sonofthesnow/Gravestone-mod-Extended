@@ -5,7 +5,6 @@ import nightkosh.gravestone_extended.structures.catacombs.components.*;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
-import java.util.List;
 import java.util.Random;
 
 /**
@@ -129,35 +128,23 @@ public class CatacombsComponentsFactory {
         }
     }
 
-    public static CatacombsBaseComponent createComponent(CatacombsBaseComponent component, Random random, EnumFacing facing, int level, Class<CatacombsBaseComponent> buildComponent, CatacombsBaseComponent.ComponentSide componentSide) {
+    public static CatacombsBaseComponent createComponent(CatacombsBaseComponent component, Random random, EnumFacing facing, int level, Class<CatacombsBaseComponent> buildComponent, CatacombsBaseComponent.Exit exit) {
         if (component != null) {
-            List<CatacombsBaseComponent.Exit> exits = component.getExitList();
-            if (exits != null && exits.size() > 0) {
-                CatacombsBaseComponent.Exit exit = null;//TODO
-                for (CatacombsBaseComponent.Exit exitTemp : exits) {
-                    if (exitTemp.getSide().equals(componentSide)) {
-                        exit = exitTemp;
-                        break;
-                    }
-                }
-
-                if (exit != null) {
-                    try {
-                        Constructor<CatacombsBaseComponent> constructor = buildComponent.getConstructor(EnumFacing.class, int.class, Random.class, int.class, int.class, int.class);
-                        component = constructor.newInstance(facing, level, random, component.getXEnd(exit), component.getYEnd(exit), component.getZEnd(exit));
-                        return component;
-                    } catch (NoSuchMethodException e) {
-                        e.printStackTrace();
-                    } catch (InstantiationException e) {
-                        e.printStackTrace();
-                    } catch (IllegalAccessException e) {
-                        e.printStackTrace();
-                    } catch (InvocationTargetException e) {
-                        e.printStackTrace();
-                    }
+            if (exit != null) {
+                try {
+                    Constructor<CatacombsBaseComponent> constructor = buildComponent.getConstructor(EnumFacing.class, int.class, Random.class, int.class, int.class, int.class);
+                    component = constructor.newInstance(facing, level, random, component.getXEnd(exit), component.getYEnd(exit), component.getZEnd(exit));
+                    return component;
+                } catch (NoSuchMethodException e) {
+                    e.printStackTrace();
+                } catch (InstantiationException e) {
+                    e.printStackTrace();
+                } catch (IllegalAccessException e) {
+                    e.printStackTrace();
+                } catch (InvocationTargetException e) {
+                    e.printStackTrace();
                 }
             }
-
         }
 
         return null;
