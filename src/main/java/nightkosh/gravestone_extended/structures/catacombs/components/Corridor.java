@@ -24,33 +24,24 @@ public class Corridor extends CatacombsBaseComponent {
     public Corridor(EnumFacing facing, int level, Random random, int x, int y, int z) {
         super(0, facing, level);
         boundingBox = BoundingBoxHelper.getCorrectBox(facing, x, y, z, X_LENGTH, HEIGHT, Z_LENGTH, xShift);
-        frontXEnd = 0;
-        frontZEnd = Z_LENGTH - 1;
 
+        this.addExit(new Exit(0, 0, Z_LENGTH - 1, ComponentSide.FRONT));
         switch (facing) {
             case SOUTH:
-                leftXEnd = X_LENGTH - 1;
-                leftZEnd = 0;
-                rightXEnd = 0;
-                rightZEnd = 0;
+                this.addExit(new Exit(X_LENGTH - 1, 0, 0, ComponentSide.LEFT));
+                this.addExit(new Exit(0, 0, 0, ComponentSide.RIGHT));
                 break;
             case NORTH:
-                leftXEnd = 0;
-                leftZEnd = 4;
-                rightXEnd = X_LENGTH - 1;
-                rightZEnd = 4;
+                this.addExit(new Exit(0, 0, 4, ComponentSide.LEFT));
+                this.addExit(new Exit(X_LENGTH - 1, 0, 4, ComponentSide.RIGHT));
                 break;
             case WEST:
-                leftXEnd = X_LENGTH - 1;
-                leftZEnd = 4;
-                rightXEnd = 0;
-                rightZEnd = 4;
+                this.addExit(new Exit(X_LENGTH - 1, 0, 4, ComponentSide.LEFT));
+                this.addExit(new Exit(0, 0, 4, ComponentSide.RIGHT));
                 break;
             case EAST:
-                leftXEnd = 0;
-                leftZEnd = 0;
-                rightXEnd = X_LENGTH - 1;
-                rightZEnd = 0;
+                this.addExit(new Exit(0, 0, 0, ComponentSide.LEFT));
+                this.addExit(new Exit(X_LENGTH - 1, 0, 0, ComponentSide.RIGHT));
                 break;
         }
     }
@@ -93,10 +84,5 @@ public class Corridor extends CatacombsBaseComponent {
         MobSpawnHelper.spawnBats(world, random, boundingBox);
 
         return true;
-    }
-
-    @Override
-    public boolean canGoOnlyForward() {
-        return false;
     }
 }

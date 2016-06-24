@@ -23,9 +23,7 @@ public class SpidersCorridor extends CatacombsBaseComponent {
     public SpidersCorridor(EnumFacing facing, int level, Random random, int x, int y, int z) {
         super(0, facing, level);
         boundingBox = BoundingBoxHelper.getCorrectBox(facing, x, y, z, X_LENGTH, HEIGHT, Z_LENGTH, xShift);
-        frontXEnd = 0;
-        frontZEnd = Z_LENGTH - 1;
-        goForward = true;
+        this.addExit(new Exit(0, 0, Z_LENGTH - 1, ComponentSide.FRONT));
     }
 
     /**

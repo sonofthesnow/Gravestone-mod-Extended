@@ -32,9 +32,7 @@ public class GraveCorridor extends CatacombsBaseComponent {
         super(0, facing, level);
         xShift = 1;
         boundingBox = BoundingBoxHelper.getCorrectBox(facing, x, y, z, X_LENGTH, HEIGHT, Z_LENGTH, xShift);
-        goForward = true;
-        frontXEnd = 1;
-        frontZEnd = Z_LENGTH - 1;
+        this.addExit(new Exit(1, 0, Z_LENGTH - 1, ComponentSide.FRONT));
     }
 
     /**

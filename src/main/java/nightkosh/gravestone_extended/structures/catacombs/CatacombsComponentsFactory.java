@@ -1,10 +1,11 @@
 package nightkosh.gravestone_extended.structures.catacombs;
 
-import nightkosh.gravestone_extended.structures.catacombs.components.*;
 import net.minecraft.util.EnumFacing;
+import nightkosh.gravestone_extended.structures.catacombs.components.*;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
+import java.util.List;
 import java.util.Random;
 
 /**
@@ -14,10 +15,6 @@ import java.util.Random;
  * @license Lesser GNU Public License v3 (http://www.gnu.org/licenses/lgpl.html)
  */
 public class CatacombsComponentsFactory {
-
-    private CatacombsComponentsFactory() {
-
-    }
 
     /**
      * Return component for level
@@ -84,8 +81,8 @@ public class CatacombsComponentsFactory {
     }
 
 
-    public static Class getNextComponent(Class componentClass, CatacombsLevel.COMPONENT_SIDE componentSide, Random random, int level) {
-        if (componentSide == CatacombsLevel.COMPONENT_SIDE.FRONT) {
+    public static Class getNextComponent(Class componentClass, CatacombsBaseComponent.ComponentSide componentSide, Random random, int level) {
+        if (componentSide == CatacombsBaseComponent.ComponentSide.FRONT) {
             return CatacombsComponentsFactory.getNextComponentForLevel(componentClass, random, level);
         } else {
             if (level == 1 || random.nextInt(100) >= 5) {
@@ -132,35 +129,35 @@ public class CatacombsComponentsFactory {
         }
     }
 
-    public static CatacombsBaseComponent createComponent(CatacombsBaseComponent component, Random random, EnumFacing facing, int level, Class buildComponent, CatacombsLevel.COMPONENT_SIDE componentSide) {
+    public static CatacombsBaseComponent createComponent(CatacombsBaseComponent component, Random random, EnumFacing facing, int level, Class<CatacombsBaseComponent> buildComponent, CatacombsBaseComponent.ComponentSide componentSide) {
         if (component != null) {
-            int x, y, z;
-            y = component.getYEnd();
+            List<CatacombsBaseComponent.Exit> exits = component.getExitList();
+            if (exits != null && exits.size() > 0) {
+                CatacombsBaseComponent.Exit exit = null;//TODO
+                for (CatacombsBaseComponent.Exit exitTemp : exits) {
+                    if (exitTemp.getSide().equals(componentSide)) {
+                        exit = exitTemp;
+                        break;
+                    }
+                }
 
-            if (componentSide == CatacombsLevel.COMPONENT_SIDE.FRONT) {
-                x = component.getFrontXEnd();
-                z = component.getFrontZEnd();
-            } else if (componentSide == CatacombsLevel.COMPONENT_SIDE.LEFT) {
-                x = component.getLeftXEnd();
-                z = component.getLeftZEnd();
-            } else {
-                x = component.getRightXEnd();
-                z = component.getRightZEnd();
+                if (exit != null) {
+                    try {
+                        Constructor<CatacombsBaseComponent> constructor = buildComponent.getConstructor(EnumFacing.class, int.class, Random.class, int.class, int.class, int.class);
+                        component = constructor.newInstance(facing, level, random, component.getXEnd(exit), component.getYEnd(exit), component.getZEnd(exit));
+                        return component;
+                    } catch (NoSuchMethodException e) {
+                        e.printStackTrace();
+                    } catch (InstantiationException e) {
+                        e.printStackTrace();
+                    } catch (IllegalAccessException e) {
+                        e.printStackTrace();
+                    } catch (InvocationTargetException e) {
+                        e.printStackTrace();
+                    }
+                }
             }
 
-            try {
-                Constructor<CatacombsBaseComponent> constructor = buildComponent.getConstructor(EnumFacing.class, int.class, Random.class, int.class, int.class, int.class);
-                component = constructor.newInstance(facing, level, random, x, y, z);
-                return component;
-            } catch (NoSuchMethodException e) {
-                e.printStackTrace();
-            } catch (InstantiationException e) {
-                e.printStackTrace();
-            } catch (IllegalAccessException e) {
-                e.printStackTrace();
-            } catch (InvocationTargetException e) {
-                e.printStackTrace();
-            }
         }
 
         return null;

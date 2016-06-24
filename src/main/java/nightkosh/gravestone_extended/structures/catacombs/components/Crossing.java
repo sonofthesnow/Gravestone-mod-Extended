@@ -27,33 +27,24 @@ public class Crossing extends CatacombsBaseComponent {
     public Crossing(EnumFacing facing, int level, Random random, int x, int y, int z) {
         super(0, facing, level);
         xShift = 4;
-        frontXEnd = 4;
-        frontZEnd = 12;
 
+        this.addExit(new Exit(4, 0, 12, ComponentSide.FRONT));
         switch (facing) {
             case SOUTH:
-                leftXEnd = 12;
-                leftZEnd = 4;
-                rightXEnd = 0;
-                rightZEnd = 4;
+                this.addExit(new Exit(12, 0, 4, ComponentSide.LEFT));
+                this.addExit(new Exit(0, 0, 4, ComponentSide.RIGHT));
                 break;
             case NORTH:
-                leftXEnd = 0;
-                leftZEnd = 8;
-                rightXEnd = 12;
-                rightZEnd = 8;
+                this.addExit(new Exit(0, 0, 8, ComponentSide.LEFT));
+                this.addExit(new Exit(12, 0, 8, ComponentSide.RIGHT));
                 break;
             case WEST:
-                leftXEnd = 12;
-                leftZEnd = 8;
-                rightXEnd = 0;
-                rightZEnd = 8;
+                this.addExit(new Exit(12, 0, 8, ComponentSide.LEFT));
+                this.addExit(new Exit(0, 0, 8, ComponentSide.RIGHT));
                 break;
             case EAST:
-                leftXEnd = 0;
-                leftZEnd = 4;
-                rightXEnd = 12;
-                rightZEnd = 4;
+                this.addExit(new Exit(0, 0, 4, ComponentSide.LEFT));
+                this.addExit(new Exit(12, 0, 4, ComponentSide.RIGHT));
                 break;
         }
 
@@ -173,10 +164,5 @@ public class Crossing extends CatacombsBaseComponent {
         ObjectsGenerationHelper.generateSpawner(this, world, random, 6, 1, 6);
 
         return true;
-    }
-
-    @Override
-    public boolean canGoOnlyForward() {
-        return false;
     }
 }

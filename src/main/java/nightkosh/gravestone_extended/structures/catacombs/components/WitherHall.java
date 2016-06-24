@@ -31,7 +31,6 @@ public class WitherHall extends CatacombsBaseComponent {
         super(0, facing, level);
         xShift = 9;
         boundingBox = BoundingBoxHelper.getCorrectBox(facing, x, y, z, X_LENGTH, HEIGHT, Z_LENGTH, xShift);
-        goForward = false;
     }
 
     /**

@@ -1,21 +1,23 @@
 package nightkosh.gravestone_extended.structures.catacombs.components;
 
+import net.minecraft.block.Block;
+import net.minecraft.block.material.Material;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
+import net.minecraft.util.BlockPos;
+import net.minecraft.util.EnumFacing;
+import net.minecraft.world.World;
+import net.minecraft.world.gen.structure.StructureBoundingBox;
+import net.minecraft.world.gen.structure.StructureComponent;
 import nightkosh.gravestone_extended.core.GSBlock;
 import nightkosh.gravestone_extended.core.Structures;
 import nightkosh.gravestone_extended.structures.ComponentGraveStone;
 import nightkosh.gravestone_extended.structures.ObjectsGenerationHelper;
 import nightkosh.gravestone_extended.structures.catacombs.CatacombsLevel;
 import nightkosh.gravestone_extended.structures.catacombs.CatacombsPileOfBonesSelector;
-import net.minecraft.block.Block;
-import net.minecraft.block.material.Material;
-import net.minecraft.block.state.IBlockState;
-import net.minecraft.util.BlockPos;
-import net.minecraft.util.EnumFacing;
-import net.minecraft.world.World;
-import net.minecraft.world.gen.structure.StructureBoundingBox;
-import net.minecraft.world.gen.structure.StructureComponent;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 /**
@@ -31,14 +33,6 @@ public abstract class CatacombsBaseComponent extends ComponentGraveStone {
     protected static final IBlockState netherBrick = Blocks.nether_brick.getDefaultState();
     protected static final IBlockState nightStone = GSBlock.trap.getDefaultState();
 
-    public boolean goForward = true;
-    protected int leftXEnd = 0;
-    protected int rightXEnd = 0;
-    protected int frontXEnd = 0;
-    protected int leftZEnd = 0;
-    protected int rightZEnd = 0;
-    protected int frontZEnd = 0;
-    protected int yEnd = 0;
     protected int xShift = 0;
     protected int zShift = 0;
     protected int level = 0;
@@ -117,53 +111,18 @@ public abstract class CatacombsBaseComponent extends ComponentGraveStone {
         return world.getTopSolidOrLiquidBlock(new BlockPos(x, 0, z)).getY();
     }
 
-    /**
-     * Return Left X end coord for next component
-     */
-    public int getLeftXEnd() {
-        return this.getXWithOffset(leftXEnd, leftZEnd);
+    public int getXEnd(Exit exit) {
+        return this.getXWithOffset(exit.getX(), exit.getZ());
     }
-
-    /**
-     * Return Left Z end coord for next component
-     */
-    public int getLeftZEnd() {
-        return this.getZWithOffset(leftXEnd, leftZEnd);
-    }
-
-    /**
-     * Return right X end coord for next component
-     */
-    public int getRightXEnd() {
-        return this.getXWithOffset(rightXEnd, rightZEnd);
-    }
-
-    /**
-     * Return right Z end coord for next component
-     */
-    public int getRightZEnd() {
-        return this.getZWithOffset(rightXEnd, rightZEnd);
-    }
-
-    /**
-     * Return forward Z end coord for next component
-     */
-    public int getFrontZEnd() {
-        return this.getZWithOffset(frontXEnd, frontZEnd);
-    }
-
-    /**
-     * Return forward X end coord for next component
-     */
-    public int getFrontXEnd() {
-        return this.getXWithOffset(frontXEnd, frontZEnd);
+    public int getZEnd(Exit exit) {
+        return this.getZWithOffset(exit.getX(), exit.getZ());
     }
 
     /**
      * Return Y end coord for next component
      */
-    public int getYEnd() {
-        return this.boundingBox.minY + yEnd;
+    public int getYEnd(Exit exit) {
+        return this.boundingBox.minY + exit.getY();
     }
 
     /**
@@ -190,13 +149,6 @@ public abstract class CatacombsBaseComponent extends ComponentGraveStone {
             return this.boundingBox.maxX - 1 > boundingBox.minX && this.boundingBox.minX + 1 < boundingBox.maxX
                     && this.boundingBox.maxZ > boundingBox.minZ && this.boundingBox.minZ < boundingBox.maxZ;
         }
-    }
-
-    /**
-     * Is component have only forward exit
-     */
-    public boolean canGoOnlyForward() {
-        return true;
     }
 
     /**
@@ -239,5 +191,52 @@ public abstract class CatacombsBaseComponent extends ComponentGraveStone {
      */
     public EnumFacing getDirection() {
         return coordBaseMode;
+    }
+
+    protected List<Exit> exitList = new ArrayList<>();
+
+    public List<Exit> getExitList() {
+        return exitList;
+    }
+
+    protected void addExit(Exit exit) {
+        this.exitList.add(exit);
+    }
+
+    public static class Exit {
+        protected int x = 0;
+        protected int y = 0;
+        protected int z = 0;
+
+        protected ComponentSide side;
+
+        public Exit(int x, int y, int z, ComponentSide side) {
+            this.x = x;
+            this.y = y;
+            this.z = z;
+            this.side = side;
+        }
+
+        public int getX() {
+            return x;
+        }
+
+        public int getY() {
+            return y;
+        }
+
+        public int getZ() {
+            return z;
+        }
+
+        public ComponentSide getSide() {
+            return side;
+        }
+    }
+
+    public static enum ComponentSide {
+        FRONT,
+        LEFT,
+        RIGHT
     }
 }

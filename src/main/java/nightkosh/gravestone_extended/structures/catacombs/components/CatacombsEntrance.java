@@ -27,30 +27,27 @@ public class CatacombsEntrance extends CatacombsBaseComponent {
         corridorLength = 2 + random.nextInt(2);
         boundingBox = BoundingBoxHelper.getCorrectBox(direction, x, y - stairsLength * 3, z, X_LENGTH, stairsLength * 3, (stairsLength + corridorLength) * 3 + 5, xShift);
 
+        int exitZ;
         switch (direction) {
             case SOUTH:
-                leftXEnd = 3;
-                leftZEnd = (stairsLength + corridorLength) * 3;
-                rightXEnd = 0;
-                rightZEnd = leftZEnd;
+                exitZ = (stairsLength + corridorLength) * 3;
+                this.addExit(new Exit(3, 0, exitZ, ComponentSide.LEFT));
+                this.addExit(new Exit(0, 0, exitZ, ComponentSide.RIGHT));
                 break;
             case NORTH:
-                leftXEnd = 0;
-                leftZEnd = (stairsLength + corridorLength) * 3 + 4;
-                rightXEnd = 3;
-                rightZEnd = leftZEnd;
+                exitZ = (stairsLength + corridorLength) * 3 + 4;
+                this.addExit(new Exit(0, 0, exitZ, ComponentSide.LEFT));
+                this.addExit(new Exit(3, 0, exitZ, ComponentSide.RIGHT));
                 break;
             case EAST:
-                leftXEnd = 0;
-                leftZEnd = (stairsLength + corridorLength) * 3;
-                rightXEnd = 3;
-                rightZEnd = leftZEnd;
+                exitZ = (stairsLength + corridorLength) * 3;
+                this.addExit(new Exit(0, 0, exitZ, ComponentSide.LEFT));
+                this.addExit(new Exit(3, 0, exitZ, ComponentSide.RIGHT));
                 break;
             case WEST:
-                leftXEnd = 3;
-                leftZEnd = (stairsLength + corridorLength) * 3 + 4;
-                rightXEnd = 0;
-                rightZEnd = leftZEnd;
+                exitZ = (stairsLength + corridorLength) * 3 + 4;
+                this.addExit(new Exit(3, 0, exitZ, ComponentSide.LEFT));
+                this.addExit(new Exit(0, 0, exitZ, ComponentSide.RIGHT));
                 break;
         }
     }
@@ -127,10 +124,5 @@ public class CatacombsEntrance extends CatacombsBaseComponent {
         this.fillWithRandomizedBlocks(world, boundingBox, 1, shiftY - 3, shiftZ, 2, shiftY - 1, shiftZ, false, random, stoneBricks);
 
         return true;
-    }
-
-    @Override
-    public boolean canGoOnlyForward() {
-        return false;
     }
 }

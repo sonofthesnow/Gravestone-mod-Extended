@@ -1,10 +1,10 @@
 package nightkosh.gravestone_extended.structures.catacombs;
 
-import nightkosh.gravestone_extended.config.ExtendedConfig;
-import nightkosh.gravestone_extended.structures.catacombs.components.*;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.structure.StructureBoundingBox;
+import nightkosh.gravestone_extended.config.ExtendedConfig;
+import nightkosh.gravestone_extended.structures.catacombs.components.*;
 
 import java.util.Random;
 
@@ -55,6 +55,23 @@ public class CatacombsSurface {
                 new StructureBoundingBox(xCoord, 60, zCoord, 13 + xCoord, 90, 13 + zCoord),
                 mausoleumY).addComponentParts(world, rand);
 
+        buildCatacombsGraveyard(world, rand, xCoord, zCoord);
+    }
+
+    private void buildMausoleum(World world, Random rand) {
+        CatacombsBaseComponent mausoleum = new Mausoleum(DIRECTION, rand, new StructureBoundingBox(X, 60, Z, 13 + X, 90, 13 + Z));
+        mausoleum.addComponentParts(world, rand);
+        CatacombsBaseComponent.Exit exit = mausoleum.getExitList().get(0);
+        mausoleumX = mausoleum.getXEnd(exit);
+        mausoleumY = mausoleum.getYEnd(exit);
+        mausoleumZ = mausoleum.getZEnd(exit);
+    }
+
+    private void buildGraveYard(World world, Random rand, int x, int z) {
+        new GraveYard(DIRECTION, rand, new StructureBoundingBox(x, 4, z, x + 11, 255, z + 11)).addComponentParts(world, rand);
+    }
+
+    private void buildCatacombsGraveyard(World world, Random rand, int xCoord, int zCoord) {
         if (ExtendedConfig.generateCatacombsGraveyard) {
             switch (DIRECTION) {
                 case SOUTH:
@@ -131,18 +148,6 @@ public class CatacombsSurface {
                 new Fence(CatacombsBaseComponent.getLeftDirection(DIRECTION), rand, new StructureBoundingBox(X - 38, 0, Z + 51, X + 51, 240, Z + 51), false, true).addComponentParts(world, rand);
             }
         }
-    }
-
-    private void buildMausoleum(World world, Random rand) {
-        CatacombsBaseComponent mausoleum = new Mausoleum(DIRECTION, rand, new StructureBoundingBox(X, 60, Z, 13 + X, 90, 13 + Z));
-        mausoleum.addComponentParts(world, rand);
-        mausoleumX = mausoleum.getFrontXEnd();
-        mausoleumY = mausoleum.getYEnd();
-        mausoleumZ = mausoleum.getFrontZEnd();
-    }
-
-    private void buildGraveYard(World world, Random rand, int x, int z) {
-        new GraveYard(DIRECTION, rand, new StructureBoundingBox(x, 4, z, x + 11, 255, z + 11)).addComponentParts(world, rand);
     }
 
     public int getMausoleumX() {

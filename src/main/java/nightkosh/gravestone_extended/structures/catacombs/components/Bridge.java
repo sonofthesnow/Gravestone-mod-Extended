@@ -32,10 +32,7 @@ public class Bridge extends CatacombsBaseComponent {
         xShift = 4;
         y = y - HEIGHT + 6;
         boundingBox = BoundingBoxHelper.getCorrectBox(facing, x, y, z, X_LENGTH, HEIGHT, Z_LENGTH, xShift);
-        yEnd = 8;
-        frontXEnd = 4;
-        frontZEnd = Z_LENGTH;
-        goForward = true;
+        this.addExit(new Exit(4, 8, Z_LENGTH, ComponentSide.FRONT));
     }
 
     /**

@@ -32,9 +32,7 @@ public class GraveHall extends CatacombsBaseComponent {
         super(0, facing, level);
         xShift = 6;
         boundingBox = BoundingBoxHelper.getCorrectBox(facing, x, y, z, X_LENGTH, HEIGHT, Z_LENGTH, xShift);
-        goForward = true;
-        frontXEnd = 6;
-        frontZEnd = Z_LENGTH;
+        this.addExit(new Exit(6, 0, Z_LENGTH, ComponentSide.FRONT));
     }
 
     /**

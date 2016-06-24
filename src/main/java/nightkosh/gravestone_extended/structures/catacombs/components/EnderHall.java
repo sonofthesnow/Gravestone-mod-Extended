@@ -26,9 +26,8 @@ public class EnderHall extends CatacombsBaseComponent {
         super(0, facing, level);
         xShift = 4;
         boundingBox = BoundingBoxHelper.getCorrectBox(facing, x, y, z, X_LENGTH, HEIGHT, Z_LENGTH, xShift);
-        frontXEnd = 4;
-        frontZEnd = Z_LENGTH;
-        goForward = true;
+
+        this.addExit(new Exit(4, 0, Z_LENGTH, ComponentSide.FRONT));
     }
 
     /**

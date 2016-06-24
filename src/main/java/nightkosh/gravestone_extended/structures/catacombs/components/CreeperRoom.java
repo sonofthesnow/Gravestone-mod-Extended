@@ -27,34 +27,24 @@ public class CreeperRoom extends CatacombsBaseComponent {
         super(0, facing, level);
         xShift = 3;
         y = y - HEIGHT + 6;
-        yEnd = 8;
-        frontXEnd = 3;
-        frontZEnd = 10;
 
+        this.addExit(new Exit(3, 8, 10, ComponentSide.FRONT));
         switch (facing) {
             case SOUTH:
-                leftXEnd = 10;
-                leftZEnd = 3;
-                rightXEnd = 0;
-                rightZEnd = 3;
+                this.addExit(new Exit(10, 8, 3, ComponentSide.LEFT));
+                this.addExit(new Exit(0, 8, 3, ComponentSide.RIGHT));
                 break;
             case NORTH:
-                leftXEnd = 0;
-                leftZEnd = 7;
-                rightXEnd = 10;
-                rightZEnd = 7;
+                this.addExit(new Exit(0, 8, 7, ComponentSide.LEFT));
+                this.addExit(new Exit(10, 8, 7, ComponentSide.RIGHT));
                 break;
             case WEST:
-                leftXEnd = 10;
-                leftZEnd = 7;
-                rightXEnd = 0;
-                rightZEnd = 7;
+                this.addExit(new Exit(10, 8, 7, ComponentSide.LEFT));
+                this.addExit(new Exit(0, 8, 7, ComponentSide.RIGHT));
                 break;
             case EAST:
-                leftXEnd = 0;
-                leftZEnd = 3;
-                rightXEnd = 10;
-                rightZEnd = 3;
+                this.addExit(new Exit(0, 8, 3, ComponentSide.LEFT));
+                this.addExit(new Exit(10, 8, 3, ComponentSide.RIGHT));
                 break;
         }
 
@@ -179,10 +169,5 @@ public class CreeperRoom extends CatacombsBaseComponent {
 
         // clear enter
         this.fillWithAir(world, boundingBox, 4, yStart + 1, 0, 6, yStart + 3, 0);
-    }
-
-    @Override
-    public boolean canGoOnlyForward() {
-        return false;
     }
 }

@@ -27,9 +27,7 @@ public class Stairs extends CatacombsBaseComponent {
         super(0, facing, level);
         y = y - HEIGHT + 4;
         boundingBox = BoundingBoxHelper.getCorrectBox(facing, x, y, z, X_LENGTH, HEIGHT, Z_LENGTH, xShift);
-        goForward = true;
-        frontXEnd = 0;
-        frontZEnd = Z_LENGTH;
+        this.addExit(new Exit(0, 0, Z_LENGTH, ComponentSide.FRONT));
     }
 
     /**
