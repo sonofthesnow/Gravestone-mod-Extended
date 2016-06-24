@@ -40,7 +40,7 @@ public class CatacombsLevel {
     private List<CatacombsBaseComponent> levelComponents = new ArrayList<>();
     private List<CatacombsBaseComponent> endComponents = new ArrayList<>();
 
-    public CatacombsLevel(LinkedList<CatacombsBaseComponent> startComponents, int level, World world, Random random) {
+    public CatacombsLevel(List<CatacombsBaseComponent> startComponents, int level, World world, Random random) {
         levelComponents = startComponents;
         this.random = random;
         this.world = world;
@@ -155,34 +155,34 @@ public class CatacombsLevel {
             if (endsCount < ends || components.size() > 0) {
                 int j = random.nextInt(components.size());
                 component = components.get(j);
-                newComponent = tryCreateComponent(component, componentClass, component.getDirection(), level, CatacombsBaseComponent.ComponentSide.FRONT);//TODO
+                List<CatacombsBaseComponent.Exit> exits = component.getExitList();
+                Collections.shuffle(exits, random);
 
-                if (newComponent == null) {
-                    newComponent = tryCreateComponent(component, componentClass, component.getLeftDirection(), level, CatacombsBaseComponent.ComponentSide.LEFT);//TODO
+                for (CatacombsBaseComponent.Exit exit : exits) {
+                    EnumFacing direction;
+                    switch (exit.getSide()) {
+                        default:
+                        case FRONT:
+                            direction = component.getDirection();
+                            break;
+                        case LEFT:
+                            direction = component.getLeftDirection();
+                            break;
+                        case RIGHT:
+                            direction = component.getRightDirection();
+                            break;
+                    }
 
-                    if (newComponent == null) {
-                        newComponent = tryCreateComponent(component, componentClass, component.getRightDirection(), level, CatacombsBaseComponent.ComponentSide.RIGHT);//TODO
-
-                        if (newComponent != null) {
-                            levelComponents.add(newComponent);
-                            endComponents.add(newComponent);
-                            endsCount++;
-                            components.remove(j);
-                        } else {
-                            components.remove(j);
-                        }
-                    } else {
+                    newComponent = tryCreateComponent(component, componentClass, direction, level, exit);
+                    if (newComponent != null) {
                         levelComponents.add(newComponent);
                         endComponents.add(newComponent);
                         endsCount++;
                         components.remove(j);
+                        break;
                     }
-                } else {
-                    levelComponents.add(newComponent);
-                    endComponents.add(newComponent);
-                    endsCount++;
-                    components.remove(j);
                 }
+
             } else {
                 break;
             }
@@ -190,9 +190,27 @@ public class CatacombsLevel {
 
         if (endsCount == 0) {
             component = currentComponents.get(random.nextInt(components.size()));
-            newComponent = CatacombsComponentsFactory.createComponent(component, random, component.getDirection(), level, componentClass, CatacombsBaseComponent.ComponentSide.FRONT);//TODO
-            levelComponents.add(newComponent);
-            endComponents.add(newComponent);
+
+            List<CatacombsBaseComponent.Exit> exits = component.getExitList();
+            if (exits != null && exits.size() > 0) {
+                CatacombsBaseComponent.Exit exit = exits.get(random.nextInt(exits.size()));
+                EnumFacing direction;
+                switch (exit.getSide()) {
+                    default:
+                    case FRONT:
+                        direction = component.getDirection();
+                        break;
+                    case LEFT:
+                        direction = component.getLeftDirection();
+                        break;
+                    case RIGHT:
+                        direction = component.getRightDirection();
+                        break;
+                }
+                newComponent = CatacombsComponentsFactory.createComponent(component, random, direction, level, componentClass, exit);
+                levelComponents.add(newComponent);
+                endComponents.add(newComponent);
+            }
         }
     }
 
