@@ -91,7 +91,7 @@ public class CatacombsLevel {
 
         if (totalComponentsCount > componentsCount) {
             for (CatacombsBaseComponent component : components) {
-                for (CatacombsBaseComponent.Exit exit : component.getExitList()) {
+                for (CatacombsBaseComponent.Passage exit : component.getExitList()) {
                     EnumFacing direction;
                     switch (exit.getSide()) {
                         default:
@@ -122,7 +122,7 @@ public class CatacombsLevel {
     /*
      * Create and add new component if it available
      */
-    private int addComponent(List<CatacombsBaseComponent> newComponents, CatacombsBaseComponent component, EnumFacing direction, CatacombsBaseComponent.Exit exit, CatacombsBaseComponent.ComponentSide componentSide) {
+    private int addComponent(List<CatacombsBaseComponent> newComponents, CatacombsBaseComponent component, EnumFacing direction, CatacombsBaseComponent.Passage exit, CatacombsBaseComponent.ComponentSide componentSide) {
         CatacombsBaseComponent newComponent = tryCreateComponent(component, direction, exit, componentSide);
 
         if (newComponent != null) {
@@ -155,10 +155,10 @@ public class CatacombsLevel {
             if (endsCount < ends || components.size() > 0) {
                 int j = random.nextInt(components.size());
                 component = components.get(j);
-                List<CatacombsBaseComponent.Exit> exits = component.getExitList();
+                List<CatacombsBaseComponent.Passage> exits = component.getExitList();
                 Collections.shuffle(exits, random);
 
-                for (CatacombsBaseComponent.Exit exit : exits) {
+                for (CatacombsBaseComponent.Passage exit : exits) {
                     EnumFacing direction;
                     switch (exit.getSide()) {
                         default:
@@ -191,9 +191,9 @@ public class CatacombsLevel {
         if (endsCount == 0) {
             component = currentComponents.get(random.nextInt(components.size()));
 
-            List<CatacombsBaseComponent.Exit> exits = component.getExitList();
+            List<CatacombsBaseComponent.Passage> exits = component.getExitList();
             if (exits != null && exits.size() > 0) {
-                CatacombsBaseComponent.Exit exit = exits.get(random.nextInt(exits.size()));
+                CatacombsBaseComponent.Passage exit = exits.get(random.nextInt(exits.size()));
                 EnumFacing direction;
                 switch (exit.getSide()) {
                     default:
@@ -214,7 +214,7 @@ public class CatacombsLevel {
         }
     }
 
-    private CatacombsBaseComponent tryCreateComponent(CatacombsBaseComponent component, Class componentClass, EnumFacing direction, int level, CatacombsBaseComponent.Exit exit) {
+    private CatacombsBaseComponent tryCreateComponent(CatacombsBaseComponent component, Class componentClass, EnumFacing direction, int level, CatacombsBaseComponent.Passage exit) {
         if (componentsCount < 30 && componentClass == Treasury.class) {
             componentClass = CatacombsComponentsFactory.getCorridorType(random);
         }
@@ -229,7 +229,7 @@ public class CatacombsLevel {
         }
     }
 
-    private CatacombsBaseComponent tryCreateComponent(CatacombsBaseComponent component, EnumFacing direction, CatacombsBaseComponent.Exit exit, CatacombsBaseComponent.ComponentSide componentSide) {
+    private CatacombsBaseComponent tryCreateComponent(CatacombsBaseComponent component, EnumFacing direction, CatacombsBaseComponent.Passage exit, CatacombsBaseComponent.ComponentSide componentSide) {
         return tryCreateComponent(component, CatacombsComponentsFactory.getNextComponent(component.getClass(), componentSide, random, level), direction, level, exit);
     }
 

@@ -25,31 +25,35 @@ public class CatacombsEntrance extends CatacombsBaseComponent {
         super(0, direction);
         stairsLength = 4 + random.nextInt(4);
         corridorLength = 2 + random.nextInt(2);
-        boundingBox = BoundingBoxHelper.getCorrectBox(direction, x, y - stairsLength * 3, z, X_LENGTH, stairsLength * 3, (stairsLength + corridorLength) * 3 + 5, xShift);
+
+        Passage entrance = new Passage(0, 0, 0);
+        this.setEntrance(entrance);
 
         int exitZ;
         switch (direction) {
             case SOUTH:
                 exitZ = (stairsLength + corridorLength) * 3;
-                this.addExit(new Exit(3, 0, exitZ, ComponentSide.LEFT));
-                this.addExit(new Exit(0, 0, exitZ, ComponentSide.RIGHT));
+                this.addExit(new Passage(3, 0, exitZ, ComponentSide.LEFT));
+                this.addExit(new Passage(0, 0, exitZ, ComponentSide.RIGHT));
                 break;
             case NORTH:
                 exitZ = (stairsLength + corridorLength) * 3 + 4;
-                this.addExit(new Exit(0, 0, exitZ, ComponentSide.LEFT));
-                this.addExit(new Exit(3, 0, exitZ, ComponentSide.RIGHT));
+                this.addExit(new Passage(0, 0, exitZ, ComponentSide.LEFT));
+                this.addExit(new Passage(3, 0, exitZ, ComponentSide.RIGHT));
                 break;
             case EAST:
                 exitZ = (stairsLength + corridorLength) * 3;
-                this.addExit(new Exit(0, 0, exitZ, ComponentSide.LEFT));
-                this.addExit(new Exit(3, 0, exitZ, ComponentSide.RIGHT));
+                this.addExit(new Passage(0, 0, exitZ, ComponentSide.LEFT));
+                this.addExit(new Passage(3, 0, exitZ, ComponentSide.RIGHT));
                 break;
             case WEST:
                 exitZ = (stairsLength + corridorLength) * 3 + 4;
-                this.addExit(new Exit(3, 0, exitZ, ComponentSide.LEFT));
-                this.addExit(new Exit(0, 0, exitZ, ComponentSide.RIGHT));
+                this.addExit(new Passage(3, 0, exitZ, ComponentSide.LEFT));
+                this.addExit(new Passage(0, 0, exitZ, ComponentSide.RIGHT));
                 break;
         }
+
+        boundingBox = BoundingBoxHelper.getCorrectBox(direction, x, y - stairsLength * 3, z, X_LENGTH, stairsLength * 3, (stairsLength + corridorLength) * 3 + 5, entrance);
     }
 
     /**

@@ -128,7 +128,7 @@ public class CatacombsComponentsFactory {
         }
     }
 
-    public static CatacombsBaseComponent createComponent(CatacombsBaseComponent component, Random random, EnumFacing facing, int level, Class<CatacombsBaseComponent> buildComponent, CatacombsBaseComponent.Exit exit) {
+    public static CatacombsBaseComponent createComponent(CatacombsBaseComponent component, Random random, EnumFacing facing, int level, Class<CatacombsBaseComponent> buildComponent, CatacombsBaseComponent.Passage exit) {
         if (component != null) {
             if (exit != null) {
                 try {

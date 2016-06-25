@@ -25,30 +25,31 @@ public class CreeperRoom extends CatacombsBaseComponent {
 
     public CreeperRoom(EnumFacing facing, int level, Random random, int x, int y, int z) {
         super(0, facing, level);
-        xShift = 3;
-        y = y - HEIGHT + 6;
 
-        this.addExit(new Exit(3, 8, 10, ComponentSide.FRONT));
+        Passage entrance = new Passage(3, 0, 0);
+        this.setEntrance(entrance);
+
+        this.addExit(new Passage(3, 8, 10, ComponentSide.FRONT));
         switch (facing) {
             case SOUTH:
-                this.addExit(new Exit(10, 8, 3, ComponentSide.LEFT));
-                this.addExit(new Exit(0, 8, 3, ComponentSide.RIGHT));
+                this.addExit(new Passage(10, 8, 3, ComponentSide.LEFT));
+                this.addExit(new Passage(0, 8, 3, ComponentSide.RIGHT));
                 break;
             case NORTH:
-                this.addExit(new Exit(0, 8, 7, ComponentSide.LEFT));
-                this.addExit(new Exit(10, 8, 7, ComponentSide.RIGHT));
+                this.addExit(new Passage(0, 8, 7, ComponentSide.LEFT));
+                this.addExit(new Passage(10, 8, 7, ComponentSide.RIGHT));
                 break;
             case WEST:
-                this.addExit(new Exit(10, 8, 7, ComponentSide.LEFT));
-                this.addExit(new Exit(0, 8, 7, ComponentSide.RIGHT));
+                this.addExit(new Passage(10, 8, 7, ComponentSide.LEFT));
+                this.addExit(new Passage(0, 8, 7, ComponentSide.RIGHT));
                 break;
             case EAST:
-                this.addExit(new Exit(0, 8, 3, ComponentSide.LEFT));
-                this.addExit(new Exit(10, 8, 3, ComponentSide.RIGHT));
+                this.addExit(new Passage(0, 8, 3, ComponentSide.LEFT));
+                this.addExit(new Passage(10, 8, 3, ComponentSide.RIGHT));
                 break;
         }
 
-        boundingBox = BoundingBoxHelper.getCorrectBox(facing, x, y, z, X_LENGTH, HEIGHT, Z_LENGTH, xShift);
+        boundingBox = BoundingBoxHelper.getCorrectBox(facing, x, y - HEIGHT + 6, z, X_LENGTH, HEIGHT, Z_LENGTH, entrance);
     }
 
     /**

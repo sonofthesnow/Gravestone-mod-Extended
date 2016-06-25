@@ -64,7 +64,7 @@ public class ComponentVillageUndertaker extends StructureVillagePieces.Village i
     }
 
     public static StructureBoundingBox getBoundingBox(EnumFacing facing, int x, int z) {
-        return BoundingBoxHelper.getCorrectBox(facing, x, 64, z, X_LENGTH, HEIGHT, Z_LENGTH, 0);
+        return BoundingBoxHelper.getCorrectBox(facing, x, 64, z, X_LENGTH, HEIGHT, Z_LENGTH);
     }
 
     @Override

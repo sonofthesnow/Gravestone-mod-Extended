@@ -6,13 +6,13 @@ import net.minecraft.init.Blocks;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.world.World;
 import nightkosh.gravestone.block.BlockGraveStone;
+import nightkosh.gravestone.helper.GraveGenerationHelper.EnumGraveTypeByEntity;
 import nightkosh.gravestone_extended.config.ExtendedConfig;
 import nightkosh.gravestone_extended.core.GSBlock;
 import nightkosh.gravestone_extended.entity.helper.EntityGroupOfGravesMobSpawnerHelper;
 import nightkosh.gravestone_extended.structures.BoundingBoxHelper;
 import nightkosh.gravestone_extended.structures.GraveGenerationHelper;
 import nightkosh.gravestone_extended.structures.MobSpawnHelper;
-import nightkosh.gravestone.helper.GraveGenerationHelper.EnumGraveTypeByEntity;
 
 import java.util.Random;
 
@@ -30,9 +30,12 @@ public class GraveHall extends CatacombsBaseComponent {
 
     public GraveHall(EnumFacing facing, int level, Random random, int x, int y, int z) {
         super(0, facing, level);
-        xShift = 6;
-        boundingBox = BoundingBoxHelper.getCorrectBox(facing, x, y, z, X_LENGTH, HEIGHT, Z_LENGTH, xShift);
-        this.addExit(new Exit(6, 0, Z_LENGTH, ComponentSide.FRONT));
+        Passage entrance = new Passage(6, 0, 0);
+
+        this.setEntrance(entrance);
+        this.addExit(new Passage(6, 0, Z_LENGTH, ComponentSide.FRONT));
+
+        boundingBox = BoundingBoxHelper.getCorrectBox(facing, x, y, z, X_LENGTH, HEIGHT, Z_LENGTH, entrance);
     }
 
     /**

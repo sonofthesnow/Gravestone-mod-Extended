@@ -26,29 +26,31 @@ public class Crossing extends CatacombsBaseComponent {
 
     public Crossing(EnumFacing facing, int level, Random random, int x, int y, int z) {
         super(0, facing, level);
-        xShift = 4;
 
-        this.addExit(new Exit(4, 0, 12, ComponentSide.FRONT));
+        Passage entrance = new Passage(4, 0, 0);
+        this.setEntrance(entrance);
+
+        this.addExit(new Passage(4, 0, 12, ComponentSide.FRONT));
         switch (facing) {
             case SOUTH:
-                this.addExit(new Exit(12, 0, 4, ComponentSide.LEFT));
-                this.addExit(new Exit(0, 0, 4, ComponentSide.RIGHT));
+                this.addExit(new Passage(12, 0, 4, ComponentSide.LEFT));
+                this.addExit(new Passage(0, 0, 4, ComponentSide.RIGHT));
                 break;
             case NORTH:
-                this.addExit(new Exit(0, 0, 8, ComponentSide.LEFT));
-                this.addExit(new Exit(12, 0, 8, ComponentSide.RIGHT));
+                this.addExit(new Passage(0, 0, 8, ComponentSide.LEFT));
+                this.addExit(new Passage(12, 0, 8, ComponentSide.RIGHT));
                 break;
             case WEST:
-                this.addExit(new Exit(12, 0, 8, ComponentSide.LEFT));
-                this.addExit(new Exit(0, 0, 8, ComponentSide.RIGHT));
+                this.addExit(new Passage(12, 0, 8, ComponentSide.LEFT));
+                this.addExit(new Passage(0, 0, 8, ComponentSide.RIGHT));
                 break;
             case EAST:
-                this.addExit(new Exit(0, 0, 4, ComponentSide.LEFT));
-                this.addExit(new Exit(12, 0, 4, ComponentSide.RIGHT));
+                this.addExit(new Passage(0, 0, 4, ComponentSide.LEFT));
+                this.addExit(new Passage(12, 0, 4, ComponentSide.RIGHT));
                 break;
         }
 
-        boundingBox = BoundingBoxHelper.getCorrectBox(facing, x, y, z, X_LENGTH, HEIGHT, Z_LENGTH, xShift);
+        boundingBox = BoundingBoxHelper.getCorrectBox(facing, x, y, z, X_LENGTH, HEIGHT, Z_LENGTH, entrance);
     }
 
     /**

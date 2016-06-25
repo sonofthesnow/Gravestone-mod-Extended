@@ -33,8 +33,6 @@ public abstract class CatacombsBaseComponent extends ComponentGraveStone {
     protected static final IBlockState netherBrick = Blocks.nether_brick.getDefaultState();
     protected static final IBlockState nightStone = GSBlock.trap.getDefaultState();
 
-    protected int xShift = 0;
-    protected int zShift = 0;
     protected int level = 0;
     protected CatacombsBaseComponent prevComponent;
     protected CatacombsBaseComponent[] nextComponents;
@@ -97,37 +95,25 @@ public abstract class CatacombsBaseComponent extends ComponentGraveStone {
 //        return direction.rotateY(); TODO
     }
 
-    /**
-     * Return valuable block
-     */
     public static Block getValuableBlock(Random random) {
         return Structures.VALUABLE_BLOCKS[random.nextInt(Structures.VALUABLE_BLOCKS.length)];
     }
 
-    /*
-     * return ground level at x z coordinates
-     */
     protected int getGroundLevel(World world, int x, int z) {
         return world.getTopSolidOrLiquidBlock(new BlockPos(x, 0, z)).getY();
     }
 
-    public int getXEnd(Exit exit) {
+    public int getXEnd(Passage exit) {
         return this.getXWithOffset(exit.getX(), exit.getZ());
     }
-    public int getZEnd(Exit exit) {
+    public int getZEnd(Passage exit) {
         return this.getZWithOffset(exit.getX(), exit.getZ());
     }
 
-    /**
-     * Return Y end coord for next component
-     */
-    public int getYEnd(Exit exit) {
+    public int getYEnd(Passage exit) {
         return this.boundingBox.minY + exit.getY();
     }
 
-    /**
-     * Return StructureGSCemeteryCatacombsStones instance
-     */
     public BlockSelector getCemeteryCatacombsStones() {
         return CatacombsLevel.getCatacombsStones(this.level);
     }
@@ -136,11 +122,6 @@ public abstract class CatacombsBaseComponent extends ComponentGraveStone {
         return catacombsPileOfBones;
     }
 
-    /**
-     * Is component can be places here
-     *
-     * @param boundingBox Component bounding box
-     */
     public boolean canBePlacedHere(StructureBoundingBox boundingBox) {
         if (coordBaseMode == EnumFacing.SOUTH || coordBaseMode == EnumFacing.NORTH) {
             return this.boundingBox.maxX > boundingBox.minX && this.boundingBox.minX < boundingBox.maxX
@@ -151,10 +132,6 @@ public abstract class CatacombsBaseComponent extends ComponentGraveStone {
         }
     }
 
-    /**
-     * Overwrites air and liquids from selected position downwards, stops at
-     * hitting anything else.
-     */
     @Override
     public void setBlockState(World world, IBlockState blockState, int xCoord, int yCoord, int zCoord, StructureBoundingBox boundingBox) {
         super.setBlockState(world, blockState, xCoord, yCoord, zCoord, boundingBox);
@@ -186,31 +163,43 @@ public abstract class CatacombsBaseComponent extends ComponentGraveStone {
         }
     }
 
-    /**
-     * Return component direction
-     */
     public EnumFacing getDirection() {
         return coordBaseMode;
     }
 
-    protected List<Exit> exitList = new ArrayList<>();
+    protected Passage entrance;
+    protected List<Passage> exitList = new ArrayList<>();
 
-    public List<Exit> getExitList() {
+    public Passage getEntrance() {
+        return entrance;
+    }
+
+    protected void setEntrance(Passage entrance) {
+        this.entrance = entrance;
+    }
+
+    public List<Passage> getExitList() {
         return exitList;
     }
 
-    protected void addExit(Exit exit) {
+    protected void addExit(Passage exit) {
         this.exitList.add(exit);
     }
 
-    public static class Exit {
+    public static class Passage {
         protected int x = 0;
         protected int y = 0;
         protected int z = 0;
 
         protected ComponentSide side;
 
-        public Exit(int x, int y, int z, ComponentSide side) {
+        public Passage(int x, int y, int z) {
+            this.x = x;
+            this.y = y;
+            this.z = z;
+        }
+
+        public Passage(int x, int y, int z, ComponentSide side) {
             this.x = x;
             this.y = y;
             this.z = z;

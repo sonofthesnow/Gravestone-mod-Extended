@@ -1,13 +1,13 @@
 package nightkosh.gravestone_extended.structures.catacombs.components;
 
-import nightkosh.gravestone_extended.structures.BoundingBoxHelper;
-import nightkosh.gravestone_extended.structures.catacombs.CatacombsLevel;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockStairs;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.world.World;
+import nightkosh.gravestone_extended.structures.BoundingBoxHelper;
+import nightkosh.gravestone_extended.structures.catacombs.CatacombsLevel;
 
 import java.util.Random;
 
@@ -25,9 +25,12 @@ public class Stairs extends CatacombsBaseComponent {
 
     public Stairs(EnumFacing facing, int level, Random random, int x, int y, int z) {
         super(0, facing, level);
-        y = y - HEIGHT + 4;
-        boundingBox = BoundingBoxHelper.getCorrectBox(facing, x, y, z, X_LENGTH, HEIGHT, Z_LENGTH, xShift);
-        this.addExit(new Exit(0, 0, Z_LENGTH, ComponentSide.FRONT));
+        Passage entrance = new Passage(0, 0, 0);
+
+        this.setEntrance(entrance);
+        this.addExit(new Passage(0, 0, Z_LENGTH, ComponentSide.FRONT));
+
+        boundingBox = BoundingBoxHelper.getCorrectBox(facing, x, y - HEIGHT + 4, z, X_LENGTH, HEIGHT, Z_LENGTH, entrance);
     }
 
     /**

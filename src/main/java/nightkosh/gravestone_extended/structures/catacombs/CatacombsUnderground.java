@@ -1,11 +1,12 @@
 package nightkosh.gravestone_extended.structures.catacombs;
 
-import nightkosh.gravestone_extended.structures.catacombs.components.CatacombsBaseComponent;
-import nightkosh.gravestone_extended.structures.catacombs.components.CatacombsEntrance;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.world.World;
+import nightkosh.gravestone_extended.structures.catacombs.components.CatacombsBaseComponent;
+import nightkosh.gravestone_extended.structures.catacombs.components.CatacombsEntrance;
 
-import java.util.LinkedList;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 /**
@@ -34,7 +35,7 @@ public class CatacombsUnderground {
 
     public final void build(World world, Random rand) {
         entrance.addComponentParts(world, rand);
-        LinkedList<CatacombsBaseComponent> startComponents = new LinkedList();
+        List<CatacombsBaseComponent> startComponents = new ArrayList<>();
         startComponents.add(entrance);
         CatacombsLevel level = new CatacombsLevel(startComponents, 1, world, rand);
         level = new CatacombsLevel(level.getEndParts(), 2, world, rand);

@@ -28,7 +28,7 @@ public class ComponentMemorial extends ComponentGraveStone {
 
     public ComponentMemorial(int componentType, EnumFacing direction, Random random, int x, int z) {
         super(componentType, direction);
-        boundingBox = BoundingBoxHelper.getCorrectBox(direction, x, 64, z, X_LENGTH, HEIGHT, Z_LENGTH, 0);
+        boundingBox = BoundingBoxHelper.getCorrectBox(direction, x, 64, z, X_LENGTH, HEIGHT, Z_LENGTH);
     }
 
     /**

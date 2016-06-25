@@ -4,6 +4,7 @@ import net.minecraft.util.BlockPos;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.structure.StructureBoundingBox;
+import nightkosh.gravestone_extended.structures.catacombs.components.CatacombsBaseComponent;
 
 /**
  * GraveStone mod
@@ -27,13 +28,18 @@ public class BoundingBoxHelper {
      * @param height    Component height
      * @param zLength   Component z axis length
      */
-    public static StructureBoundingBox getCorrectBox(EnumFacing direction, int x, int y, int z, int xLength, int height, int zLength, int xShift) {
+    public static StructureBoundingBox getCorrectBox(EnumFacing direction, int x, int y, int z, int xLength, int height, int zLength) {
+        return getCorrectBox(direction, x, y, z, xLength, height, zLength, null);
+    }
+
+    public static StructureBoundingBox getCorrectBox(EnumFacing direction, int x, int y, int z, int xLength, int height, int zLength, CatacombsBaseComponent.Passage entrance) {
         int minX = 0;
         int maxX = 0;
         int minY = y;
         int maxY = y + height;
         int minZ = 0;
         int maxZ = 0;
+        int xShift = (entrance == null) ? 0 : entrance.getX();
 
         switch (direction) {
             case SOUTH:

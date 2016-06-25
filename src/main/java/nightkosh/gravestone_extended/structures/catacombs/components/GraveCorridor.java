@@ -30,9 +30,11 @@ public class GraveCorridor extends CatacombsBaseComponent {
 
     public GraveCorridor(EnumFacing facing, int level, Random random, int x, int y, int z) {
         super(0, facing, level);
-        xShift = 1;
-        boundingBox = BoundingBoxHelper.getCorrectBox(facing, x, y, z, X_LENGTH, HEIGHT, Z_LENGTH, xShift);
-        this.addExit(new Exit(1, 0, Z_LENGTH - 1, ComponentSide.FRONT));
+        Passage entrance = new Passage(1, 0, 0);
+        this.setEntrance(entrance);
+        this.addExit(new Passage(1, 0, Z_LENGTH - 1, ComponentSide.FRONT));
+
+        boundingBox = BoundingBoxHelper.getCorrectBox(facing, x, y, z, X_LENGTH, HEIGHT, Z_LENGTH, entrance);
     }
 
     /**

@@ -29,8 +29,10 @@ public class Treasury extends CatacombsBaseComponent {
 
     public Treasury(EnumFacing facing, int level, Random random, int x, int y, int z) {
         super(0, facing, level);
-        xShift = 1;
-        boundingBox = BoundingBoxHelper.getCorrectBox(facing, x, y, z, X_LENGTH, HEIGHT, Z_LENGTH, xShift);
+        Passage entrance = new Passage(1, 0, 0);
+        this.setEntrance(entrance);
+
+        boundingBox = BoundingBoxHelper.getCorrectBox(facing, x, y, z, X_LENGTH, HEIGHT, Z_LENGTH, entrance);
     }
 
     /**

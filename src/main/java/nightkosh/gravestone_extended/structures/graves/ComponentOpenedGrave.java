@@ -25,7 +25,7 @@ import java.util.Random;
 public class ComponentOpenedGrave extends ComponentGraveStone {
     protected ComponentOpenedGrave(int componentType, EnumFacing facing, Random random, int x, int z) {
         super(componentType, facing);
-        boundingBox = BoundingBoxHelper.getCorrectBox(facing, x, 0, z, 1, 240, 3, 0);
+        boundingBox = BoundingBoxHelper.getCorrectBox(facing, x, 0, z, 1, 240, 3);
     }
 
     @Override
