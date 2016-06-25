@@ -33,7 +33,7 @@ public abstract class EntityUndeadPet extends EntityMob {
         ((PathNavigateGround) this.getNavigator()).setCanSwim(true);
         this.tasks.addTask(1, new EntityAISwimming(this));
         this.tasks.addTask(7, new EntityAILeapAtTarget(this, 0.3F));
-        this.tasks.addTask(7, new EntityAIWatchClosest(this, EntityPlayer.class, 8.0F));
+        this.tasks.addTask(7, new EntityAIWatchClosest(this, EntityPlayer.class, 8));
         this.tasks.addTask(7, new EntityAILookIdle(this));
         this.targetTasks.addTask(1, new EntityAIHurtByTarget(this, true));
         this.targetTasks.addTask(2, new EntityAINearestAttackableTarget(this, EntityPlayer.class, true));
@@ -78,9 +78,9 @@ public abstract class EntityUndeadPet extends EntityMob {
     @Override
     public void onLivingUpdate() {
         if (this.worldObj.isDaytime() && !this.worldObj.isRemote) {
-            float f = this.getBrightness(1.0F);
+            float f = this.getBrightness(1);
 
-            if (f > 0.5F && this.rand.nextFloat() * 30.0F < (f - 0.4F) * 2.0F && this.worldObj.canBlockSeeSky(
+            if (f > 0.5F && this.rand.nextFloat() * 30 < (f - 0.4F) * 2 && this.worldObj.canBlockSeeSky(
                     new BlockPos(MathHelper.floor_double(this.posX), MathHelper.floor_double(this.posY), MathHelper.floor_double(this.posZ)))) {
                 this.setFire(8);
             }

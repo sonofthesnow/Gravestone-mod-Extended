@@ -36,7 +36,7 @@ public class ModelUndeadCat extends ModelBase {
         this.head = new ModelRenderer(this, "head");
         this.head.addBox("main", -2.5F, -2, -3, 5, 4, 5);
         this.head.addBox("nose", -1.5F, 0, -4, 3, 2, 2);
-        this.head.addBox("ear1", -2.0F, -3, 0, 1, 1, 2);
+        this.head.addBox("ear1", -2, -3, 0, 1, 1, 2);
         this.head.addBox("ear2", 1, -3, 0, 1, 1, 2);
         this.head.setRotationPoint(0, 15, -9);
         this.body = new ModelRenderer(this, 20, 0);

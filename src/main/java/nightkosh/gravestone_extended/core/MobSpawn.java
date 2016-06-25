@@ -36,27 +36,27 @@ public class MobSpawn {
     /**
      * Provides a mapping between entity classes and a string
      */
-    public static Map<String, Constructor<EntityLiving>> mobNameToClassMapping = new HashMap<String, Constructor<EntityLiving>>();
-    public static List<String> MOB_ID = new ArrayList<String>(Arrays.asList("Zombie", Entity.SKELETON_ID));
-    public static List<String> DOG_ID = new ArrayList<String>(Arrays.asList(Entity.ZOMBIE_DOG_ID, Entity.SKELETON_DOG_ID));
-    public static List<String> CAT_ID = new ArrayList<String>(Arrays.asList(Entity.ZOMBIE_CAT_ID, Entity.SKELETON_CAT_ID));
-    public static List<String> HORSE_ID = new ArrayList<String>(Arrays.asList(Entity.ZOMBIE_HORSE_ID, Entity.SKELETON_HORSE_ID));
-    public static List<String> HELL_MOB_ID = new ArrayList<String>(Arrays.asList("PigZombie", Entity.SKELETON_ID));
+    public static Map<String, Constructor<EntityLiving>> mobNameToClassMapping = new HashMap<>();
+    public static List<String> MOB_ID = new ArrayList<>(Arrays.asList("Zombie", Entity.SKELETON_ID));
+    public static List<String> DOG_ID = new ArrayList<>(Arrays.asList(Entity.ZOMBIE_DOG_ID, Entity.SKELETON_DOG_ID));
+    public static List<String> CAT_ID = new ArrayList<>(Arrays.asList(Entity.ZOMBIE_CAT_ID, Entity.SKELETON_CAT_ID));
+    public static List<String> HORSE_ID = new ArrayList<>(Arrays.asList(Entity.ZOMBIE_HORSE_ID, Entity.SKELETON_HORSE_ID));
+    public static List<String> HELL_MOB_ID = new ArrayList<>(Arrays.asList("PigZombie", Entity.SKELETON_ID));
     // spawner mobs
-    public static List<String> skeletonSpawnerMobs = new ArrayList<String>(Arrays.asList(
+    public static List<String> skeletonSpawnerMobs = new ArrayList<>(Arrays.asList(
             Entity.SKELETON_ID, Entity.SKELETON_ID, Entity.SKELETON_ID, Entity.SKELETON_ID,
             Entity.SKELETON_DOG_ID,
             Entity.SKELETON_CAT_ID,
             Entity.SKELETON_HORSE_ID,
             Entity.SKELETON_RAIDER_ID));
-    public static List<String> zombieSpawnerMobs = new ArrayList<String>(Arrays.asList(
+    public static List<String> zombieSpawnerMobs = new ArrayList<>(Arrays.asList(
             "Zombie", "Zombie", "Zombie", "Zombie",
             Entity.ZOMBIE_DOG_ID,
             Entity.ZOMBIE_CAT_ID,
             Entity.ZOMBIE_HORSE_ID,
             Entity.ZOMBIE_RAIDER_ID));
     // catacombs statues mobs
-    public static List<String> catacombsStatuesMobs = new ArrayList<String>(Arrays.asList(
+    public static List<String> catacombsStatuesMobs = new ArrayList<>(Arrays.asList(
             Entity.SKELETON_ID, "Zombie"));
 
     private MobSpawn() {
@@ -98,16 +98,16 @@ public class MobSpawn {
                 if (canSpawnHellCreatures(world, x, y, z) && world.rand.nextInt(10) == 0) {
                     id = getMobID(world.rand, EnumMobType.HELL_MOBS);
 
-                    if (id.equals("GSSkeleton")) {
-                        EntityGSSkeleton skeleton = (EntityGSSkeleton) EntityList.createEntityByName("GSSkeleton", world);
+                    if (id.equals(Entity.SKELETON_NAME)) {
+                        EntityGSSkeleton skeleton = (EntityGSSkeleton) EntityList.createEntityByName(Entity.SKELETON_NAME, world);
                         skeleton.setSkeletonType(1);
                         return skeleton;
                     }
                 } else {
                     id = getMobID(world.rand, EnumMobType.DEFAULT_MOBS);
 
-                    if (id.equals("GSSkeleton")) {
-                        return EntityList.createEntityByName("GSSkeleton", world);
+                    if (id.equals(Entity.SKELETON_NAME)) {
+                        return EntityList.createEntityByName(Entity.SKELETON_NAME, world);
                     }
                 }
                 break;
@@ -142,8 +142,8 @@ public class MobSpawn {
             case SKELETON_SPAWNER:
                 mobId = skeletonSpawnerMobs.get(world.rand.nextInt(skeletonSpawnerMobs.size()));
 
-                if (mobId.equals("GSSkeleton") && world.rand.nextInt(10) == 0) {
-                    EntityGSSkeleton skeleton = (EntityGSSkeleton) EntityList.createEntityByName("GSSkeleton", world);
+                if (mobId.equals(Entity.SKELETON_NAME) && world.rand.nextInt(10) == 0) {
+                    EntityGSSkeleton skeleton = (EntityGSSkeleton) EntityList.createEntityByName(Entity.SKELETON_NAME, world);
                     skeleton.setSkeletonType(1);
                     return skeleton;
                 }
@@ -174,7 +174,7 @@ public class MobSpawn {
      * Return Skeleton with bow/sword
      */
     public static EntityGSSkeleton getSkeleton(World world, boolean withBow) {
-        EntityGSSkeleton skeleton = (EntityGSSkeleton) EntityList.createEntityByName("GSSkeleton", world);
+        EntityGSSkeleton skeleton = (EntityGSSkeleton) EntityList.createEntityByName(Entity.SKELETON_NAME, world);
 
         if (withBow) {
             skeleton.setCurrentItemOrArmor(0, new ItemStack(Items.bow, 1, 0));
@@ -240,7 +240,7 @@ public class MobSpawn {
     }
 
     public static boolean spawnMob(World world, net.minecraft.entity.Entity mob, double x, double y, double z, boolean checkSpawn) {
-        float rotation = world.rand.nextFloat() * 360.0F;
+        float rotation = world.rand.nextFloat() * 360;
         return spawnMob(world, mob, x, y, z, rotation, checkSpawn);
     }
 
@@ -259,34 +259,34 @@ public class MobSpawn {
         double xPosition = x + 0.5;
         double yPosition = y;
         double zPosition = z + 0.5;
-        mob.setLocationAndAngles(xPosition, yPosition, zPosition, rotation, 0.0F);
+        mob.setLocationAndAngles(xPosition, yPosition, zPosition, rotation, 0);
 
         if (!checkSpawn || livingEntity.getCanSpawnHere()) {
             canSpawn = true;
         } else {
             if (!(mob instanceof EntityZombie)) {
                 xPosition += 1;
-                mob.setLocationAndAngles(xPosition, yPosition, zPosition, rotation, 0.0F);
+                mob.setLocationAndAngles(xPosition, yPosition, zPosition, rotation, 0);
 
                 if (livingEntity.getCanSpawnHere()) {
                     canSpawn = true;
                 } else {
                     xPosition -= 1;
                     zPosition += 1;
-                    mob.setLocationAndAngles(xPosition, yPosition, zPosition, rotation, 0.0F);
+                    mob.setLocationAndAngles(xPosition, yPosition, zPosition, rotation, 0);
 
                     if (livingEntity.getCanSpawnHere()) {
                         canSpawn = true;
                     } else {
                         zPosition -= 2;
-                        mob.setLocationAndAngles(xPosition, yPosition, zPosition, rotation, 0.0F);
+                        mob.setLocationAndAngles(xPosition, yPosition, zPosition, rotation, 0);
 
                         if (livingEntity.getCanSpawnHere()) {
                             canSpawn = true;
                         } else {
                             xPosition -= 1;
                             zPosition += 1;
-                            mob.setLocationAndAngles(xPosition, yPosition, zPosition, rotation, 0.0F);
+                            mob.setLocationAndAngles(xPosition, yPosition, zPosition, rotation, 0);
 
                             if (livingEntity.getCanSpawnHere()) {
                                 canSpawn = true;

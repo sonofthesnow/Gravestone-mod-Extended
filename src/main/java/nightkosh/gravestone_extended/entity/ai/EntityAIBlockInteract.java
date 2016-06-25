@@ -97,7 +97,7 @@ public class EntityAIBlockInteract extends EntityAIBase {
         float f1 = (float) ((double) ((float) this.entityPosZ + 0.5F) - this.theEntity.posZ);
         float f2 = this.entityPositionX * f + this.entityPositionZ * f1;
 
-        if (f2 < 0.0F) {
+        if (f2 < 0) {
             this.hasStoppedBlockInteraction = true;
         }
     }

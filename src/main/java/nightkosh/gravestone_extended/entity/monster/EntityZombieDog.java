@@ -87,7 +87,7 @@ public class EntityZombieDog extends EntityUndeadDog {
      */
     @Override
     protected void playStepSound(BlockPos pos, Block block) {
-        this.playSound("mob.wolf.step", 0.15F, 1.0F);
+        this.playSound("mob.wolf.step", 0.15F, 1);
     }
 
     /**
