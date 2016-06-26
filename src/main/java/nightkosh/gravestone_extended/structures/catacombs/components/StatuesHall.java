@@ -28,10 +28,10 @@ public class StatuesHall extends CatacombsBaseComponent {
 
     public StatuesHall(EnumFacing facing, int level, Random random, int x, int y, int z) {
         super(0, facing, level);
-        Passage entrance = new Passage(3, 0, 0);
+        Passage entrance = new Passage(this, 3, 0, 0);
 
         this.setEntrance(entrance);
-        this.addExit(new Passage(3, 0, Z_LENGTH - 1, ComponentSide.FRONT));
+        this.addExit(new Passage(this, 3, 0, Z_LENGTH - 1, ComponentSide.FRONT));
 
         boundingBox = BoundingBoxHelper.getCorrectBox(facing, x, y, z, X_LENGTH, HEIGHT, Z_LENGTH, entrance);
     }

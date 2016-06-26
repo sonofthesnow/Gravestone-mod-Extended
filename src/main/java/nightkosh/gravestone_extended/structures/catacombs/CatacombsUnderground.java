@@ -17,29 +17,16 @@ import java.util.Random;
  */
 public class CatacombsUnderground {
 
-    private final EnumFacing direction;
-    private CatacombsBaseComponent entrance;
+    public static final int LEVELS_COUNT = 4;
 
-    public CatacombsUnderground(World world, Random rand, EnumFacing direction, int x, int y, int z) {
-        this.direction = direction;
-        prepareStructurePieces(rand, x, y, z);
-        build(world, rand);
-    }
-
-    /**
-     * sets up Arrays with the Structure pieces and their weights
-     */
-    private void prepareStructurePieces(Random rand, int x, int y, int z) {
-        entrance = new CatacombsEntrance(direction, rand, x, y, z);
-    }
-
-    public final void build(World world, Random rand) {
+    public static void build(World world, Random rand, EnumFacing direction, int x, int y, int z) {
+        CatacombsBaseComponent entrance = new CatacombsEntrance(direction, rand, x, y, z);
         entrance.addComponentParts(world, rand);
         List<CatacombsBaseComponent> startComponents = new ArrayList<>();
         startComponents.add(entrance);
-        CatacombsLevel level = new CatacombsLevel(startComponents, 1, world, rand);
-        level = new CatacombsLevel(level.getEndParts(), 2, world, rand);
-        level = new CatacombsLevel(level.getEndParts(), 3, world, rand);
-        new CatacombsLevel(level.getEndParts(), 4, world, rand);
+        CatacombsLevel level = null;
+        for (int levelNum = 1; levelNum <= LEVELS_COUNT; levelNum++) {
+            level = new CatacombsLevel((level == null) ? startComponents : level.getEndParts(), levelNum, world, rand);
+        }
     }
 }

@@ -8,11 +8,12 @@ import nightkosh.gravestone_extended.config.ExtendedConfig;
 import nightkosh.gravestone_extended.core.GSBlock;
 import nightkosh.gravestone_extended.core.logger.GSLogger;
 import nightkosh.gravestone_extended.structures.catacombs.components.CatacombsBaseComponent;
-import nightkosh.gravestone_extended.structures.catacombs.components.Stairs;
-import nightkosh.gravestone_extended.structures.catacombs.components.Treasury;
-import nightkosh.gravestone_extended.structures.catacombs.components.WitherHall;
+import nightkosh.gravestone_extended.structures.catacombs.components.Corridor;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.Random;
 
 /**
  * GraveStone mod
@@ -61,6 +62,7 @@ public class CatacombsLevel {
                 totalComponentsCount = ExtendedConfig.catacombsMinRoomsCountAt4Level + random.nextInt(ExtendedConfig.catacombsMaxRoomsCountAt4Level - ExtendedConfig.catacombsMinRoomsCountAt4Level);
                 break;
         }
+//        totalComponentsCount = 100;////TODO !!!!!!!;
 
         componentsCount = 0;
         prepareLevel(levelComponents);
@@ -69,9 +71,6 @@ public class CatacombsLevel {
         GSLogger.logInfo("Catacombs generation - " + this.level + " level was successfully generated");
     }
 
-    /**
-     * Return StructureGSCemeteryCatacombsStones instance
-     */
     public static StructureComponent.BlockSelector getCatacombsStones(int level) {
         return (level < 3) ? catacombsStoneBlocks : catacombsBoneBlocks;
     }
@@ -80,116 +79,152 @@ public class CatacombsLevel {
         return (level < 3) ? Blocks.stone_brick_stairs : GSBlock.boneStairs;
     }
 
-    /*
-     * Prepare Level pieces
-     */
     public final void prepareLevel(List<CatacombsBaseComponent> currentComponents) {
-        List<CatacombsBaseComponent> newComponents = new ArrayList<>();
-        CatacombsBaseComponent[] components = new CatacombsBaseComponent[0];
-        components = currentComponents.toArray(components);
+        List<CatacombsBaseComponent.Passage> exitsList = new ArrayList<>();
+        List<CatacombsBaseComponent.Passage> requiredExitsList = new ArrayList<>();
+
+        for (CatacombsBaseComponent component : currentComponents) {
+            requiredExitsList.addAll(component.getRequiredExitList());
+            exitsList.addAll(component.getExitList());
+        }
+        prepareLevel(requiredExitsList, exitsList);
+    }
+
+    private void prepareLevel(List<CatacombsBaseComponent.Passage> requiredExitsList, List<CatacombsBaseComponent.Passage> exitsList) {
+        List<CatacombsBaseComponent.Passage> newRequiredExitsList = new ArrayList<>();
+        List<CatacombsBaseComponent.Passage> newExitsList = new ArrayList<>();
         int resultComponentsCount = 0;
 
         if (totalComponentsCount > componentsCount) {
-            for (CatacombsBaseComponent component : components) {
-                for (CatacombsBaseComponent.Passage exit : component.getExitList()) {
-                    EnumFacing direction;
-                    switch (exit.getSide()) {
-                        default:
-                        case FRONT:
-                            direction = component.getDirection();
-                            break;
-                        case LEFT:
-                            direction = component.getLeftDirection();
-                            break;
-                        case RIGHT:
-                            direction = component.getRightDirection();
-                            break;
-                    }
-                    resultComponentsCount += addComponent(newComponents, component, direction, exit, exit.getSide());
+            for (CatacombsBaseComponent.Passage exit : requiredExitsList) {
+                EnumFacing direction;
+                switch (exit.getSide()) {
+                    default:
+                    case FRONT:
+                        direction = exit.getComponent().getDirection();
+                        break;
+                    case LEFT:
+                        direction = exit.getComponent().getLeftDirection();
+                        break;
+                    case RIGHT:
+                        direction = exit.getComponent().getRightDirection();
+                        break;
+                }
+
+                CatacombsBaseComponent newComponent = tryCreateComponent(exit, direction);
+                if (newComponent != null) {
+                    newRequiredExitsList.addAll(newComponent.getRequiredExitList());
+                    newExitsList.addAll(newComponent.getExitList());
+                    resultComponentsCount++;
+                    exit.setState(CatacombsBaseComponent.PassageState.CONNECTED);
+                } else {
+                    exit.setState(CatacombsBaseComponent.PassageState.CLOSED);
                 }
             }
-        } else if (endComponents.isEmpty()) {
-            createEnd(currentComponents, level);
-        }
 
-        componentsCount += resultComponentsCount;
+            if (!exitsList.isEmpty()) {
+                Collections.shuffle(exitsList, random);
+                for (CatacombsBaseComponent.Passage exit : exitsList) {
+                    if (!exit.getState().equals(CatacombsBaseComponent.PassageState.CLOSED)) {//TODO temporal fix of ConcurrentModificationException
+                        EnumFacing direction;
+                        switch (exit.getSide()) {
+                            default:
+                            case FRONT:
+                                direction = exit.getComponent().getDirection();
+                                break;
+                            case LEFT:
+                                direction = exit.getComponent().getLeftDirection();
+                                break;
+                            case RIGHT:
+                                direction = exit.getComponent().getRightDirection();
+                                break;
+                        }
 
-        if (resultComponentsCount != 0) {
-            prepareLevel(newComponents);
-        }
-    }
+                        CatacombsBaseComponent newComponent = tryCreateComponent(exit, direction);
+                        if (newComponent != null) {
+                            newRequiredExitsList.addAll(newComponent.getRequiredExitList());
+                            newExitsList.addAll(newComponent.getExitList());
+                            resultComponentsCount++;
 
-    /*
-     * Create and add new component if it available
-     */
-    private int addComponent(List<CatacombsBaseComponent> newComponents, CatacombsBaseComponent component, EnumFacing direction, CatacombsBaseComponent.Passage exit, CatacombsBaseComponent.ComponentSide componentSide) {
-        CatacombsBaseComponent newComponent = tryCreateComponent(component, direction, exit, componentSide);
-
-        if (newComponent != null) {
-            newComponents.add(newComponent);
-            return 1;
-        } else {
-            return 0;
-        }
-    }
-
-    /*
-     * Create level end components
-     */
-    private void createEnd(List<CatacombsBaseComponent> currentComponents, int level) {
-        List<CatacombsBaseComponent> components = currentComponents;
-        CatacombsBaseComponent component, newComponent;
-        Class componentClass;
-        int roomsCount = components.size();
-        int ends = (roomsCount < 2) ? 1 : 1 + random.nextInt(components.size() - 1);
-        int endsCount = 0;
-
-        if (level == 4) {
-            componentClass = WitherHall.class;
-            ends = 1;
-        } else {
-            componentClass = Stairs.class;
-        }
-
-        for (int i = 0; i < ends; i++) {
-            if (endsCount < ends || components.size() > 0) {
-                int j = random.nextInt(components.size());
-                component = components.get(j);
-                List<CatacombsBaseComponent.Passage> exits = component.getExitList();
-                Collections.shuffle(exits, random);
-
-                for (CatacombsBaseComponent.Passage exit : exits) {
-                    EnumFacing direction;
-                    switch (exit.getSide()) {
-                        default:
-                        case FRONT:
-                            direction = component.getDirection();
+                            exit.setState(CatacombsBaseComponent.PassageState.CONNECTED);
+                            exitsList.remove(exit);
                             break;
-                        case LEFT:
-                            direction = component.getLeftDirection();
-                            break;
-                        case RIGHT:
-                            direction = component.getRightDirection();
-                            break;
-                    }
-
-                    newComponent = tryCreateComponent(component, componentClass, direction, level, exit);
-                    if (newComponent != null) {
-                        levelComponents.add(newComponent);
-                        endComponents.add(newComponent);
-                        endsCount++;
-                        components.remove(j);
-                        break;
+                        } else {
+                            exit.setState(CatacombsBaseComponent.PassageState.CLOSED);
+                        }
                     }
                 }
+            }
 
-            } else {
-                break;
+            for (CatacombsBaseComponent.Passage exit : exitsList) {//TODO temporal fix of ConcurrentModificationException
+                if (exit.getState().equals(CatacombsBaseComponent.PassageState.OPEN)) {
+                    newExitsList.add(exit);
+                }
+            }
+
+            if (resultComponentsCount > 0 && (!newRequiredExitsList.isEmpty() || !newExitsList.isEmpty())) {
+                componentsCount += resultComponentsCount;
+                prepareLevel(newRequiredExitsList, newExitsList);
+            }
+        } else if (endComponents.isEmpty()) {
+            createEnd(requiredExitsList, exitsList, level);
+        }
+    }
+
+    private void createEnd(List<CatacombsBaseComponent.Passage> requiredExitsList, List<CatacombsBaseComponent.Passage> exitsList, int level) {
+        CatacombsBaseComponent component, newComponent;
+        Class componentClass;
+        int ends = 0;
+
+        componentClass = CatacombsComponentsFactory.getEndComponent(level);
+        if (CatacombsComponentsFactory.isEnd(level)) {
+            ends = 1;
+        } else {
+            if (!requiredExitsList.isEmpty()) {
+                ends += 1 + random.nextInt(requiredExitsList.size() - 1);
+            }
+            if (!exitsList.isEmpty()) {
+                ends += 1 + random.nextInt(exitsList.size() - 1);
+            }
+        }
+        int endsCount = 0;
+
+        if (!requiredExitsList.isEmpty() || !exitsList.isEmpty()) {
+            Collections.shuffle(requiredExitsList, random);
+            Collections.shuffle(exitsList, random);
+            List<CatacombsBaseComponent.Passage> exits = new ArrayList<>(requiredExitsList.size() + exitsList.size());
+            exits.addAll(requiredExitsList);
+            exits.addAll(exitsList);
+            for (CatacombsBaseComponent.Passage exit : exits) {
+                if (endsCount >= ends) {
+                    break;
+                }
+                EnumFacing direction;
+                switch (exit.getSide()) {
+                    default:
+                    case FRONT:
+                        direction = exit.getComponent().getDirection();
+                        break;
+                    case LEFT:
+                        direction = exit.getComponent().getLeftDirection();
+                        break;
+                    case RIGHT:
+                        direction = exit.getComponent().getRightDirection();
+                        break;
+                }
+
+                newComponent = tryCreateComponent(exit, componentClass, direction, level);
+                if (newComponent != null) {
+                    levelComponents.add(newComponent);
+                    endComponents.add(newComponent);
+                    endsCount++;
+                    break;
+                }
             }
         }
 
         if (endsCount == 0) {
-            component = currentComponents.get(random.nextInt(components.size()));
+            component = levelComponents.get(levelComponents.size() - 1);
 
             List<CatacombsBaseComponent.Passage> exits = component.getExitList();
             if (exits != null && exits.size() > 0) {
@@ -207,19 +242,21 @@ public class CatacombsLevel {
                         direction = component.getRightDirection();
                         break;
                 }
-                newComponent = CatacombsComponentsFactory.createComponent(component, random, direction, level, componentClass, exit);
+                newComponent = CatacombsComponentsFactory.createComponent(exit, random, direction, level, componentClass);
                 levelComponents.add(newComponent);
                 endComponents.add(newComponent);
             }
         }
     }
 
-    private CatacombsBaseComponent tryCreateComponent(CatacombsBaseComponent component, Class componentClass, EnumFacing direction, int level, CatacombsBaseComponent.Passage exit) {
-        if (componentsCount < 30 && componentClass == Treasury.class) {
-            componentClass = CatacombsComponentsFactory.getCorridorType(random);
-        }
+    private CatacombsBaseComponent tryCreateComponent(CatacombsBaseComponent.Passage exit, Class componentClass, EnumFacing direction, int level) {
+        Class buildComponent = CatacombsComponentsFactory.getCorridorOrTreasury(random, componentClass, componentsCount);
+        CatacombsBaseComponent newComponent = CatacombsComponentsFactory.createComponent(exit, random, direction, level, buildComponent);
 
-        CatacombsBaseComponent newComponent = CatacombsComponentsFactory.createComponent(component, random, direction, level, componentClass, exit);
+        if (!canBePlaced(newComponent)) {
+            buildComponent = Corridor.class;
+            newComponent = CatacombsComponentsFactory.createComponent(exit, random, direction, level, buildComponent);
+        }
 
         if (canBePlaced(newComponent)) {
             levelComponents.add(newComponent);
@@ -229,20 +266,15 @@ public class CatacombsLevel {
         }
     }
 
-    private CatacombsBaseComponent tryCreateComponent(CatacombsBaseComponent component, EnumFacing direction, CatacombsBaseComponent.Passage exit, CatacombsBaseComponent.ComponentSide componentSide) {
-        return tryCreateComponent(component, CatacombsComponentsFactory.getNextComponent(component.getClass(), componentSide, random, level), direction, level, exit);
+    private CatacombsBaseComponent tryCreateComponent(CatacombsBaseComponent.Passage exit, EnumFacing direction) {
+        return tryCreateComponent(exit, CatacombsComponentsFactory.getNextComponent(exit.getComponent().getClass(), exit.getSide(), random, level), direction, level);
     }
 
     /**
      * Check is this place availiable for this component
      */
     private boolean canBePlaced(CatacombsBaseComponent component) {
-        Iterator<CatacombsBaseComponent> it = levelComponents.iterator();
-        CatacombsBaseComponent xz;
-
-        while (it.hasNext()) {
-            xz = it.next();
-
+        for (CatacombsBaseComponent xz : levelComponents) {
             if (component.canBePlacedHere(xz.getBoundingBox())) {
                 return false;
             }
@@ -251,22 +283,15 @@ public class CatacombsLevel {
         return true;
     }
 
-    /**
-     * Generate level
-     */
     public final void generateLevel() {
         CatacombsBaseComponent component;
-        Iterator<CatacombsBaseComponent> it = levelComponents.iterator();
 
-        while (it.hasNext()) {
-            component = it.next();
+        for (CatacombsBaseComponent levelComponent : levelComponents) {
+            component = levelComponent;
             component.addComponentParts(world, random);
         }
     }
 
-    /**
-     * Return end parts of level
-     */
     public List<CatacombsBaseComponent> getEndParts() {
         return endComponents;
     }

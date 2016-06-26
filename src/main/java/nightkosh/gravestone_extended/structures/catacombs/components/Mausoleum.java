@@ -24,7 +24,7 @@ public class Mausoleum extends CatacombsBaseComponent {
     public Mausoleum(EnumFacing direction, Random random, StructureBoundingBox structureBoundingBox) {
         super(0, direction);
         this.boundingBox = structureBoundingBox;
-        this.addExit(new Passage(5, 0, 5, ComponentSide.FRONT));
+        this.addExit(new Passage(this, 5, 0, 5, ComponentSide.FRONT));
     }
 
     /**

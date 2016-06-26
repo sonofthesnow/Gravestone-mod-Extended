@@ -10,9 +10,7 @@ import net.minecraft.world.ChunkCoordIntPair;
 import net.minecraft.world.World;
 import net.minecraftforge.common.BiomeDictionary;
 
-import java.util.Arrays;
-import java.util.LinkedList;
-import java.util.Random;
+import java.util.*;
 
 /**
  * GraveStone mod
@@ -40,17 +38,18 @@ public class CatacombsGenerator implements GSStructureGenerator {
     public static final int CATACOMBS_DISTANCE = 1500;
     public static final int DISTANCE_FROM_SPAWN = 1000;
     public static final double DEFAULT_GENERATION_CHANCE = 0.00025D;
-    protected static LinkedList<ChunkCoordIntPair> structuresList = new LinkedList();
+    protected static List<ChunkCoordIntPair> structuresList = new ArrayList<>();
 
     @Override
     public boolean generate(World world, Random rand, int x, int z, EnumFacing direction, double chance, boolean isCommand) {
         if (isCommand || (ExtendedConfig.generateCatacombs && canSpawnStructureAtCoords(world, x, z, chance) && isHeightAcceptable(world, x, z))) {
-            CatacombsSurface surface = new CatacombsSurface(world, rand, x, z, direction);
-            GSLogger.logInfo("Generate catacombs at " + x + "x" + z);
-
-            if (surface.getMausoleumY() > 55) {
-                new CatacombsUnderground(world, rand, direction, surface.getMausoleumX(), surface.getMausoleumY(), surface.getMausoleumZ());
-            }
+//            CatacombsSurface surface = new CatacombsSurface(world, rand, x, z, direction);
+//            GSLogger.logInfo("Generate catacombs at " + x + "x" + z);
+//
+//            if (surface.getMausoleumY() > 55) {//TODO !!!!!!!!!!!!!!!!!!!!!!!!!!
+//                new CatacombsUnderground(world, rand, direction, surface.getMausoleumX(), surface.getMausoleumY(), surface.getMausoleumZ());
+                CatacombsUnderground.build(world, rand, direction, x, 100, z);
+//            }
 
             structuresList.add(new ChunkCoordIntPair(x, z));
             GSLogger.logInfo("Catacombs was successfully generated!");
@@ -65,7 +64,7 @@ public class CatacombsGenerator implements GSStructureGenerator {
     }
 
     protected static boolean isBiomeAllowed(World world, int x, int z) {
-        LinkedList<BiomeDictionary.Type> biomeTypesList = new LinkedList<BiomeDictionary.Type>(Arrays.asList(BiomeDictionary.getTypesForBiome(world.getBiomeGenForCoords(new BlockPos(x, 0, z)))));
+        List<BiomeDictionary.Type> biomeTypesList = new ArrayList<>(Arrays.asList(BiomeDictionary.getTypesForBiome(world.getBiomeGenForCoords(new BlockPos(x, 0, z)))));
         if (!biomeTypesList.contains(BiomeDictionary.Type.WATER) && !biomeTypesList.contains(BiomeDictionary.Type.SWAMP) &&
                 !biomeTypesList.contains(BiomeDictionary.Type.JUNGLE) && !biomeTypesList.contains(BiomeDictionary.Type.MAGICAL) &&
                 !biomeTypesList.contains(BiomeDictionary.Type.HILLS) && !biomeTypesList.contains(BiomeDictionary.Type.MOUNTAIN)) {
@@ -110,7 +109,7 @@ public class CatacombsGenerator implements GSStructureGenerator {
                 && zPos > z - range && zPos < z + range;
     }
 
-    public static LinkedList<ChunkCoordIntPair> getStructuresList() {
+    public static List<ChunkCoordIntPair> getStructuresList() {
         return structuresList;
     }
 

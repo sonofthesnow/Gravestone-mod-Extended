@@ -29,7 +29,7 @@ public class WitherHall extends CatacombsBaseComponent {
 
     public WitherHall(EnumFacing facing, int level, Random random, int x, int y, int z) {
         super(0, facing, level);
-        Passage entrance = new Passage(9, 0, 0);
+        Passage entrance = new Passage(this, 9, 0, 0);
         this.setEntrance(entrance);
 
         boundingBox = BoundingBoxHelper.getCorrectBox(facing, x, y, z, X_LENGTH, HEIGHT, Z_LENGTH, entrance);

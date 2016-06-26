@@ -26,30 +26,30 @@ public class CatacombsEntrance extends CatacombsBaseComponent {
         stairsLength = 4 + random.nextInt(4);
         corridorLength = 2 + random.nextInt(2);
 
-        Passage entrance = new Passage(0, 0, 0);
+        Passage entrance = new Passage(this, 0, 0, 0);
         this.setEntrance(entrance);
 
         int exitZ;
         switch (direction) {
             case SOUTH:
                 exitZ = (stairsLength + corridorLength) * 3;
-                this.addExit(new Passage(3, 0, exitZ, ComponentSide.LEFT));
-                this.addExit(new Passage(0, 0, exitZ, ComponentSide.RIGHT));
+                this.addRequiredExit(new Passage(this, 3, 0, exitZ, ComponentSide.LEFT, true));
+                this.addRequiredExit(new Passage(this, 0, 0, exitZ, ComponentSide.RIGHT, true));
                 break;
             case NORTH:
                 exitZ = (stairsLength + corridorLength) * 3 + 4;
-                this.addExit(new Passage(0, 0, exitZ, ComponentSide.LEFT));
-                this.addExit(new Passage(3, 0, exitZ, ComponentSide.RIGHT));
+                this.addRequiredExit(new Passage(this, 0, 0, exitZ, ComponentSide.LEFT, true));
+                this.addRequiredExit(new Passage(this, 3, 0, exitZ, ComponentSide.RIGHT, true));
                 break;
             case EAST:
                 exitZ = (stairsLength + corridorLength) * 3;
-                this.addExit(new Passage(0, 0, exitZ, ComponentSide.LEFT));
-                this.addExit(new Passage(3, 0, exitZ, ComponentSide.RIGHT));
+                this.addRequiredExit(new Passage(this, 0, 0, exitZ, ComponentSide.LEFT, true));
+                this.addRequiredExit(new Passage(this, 3, 0, exitZ, ComponentSide.RIGHT, true));
                 break;
             case WEST:
                 exitZ = (stairsLength + corridorLength) * 3 + 4;
-                this.addExit(new Passage(3, 0, exitZ, ComponentSide.LEFT));
-                this.addExit(new Passage(0, 0, exitZ, ComponentSide.RIGHT));
+                this.addRequiredExit(new Passage(this, 3, 0, exitZ, ComponentSide.LEFT, true));
+                this.addRequiredExit(new Passage(this, 0, 0, exitZ, ComponentSide.RIGHT, true));
                 break;
         }
 

@@ -11,9 +11,7 @@ import net.minecraft.world.ChunkCoordIntPair;
 import net.minecraft.world.World;
 import net.minecraftforge.common.BiomeDictionary;
 
-import java.util.Arrays;
-import java.util.LinkedList;
-import java.util.Random;
+import java.util.*;
 
 /**
  * GraveStone mod
@@ -39,7 +37,7 @@ public class MemorialGenerator implements GSStructureGenerator {
 
     public static final double DEFAULT_GENERATION_CHANCE = 0.05;
     public static final short RANGE = 400;
-    private static LinkedList<ChunkCoordIntPair> structuresList = new LinkedList();
+    private static List<ChunkCoordIntPair> structuresList = new ArrayList<>();
 
     @Override
     public boolean generate(World world, Random rand, int x, int z, EnumFacing direction, double chance, boolean isCommand) {
@@ -62,7 +60,7 @@ public class MemorialGenerator implements GSStructureGenerator {
     }
 
     protected static boolean isBiomeAllowed(World world, int x, int z) {
-        LinkedList<BiomeDictionary.Type> biomeTypesList = new LinkedList<BiomeDictionary.Type>(Arrays.asList(BiomeDictionary.getTypesForBiome(world.getBiomeGenForCoords(new BlockPos(x, 0, z)))));
+        List<BiomeDictionary.Type> biomeTypesList = new ArrayList<>(Arrays.asList(BiomeDictionary.getTypesForBiome(world.getBiomeGenForCoords(new BlockPos(x, 0, z)))));
         return !biomeTypesList.contains(BiomeDictionary.Type.WATER);
     }
 
@@ -84,7 +82,7 @@ public class MemorialGenerator implements GSStructureGenerator {
         return true;
     }
 
-    public static LinkedList<ChunkCoordIntPair> getStructuresList() {
+    public static List<ChunkCoordIntPair> getStructuresList() {
         return structuresList;
     }
 

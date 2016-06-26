@@ -169,6 +169,7 @@ public abstract class CatacombsBaseComponent extends ComponentGraveStone {
 
     protected Passage entrance;
     protected List<Passage> exitList = new ArrayList<>();
+    protected List<Passage> requiredExitList = new ArrayList<>();
 
     public Passage getEntrance() {
         return entrance;
@@ -186,23 +187,39 @@ public abstract class CatacombsBaseComponent extends ComponentGraveStone {
         this.exitList.add(exit);
     }
 
+    public List<Passage> getRequiredExitList() {
+        return requiredExitList;
+    }
+
+    protected void addRequiredExit(Passage exit) {
+        this.requiredExitList.add(exit);
+    }
+
     public static class Passage {
         protected int x = 0;
         protected int y = 0;
         protected int z = 0;
-
+        protected boolean required = false;
+        protected PassageState state;
         protected ComponentSide side;
+        protected CatacombsBaseComponent component;
 
-        public Passage(int x, int y, int z) {
+        public Passage(CatacombsBaseComponent component, int x, int y, int z) {
+            this.component = component;
             this.x = x;
             this.y = y;
             this.z = z;
+            this.state = PassageState.OPEN;
         }
 
-        public Passage(int x, int y, int z, ComponentSide side) {
-            this.x = x;
-            this.y = y;
-            this.z = z;
+        public Passage(CatacombsBaseComponent component, int x, int y, int z, ComponentSide side) {
+            this(component, x, y, z);
+            this.side = side;
+        }
+
+        public Passage(CatacombsBaseComponent component, int x, int y, int z, ComponentSide side, boolean required) {
+            this(component, x, y, z);
+            this.required = required;
             this.side = side;
         }
 
@@ -221,11 +238,33 @@ public abstract class CatacombsBaseComponent extends ComponentGraveStone {
         public ComponentSide getSide() {
             return side;
         }
+
+        public boolean isRequired() {
+            return required;
+        }
+
+        public CatacombsBaseComponent getComponent() {
+            return component;
+        }
+
+        public PassageState getState() {
+            return state;
+        }
+
+        public void setState(PassageState state) {
+            this.state = state;
+        }
     }
 
     public static enum ComponentSide {
         FRONT,
         LEFT,
         RIGHT
+    }
+
+    public static enum PassageState {
+        OPEN,
+        CLOSED,
+        CONNECTED
     }
 }

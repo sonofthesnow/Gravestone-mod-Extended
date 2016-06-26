@@ -27,26 +27,26 @@ public class Crossing extends CatacombsBaseComponent {
     public Crossing(EnumFacing facing, int level, Random random, int x, int y, int z) {
         super(0, facing, level);
 
-        Passage entrance = new Passage(4, 0, 0);
+        Passage entrance = new Passage(this, 4, 0, 0);
         this.setEntrance(entrance);
 
-        this.addExit(new Passage(4, 0, 12, ComponentSide.FRONT));
+        this.addRequiredExit(new Passage(this, 4, 0, 12, ComponentSide.FRONT, true));
         switch (facing) {
             case SOUTH:
-                this.addExit(new Passage(12, 0, 4, ComponentSide.LEFT));
-                this.addExit(new Passage(0, 0, 4, ComponentSide.RIGHT));
+                this.addRequiredExit(new Passage(this, 12, 0, 4, ComponentSide.LEFT, true));
+                this.addRequiredExit(new Passage(this, 0, 0, 4, ComponentSide.RIGHT, true));
                 break;
             case NORTH:
-                this.addExit(new Passage(0, 0, 8, ComponentSide.LEFT));
-                this.addExit(new Passage(12, 0, 8, ComponentSide.RIGHT));
+                this.addRequiredExit(new Passage(this, 0, 0, 8, ComponentSide.LEFT, true));
+                this.addRequiredExit(new Passage(this, 12, 0, 8, ComponentSide.RIGHT, true));
                 break;
             case WEST:
-                this.addExit(new Passage(12, 0, 8, ComponentSide.LEFT));
-                this.addExit(new Passage(0, 0, 8, ComponentSide.RIGHT));
+                this.addRequiredExit(new Passage(this, 12, 0, 8, ComponentSide.LEFT, true));
+                this.addRequiredExit(new Passage(this, 0, 0, 8, ComponentSide.RIGHT, true));
                 break;
             case EAST:
-                this.addExit(new Passage(0, 0, 4, ComponentSide.LEFT));
-                this.addExit(new Passage(12, 0, 4, ComponentSide.RIGHT));
+                this.addRequiredExit(new Passage(this, 0, 0, 4, ComponentSide.LEFT, true));
+                this.addRequiredExit(new Passage(this, 12, 0, 4, ComponentSide.RIGHT, true));
                 break;
         }
 

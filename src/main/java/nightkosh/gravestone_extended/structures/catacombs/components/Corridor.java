@@ -24,26 +24,26 @@ public class Corridor extends CatacombsBaseComponent {
     public Corridor(EnumFacing facing, int level, Random random, int x, int y, int z) {
         super(0, facing, level);
 
-        Passage entrance = new Passage(0, 0, 0);
+        Passage entrance = new Passage(this, 0, 0, 0);
         this.setEntrance(entrance);
 
-        this.addExit(new Passage(0, 0, Z_LENGTH - 1, ComponentSide.FRONT));
+        this.addExit(new Passage(this, 0, 0, Z_LENGTH - 1, ComponentSide.FRONT));
         switch (facing) {
             case SOUTH:
-                this.addExit(new Passage(X_LENGTH - 1, 0, 0, ComponentSide.LEFT));
-                this.addExit(new Passage(0, 0, 0, ComponentSide.RIGHT));
+                this.addExit(new Passage(this, X_LENGTH - 1, 0, 0, ComponentSide.LEFT));
+                this.addExit(new Passage(this, 0, 0, 0, ComponentSide.RIGHT));
                 break;
             case NORTH:
-                this.addExit(new Passage(0, 0, 4, ComponentSide.LEFT));
-                this.addExit(new Passage(X_LENGTH - 1, 0, 4, ComponentSide.RIGHT));
+                this.addExit(new Passage(this, 0, 0, 4, ComponentSide.LEFT));
+                this.addExit(new Passage(this, X_LENGTH - 1, 0, 4, ComponentSide.RIGHT));
                 break;
             case WEST:
-                this.addExit(new Passage(X_LENGTH - 1, 0, 4, ComponentSide.LEFT));
-                this.addExit(new Passage(0, 0, 4, ComponentSide.RIGHT));
+                this.addExit(new Passage(this, X_LENGTH - 1, 0, 4, ComponentSide.LEFT));
+                this.addExit(new Passage(this, 0, 0, 4, ComponentSide.RIGHT));
                 break;
             case EAST:
-                this.addExit(new Passage(0, 0, 0, ComponentSide.LEFT));
-                this.addExit(new Passage(X_LENGTH - 1, 0, 0, ComponentSide.RIGHT));
+                this.addExit(new Passage(this, 0, 0, 0, ComponentSide.LEFT));
+                this.addExit(new Passage(this, X_LENGTH - 1, 0, 0, ComponentSide.RIGHT));
                 break;
         }
 
