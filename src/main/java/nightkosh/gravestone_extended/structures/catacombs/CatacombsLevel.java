@@ -123,8 +123,9 @@ public class CatacombsLevel {
             }
 
             if (!exitsList.isEmpty()) {
-                Collections.shuffle(exitsList, random);
-                for (CatacombsBaseComponent.Passage exit : exitsList) {
+//                Collections.shuffle(exitsList, random);
+                while (!exitsList.isEmpty()) {
+                    CatacombsBaseComponent.Passage exit = exitsList.get(random.nextInt(exitsList.size()));
                     if (!exit.getState().equals(CatacombsBaseComponent.PassageState.CLOSED)) {//TODO temporal fix of ConcurrentModificationException
                         EnumFacing direction;
                         switch (exit.getSide()) {
@@ -151,6 +152,7 @@ public class CatacombsLevel {
                             break;
                         } else {
                             exit.setState(CatacombsBaseComponent.PassageState.CLOSED);
+                            exitsList.remove(exit);
                         }
                     }
                 }
@@ -190,11 +192,10 @@ public class CatacombsLevel {
         int endsCount = 0;
 
         if (!requiredExitsList.isEmpty() || !exitsList.isEmpty()) {
-            Collections.shuffle(requiredExitsList, random);
-            Collections.shuffle(exitsList, random);
             List<CatacombsBaseComponent.Passage> exits = new ArrayList<>(requiredExitsList.size() + exitsList.size());
             exits.addAll(requiredExitsList);
             exits.addAll(exitsList);
+            Collections.shuffle(exits, random);
             for (CatacombsBaseComponent.Passage exit : exits) {
                 if (endsCount >= ends) {
                     break;
