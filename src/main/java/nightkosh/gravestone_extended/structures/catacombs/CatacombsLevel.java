@@ -175,10 +175,9 @@ public class CatacombsLevel {
 
     private void createEnd(List<CatacombsBaseComponent.Passage> requiredExitsList, List<CatacombsBaseComponent.Passage> exitsList, int level) {
         CatacombsBaseComponent component, newComponent;
-        Class componentClass;
+        Class componentClass = CatacombsComponentsFactory.getEndComponent(level);
         int ends = 0;
 
-        componentClass = CatacombsComponentsFactory.getEndComponent(level);
         if (CatacombsComponentsFactory.isEnd(level)) {
             ends = 1;
         } else {
@@ -191,43 +190,41 @@ public class CatacombsLevel {
         }
         int endsCount = 0;
 
-        if (!requiredExitsList.isEmpty() || !exitsList.isEmpty()) {
-            List<CatacombsBaseComponent.Passage> exits = new ArrayList<>(requiredExitsList.size() + exitsList.size());
-            exits.addAll(requiredExitsList);
-            exits.addAll(exitsList);
-            Collections.shuffle(exits, random);
-            for (CatacombsBaseComponent.Passage exit : exits) {
-                if (endsCount >= ends) {
+        List<CatacombsBaseComponent.Passage> exits = new ArrayList<>(requiredExitsList.size() + exitsList.size());
+        Collections.shuffle(requiredExitsList, random);
+        Collections.shuffle(exitsList, random);
+        exits.addAll(requiredExitsList);
+        exits.addAll(exitsList);
+        for (CatacombsBaseComponent.Passage exit : exits) {
+            if (endsCount >= ends) {
+                break;
+            }
+            EnumFacing direction;
+            switch (exit.getSide()) {
+                default:
+                case FRONT:
+                    direction = exit.getComponent().getDirection();
                     break;
-                }
-                EnumFacing direction;
-                switch (exit.getSide()) {
-                    default:
-                    case FRONT:
-                        direction = exit.getComponent().getDirection();
-                        break;
-                    case LEFT:
-                        direction = exit.getComponent().getLeftDirection();
-                        break;
-                    case RIGHT:
-                        direction = exit.getComponent().getRightDirection();
-                        break;
-                }
+                case LEFT:
+                    direction = exit.getComponent().getLeftDirection();
+                    break;
+                case RIGHT:
+                    direction = exit.getComponent().getRightDirection();
+                    break;
+            }
 
-                newComponent = tryCreateComponent(exit, componentClass, direction, level);
-                if (newComponent != null) {
-                    levelComponents.add(newComponent);
-                    endComponents.add(newComponent);
-                    endsCount++;
-                    break;
-                }
+            newComponent = tryCreateComponent(exit, componentClass, direction, level);
+            if (newComponent != null) {
+                levelComponents.add(newComponent);
+                endComponents.add(newComponent);
+                endsCount++;
             }
         }
 
         if (endsCount == 0) {
             component = levelComponents.get(levelComponents.size() - 1);
 
-            List<CatacombsBaseComponent.Passage> exits = component.getExitList();
+            exits = component.getExitList();
             if (exits != null && exits.size() > 0) {
                 CatacombsBaseComponent.Passage exit = exits.get(random.nextInt(exits.size()));
                 EnumFacing direction;
