@@ -98,16 +98,16 @@ public class MobSpawn {
                 if (canSpawnHellCreatures(world, x, y, z) && world.rand.nextInt(10) == 0) {
                     id = getMobID(world.rand, EnumMobType.HELL_MOBS);
 
-                    if (id.equals(Entity.SKELETON_NAME)) {
-                        EntityGSSkeleton skeleton = (EntityGSSkeleton) EntityList.createEntityByName(Entity.SKELETON_NAME, world);
+                    if (id.equals(Entity.SKELETON_ID)) {
+                        EntityGSSkeleton skeleton = (EntityGSSkeleton) EntityList.createEntityByName(Entity.SKELETON_ID, world);
                         skeleton.setSkeletonType(1);
                         return skeleton;
                     }
                 } else {
                     id = getMobID(world.rand, EnumMobType.DEFAULT_MOBS);
 
-                    if (id.equals(Entity.SKELETON_NAME)) {
-                        return EntityList.createEntityByName(Entity.SKELETON_NAME, world);
+                    if (id.equals(Entity.SKELETON_ID)) {
+                        return EntityList.createEntityByName(Entity.SKELETON_ID, world);
                     }
                 }
                 break;
@@ -142,8 +142,8 @@ public class MobSpawn {
             case SKELETON_SPAWNER:
                 mobId = skeletonSpawnerMobs.get(world.rand.nextInt(skeletonSpawnerMobs.size()));
 
-                if (mobId.equals(Entity.SKELETON_NAME) && world.rand.nextInt(10) == 0) {
-                    EntityGSSkeleton skeleton = (EntityGSSkeleton) EntityList.createEntityByName(Entity.SKELETON_NAME, world);
+                if (mobId.equals(Entity.SKELETON_ID) && world.rand.nextInt(10) == 0) {
+                    EntityGSSkeleton skeleton = (EntityGSSkeleton) EntityList.createEntityByName(Entity.SKELETON_ID, world);
                     skeleton.setSkeletonType(1);
                     return skeleton;
                 }
@@ -174,7 +174,7 @@ public class MobSpawn {
      * Return Skeleton with bow/sword
      */
     public static EntityGSSkeleton getSkeleton(World world, boolean withBow) {
-        EntityGSSkeleton skeleton = (EntityGSSkeleton) EntityList.createEntityByName(Entity.SKELETON_NAME, world);
+        EntityGSSkeleton skeleton = (EntityGSSkeleton) EntityList.createEntityByName(Entity.SKELETON_ID, world);
 
         if (withBow) {
             skeleton.setCurrentItemOrArmor(0, new ItemStack(Items.bow, 1, 0));

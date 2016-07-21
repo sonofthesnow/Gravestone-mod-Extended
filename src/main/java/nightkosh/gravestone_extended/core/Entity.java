@@ -32,7 +32,7 @@ public class Entity {
         }
     }
 
-    public static final String SKELETON_NAME = "Skeleton";
+    public static final String SKELETON_NAME = "GSSkeleton";
     public static final String ZOMBIE_DOG_NAME = "GSZombieDog";
     public static final String ZOMBIE_CAT_NAME = "GSZombieCat";
     public static final String SKELETON_DOG_NAME = "GSSkeletonDog";
@@ -108,7 +108,7 @@ public class Entity {
         registerModEntity(EntityZombieSkullCrawler.class, ZOMBIE_SKULL_CRAWLER_NAME);
 
         registerModEntity(EntityGSSkeleton.class, SKELETON_NAME);
-        EntityRegistry.addSpawn(EntityGSSkeleton.class, 1, 1, 3, EnumCreatureType.MONSTER);
+//        EntityRegistry.addSpawn(EntityGSSkeleton.class, 1, 1, 3, EnumCreatureType.MONSTER);
 //        EntityRegistry.removeSpawn(EntitySkeleton.class, new BiomeGenBase.SpawnListEntry(EntitySkeleton.class, 100, 4, 4));
         //this.spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(EntitySkeleton.class, 100, 4, 4));
         //TODO addSpawn
