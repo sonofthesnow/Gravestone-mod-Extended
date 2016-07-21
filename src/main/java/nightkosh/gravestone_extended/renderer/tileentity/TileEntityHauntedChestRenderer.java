@@ -24,7 +24,7 @@ public class TileEntityHauntedChestRenderer extends TileEntitySpecialRenderer {
     private ModelChest chestModel = new ModelChest();
     private boolean isChristmas;
 
-    private static final TileEntityHauntedChest CHEST_TE = new TileEntityHauntedChest();//TODO temporal hack
+    private static final TileEntityHauntedChest CHEST_TE = new TileEntityHauntedChest();
 
     public TileEntityHauntedChestRenderer() {
         Calendar calendar = Calendar.getInstance();
@@ -40,7 +40,7 @@ public class TileEntityHauntedChestRenderer extends TileEntitySpecialRenderer {
     public void renderTileEntityChestAt(TileEntityHauntedChest te, double par2, double par4, double par6, float par8) {
         int metadata = 0;
 
-        if(te == null) {//TODO temporal hack
+        if(te == null) {
             te = CHEST_TE;
         }
 
