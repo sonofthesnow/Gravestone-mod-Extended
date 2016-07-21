@@ -1,10 +1,8 @@
 package nightkosh.gravestone_extended.core.proxy;
 
-import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.ModelHorse;
 import net.minecraft.client.resources.model.ModelBakery;
-import net.minecraft.client.resources.model.ModelResourceLocation;
 import net.minecraft.item.Item;
 import net.minecraft.util.StatCollector;
 import net.minecraftforge.client.ForgeHooksClient;
@@ -15,6 +13,7 @@ import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.common.registry.LanguageRegistry;
 import net.minecraftforge.fml.common.registry.VillagerRegistry;
+import nightkosh.gravestone.core.proxy.ProxyHelper;
 import nightkosh.gravestone.tileentity.TileEntityGrave;
 import nightkosh.gravestone_extended.block.enums.*;
 import nightkosh.gravestone_extended.core.GSBlock;
@@ -160,27 +159,27 @@ public class ClientProxy extends CommonProxy {
     @Override
     public void registerBlocksModels() {
         //memorials
-        registerModelsForTEBlocks(EnumMemorials.WOODEN_CROSS.ordinal(), EnumMemorials.ICE_CROSS.ordinal(), GSBlock.memorial, ResourcesModels.memorialModel, TileEntityMemorial.class);
-        registerModelsForTEBlocks(EnumMemorials.WOODEN_OBELISK.ordinal(), EnumMemorials.ICE_OBELISK.ordinal(), GSBlock.memorial, ResourcesModels.memorialModel, TileEntityMemorial.Obelisk.class);
-        registerModelsForTEBlocks(EnumMemorials.WOODEN_CELTIC_CROSS.ordinal(), EnumMemorials.ICE_CELTIC_CROSS.ordinal(), GSBlock.memorial, ResourcesModels.memorialModel, TileEntityMemorial.CelticCross.class);
-        registerModelsForTEBlocks(EnumMemorials.WOODEN_STEVE_STATUE.ordinal(), EnumMemorials.ICE_STEVE_STATUE.ordinal(), GSBlock.memorial, ResourcesModels.memorialModel, TileEntityMemorial.SteveStatue.class);
-        registerModelsForTEBlocks(EnumMemorials.WOODEN_VILLAGER_STATUE.ordinal(), EnumMemorials.ICE_VILLAGER_STATUE.ordinal(), GSBlock.memorial, ResourcesModels.memorialModel, TileEntityMemorial.VillagerStatue.class);
-        registerModelsForTEBlocks(EnumMemorials.WOODEN_ANGEL_STATUE.ordinal(), EnumMemorials.ICE_ANGEL_STATUE.ordinal(), GSBlock.memorial, ResourcesModels.memorialModel, TileEntityMemorial.AngelStatue.class);
-        registerModelsForTEBlocks(EnumMemorials.WOODEN_DOG_STATUE.ordinal(), EnumMemorials.ICE_DOG_STATUE.ordinal(), GSBlock.memorial, ResourcesModels.memorialModel, TileEntityMemorial.DogStatue.class);
-        registerModelsForTEBlocks(EnumMemorials.WOODEN_CAT_STATUE.ordinal(), EnumMemorials.ICE_CAT_STATUE.ordinal(), GSBlock.memorial, ResourcesModels.memorialModel, TileEntityMemorial.CatStatue.class);
-        registerModelsForTEBlocks(EnumMemorials.WOODEN_CREEPER_STATUE.ordinal(), EnumMemorials.ICE_CREEPER_STATUE.ordinal(), GSBlock.memorial, ResourcesModels.memorialModel, TileEntityMemorial.CreeperStatue.class);
+        ProxyHelper.registerModelsForTEBlocks(EnumMemorials.WOODEN_CROSS.ordinal(), EnumMemorials.ICE_CROSS.ordinal(), GSBlock.memorial, ResourcesModels.memorialModel, TileEntityMemorial.class);
+        ProxyHelper.registerModelsForTEBlocks(EnumMemorials.WOODEN_OBELISK.ordinal(), EnumMemorials.ICE_OBELISK.ordinal(), GSBlock.memorial, ResourcesModels.memorialModel, TileEntityMemorial.Obelisk.class);
+        ProxyHelper.registerModelsForTEBlocks(EnumMemorials.WOODEN_CELTIC_CROSS.ordinal(), EnumMemorials.ICE_CELTIC_CROSS.ordinal(), GSBlock.memorial, ResourcesModels.memorialModel, TileEntityMemorial.CelticCross.class);
+        ProxyHelper.registerModelsForTEBlocks(EnumMemorials.WOODEN_STEVE_STATUE.ordinal(), EnumMemorials.ICE_STEVE_STATUE.ordinal(), GSBlock.memorial, ResourcesModels.memorialModel, TileEntityMemorial.SteveStatue.class);
+        ProxyHelper.registerModelsForTEBlocks(EnumMemorials.WOODEN_VILLAGER_STATUE.ordinal(), EnumMemorials.ICE_VILLAGER_STATUE.ordinal(), GSBlock.memorial, ResourcesModels.memorialModel, TileEntityMemorial.VillagerStatue.class);
+        ProxyHelper.registerModelsForTEBlocks(EnumMemorials.WOODEN_ANGEL_STATUE.ordinal(), EnumMemorials.ICE_ANGEL_STATUE.ordinal(), GSBlock.memorial, ResourcesModels.memorialModel, TileEntityMemorial.AngelStatue.class);
+        ProxyHelper.registerModelsForTEBlocks(EnumMemorials.WOODEN_DOG_STATUE.ordinal(), EnumMemorials.ICE_DOG_STATUE.ordinal(), GSBlock.memorial, ResourcesModels.memorialModel, TileEntityMemorial.DogStatue.class);
+        ProxyHelper.registerModelsForTEBlocks(EnumMemorials.WOODEN_CAT_STATUE.ordinal(), EnumMemorials.ICE_CAT_STATUE.ordinal(), GSBlock.memorial, ResourcesModels.memorialModel, TileEntityMemorial.CatStatue.class);
+        ProxyHelper.registerModelsForTEBlocks(EnumMemorials.WOODEN_CREEPER_STATUE.ordinal(), EnumMemorials.ICE_CREEPER_STATUE.ordinal(), GSBlock.memorial, ResourcesModels.memorialModel, TileEntityMemorial.CreeperStatue.class);
         //spawners
-        registerModelsForTEBlocks(EnumSpawner.WITHER_SPAWNER.ordinal(), GSBlock.spawner, ResourcesModels.spawnerModel, TileEntitySpawner.class);
-        registerModelsForTEBlocks(EnumSpawner.SKELETON_SPAWNER.ordinal(), GSBlock.spawner, ResourcesModels.spawnerModel, TileEntitySpawner.Skeleton.class);
-        registerModelsForTEBlocks(EnumSpawner.ZOMBIE_SPAWNER.ordinal(), GSBlock.spawner, ResourcesModels.spawnerModel, TileEntitySpawner.Zombie.class);
+        ProxyHelper.registerModelsForTEBlocks(EnumSpawner.WITHER_SPAWNER.ordinal(), GSBlock.spawner, ResourcesModels.spawnerModel, TileEntitySpawner.class);
+        ProxyHelper.registerModelsForTEBlocks(EnumSpawner.SKELETON_SPAWNER.ordinal(), GSBlock.spawner, ResourcesModels.spawnerModel, TileEntitySpawner.Skeleton.class);
+        ProxyHelper.registerModelsForTEBlocks(EnumSpawner.ZOMBIE_SPAWNER.ordinal(), GSBlock.spawner, ResourcesModels.spawnerModel, TileEntitySpawner.Zombie.class);
         //traps
         Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(Item.getItemFromBlock(GSBlock.trap), EnumTrap.NIGHT_STONE.ordinal(), ResourcesModels.nightStoneModel);
         Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(Item.getItemFromBlock(GSBlock.trap), EnumTrap.THUNDER_STONE.ordinal(), ResourcesModels.thunderStoneModel);
         ModelBakery.addVariantName(Item.getItemFromBlock(GSBlock.trap), "gravestone:GSTrap_night_stone", "gravestone:GSTrap_thunder_stone");
         //piles of bones
-        registerModelsForTEBlocks(EnumPileOfBones.PILE_OF_BONES.ordinal(), GSBlock.pileOfBones, ResourcesModels.pileOfBonesModel, TileEntityPileOfBones.class);
-        registerModelsForTEBlocks(EnumPileOfBones.PILE_OF_BONES_WITH_SKULL.ordinal(), GSBlock.pileOfBones, ResourcesModels.pileOfBonesModel, TileEntityPileOfBones.Skull.class);
-        registerModelsForTEBlocks(EnumPileOfBones.PILE_OF_BONES_WITH_SKULL_CRAWLER.ordinal(), GSBlock.pileOfBones, ResourcesModels.pileOfBonesModel, TileEntityPileOfBones.Crawler.class);
+        ProxyHelper.registerModelsForTEBlocks(EnumPileOfBones.PILE_OF_BONES.ordinal(), GSBlock.pileOfBones, ResourcesModels.pileOfBonesModel, TileEntityPileOfBones.class);
+        ProxyHelper.registerModelsForTEBlocks(EnumPileOfBones.PILE_OF_BONES_WITH_SKULL.ordinal(), GSBlock.pileOfBones, ResourcesModels.pileOfBonesModel, TileEntityPileOfBones.Skull.class);
+        ProxyHelper.registerModelsForTEBlocks(EnumPileOfBones.PILE_OF_BONES_WITH_SKULL_CRAWLER.ordinal(), GSBlock.pileOfBones, ResourcesModels.pileOfBonesModel, TileEntityPileOfBones.Crawler.class);
         //bone blocks
         Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(Item.getItemFromBlock(GSBlock.boneBlock), EnumBoneBlock.BONE_BLOCK.ordinal(), ResourcesModels.boneBlockModel);
         Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(Item.getItemFromBlock(GSBlock.boneBlock), EnumBoneBlock.SKULL_BONE_BLOCK.ordinal(), ResourcesModels.boneBlockWithSkullModel);
@@ -192,7 +191,7 @@ public class ClientProxy extends CommonProxy {
         Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(Item.getItemFromBlock(GSBlock.boneSlab), 0, ResourcesModels.boneSlabModel);
         Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(Item.getItemFromBlock(GSBlock.boneStairs), 0, ResourcesModels.boneStairsModel);
         //haunted chest
-        registerModelsForTEBlocks(0, EnumHauntedChest.values().length - 1, GSBlock.hauntedChest, ResourcesModels.hauntedChestModel, TileEntityHauntedChest.class);
+        ProxyHelper.registerModelsForTEBlocks(0, EnumHauntedChest.values().length - 1, GSBlock.hauntedChest, ResourcesModels.hauntedChestModel, TileEntityHauntedChest.class);
         //altar
         Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(Item.getItemFromBlock(GSBlock.altar), 0, ResourcesModels.altarModel);
 
@@ -201,23 +200,9 @@ public class ClientProxy extends CommonProxy {
         ForgeHooksClient.registerTESRItemStack(Item.getItemFromBlock(GSBlock.candle), 0, TileEntityCandle.class);
         ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(GSBlock.candle), 0, ResourcesModels.candleModel);
         //skull candle
-        registerModelsForTEBlocks(EnumSkullCandle.SKELETON_SKULL.ordinal(), GSBlock.skullCandle, ResourcesModels.skullCandleModel, TileEntitySkullCandle.class);
-        registerModelsForTEBlocks(EnumSkullCandle.WITHER_SKULL.ordinal(), GSBlock.skullCandle, ResourcesModels.skullCandleModel, TileEntitySkullCandle.Wither.class);
-        registerModelsForTEBlocks(EnumSkullCandle.ZOMBIE_SKULL.ordinal(), GSBlock.skullCandle, ResourcesModels.skullCandleModel, TileEntitySkullCandle.Zombie.class);
-    }
-
-    //TODO move in graves module
-    private void registerModelsForTEBlocks(int startMeta, int endMeta, Block block, ModelResourceLocation model, Class TEClass) {
-        for (int meta = startMeta; meta <= endMeta; meta++) {
-            registerModelsForTEBlocks(meta, block, model, TEClass);
-        }
-    }
-
-    //TODO move in graves module
-    private void registerModelsForTEBlocks(int meta, Block block, ModelResourceLocation model, Class TEClass) {
-        Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(Item.getItemFromBlock(block), meta, model);
-        ForgeHooksClient.registerTESRItemStack(Item.getItemFromBlock(block), meta, TEClass);
-        ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(block), meta, model);
+        ProxyHelper.registerModelsForTEBlocks(EnumSkullCandle.SKELETON_SKULL.ordinal(), GSBlock.skullCandle, ResourcesModels.skullCandleModel, TileEntitySkullCandle.class);
+        ProxyHelper.registerModelsForTEBlocks(EnumSkullCandle.WITHER_SKULL.ordinal(), GSBlock.skullCandle, ResourcesModels.skullCandleModel, TileEntitySkullCandle.Wither.class);
+        ProxyHelper.registerModelsForTEBlocks(EnumSkullCandle.ZOMBIE_SKULL.ordinal(), GSBlock.skullCandle, ResourcesModels.skullCandleModel, TileEntitySkullCandle.Zombie.class);
     }
 
     @Override
