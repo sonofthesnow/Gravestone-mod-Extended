@@ -4,6 +4,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.World;
+import nightkosh.gravestone.helper.ISpawner;
 import nightkosh.gravestone.tileentity.ISpawnerEntity;
 
 /**
@@ -12,7 +13,7 @@ import nightkosh.gravestone.tileentity.ISpawnerEntity;
  * @author NightKosh
  * @license Lesser GNU Public License v3 (http://www.gnu.org/licenses/lgpl.html)
  */
-public abstract class Spawner {
+public abstract class Spawner implements ISpawner {
 
     protected ISpawnerEntity spawnerEntity;
     protected int delay;
@@ -43,7 +44,7 @@ public abstract class Spawner {
         delay = getMinDelay() + spawnerEntity.getWorld().rand.nextInt(getMaxDelay() - getMinDelay());
     }
 
-    protected void setMinDelay() {
+    public void setMinDelay() {
         delay = getMinDelay();
     }
 

@@ -33,6 +33,7 @@ public class MobSpawn {
     public static final String WITHER_ID = "WitherBoss";
     //
     private static final int HELL_HEIGHT = 51;
+    private static final Random RANDOM = new Random();
     /**
      * Provides a mapping between entity classes and a string
      */
@@ -59,8 +60,6 @@ public class MobSpawn {
     public static List<String> catacombsStatuesMobs = new ArrayList<>(Arrays.asList(
             Entity.SKELETON_ID, "Zombie"));
 
-    private MobSpawn() {
-    }
 
     /**
      * Check can grave spawn hell creature or not
@@ -99,7 +98,7 @@ public class MobSpawn {
                     id = getMobID(world.rand, EnumMobType.HELL_MOBS);
 
                     if (id.equals(Entity.SKELETON_ID)) {
-                        EntityGSSkeleton skeleton = (EntityGSSkeleton) EntityList.createEntityByName(Entity.SKELETON_ID, world);
+                        EntityGSSkeleton skeleton = getSkeleton(world, RANDOM.nextBoolean());
                         skeleton.setSkeletonType(1);
                         return skeleton;
                     }
@@ -107,7 +106,7 @@ public class MobSpawn {
                     id = getMobID(world.rand, EnumMobType.DEFAULT_MOBS);
 
                     if (id.equals(Entity.SKELETON_ID)) {
-                        return EntityList.createEntityByName(Entity.SKELETON_ID, world);
+                        return getSkeleton(world, RANDOM.nextBoolean());
                     }
                 }
                 break;
@@ -177,9 +176,9 @@ public class MobSpawn {
         EntityGSSkeleton skeleton = (EntityGSSkeleton) EntityList.createEntityByName(Entity.SKELETON_ID, world);
 
         if (withBow) {
-            skeleton.setCurrentItemOrArmor(0, new ItemStack(Items.bow, 1, 0));
+            skeleton.setCurrentItemOrArmor(0, new ItemStack(Items.bow, 1));
         } else {
-            skeleton.setCurrentItemOrArmor(0, new ItemStack(Items.stone_sword, 1, 0));
+            skeleton.setCurrentItemOrArmor(0, new ItemStack(Items.stone_sword, 1));
         }
 
         return skeleton;
