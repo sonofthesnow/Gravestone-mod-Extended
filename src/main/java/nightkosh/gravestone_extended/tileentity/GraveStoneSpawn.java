@@ -17,7 +17,7 @@ import nightkosh.gravestone_extended.entity.helper.EntityGroupOfGravesMobSpawner
  * @author NightKosh
  * @license Lesser GNU Public License v3 (http://www.gnu.org/licenses/lgpl.html)
  */
-public class GSGraveStoneSpawn extends GSSpawner {
+public class GraveStoneSpawn extends Spawner {
 
     private static final int BASE_DELAY = 600;
     private static final int PLAYER_RANGE = 35;
@@ -32,7 +32,7 @@ public class GSGraveStoneSpawn extends GSSpawner {
      */
     private static final int SPAWN_RANGE = 1;
 
-    public GSGraveStoneSpawn(ISpawnerEntity tileEntity) {
+    public GraveStoneSpawn(ISpawnerEntity tileEntity) {
         super(tileEntity, BASE_DELAY);
     }
 

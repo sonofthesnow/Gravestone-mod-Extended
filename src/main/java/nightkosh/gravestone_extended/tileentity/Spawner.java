@@ -12,13 +12,13 @@ import nightkosh.gravestone.tileentity.ISpawnerEntity;
  * @author NightKosh
  * @license Lesser GNU Public License v3 (http://www.gnu.org/licenses/lgpl.html)
  */
-public abstract class GSSpawner {
+public abstract class Spawner {
 
     protected ISpawnerEntity spawnerEntity;
     protected int delay;
     protected Entity spawnedMob;
 
-    public GSSpawner(ISpawnerEntity tileEntity, int delay) {
+    public Spawner(ISpawnerEntity tileEntity, int delay) {
         this.spawnerEntity = tileEntity;
         this.delay = delay;
     }

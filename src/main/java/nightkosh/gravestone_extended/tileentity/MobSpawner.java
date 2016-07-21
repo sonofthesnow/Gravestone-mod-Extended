@@ -16,7 +16,7 @@ import nightkosh.gravestone_extended.core.logger.GSLogger;
  * @author NightKosh
  * @license Lesser GNU Public License v3 (http://www.gnu.org/licenses/lgpl.html)
  */
-public class GSMobSpawner extends GSSpawner {
+public class MobSpawner extends Spawner {
 
     private static final int BASE_DELAY = 60;
     private static final int MIN_DELAY = 600;
@@ -27,7 +27,7 @@ public class GSMobSpawner extends GSSpawner {
     private static final float MAX_LIGHT_VALUE = 0.46F;
     private EnumSpawner spawnerType = null;
 
-    public GSMobSpawner(ISpawnerEntity tileEntity) {
+    public MobSpawner(ISpawnerEntity tileEntity) {
         super(tileEntity, BASE_DELAY);
     }
 

@@ -14,10 +14,10 @@ import nightkosh.gravestone_extended.entity.helper.EntityGroupOfGravesMobSpawner
  */
 public class TileEntitySpawner extends TileEntityBase implements ITickable, ISpawnerEntity {
 
-    protected GSMobSpawner spawner;
+    protected MobSpawner spawner;
 
     public TileEntitySpawner() {
-        spawner = new GSMobSpawner(this);
+        spawner = new MobSpawner(this);
     }
 
     /**

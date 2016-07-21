@@ -8,7 +8,7 @@ import net.minecraft.util.BlockPos;
 import net.minecraft.world.World;
 import nightkosh.gravestone.helper.GroupOfGravesSpawnerHelper;
 import nightkosh.gravestone.tileentity.TileEntityGraveStone;
-import nightkosh.gravestone_extended.tileentity.GSGraveStoneSpawn;
+import nightkosh.gravestone_extended.tileentity.GraveStoneSpawn;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,12 +22,12 @@ import java.util.List;
 public class EntityGroupOfGravesMobSpawnerHelper extends GroupOfGravesSpawnerHelper {
 
     private List<TileEntityGraveStone> gravesTEList;
-    private GSGraveStoneSpawn graveStoneSpawn;
+    private GraveStoneSpawn graveStoneSpawn;
     private boolean canMobsBeSpawned;
 
     public EntityGroupOfGravesMobSpawnerHelper(World worldIn) {
         super(worldIn);
-        graveStoneSpawn = new GSGraveStoneSpawn(this);
+        graveStoneSpawn = new GraveStoneSpawn(this);
     }
 
     public void addGraveTe(TileEntityGraveStone te) {
