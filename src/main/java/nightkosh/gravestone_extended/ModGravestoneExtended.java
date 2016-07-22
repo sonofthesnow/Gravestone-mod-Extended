@@ -10,13 +10,15 @@ import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
+import nightkosh.gravestone.tileentity.TileEntityGraveStone;
 import nightkosh.gravestone_extended.config.ExtendedConfig;
 import nightkosh.gravestone_extended.core.*;
 import nightkosh.gravestone_extended.core.commands.ExtendedCommands;
 import nightkosh.gravestone_extended.core.compatibility.Compatibility;
 import nightkosh.gravestone_extended.core.event.GSEventsHandler;
-import nightkosh.gravestone_extended.core.event.GSTickEventHandler;
+import nightkosh.gravestone_extended.core.event.TickEventHandler;
 import nightkosh.gravestone_extended.core.proxy.CommonProxy;
+import nightkosh.gravestone_extended.helper.FogHandler;
 import nightkosh.gravestone_extended.helper.GraveGenerationHelper;
 import nightkosh.gravestone_extended.helper.GraveSpawnerHelper;
 
@@ -52,7 +54,7 @@ public class ModGravestoneExtended {
     public void load(FMLInitializationEvent event) {
         // register death event
         MinecraftForge.EVENT_BUS.register(new GSEventsHandler());
-        FMLCommonHandler.instance().bus().register(new GSTickEventHandler());
+        FMLCommonHandler.instance().bus().register(new TickEventHandler());
         proxy.registerHandlers();
 
         // tabs
@@ -90,6 +92,8 @@ public class ModGravestoneExtended {
         GraveGenerationHelper.addMobsItemsHandlers();
 
         GraveSpawnerHelper.setGraveSpawnerHelper();
+
+        TileEntityGraveStone.fogHandler = new FogHandler();
     }
 
     @Mod.EventHandler

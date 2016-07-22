@@ -1,12 +1,12 @@
 package nightkosh.gravestone_extended.core.event;
 
-import nightkosh.gravestone_extended.config.ExtendedConfig;
-import nightkosh.gravestone_extended.core.TimeHelper;
 import net.minecraft.world.World;
 import net.minecraftforge.client.event.EntityViewRenderEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import nightkosh.gravestone_extended.config.ExtendedConfig;
+import nightkosh.gravestone_extended.core.TimeHelper;
 import org.lwjgl.opengl.GL11;
 
 /**
@@ -15,7 +15,7 @@ import org.lwjgl.opengl.GL11;
  * @author NightKosh
  * @license Lesser GNU Public License v3 (http://www.gnu.org/licenses/lgpl.html)
  */
-public class GSRenderEventHandler {
+public class RenderEventHandler {
 
     public static float fogDensityPerTick = 0;
     private static float fogDensity = 0;

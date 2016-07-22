@@ -1,11 +1,11 @@
 package nightkosh.gravestone_extended.core.event;
 
-import nightkosh.gravestone_extended.core.TimeHelper;
 import net.minecraft.client.Minecraft;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import nightkosh.gravestone_extended.core.TimeHelper;
 
 /**
  * GraveStone mod
@@ -13,7 +13,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
  * @author NightKosh
  * @license Lesser GNU Public License v3 (http://www.gnu.org/licenses/lgpl.html)
  */
-public class GSTickEventHandler {
+public class TickEventHandler {
 
     private static short ticCount = 0;
 
@@ -46,7 +46,7 @@ public class GSTickEventHandler {
                 fogTicCount++;
                 if (fogTicCount > MAX_FOG_TICK_COUNT) {
                     fogTicCount = 0;
-                    GSRenderEventHandler.resetAmountOfFogSources(event.player.worldObj);
+                    RenderEventHandler.resetAmountOfFogSources(event.player.worldObj);
                 }
             }
         }

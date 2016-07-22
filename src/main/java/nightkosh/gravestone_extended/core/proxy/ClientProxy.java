@@ -20,7 +20,7 @@ import nightkosh.gravestone_extended.core.GSBlock;
 import nightkosh.gravestone_extended.core.GSItem;
 import nightkosh.gravestone_extended.core.Resources;
 import nightkosh.gravestone_extended.core.ResourcesModels;
-import nightkosh.gravestone_extended.core.event.GSRenderEventHandler;
+import nightkosh.gravestone_extended.core.event.RenderEventHandler;
 import nightkosh.gravestone_extended.entity.EntityRaven;
 import nightkosh.gravestone_extended.entity.helper.EntityGroupOfGravesMobSpawnerHelper;
 import nightkosh.gravestone_extended.entity.monster.*;
@@ -153,7 +153,7 @@ public class ClientProxy extends CommonProxy {
 
     @Override
     public void registerHandlers() {
-        MinecraftForge.EVENT_BUS.register(new GSRenderEventHandler());
+        MinecraftForge.EVENT_BUS.register(new RenderEventHandler());
     }
 
     @Override
