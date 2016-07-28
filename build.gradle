@@ -21,7 +21,7 @@ version = "1.0.0"
 archivesBaseName = "GraveStone-1.8.9-Extended"
 
 minecraft {
-    version = "1.8.9-11.15.1.1764"
+    version = "1.8.9-11.15.1.1902-1.8.9"
     runDir = "idea"
 
     mappings = "snapshot_20160111"
