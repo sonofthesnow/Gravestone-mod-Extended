@@ -15,15 +15,16 @@ import net.minecraft.world.gen.structure.StructureBoundingBox;
 import net.minecraft.world.gen.structure.StructureComponent;
 import net.minecraft.world.gen.structure.StructureVillagePieces;
 import nightkosh.gravestone.block.BlockGraveStone;
+import nightkosh.gravestone.helper.GraveGenerationHelper.EnumGraveTypeByEntity;
 import nightkosh.gravestone_extended.block.BlockSkullCandle;
 import nightkosh.gravestone_extended.block.enums.EnumSkullCandle;
 import nightkosh.gravestone_extended.config.ExtendedConfig;
 import nightkosh.gravestone_extended.core.GSBlock;
 import nightkosh.gravestone_extended.entity.helper.EntityGroupOfGravesMobSpawnerHelper;
-import nightkosh.gravestone.helper.GraveGenerationHelper.EnumGraveTypeByEntity;
 import nightkosh.gravestone_extended.structures.BoundingBoxHelper;
 import nightkosh.gravestone_extended.structures.GraveGenerationHelper;
 import nightkosh.gravestone_extended.structures.IComponentGraveStone;
+import nightkosh.gravestone_extended.structures.village.VillagersHandler;
 import nightkosh.gravestone_extended.tileentity.TileEntitySkullCandle;
 
 import java.util.List;
@@ -278,7 +279,7 @@ public class ComponentVillageUndertaker extends StructureVillagePieces.Village i
      */
     @Override
     protected int func_180779_c(int par1, int par2) {
-        return VillageHandlerGSUndertaker.UNDERTAKER_ID;
+        return VillagersHandler.UNDERTAKER_ID;
     }
 
     protected void generateBed(World world, int x, int y, int z, StructureBoundingBox boundingBox) {

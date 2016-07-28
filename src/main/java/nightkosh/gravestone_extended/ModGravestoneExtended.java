@@ -1,6 +1,7 @@
 package nightkosh.gravestone_extended;
 
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.event.entity.EntityEvent;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.Instance;
@@ -9,6 +10,7 @@ import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
 import nightkosh.gravestone.tileentity.TileEntityGraveStone;
 import nightkosh.gravestone_extended.config.ExtendedConfig;
@@ -21,6 +23,7 @@ import nightkosh.gravestone_extended.core.proxy.CommonProxy;
 import nightkosh.gravestone_extended.helper.FogHandler;
 import nightkosh.gravestone_extended.helper.GraveGenerationHelper;
 import nightkosh.gravestone_extended.helper.GraveSpawnerHelper;
+import nightkosh.gravestone_extended.structures.village.VillagersHandler;
 
 /**
  * GraveStone mod
@@ -47,7 +50,11 @@ public class ModGravestoneExtended {
         Structures.preInit();
 
         MessageHandler.init();
+    }
 
+    @SubscribeEvent
+    public void onInit(FMLInitializationEvent event) {
+        VillagersHandler.registerVillagers();
     }
 
     @Mod.EventHandler
@@ -99,5 +106,10 @@ public class ModGravestoneExtended {
     @Mod.EventHandler
     public void serverStarting(FMLServerStartingEvent event) {
         ExtendedCommands.getInstance(event);
+    }
+
+    @SubscribeEvent
+    public void spawning(EntityEvent.EntityConstructing entityConstructing) {
+        VillagersHandler.atVillagerSpawn(entityConstructing.entity);
     }
 }

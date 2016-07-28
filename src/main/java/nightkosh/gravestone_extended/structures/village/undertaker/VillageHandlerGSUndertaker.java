@@ -14,26 +14,7 @@ import java.util.Random;
  * @author NightKosh
  * @license Lesser GNU Public License v3 (http://www.gnu.org/licenses/lgpl.html)
  */
-//TODO
-//public class VillageHandlerGSUndertaker implements VillagerRegistry.IVillageCreationHandler, VillagerRegistry.IVillageTradeHandler {
 public class VillageHandlerGSUndertaker implements VillagerRegistry.IVillageCreationHandler {
-
-    public static final int UNDERTAKER_ID = 385;
-
-//TODO
-//    @Override
-//    public void manipulateTradesForVillager(EntityVillager villager, MerchantRecipeList recipeList, Random random) {
-//        // chisel
-//        recipeList.add(new MerchantRecipe(new ItemStack(Items.emerald, 1), new ItemStack(GSItem.chisel, 1, 0)));
-//        // candle
-//        recipeList.add(new MerchantRecipe(new ItemStack(Items.emerald, 1), new ItemStack(GSBlock.candle, 10, 0)));
-//        // skulls
-//        recipeList.add(new MerchantRecipe(new ItemStack(Items.emerald, 15), new ItemStack(Items.skull, 1, 0))); // skeleton
-//        recipeList.add(new MerchantRecipe(new ItemStack(Items.emerald, 15), new ItemStack(Items.skull, 1, 2))); // zombie
-//        recipeList.add(new MerchantRecipe(new ItemStack(Items.emerald, 20), new ItemStack(Items.skull, 1, 3))); // steve
-//        recipeList.add(new MerchantRecipe(new ItemStack(Items.emerald, 20), new ItemStack(Items.skull, 1, 4))); // creeper
-//        recipeList.add(new MerchantRecipe(new ItemStack(Items.emerald, 30), new ItemStack(Items.skull, 1, 1))); // wither
-//    }
 
     @Override
     public StructureVillagePieces.PieceWeight getVillagePieceWeight(Random random, int size) {

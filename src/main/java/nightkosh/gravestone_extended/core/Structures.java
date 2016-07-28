@@ -73,11 +73,6 @@ public class Structures {
         if (ExtendedConfig.generateUndertaker) {
             VillageHandlerGSUndertaker villageUndertakerHandler = new VillageHandlerGSUndertaker();
             VillagerRegistry.instance().registerVillageCreationHandler(villageUndertakerHandler);
-            //TODO
-//            VillagerRegistry.instance().registerVillagerId(VillageHandlerGSUndertaker.UNDERTAKER_ID);
-//            ModGraveStone.proxy.registerVillagers();
-//            VillagerRegistry.instance().register(new UndertakerProfession());
-            //.registerVillageTradeHandler(VillageHandlerGSUndertaker.UNDERTAKER_ID, villageUndertakerHandler);
         }
 
         // structure generator

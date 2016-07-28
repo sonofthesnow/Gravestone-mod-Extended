@@ -12,13 +12,11 @@ import net.minecraftforge.fml.client.FMLClientHandler;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.common.registry.LanguageRegistry;
-import net.minecraftforge.fml.common.registry.VillagerRegistry;
 import nightkosh.gravestone.core.proxy.ProxyHelper;
 import nightkosh.gravestone.tileentity.TileEntityGrave;
 import nightkosh.gravestone_extended.block.enums.*;
 import nightkosh.gravestone_extended.core.GSBlock;
 import nightkosh.gravestone_extended.core.GSItem;
-import nightkosh.gravestone_extended.core.Resources;
 import nightkosh.gravestone_extended.core.ResourcesModels;
 import nightkosh.gravestone_extended.core.event.RenderEventHandler;
 import nightkosh.gravestone_extended.entity.EntityRaven;
@@ -31,7 +29,6 @@ import nightkosh.gravestone_extended.models.entity.ModelUndeadCat;
 import nightkosh.gravestone_extended.models.entity.ModelUndeadDog;
 import nightkosh.gravestone_extended.renderer.entity.*;
 import nightkosh.gravestone_extended.renderer.tileentity.*;
-import nightkosh.gravestone_extended.structures.village.undertaker.VillageHandlerGSUndertaker;
 import nightkosh.gravestone_extended.tileentity.*;
 import org.apache.commons.lang3.StringUtils;
 
@@ -120,11 +117,6 @@ public class ClientProxy extends CommonProxy {
 
         // Spawner Helper
         RenderingRegistry.registerEntityRenderingHandler(EntityGroupOfGravesMobSpawnerHelper.class, new RenderSpawnerHelper(Minecraft.getMinecraft().getRenderManager()));
-    }
-
-    @Override
-    public void registerVillagers() {
-        VillagerRegistry.instance().registerVillagerSkin(VillageHandlerGSUndertaker.UNDERTAKER_ID, Resources.UNDERTAKER);
     }
 
     @Override

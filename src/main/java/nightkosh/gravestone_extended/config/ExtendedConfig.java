@@ -9,7 +9,7 @@ import nightkosh.gravestone_extended.structures.catacombs.CatacombsGenerator;
 import nightkosh.gravestone_extended.structures.catacombs.CatacombsLevel;
 import nightkosh.gravestone_extended.structures.graves.SingleGraveGenerator;
 import nightkosh.gravestone_extended.structures.memorials.MemorialGenerator;
-import nightkosh.gravestone_extended.structures.village.undertaker.VillageHandlerGSUndertaker;
+import nightkosh.gravestone_extended.structures.village.VillagersHandler;
 
 import java.io.File;
 
@@ -114,7 +114,7 @@ public class ExtendedConfig {
         generateCemeteries = config.get(CATEGORY_STRUCTURES_VILLAGE, "GenerateCemeteries", false).getBoolean(false);
         generateVillageMemorials = config.get(CATEGORY_STRUCTURES_VILLAGE, "GenerateVillageMemorials", true).getBoolean(true);
         generateUndertaker = config.get(CATEGORY_STRUCTURES_VILLAGE, "GenerateUndertaker", true).getBoolean(true);
-        undertakerId = config.get(CATEGORY_STRUCTURES_VILLAGE, "undertakerId", VillageHandlerGSUndertaker.UNDERTAKER_ID).getInt();
+        undertakerId = config.get(CATEGORY_STRUCTURES_VILLAGE, "undertakerId", VillagersHandler.UNDERTAKER_ID).getInt();
     }
 
     // graves for entities
