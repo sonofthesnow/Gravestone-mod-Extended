@@ -19,7 +19,7 @@ Read more on [official site](http://gravestone.nightkosh.com/) or on [minecraft 
 1. [Gravestone Mod API](https://github.com/NightKosh/GraveStone-mod-API) (will be loaded as git submodule)
 2. [Sophisticated wolves API](https://github.com/NightKosh/Sophisticated-wolves-API) (will be loaded as git submodule)
 4. [Forestry API](https://github.com/ForestryMC/ForestryAPI) (will be loaded as git submodule)
-8. [Thaumcraft API](https://github.com/Azanor/thaumcraft-api)
+8. [Thaumcraft API](https://github.com/Azanor/thaumcraft-api) (will be loaded as git submodule)
 
 ##Get started
 1. [Set up forge](http://www.minecraftforge.net/wiki/Installation/Source)
