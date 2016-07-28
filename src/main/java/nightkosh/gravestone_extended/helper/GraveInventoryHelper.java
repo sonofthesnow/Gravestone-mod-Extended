@@ -1,10 +1,12 @@
 package nightkosh.gravestone_extended.helper;
 
-import nightkosh.gravestone_extended.core.Potion;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentData;
 import net.minecraft.init.Items;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import nightkosh.gravestone.helper.GraveGenerationHelper.EnumGraveTypeByEntity;
+import nightkosh.gravestone_extended.core.Potion;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,25 +28,6 @@ public class GraveInventoryHelper {
             Potion.SPLASH_INVISIBILITY_POTION_ID, Potion.SPLASH_WATER_BREATHING_POTION_ID, Potion.SPLASH_LEAPING_POTION_ID
     };
 
-    public static GraveContentType getRandomGraveContentType(Random random) {
-        int graveType = random.nextInt(80);
-        if (graveType > 5) {
-            return GraveContentType.WARRIOR;//leather
-        } else if (graveType < 4) {
-            return GraveContentType.ADVENTURER;
-        } else if (graveType < 7) {
-            return GraveContentType.WORKER;
-        } else if (graveType < 10) {
-            return GraveContentType.WIZARD;
-        } else if (graveType < 12) {
-            return GraveContentType.MINER;
-        } else if (graveType == 13) {
-//            fillWarriorGrave(random, false);
-            return GraveContentType.WARRIOR;
-        }
-        return null;//TODO !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-    }
-
     public static enum GraveCorpseContentType {
         EMPTY,
         CORPSE,
@@ -53,132 +36,227 @@ public class GraveInventoryHelper {
         RANDOM
     }
 
-    public static GraveCorpseContentType getRandomCorpseContentType(Random random) {
-//            if (canHaveSkullAndBones && random.nextInt(50) == 0) {
-//
-//            }
-        return GraveCorpseContentType.BONES_AND_FLESH;//TODO !!!!!!!!!!!!!!!!!!
-    }
-
-    public static void addCorpse(Random random, List<ItemStack> itemList) {
-        //TODO !!!!!!!!!!
-    }
-
-    public static void addBonesAndFlesh(Random random, List<ItemStack> itemList) {
-        if (random.nextInt(2) == 0) {
-            itemList.add(new ItemStack(Items.skull, 1, 0));
-        } else {
-            itemList.add(new ItemStack(Items.skull, 1, 2));
+    private static GraveCorpseContentType getRandomCorpseContentType(ContentMaterials contentMaterials, Random random) {
+        switch (contentMaterials) {
+            case DIAMOND:
+            case EMERALD:
+                return random.nextBoolean() ? GraveCorpseContentType.CORPSE : GraveCorpseContentType.SKULL_BONES_AND_FLESH;//50%
+            case GOLDEN:
+            case REDSTONE:
+            case QUARTZ:
+            case LAPIS:
+                if (random.nextInt(10) < 5) {
+                    return GraveCorpseContentType.BONES_AND_FLESH;//50%
+                } else {
+                    return random.nextBoolean() ? GraveCorpseContentType.CORPSE : GraveCorpseContentType.SKULL_BONES_AND_FLESH;//25%
+                }
+            case IRON:
+            case CHAINMAIL:
+                if (random.nextInt(10) < 7) {
+                    return GraveCorpseContentType.BONES_AND_FLESH;//70%
+                } else {
+                    return random.nextBoolean() ? GraveCorpseContentType.CORPSE : GraveCorpseContentType.SKULL_BONES_AND_FLESH;//15%
+                }
+            default:
+            case OTHER:
+                if (random.nextInt(10) < 8) {
+                    return GraveCorpseContentType.BONES_AND_FLESH;//80%
+                } else {
+                    return random.nextBoolean() ? GraveCorpseContentType.CORPSE : GraveCorpseContentType.SKULL_BONES_AND_FLESH;//10%
+                }
         }
     }
 
-    public static void addSkull(Random random, List<ItemStack> itemList) {
+    private static void addCorpse(GraveContentType contentType, Random random, List<ItemStack> itemList) {
+        switch (contentType) {
+            case DOG://TODO !!!!!!!!!!
+                break;
+            case CAT://TODO !!!!!!!!!!
+                break;
+            case HORSE://TODO !!!!!!!!!!
+                break;
+            default://TODO !!!!!!!!!!
+                break;
+        }
+    }
+
+    private static void addBonesAndFlesh(Random random, List<ItemStack> itemList) {
         itemList.add(new ItemStack(Items.bone, 1 + random.nextInt(5), 0));
         itemList.add(new ItemStack(Items.rotten_flesh, 1 + random.nextInt(5), 0));
     }
 
+    private static void addSkull(Random random, List<ItemStack> itemList) {
+        if (random.nextBoolean()) {
+            itemList.add(new ItemStack(Items.skull, 1, 0));//SKELETON
+        } else {
+            itemList.add(new ItemStack(Items.skull, 1, 2));//ZOMBIE
+        }
+    }
+
     public static enum GraveContentType {
-        RANDOM,
+        JUNK,
         WORKER,
         MINER,
         WIZARD,
         WARRIOR,
         ADVENTURER,
         TREASURY,
-        JUNK
+        RANDOM,
+        DOG,
+        CAT,
+        HORSE,
+        OTHER
     }
 
-    public static interface IContentMaterials {
-    }
-
-    public static enum ContentMaterials implements IContentMaterials {
-        EMPTY,
+    public static enum ContentMaterials {
+        OTHER,
         IRON,
         GOLDEN,
-        DIAMOND
+        DIAMOND,
+        EMERALD,
+        REDSTONE,
+        QUARTZ,
+        LAPIS,
+        CHAINMAIL
     }
 
-    public static enum WarriorContentMaterials implements IContentMaterials {
-        LEATHER,
-        IRON,
-        CHAINMAIL,
-        GOLDEN,
-        DIAMOND
+    public static GraveContentType getRandomContentType(EnumGraveTypeByEntity graveTypeByEntity, Random random) {
+        switch (graveTypeByEntity) {
+            case PLAYER_GRAVES:
+            case VILLAGERS_GRAVES:
+                int chance = random.nextInt(100);
+                if (chance < 35) {
+                    return GraveContentType.JUNK;//35%
+                } else if (chance < 55) {
+                    return GraveContentType.WORKER;//20%
+                } else if (chance < 70) {
+                    return GraveContentType.MINER;//15%
+                } else if (chance < 85) {
+                    return GraveContentType.WIZARD;//15%
+                } else if (chance < 95) {
+                    return GraveContentType.ADVENTURER;//10%
+                } else {
+                    return GraveContentType.WARRIOR;//5%
+                }
+            case DOGS_GRAVES:
+                return GraveContentType.DOG;
+            case CATS_GRAVES:
+                return GraveContentType.CAT;
+            case HORSE_GRAVES:
+                return GraveContentType.HORSE;
+            default:
+                return GraveContentType.OTHER;
+        }
     }
 
-    /**
-     * Fill grave with some random warrior stuff
-     */
-    public static void fillWarriorGrave(Random random, List<ItemStack> itemList, WarriorContentMaterials materials) {
-        materials = WarriorContentMaterials.DIAMOND;//TODO !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    public static ContentMaterials getContentMaterial(GraveContentType contentType, Random random) {
+        switch (contentType) {
+            case WORKER:
+                return getWorkerContentType(random);
+            case MINER:
+                return getMinerContentType(random);
+            case WIZARD:
+                return getWizardContentType(random);
+            case WARRIOR:
+                return getWarriorContentType(random);
+            case ADVENTURER:
+                return getAdventureContentType(random);
+            case TREASURY:
+                return ContentMaterials.OTHER; //TODO!!!
+            default:
+            case DOG://TODO
+            case CAT://TODO
+            case HORSE://TODO
+            case JUNK:
+            case OTHER:
+                return ContentMaterials.OTHER;
+        }
+    }
+
+    private static ContentMaterials getWarriorContentType(Random random) {
+        int chance = random.nextInt(100);
+        if (chance < 5) {
+            return ContentMaterials.DIAMOND;//5%
+        } else if (chance < 20) {
+            return ContentMaterials.GOLDEN;//15%
+        } else if (chance < 40) {
+            return ContentMaterials.CHAINMAIL;//20% CHAINMAIL
+        } else if (chance < 65) {
+            return ContentMaterials.IRON;//25%
+        } else {
+            return ContentMaterials.OTHER;//35% LEATHER
+        }
+    }
+
+    private static void fillWarriorGrave(Random random, List<ItemStack> itemList, ContentMaterials materials) {
         switch (materials) {
-            case LEATHER:
-                if (random.nextInt(2) == 0) {
+            case OTHER:
+                if (random.nextBoolean()) {
                     itemList.add(new ItemStack(Items.leather_chestplate, 1, getRandomDamage(random, 30)));
                 }
-                if (random.nextInt(2) == 0) {
+                if (random.nextBoolean()) {
                     itemList.add(new ItemStack(Items.leather_leggings, 1, getRandomDamage(random, 30)));
                 }
-                if (random.nextInt(2) == 0) {
+                if (random.nextBoolean()) {
                     itemList.add(new ItemStack(Items.leather_helmet, 1, getRandomDamage(random, 30)));
                 }
-                if (random.nextInt(2) == 0) {
+                if (random.nextBoolean()) {
                     itemList.add(new ItemStack(Items.leather_boots, 1, getRandomDamage(random, 30)));
                 }
                 break;
             case IRON:
-                if (random.nextInt(2) == 0) {
+                if (random.nextBoolean()) {
                     itemList.add(new ItemStack(Items.iron_chestplate, 1, getRandomDamage(random)));
                 }
-                if (random.nextInt(2) == 0) {
+                if (random.nextBoolean()) {
                     itemList.add(new ItemStack(Items.iron_leggings, 1, getRandomDamage(random)));
                 }
-                if (random.nextInt(2) == 0) {
+                if (random.nextBoolean()) {
                     itemList.add(new ItemStack(Items.iron_helmet, 1, getRandomDamage(random)));
                 }
-                if (random.nextInt(2) == 0) {
+                if (random.nextBoolean()) {
                     itemList.add(new ItemStack(Items.iron_boots, 1, getRandomDamage(random)));
                 }
                 break;
             case CHAINMAIL:
-                if (random.nextInt(2) == 0) {
+                if (random.nextBoolean()) {
                     itemList.add(new ItemStack(Items.chainmail_chestplate, 1, getRandomDamage(random)));
                 }
-                if (random.nextInt(2) == 0) {
+                if (random.nextBoolean()) {
                     itemList.add(new ItemStack(Items.chainmail_leggings, 1, getRandomDamage(random)));
                 }
-                if (random.nextInt(2) == 0) {
+                if (random.nextBoolean()) {
                     itemList.add(new ItemStack(Items.chainmail_helmet, 1, getRandomDamage(random)));
                 }
-                if (random.nextInt(2) == 0) {
+                if (random.nextBoolean()) {
                     itemList.add(new ItemStack(Items.chainmail_boots, 1, getRandomDamage(random)));
                 }
                 break;
             case GOLDEN:
-                if (random.nextInt(2) == 0) {
+                if (random.nextBoolean()) {
                     itemList.add(new ItemStack(Items.golden_chestplate, 1, getRandomDamage(random, 50)));
                 }
-                if (random.nextInt(2) == 0) {
+                if (random.nextBoolean()) {
                     itemList.add(new ItemStack(Items.golden_leggings, 1, getRandomDamage(random, 50)));
                 }
-                if (random.nextInt(2) == 0) {
+                if (random.nextBoolean()) {
                     itemList.add(new ItemStack(Items.golden_helmet, 1, getRandomDamage(random, 30)));
                 }
-                if (random.nextInt(2) == 0) {
+                if (random.nextBoolean()) {
                     itemList.add(new ItemStack(Items.golden_boots, 1, getRandomDamage(random, 40)));
                 }
                 break;
             case DIAMOND:
-                if (random.nextInt(2) == 0) {
+                if (random.nextBoolean()) {
                     itemList.add(new ItemStack(Items.diamond_chestplate, 1, getRandomDamage(random)));
                 }
-                if (random.nextInt(2) == 0) {
+                if (random.nextBoolean()) {
                     itemList.add(new ItemStack(Items.diamond_leggings, 1, getRandomDamage(random)));
                 }
-                if (random.nextInt(2) == 0) {
+                if (random.nextBoolean()) {
                     itemList.add(new ItemStack(Items.diamond_helmet, 1, getRandomDamage(random)));
                 }
-                if (random.nextInt(2) == 0) {
+                if (random.nextBoolean()) {
                     itemList.add(new ItemStack(Items.diamond_boots, 1, getRandomDamage(random)));
                 }
                 break;
@@ -188,41 +266,57 @@ public class GraveInventoryHelper {
             itemList.add(new ItemStack(Items.bow, 1, getRandomDamage(random)));
             itemList.add(new ItemStack(Items.arrow, 10 + random.nextInt(54), 0));
         }
-//        int armorType = random.nextInt(10);
-//        if (armorType > 5) { // Iron
-//        } else if (armorType > 2) {
-//        } else if (armorType > 0) {
-//        } else {
-//        }
     }
 
-    /**
-     * Fill grave with some random miner stuff
-     */
-    public static void fillMinerGrave(Random random, List<ItemStack> itemList, ContentMaterials materials) {
-        materials = ContentMaterials.DIAMOND;//TODO !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    public static ItemStack getWarriorSword(ContentMaterials contentMaterial, Random random) {
+        Item sword;
+        switch (contentMaterial) {
+            case IRON:
+            case CHAINMAIL:
+                sword = Items.iron_sword;
+                break;
+            case GOLDEN:
+                sword = Items.golden_sword;
+                break;
+            case DIAMOND:
+                sword = Items.diamond_sword;
+                break;
+            default:
+            case OTHER:
+                sword = random.nextBoolean() ? Items.stone_sword : Items.wooden_sword;
+                break;
+        }
+        return new ItemStack(sword, 1, getRandomDamage(random, 30));
+    }
+
+    private static ContentMaterials getMinerContentType(Random random) {
+        int chance = random.nextInt(100);
+        if (chance < 10) {
+            return ContentMaterials.DIAMOND;//10%
+        } else if (chance < 30) {
+            return ContentMaterials.GOLDEN;//20%
+        } else if (chance < 60) {
+            return ContentMaterials.IRON;//30%
+        } else {
+            return ContentMaterials.OTHER;//40%
+        }
+    }
+
+    private static void fillMinerGrave(Random random, List<ItemStack> itemList, ContentMaterials materials) {
         switch (materials) {
             case IRON:
                 itemList.add(new ItemStack(Items.iron_pickaxe, 1, getRandomDamage(random)));
-//                tileEntity.setGraveType(GraveStoneHelper.getRandomGrave(Arrays.asList(GraveStoneHelper.GENERATED_IRON_GRAVES), random));//TODO
                 break;
             case GOLDEN:
                 itemList.add(new ItemStack(Items.golden_pickaxe, 1, getRandomDamage(random, 15)));
-//                tileEntity.setGraveType(GraveStoneHelper.getRandomGrave(Arrays.asList(GraveStoneHelper.GENERATED_GOLDEN_GRAVES), random));//TODO
                 break;
             case DIAMOND:
                 itemList.add(new ItemStack(Items.diamond_pickaxe, 1, getRandomDamage(random)));
-//                tileEntity.setGraveType(GraveStoneHelper.getRandomGrave(Arrays.asList(GraveStoneHelper.GENERATED_DIAMOND_GRAVES), random));//TODO
+                break;
+            default:
+                itemList.add(new ItemStack(Items.stone_pickaxe, 1, getRandomDamage(random, 30)));
                 break;
         }
-//        if (random.nextInt(2) == 0) {
-//            int pickAxeType = random.nextInt(10);
-//
-//            if (pickAxeType > 3) {
-//            } else if (pickAxeType > 0) {
-//            } else {
-//            }
-//        }
 
         switch (random.nextInt(10)) {
             case 0:
@@ -251,25 +345,31 @@ public class GraveInventoryHelper {
         }
     }
 
-    /**
-     * Fill grave with some random wizard stuff
-     */
-    public static void fillWizardGrave(Random random, List<ItemStack> itemList) {
-        switch (random.nextInt(10)) {
-            case 0: // enchanted book
+    private static ContentMaterials getWizardContentType(Random random) {
+        int chance = random.nextInt(10);
+        if (chance < 1) {
+            return ContentMaterials.REDSTONE;//10%
+        } else if (chance < 2) {
+            return ContentMaterials.QUARTZ;//10%
+        } else if (chance < 4) {
+            return ContentMaterials.LAPIS;//20%
+        } else {
+            return ContentMaterials.OTHER;//60%
+        }
+    }
+
+    private static void fillWizardGrave(Random random, List<ItemStack> itemList, ContentMaterials contentMaterials) {
+        switch (contentMaterials) {
+            case REDSTONE: // enchanted book
                 EnchantmentData data = new EnchantmentData(Enchantment.enchantmentsBookList[random.nextInt(Enchantment.enchantmentsBookList.length)], 1 + random.nextInt(5));
                 ItemStack items = Items.enchanted_book.getEnchantedItemStack(data);
                 itemList.add(items);
-//                tileEntity.setGraveType(GraveStoneHelper.getRandomGrave(Arrays.asList(GraveStoneHelper.GENERATED_REDSTONE_GRAVES), random));//TODO
                 break;
-            case 1:
+            case QUARTZ:
                 itemList.add(new ItemStack(Items.potionitem, 1 + random.nextInt(5), POTION_LIST[random.nextInt(POTION_LIST.length)]));
-//                tileEntity.setGraveType(GraveStoneHelper.getRandomGrave(Arrays.asList(GraveStoneHelper.GENERATED_QUARTZ_GRAVES), random));//TODO
                 break;
-            case 2:
-            case 3:
+            case LAPIS:
                 itemList.add(new ItemStack(Items.book, 3 + random.nextInt(8), 0));
-//                tileEntity.setGraveType(GraveStoneHelper.getRandomGrave(Arrays.asList(GraveStoneHelper.GENERATED_LAPIS_GRAVES), random));//TODO
                 break;
         }
         switch (random.nextInt(15)) {
@@ -317,58 +417,58 @@ public class GraveInventoryHelper {
         }
     }
 
-    /**
-     * Fill grave with some random worker stuff
-     */
-    public static void fillWorkerGrave(Random random, List<ItemStack> itemList, ContentMaterials materials) {//TODO
-        materials = ContentMaterials.DIAMOND;//TODO !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    private static ContentMaterials getWorkerContentType(Random random) {
+        int chance = random.nextInt(100);
+        if (chance < 10) {
+            return ContentMaterials.DIAMOND;//10%
+        } else if (chance < 30) {
+            return ContentMaterials.GOLDEN;//20%
+        } else if (chance < 60) {
+            return ContentMaterials.IRON;//30%
+        } else {
+            return ContentMaterials.OTHER;//40%
+        }
+    }
+
+    private static void fillWorkerGrave(Random random, List<ItemStack> itemList, ContentMaterials materials) {
         switch (materials) {
             case IRON:
-                if (random.nextInt(2) == 0) {
+                if (random.nextBoolean()) {
                     itemList.add(new ItemStack(Items.iron_axe, 1, getRandomDamage(random)));
                 } else {
                     itemList.add(new ItemStack(Items.iron_shovel, 1, getRandomDamage(random)));
                 }
-//                tileEntity.setGraveType(GraveStoneHelper.getRandomGrave(Arrays.asList(GraveStoneHelper.GENERATED_IRON_GRAVES), random));//TODO
                 break;
             case GOLDEN:
-                if (random.nextInt(2) == 0) {
+                if (random.nextBoolean()) {
                     itemList.add(new ItemStack(Items.golden_axe, 1, getRandomDamage(random, 15)));
                 } else {
                     itemList.add(new ItemStack(Items.golden_shovel, 1, getRandomDamage(random, 15)));
                 }
-//                tileEntity.setGraveType(GraveStoneHelper.getRandomGrave(Arrays.asList(GraveStoneHelper.GENERATED_GOLDEN_GRAVES), random));//TODO
                 break;
             case DIAMOND:
-                if (random.nextInt(2) == 0) {
+                if (random.nextBoolean()) {
                     itemList.add(new ItemStack(Items.diamond_axe, 1, getRandomDamage(random)));
                 } else {
                     itemList.add(new ItemStack(Items.diamond_shovel, 1, getRandomDamage(random)));
                 }
-//                tileEntity.setGraveType(GraveStoneHelper.getRandomGrave(Arrays.asList(GraveStoneHelper.GENERATED_DIAMOND_GRAVES), random));//TODO
                 break;
         }
-
-//        int toolType = random.nextInt(10);
-//        if (toolType > 3) {
-//        } else if (toolType > 0) {
-//        } else {
-//        }
 
         if (random.nextInt(8) == 0) {
             itemList.add(new ItemStack(Items.saddle, 1, 0));
         }
     }
-    //TODO
-//    public static enum AdventurerContentMaterials {
-//        COMPASS_MAP_OR_CLOCK,
-//
-//    }
 
-    /**
-     * Fill grave with some random adventurer stuff
-     */
-    public static void fillAdventureGrave(Random random, List<ItemStack> itemList) {
+    private static ContentMaterials getAdventureContentType(Random random) {
+        if (random.nextInt(10) <= 2) {
+            return ContentMaterials.EMERALD;//20%
+        } else {
+            return ContentMaterials.OTHER;//80%
+        }
+    }
+
+    private static void fillAdventureGrave(Random random, List<ItemStack> itemList, ContentMaterials contentMaterials) {
         switch (random.nextInt(8)) {
             case 0:
                 itemList.add(new ItemStack(Items.compass, 1, 0));
@@ -401,16 +501,12 @@ public class GraveInventoryHelper {
             itemList.add(new ItemStack(Items.cookie, 3 + random.nextInt(5), 0));
         }
 
-        if (random.nextInt(15) == 0) {
+        if (contentMaterials == ContentMaterials.EMERALD) {
             itemList.add(getRandomEgg(random));
-//            tileEntity.setGraveType(GraveStoneHelper.getRandomGrave(Arrays.asList(GraveStoneHelper.GENERATED_EMERALD_GRAVES), random));//TODO
         }
     }
 
-    /**
-     * Fill pet grave
-     */
-    public static void fillPetGrave(Random random, List<ItemStack> itemList) {
+    private static void fillPetGrave(Random random, List<ItemStack> itemList) {
         if (random.nextInt(10) == 0) {
             itemList.add(new ItemStack(Items.lead, 1, 0));
             //            if (Arrays.asList(GraveStoneHelper.DOGS_GRAVES).contains(tileEntity.getGraveType())) {
@@ -430,26 +526,14 @@ public class GraveInventoryHelper {
         }
     }
 
-    /**
-     * Return random damage values for items
-     */
-    public static int getRandomDamage(Random random) {
+    private static int getRandomDamage(Random random) {
         return 20 + random.nextInt(100);
     }
 
-    /**
-     * Return random damage values for items with maximum damage value
-     *
-     * @param random
-     * @param maxDamage Max item damage
-     */
-    public static int getRandomDamage(Random random, int maxDamage) {
+    private static int getRandomDamage(Random random, int maxDamage) {
         return random.nextInt(maxDamage);
     }
 
-    /**
-     * Return random record
-     */
     private static ItemStack getRandomRecord(Random random) {
         switch (random.nextInt(13)) {
             case 1:
@@ -493,9 +577,6 @@ public class GraveInventoryHelper {
     private static final int EGG_HORSE = 100;
     private static final int EGG_VILLAGER = 120;
 
-    /**
-     * Return random egg
-     */
     private static ItemStack getRandomEgg(Random random) {
         switch (random.nextInt(11)) {
             case 1:
@@ -524,16 +605,15 @@ public class GraveInventoryHelper {
         }
     }
 
-
     public static List<ItemStack> getRandomGraveContent(Random random, GraveGenerationHelper.EnumGraveTypeByEntity graveTypeByEntity, GraveContentType contentType,
-                                                        GraveCorpseContentType corpseType, IContentMaterials contentMaterials) {
+                                                        GraveCorpseContentType corpseType, ContentMaterials contentMaterials) {
         List<ItemStack> itemList = new ArrayList<>();
         if (corpseType == GraveInventoryHelper.GraveCorpseContentType.RANDOM) {
-            corpseType = GraveInventoryHelper.getRandomCorpseContentType(random);
+            corpseType = GraveInventoryHelper.getRandomCorpseContentType(contentMaterials, random);
         }
         switch (corpseType) {
             case CORPSE:
-                GraveInventoryHelper.addCorpse(random, itemList);
+                GraveInventoryHelper.addCorpse(contentType, random, itemList);
                 break;
             case BONES_AND_FLESH:
                 GraveInventoryHelper.addBonesAndFlesh(random, itemList);
@@ -544,46 +624,33 @@ public class GraveInventoryHelper {
                 break;
         }
 
-        if (graveTypeByEntity == GraveGenerationHelper.EnumGraveTypeByEntity.DOGS_GRAVES ||
-                graveTypeByEntity == GraveGenerationHelper.EnumGraveTypeByEntity.CATS_GRAVES ||
-                graveTypeByEntity == GraveGenerationHelper.EnumGraveTypeByEntity.HORSE_GRAVES) {
-            GraveInventoryHelper.fillPetGrave(random, itemList);
-        } else {
-            if (contentType == GraveInventoryHelper.GraveContentType.RANDOM) {
-                contentType = GraveInventoryHelper.getRandomGraveContentType(random);
+        if (contentType != GraveContentType.JUNK) {
+            if (graveTypeByEntity == GraveGenerationHelper.EnumGraveTypeByEntity.DOGS_GRAVES ||
+                    graveTypeByEntity == GraveGenerationHelper.EnumGraveTypeByEntity.CATS_GRAVES ||
+                    graveTypeByEntity == GraveGenerationHelper.EnumGraveTypeByEntity.HORSE_GRAVES) {
+                GraveInventoryHelper.fillPetGrave(random, itemList);
+            } else {
+                switch (contentType) {
+                    case WORKER:
+                        GraveInventoryHelper.fillWorkerGrave(random, itemList, contentMaterials);
+                        break;
+                    case MINER:
+                        GraveInventoryHelper.fillMinerGrave(random, itemList, contentMaterials);
+                        break;
+                    case WIZARD:
+                        GraveInventoryHelper.fillWizardGrave(random, itemList, contentMaterials);
+                        break;
+                    case WARRIOR:
+                        GraveInventoryHelper.fillWarriorGrave(random, itemList, contentMaterials);
+                        break;
+                    case ADVENTURER:
+                        GraveInventoryHelper.fillAdventureGrave(random, itemList, contentMaterials);
+                        break;
+                    case TREASURY:
+                        //TODO
+                        break;
+                }
             }
-            switch (contentType) {
-                case WORKER:
-                    GraveInventoryHelper.fillWorkerGrave(random, itemList, (ContentMaterials) contentMaterials);
-                    break;
-                case MINER:
-                    GraveInventoryHelper.fillMinerGrave(random, itemList, (ContentMaterials) contentMaterials);
-                    break;
-                case WIZARD:
-                    GraveInventoryHelper.fillWizardGrave(random, itemList);
-                    break;
-                case WARRIOR:
-                    GraveInventoryHelper.fillWarriorGrave(random, itemList, (WarriorContentMaterials) contentMaterials);
-                    break;
-                case ADVENTURER:
-                    GraveInventoryHelper.fillAdventureGrave(random, itemList);
-                    break;
-                case TREASURY:
-                    //TODO
-                    break;
-                case JUNK:
-                    //DO NOTHING, contentMaterials can be null !!!
-                    break;
-            }
-//                if (tileEntity.isSwordGrave() && graveType > 5) {
-//                    fillWarriorGrave(random, true);
-//                } else if (graveType < 4) {
-//                } else if (graveType < 7) {
-//                } else if (graveType < 10) {
-//                } else if (graveType < 12) {
-//                } else if (graveType == 13) {
-//                    fillWarriorGrave(random, false);
-//                }
         }
         return itemList;
     }

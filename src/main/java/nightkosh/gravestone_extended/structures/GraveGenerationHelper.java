@@ -12,6 +12,7 @@ import nightkosh.gravestone_extended.entity.helper.EntityGroupOfGravesMobSpawner
 import nightkosh.gravestone_extended.helper.GraveInventoryHelper;
 import nightkosh.gravestone_extended.helper.GraveStoneHelper;
 import nightkosh.gravestone_extended.helper.GraveWorldGenerationHelper;
+import nightkosh.gravestone.helper.GraveGenerationHelper.EnumGraveTypeByEntity;
 
 import java.util.Random;
 
@@ -38,16 +39,16 @@ public class GraveGenerationHelper {
 
     public static void placeGrave(IComponentGraveStone component, World world, Random random, int x, int y, int z,
                                   IBlockState graveState, EntityGroupOfGravesMobSpawnerHelper spanwerHelper) {
-        placeGrave(component, world, random, x, y, z, graveState, spanwerHelper, nightkosh.gravestone.helper.GraveGenerationHelper.EnumGraveTypeByEntity.HUMAN_GRAVES);
+        placeGrave(component, world, random, x, y, z, graveState, spanwerHelper, EnumGraveTypeByEntity.HUMAN_GRAVES);
     }
 
     public static void placeGrave(IComponentGraveStone component, World world, Random random, int x, int y, int z,
-                                  IBlockState graveState, EntityGroupOfGravesMobSpawnerHelper spanwerHelper, nightkosh.gravestone.helper.GraveGenerationHelper.EnumGraveTypeByEntity graveTypeByEntity) {
+                                  IBlockState graveState, EntityGroupOfGravesMobSpawnerHelper spanwerHelper, EnumGraveTypeByEntity graveTypeByEntity) {
         placeGrave(component, world, random, x, y, z, graveState, spanwerHelper, graveTypeByEntity, GraveInventoryHelper.GraveContentType.RANDOM);
     }
 
     public static void placeGrave(IComponentGraveStone component, World world, Random random, int x, int y, int z,
-                                  IBlockState graveState, EntityGroupOfGravesMobSpawnerHelper spanwerHelper, nightkosh.gravestone.helper.GraveGenerationHelper.EnumGraveTypeByEntity graveTypeByEntity,
+                                  IBlockState graveState, EntityGroupOfGravesMobSpawnerHelper spanwerHelper, EnumGraveTypeByEntity graveTypeByEntity,
                                   GraveInventoryHelper.GraveContentType contentType) {
         GraveWorldGenerationHelper.GraveGenerationInfo graveInfo = GraveWorldGenerationHelper.getGrave(world, random,
                 new BlockPos(component.getXWithOffset(x, z), component.getYWithOffset(y), component.getZWithOffset(x, z)),
@@ -61,26 +62,36 @@ public class GraveGenerationHelper {
         TileEntityGraveStone tileEntity = (TileEntityGraveStone) world.getTileEntity(new BlockPos(component.getXWithOffset(x, z), component.getYWithOffset(y), component.getZWithOffset(x, z)));
 
         if (tileEntity != null) {
-//            tileEntity.setGraveInfo(graveInfo);//TODO ???
+            setGraveInfo(graveInfo, tileEntity);
             tileEntity.setSpawnerHelper(spanwerHelper);
         }
     }
 
+    private static void setGraveInfo(GraveWorldGenerationHelper.GraveGenerationInfo graveInfo, TileEntityGraveStone tileEntity) {
+        tileEntity.setGraveType(graveInfo.getGrave().ordinal());
+        tileEntity.setEnchanted(graveInfo.isEnchanted());
+        tileEntity.setMossy(graveInfo.isMossy());
+        tileEntity.setSword(graveInfo.getSword());
+        tileEntity.setFlower(graveInfo.getFlower());
+        tileEntity.setDeathTextComponent(graveInfo.getDeathText());
+        tileEntity.getInventory().setAdditionalItems(graveInfo.getItems());
+    }
+
     public static void fillGraves(ComponentGraveStone component, World world, Random random, int xStart, int yStart, int zStart,
                                   int xEnd, int yEnd, int zEnd, IBlockState graveState, EntityGroupOfGravesMobSpawnerHelper spanwerHelper) {
-        fillGraves(component, world, random, xStart, yStart, zStart, xEnd, yEnd, zEnd, graveState, spanwerHelper, nightkosh.gravestone.helper.GraveGenerationHelper.EnumGraveTypeByEntity.HUMAN_GRAVES);
+        fillGraves(component, world, random, xStart, yStart, zStart, xEnd, yEnd, zEnd, graveState, spanwerHelper, EnumGraveTypeByEntity.HUMAN_GRAVES);
     }
 
     public static void fillGraves(ComponentGraveStone component, World world, Random random, int xStart, int yStart, int zStart,
                                   int xEnd, int yEnd, int zEnd, IBlockState graveState, EntityGroupOfGravesMobSpawnerHelper spanwerHelper,
-                                  nightkosh.gravestone.helper.GraveGenerationHelper.EnumGraveTypeByEntity graveTypeByEntity) {
+                                  EnumGraveTypeByEntity graveTypeByEntity) {
         fillGraves(component, world, random, xStart, yStart, zStart, xEnd, yEnd, zEnd, graveState, spanwerHelper, graveTypeByEntity,
                 GraveInventoryHelper.GraveContentType.RANDOM);
     }
 
     public static void fillGraves(ComponentGraveStone component, World world, Random random, int xStart, int yStart, int zStart,
                                   int xEnd, int yEnd, int zEnd, IBlockState graveState, EntityGroupOfGravesMobSpawnerHelper spanwerHelper,
-                                  nightkosh.gravestone.helper.GraveGenerationHelper.EnumGraveTypeByEntity graveTypeByEntity, GraveInventoryHelper.GraveContentType contentType) {
+                                  EnumGraveTypeByEntity graveTypeByEntity, GraveInventoryHelper.GraveContentType contentType) {
         for (int y = yStart; y <= yEnd; y++) {
             for (int x = xStart; x <= xEnd; x++) {
                 for (int z = zStart; z <= zEnd; z++) {
