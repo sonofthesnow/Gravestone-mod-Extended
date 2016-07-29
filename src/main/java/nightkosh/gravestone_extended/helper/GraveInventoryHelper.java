@@ -164,8 +164,9 @@ public class GraveInventoryHelper {
             case TREASURY:
                 return ContentMaterials.OTHER; //TODO!!!
             default:
-            case DOG://TODO
-            case CAT://TODO
+            case DOG:
+            case CAT:
+                return getPetContentType(random);
             case HORSE://TODO
             case JUNK:
             case OTHER:
@@ -506,23 +507,26 @@ public class GraveInventoryHelper {
         }
     }
 
-    private static void fillPetGrave(Random random, List<ItemStack> itemList) {
-        if (random.nextInt(10) == 0) {
-            itemList.add(new ItemStack(Items.lead, 1, 0));
-            //            if (Arrays.asList(GraveStoneHelper.DOGS_GRAVES).contains(tileEntity.getGraveType())) {
-            ////                tileEntity.setGraveType(GraveStoneHelper.getRandomGrave(Arrays.asList(GraveStoneHelper.DOG_GOLDEN_GRAVES), random));//TODO
-            //            } else if (Arrays.asList(GraveStoneHelper.CATS_GRAVES).contains(tileEntity.getGraveType())) {
-            ////                tileEntity.setGraveType(GraveStoneHelper.getRandomGrave(Arrays.asList(GraveStoneHelper.CAT_GOLDEN_GRAVES), random));//TODO
-            //            }
+    private static ContentMaterials getPetContentType(Random random) {
+        int chance = random.nextInt(10);
+        if (chance == 0) {
+            return ContentMaterials.GOLDEN;//10%
+        } else if (chance == 1) {
+            return ContentMaterials.DIAMOND;//10%
+        } else {
+            return ContentMaterials.OTHER;//80%
         }
+    }
 
-        if (random.nextInt(10) == 0) {
-            itemList.add(new ItemStack(Items.name_tag, 1, 0));
-            //            if (Arrays.asList(GraveStoneHelper.DOGS_GRAVES).contains(tileEntity.getGraveType())) {
-            ////                tileEntity.setGraveType(GraveStoneHelper.getRandomGrave(Arrays.asList(GraveStoneHelper.DOG_DIAMOND_GRAVES), random));//TODO
-            //            } else if (Arrays.asList(GraveStoneHelper.CATS_GRAVES).contains(tileEntity.getGraveType())) {
-            ////                tileEntity.setGraveType(GraveStoneHelper.getRandomGrave(Arrays.asList(GraveStoneHelper.CAT_DIAMOND_GRAVES), random));//TODO
-            //            }
+    private static void fillPetGrave(List<ItemStack> itemList, ContentMaterials contentMaterials) {
+        switch (contentMaterials) {
+            case GOLDEN:
+                itemList.add(new ItemStack(Items.lead, 1, 0));
+                break;
+            case DIAMOND:
+                itemList.add(new ItemStack(Items.lead, 1, 0));
+                itemList.add(new ItemStack(Items.name_tag, 1, 0));
+                break;
         }
     }
 
@@ -625,31 +629,34 @@ public class GraveInventoryHelper {
         }
 
         if (contentType != GraveContentType.JUNK) {
-            if (graveTypeByEntity == GraveGenerationHelper.EnumGraveTypeByEntity.DOGS_GRAVES ||
-                    graveTypeByEntity == GraveGenerationHelper.EnumGraveTypeByEntity.CATS_GRAVES ||
-                    graveTypeByEntity == GraveGenerationHelper.EnumGraveTypeByEntity.HORSE_GRAVES) {
-                GraveInventoryHelper.fillPetGrave(random, itemList);
-            } else {
-                switch (contentType) {
-                    case WORKER:
-                        GraveInventoryHelper.fillWorkerGrave(random, itemList, contentMaterials);
-                        break;
-                    case MINER:
-                        GraveInventoryHelper.fillMinerGrave(random, itemList, contentMaterials);
-                        break;
-                    case WIZARD:
-                        GraveInventoryHelper.fillWizardGrave(random, itemList, contentMaterials);
-                        break;
-                    case WARRIOR:
-                        GraveInventoryHelper.fillWarriorGrave(random, itemList, contentMaterials);
-                        break;
-                    case ADVENTURER:
-                        GraveInventoryHelper.fillAdventureGrave(random, itemList, contentMaterials);
-                        break;
-                    case TREASURY:
-                        //TODO
-                        break;
-                }
+            switch (graveTypeByEntity) {
+                case DOGS_GRAVES:
+                case CATS_GRAVES:
+                    GraveInventoryHelper.fillPetGrave(itemList, contentMaterials);
+                    break;
+                case HORSE_GRAVES:
+                    break;
+                default:
+                    switch (contentType) {
+                        case WORKER:
+                            GraveInventoryHelper.fillWorkerGrave(random, itemList, contentMaterials);
+                            break;
+                        case MINER:
+                            GraveInventoryHelper.fillMinerGrave(random, itemList, contentMaterials);
+                            break;
+                        case WIZARD:
+                            GraveInventoryHelper.fillWizardGrave(random, itemList, contentMaterials);
+                            break;
+                        case WARRIOR:
+                            GraveInventoryHelper.fillWarriorGrave(random, itemList, contentMaterials);
+                            break;
+                        case ADVENTURER:
+                            GraveInventoryHelper.fillAdventureGrave(random, itemList, contentMaterials);
+                            break;
+                        case TREASURY:
+                            //TODO
+                            break;
+                    }
             }
         }
         return itemList;

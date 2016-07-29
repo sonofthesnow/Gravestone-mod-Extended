@@ -82,30 +82,25 @@ public class GraveWorldGenerationHelper extends GraveGenerationHelper {
     }
 
     private static EnumGraveMaterial getGraveMaterialByContentType(GraveInventoryHelper.GraveContentType contentType, ContentMaterials contentMaterials) {
-        if (contentType == GraveInventoryHelper.GraveContentType.OTHER) {
-            //TODO pets ?? !!!!!!!!!!!!!!!
-            return EnumGraveMaterial.PRIZMARINE;
-        } else {
-            switch (contentMaterials) {
-                case IRON:
-                case CHAINMAIL:
-                    return EnumGraveMaterial.IRON;
-                case GOLDEN:
-                    return EnumGraveMaterial.GOLD;
-                case DIAMOND:
-                    return EnumGraveMaterial.DIAMOND;
-                case EMERALD:
-                    return EnumGraveMaterial.EMERALD;
-                case REDSTONE:
-                    return EnumGraveMaterial.REDSTONE;
-                case QUARTZ:
-                    return EnumGraveMaterial.QUARTZ;
-                case LAPIS:
-                    return EnumGraveMaterial.LAPIS;
-                default:
-                case OTHER:
-                    return EnumGraveMaterial.STONE;
-            }
+        switch (contentMaterials) {
+            case IRON:
+            case CHAINMAIL:
+                return EnumGraveMaterial.IRON;
+            case GOLDEN:
+                return EnumGraveMaterial.GOLD;
+            case DIAMOND:
+                return EnumGraveMaterial.DIAMOND;
+            case EMERALD:
+                return EnumGraveMaterial.EMERALD;
+            case REDSTONE:
+                return EnumGraveMaterial.REDSTONE;
+            case QUARTZ:
+                return EnumGraveMaterial.QUARTZ;
+            case LAPIS:
+                return EnumGraveMaterial.LAPIS;
+            default:
+            case OTHER:
+                return EnumGraveMaterial.STONE;
         }
     }
 

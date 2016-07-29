@@ -12,15 +12,15 @@ import java.util.Random;
  * @author NightKosh
  * @license Lesser GNU Public License v3 (http://www.gnu.org/licenses/lgpl.html)
  */
-public class GraveGenerationHelper extends nightkosh.gravestone.helper.GraveGenerationHelper{
+public class GraveGenerationHelper extends nightkosh.gravestone.helper.GraveGenerationHelper {
 
     protected static final Random rand = new Random();
 
     protected static EnumGraveTypeByEntity getRandomGraveType(Random random) {
         if (random.nextInt(5) < 4) {
-            return getRandomHumanGraveType(random);
+            return getRandomHumanGraveType(random);//20%
         } else {
-            return getRandomPetGraveType(random);
+            return getRandomPetGraveType(random);//80%
         }
     }
 
@@ -29,14 +29,12 @@ public class GraveGenerationHelper extends nightkosh.gravestone.helper.GraveGene
     }
 
     protected static EnumGraveTypeByEntity getRandomPetGraveType(Random random) {
-        switch (random.nextInt(3)) {
-            case 0:
-            default:
-                return EnumGraveTypeByEntity.DOGS_GRAVES;
-            case 1:
-                return EnumGraveTypeByEntity.CATS_GRAVES;
-            case 2:
-                return EnumGraveTypeByEntity.HORSE_GRAVES;
+        if (random.nextInt(5) == 0) {
+            return EnumGraveTypeByEntity.HORSE_GRAVES;//20%
+        } else if (random.nextBoolean()) {
+            return EnumGraveTypeByEntity.DOGS_GRAVES;//40%
+        } else {
+            return EnumGraveTypeByEntity.CATS_GRAVES;//40%
         }
     }
 
