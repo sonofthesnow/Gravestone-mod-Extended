@@ -20,6 +20,8 @@ public class Compatibility {
         return (instance == null) ? new Compatibility() : instance;
     }
 
+    public static boolean sophisticatedWolvesInstalled;
+
     public void checkMods() {
         if (Loader.isModLoaded("MoCreatures")) {
             CompatibilityMoCreatures.isInstalled = true;
@@ -38,6 +40,7 @@ public class Compatibility {
 //        }
 
         if (Loader.isModLoaded("SophisticatedWolves")) {
+            sophisticatedWolvesInstalled = true;//TODO
             CompatibilitySophisticatedWolves.isInstalled = true;
         }
 

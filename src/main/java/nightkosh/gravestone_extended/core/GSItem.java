@@ -4,6 +4,7 @@ import net.minecraft.item.Item;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import nightkosh.gravestone_extended.ModGravestoneExtended;
 import nightkosh.gravestone_extended.item.ItemChisel;
+import nightkosh.gravestone_extended.item.ItemCorpse;
 import nightkosh.gravestone_extended.item.ItemGSMonsterPlacer;
 
 /**
@@ -27,8 +28,8 @@ public class GSItem {
         chisel = new ItemChisel();
         GameRegistry.registerItem(chisel, CHISEL);
 //TODO
-//        corpse = new ItemCorpse();
-//        GameRegistry.registerItem(corpse, "GSCorpse");
+        corpse = new ItemCorpse();
+        GameRegistry.registerItem(corpse, "GSCorpse");
 
         spawnEgg = new ItemGSMonsterPlacer();
         GameRegistry.registerItem(spawnEgg, SPAWN_EGG);
