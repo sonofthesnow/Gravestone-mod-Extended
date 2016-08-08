@@ -7,9 +7,12 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
+import nightkosh.gravestone_extended.core.GSItem;
+import nightkosh.gravestone_extended.item.enums.EnumCorpse;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 /**
  * GraveStone mod
@@ -22,8 +25,12 @@ public class CatCorpseHelper extends CorpseHelper {
     private CatCorpseHelper() {
     }
 
+    public static ItemStack getRandomCorpse(Random random) {
+        return getDefaultCatCorpse(GSItem.corpse, EnumCorpse.CAT.ordinal(), random.nextInt(4));
+    }
+
     public static List<ItemStack> getDefaultCorpses(Item item, int corpseType) {
-        List<ItemStack> list = new ArrayList<ItemStack>();
+        List<ItemStack> list = new ArrayList<>();
         list.add(getDefaultCatCorpse(item, corpseType, 0)); // Ocelot
         list.add(getDefaultCatCorpse(item, corpseType, 1)); // Black
         list.add(getDefaultCatCorpse(item, corpseType, 2)); // Red

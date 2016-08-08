@@ -8,9 +8,12 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
+import nightkosh.gravestone_extended.core.GSItem;
+import nightkosh.gravestone_extended.item.enums.EnumCorpse;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 /**
  * GraveStone mod
@@ -23,8 +26,13 @@ public class HorseCorpseHelper extends CorpseHelper {
     private HorseCorpseHelper() {
     }
 
+    public static ItemStack getRandomCorpse(Random random) {
+        //TODO !!! random variant, health ...
+        return getDefaultHorseCorpse(GSItem.corpse, EnumCorpse.HORSE.ordinal(), random.nextInt(5));
+    }
+
     public static List<ItemStack> getDefaultCorpses(Item item, int corpseType) {
-        List<ItemStack> list = new ArrayList<ItemStack>();
+        List<ItemStack> list = new ArrayList<>();
 
         list.add(getDefaultHorseCorpse(item, corpseType, 0)); // horse
         list.add(getDefaultHorseCorpse(item, corpseType, 1)); // donkey

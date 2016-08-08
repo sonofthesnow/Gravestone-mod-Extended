@@ -8,13 +8,14 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
 import nightkosh.gravestone_extended.ModGravestoneExtended;
+import nightkosh.gravestone_extended.core.GSItem;
+import nightkosh.gravestone_extended.core.compatibility.Compatibility;
 import nightkosh.gravestone_extended.core.compatibility.CompatibilitySophisticatedWolves;
-import sophisticated_wolves.api.EnumWolfSpecies;
-import sophisticated_wolves.api.ISophisticatedWolf;
-import sophisticated_wolves.api.SophisticatedWolvesAPI;
+import nightkosh.gravestone_extended.item.enums.EnumCorpse;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 /**
  * GraveStone mod
@@ -25,6 +26,16 @@ import java.util.List;
 public class DogCorpseHelper extends CorpseHelper {
 
     private DogCorpseHelper() {
+    }
+
+    public static ItemStack getRandomCorpse(Random random) {
+        //TODO sophisticated wolves
+        ItemStack corpse = new ItemStack(GSItem.corpse, 1, EnumCorpse.DOG.ordinal());
+        NBTTagCompound nbtTag = new NBTTagCompound();
+        nbtTag.setByte("Collar", (byte) random.nextInt(16));
+        corpse.setTagCompound(nbtTag);
+
+        return corpse;
     }
 
     public static List<ItemStack> getDefaultCorpses(Item item, int type) {
@@ -45,16 +56,15 @@ public class DogCorpseHelper extends CorpseHelper {
         setName(dog, nbt);
         nbt.setByte("Collar", (byte) dog.getCollarColor().getMetadata());
 
-        if (CompatibilitySophisticatedWolves.isInstalled() && dog instanceof ISophisticatedWolf) {
-            nbt.setInteger("Species", ((ISophisticatedWolf) dog).getSpecies().ordinal());
+        if (Compatibility.sophisticatedWolvesInstalled && CompatibilitySophisticatedWolves.isSophisticated(dog)) {
+            nbt.setInteger("Species", CompatibilitySophisticatedWolves.getSpecies(dog));
         }
     }
 
     public static void spawnDog(World world, int x, int y, int z, NBTTagCompound nbtTag, EntityPlayer player) {
         EntityWolf wolf;
-        if (CompatibilitySophisticatedWolves.isInstalled() && nbtTag.hasKey("Species")) {
-            wolf = SophisticatedWolvesAPI.entityHandler.getNewSophisticatedWolf(world);
-            ((ISophisticatedWolf) wolf).updateSpecies(EnumWolfSpecies.getSpeciesByNum(nbtTag.getInteger("Species")));
+        if (Compatibility.sophisticatedWolvesInstalled && CompatibilitySophisticatedWolves.isSophisticated(nbtTag)) {
+            wolf = CompatibilitySophisticatedWolves.getWolf(world, nbtTag);
         } else {
             wolf = new EntityWolf(world);
         }
@@ -72,7 +82,7 @@ public class DogCorpseHelper extends CorpseHelper {
         if (hasCollar(nbtTag)) {
             list.add(getCollarStr(nbtTag));
         }
-        if (CompatibilitySophisticatedWolves.isInstalled() && nbtTag.hasKey("Species")) {
+        if (Compatibility.sophisticatedWolvesInstalled && CompatibilitySophisticatedWolves.isSophisticated(nbtTag)) {
             list.add(getSpeciesStr(nbtTag));
         }
     }

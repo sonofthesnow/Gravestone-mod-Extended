@@ -7,6 +7,10 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import nightkosh.gravestone.helper.GraveGenerationHelper.EnumGraveTypeByEntity;
 import nightkosh.gravestone_extended.core.Potion;
+import nightkosh.gravestone_extended.item.corpse.CatCorpseHelper;
+import nightkosh.gravestone_extended.item.corpse.DogCorpseHelper;
+import nightkosh.gravestone_extended.item.corpse.HorseCorpseHelper;
+import nightkosh.gravestone_extended.item.corpse.VillagerCorpseHelper;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -69,13 +73,17 @@ public class GraveInventoryHelper {
 
     private static void addCorpse(GraveContentType contentType, Random random, List<ItemStack> itemList) {
         switch (contentType) {
-            case DOG://TODO !!!!!!!!!!
+            case DOG:
+                itemList.add(DogCorpseHelper.getRandomCorpse(random));
                 break;
-            case CAT://TODO !!!!!!!!!!
+            case CAT:
+                itemList.add(CatCorpseHelper.getRandomCorpse(random));
                 break;
-            case HORSE://TODO !!!!!!!!!!
+            case HORSE:
+                itemList.add(HorseCorpseHelper.getRandomCorpse(random));
                 break;
-            default://TODO !!!!!!!!!!
+            default:
+                itemList.add(VillagerCorpseHelper.getRandomCorpse(random));
                 break;
         }
     }

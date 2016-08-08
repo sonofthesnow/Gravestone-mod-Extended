@@ -2,6 +2,7 @@ package nightkosh.gravestone_extended.item.corpse;
 
 import nightkosh.gravestone_extended.ModGravestoneExtended;
 import nightkosh.gravestone_extended.config.ExtendedConfig;
+import nightkosh.gravestone_extended.core.GSItem;
 import nightkosh.gravestone_extended.core.compatibility.forestry.CompatibilityForestry;
 import net.minecraft.entity.passive.EntityVillager;
 import net.minecraft.item.Item;
@@ -11,11 +12,9 @@ import net.minecraft.village.MerchantRecipe;
 import net.minecraft.village.MerchantRecipeList;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.registry.VillagerRegistry;
+import nightkosh.gravestone_extended.item.enums.EnumCorpse;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Iterator;
-import java.util.List;
+import java.util.*;
 
 /**
  * GraveStone mod
@@ -27,9 +26,13 @@ public class VillagerCorpseHelper extends CorpseHelper {
 
     private VillagerCorpseHelper() {
     }
+    public static ItemStack getRandomCorpse(Random random) {
+        //TODO !!!
+        return getDefaultVillagerCorpse(GSItem.corpse, EnumCorpse.VILLAGER.ordinal(), random.nextInt(5));
+    }
 
     public static List<ItemStack> getDefaultCorpses(Item item, int corpseType) {
-        List<ItemStack> list = new ArrayList<ItemStack>();
+        List<ItemStack> list = new ArrayList<>();
 
         list.add(getDefaultVillagerCorpse(item, corpseType, 0)); // Farmer
         list.add(getDefaultVillagerCorpse(item, corpseType, 1)); // Librarian
