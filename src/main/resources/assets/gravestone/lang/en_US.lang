@@ -93,6 +93,10 @@ item.corpse.villager_type.thaumaturge=Thaumaturge
 item.corpse.villager_type.beekeeper=Beekeeper
 item.corpse.villager_type.lumberjack=Lumberjack
 item.corpse.villager_type.Unknown=Unknown
+
+item.corpse.villager_career=Career
+item.corpse.villager_career.Unknown=Unknown
+
 item.corpse.horse_type=Horse Type
 item.corpse.horse_type.horse=Horse
 item.corpse.horse_type.donkey=Donkey
@@ -173,24 +177,3 @@ commands.generate.unknown_structure=Unknown structure!
 
 commands.fill_grave.empty=There aren't any blocks at this coordinates!
 commands.fill_grave.wrong_block=This coordinates occupied by wrong blocks!
-
-# Materials
-material.title=Made of
-material.mossy=Mossy
-material.wood=Wood
-material.sandstone=Sandstone
-material.red_sandstone=Red Sandstone
-material.stone=Stone
-material.diorite=Diorite
-material.andesite=Andesite
-material.granite=Granite
-material.iron=Iron
-material.gold=Gold
-material.diamond=Diamond
-material.emerald=Emerald
-material.lapis=Lapis
-material.redstone=Redstone
-material.obsidian=Obsidian
-material.quartz=Quartz
-material.prizmarine=Prizmarine
-material.ice=Ice

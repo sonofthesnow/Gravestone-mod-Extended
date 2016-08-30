@@ -1,6 +1,8 @@
 # Tabs
 itemGroup.tabGSGraveStone=Lapida
+##TODO !!!!!!!!!!
 itemGroup.tabGSMemorials=Memorials
+##TODO !!!!!!!!!!
 itemGroup.tabGSOther=Gravestone mod Items
 
 
@@ -11,7 +13,9 @@ block.nightkosh.gravestone.cross.name=Cruz
 block.nightkosh.gravestone.plate.name=Placa
 block.nightkosh.gravestone.dog_statue.name=Estatua de perro
 block.nightkosh.gravestone.cat_statue.name=Estatua de gato
+##TODO !!!!!!!!!!
 block.nightkosh.gravestone.horse_statue.name=Horse Statue
+##TODO !!!!!!!!!!
 block.nightkosh.gravestone.sword.name=Sword of A Fallen Warrior
 
 ## Memorials
@@ -24,8 +28,11 @@ block.memorial.dog_statue.name=Estatua de perro
 block.memorial.cat_statue.name=Estatua de gato
 block.memorial.creeper_statue.name=Estatua de creeper
 block.memorial.celtic_cross.name=Cruz céltica
+##TODO !!!!!!!!!!
 block.memorial.gibbet.name=Gibbet
+##TODO !!!!!!!!!!
 block.memorial.stocks.name=Stocks
+##TODO !!!!!!!!!!
 block.memorial.burning_stake.name=Burning Stake
 
 ## Traps
@@ -35,7 +42,9 @@ block.trap.curse=¡La oscuridad de aproxima!
 
 ## Spawners
 block.spawner.wither.name=Engendrador de wither
+##TODO !!!!!!!!!!
 block.spawner.skeleton.name=Skeleton Spawner
+##TODO !!!!!!!!!!
 block.spawner.zombie.name=Zombie Spawner
 
 ## Bone Blocks
@@ -47,7 +56,9 @@ tile.bone_slab.name=Losa de hueso
 tile.bone_stairs.name=Escaleras de hueso
 
 ## Pile of Bones
+##TODO !!!!!!!!!!
 block.pile_of_bones.name=Pile of Bones
+##TODO !!!!!!!!!!
 block.pile_of_bones_with_skull.name=Pile of Bones with Skull
 
 ## Chests
@@ -57,17 +68,20 @@ block.haunted_chest.raven_chest.name=Cofre con Cuervos
 block.haunted_chest.ghost_chest.name=Cofre con Fantasmas
 
 ## Candles
+##TODO !!!!!!!!!!
 tile.candle.name=Candle
 block.skull_candle.skeleton.name=Vela en Cráneo
 block.skull_candle.wither_skeleton.name=Vela en Cráneo de Wither
 block.skull_candle.zombie.name=Vela en Cabeza de Zombi
 
 ## Altar
+##TODO !!!!!!!!!!
 tile.altar.name=Altar
 
 
 # Items
 ## Chisel
+##TODO !!!!!!!!!!
 item.nightkosh.gravestone.chisel.name=Gravestone Chisel
 
 ## Graves
@@ -77,6 +91,7 @@ item.grave.sword_name=Nombre
 item.grave.sword_damage=Daño
 
 ## Corpses
+##TODO !!!!!!!!!!
 item.corpse.villager=Villager Corpse
 item.corpse.horse=Horse Corpse
 item.corpse.dog=Dog Corpse
@@ -94,6 +109,8 @@ item.corpse.villager_type.thaumaturge=Thaumaturge
 item.corpse.villager_type.beekeeper=Beekeeper
 item.corpse.villager_type.lumberjack=Lumberjack
 item.corpse.villager_type.Unknown=Unknown
+item.corpse.villager_career=Career
+item.corpse.villager_career.Unknown=Unknown
 item.corpse.horse_type=Horse Type
 item.corpse.horse_type.horse=Horse
 item.corpse.horse_type.donkey=Donkey
@@ -132,15 +149,21 @@ item.corpse.cat_type.siamese=Siamese
 item.corpse.cat_type.unknown=Unknown
 
 ##Backpacks
+##TODO !!!!!!!!!!
 item.backpack.undertaker.t1=Undertaker's Backpack
+##TODO !!!!!!!!!!
 item.backpack.undertaker.t2=Undertaker's Woven Backpack
 
 
 # GUI
 gui.edit_grave.title=Ponga nombre a la lapida
+##TODO !!!!!!!!!!
 gui.edit_grave.close=Done
+##TODO !!!!!!!!!!
 gui.edit_grave.randomText=Set random text
+##TODO !!!!!!!!!!
 gui.altar.resurrect=Resurrect
+##TODO !!!!!!!!!!
 gui.altar.requirements=%d levels required
 
 
@@ -153,7 +176,9 @@ entity.GSSkullCrawler.name=Arranca cráneos
 entity.GSWitherSkullCrawler.name=Arranca Cráneos Wither
 entity.GSZombieSkullCrawler.name=Arranca Cráneos Zombi
 entity.GSRaven.name=Cuervo
+##TODO !!!!!!!!!!
 entity.GSSkeletonRaider.name=Skeleton Raider
+##TODO !!!!!!!!!!
 entity.GSZombieRaider.name=Zombie Raider
 
 
@@ -164,34 +189,20 @@ death.GS.tortures=%1$s murió a causa de terribles torturas.
 death.GS.mom=Your mom
 
 # Console messages
+##TODO !!!!!!!!!!
 grave.cant_be_looted=You can't loot this grave!
 ## Console commands
+##TODO !!!!!!!!!!
 commands.not_enough_parameters=Not enough parameters!
+##TODO !!!!!!!!!!
 commands.coordinate_error=Coordinate error!
+##TODO !!!!!!!!!!
 commands.direction_error=Direction error!
 
+##TODO !!!!!!!!!!
 commands.generate.unknown_structure=Unknown structure!
 
+##TODO !!!!!!!!!!
 commands.fill_grave.empty=There aren't any blocks at this coordinates!
+##TODO !!!!!!!!!!
 commands.fill_grave.wrong_block=This coordinates occupied by wrong blocks!
-
-# Materials
-material.title=Made of
-material.mossy=Mossy
-material.wood=Wood
-material.sandstone=Sandstone
-material.red_sandstone=Red Sandstone
-material.stone=Stone
-material.diorite=Diorite
-material.andesite=Andesite
-material.granite=Granite
-material.iron=Iron
-material.gold=Gold
-material.diamond=Diamond
-material.emerald=Emerald
-material.lapis=Lapis
-material.redstone=Redstone
-material.obsidian=Obsidian
-material.quartz=Quartz
-material.prizmarine=Prizmarine
-material.ice=Ice

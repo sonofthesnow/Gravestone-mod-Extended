@@ -1,6 +1,9 @@
 # Tabs
+##TODO !!!!!!!!!!
 itemGroup.tabGSGraveStone=Gravestones
+##TODO !!!!!!!!!!
 itemGroup.tabGSMemorials=Memorials
+##TODO !!!!!!!!!!
 itemGroup.tabGSOther=Gravestone mod Items
 
 
@@ -12,6 +15,7 @@ block.nightkosh.gravestone.plate.name=Chapa de Túmulo
 block.nightkosh.gravestone.dog_statue.name=Estátua de Cachorro
 block.nightkosh.gravestone.cat_statue.name=Estátua de Gato
 block.nightkosh.gravestone.horse_statue.name=Estátua de Cavalo
+##TODO !!!!!!!!!!
 block.nightkosh.gravestone.sword.name=Sword of a fallen warrior
 
 ## Memorials
@@ -24,8 +28,11 @@ block.memorial.dog_statue.name=Estátua de Cachorro
 block.memorial.cat_statue.name=Estátua de Gato
 block.memorial.creeper_statue.name=Estátua de Creeper
 block.memorial.celtic_cross.name=Cruz Celta
+##TODO !!!!!!!!!!
 block.memorial.gibbet.name=Gibbet
+##TODO !!!!!!!!!!
 block.memorial.stocks.name=Stocks
+##TODO !!!!!!!!!!
 block.memorial.burning_stake.name=Burning Stake
 
 ## Traps
@@ -47,7 +54,9 @@ tile.bone_slab.name=Laje de Ossos
 tile.bone_stairs.name=Escada de Ossos
 
 ## Pile of Bones
+##TODO !!!!!!!!!!
 block.pile_of_bones.name=Pile of Bones
+##TODO !!!!!!!!!!
 block.pile_of_bones_with_skull.name=Pile of Bones with Skull
 
 ## Chests
@@ -63,11 +72,13 @@ block.skull_candle.wither_skeleton.name=Vela de Cabeça Wither
 block.skull_candle.zombie.name=Vela de Cabeça de Zumbi
 
 ## Altar
+##TODO !!!!!!!!!!
 tile.altar.name=Altar
 
 
 # Items
 ## Chisel
+##TODO !!!!!!!!!!
 item.nightkosh.gravestone.chisel.name=Gravestone Chisel
 
 ## Graves
@@ -94,6 +105,11 @@ item.corpse.villager_type.thaumaturge=Taumaturgo
 item.corpse.villager_type.beekeeper=Apicultor
 item.corpse.villager_type.lumberjack=Lenhador
 item.corpse.villager_type.Unknown=desconhecido
+
+##TODO !!!!!!!!!!
+item.corpse.villager_career=Career
+item.corpse.villager_career.Unknown=desconhecido
+
 item.corpse.horse_type=Tipo de Cavalo
 item.corpse.horse_type.horse=Cavalo
 item.corpse.horse_type.donkey=Jumento
@@ -132,15 +148,21 @@ item.corpse.cat_type.siamese=Siamês
 item.corpse.cat_type.unknown=Desconhecido
 
 ##Backpacks
+##TODO !!!!!!!!!!
 item.backpack.undertaker.t1=Undertaker's Backpack
+##TODO !!!!!!!!!!
 item.backpack.undertaker.t2=Undertaker's Woven Backpack
 
 
 # GUI
 gui.edit_grave.title=Defina o texto do túmulo
+##TODO !!!!!!!!!!
 gui.edit_grave.close=Done
+##TODO !!!!!!!!!!
 gui.edit_grave.randomText=Set random text
+##TODO !!!!!!!!!!
 gui.altar.resurrect=Resurrect
+##TODO !!!!!!!!!!
 gui.altar.requirements=%d levels required
 
 
@@ -153,7 +175,9 @@ entity.GSSkullCrawler.name=Rastejador Caveira
 entity.GSWitherSkullCrawler.name=Rastejador Caveira Wither
 entity.GSZombieSkullCrawler.name=Rastejador Caveira Zumbi
 entity.GSRaven.name=Corvo
+##TODO !!!!!!!!!!
 entity.GSSkeletonRaider.name=Skeleton Raider
+##TODO !!!!!!!!!!
 entity.GSZombieRaider.name=Zombie Raider
 
 
@@ -161,37 +185,24 @@ entity.GSZombieRaider.name=Zombie Raider
 death.GS.Herobrine=%1$s foi assassinado brutalmente por Herobrine
 death.GS.death_sentence=%1$s recebeu uma pena de morte
 death.GS.tortures=%1$s morreu em torturas cruéis
+##TODO !!!!!!!!!!
 death.GS.mom=Your mom
 
 # Console messages
+##TODO !!!!!!!!!!
 grave.cant_be_looted=You can't loot this grave!
 ## Console commands
+##TODO !!!!!!!!!!
 commands.not_enough_parameters=Not enough parameters!
+##TODO !!!!!!!!!!
 commands.coordinate_error=Coordinate error!
+##TODO !!!!!!!!!!
 commands.direction_error=Direction error!
 
+##TODO !!!!!!!!!!
 commands.generate.unknown_structure=Unknown structure!
 
+##TODO !!!!!!!!!!
 commands.fill_grave.empty=There aren't any blocks at this coordinates!
+##TODO !!!!!!!!!!
 commands.fill_grave.wrong_block=This coordinates occupied by wrong blocks!
-
-# Materials
-material.title=Made of
-material.mossy=Mossy
-material.wood=Wood
-material.sandstone=Sandstone
-material.red_sandstone=Red Sandstone
-material.stone=Stone
-material.diorite=Diorite
-material.andesite=Andesite
-material.granite=Granite
-material.iron=Iron
-material.gold=Gold
-material.diamond=Diamond
-material.emerald=Emerald
-material.lapis=Lapis
-material.redstone=Redstone
-material.obsidian=Obsidian
-material.quartz=Quartz
-material.prizmarine=Prizmarine
-material.ice=Ice

@@ -1,6 +1,9 @@
 # Tabs
+##TODO !!!!!!!!!!
 itemGroup.tabGSGraveStone=Gravestones
+##TODO !!!!!!!!!!
 itemGroup.tabGSMemorials=Memorials
+##TODO !!!!!!!!!!
 itemGroup.tabGSOther=Gravestone mod Items
 
 
@@ -24,8 +27,11 @@ block.memorial.dog_statue.name=Statue de chien
 block.memorial.cat_statue.name=Statue de chat
 block.memorial.creeper_statue.name=Statue de creeper
 block.memorial.celtic_cross.name=Croix celtique
+##TODO !!!!!!!!!!
 block.memorial.gibbet.name=Gibbet
+##TODO !!!!!!!!!!
 block.memorial.stocks.name=Stocks
+##TODO !!!!!!!!!!
 block.memorial.burning_stake.name=Burning Stake
 
 ## Traps
@@ -47,7 +53,9 @@ tile.bone_slab.name=Dalle d'os
 tile.bone_stairs.name=Escalier d'os
 
 ## Pile of Bones
+##TODO !!!!!!!!!!
 block.pile_of_bones.name=Pile of Bones
+##TODO !!!!!!!!!!
 block.pile_of_bones_with_skull.name=Pile of Bones with Skull
 
 ## Chests
@@ -63,11 +71,13 @@ block.skull_candle.wither_skeleton.name=Bougie à tête de wither
 block.skull_candle.zombie.name=Bougie à tête de zombie
 
 ## Altar
+##TODO !!!!!!!!!!
 tile.altar.name=Altar
 
 
 # Items
 ## Chisel
+##TODO !!!!!!!!!!
 item.nightkosh.gravestone.chisel.name=Gravestone Chisel
 
 ## Graves
@@ -94,6 +104,11 @@ item.corpse.villager_type.thaumaturge=Thaumaturge
 item.corpse.villager_type.beekeeper=Apiculteur
 item.corpse.villager_type.lumberjack=Bucheron
 item.corpse.villager_type.Unknown=Inconnu
+
+##TODO !!!!!!!!!!
+item.corpse.villager_career=Career
+item.corpse.villager_career.Unknown=Inconnu
+
 item.corpse.horse_type=Type de cheval
 item.corpse.horse_type.horse=Cheval
 item.corpse.horse_type.donkey=Âne
@@ -153,7 +168,9 @@ entity.GSSkullCrawler.name=Crâne rampant
 entity.GSWitherSkullCrawler.name=Crâne de wither rampant
 entity.GSZombieSkullCrawler.name=Crâne de zombie rampant
 entity.GSRaven.name=Corbeau
+##TODO !!!!!!!!!!
 entity.GSSkeletonRaider.name=Skeleton Raider
+##TODO !!!!!!!!!!
 entity.GSZombieRaider.name=Zombie Raider
 
 
@@ -164,34 +181,20 @@ death.GS.tortures=%1$s a été torturé à mort
 death.GS.mom=Votre mère
 
 # Console messages
+##TODO !!!!!!!!!!
 grave.cant_be_looted=You can't loot this grave!
 ## Console commands
+##TODO !!!!!!!!!!
 commands.not_enough_parameters=Not enough parameters!
+##TODO !!!!!!!!!!
 commands.coordinate_error=Coordinate error!
+##TODO !!!!!!!!!!
 commands.direction_error=Direction error!
 
+##TODO !!!!!!!!!!
 commands.generate.unknown_structure=Unknown structure!
 
+##TODO !!!!!!!!!!
 commands.fill_grave.empty=There aren't any blocks at this coordinates!
+##TODO !!!!!!!!!!
 commands.fill_grave.wrong_block=This coordinates occupied by wrong blocks!
-
-# Materials
-material.title=Made of
-material.mossy=Mossy
-material.wood=Wood
-material.sandstone=Sandstone
-material.red_sandstone=Red Sandstone
-material.stone=Stone
-material.diorite=Diorite
-material.andesite=Andesite
-material.granite=Granite
-material.iron=Iron
-material.gold=Gold
-material.diamond=Diamond
-material.emerald=Emerald
-material.lapis=Lapis
-material.redstone=Redstone
-material.obsidian=Obsidian
-material.quartz=Quartz
-material.prizmarine=Prizmarine
-material.ice=Ice

@@ -94,6 +94,10 @@ item.corpse.villager_type.thaumaturge=Тауматург
 item.corpse.villager_type.beekeeper=Пчеловод
 item.corpse.villager_type.lumberjack=Дровосек
 item.corpse.villager_type.unknown=Неизвестная
+
+item.corpse.villager_career=Карьера
+item.corpse.villager_career.Unknown=Неизвестная
+
 item.corpse.horse_type=Тип лошади
 item.corpse.horse_type.horse=Лошадь
 item.corpse.horse_type.donkey=Осёл
@@ -174,24 +178,3 @@ commands.generate.unknown_structure=Введён не известный тип 
 
 commands.fill_grave.empty=По указанным координатам нет никаких блоков!
 commands.fill_grave.wrong_block=По указанным координатам располагаются не корректные блоки!
-
-# Materials
-material.title=Сделан из
-material.mossy=Замшелый
-material.wood=Дерева
-material.sandstone=Песчаника
-material.red_sandstone=Красного песчаника
-material.stone=Камня
-material.diorite=Диорита
-material.andesite=Андезита
-material.granite=Гранита
-material.iron=Железа
-material.gold=Золота
-material.diamond=Алмазов
-material.emerald=Изумрудов
-material.lapis=Лазурита
-material.redstone=Красного камня
-material.obsidian=Обсидиана
-material.quartz=Кварца
-material.prizmarine=Призмарина
-material.ice=Льда

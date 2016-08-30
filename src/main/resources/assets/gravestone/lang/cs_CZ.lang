@@ -94,6 +94,11 @@ item.corpse.villager_type.thaumaturge=Divotvůrce
 item.corpse.villager_type.beekeeper=Včelař
 item.corpse.villager_type.lumberjack=Dřevorubec
 item.corpse.villager_type.Unknown=neznámý
+
+##TODO !!!!!!!!!!
+item.corpse.villager_career=Career
+item.corpse.villager_career.Unknown=neznámý
+
 item.corpse.horse_type=Typ koně
 item.corpse.horse_type.horse=Kůň
 item.corpse.horse_type.donkey=Osel
@@ -174,27 +179,6 @@ commands.generate.unknown_structure=Neznámá struktura!
 
 commands.fill_grave.empty=Na souřadnicích není žádný blok!
 commands.fill_grave.wrong_block=Souřadnice jsou obsazeny špatnými bloky!
-
-# Materials
-material.title=Vyrobený z
-material.mossy=Mechu
-material.wood=Dřeva
-material.sandstone=Pískového kamene
-material.red_sandstone=Červeného písku
-material.stone=Kamene
-material.diorite=Dioritu
-material.andesite=Andesitu
-material.granite=Granitu
-material.iron=Železa
-material.gold=Zlata
-material.diamond=Diamantu
-material.emerald=Emeraldu
-material.lapis=Lapisu
-material.redstone=Ruditu
-material.obsidian=Obsidiánu
-material.quartz=Křemíku
-material.prizmarine=Prizmarínu
-material.ice=Ledu
 
 # Parent Language: en_US
 # corrections and additions missing translations by DeRigeurEx

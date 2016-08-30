@@ -127,11 +127,7 @@ public abstract class CorpseHelper {
     }
 
     public static boolean canSpawnMob(EntityPlayer player, int damage) {
-        if (player.worldObj.getWorldInfo().getGameType().equals(WorldSettings.GameType.CREATIVE)) {
-            return true;
-        } else {
-            return player.experienceLevel >= getRequiredLevel(damage);
-        }
+        return player.worldObj.getWorldInfo().getGameType().equals(WorldSettings.GameType.CREATIVE) || player.experienceLevel >= getRequiredLevel(damage);
     }
 
     public static void getExperience(EntityPlayer player, int damage) {

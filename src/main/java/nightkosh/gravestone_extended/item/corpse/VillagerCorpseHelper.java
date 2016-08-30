@@ -1,9 +1,5 @@
 package nightkosh.gravestone_extended.item.corpse;
 
-import nightkosh.gravestone_extended.ModGravestoneExtended;
-import nightkosh.gravestone_extended.config.ExtendedConfig;
-import nightkosh.gravestone_extended.core.GSItem;
-import nightkosh.gravestone_extended.core.compatibility.forestry.CompatibilityForestry;
 import net.minecraft.entity.passive.EntityVillager;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -12,9 +8,17 @@ import net.minecraft.village.MerchantRecipe;
 import net.minecraft.village.MerchantRecipeList;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.registry.VillagerRegistry;
+import nightkosh.gravestone_extended.ModGravestoneExtended;
+import nightkosh.gravestone_extended.config.ExtendedConfig;
+import nightkosh.gravestone_extended.core.GSItem;
+import nightkosh.gravestone_extended.core.compatibility.forestry.CompatibilityForestry;
 import nightkosh.gravestone_extended.item.enums.EnumCorpse;
+import org.apache.commons.lang3.StringUtils;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+import java.util.Random;
 
 /**
  * GraveStone mod
@@ -26,34 +30,41 @@ public class VillagerCorpseHelper extends CorpseHelper {
 
     private VillagerCorpseHelper() {
     }
+
     public static ItemStack getRandomCorpse(Random random) {
-        //TODO !!!
-        return getDefaultVillagerCorpse(GSItem.corpse, EnumCorpse.VILLAGER.ordinal(), random.nextInt(5));
+        //TODO !!! all type of professions and careers
+        return getDefaultVillagerCorpse(GSItem.corpse, EnumCorpse.VILLAGER.ordinal(), random.nextInt(5), 1);
     }
 
     public static List<ItemStack> getDefaultCorpses(Item item, int corpseType) {
         List<ItemStack> list = new ArrayList<>();
 
-        list.add(getDefaultVillagerCorpse(item, corpseType, 0)); // Farmer
-        list.add(getDefaultVillagerCorpse(item, corpseType, 1)); // Librarian
-        list.add(getDefaultVillagerCorpse(item, corpseType, 2)); // Priest
-        list.add(getDefaultVillagerCorpse(item, corpseType, 3)); // Smith
-        list.add(getDefaultVillagerCorpse(item, corpseType, 4)); // Butcher
+        list.add(getDefaultVillagerCorpse(item, corpseType, 0, 1)); // Farmer - farmer
+        list.add(getDefaultVillagerCorpse(item, corpseType, 0, 2)); // Farmer - fisherman
+        list.add(getDefaultVillagerCorpse(item, corpseType, 0, 3)); // Farmer - shepherd
+        list.add(getDefaultVillagerCorpse(item, corpseType, 0, 4)); // Farmer - fletcher
+        list.add(getDefaultVillagerCorpse(item, corpseType, 1, 1)); // Librarian
+        list.add(getDefaultVillagerCorpse(item, corpseType, 2, 1)); // Priest
+        list.add(getDefaultVillagerCorpse(item, corpseType, 3, 1)); // Smith - armor
+        list.add(getDefaultVillagerCorpse(item, corpseType, 3, 2)); // Smith - weapon
+        list.add(getDefaultVillagerCorpse(item, corpseType, 3, 3)); // Smith - tool
+        list.add(getDefaultVillagerCorpse(item, corpseType, 4, 1)); // Butcher - butcher
+        list.add(getDefaultVillagerCorpse(item, corpseType, 4, 2)); // Butcher - leather
 
         Collection<Integer> villagerIds = VillagerRegistry.getRegisteredVillagers();
-        Iterator<Integer> it = villagerIds.iterator();
-        while (it.hasNext()) {
-            list.add(getDefaultVillagerCorpse(item, corpseType, it.next()));
+        for (Integer villagerId : villagerIds) {
+            list.add(getDefaultVillagerCorpse(item, corpseType, villagerId, 1));//TODO career
         }
 
         return list;
     }
 
-    private static ItemStack getDefaultVillagerCorpse(Item item, int corpseType, int type) {
+    private static ItemStack getDefaultVillagerCorpse(Item item, int corpseType, int profession, int career) {
         ItemStack corpse = new ItemStack(item, 1, corpseType);
 
         NBTTagCompound nbtTag = new NBTTagCompound();
-        nbtTag.setInteger("VillagerType", type);
+        nbtTag.setInteger("Profession", profession);
+        nbtTag.setInteger("Career", career);
 
         corpse.setTagCompound(nbtTag);
         return corpse;
@@ -61,14 +72,19 @@ public class VillagerCorpseHelper extends CorpseHelper {
 
     public static void setNbt(EntityVillager villager, NBTTagCompound nbt) {
         setName(villager, nbt);
-        nbt.setInteger("VillagerType", villager.getProfession());
+
+        NBTTagCompound villagerNbt = new NBTTagCompound();
+        villager.writeEntityToNBT(villagerNbt);
+        nbt.setInteger("Profession", villagerNbt.getInteger("Profession"));
+        nbt.setInteger("Career", villagerNbt.getInteger("Career"));
+        nbt.setInteger("CareerLevel", villagerNbt.getInteger("CareerLevel"));
 
         MerchantRecipeList recipes = villager.getRecipes(null);
         if (recipes != null) {
             MerchantRecipe recipe;
             NBTTagCompound recipeTag;
-            for (int i = 0; i < recipes.size(); i++) {
-                recipe = (MerchantRecipe) recipes.get(i);
+            for (Object recipe1 : recipes) {
+                recipe = (MerchantRecipe) recipe1;
                 if (recipe != null) {
                     recipeTag = recipe.writeToTags();
                     recipeTag.setInteger("uses", 0);
@@ -95,26 +111,50 @@ public class VillagerCorpseHelper extends CorpseHelper {
     }
 
     public static int getVillagerType(NBTTagCompound nbtTag) {
-        return nbtTag.getInteger("VillagerType");
+        return nbtTag.getInteger("Profession");
+    }
+
+    public static int getVillagerCareer(NBTTagCompound nbtTag) {
+        return nbtTag.getInteger("Career");
     }
 
     public static void addInfo(List list, NBTTagCompound nbtTag) {
         addNameInfo(list, nbtTag);
-        if (hasType(nbtTag)) {
-            list.add(getType(nbtTag));
+        if (hasProfession(nbtTag)) {
+            list.add(getProfession(nbtTag));
+            if (hasCareer(nbtTag)) {
+                String career = getCareer(nbtTag);
+                if (StringUtils.isNotBlank(career)) {
+                    list.add(getCareer(nbtTag));
+                }
+            }
         }
         if (hasTrades(nbtTag)) {
             addTrades(list, nbtTag);
         }
     }
 
-    private static boolean hasType(NBTTagCompound nbtTag) {
-        return nbtTag.hasKey("VillagerType");
+    private static boolean hasProfession(NBTTagCompound nbtTag) {
+        return nbtTag.hasKey("Profession");
     }
 
-    private static String getType(NBTTagCompound nbtTag) {
-        return ModGravestoneExtended.proxy.getLocalizedString("item.corpse.villager_type") + " " +
+    private static String getProfession(NBTTagCompound nbtTag) {
+        return ModGravestoneExtended.proxy.getLocalizedString("item.corpse.villager_type") + " - " +
                 ModGravestoneExtended.proxy.getLocalizedString(getVillagerProfession(getVillagerType(nbtTag)));
+    }
+
+    private static boolean hasCareer(NBTTagCompound nbtTag) {
+        return nbtTag.hasKey("Career");
+    }
+
+    private static String getCareer(NBTTagCompound nbtTag) {
+        String career = getVillagerCareerStr(getVillagerType(nbtTag), getVillagerCareer(nbtTag));
+        if (StringUtils.isBlank(career)) {
+            return "";
+        } else {
+            return ModGravestoneExtended.proxy.getLocalizedString("item.corpse.villager_career") + " - " +
+                    ModGravestoneExtended.proxy.getLocalizedString(career);
+        }
     }
 
     private static String getVillagerProfession(int type) {
@@ -134,6 +174,68 @@ public class VillagerCorpseHelper extends CorpseHelper {
         }
     }
 
+    private static String getVillagerCareerStr(int type, int career) {
+        String careerName = "";
+        switch (type) {
+            case 0:
+                switch(career) {
+                    case 1:
+                        careerName = "farmer";
+                        break;
+                    case 2:
+                        careerName = "fisherman";
+                        break;
+                    case 3:
+                        careerName = "shepherd";
+                        break;
+                    case 4:
+                        careerName = "fletcher";
+                        break;
+                }
+                break;
+            case 1:
+                switch(career) {
+                    case 1:
+                        careerName = "librarian";
+                        break;
+                }
+                break;
+            case 2:
+                switch(career) {
+                    case 1:
+                        careerName = "cleric";
+                        break;
+                }
+                break;
+            case 3:
+                switch(career) {
+                    case 1:
+                        careerName = "armor";
+                        break;
+                    case 2:
+                        careerName = "weapon";
+                        break;
+                    case 3:
+                        careerName = "tool";
+                        break;
+                }
+                break;
+            case 4:
+                switch(career) {
+                    case 1:
+                        careerName = "butcher";
+                        break;
+                    case 2:
+                        careerName = "leather";
+                        break;
+                }
+                break;
+            default:
+                return getNotVanillaVillagerCareer(type, career);
+        }
+        return "entity.Villager." + careerName;
+    }
+
     private static String getNotVanillaVillagerProfession(int type) {
         if (type == ExtendedConfig.undertakerId) {
             return "item.corpse.villager_type.undertaker";
@@ -149,14 +251,20 @@ public class VillagerCorpseHelper extends CorpseHelper {
         return "item.corpse.villager_type.unknown";
     }
 
+    private static String getNotVanillaVillagerCareer(int type, int career) {
+        if (type == ExtendedConfig.undertakerId) {
+            return "";
+        }
+        return "item.corpse.villager_career.unknown";
+    }
+
     private static boolean hasTrades(NBTTagCompound nbtTag) {
         return nbtTag.hasKey("Offers");
     }
 
     private static void addTrades(List list, NBTTagCompound nbtTag) {
-        MerchantRecipeList trades = new MerchantRecipeList(nbtTag.getCompoundTag("Offers"));
-        for (int i = 0; i < trades.size(); i++) {
-            MerchantRecipe recipe = (MerchantRecipe) trades.get(i);
+        for (Object trade : new MerchantRecipeList(nbtTag.getCompoundTag("Offers"))) {
+            MerchantRecipe recipe = (MerchantRecipe) trade;
             StringBuilder str = new StringBuilder();
             str.append(recipe.getItemToBuy().stackSize).append(" ").append(recipe.getItemToBuy().getDisplayName());
             if (recipe.getSecondItemToBuy() != null) {
