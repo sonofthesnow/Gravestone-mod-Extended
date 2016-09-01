@@ -168,7 +168,7 @@ public class ClientProxy extends CommonProxy {
         //traps
         Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(Item.getItemFromBlock(GSBlock.trap), EnumTrap.NIGHT_STONE.ordinal(), ResourcesModels.nightStoneModel);
         Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(Item.getItemFromBlock(GSBlock.trap), EnumTrap.THUNDER_STONE.ordinal(), ResourcesModels.thunderStoneModel);
-        ModelBakery.addVariantName(Item.getItemFromBlock(GSBlock.trap), "gravestone:GSTrap_night_stone", "gravestone:GSTrap_thunder_stone");
+        ModelBakery.registerItemVariants(Item.getItemFromBlock(GSBlock.trap), ResourcesModels.nightStoneModel, ResourcesModels.thunderStoneModel);
         //piles of bones
         ProxyHelper.registerModelsForTEBlocks(EnumPileOfBones.PILE_OF_BONES.ordinal(), GSBlock.pileOfBones, ResourcesModels.pileOfBonesModel, TileEntityPileOfBones.class);
         ProxyHelper.registerModelsForTEBlocks(EnumPileOfBones.PILE_OF_BONES_WITH_SKULL.ordinal(), GSBlock.pileOfBones, ResourcesModels.pileOfBonesModel, TileEntityPileOfBones.Skull.class);
@@ -178,15 +178,18 @@ public class ClientProxy extends CommonProxy {
         Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(Item.getItemFromBlock(GSBlock.boneBlock), EnumBoneBlock.SKULL_BONE_BLOCK.ordinal(), ResourcesModels.boneBlockWithSkullModel);
         Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(Item.getItemFromBlock(GSBlock.boneBlock), EnumBoneBlock.CRAWLER_BONE_BLOCK.ordinal(), ResourcesModels.boneBlockModel);
         Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(Item.getItemFromBlock(GSBlock.boneBlock), EnumBoneBlock.CRAWLER_SKULL_BONE_BLOCK.ordinal(), ResourcesModels.boneBlockWithSkullModel);
-        ModelBakery.addVariantName(Item.getItemFromBlock(GSBlock.boneBlock), "gravestone:GSBoneBlock", "gravestone:GSBoneBlock_with_skull",
-                "gravestone:GSBoneBlock", "gravestone:GSBoneBlock_with_skull");
+        ModelBakery.registerItemVariants(Item.getItemFromBlock(GSBlock.boneBlock), ResourcesModels.boneBlockModel, ResourcesModels.boneBlockWithSkullModel,
+                ResourcesModels.boneBlockModel, ResourcesModels.boneBlockWithSkullModel);
 
         Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(Item.getItemFromBlock(GSBlock.boneSlab), 0, ResourcesModels.boneSlabModel);
+        ModelBakery.registerItemVariants(Item.getItemFromBlock(GSBlock.boneSlab), ResourcesModels.boneSlabModel);
         Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(Item.getItemFromBlock(GSBlock.boneStairs), 0, ResourcesModels.boneStairsModel);
+        ModelBakery.registerItemVariants(Item.getItemFromBlock(GSBlock.boneStairs), ResourcesModels.boneStairsModel);
         //haunted chest
         ProxyHelper.registerModelsForTEBlocks(0, EnumHauntedChest.values().length - 1, GSBlock.hauntedChest, ResourcesModels.hauntedChestModel, TileEntityHauntedChest.class);
         //altar
         Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(Item.getItemFromBlock(GSBlock.altar), 0, ResourcesModels.altarModel);
+        ModelBakery.registerItemVariants(Item.getItemFromBlock(GSBlock.altar), ResourcesModels.altarModel);
 
         //candle
         Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(Item.getItemFromBlock(GSBlock.candle), 0, ResourcesModels.candleModel);
