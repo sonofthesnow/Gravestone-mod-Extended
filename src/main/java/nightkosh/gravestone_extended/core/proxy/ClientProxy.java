@@ -25,6 +25,7 @@ import nightkosh.gravestone_extended.entity.monster.*;
 import nightkosh.gravestone_extended.entity.monster.EntitySkullCrawler.SkullCrawlerType;
 import nightkosh.gravestone_extended.gui.GSGraveTextGui;
 import nightkosh.gravestone_extended.item.ItemGSMonsterPlacer;
+import nightkosh.gravestone_extended.item.enums.EnumCorpse;
 import nightkosh.gravestone_extended.models.entity.ModelUndeadCat;
 import nightkosh.gravestone_extended.models.entity.ModelUndeadDog;
 import nightkosh.gravestone_extended.renderer.entity.*;
@@ -51,7 +52,7 @@ public class ClientProxy extends CommonProxy {
 
     //TODO ???
     private void registerBlocksRenderers() {
-        // register GraveStone renderer
+        // register Memorials renderers
         ClientRegistry.registerTileEntity(TileEntityMemorial.class, "GSMemorial", new TileEntityMemorialRenderer());
         ClientRegistry.registerTileEntity(TileEntityMemorial.Obelisk.class, "GSMemorialObelisk", new TileEntityMemorialRenderer.Obelisk());
         ClientRegistry.registerTileEntity(TileEntityMemorial.CelticCross.class, "GSMemorialCelticCross", new TileEntityMemorialRenderer.CelticCross());
@@ -200,15 +201,17 @@ public class ClientProxy extends CommonProxy {
     @Override
     public void registerItemsModels() {
         Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(GSItem.chisel, 0, ResourcesModels.chiselModel);
+        ModelBakery.registerItemVariants(GSItem.chisel, ResourcesModels.chiselModel);
 
-//        Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(ExtendedItem.corpse, EnumCorpse.VILLAGER.ordinal(), ResourcesModels.CORPSE_VILLAGER);
-//        Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(ExtendedItem.corpse, EnumCorpse.DOG.ordinal(), ResourcesModels.CORPSE_DOG);
-//        Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(ExtendedItem.corpse, EnumCorpse.CAT.ordinal(), ResourcesModels.CORPSE_CAT);
-//        Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(ExtendedItem.corpse, EnumCorpse.HORSE.ordinal(), ResourcesModels.CORPSE_HORSE);
-//        ModelBakery.addVariantName(ExtendedItem.corpse, "nightkosh.gravestone-extended:GSCorpseVillager", "nightkosh.gravestone-extended:GSCorpseDog", "nightkosh.gravestone-extended:GSCorpseCat", "nightkosh.gravestone-extended:GSCorpseHorse");
+        Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(GSItem.corpse, EnumCorpse.VILLAGER.ordinal(), ResourcesModels.CORPSE_VILLAGER);
+        Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(GSItem.corpse, EnumCorpse.DOG.ordinal(), ResourcesModels.CORPSE_DOG);
+        Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(GSItem.corpse, EnumCorpse.CAT.ordinal(), ResourcesModels.CORPSE_CAT);
+        Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(GSItem.corpse, EnumCorpse.HORSE.ordinal(), ResourcesModels.CORPSE_HORSE);
+        ModelBakery.registerItemVariants(GSItem.corpse, ResourcesModels.CORPSE_VILLAGER, ResourcesModels.CORPSE_DOG, ResourcesModels.CORPSE_CAT, ResourcesModels.CORPSE_HORSE);
 
         for (ItemGSMonsterPlacer.EnumEggs egg : ItemGSMonsterPlacer.EnumEggs.values()) {
             Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(GSItem.spawnEgg, egg.ordinal(), ResourcesModels.spawnEggModel);
         }
+        ModelBakery.registerItemVariants(GSItem.spawnEgg, ResourcesModels.spawnEggModel);
     }
 }
