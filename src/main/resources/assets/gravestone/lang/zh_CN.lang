@@ -24,9 +24,13 @@ block.memorial.dog_statue.name=狗纪念碑
 block.memorial.cat_statue.name=猫纪念碑
 block.memorial.creeper_statue.name=爬行者纪念碑
 block.memorial.celtic_cross.name=凯尔特十字架
-block.memorial.gibbet.name=绞刑架
-block.memorial.stocks.name=足枷
-block.memorial.burning_stake.name=燃烧的火刑柱
+
+## Executions
+## TODO !!!!!
+block.execution.gallows.name=Gallows
+block.execution.gibbet.name=绞刑架
+block.execution.stocks.name=足枷
+block.execution.burning_stake.name=燃烧的火刑柱
 
 ## Traps
 block.trap.night.name=午夜石

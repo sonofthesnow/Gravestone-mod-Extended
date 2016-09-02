@@ -2,8 +2,6 @@ package nightkosh.gravestone_extended.models.block;
 
 import net.minecraft.util.ResourceLocation;
 import nightkosh.gravestone.models.block.ModelGraveStone;
-import nightkosh.gravestone_extended.block.enums.EnumHangedMobs;
-import nightkosh.gravestone_extended.block.enums.EnumMemorials;
 
 /**
  * GraveStone mod
@@ -19,8 +17,5 @@ public abstract class ModelMemorial extends ModelGraveStone {
         } else {
             renderAll();
         }
-    }
-
-    public void customRender(EnumMemorials memorialType, EnumHangedMobs mob, int villagerProfession) {
     }
 }

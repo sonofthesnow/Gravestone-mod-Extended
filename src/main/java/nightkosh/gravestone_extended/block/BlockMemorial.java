@@ -7,8 +7,6 @@ import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyDirection;
 import net.minecraft.block.state.BlockState;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.particle.EntityFX;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.EntityLivingBase;
@@ -29,14 +27,9 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import nightkosh.gravestone.inventory.GraveInventory;
 import nightkosh.gravestone_extended.ModGravestoneExtended;
-import nightkosh.gravestone_extended.block.enums.EnumHangedMobs;
 import nightkosh.gravestone_extended.block.enums.EnumMemorials;
 import nightkosh.gravestone_extended.core.GSBlock;
 import nightkosh.gravestone_extended.core.Tabs;
-import nightkosh.gravestone_extended.item.ItemCorpse;
-import nightkosh.gravestone_extended.item.corpse.VillagerCorpseHelper;
-import nightkosh.gravestone_extended.item.enums.EnumCorpse;
-import nightkosh.gravestone_extended.particle.EntityBigFlameFX;
 import nightkosh.gravestone_extended.tileentity.TileEntityMemorial;
 
 import java.util.ArrayList;
@@ -311,12 +304,6 @@ public class BlockMemorial extends BlockContainer {
             EnumMemorials.ICE_ANGEL_STATUE
     };
 
-    public static final EnumMemorials[] TORTURE_MEMORIALS = {
-            EnumMemorials.GIBBET,
-            EnumMemorials.STOCKS,
-            EnumMemorials.BURNING_STAKE
-    };
-
     public BlockMemorial() {
         super(Material.rock);
         this.isBlockContainer = true;
@@ -361,8 +348,8 @@ public class BlockMemorial extends BlockContainer {
     public static ArrayList<EnumMemorials> getGeneratedMemorialsTypes(World world, BlockPos pos) {
         BiomeGenBase biome = world.getBiomeGenForCoords(pos);
 
-        ArrayList<BiomeDictionary.Type> biomeTypesList = new ArrayList<BiomeDictionary.Type>(Arrays.asList(BiomeDictionary.getTypesForBiome(biome)));
-        ArrayList<EnumMemorials> memorialTypes = new ArrayList<EnumMemorials>();
+        ArrayList<BiomeDictionary.Type> biomeTypesList = new ArrayList<>(Arrays.asList(BiomeDictionary.getTypesForBiome(biome)));
+        ArrayList<EnumMemorials> memorialTypes = new ArrayList<>();
 
         if (biomeTypesList.contains(BiomeDictionary.Type.SANDY) || biomeTypesList.contains(BiomeDictionary.Type.BEACH)) {
             memorialTypes.addAll(Arrays.asList(SANDSTONE_GENERATED_MEMORIALS));
@@ -389,7 +376,7 @@ public class BlockMemorial extends BlockContainer {
 //        }
 //        if (biomeTypesList.contains(BiomeDictionary.Type.MAGICAL)) {
 //        }
-//        if (biomeTypesList.contains(BiomeDictionary.Type.WATER)) {
+//        if (biomeTypesList.contains(BiomeDictionary.Type.WATER)) {// TODO !!!!!!!!!!!
 //        }
 //        if (biomeTypesList.contains(BiomeDictionary.Type.WASTELAND)) {
 //        }
@@ -402,7 +389,7 @@ public class BlockMemorial extends BlockContainer {
     }
 
     public static ArrayList<EnumMemorials> getPetsMemorialsTypes(World world, BlockPos pos) {
-        ArrayList<EnumMemorials> memorialTypes = new ArrayList<EnumMemorials>();
+        ArrayList<EnumMemorials> memorialTypes = new ArrayList<>();
         memorialTypes.addAll(getDogsMemorialsTypes(world, pos));
         memorialTypes.addAll(getCatsMemorialsTypes(world, pos));
 
@@ -412,8 +399,8 @@ public class BlockMemorial extends BlockContainer {
     public static ArrayList<EnumMemorials> getDogsMemorialsTypes(World world, BlockPos pos) {
         BiomeGenBase biome = world.getBiomeGenForCoords(pos);
 
-        ArrayList<BiomeDictionary.Type> biomeTypesList = new ArrayList<BiomeDictionary.Type>(Arrays.asList(BiomeDictionary.getTypesForBiome(biome)));
-        ArrayList<EnumMemorials> memorialTypes = new ArrayList<EnumMemorials>();
+        ArrayList<BiomeDictionary.Type> biomeTypesList = new ArrayList<>(Arrays.asList(BiomeDictionary.getTypesForBiome(biome)));
+        ArrayList<EnumMemorials> memorialTypes = new ArrayList<>();
 
         if (biomeTypesList.contains(BiomeDictionary.Type.SANDY) || biomeTypesList.contains(BiomeDictionary.Type.BEACH)) {
             memorialTypes.addAll(Arrays.asList(SANDSTONE_DOG_MEMORIALS));
@@ -440,7 +427,7 @@ public class BlockMemorial extends BlockContainer {
 //        }
 //        if (biomeTypesList.contains(BiomeDictionary.Type.MAGICAL)) {
 //        }
-//        if (biomeTypesList.contains(BiomeDictionary.Type.WATER)) {
+//        if (biomeTypesList.contains(BiomeDictionary.Type.WATER)) {// TODO !!!!!!!!!!!
 //        }
 //        if (biomeTypesList.contains(BiomeDictionary.Type.WASTELAND)) {
 //        }
@@ -455,8 +442,8 @@ public class BlockMemorial extends BlockContainer {
     public static ArrayList<EnumMemorials> getCatsMemorialsTypes(World world, BlockPos pos) {
         BiomeGenBase biome = world.getBiomeGenForCoords(pos);
 
-        ArrayList<BiomeDictionary.Type> biomeTypesList = new ArrayList<BiomeDictionary.Type>(Arrays.asList(BiomeDictionary.getTypesForBiome(biome)));
-        ArrayList<EnumMemorials> memorialTypes = new ArrayList<EnumMemorials>();
+        ArrayList<BiomeDictionary.Type> biomeTypesList = new ArrayList<>(Arrays.asList(BiomeDictionary.getTypesForBiome(biome)));
+        ArrayList<EnumMemorials> memorialTypes = new ArrayList<>();
 
         if (biomeTypesList.contains(BiomeDictionary.Type.SANDY) || biomeTypesList.contains(BiomeDictionary.Type.BEACH)) {
             memorialTypes.addAll(Arrays.asList(SANDSTONE_CAT_MEMORIALS));
@@ -483,7 +470,7 @@ public class BlockMemorial extends BlockContainer {
 //        }
 //        if (biomeTypesList.contains(BiomeDictionary.Type.MAGICAL)) {
 //        }
-//        if (biomeTypesList.contains(BiomeDictionary.Type.WATER)) {
+//        if (biomeTypesList.contains(BiomeDictionary.Type.WATER)) {// TODO !!!!!!!!!!!
 //        }
 //        if (biomeTypesList.contains(BiomeDictionary.Type.WASTELAND)) {
 //        }
@@ -498,8 +485,8 @@ public class BlockMemorial extends BlockContainer {
     public static ArrayList<EnumMemorials> getCreeperMemorialsTypes(World world, BlockPos pos) {
         BiomeGenBase biome = world.getBiomeGenForCoords(pos);
 
-        ArrayList<BiomeDictionary.Type> biomeTypesList = new ArrayList<BiomeDictionary.Type>(Arrays.asList(BiomeDictionary.getTypesForBiome(biome)));
-        ArrayList<EnumMemorials> memorialTypes = new ArrayList<EnumMemorials>();
+        ArrayList<BiomeDictionary.Type> biomeTypesList = new ArrayList<>(Arrays.asList(BiomeDictionary.getTypesForBiome(biome)));
+        ArrayList<EnumMemorials> memorialTypes = new ArrayList<>();
 
         if (biomeTypesList.contains(BiomeDictionary.Type.SANDY) || biomeTypesList.contains(BiomeDictionary.Type.BEACH)) {
             memorialTypes.addAll(Arrays.asList(SANDSTONE_CREEPER_MEMORIALS));
@@ -526,7 +513,7 @@ public class BlockMemorial extends BlockContainer {
 //        }
 //        if (biomeTypesList.contains(BiomeDictionary.Type.MAGICAL)) {
 //        }
-//        if (biomeTypesList.contains(BiomeDictionary.Type.WATER)) {
+//        if (biomeTypesList.contains(BiomeDictionary.Type.WATER)) {// TODO !!!!!!!!!!!
 //        }
 //        if (biomeTypesList.contains(BiomeDictionary.Type.WASTELAND)) {
 //        }
@@ -541,8 +528,8 @@ public class BlockMemorial extends BlockContainer {
     public static ArrayList<EnumMemorials> getStatuesMemorialsTypes(World world, BlockPos pos) {
         BiomeGenBase biome = world.getBiomeGenForCoords(pos);
 
-        ArrayList<BiomeDictionary.Type> biomeTypesList = new ArrayList<BiomeDictionary.Type>(Arrays.asList(BiomeDictionary.getTypesForBiome(biome)));
-        ArrayList<EnumMemorials> memorialTypes = new ArrayList<EnumMemorials>();
+        ArrayList<BiomeDictionary.Type> biomeTypesList = new ArrayList<>(Arrays.asList(BiomeDictionary.getTypesForBiome(biome)));
+        ArrayList<EnumMemorials> memorialTypes = new ArrayList<>();
 
         if (biomeTypesList.contains(BiomeDictionary.Type.SANDY) || biomeTypesList.contains(BiomeDictionary.Type.BEACH)) {
             memorialTypes.addAll(Arrays.asList(SANDSTONE_STATUES_MEMORIALS));
@@ -569,7 +556,7 @@ public class BlockMemorial extends BlockContainer {
 //        }
 //        if (biomeTypesList.contains(BiomeDictionary.Type.MAGICAL)) {
 //        }
-//        if (biomeTypesList.contains(BiomeDictionary.Type.WATER)) {
+//        if (biomeTypesList.contains(BiomeDictionary.Type.WATER)) {// TODO !!!!!!!!!!!
 //        }
 //        if (biomeTypesList.contains(BiomeDictionary.Type.WASTELAND)) {
 //        }
@@ -607,9 +594,6 @@ public class BlockMemorial extends BlockContainer {
 
                 tileEntity.setGraveType(itemStack.getItemDamage());
                 tileEntity.setMossy(nbt.getBoolean("Mossy"));
-
-                tileEntity.setHangedMob(EnumHangedMobs.getById(nbt.getByte("HangedMob")));
-                tileEntity.setHangedVillagerProfession(nbt.getInteger("HangedVillagerProfession"));
 
                 placeWalls(world, pos);
             }
@@ -750,22 +734,6 @@ public class BlockMemorial extends BlockContainer {
             case CREEPER_STATUE:
                 this.setBlockBounds(0.125F, 0, 0.125F, 0.875F, 2.5F, 0.875F);
                 break;
-            case GIBBET:
-            case BURNING_STAKE:
-                this.setBlockBounds(0, 0, 0, 1, 2.5F, 1);
-                break;
-            case STOCKS:
-                switch (facing) {
-                    case SOUTH:
-                    case NORTH:
-                        this.setBlockBounds(-0.5F, 0, 0, 1.5F, 2, 1);
-                        break;
-                    case EAST:
-                    case WEST:
-                        this.setBlockBounds(0, 0, -0.5F, 1, 2, 1.5F);
-                        break;
-                }
-                break;
         }
     }
 
@@ -784,12 +752,6 @@ public class BlockMemorial extends BlockContainer {
         return false;
     }
 
-    //TODO
-//    @Override
-//    public int getRenderType() {
-//        return GraveStoneConfig.memorialRenderID;
-//    }
-
     @Override
     public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumFacing side, float hitX, float hitY, float hitZ) {
         TileEntityMemorial te = (TileEntityMemorial) world.getTileEntity(pos);
@@ -797,28 +759,19 @@ public class BlockMemorial extends BlockContainer {
         if (te != null) {
             ItemStack item = player.inventory.getCurrentItem();
             if (item != null) {
-                if (te.getMemorialType().equals(EnumMemorials.GIBBET) || te.getMemorialType().equals(EnumMemorials.STOCKS) || te.getMemorialType().equals(EnumMemorials.BURNING_STAKE)) {
-                    if (item.getItem() instanceof ItemCorpse && EnumCorpse.getById((byte) item.getItemDamage()).equals(EnumCorpse.VILLAGER) && te.getHangedMob() == EnumHangedMobs.NONE) {
-                        te.setHangedMob(EnumHangedMobs.VILLAGER);
-                        te.setHangedVillagerProfession(VillagerCorpseHelper.getVillagerType(item.getTagCompound()));
-                        item.stackSize--;
-                        return true;
+                if (te.isMossy()) {
+                    if (item.getItem() instanceof ItemShears) {
+                        if (!world.isRemote) {
+                            GraveInventory.dropItem(new ItemStack(Blocks.vine, 1), world, pos);
+                        }
+                        te.setMossy(false);
+                        return false;
                     }
                 } else {
-                    if (te.isMossy()) {
-                        if (item.getItem() instanceof ItemShears) {
-                            if (!world.isRemote) {
-                                GraveInventory.dropItem(new ItemStack(Blocks.vine, 1), world, pos);
-                            }
-                            te.setMossy(false);
-                            return false;
-                        }
-                    } else {
-                        if (net.minecraft.block.Block.getBlockFromItem(item.getItem()) instanceof BlockVine) {
-                            te.setMossy(true);
-                            player.inventory.getCurrentItem().stackSize--;
-                            return true;
-                        }
+                    if (net.minecraft.block.Block.getBlockFromItem(item.getItem()) instanceof BlockVine) {
+                        te.setMossy(true);
+                        player.inventory.getCurrentItem().stackSize--;
+                        return true;
                     }
                 }
             }
@@ -856,93 +809,11 @@ public class BlockMemorial extends BlockContainer {
     }
 
     @Override
-    public int damageDropped(IBlockState state) {
-        return 0;
-    }
-
-    @Override
     @SideOnly(Side.CLIENT)
     public void getSubBlocks(Item item, CreativeTabs tab, List list) {
         for (int index : TAB_MEMORIALS) {
             list.add(getMemorialItemForCreativeInventory(item, index));
         }
-
-//        // gibbets
-//        for (byte mobType = 0; mobType < EnumHangedMobs.values().length; mobType++) {
-//            ItemStack stack = getMemorialItemForCreativeInventory(item, EnumMemorials.GIBBET.ordinal());
-//            stack.getTagCompound().setByte("HangedMob", mobType);
-//            switch (EnumHangedMobs.values()[mobType]) {
-//                case VILLAGER:
-//                    ItemStack villagerStack;
-//                    for (byte villagerProfession = 0; villagerProfession <= 4; villagerProfession++) {
-//                        villagerStack = stack.copy();
-//                        villagerStack.getTagCompound().setInteger("HangedVillagerProfession", villagerProfession);
-//                        list.add(villagerStack);
-//                    }
-//
-//                    Collection<Integer> villagerIds = VillagerRegistry.getRegisteredVillagers();
-//                    Iterator<Integer> it = villagerIds.iterator();
-//                    while (it.hasNext()) {
-//                        villagerStack = stack.copy();
-//                        villagerStack.getTagCompound().setInteger("HangedVillagerProfession", it.next());
-//                        list.add(villagerStack);
-//                    }
-//                    break;
-//                default:
-//                    list.add(stack);
-//            }
-//        }
-//
-//        // stocks
-//        for (byte mobType = 0; mobType < EnumHangedMobs.values().length; mobType++) {
-//            ItemStack stack = getMemorialItemForCreativeInventory(item, EnumMemorials.STOCKS.ordinal());
-//            stack.getTagCompound().setByte("HangedMob", mobType);
-//            switch (EnumHangedMobs.values()[mobType]) {
-//                case VILLAGER:
-//                    ItemStack villagerStack;
-//                    for (byte villagerProfession = 0; villagerProfession <= 4; villagerProfession++) {
-//                        villagerStack = stack.copy();
-//                        villagerStack.getTagCompound().setInteger("HangedVillagerProfession", villagerProfession);
-//                        list.add(villagerStack);
-//                    }
-//
-//                    Collection<Integer> villagerIds = VillagerRegistry.getRegisteredVillagers();
-//                    Iterator<Integer> it = villagerIds.iterator();
-//                    while (it.hasNext()) {
-//                        villagerStack = stack.copy();
-//                        villagerStack.getTagCompound().setInteger("HangedVillagerProfession", it.next());
-//                        list.add(villagerStack);
-//                    }
-//                    break;
-//                default:
-//                    list.add(stack);
-//            }
-//        }
-//        // burning stake
-//        for (byte mobType = 0; mobType < EnumHangedMobs.values().length; mobType++) {
-//            ItemStack stack = getMemorialItemForCreativeInventory(item, EnumMemorials.BURNING_STAKE.ordinal());
-//            stack.getTagCompound().setByte("HangedMob", mobType);
-//            switch (EnumHangedMobs.values()[mobType]) {
-//                case VILLAGER:
-//                    ItemStack villagerStack;
-//                    for (byte villagerProfession = 0; villagerProfession <= 4; villagerProfession++) {
-//                        villagerStack = stack.copy();
-//                        villagerStack.getTagCompound().setInteger("HangedVillagerProfession", villagerProfession);
-//                        list.add(villagerStack);
-//                    }
-//
-//                    Collection<Integer> villagerIds = VillagerRegistry.getRegisteredVillagers();
-//                    Iterator<Integer> it = villagerIds.iterator();
-//                    while (it.hasNext()) {
-//                        villagerStack = stack.copy();
-//                        villagerStack.getTagCompound().setInteger("HangedVillagerProfession", it.next());
-//                        list.add(villagerStack);
-//                    }
-//                    break;
-//                default:
-//                    list.add(stack);
-//            }
-//        }
     }
 
     private static ItemStack getMemorialItemForCreativeInventory(Item item, int graveType) {
@@ -983,9 +854,6 @@ public class BlockMemorial extends BlockContainer {
 
             nbt.setBoolean("Mossy", tileEntity.isMossy());
 
-            nbt.setByte("HangedMob", (byte) tileEntity.getHangedMob().ordinal());
-            nbt.setInteger("HangedVillagerProfession", tileEntity.getHangedVillagerProfession());
-
             itemStack.setTagCompound(nbt);
         }
 
@@ -1022,7 +890,7 @@ public class BlockMemorial extends BlockContainer {
     }
 
     @Override
-    public ItemStack getPickBlock(MovingObjectPosition target, World world, BlockPos pos) {
+    public ItemStack getPickBlock(MovingObjectPosition target, World world, BlockPos pos, EntityPlayer player) {
         ItemStack itemStack = this.createStackedBlock(this.getDefaultState());
         TileEntityMemorial tileEntity = (TileEntityMemorial) world.getTileEntity(pos);
 
@@ -1032,62 +900,10 @@ public class BlockMemorial extends BlockContainer {
                 NBTTagCompound nbt = new NBTTagCompound();
                 nbt.setBoolean("Mossy", tileEntity.isMossy());
 
-                nbt.setByte("HangedMob", (byte) tileEntity.getHangedMob().ordinal());
-                nbt.setInteger("HangedVillagerProfession", tileEntity.getHangedVillagerProfession());
-
                 itemStack.setTagCompound(nbt);
             }
         }
         return itemStack;
-    }
-
-    @Override
-    public int getLightValue(IBlockAccess access, BlockPos pos) {
-        TileEntityMemorial tileEntity = (TileEntityMemorial) access.getTileEntity(pos);
-
-        if (tileEntity != null && tileEntity.getMemorialType() == EnumMemorials.BURNING_STAKE && tileEntity.getHangedMob() != EnumHangedMobs.NONE) {
-            return 15;
-        } else {
-            return super.getLightValue(access, pos);
-        }
-    }
-
-    @Override
-    @SideOnly(Side.CLIENT)
-    public void randomDisplayTick(World world, BlockPos pos, IBlockState state, Random random) {
-        TileEntityMemorial tileEntity = (TileEntityMemorial) world.getTileEntity(pos);
-        if (tileEntity != null && tileEntity.getMemorialType() == EnumMemorials.BURNING_STAKE && tileEntity.getHangedMob() != EnumHangedMobs.NONE) {
-            double xPos, zPos, yPos;
-
-            yPos = pos.getY() + 0.25;
-            for (int angle = 0; angle < 20; angle++) {
-                xPos = pos.getX() + 0.5 + Math.sin(angle * 0.2792) * 0.75;
-                zPos = pos.getZ() + 0.5 + Math.cos(angle * 0.2792) * 0.75;
-
-                EntityFX entityfx = new EntityBigFlameFX(world, xPos, yPos, zPos, 0, 0, 0);
-                Minecraft.getMinecraft().effectRenderer.addEffect(entityfx);
-            }
-
-            yPos += 0.25;
-            for (int angle = 0; angle < 11; angle++) {
-                xPos = pos.getX() + 0.5 + Math.sin(angle * 0.5584) * 0.5;
-                zPos = pos.getZ() + 0.5 + Math.cos(angle * 0.5584) * 0.5;
-
-                EntityFX entityfx = new EntityBigFlameFX(world, xPos, yPos, zPos, 0, 0, 0);
-                Minecraft.getMinecraft().effectRenderer.addEffect(entityfx);
-            }
-
-            yPos += 0.35;
-            for (int angle = 0; angle < 5; angle++) {
-                xPos = pos.getX() + 0.5 + Math.sin(angle * 1.1168) * 0.2;
-                zPos = pos.getZ() + 0.5 + Math.cos(angle * 1.1168) * 0.2;
-
-                EntityFX entityfx = new EntityBigFlameFX(world, xPos, yPos, zPos, 0, 0, 0);
-                Minecraft.getMinecraft().effectRenderer.addEffect(entityfx);
-                world.spawnParticle(EnumParticleTypes.LAVA, xPos, yPos, zPos, 0, 0, 0);
-                world.spawnParticle(EnumParticleTypes.SMOKE_LARGE, xPos, yPos, zPos, 0, 0, 0);
-            }
-        }
     }
 
     @Override

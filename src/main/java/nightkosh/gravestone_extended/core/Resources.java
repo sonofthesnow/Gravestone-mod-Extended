@@ -14,6 +14,7 @@ public class Resources extends nightkosh.gravestone.core.Resources{
     protected static final String POTIONS_LOCATION = MOD_NAME + ":textures/potions/";
     protected static final String ENTITY_LOCATION = MOD_NAME + ":textures/entities/";
     protected static final String MEMORIALS_LOCATION = MOD_NAME + ":textures/memorials/";
+    protected static final String EXECUTIONS_LOCATION = MOD_NAME + ":textures/execution/";
     protected static final String ARMOR_LOCATION = MOD_NAME + ":textures/memorials/armor/";
     protected static final String PEDESTALS_LOCATION = MOD_NAME + ":textures/memorials/pedestal/";
     // blocks
@@ -139,12 +140,12 @@ public class Resources extends nightkosh.gravestone.core.Resources{
     public static final ResourceLocation MEMORIAL_PRIZMARINE_ANGEL_STATUE = new ResourceLocation(MEMORIALS_LOCATION + "AngelStatue/Prizmarine.png");
     public static final ResourceLocation MEMORIAL_ICE_ANGEL_STATUE = new ResourceLocation(MEMORIALS_LOCATION + "AngelStatue/Ice.png");
     public static final ResourceLocation MEMORIAL_MOSSY_ANGEL_STATUE = new ResourceLocation(MEMORIALS_LOCATION + "AngelStatue/Mossy.png");
-    // gibbet
-    public static final ResourceLocation MEMORIAL_GIBBET = new ResourceLocation(MEMORIALS_LOCATION + "gibbet.png");
-    // stocks
-    public static final ResourceLocation MEMORIAL_STOCKS = new ResourceLocation(MEMORIALS_LOCATION + "stocks.png");
-    // burning stake
-    public static final ResourceLocation BURNING_STAKE = new ResourceLocation(MEMORIALS_LOCATION + "BurningStake.png");
+
+    // models - txecution
+    public static final ResourceLocation GALLOWS = new ResourceLocation(EXECUTIONS_LOCATION + "Gallows.png");
+    public static final ResourceLocation GIBBET = new ResourceLocation(EXECUTIONS_LOCATION + "Gibbet.png");
+    public static final ResourceLocation STOCKS = new ResourceLocation(EXECUTIONS_LOCATION + "Stocks.png");
+    public static final ResourceLocation BURNING_STAKE = new ResourceLocation(EXECUTIONS_LOCATION + "BurningStake.png");
 
     // models - parts
     public static final ResourceLocation CREEPER_AURA = new ResourceLocation("textures/entity/creeper/creeper_armor.png");

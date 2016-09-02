@@ -1,12 +1,13 @@
-package nightkosh.gravestone_extended.models.block.memorials;
+package nightkosh.gravestone_extended.models.block.execution;
 
-import nightkosh.gravestone_extended.block.enums.EnumHangedMobs;
-import nightkosh.gravestone_extended.block.enums.EnumMemorials;
-import nightkosh.gravestone_extended.core.Resources;
-import nightkosh.gravestone_extended.models.block.ModelMemorial;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraftforge.fml.common.registry.VillagerRegistry;
+import nightkosh.gravestone_extended.block.enums.EnumHangedMobs;
+import nightkosh.gravestone_extended.block.enums.EnumMemorials;
+import nightkosh.gravestone_extended.core.Resources;
+import nightkosh.gravestone_extended.models.block.ModelExecution;
+import nightkosh.gravestone_extended.models.block.memorials.*;
 import org.lwjgl.opengl.GL11;
 
 /**
@@ -15,7 +16,7 @@ import org.lwjgl.opengl.GL11;
  * @author NightKosh
  * @license Lesser GNU Public License v3 (http://www.gnu.org/licenses/lgpl.html)
  */
-public class ModelGibbet extends ModelMemorial {
+public class ModelGibbet extends ModelExecution {
 
     private ModelRenderer horizontalPlank;
     private ModelRenderer verticalPlank;

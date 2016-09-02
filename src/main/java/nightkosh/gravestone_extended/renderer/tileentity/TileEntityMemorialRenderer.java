@@ -13,7 +13,6 @@ import nightkosh.gravestone.api.grave.EnumGraveMaterial;
 import nightkosh.gravestone.models.block.ModelCelticCross;
 import nightkosh.gravestone.models.block.ModelGraveStone;
 import nightkosh.gravestone.renderer.tileentity.TileEntityRenderer;
-import nightkosh.gravestone_extended.block.enums.EnumHangedMobs;
 import nightkosh.gravestone_extended.block.enums.EnumMemorials;
 import nightkosh.gravestone_extended.core.Resources;
 import nightkosh.gravestone_extended.models.block.ModelMemorial;
@@ -45,9 +44,6 @@ public class TileEntityMemorialRenderer extends TileEntityRenderer {
     public static ModelMemorial dogStatue = new ModelDogStatueMemorial();
     public static ModelMemorial catStatue = new ModelCatStatueMemorial();
     public static ModelMemorial creeperStatue = new ModelCreeperStatueMemorial();
-    public static ModelMemorial gibbet = new ModelGibbet();
-    public static ModelMemorial stocks = new ModelStocks();
-    public static ModelMemorial burningStake = new ModelBurningStake();
 
     public static TileEntityMemorialRenderer instance;
 
@@ -75,13 +71,11 @@ public class TileEntityMemorialRenderer extends TileEntityRenderer {
         }
         EnumFacing facing = EnumFacing.values()[meta];
 
-        renderMemorial(x, y, z, tileEntity.getWorld(), memorial, memorial.getMemorialType(), tileEntity.isEnchanted(), tileEntity.isMossy(),
-                tileEntity.getHangedMob(), tileEntity.getHangedVillagerProfession(), facing);
+        renderMemorial(x, y, z, tileEntity.getWorld(), memorial, memorial.getMemorialType(), tileEntity.isEnchanted(), tileEntity.isMossy(), facing);
 
     }
 
-    public void renderMemorialInGui(float x, float y, EnumMemorials memorial, boolean isEnchanted, boolean isMossy,
-                                    EnumHangedMobs hangedMob, int hangedVillagerProfession, float partialTicks) {
+    public void renderMemorialInGui(float x, float y, EnumMemorials memorial, boolean isEnchanted, boolean isMossy, float partialTicks) {
         GL11.glPushMatrix();
 
         GL11.glTranslatef(x, y, 80);
@@ -93,13 +87,13 @@ public class TileEntityMemorialRenderer extends TileEntityRenderer {
         GL11.glScaled(scale, scale, scale);
 
 
-        renderMemorial(memorial, memorial.getMemorialType(), isEnchanted, isMossy, hangedMob, hangedVillagerProfession);
+        renderMemorial(memorial, memorial.getMemorialType(), isEnchanted, isMossy);
 
         GL11.glPopMatrix();
     }
 
     private void renderMemorial(double x, double y, double z, World world, EnumMemorials memorial, EnumMemorials.EnumMemorialType memorialType,
-                                boolean isEnchanted, boolean isMossy, EnumHangedMobs hangedMob, int hangedVillagerProfession, EnumFacing facing) {
+                                boolean isEnchanted, boolean isMossy, EnumFacing facing) {
         GL11.glPushMatrix();
 
         if (world != null) {
@@ -134,13 +128,13 @@ public class TileEntityMemorialRenderer extends TileEntityRenderer {
                 break;
         }
 
-        renderMemorial(memorial, memorialType, isEnchanted, isMossy, hangedMob, hangedVillagerProfession);
+        renderMemorial(memorial, memorialType, isEnchanted, isMossy);
 
         GL11.glPopMatrix();
     }
 
     private void renderMemorial(EnumMemorials memorial, EnumMemorials.EnumMemorialType memorialType, boolean isEnchanted,
-                                boolean isMossy, EnumHangedMobs hangedMob, int hangedVillagerProfession) {
+                                boolean isMossy) {
         ModelGraveStone model = getModel(memorialType);
         model.setPedestalTexture(getPedestalTexture(memorial, isMossy));
         switch (memorialType) {
@@ -151,12 +145,6 @@ public class TileEntityMemorialRenderer extends TileEntityRenderer {
             case STEVE_STATUE:
                 bindTextureByName(getTexture(memorial, memorial.getTexture(), isMossy));
                 ((ModelMemorial) model).customRender(getArmorTexture(memorial, isMossy), isEnchanted);
-                break;
-            case GIBBET:
-            case STOCKS:
-            case BURNING_STAKE:
-                bindTextureByName(memorial.getTexture());
-                ((ModelMemorial) model).customRender(memorial, hangedMob, hangedVillagerProfession);
                 break;
             default:
                 bindTextureByName(getTexture(memorial, memorial.getTexture(), isMossy));
@@ -358,12 +346,6 @@ public class TileEntityMemorialRenderer extends TileEntityRenderer {
                 return catStatue;
             case CREEPER_STATUE:
                 return creeperStatue;
-            case GIBBET:
-                return gibbet;
-            case STOCKS:
-                return stocks;
-            case BURNING_STAKE:
-                return burningStake;
         }
     }
 

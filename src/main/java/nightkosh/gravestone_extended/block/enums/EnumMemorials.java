@@ -175,13 +175,7 @@ public enum EnumMemorials implements IBlockEnum {
     OBSIDIAN_CREEPER_STATUE("block.memorial.creeper_statue", Resources.OBSIDIAN_CREEPER_STATUE, Resources.MEMORIAL_OBSIDIAN_BIG_PEDESTAL, EnumMemorialType.CREEPER_STATUE, EnumGraveMaterial.OBSIDIAN),
     QUARTZ_CREEPER_STATUE("block.memorial.creeper_statue", Resources.QUARTZ_CREEPER_STATUE, Resources.MEMORIAL_QUARTZ_BIG_PEDESTAL, EnumMemorialType.CREEPER_STATUE, EnumGraveMaterial.QUARTZ),
     PRIZMARINE_CREEPER_STATUE("block.memorial.creeper_statue", Resources.PRIZMARINE_CREEPER_STATUE, Resources.MEMORIAL_PRIZMARINE_BIG_PEDESTAL, EnumMemorialType.CREEPER_STATUE, EnumGraveMaterial.PRIZMARINE),
-    ICE_CREEPER_STATUE("block.memorial.creeper_statue", Resources.ICE_CREEPER_STATUE, Resources.MEMORIAL_ICE_BIG_PEDESTAL, EnumMemorialType.CREEPER_STATUE, EnumGraveMaterial.ICE),
-    // gibbets
-    GIBBET("block.memorial.gibbet", Resources.MEMORIAL_GIBBET, null, EnumMemorialType.GIBBET, EnumGraveMaterial.OTHER),
-    // stocks
-    STOCKS("block.memorial.stocks", Resources.MEMORIAL_STOCKS, null, EnumMemorialType.STOCKS, EnumGraveMaterial.OTHER),
-    // burning stake
-    BURNING_STAKE("block.memorial.burning_stake", Resources.BURNING_STAKE, null, EnumMemorialType.BURNING_STAKE, EnumGraveMaterial.OTHER);
+    ICE_CREEPER_STATUE("block.memorial.creeper_statue", Resources.ICE_CREEPER_STATUE, Resources.MEMORIAL_ICE_BIG_PEDESTAL, EnumMemorialType.CREEPER_STATUE, EnumGraveMaterial.ICE);
 
     public enum EnumMemorialType implements IEnumGraveType {
         CROSS,
@@ -192,10 +186,7 @@ public enum EnumMemorials implements IBlockEnum {
         ANGEL_STATUE,
         DOG_STATUE,
         CAT_STATUE,
-        CREEPER_STATUE,
-        GIBBET,
-        STOCKS,
-        BURNING_STAKE
+        CREEPER_STATUE
     }
 
     private String name;

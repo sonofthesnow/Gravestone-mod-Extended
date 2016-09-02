@@ -28,12 +28,13 @@ block.memorial.dog_statue.name=Estátua de Cachorro
 block.memorial.cat_statue.name=Estátua de Gato
 block.memorial.creeper_statue.name=Estátua de Creeper
 block.memorial.celtic_cross.name=Cruz Celta
+
+## Executions
 ##TODO !!!!!!!!!!
-block.memorial.gibbet.name=Gibbet
-##TODO !!!!!!!!!!
-block.memorial.stocks.name=Stocks
-##TODO !!!!!!!!!!
-block.memorial.burning_stake.name=Burning Stake
+block.execution.gallows.name=Gallows
+block.execution.gibbet.name=Gibbet
+block.execution.stocks.name=Stocks
+block.execution.burning_stake.name=Burning Stake
 
 ## Traps
 block.trap.night.name=Pedra da Noite

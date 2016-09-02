@@ -24,9 +24,13 @@ block.memorial.dog_statue.name=Socha psa
 block.memorial.cat_statue.name=Socha kočky
 block.memorial.creeper_statue.name=Socha Syčáka
 block.memorial.celtic_cross.name=Keltský kříž
-block.memorial.gibbet.name=Šibenice
-block.memorial.stocks.name=Pranýř
-block.memorial.burning_stake.name=Upalovací hranice
+
+## Executions
+## TODO !!!!!!
+block.execution.gallows.name=Gallows
+block.execution.gibbet.name=Šibenice
+block.execution.stocks.name=Pranýř
+block.execution.burning_stake.name=Upalovací hranice
 
 ## Traps
 block.trap.night.name=Noční kámen

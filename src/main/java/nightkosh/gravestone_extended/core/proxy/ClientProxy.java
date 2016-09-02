@@ -63,6 +63,12 @@ public class ClientProxy extends CommonProxy {
         ClientRegistry.registerTileEntity(TileEntityMemorial.CatStatue.class, "GSMemorialCatStatue", new TileEntityMemorialRenderer.CatStatue());
         ClientRegistry.registerTileEntity(TileEntityMemorial.CreeperStatue.class, "GSMemorialCreeperStatue", new TileEntityMemorialRenderer.CreeperStatue());
 
+        // register Execution renderers
+        ClientRegistry.registerTileEntity(TileEntityExecution.class, "GSExecution", new TileEntityExecutionRenderer());
+        ClientRegistry.registerTileEntity(TileEntityExecution.Gibbet.class, "GSExecutionGibbet", new TileEntityExecutionRenderer.Gibbet());
+        ClientRegistry.registerTileEntity(TileEntityExecution.Stocks.class, "GSExecutionStocks", new TileEntityExecutionRenderer.Stocks());
+        ClientRegistry.registerTileEntity(TileEntityExecution.BurningStake.class, "GSExecutionBurningStake", new TileEntityExecutionRenderer.BurningStake());
+
         // spawner renderer
         ClientRegistry.registerTileEntity(TileEntitySpawner.class, "GSSpawner", new TileEntitySpawnerRenderer());
         ClientRegistry.registerTileEntity(TileEntitySpawner.Skeleton.class, "GSSpawnerSkeleton", new TileEntitySpawnerRenderer.Skeleton());
@@ -85,7 +91,7 @@ public class ClientProxy extends CommonProxy {
         ClientRegistry.registerTileEntity(TileEntityPileOfBones.Crawler.class, "GSPileOfBonesCrawler", new TileEntityPileOfBonesRenderer.Crawler());
 
         // corpses
-//        MinecraftForgeClient.registerItemRenderer(Item.corpse, new ItemGSCorpseRenderer());
+//        MinecraftForgeClient.registerItemRenderer(Item.corpse, new ItemGSCorpseRenderer());//TODO !!!
 
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityAltar.class, new TileEntityRenderAltar());
     }
@@ -161,6 +167,11 @@ public class ClientProxy extends CommonProxy {
         ProxyHelper.registerModelsForTEBlocks(EnumMemorials.WOODEN_DOG_STATUE.ordinal(), EnumMemorials.ICE_DOG_STATUE.ordinal(), GSBlock.memorial, ResourcesModels.memorialModel, TileEntityMemorial.DogStatue.class);
         ProxyHelper.registerModelsForTEBlocks(EnumMemorials.WOODEN_CAT_STATUE.ordinal(), EnumMemorials.ICE_CAT_STATUE.ordinal(), GSBlock.memorial, ResourcesModels.memorialModel, TileEntityMemorial.CatStatue.class);
         ProxyHelper.registerModelsForTEBlocks(EnumMemorials.WOODEN_CREEPER_STATUE.ordinal(), EnumMemorials.ICE_CREEPER_STATUE.ordinal(), GSBlock.memorial, ResourcesModels.memorialModel, TileEntityMemorial.CreeperStatue.class);
+        //executions
+        ProxyHelper.registerModelsForTEBlocks(EnumExecution.GALLOWS.ordinal(), GSBlock.execution, ResourcesModels.executionModel, TileEntityExecution.class);
+        ProxyHelper.registerModelsForTEBlocks(EnumExecution.GIBBET.ordinal(), GSBlock.execution, ResourcesModels.executionModel, TileEntityExecution.Gibbet.class);
+        ProxyHelper.registerModelsForTEBlocks(EnumExecution.STOCKS.ordinal(), GSBlock.execution, ResourcesModels.executionModel, TileEntityExecution.Stocks.class);
+        ProxyHelper.registerModelsForTEBlocks(EnumExecution.BURNING_STAKE.ordinal(), GSBlock.execution, ResourcesModels.executionModel, TileEntityExecution.BurningStake.class);
         //spawners
         ProxyHelper.registerModelsForTEBlocks(EnumSpawner.WITHER_SPAWNER.ordinal(), GSBlock.spawner, ResourcesModels.spawnerModel, TileEntitySpawner.class);
         ProxyHelper.registerModelsForTEBlocks(EnumSpawner.SKELETON_SPAWNER.ordinal(), GSBlock.spawner, ResourcesModels.spawnerModel, TileEntitySpawner.Skeleton.class);

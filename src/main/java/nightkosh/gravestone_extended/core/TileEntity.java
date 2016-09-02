@@ -15,6 +15,8 @@ public class TileEntity extends GSTileEntity{
     public static void registration() {
         GameRegistry.registerTileEntity(TileEntityMemorial.class, "Memorial");
 
+        GameRegistry.registerTileEntity(TileEntityExecution.class, "Execution");
+
         GameRegistry.registerTileEntity(TileEntitySpawner.class, "GS Spawner");
 
         GameRegistry.registerTileEntity(TileEntityHauntedChest.class, "GSHaunted Chest");

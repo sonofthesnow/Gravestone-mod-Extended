@@ -24,9 +24,12 @@ block.memorial.dog_statue.name=Статуя собаки
 block.memorial.cat_statue.name=Статуя кошки
 block.memorial.creeper_statue.name=Статуя крипера
 block.memorial.celtic_cross.name=Кельтский крест
-block.memorial.gibbet.name=Виселица
-block.memorial.stocks.name=Колодки
-block.memorial.burning_stake=Костёр инквизиции
+
+## Executions
+block.execution.gallows.name=Виселица
+block.execution.gibbet.name=Виселица
+block.execution.stocks.name=Колодки
+block.execution.burning_stake.name=Костёр инквизиции
 
 ## Traps
 block.trap.night.name=Камень тьмы

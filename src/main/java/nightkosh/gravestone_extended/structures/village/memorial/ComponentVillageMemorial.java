@@ -81,13 +81,13 @@ public class ComponentVillageMemorial extends StructureVillagePieces.Village {
 
     protected void placeMemorial(World world, Random random, int x, int y, int z) {
         int memorialType;
-        boolean isTortureMemorial = random.nextInt(4) == 0;
+//        boolean isTortureMemorial = random.nextInt(4) == 0;
         BlockPos pos = new BlockPos(this.getXWithOffset(x, z), this.getYWithOffset(y), this.getZWithOffset(x, z));
-        if (isTortureMemorial) {
-            memorialType = BlockMemorial.TORTURE_MEMORIALS[random.nextInt(BlockMemorial.TORTURE_MEMORIALS.length)].ordinal();
-        } else {
+//        if (isTortureMemorial) {//TODO !!!!!!!
+//            memorialType = BlockMemorial.TORTURE_MEMORIALS[random.nextInt(BlockMemorial.TORTURE_MEMORIALS.length)].ordinal();
+//        } else {
             memorialType = BlockMemorial.getMemorialType(world, pos, random, 0);
-        }
+//        }
 
         IBlockState memorialState = GSBlock.memorial.getDefaultState().withProperty(BlockMemorial.FACING, this.coordBaseMode.getOpposite());
         this.setBlockState(world, memorialState, x, y, z, boundingBox);
@@ -95,11 +95,11 @@ public class ComponentVillageMemorial extends StructureVillagePieces.Village {
         TileEntityMemorial tileEntity = (TileEntityMemorial) world.getTileEntity(pos);
         if (tileEntity != null) {
             tileEntity.setGraveType(memorialType);
-            if (isTortureMemorial) {
-                tileEntity.setRandomMob(random);
-            } else {
+//            if (isTortureMemorial) {
+//                tileEntity.setRandomMob(random);
+//            } else {
                 tileEntity.setMemorialContent(random);
-            }
+//            }
         }
     }
 

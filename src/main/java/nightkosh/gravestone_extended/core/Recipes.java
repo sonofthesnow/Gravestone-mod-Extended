@@ -5,7 +5,7 @@ import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.fml.common.registry.GameRegistry;
-import nightkosh.gravestone_extended.block.enums.EnumMemorials;
+import nightkosh.gravestone_extended.block.enums.EnumExecution;
 import nightkosh.gravestone_extended.block.enums.EnumSkullCandle;
 import nightkosh.gravestone_extended.block.enums.EnumSpawner;
 import nightkosh.gravestone_extended.config.ExtendedConfig;
@@ -41,14 +41,12 @@ public class Recipes {
         GameRegistry.addRecipe(new ItemStack(GSBlock.pileOfBones, 9, 0), "x", 'x', GSBlock.boneBlock);
 
 
-        // memorials
         // gibbets
-        //TODO type
-        GameRegistry.addRecipe(getStackWithNTB(GSBlock.memorial, EnumMemorials.GIBBET.ordinal(), "Type"), "ww ", "wr ", "wc ", 'w', Blocks.planks, 'r', Items.lead, 'c', GSItem.chisel);
+        GameRegistry.addRecipe(getStackWithNTB(GSBlock.execution, EnumExecution.GIBBET.ordinal(), "Type"), "ww ", "wr ", "wc ", 'w', Blocks.planks, 'r', Items.lead, 'c', GSItem.chisel);
         // stocks
-        GameRegistry.addRecipe(getStackWithNTB(GSBlock.memorial, EnumMemorials.STOCKS.ordinal(), "Type"), "wsw", "wcw", 'w', Blocks.planks, 's', Blocks.wooden_slab, 'c', GSItem.chisel);
+        GameRegistry.addRecipe(getStackWithNTB(GSBlock.execution, EnumExecution.STOCKS.ordinal(), "Type"), "wsw", "wcw", 'w', Blocks.planks, 's', Blocks.wooden_slab, 'c', GSItem.chisel);
         // burning stake
-        GameRegistry.addRecipe(getStackWithNTB(GSBlock.memorial, EnumMemorials.BURNING_STAKE.ordinal(), "Type"), " w ", "www", "hwh", 'w', Blocks.planks, 'h', Blocks.hay_block);
+        GameRegistry.addRecipe(getStackWithNTB(GSBlock.execution, EnumExecution.BURNING_STAKE.ordinal(), "Type"), " w ", "www", "hwh", 'w', Blocks.planks, 'h', Blocks.hay_block);
 
     //TODO ????
         // sword graves TODO remove

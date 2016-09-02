@@ -10,7 +10,6 @@ import net.minecraft.util.StringUtils;
 import net.minecraft.world.World;
 import nightkosh.gravestone.tileentity.GraveStoneDeathText;
 import nightkosh.gravestone.tileentity.TileEntityGrave;
-import nightkosh.gravestone_extended.block.enums.EnumHangedMobs;
 import nightkosh.gravestone_extended.block.enums.EnumMemorials;
 
 import java.util.Random;
@@ -25,8 +24,6 @@ import java.util.UUID;
 public class TileEntityMemorial extends TileEntityGrave {
 
     private GameProfile playerProfile = null;
-    private EnumHangedMobs hangedMob = EnumHangedMobs.NONE;
-    private int hangedVillagerProfession = 0;
 
     public TileEntityMemorial() {
         super();
@@ -55,10 +52,6 @@ public class TileEntityMemorial extends TileEntityGrave {
         // death text
         deathText.readText(nbtTag);
 
-        hangedMob = EnumHangedMobs.getById(nbtTag.getByte("HangedMob"));
-        hangedVillagerProfession = nbtTag.getInteger("HangedVillagerProfession");
-
-
         if (nbtTag.hasKey("Owner", 10)) {
             this.playerProfile = NBTUtil.readGameProfileFromNBT(nbtTag.getCompoundTag("Owner"));
         } else if (nbtTag.hasKey("ExtraType", 8)) {
@@ -80,9 +73,6 @@ public class TileEntityMemorial extends TileEntityGrave {
         // death text
         deathText.saveText(nbtTag);
 
-        nbtTag.setByte("HangedMob", (byte) hangedMob.ordinal());
-        nbtTag.setInteger("HangedVillagerProfession", hangedVillagerProfession);
-
         if (this.playerProfile != null) {
             NBTTagCompound nbtTagCompound = new NBTTagCompound();
             NBTUtil.writeGameProfile(nbtTagCompound, this.playerProfile);
@@ -95,10 +85,6 @@ public class TileEntityMemorial extends TileEntityGrave {
 //        deathText = DeathTextHelper.getRandomDeathTextAndNameForMemorial(random, EnumMemorials.getById(graveType));
     }
 
-    public void setRandomMob(Random random) {
-        hangedMob = EnumHangedMobs.values()[random.nextInt(EnumHangedMobs.values().length)];
-    }
-
     @Override
     public GraveStoneDeathText getDeathTextComponent() {
         return deathText;
@@ -106,22 +92,6 @@ public class TileEntityMemorial extends TileEntityGrave {
 
     public EnumMemorials getMemorialType() {
         return EnumMemorials.getById(graveType);
-    }
-
-    public int getHangedVillagerProfession() {
-        return hangedVillagerProfession;
-    }
-
-    public void setHangedVillagerProfession(int hangedVillagerProfession) {
-        this.hangedVillagerProfession = hangedVillagerProfession;
-    }
-
-    public EnumHangedMobs getHangedMob() {
-        return hangedMob;
-    }
-
-    public void setHangedMob(EnumHangedMobs hangedMob) {
-        this.hangedMob = hangedMob;
     }
 
     public GameProfile getPlayerProfile() {

@@ -1,12 +1,9 @@
 package nightkosh.gravestone_extended.core;
 
+import net.minecraftforge.fml.common.registry.GameRegistry;
 import nightkosh.gravestone_extended.ModGravestoneExtended;
 import nightkosh.gravestone_extended.block.*;
 import nightkosh.gravestone_extended.item.itemblock.*;
-import net.minecraft.block.BlockStone;
-import net.minecraft.block.state.IBlockState;
-import net.minecraft.init.Blocks;
-import net.minecraftforge.fml.common.registry.GameRegistry;
 
 /**
  * GraveStone mod
@@ -16,14 +13,10 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
  */
 public class GSBlock extends nightkosh.gravestone.core.GSBlock{
 
-    public static final IBlockState DEFAULT_STONE_STATE = Blocks.stone.getDefaultState();
-    public static final int DIORITE_META = Blocks.stone.getMetaFromState(DEFAULT_STONE_STATE.withProperty(BlockStone.VARIANT, BlockStone.EnumType.DIORITE_SMOOTH));
-    public static final int ANDESITE_META = Blocks.stone.getMetaFromState(DEFAULT_STONE_STATE.withProperty(BlockStone.VARIANT, BlockStone.EnumType.ANDESITE_SMOOTH));
-    public static final int GRANITE_META = Blocks.stone.getMetaFromState(DEFAULT_STONE_STATE.withProperty(BlockStone.VARIANT, BlockStone.EnumType.GRANITE_SMOOTH));
-
     public static BlockSpawner spawner;
     public static BlockTrap trap;
     public static BlockMemorial memorial;
+    public static BlockExecution execution;
     public static BlockPileOfBones pileOfBones;
 
     public static BlockBoneBlock boneBlock;
@@ -43,6 +36,10 @@ public class GSBlock extends nightkosh.gravestone.core.GSBlock{
         // memorials
         memorial = new BlockMemorial();
         GameRegistry.registerBlock(memorial, ItemBlockGSMemorial.class, "GSMemorial");
+
+        // executions
+        execution = new BlockExecution();
+        GameRegistry.registerBlock(execution, ItemBlockExecution.class, "GSExecution");
 
         // wither spawner
         spawner = new BlockSpawner();

@@ -24,9 +24,12 @@ block.memorial.dog_statue.name=Dog Statue
 block.memorial.cat_statue.name=Cat Statue
 block.memorial.creeper_statue.name=Creeper Statue
 block.memorial.celtic_cross.name=Celtic Cross
-block.memorial.gibbet.name=Gibbet
-block.memorial.stocks.name=Stocks
-block.memorial.burning_stake.name=Burning Stake
+
+## Executions
+block.execution.gallows.name=Gallows
+block.execution.gibbet.name=Gibbet
+block.execution.stocks.name=Stocks
+block.execution.burning_stake.name=Burning Stake
 
 ## Traps
 block.trap.night.name=Night Stone
