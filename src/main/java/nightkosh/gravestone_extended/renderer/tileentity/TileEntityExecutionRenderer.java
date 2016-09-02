@@ -30,10 +30,6 @@ public class TileEntityExecutionRenderer extends TileEntityRenderer {
 
     private static final TileEntityExecution EXECUTION_TE = new TileEntityExecution();
 
-    static {
-        EXECUTION_TE.setExecutionType(EnumExecution.GIBBET);
-    }
-
     public TileEntityExecutionRenderer() {
         instance = this;
     }
@@ -45,14 +41,10 @@ public class TileEntityExecutionRenderer extends TileEntityRenderer {
         if (tileEntity == null) {
             tileEntity = getDefaultTE();
         }
-        EnumExecution execution = tileEntity.getExecutionType();
-        int meta = 0;
+        EnumExecution execution = EnumExecution.getById(tileEntity.getBlockMetadata());
+        int direction = tileEntity.getDirection();
 
-        if (tileEntity.getWorld() != null) {
-            meta = tileEntity.getBlockMetadata();
-        }
-
-        renderMemorial(x, y, z, tileEntity.getWorld(), execution, tileEntity.getHangedMob(), tileEntity.getHangedVillagerProfession(), EnumFacing.values()[meta]);
+        renderMemorial(x, y, z, tileEntity.getWorld(), execution, tileEntity.getHangedMob(), tileEntity.getHangedVillagerProfession(), EnumFacing.values()[direction]);
     }
 
     private void renderMemorial(double x, double y, double z, World world, EnumExecution execution,
@@ -90,7 +82,7 @@ public class TileEntityExecutionRenderer extends TileEntityRenderer {
     private void renderMemorial(EnumExecution execution, EnumHangedMobs hangedMob, int hangedVillagerProfession) {
         ModelExecution model = getModel(execution);
         bindTextureByName(execution.getTexture());
-        model.customRender(execution, hangedMob, hangedVillagerProfession);
+        model.customRender(hangedMob, hangedVillagerProfession);
     }
 
     private static ModelExecution getModel(EnumExecution execution) {
@@ -112,11 +104,7 @@ public class TileEntityExecutionRenderer extends TileEntityRenderer {
     }
 
     public static class Gibbet extends TileEntityExecutionRenderer {
-        private static final TileEntityExecution EXECUTION_TE = new TileEntityExecution();
-
-        static {
-            EXECUTION_TE.setExecutionType(EnumExecution.GIBBET);
-        }
+        private static final TileEntityExecution EXECUTION_TE = new TileEntityExecution.Gibbet();
 
         @Override
         protected TileEntityExecution getDefaultTE() {
@@ -125,11 +113,7 @@ public class TileEntityExecutionRenderer extends TileEntityRenderer {
     }
 
     public static class Stocks extends TileEntityExecutionRenderer {
-        private static final TileEntityExecution EXECUTION_TE = new TileEntityExecution();
-
-        static {
-            EXECUTION_TE.setExecutionType(EnumExecution.STOCKS);
-        }
+        private static final TileEntityExecution EXECUTION_TE = new TileEntityExecution.Stocks();
 
         @Override
         protected TileEntityExecution getDefaultTE() {
@@ -138,11 +122,7 @@ public class TileEntityExecutionRenderer extends TileEntityRenderer {
     }
 
     public static class BurningStake extends TileEntityExecutionRenderer {
-        private static final TileEntityExecution EXECUTION_TE = new TileEntityExecution();
-
-        static {
-            EXECUTION_TE.setExecutionType(EnumExecution.BURNING_STAKE);
-        }
+        private static final TileEntityExecution EXECUTION_TE = new TileEntityExecution.BurningStake();
 
         @Override
         protected TileEntityExecution getDefaultTE() {

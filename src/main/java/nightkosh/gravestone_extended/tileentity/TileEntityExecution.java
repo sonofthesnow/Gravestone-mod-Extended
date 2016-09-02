@@ -1,7 +1,10 @@
 package nightkosh.gravestone_extended.tileentity;
 
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.tileentity.TileEntity;
+import net.minecraft.network.NetworkManager;
+import net.minecraft.network.Packet;
+import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
+import nightkosh.gravestone.tileentity.TileEntityBase;
 import nightkosh.gravestone_extended.block.enums.EnumExecution;
 import nightkosh.gravestone_extended.block.enums.EnumHangedMobs;
 
@@ -13,9 +16,9 @@ import java.util.Random;
  * @author NightKosh
  * @license Lesser GNU Public License v3 (http://www.gnu.org/licenses/lgpl.html)
  */
-public class TileEntityExecution extends TileEntity {
+public class TileEntityExecution extends TileEntityBase {
 
-    protected EnumExecution executionType = EnumExecution.GALLOWS;
+    private byte direction = 0;
     private EnumHangedMobs hangedMob = EnumHangedMobs.NONE;
     private int hangedVillagerProfession = 0;
 
@@ -23,7 +26,7 @@ public class TileEntityExecution extends TileEntity {
     public void readFromNBT(NBTTagCompound nbtTag) {
         super.readFromNBT(nbtTag);
 
-        executionType = EnumExecution.getById((int) nbtTag.getByte("Type"));
+        direction = nbtTag.getByte("Direction");
 
         hangedMob = EnumHangedMobs.getById(nbtTag.getByte("HangedMob"));
         hangedVillagerProfession = nbtTag.getInteger("HangedVillagerProfession");
@@ -33,26 +36,10 @@ public class TileEntityExecution extends TileEntity {
     public void writeToNBT(NBTTagCompound nbtTag) {
         super.writeToNBT(nbtTag);
 
-        nbtTag.setByte("Type", (byte) executionType.ordinal());
+        nbtTag.setByte("Direction", direction);
 
         nbtTag.setByte("HangedMob", (byte) hangedMob.ordinal());
         nbtTag.setInteger("HangedVillagerProfession", hangedVillagerProfession);
-    }
-
-    public EnumExecution getExecutionType() {
-        return executionType;
-    }
-
-    public int getExecutionTypeNum() {
-        return executionType.ordinal();
-    }
-
-    public void setExecutionType(EnumExecution executionType) {
-        this.executionType = executionType;
-    }
-
-    public void setExecutionType(int executionType) {
-        this.executionType = EnumExecution.getById(executionType);
     }
 
     public void setRandomMob(Random random) {
@@ -75,7 +62,44 @@ public class TileEntityExecution extends TileEntity {
         this.hangedMob = hangedMob;
     }
 
-    public static class Gibbet extends TileEntityExecution {}
-    public static class Stocks extends TileEntityExecution {}
-    public static class BurningStake extends TileEntityExecution {}
+    public byte getDirection() {
+        return direction;
+    }
+
+    public void setDirection(byte direction) {
+        this.direction = direction;
+    }
+
+    @Override
+    public Packet getDescriptionPacket() {
+        NBTTagCompound nbt = new NBTTagCompound();
+        this.writeToNBT(nbt);
+        return new S35PacketUpdateTileEntity(this.pos, 4, nbt);
+    }
+
+    @Override
+    public void onDataPacket(NetworkManager net, S35PacketUpdateTileEntity packet) {
+        readFromNBT(packet.getNbtCompound());
+    }
+
+    public static class Gibbet extends TileEntityExecution {
+        @Override
+        public int getBlockMetadata() {
+            return EnumExecution.GIBBET.ordinal();
+        }
+    }
+
+    public static class Stocks extends TileEntityExecution {
+        @Override
+        public int getBlockMetadata() {
+            return EnumExecution.STOCKS.ordinal();
+        }
+    }
+
+    public static class BurningStake extends TileEntityExecution {
+        @Override
+        public int getBlockMetadata() {
+            return EnumExecution.BURNING_STAKE.ordinal();
+        }
+    }
 }

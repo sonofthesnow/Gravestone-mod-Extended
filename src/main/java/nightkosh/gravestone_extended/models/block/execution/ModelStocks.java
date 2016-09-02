@@ -4,7 +4,6 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraftforge.fml.common.registry.VillagerRegistry;
 import nightkosh.gravestone_extended.block.enums.EnumHangedMobs;
-import nightkosh.gravestone_extended.block.enums.EnumMemorials;
 import nightkosh.gravestone_extended.core.Resources;
 import nightkosh.gravestone_extended.models.block.ModelExecution;
 import nightkosh.gravestone_extended.models.block.memorials.*;
@@ -79,7 +78,8 @@ public class ModelStocks extends ModelExecution {
         armHole2.render(0.0625F);
     }
 
-    public void customRender(EnumMemorials memorialType, EnumHangedMobs mob, int villagerProfession) {
+    @Override
+    public void customRender(EnumHangedMobs mob, int villagerProfession) {
         renderAll();
         if (mob != EnumHangedMobs.NONE) {
             GL11.glPushMatrix();

@@ -4,7 +4,7 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
-import net.minecraft.block.properties.PropertyDirection;
+import net.minecraft.block.properties.PropertyEnum;
 import net.minecraft.block.state.BlockState;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
@@ -46,7 +46,7 @@ import java.util.Random;
  */
 public class BlockExecution extends BlockContainer {
 
-    public static final PropertyDirection FACING = PropertyDirection.create("facing", EnumFacing.Plane.HORIZONTAL);
+    public static final PropertyEnum VARIANT = PropertyEnum.create("variant", EnumExecution.class);
 
     public BlockExecution() {
         super(Material.rock);
@@ -64,14 +64,15 @@ public class BlockExecution extends BlockContainer {
 
     @Override
     public void setBlockBoundsBasedOnState(IBlockAccess access, BlockPos pos) {
-        EnumFacing facing = (EnumFacing) access.getBlockState(pos).getValue(FACING);
-        EnumExecution executionBlockType;
+        EnumExecution executionBlockType = (EnumExecution) access.getBlockState(pos).getValue(VARIANT);
         TileEntityExecution tileEntity = (TileEntityExecution) access.getTileEntity(pos);
 
+
+        EnumFacing facing;
         if (tileEntity != null) {
-            executionBlockType = tileEntity.getExecutionType();
+            facing = EnumFacing.values()[tileEntity.getDirection()];
         } else {
-            executionBlockType = EnumExecution.GIBBET;
+            facing = EnumFacing.NORTH;
         }
 
         switch (executionBlockType) {
@@ -177,11 +178,10 @@ public class BlockExecution extends BlockContainer {
     }
 
     private ItemStack getBlockItemStack(World world, BlockPos pos) {
-        ItemStack itemStack = this.createStackedBlock(this.getDefaultState());
+        ItemStack itemStack = this.createStackedBlock(world.getBlockState(pos));
         TileEntityExecution tileEntity = (TileEntityExecution) world.getTileEntity(pos);
 
-        if (tileEntity != null) {
-            itemStack.setItemDamage(tileEntity.getExecutionTypeNum());
+        if (tileEntity != null && itemStack != null) {
             NBTTagCompound nbt = new NBTTagCompound();
 
             nbt.setByte("HangedMob", (byte) tileEntity.getHangedMob().ordinal());
@@ -194,14 +194,7 @@ public class BlockExecution extends BlockContainer {
     }
 
     private ItemStack getBlockItemStackWithoutInfo(World world, BlockPos pos) {
-        ItemStack itemStack = this.createStackedBlock(this.getDefaultState());
-        TileEntityExecution tileEntity = (TileEntityExecution) world.getTileEntity(pos);
-
-        if (tileEntity != null) {
-            itemStack.setItemDamage(tileEntity.getExecutionTypeNum());
-        }
-
-        return itemStack;
+        return this.createStackedBlock(world.getBlockState(pos));
     }
 
     @Override
@@ -210,19 +203,16 @@ public class BlockExecution extends BlockContainer {
 
     @Override
     public ItemStack getPickBlock(MovingObjectPosition target, World world, BlockPos pos, EntityPlayer player) {
-        ItemStack itemStack = this.createStackedBlock(this.getDefaultState());
+        ItemStack itemStack = this.createStackedBlock(world.getBlockState(pos));
         TileEntityExecution tileEntity = (TileEntityExecution) world.getTileEntity(pos);
 
-        if (tileEntity != null) {
-            if (itemStack != null) {
-                itemStack.setItemDamage(tileEntity.getExecutionTypeNum());
-                NBTTagCompound nbt = new NBTTagCompound();
+        if (tileEntity != null && itemStack != null) {
+            NBTTagCompound nbt = new NBTTagCompound();
 
-                nbt.setByte("HangedMob", (byte) tileEntity.getHangedMob().ordinal());
-                nbt.setInteger("HangedVillagerProfession", tileEntity.getHangedVillagerProfession());
+            nbt.setByte("HangedMob", (byte) tileEntity.getHangedMob().ordinal());
+            nbt.setInteger("HangedVillagerProfession", tileEntity.getHangedVillagerProfession());
 
-                itemStack.setTagCompound(nbt);
-            }
+            itemStack.setTagCompound(nbt);
         }
         return itemStack;
     }
@@ -231,7 +221,7 @@ public class BlockExecution extends BlockContainer {
     public int getLightValue(IBlockAccess access, BlockPos pos) {
         TileEntityExecution tileEntity = (TileEntityExecution) access.getTileEntity(pos);
 
-        if (tileEntity != null && tileEntity.getExecutionType() == EnumExecution.BURNING_STAKE && tileEntity.getHangedMob() != EnumHangedMobs.NONE) {
+        if (tileEntity != null && access.getBlockState(pos).getValue(VARIANT) == EnumExecution.BURNING_STAKE && tileEntity.getHangedMob() != EnumHangedMobs.NONE) {
             return 15;
         } else {
             return super.getLightValue(access, pos);
@@ -242,7 +232,7 @@ public class BlockExecution extends BlockContainer {
     @SideOnly(Side.CLIENT)
     public void randomDisplayTick(World world, BlockPos pos, IBlockState state, Random random) {
         TileEntityExecution tileEntity = (TileEntityExecution) world.getTileEntity(pos);
-        if (tileEntity != null && tileEntity.getExecutionType() == EnumExecution.BURNING_STAKE && tileEntity.getHangedMob() != EnumHangedMobs.NONE) {
+        if (tileEntity != null && state.getValue(VARIANT) == EnumExecution.BURNING_STAKE && tileEntity.getHangedMob() != EnumHangedMobs.NONE) {
             double xPos, zPos, yPos;
 
             yPos = pos.getY() + 0.25;
@@ -278,40 +268,30 @@ public class BlockExecution extends BlockContainer {
 
     @Override
     public IBlockState getStateFromMeta(int meta) {
-        EnumFacing enumfacing = EnumFacing.getFront(meta);
-
-        if (enumfacing.getAxis() == EnumFacing.Axis.Y) {
-            enumfacing = EnumFacing.NORTH;
-        }
-
-        return this.getDefaultState().withProperty(FACING, enumfacing);
+        return this.getDefaultState().withProperty(VARIANT, EnumExecution.getById((byte) meta));
     }
 
     @Override
     public int getMetaFromState(IBlockState state) {
-        return ((EnumFacing) state.getValue(FACING)).getIndex();
+        return ((EnumExecution) state.getValue(VARIANT)).ordinal();
     }
 
     @Override
     protected BlockState createBlockState() {
-        return new BlockState(this, new IProperty[]{FACING});
+        return new BlockState(this, new IProperty[]{VARIANT});
     }
-
 
     @Override
     public void onBlockPlacedBy(World world, BlockPos pos, IBlockState state, EntityLivingBase player, ItemStack itemStack) {
-        EnumFacing enumfacing = EnumFacing.getHorizontal(MathHelper.floor_double((double) (player.rotationYaw * 4 / 360F) + 0.5D) & 3).getOpposite();
-        state = state.withProperty(FACING, enumfacing);
-        world.setBlockState(pos, state, 2);
+        world.setBlockState(pos, getStateFromMeta(itemStack.getItemDamage()), 2);
 
         TileEntityExecution tileEntity = (TileEntityExecution) world.getTileEntity(pos);
 
         if (tileEntity != null) {
-            tileEntity.setExecutionType(itemStack.getItemDamage());
+            tileEntity.setDirection((byte) EnumFacing.getHorizontal(MathHelper.floor_double((double) (player.rotationYaw * 4 / 360F) + 0.5D) & 3).getOpposite().ordinal());
 
             if (itemStack.hasTagCompound()) {
                 NBTTagCompound nbt = itemStack.getTagCompound();
-                tileEntity.setExecutionType(itemStack.getItemDamage());
 
                 tileEntity.setHangedMob(EnumHangedMobs.getById(nbt.getByte("HangedMob")));
                 tileEntity.setHangedVillagerProfession(nbt.getInteger("HangedVillagerProfession"));

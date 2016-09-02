@@ -1,7 +1,6 @@
 package nightkosh.gravestone_extended.models.block;
 
 import nightkosh.gravestone.models.block.ModelGraveStone;
-import nightkosh.gravestone_extended.block.enums.EnumExecution;
 import nightkosh.gravestone_extended.block.enums.EnumHangedMobs;
 
 /**
@@ -12,6 +11,6 @@ import nightkosh.gravestone_extended.block.enums.EnumHangedMobs;
  */
 public abstract class ModelExecution extends ModelGraveStone {
 
-    public void customRender(EnumExecution memorialType, EnumHangedMobs mob, int villagerProfession) {
+    public void customRender(EnumHangedMobs mob, int villagerProfession) {
     }
 }

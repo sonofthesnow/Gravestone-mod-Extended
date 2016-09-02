@@ -3,8 +3,8 @@ package nightkosh.gravestone_extended.models.block.execution;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraftforge.fml.common.registry.VillagerRegistry;
+import nightkosh.gravestone_extended.block.enums.EnumExecution;
 import nightkosh.gravestone_extended.block.enums.EnumHangedMobs;
-import nightkosh.gravestone_extended.block.enums.EnumMemorials;
 import nightkosh.gravestone_extended.core.Resources;
 import nightkosh.gravestone_extended.models.block.ModelExecution;
 import nightkosh.gravestone_extended.models.block.memorials.*;
@@ -180,7 +180,8 @@ public class ModelBurningStake extends ModelExecution {
         hay8.render(f5);
     }
 
-    public void customRender(EnumMemorials memorialType, EnumHangedMobs mob, int villagerProfession) {
+    @Override
+    public void customRender(EnumHangedMobs mob, int villagerProfession) {
         renderAll();
         if (mob != EnumHangedMobs.NONE) {
             GL11.glPushMatrix();
