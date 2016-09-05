@@ -43,7 +43,7 @@ public class ModelGibbet extends ModelExecution {
     ModelRenderer cageBottom;
 
 
-    private static final ModelHangedBiped bipedModel = new ModelHangedBiped(false);
+    private static final ModelHangedBiped bipedModel = new ModelHangedBiped(false, true);
     private static final ModelHangedBiped zombieModel = new ModelHangedBiped(false, true);
     private static final ModelHangedSkeleton skeletonModel = new ModelHangedSkeleton(false);
     private static final ModelHangedSkeleton witherSkeletonModel = new ModelHangedSkeleton(false, true);

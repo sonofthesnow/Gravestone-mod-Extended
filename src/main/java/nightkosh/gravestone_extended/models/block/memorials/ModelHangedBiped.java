@@ -22,8 +22,8 @@ public class ModelHangedBiped extends ModelBiped {
         this(isInStocks, false);
     }
 
-    public ModelHangedBiped(boolean isInStocks, boolean isZombie) {
-        super(0, 0, 64, isZombie ? 64 : 32);
+    public ModelHangedBiped(boolean isInStocks, boolean isTall) {
+        super(0, 0, 64, isTall ? 64 : 32);
         this.isInStocks = isInStocks;
         setRotation(this.bipedHead, 0.20F, 0, 0);
 

@@ -24,7 +24,7 @@ public class ModelStocks extends ModelExecution {
     private ModelRenderer armHole1;
     private ModelRenderer armHole2;
 
-    private static final ModelHangedBiped bipedModel = new ModelHangedBiped(true);
+    private static final ModelHangedBiped bipedModel = new ModelHangedBiped(true, true);
     private static final ModelHangedBiped zombieModel = new ModelHangedBiped(true, true);
     private static final ModelHangedSkeleton skeletonModel = new ModelHangedSkeleton(true);
     private static final ModelHangedSkeleton witherSkeletonModel = new ModelHangedSkeleton(true, true);

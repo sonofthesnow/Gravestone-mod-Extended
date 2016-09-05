@@ -3,7 +3,6 @@ package nightkosh.gravestone_extended.models.block.execution;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraftforge.fml.common.registry.VillagerRegistry;
-import nightkosh.gravestone_extended.block.enums.EnumExecution;
 import nightkosh.gravestone_extended.block.enums.EnumHangedMobs;
 import nightkosh.gravestone_extended.core.Resources;
 import nightkosh.gravestone_extended.models.block.ModelExecution;
@@ -36,7 +35,7 @@ public class ModelBurningStake extends ModelExecution {
     private ModelRenderer hay7;
     private ModelRenderer hay8;
 
-    private static final ModelHangedBiped bipedModel = new ModelHangedBiped(false);
+    private static final ModelHangedBiped bipedModel = new ModelHangedBiped(false, true);
     private static final ModelHangedBiped zombieModel = new ModelHangedBiped(false, true);
     private static final ModelHangedSkeleton skeletonModel = new ModelHangedSkeleton(false);
     private static final ModelHangedSkeleton witherSkeletonModel = new ModelHangedSkeleton(false, true);
