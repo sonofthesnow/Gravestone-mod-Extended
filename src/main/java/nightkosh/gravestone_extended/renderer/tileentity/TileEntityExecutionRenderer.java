@@ -8,6 +8,7 @@ import nightkosh.gravestone_extended.block.enums.EnumExecution;
 import nightkosh.gravestone_extended.block.enums.EnumHangedMobs;
 import nightkosh.gravestone_extended.models.block.ModelExecution;
 import nightkosh.gravestone_extended.models.block.execution.ModelBurningStake;
+import nightkosh.gravestone_extended.models.block.execution.ModelGallows;
 import nightkosh.gravestone_extended.models.block.execution.ModelGibbet;
 import nightkosh.gravestone_extended.models.block.execution.ModelStocks;
 import nightkosh.gravestone_extended.tileentity.TileEntityExecution;
@@ -21,7 +22,7 @@ import org.lwjgl.opengl.GL11;
  */
 public class TileEntityExecutionRenderer extends TileEntityRenderer {
 
-    public static ModelExecution gallows = new ModelGibbet();//TODO
+    public static ModelExecution gallows = new ModelGallows();
     public static ModelExecution gibbet = new ModelGibbet();
     public static ModelExecution stocks = new ModelStocks();
     public static ModelExecution burningStake = new ModelBurningStake();

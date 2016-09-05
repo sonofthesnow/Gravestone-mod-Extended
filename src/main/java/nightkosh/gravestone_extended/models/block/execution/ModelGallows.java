@@ -15,7 +15,7 @@ import org.lwjgl.opengl.GL11;
  * @author NightKosh
  * @license Lesser GNU Public License v3 (http://www.gnu.org/licenses/lgpl.html)
  */
-public class ModelGibbet extends ModelExecution {
+public class ModelGallows extends ModelExecution {
 
     private ModelRenderer horizontalPlank;
     private ModelRenderer verticalPlank;
@@ -25,23 +25,12 @@ public class ModelGibbet extends ModelExecution {
     private ModelRenderer plank4;
     private ModelRenderer rope;
     private ModelRenderer rope2;
-
-    ModelRenderer cage1;
-    ModelRenderer cage2;
-    ModelRenderer cage11;
-    ModelRenderer cage12;
-    ModelRenderer cage21;
-    ModelRenderer cage22;
-    ModelRenderer cage3;
-    ModelRenderer cage31;
-    ModelRenderer cage32;
-    ModelRenderer cage33;
-    ModelRenderer cage34;
-    ModelRenderer cage35;
-    ModelRenderer cage36;
-    ModelRenderer cage37;
-    ModelRenderer cageBottom;
-
+    private ModelRenderer knot;
+    private ModelRenderer loop1;
+    private ModelRenderer loop2;
+    private ModelRenderer loop3;
+    private ModelRenderer loop4;
+    private ModelRenderer loop5;
 
     private static final ModelHangedBiped bipedModel = new ModelHangedBiped(false);
     private static final ModelHangedBiped zombieModel = new ModelHangedBiped(false, true);
@@ -51,7 +40,7 @@ public class ModelGibbet extends ModelExecution {
     private static final ModelHangedZombieVillager zombieVillagerModel = new ModelHangedZombieVillager(false);
     private static final ModelHangedWitch witchModel = new ModelHangedWitch(false);
 
-    public ModelGibbet() {
+    public ModelGallows() {
         textureWidth = 64;
         textureHeight = 128;
 
@@ -75,7 +64,7 @@ public class ModelGibbet extends ModelExecution {
         plank2.addBox(0, 0, 0, 3, 15, 4);
         plank2.setRotationPoint(-1.5F, 13.3F, 3);
         plank2.setTextureSize(this.textureWidth, this.textureHeight);
-        setRotation(plank2, -0.7853982F, 0, 0);
+        setRotation(plank2, -0.7853982F, 0F, 0F);
 
         plank3 = new ModelRenderer(this, 31, 42);
         plank3.addBox(0, 0, 0, 4, 15, 3);
@@ -99,84 +88,40 @@ public class ModelGibbet extends ModelExecution {
         rope2.setRotationPoint(-0.5F, -28, -15);
         rope2.setTextureSize(this.textureWidth, this.textureHeight);
 
+        knot = new ModelRenderer(this, 5, 71);
+        knot.addBox(0, 0, 0, 2, 6, 2);
+        knot.setRotationPoint(-1.4F, -18, -14.5F);
+        knot.setTextureSize(this.textureWidth, this.textureHeight);
+        setRotation(knot, 0, 0.7853982F, 0);
 
-        cage1 = new ModelRenderer(this, 17, 0);
-        cage1.addBox(0, 0, 0, 16, 1, 1);
-        cage1.setRotationPoint(-8, -18, -15);
-        cage1.setTextureSize(this.textureWidth, this.textureHeight);
+        loop1 = new ModelRenderer(this, 17, 65);
+        loop1.addBox(0, 0, 0, 1, 4, 1);
+        loop1.setRotationPoint(-0.8F, -12.3F, -15);
+        loop1.setTextureSize(this.textureWidth, this.textureHeight);
+        setRotation(loop1, 0, 0, 0.1745329F);
 
-        cage2 = new ModelRenderer(this, 17, 0);
-        cage2.addBox(0, 0, 0, 16, 1, 1);
-        cage2.setRotationPoint(-0.5F, -18, -7);
-        cage2.setTextureSize(this.textureWidth, this.textureHeight);
-        setRotation(cage2, 0, 1.570796F, 0);
+        loop2 = new ModelRenderer(this, 22, 65);
+        loop2.addBox(0, 0, 0, 1, 4, 1);
+        loop2.setRotationPoint(-0.2F, -12.1F, -15);
+        loop2.setTextureSize(this.textureWidth, this.textureHeight);
+        setRotation(loop2, 0, 0, -0.1745329F);
 
-        cage11 = new ModelRenderer(this, 17, 0);
-        cage11.addBox(0, 0, 0, 16, 1, 1);
-        cage11.setRotationPoint(-8, -18, -23);
-        cage11.setTextureSize(this.textureWidth, this.textureHeight);
+        loop3 = new ModelRenderer(this, 27, 65);
+        loop3.addBox(0, 0, 0, 2, 1, 1);
+        loop3.setRotationPoint(-0.65F, -8.85F, -15);
+        loop3.setTextureSize(this.textureWidth, this.textureHeight);
+        setRotation(loop3, 0, 0, 1.082104F);
 
-        cage12 = new ModelRenderer(this, 17, 0);
-        cage12.addBox(0, 0, 0, 16, 1, 1);
-        cage12.setRotationPoint(-8, -18, -8);
-        cage12.setTextureSize(this.textureWidth, this.textureHeight);
+        loop4 = new ModelRenderer(this, 27, 68);
+        loop4.addBox(0, 0, 0, 2, 1, 1);
+        loop4.setRotationPoint(1.5F, -8.4F, -15);
+        loop4.setTextureSize(this.textureWidth, this.textureHeight);
+        setRotation(loop4, 0, 0, 2.094395F);
 
-        cage21 = new ModelRenderer(this, 17, 0);
-        cage21.addBox(0, 0, 0, 16, 1, 1);
-        cage21.setRotationPoint(-8.5F, -18, -7);
-        cage21.setTextureSize(this.textureWidth, this.textureHeight);
-        setRotation(cage21, 0, 1.570796F, 0);
-
-        cage22 = new ModelRenderer(this, 17, 0);
-        cage22.addBox(0, 0, 0, 16, 1, 1);
-        cage22.setRotationPoint(7.5F, -18, -7);
-        cage22.setTextureSize(this.textureWidth, this.textureHeight);
-        setRotation(cage22, 0, 1.570796F, 0);
-
-        cage3 = new ModelRenderer(this, 53, 0);
-        cage3.addBox(0, 0, 0, 1, 34, 1);
-        cage3.setRotationPoint(-0.5F, -17, -23);
-        cage3.setTextureSize(this.textureWidth, this.textureHeight);
-
-        cage31 = new ModelRenderer(this, 53, 0);
-        cage31.addBox(0, 0, 0, 1, 34, 1);
-        cage31.setRotationPoint(-0.5F, -17, -8);
-        cage31.setTextureSize(this.textureWidth, this.textureHeight);
-
-        cage32 = new ModelRenderer(this, 53, 0);
-        cage32.addBox(0, 0, 0, 1, 34, 1);
-        cage32.setRotationPoint(7.5F, -17, -23);
-        cage32.setTextureSize(this.textureWidth, this.textureHeight);
-
-        cage33 = new ModelRenderer(this, 53, 0);
-        cage33.addBox(0, 0, 0, 1, 34, 1);
-        cage33.setRotationPoint(-8.5F, -17, -23);
-        cage33.setTextureSize(this.textureWidth, this.textureHeight);
-
-        cage34 = new ModelRenderer(this, 53, 0);
-        cage34.addBox(0, 0, 0, 1, 34, 1);
-        cage34.setRotationPoint(-8.5F, -17, -15);
-        cage34.setTextureSize(this.textureWidth, this.textureHeight);
-
-        cage35 = new ModelRenderer(this, 53, 0);
-        cage35.addBox(0, 0, 0, 1, 34, 1);
-        cage35.setRotationPoint(-8.5F, -17, -8);
-        cage35.setTextureSize(this.textureWidth, this.textureHeight);
-
-        cage36 = new ModelRenderer(this, 53, 0);
-        cage36.addBox(0, 0, 0, 1, 34, 1);
-        cage36.setRotationPoint(7.5F, -17, -15);
-        cage36.setTextureSize(this.textureWidth, this.textureHeight);
-
-        cage37 = new ModelRenderer(this, 53, 0);
-        cage37.addBox(0, 0, 0, 1, 34, 1);
-        cage37.setRotationPoint(7.5F, -17, -8);
-        cage37.setTextureSize(this.textureWidth, this.textureHeight);
-
-        cageBottom = new ModelRenderer(this, 0, 112);
-        cageBottom.addBox(0, 0, 0, 16, 1, 15);
-        cageBottom.setRotationPoint(-8, 16, -22.5F);
-        cageBottom.setTextureSize(this.textureWidth, this.textureHeight);
+        loop5 = new ModelRenderer(this, 34, 65);
+        loop5.addBox(0, 0, 0, 1, 1, 1);
+        loop5.setRotationPoint(-0.5F, -7.6F, -15);
+        loop5.setTextureSize(this.textureWidth, this.textureHeight);
     }
 
     public void renderAllWithoutLoop() {
@@ -188,26 +133,21 @@ public class ModelGibbet extends ModelExecution {
         plank4.render(0.0625F);
         rope.render(0.0625F);
         rope2.render(0.0625F);
-        cage1.render(0.0625F);
-        cage2.render(0.0625F);
-        cage11.render(0.0625F);
-        cage12.render(0.0625F);
-        cage21.render(0.0625F);
-        cage22.render(0.0625F);
-        cage3.render(0.0625F);
-        cage31.render(0.0625F);
-        cage32.render(0.0625F);
-        cage33.render(0.0625F);
-        cage34.render(0.0625F);
-        cage35.render(0.0625F);
-        cage36.render(0.0625F);
-        cage37.render(0.0625F);
-        cageBottom.render(0.0625F);
+        knot.render(0.0625F);
+    }
+
+    public void renderLoop() {
+        loop1.render(0.0625F);
+        loop2.render(0.0625F);
+        loop3.render(0.0625F);
+        loop4.render(0.0625F);
+        loop5.render(0.0625F);
     }
 
     @Override
     public void renderAll() {
         renderAllWithoutLoop();
+        renderLoop();
     }
 
     @Override
@@ -218,7 +158,7 @@ public class ModelGibbet extends ModelExecution {
             renderAllWithoutLoop();
 
             GL11.glPushMatrix();
-            GL11.glTranslatef(0, -0.5F, -0.75F);
+            GL11.glTranslatef(0, -0.5F, -1.1F);
             switch (mob) {
                 case STEVE:
                     Minecraft.getMinecraft().renderEngine.bindTexture(Resources.STEVE);
@@ -275,5 +215,6 @@ public class ModelGibbet extends ModelExecution {
             }
             GL11.glPopMatrix();
         }
+
     }
 }

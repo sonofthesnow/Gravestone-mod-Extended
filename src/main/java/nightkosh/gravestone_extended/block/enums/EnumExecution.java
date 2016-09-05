@@ -13,7 +13,7 @@ import nightkosh.gravestone_extended.core.Resources;
  */
 public enum EnumExecution implements IBlockEnum, IStringSerializable {
 
-    GALLOWS("block.execution.gallows", "gallows", Resources.GIBBET),
+    GALLOWS("block.execution.gallows", "gallows", Resources.GALLOWS),
     GIBBET("block.execution.gibbet", "gibbet", Resources.GIBBET),
     STOCKS("block.execution.stocks", "stocks", Resources.STOCKS),
     BURNING_STAKE("block.execution.burning_stake", "burning_stake", Resources.BURNING_STAKE);
