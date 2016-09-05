@@ -13,6 +13,7 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -27,6 +28,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import nightkosh.gravestone.inventory.GraveInventory;
 import nightkosh.gravestone_extended.block.enums.EnumExecution;
 import nightkosh.gravestone_extended.block.enums.EnumHangedMobs;
+import nightkosh.gravestone_extended.core.GSBlock;
 import nightkosh.gravestone_extended.core.Tabs;
 import nightkosh.gravestone_extended.item.ItemCorpse;
 import nightkosh.gravestone_extended.item.corpse.VillagerCorpseHelper;
@@ -76,9 +78,10 @@ public class BlockExecution extends BlockContainer {
         }
 
         switch (executionBlockType) {
+            case GALLOWS:
             case GIBBET:
             case BURNING_STAKE:
-                this.setBlockBounds(0, 0, 0, 1, 2.5F, 1);
+                this.setBlockBounds(0, 0, 0, 1, 3, 1);
                 break;
             case STOCKS:
                 switch (facing) {
@@ -97,7 +100,7 @@ public class BlockExecution extends BlockContainer {
 
     @Override
     public void setBlockBoundsForItemRender() {
-        this.setBlockBounds(0, 0, 0, 1, 1, 2);
+        this.setBlockBounds(0, 0, 0, 1, 1, 1);
     }
 
     @Override
@@ -301,43 +304,8 @@ public class BlockExecution extends BlockContainer {
         }
     }
 
-    //TODO !!!!!!!!!!!!!!!!!!!!!!!!
     public static void placeWalls(World world, BlockPos pos) {
-//        TileEntityExecution tileEntity = (TileEntityExecution) world.getTileEntity(pos);
-//
-//        if (tileEntity != null) {
-//            //TODO almost the same code in ItemBlockGSMemorial
-//            byte maxY;
-//            byte maxX = 1;
-//            byte maxZ = 1;
-//            byte startX = 0;
-//            byte startZ = 0;
-//
-//            switch (tileEntity.getExecutionType()) {
-//                case CROSS:
-//                case OBELISK:
-//                    maxY = 5;
-//                    maxX = 2;
-//                    maxZ = 2;
-//                    startX = -1;
-//                    startZ = -1;
-//                    break;
-//                case DOG_STATUE:
-//                case CAT_STATUE:
-//                    maxY = 2;
-//                    break;
-//            }
-//            for (byte shiftY = 0; shiftY < maxY; shiftY++) {
-//                for (byte shiftZ = startZ; shiftZ < maxZ; shiftZ++) {
-//                    for (byte shiftX = startX; shiftX < maxX; shiftX++) {
-//                        BlockPos newPos = new BlockPos(pos.getX() + shiftX, pos.getY() + shiftY, pos.getZ() + shiftZ);
-//                        if (world.getBlockState(newPos).getBlock() == Blocks.air) {
-//                            world.setBlockState(newPos, GSBlock.invisibleWall.getDefaultState());
-//                        }
-//                    }
-//                }
-//            }
-//        }
+        placeAdditionalBlock(world, pos, GSBlock.invisibleWall.getDefaultState(), Blocks.air);
     }
 
     @Override
@@ -352,42 +320,64 @@ public class BlockExecution extends BlockContainer {
         return super.removedByPlayer(world, pos, player, willHarvest);
     }
 
-    //TODO !!!!!!!!!!!!!!!!!!!!!!!!
     private static void removeWalls(World world, BlockPos pos) {
-//        //TODO almost the same code in ItemBlockGSMemorial
-//        byte maxY;
-//        byte maxX = 1;
-//        byte maxZ = 1;
-//        byte startX = 0;
-//        byte startZ = 0;
-//
-//        TileEntityExecution tileEntity = (TileEntityExecution) world.getTileEntity(pos);
-//
-//        if (tileEntity != null) {
-//            switch (tileEntity.getExecutionType()) {
-//                case CROSS:
-//                case OBELISK:
-//                    maxY = 5;
-//                    maxX = 2;
-//                    maxZ = 2;
-//                    startX = -1;
-//                    startZ = -1;
-//                    break;
-//                case DOG_STATUE:
-//                case CAT_STATUE:
-//                    maxY = 2;
-//                    break;
-//            }
-//            for (byte shiftY = 0; shiftY < maxY; shiftY++) {
-//                for (byte shiftZ = startZ; shiftZ < maxZ; shiftZ++) {
-//                    for (byte shiftX = startX; shiftX < maxX; shiftX++) {
-//                        BlockPos newPos = new BlockPos(pos.getX() + shiftX, pos.getY() + shiftY, pos.getZ() + shiftZ);
-//                        if (world.getBlockState(newPos).getBlock() == GSBlock.invisibleWall) {
-//                            world.setBlockState(new BlockPos(pos.getX() + shiftX, pos.getY() + shiftY, pos.getZ() + shiftZ), Blocks.air.getDefaultState());
-//                        }
-//                    }
-//                }
-//            }
-//        }
+        placeAdditionalBlock(world, pos, Blocks.air.getDefaultState(), GSBlock.invisibleWall);
+    }
+
+    public static void placeAdditionalBlock(World world, BlockPos pos, IBlockState blockState, Block replaceableBlock) {
+        TileEntityExecution tileEntity = (TileEntityExecution) world.getTileEntity(pos);
+
+        if (tileEntity != null) {
+            byte maxY = 0;
+            byte maxX = 1;
+            byte maxZ = 1;
+            byte startX = 0;
+            byte startZ = 0;
+
+            EnumFacing facing = EnumFacing.values()[tileEntity.getDirection()];
+            switch ((EnumExecution) world.getBlockState(pos).getValue(VARIANT)) {
+                case GALLOWS:
+                case GIBBET:
+                    maxY = 3;
+                    switch (facing) {
+                        case NORTH:
+                            startZ = -1;
+                            break;
+                        case EAST:
+                            maxX = 2;
+                            break;
+                        case SOUTH:
+                            maxZ = 2;
+                            break;
+                        case WEST:
+                            startX = -1;
+                            break;
+                    }
+                    break;
+                case STOCKS:
+                    maxY = 2;
+                    if (facing == EnumFacing.NORTH || facing == EnumFacing.SOUTH) {
+                        startX = -1;
+                        maxX = 2;
+                    } else {
+                        startZ = -1;
+                        maxZ = 2;
+                    }
+                    break;
+                case BURNING_STAKE:
+                    maxY = 3;
+                    break;
+            }
+            for (byte shiftY = 0; shiftY < maxY; shiftY++) {
+                for (byte shiftZ = startZ; shiftZ < maxZ; shiftZ++) {
+                    for (byte shiftX = startX; shiftX < maxX; shiftX++) {
+                        BlockPos newPos = new BlockPos(pos.getX() + shiftX, pos.getY() + shiftY, pos.getZ() + shiftZ);
+                        if (world.getBlockState(newPos).getBlock() == replaceableBlock) {
+                            world.setBlockState(new BlockPos(pos.getX() + shiftX, pos.getY() + shiftY, pos.getZ() + shiftZ), blockState);
+                        }
+                    }
+                }
+            }
+        }
     }
 }
