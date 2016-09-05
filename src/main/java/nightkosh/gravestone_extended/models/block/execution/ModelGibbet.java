@@ -45,12 +45,12 @@ public class ModelGibbet extends ModelExecution {
         textureHeight = 128;
 
         horizontalPlank = new ModelRenderer(this, 0, 0);
-        horizontalPlank.addBox(0, 0, 0, 4, 56, 4);
-        horizontalPlank.setRotationPoint(-2, -32, 3);
+        horizontalPlank.addBox(0, 0, 0, 4, 52, 4);
+        horizontalPlank.setRotationPoint(-2, -28, 3);
         horizontalPlank.setTextureSize(this.textureWidth, this.textureHeight);
 
-        verticalPlank = new ModelRenderer(this, 16, 0);
-        verticalPlank.addBox(0, 0, 0, 4, 4, 20);
+        verticalPlank = new ModelRenderer(this, 0, 83);
+        verticalPlank.addBox(0, 0, 0, 4, 4, 24);
         verticalPlank.setRotationPoint(-2, -32, -17);
         verticalPlank.setTextureSize(this.textureWidth, this.textureHeight);
 
