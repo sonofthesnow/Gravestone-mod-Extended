@@ -1,12 +1,18 @@
 package nightkosh.gravestone_extended.tileentity;
 
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.inventory.IInventory;
+import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.Packet;
 import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
+import net.minecraft.util.BlockPos;
+import net.minecraft.util.IChatComponent;
 import nightkosh.gravestone.tileentity.TileEntityBase;
 import nightkosh.gravestone_extended.block.enums.EnumExecution;
 import nightkosh.gravestone_extended.block.enums.EnumHangedMobs;
+import nightkosh.gravestone_extended.item.corpse.VillagerCorpseHelper;
 
 import java.util.Random;
 
@@ -16,9 +22,10 @@ import java.util.Random;
  * @author NightKosh
  * @license Lesser GNU Public License v3 (http://www.gnu.org/licenses/lgpl.html)
  */
-public class TileEntityExecution extends TileEntityBase {
+public class TileEntityExecution extends TileEntityBase implements IInventory {
 
     private byte direction = 0;
+    private ItemStack corpse;
     private EnumHangedMobs hangedMob = EnumHangedMobs.NONE;
     private int hangedVillagerProfession = 0;
 
@@ -27,6 +34,10 @@ public class TileEntityExecution extends TileEntityBase {
         super.readFromNBT(nbtTag);
 
         direction = nbtTag.getByte("Direction");
+
+        if (nbtTag.hasKey("Corpse")) {
+            corpse = ItemStack.loadItemStackFromNBT(nbtTag.getCompoundTag("Corpse"));
+        }
 
         hangedMob = EnumHangedMobs.getById(nbtTag.getByte("HangedMob"));
         hangedVillagerProfession = nbtTag.getInteger("HangedVillagerProfession");
@@ -37,6 +48,12 @@ public class TileEntityExecution extends TileEntityBase {
         super.writeToNBT(nbtTag);
 
         nbtTag.setByte("Direction", direction);
+
+        if (corpse != null) {
+            NBTTagCompound corpseNBT = new NBTTagCompound();
+            corpse.writeToNBT(corpseNBT);
+            nbtTag.setTag("Corpse", corpseNBT);
+        }
 
         nbtTag.setByte("HangedMob", (byte) hangedMob.ordinal());
         nbtTag.setInteger("HangedVillagerProfession", hangedVillagerProfession);
@@ -70,6 +87,21 @@ public class TileEntityExecution extends TileEntityBase {
         this.direction = direction;
     }
 
+    public ItemStack getCorpse() {
+        return corpse;
+    }
+
+    public void setCorpse(ItemStack corpse) {
+        this.corpse = corpse;
+        this.updateCorpseInfo();
+    }
+
+    private void updateCorpseInfo() {
+        this.setHangedMob(EnumHangedMobs.VILLAGER);//TODO !!!
+        this.setHangedVillagerProfession(VillagerCorpseHelper.getVillagerType(corpse.getTagCompound()));
+
+    }
+
     @Override
     public Packet getDescriptionPacket() {
         NBTTagCompound nbt = new NBTTagCompound();
@@ -80,6 +112,108 @@ public class TileEntityExecution extends TileEntityBase {
     @Override
     public void onDataPacket(NetworkManager net, S35PacketUpdateTileEntity packet) {
         readFromNBT(packet.getNbtCompound());
+    }
+
+    @Override
+    public int getSizeInventory() {
+        return 1;
+    }
+
+    @Override
+    public ItemStack getStackInSlot(int index) {
+        return corpse;
+    }
+
+    @Override
+    public ItemStack decrStackSize(int index, int count) {
+        ItemStack stack = getStackInSlot(index);
+        if (stack != null) {
+            if (stack.stackSize <= count) {
+                setInventorySlotContents(index, null);
+            } else {
+                stack = stack.splitStack(count);
+                if (stack.stackSize == 0) {
+                    setInventorySlotContents(index, null);
+                }
+            }
+        }
+        return stack;
+    }
+
+    @Override
+    public ItemStack removeStackFromSlot(int index) {
+        ItemStack stack = getStackInSlot(index);
+        if (stack != null) {
+            setInventorySlotContents(index, null);
+        }
+        return stack;
+    }
+
+    @Override
+    public void setInventorySlotContents(int index, ItemStack stack) {
+        corpse = stack;
+        this.updateCorpseInfo();
+    }
+
+    @Override
+    public int getInventoryStackLimit() {
+        return 1;
+    }
+
+    @Override
+    public boolean isUseableByPlayer(EntityPlayer player) {
+        return worldObj.getTileEntity(this.pos) == this &&
+                player.getDistanceSq(new BlockPos(this.pos.getX() + 0.5, this.pos.getY() + 0.5, this.pos.getZ() + 0.5)) < 64;
+    }
+
+    @Override
+    public void openInventory(EntityPlayer player) {
+
+    }
+
+    @Override
+    public void closeInventory(EntityPlayer player) {
+
+    }
+
+    @Override
+    public boolean isItemValidForSlot(int index, ItemStack stack) {
+        return false;
+    }
+
+    @Override
+    public int getField(int id) {
+        return 0;
+    }
+
+    @Override
+    public void setField(int id, int value) {
+
+    }
+
+    @Override
+    public int getFieldCount() {
+        return 0;
+    }
+
+    @Override
+    public void clear() {
+
+    }
+
+    @Override
+    public String getName() {
+        return "";
+    }
+
+    @Override
+    public boolean hasCustomName() {
+        return false;
+    }
+
+    @Override
+    public IChatComponent getDisplayName() {
+        return null;
     }
 
     public static class Gibbet extends TileEntityExecution {

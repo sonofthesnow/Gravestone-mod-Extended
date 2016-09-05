@@ -26,13 +26,12 @@ import net.minecraftforge.fml.common.registry.VillagerRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import nightkosh.gravestone.inventory.GraveInventory;
+import nightkosh.gravestone_extended.ModGravestoneExtended;
 import nightkosh.gravestone_extended.block.enums.EnumExecution;
 import nightkosh.gravestone_extended.block.enums.EnumHangedMobs;
 import nightkosh.gravestone_extended.core.GSBlock;
+import nightkosh.gravestone_extended.core.GuiHandler;
 import nightkosh.gravestone_extended.core.Tabs;
-import nightkosh.gravestone_extended.item.ItemCorpse;
-import nightkosh.gravestone_extended.item.corpse.VillagerCorpseHelper;
-import nightkosh.gravestone_extended.item.enums.EnumCorpse;
 import nightkosh.gravestone_extended.particle.EntityBigFlameFX;
 import nightkosh.gravestone_extended.tileentity.TileEntityExecution;
 
@@ -117,14 +116,15 @@ public class BlockExecution extends BlockContainer {
     public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumFacing side, float hitX, float hitY, float hitZ) {
         TileEntityExecution te = (TileEntityExecution) world.getTileEntity(pos);
 
-        if (te != null) {
-            ItemStack item = player.inventory.getCurrentItem();
-            if (item != null && item.getItem() instanceof ItemCorpse && EnumCorpse.getById((byte) item.getItemDamage()).equals(EnumCorpse.VILLAGER) && te.getHangedMob() == EnumHangedMobs.NONE) {
-                te.setHangedMob(EnumHangedMobs.VILLAGER);
-                te.setHangedVillagerProfession(VillagerCorpseHelper.getVillagerType(item.getTagCompound()));
-                item.stackSize--;
-                return true;
-            }
+        if (te != null && !player.isSneaking()) {
+            player.openGui(ModGravestoneExtended.instance, GuiHandler.EXECUTION_GUI_ID, world, pos.getX(), pos.getY(), pos.getZ());
+
+//            ItemStack item = player.inventory.getCurrentItem();
+//            if (item != null && item.getItem() instanceof ItemCorpse && EnumCorpse.getById((byte) item.getItemDamage()).equals(EnumCorpse.VILLAGER) && te.getHangedMob() == EnumHangedMobs.NONE) {
+//                te.setCorpse(item);
+//                item.stackSize--;
+//                return true;
+//            }
         }
 
         return false;
@@ -187,6 +187,12 @@ public class BlockExecution extends BlockContainer {
         if (tileEntity != null && itemStack != null) {
             NBTTagCompound nbt = new NBTTagCompound();
 
+            if (tileEntity.getCorpse() != null) {
+                NBTTagCompound corpseNBT = new NBTTagCompound();
+                tileEntity.getCorpse().writeToNBT(corpseNBT);
+                nbt.setTag("Corpse", corpseNBT);
+            }
+
             nbt.setByte("HangedMob", (byte) tileEntity.getHangedMob().ordinal());
             nbt.setInteger("HangedVillagerProfession", tileEntity.getHangedVillagerProfession());
 
@@ -211,6 +217,12 @@ public class BlockExecution extends BlockContainer {
 
         if (tileEntity != null && itemStack != null) {
             NBTTagCompound nbt = new NBTTagCompound();
+
+            if (tileEntity.getCorpse() != null) {
+                NBTTagCompound corpseNBT = new NBTTagCompound();
+                tileEntity.getCorpse().writeToNBT(corpseNBT);
+                nbt.setTag("Corpse", corpseNBT);
+            }
 
             nbt.setByte("HangedMob", (byte) tileEntity.getHangedMob().ordinal());
             nbt.setInteger("HangedVillagerProfession", tileEntity.getHangedVillagerProfession());
@@ -295,6 +307,10 @@ public class BlockExecution extends BlockContainer {
 
             if (itemStack.hasTagCompound()) {
                 NBTTagCompound nbt = itemStack.getTagCompound();
+
+                if (nbt.hasKey("Corpse")) {
+                    tileEntity.setCorpse(ItemStack.loadItemStackFromNBT(nbt.getCompoundTag("Corpse")));
+                }
 
                 tileEntity.setHangedMob(EnumHangedMobs.getById(nbt.getByte("HangedMob")));
                 tileEntity.setHangedVillagerProfession(nbt.getInteger("HangedVillagerProfession"));
