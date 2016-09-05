@@ -95,7 +95,7 @@ public class ModelGibbet extends ModelExecution {
         rope.setTextureSize(this.textureWidth, this.textureHeight);
 
         rope2 = new ModelRenderer(this, 0, 71);
-        rope2.addBox(0, 0, 0, 1, 16, 1);
+        rope2.addBox(0, 0, 0, 1, 10, 1);
         rope2.setRotationPoint(-0.5F, -28, -15);
         rope2.setTextureSize(this.textureWidth, this.textureHeight);
 
@@ -218,7 +218,7 @@ public class ModelGibbet extends ModelExecution {
             renderAllWithoutLoop();
 
             GL11.glPushMatrix();
-            GL11.glTranslatef(0, -0.5F, -0.75F);
+            GL11.glTranslatef(0, -0.5F, -0.9F);
             switch (mob) {
                 case STEVE:
                     Minecraft.getMinecraft().renderEngine.bindTexture(Resources.STEVE);
