@@ -347,6 +347,7 @@ public class BlockExecution extends BlockContainer {
             byte maxY = 0;
             byte maxX = 1;
             byte maxZ = 1;
+            byte startY = 0;
             byte startX = 0;
             byte startZ = 0;
 
@@ -381,10 +382,11 @@ public class BlockExecution extends BlockContainer {
                     }
                     break;
                 case BURNING_STAKE:
+                    startY = 2;
                     maxY = 3;
                     break;
             }
-            for (byte shiftY = 0; shiftY < maxY; shiftY++) {
+            for (byte shiftY = startY; shiftY < maxY; shiftY++) {
                 for (byte shiftZ = startZ; shiftZ < maxZ; shiftZ++) {
                     for (byte shiftX = startX; shiftX < maxX; shiftX++) {
                         BlockPos newPos = new BlockPos(pos.getX() + shiftX, pos.getY() + shiftY, pos.getZ() + shiftZ);
