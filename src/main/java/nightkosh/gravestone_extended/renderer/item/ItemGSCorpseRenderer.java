@@ -27,8 +27,7 @@ import java.util.Map;
  * @author NightKosh
  * @license Lesser GNU Public License v3 (http://www.gnu.org/licenses/lgpl.html)
  */
-public class ItemGSCorpseRenderer{ //TODO
-//implements IItemRenderer {
+public class ItemGSCorpseRenderer {
 
     private static final Map horsesTexturesMap = Maps.newHashMap();
     private static final ModelVillager villagerModel = new ModelVillager(0);
@@ -38,24 +37,12 @@ public class ItemGSCorpseRenderer{ //TODO
     private static EntityWolf dog;
     private static EntityHorse horse;
 
-//    @Override
-//    public boolean handleRenderType(ItemStack item, ItemRenderType type) {
-//        return true;
-//    }
-//
-//    @Override
-//    public boolean shouldUseRenderHelper(ItemRenderType type, ItemStack item, ItemRendererHelper helper) {
-//        return true;
-//    }
-//
-//    @Override
-//    public void renderItem(ItemRenderType type, ItemStack item, Object... data) {
-//        GL11.glPushMatrix();
-//        renderItem(item);
-//        GL11.glPopMatrix();
-//    }
+    public static void renderItem(ItemStack item, double x, double y, double z, float ticks) {
+        GL11.glPushMatrix();
+        float time = Minecraft.getMinecraft().theWorld.getTotalWorldTime() + ticks;
+        GL11.glTranslated(x + 0.5F, y + 1.2F, z + 0.5F);
+        GL11.glRotatef(time % 360, 0, 1, 0);
 
-    public void renderItem(ItemStack item) {
         GL11.glRotatef(180, 1, 0, 0);
 
         float xz = 0.0625F;
@@ -95,6 +82,7 @@ public class ItemGSCorpseRenderer{ //TODO
                 horseModel.render(horse, xz, xz, xz, xz, xz, xz);
                 break;
         }
+        GL11.glPopMatrix();
     }
 
     private static void bindVillagerTexture(int profession) {
