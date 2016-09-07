@@ -100,6 +100,12 @@ public class TileEntityExecutionRenderer extends TileEntityRenderer {
         }
     }
 
+    @Override
+    public boolean forceTileEntityRender()
+    {
+        return true;
+    }
+
     protected TileEntityExecution getDefaultTE() {
         return EXECUTION_TE;
     }

@@ -349,6 +349,12 @@ public class TileEntityMemorialRenderer extends TileEntityRenderer {
         }
     }
 
+    @Override
+    public boolean forceTileEntityRender()
+    {
+        return true;
+    }
+
     protected TileEntityMemorial getDefaultTE() {
         return MEMORIAL_TE;
     }
