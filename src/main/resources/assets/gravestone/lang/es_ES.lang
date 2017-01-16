@@ -101,6 +101,18 @@ item.corpse.villager=Villager Corpse
 item.corpse.horse=Horse Corpse
 item.corpse.dog=Dog Corpse
 item.corpse.cat=Cat Corpse
+## TODO !!!!!!!!!!
+item.corpse.zombie=Zombie Corpse
+## TODO !!!!!!!!!!
+item.corpse.zombie_villager=Zombie Villager Corpse
+## TODO !!!!!!!!!!
+item.corpse.zombie_pigmen=Zombie Pigmen Corpse
+## TODO !!!!!!!!!!
+item.corpse.skeleton=Skeleton Corpse
+## TODO !!!!!!!!!!
+item.corpse.wither_skeleton=Wither Skeleton Corpse
+## TODO !!!!!!!!!!
+item.corpse.witch=Witch Corpse
 item.corpse.entity_name=Name
 item.corpse.villager_type=Profession
 item.corpse.villager_type.farmer=Farmer

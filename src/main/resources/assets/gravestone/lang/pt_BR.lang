@@ -97,6 +97,18 @@ item.corpse.villager=Cadáver de Aldeão
 item.corpse.horse=Cadáver de Cavalo
 item.corpse.dog=Cadáver de Cachorro
 item.corpse.cat=Cadáver de Gato
+## TODO !!!!!!!!!!
+item.corpse.zombie=Zombie Corpse
+## TODO !!!!!!!!!!
+item.corpse.zombie_villager=Zombie Villager Corpse
+## TODO !!!!!!!!!!
+item.corpse.zombie_pigmen=Zombie Pigmen Corpse
+## TODO !!!!!!!!!!
+item.corpse.skeleton=Skeleton Corpse
+## TODO !!!!!!!!!!
+item.corpse.wither_skeleton=Wither Skeleton Corpse
+## TODO !!!!!!!!!!
+item.corpse.witch=Witch Corpse
 item.corpse.entity_name=Nome
 item.corpse.villager_type=Profissão
 item.corpse.villager_type.farmer=Fazendeiro
