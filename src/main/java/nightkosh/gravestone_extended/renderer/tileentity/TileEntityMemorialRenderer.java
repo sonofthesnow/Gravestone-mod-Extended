@@ -12,6 +12,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import nightkosh.gravestone.api.grave.EnumGraveMaterial;
 import nightkosh.gravestone.models.block.ModelCelticCross;
 import nightkosh.gravestone.models.block.ModelGraveStone;
+import nightkosh.gravestone.models.block.ModelObelisk;
 import nightkosh.gravestone.renderer.tileentity.TileEntityRenderer;
 import nightkosh.gravestone_extended.block.enums.EnumMemorials;
 import nightkosh.gravestone_extended.core.Resources;
@@ -36,7 +37,7 @@ public class TileEntityMemorialRenderer extends TileEntityRenderer {
     private static final Map<EnumGraveMaterial, ResourceLocation> mossyArmorTextures = Maps.newHashMap();
     //    private static final Map<String, ResourceLocation> steveTextures = Maps.newHashMap();
     public static ModelMemorial cross = new ModelMemorialCross();
-    public static ModelMemorial obelisk = new ModelMemorialObelisk();
+    public static ModelGraveStone obelisk = new ModelObelisk();
     public static ModelGraveStone celticCross = new ModelCelticCross();
     public static ModelMemorial steveStatue = new ModelSteveStatueMemorial();
     public static ModelMemorial villagerStatue = new ModelVillagerMemorial();
