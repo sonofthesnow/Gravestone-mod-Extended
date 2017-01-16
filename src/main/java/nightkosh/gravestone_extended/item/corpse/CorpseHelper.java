@@ -76,13 +76,13 @@ public abstract class CorpseHelper {
     public static ItemStack getDefaultCorpse(Random random, Block block, EnumCorpse corpseType) {
         switch (corpseType) {
             case VILLAGER:
-                return VillagerCorpseHelper.getRandomCorpse(random);//, block, corpseType);
+                return VillagerCorpseHelper.getRandomCorpse(random);
             case DOG:
-                return DogCorpseHelper.getRandomCorpse(random);//.getDefaultCorpses(block, corpseType);
+                return DogCorpseHelper.getRandomCorpse(random);
             case CAT:
-                return CatCorpseHelper.getRandomCorpse(random);//.getDefaultCorpses(block, corpseType);
+                return CatCorpseHelper.getRandomCorpse(random);
             case HORSE:
-                return HorseCorpseHelper.getRandomCorpse(random);//.getDefaultCorpses(block, corpseType);
+                return HorseCorpseHelper.getRandomCorpse(random);
             default:
                 return new ItemStack(block, 1, corpseType.ordinal());
         }
