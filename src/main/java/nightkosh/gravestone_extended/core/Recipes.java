@@ -41,10 +41,12 @@ public class Recipes {
         GameRegistry.addRecipe(new ItemStack(GSBlock.pileOfBones, 9, 0), "x", 'x', GSBlock.boneBlock);
 
 
+        // gallows
+        GameRegistry.addRecipe(getStackWithNTB(GSBlock.execution, EnumExecution.GIBBET.ordinal(), "Type"), "ww ", "wr ", "ww  ", 'w', Blocks.planks, 'r', Items.lead);
         // gibbets
-        GameRegistry.addRecipe(getStackWithNTB(GSBlock.execution, EnumExecution.GIBBET.ordinal(), "Type"), "ww ", "wr ", "wc ", 'w', Blocks.planks, 'r', Items.lead, 'c', GSItem.chisel);
+        GameRegistry.addRecipe(getStackWithNTB(GSBlock.execution, EnumExecution.GIBBET.ordinal(), "Type"), "ww ", "wr ", "wi  ", 'w', Blocks.planks, 'r', Items.lead, 'i', Blocks.iron_block);
         // stocks
-        GameRegistry.addRecipe(getStackWithNTB(GSBlock.execution, EnumExecution.STOCKS.ordinal(), "Type"), "wsw", "wcw", 'w', Blocks.planks, 's', Blocks.wooden_slab, 'c', GSItem.chisel);
+        GameRegistry.addRecipe(getStackWithNTB(GSBlock.execution, EnumExecution.STOCKS.ordinal(), "Type"), "wsw", "w w", 'w', Blocks.planks, 's', Blocks.wooden_slab);
         // burning stake
         GameRegistry.addRecipe(getStackWithNTB(GSBlock.execution, EnumExecution.BURNING_STAKE.ordinal(), "Type"), " w ", "www", "hwh", 'w', Blocks.planks, 'h', Blocks.hay_block);
 
