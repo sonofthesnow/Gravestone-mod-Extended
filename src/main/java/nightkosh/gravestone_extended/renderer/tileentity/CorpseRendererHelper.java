@@ -4,13 +4,13 @@ import com.google.common.collect.Maps;
 import com.mojang.authlib.GameProfile;
 import com.mojang.authlib.minecraft.MinecraftProfileTexture;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.model.*;
+import net.minecraft.client.model.ModelHorse;
+import net.minecraft.client.model.ModelOcelot;
+import net.minecraft.client.model.ModelWolf;
 import net.minecraft.client.renderer.texture.LayeredTexture;
-import net.minecraft.client.resources.DefaultPlayerSkin;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.passive.EntityHorse;
 import net.minecraft.entity.passive.EntityWolf;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTUtil;
 import net.minecraft.util.ResourceLocation;
@@ -25,7 +25,6 @@ import org.lwjgl.opengl.GL11;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.UUID;
 
 /**
  * GraveStone mod
@@ -109,15 +108,13 @@ public class CorpseRendererHelper {
                             texture = playersTextureMap.get(playerProfile);
                         } else {
                             Minecraft minecraft = Minecraft.getMinecraft();
-                            Map map = minecraft.getSkinManager().loadSkinFromCache(playerProfile);
+                            Map<MinecraftProfileTexture.Type, MinecraftProfileTexture> map = minecraft.getSkinManager().loadSkinFromCache(playerProfile);
 
                             if (map.containsKey(MinecraftProfileTexture.Type.SKIN)) {
-                                texture = minecraft.getSkinManager().loadSkin((MinecraftProfileTexture) map.get(MinecraftProfileTexture.Type.SKIN), MinecraftProfileTexture.Type.SKIN);
+                                texture = minecraft.getSkinManager().loadSkin(map.get(MinecraftProfileTexture.Type.SKIN), MinecraftProfileTexture.Type.SKIN);
                                 playersTextureMap.put(playerProfile, texture);
                             } else {
-                                UUID uuid = EntityPlayer.getUUID(playerProfile);
-                                texture = DefaultPlayerSkin.getDefaultSkin(uuid);
-                                playersTextureMap.put(playerProfile, texture);
+                                minecraft.getSkinManager().loadProfileTextures(playerProfile, (type, texture1, profileTexture) -> playersTextureMap.put(playerProfile, texture1), true);
                             }
                         }
                     }

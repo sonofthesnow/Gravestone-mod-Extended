@@ -1,6 +1,5 @@
 package nightkosh.gravestone_extended.core.commands;
 
-import net.minecraft.command.CommandHandler;
 import net.minecraft.server.MinecraftServer;
 import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
 import nightkosh.gravestone.core.commands.Command;
@@ -29,8 +28,7 @@ public class ExtendedCommands {
     }
 
     private void initCommands(MinecraftServer server) {
-        CommandHandler commandManager = (CommandHandler) server.getCommandManager();
-
         Command.addCommand(new SubCommandStructuresGenerator());
+        Command.addCommand(new SubCommandCorpses());
     }
 }
