@@ -1,14 +1,13 @@
 package nightkosh.gravestone_extended.item.corpse;
 
-import nightkosh.gravestone_extended.ModGravestoneExtended;
 import net.minecraft.entity.passive.EntityOcelot;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
-import nightkosh.gravestone_extended.core.GSItem;
-import nightkosh.gravestone_extended.item.enums.EnumCorpse;
+import nightkosh.gravestone_extended.ModGravestoneExtended;
+import nightkosh.gravestone_extended.block.enums.EnumCorpse;
+import nightkosh.gravestone_extended.core.GSBlock;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,24 +24,34 @@ public class CatCorpseHelper extends CorpseHelper {
     private CatCorpseHelper() {
     }
 
-    public static ItemStack getRandomCorpse(Random random) {
-        return getDefaultCatCorpse(GSItem.corpse, EnumCorpse.CAT.ordinal(), random.nextInt(4));
+    private static final int CORPSE_TYPE = EnumCorpse.CAT.ordinal();
+
+    public static enum EnumCatType {
+        OCELOT,
+        BLACK,
+        RED,
+        SIAMESE
     }
 
-    public static List<ItemStack> getDefaultCorpses(Item item, int corpseType) {
+    public static ItemStack getRandomCorpse(Random random) {
+        return getDefaultCatCorpse(EnumCatType.values()[random.nextInt(EnumCatType.values().length)]);
+    }
+
+    public static List<ItemStack> getDefaultCorpses() {
         List<ItemStack> list = new ArrayList<>();
-        list.add(getDefaultCatCorpse(item, corpseType, 0)); // Ocelot
-        list.add(getDefaultCatCorpse(item, corpseType, 1)); // Black
-        list.add(getDefaultCatCorpse(item, corpseType, 2)); // Red
-        list.add(getDefaultCatCorpse(item, corpseType, 3)); // Siamese
+
+        list.add(getDefaultCatCorpse(EnumCatType.OCELOT));
+        list.add(getDefaultCatCorpse(EnumCatType.BLACK));
+        list.add(getDefaultCatCorpse(EnumCatType.RED));
+        list.add(getDefaultCatCorpse(EnumCatType.SIAMESE));
         return list;
     }
 
-    private static ItemStack getDefaultCatCorpse(Item item, int corpseType, int type) {
-        ItemStack corpse = new ItemStack(item, 1, corpseType);
+    private static ItemStack getDefaultCatCorpse(EnumCatType catType) {
+        ItemStack corpse = new ItemStack(GSBlock.corpse, 1, CORPSE_TYPE);
         NBTTagCompound nbtTag = new NBTTagCompound();
 
-        nbtTag.setByte("CatType", (byte) type);
+        nbtTag.setByte("CatType", (byte) catType.ordinal());
 
         corpse.setTagCompound(nbtTag);
         return corpse;

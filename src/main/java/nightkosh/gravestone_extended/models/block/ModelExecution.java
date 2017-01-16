@@ -1,7 +1,8 @@
 package nightkosh.gravestone_extended.models.block;
 
+import net.minecraft.item.ItemStack;
 import nightkosh.gravestone.models.block.ModelGraveStone;
-import nightkosh.gravestone_extended.block.enums.EnumHangedMobs;
+import nightkosh.gravestone_extended.block.enums.EnumCorpse;
 
 /**
  * GraveStone mod
@@ -11,6 +12,6 @@ import nightkosh.gravestone_extended.block.enums.EnumHangedMobs;
  */
 public abstract class ModelExecution extends ModelGraveStone {
 
-    public void customRender(EnumHangedMobs mob, int villagerProfession) {
+    public void customRender(ItemStack corpse, EnumCorpse corpseType, int villagerProfession) {
     }
 }

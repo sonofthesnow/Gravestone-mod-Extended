@@ -10,8 +10,9 @@ import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
 import net.minecraft.util.BlockPos;
 import net.minecraft.util.IChatComponent;
 import nightkosh.gravestone.tileentity.TileEntityBase;
+import nightkosh.gravestone_extended.block.enums.EnumCorpse;
 import nightkosh.gravestone_extended.block.enums.EnumExecution;
-import nightkosh.gravestone_extended.block.enums.EnumHangedMobs;
+import nightkosh.gravestone_extended.item.corpse.CorpseHelper;
 import nightkosh.gravestone_extended.item.corpse.VillagerCorpseHelper;
 
 import java.util.Random;
@@ -26,7 +27,7 @@ public class TileEntityExecution extends TileEntityBase implements IInventory {
 
     private byte direction = 0;
     private ItemStack corpse;
-    private EnumHangedMobs hangedMob = EnumHangedMobs.NONE;
+    private EnumCorpse corpseType = null;
     private int hangedVillagerProfession = 0;
 
     @Override
@@ -37,10 +38,10 @@ public class TileEntityExecution extends TileEntityBase implements IInventory {
 
         if (nbtTag.hasKey("Corpse")) {
             corpse = ItemStack.loadItemStackFromNBT(nbtTag.getCompoundTag("Corpse"));
+
+            updateCorpseInfo();
         }
 
-        hangedMob = EnumHangedMobs.getById(nbtTag.getByte("HangedMob"));
-        hangedVillagerProfession = nbtTag.getInteger("HangedVillagerProfession");
     }
 
     @Override
@@ -55,28 +56,18 @@ public class TileEntityExecution extends TileEntityBase implements IInventory {
             nbtTag.setTag("Corpse", corpseNBT);
         }
 
-        nbtTag.setByte("HangedMob", (byte) hangedMob.ordinal());
-        nbtTag.setInteger("HangedVillagerProfession", hangedVillagerProfession);
     }
 
     public void setRandomMob(Random random) {
-        hangedMob = EnumHangedMobs.values()[random.nextInt(EnumHangedMobs.values().length)];
+//        hangedMob = EnumHangedMobs.values()[random.nextInt(EnumHangedMobs.values().length)];
+    }
+
+    public EnumCorpse getCorpseType() {
+        return corpseType;
     }
 
     public int getHangedVillagerProfession() {
         return hangedVillagerProfession;
-    }
-
-    public void setHangedVillagerProfession(int hangedVillagerProfession) {
-        this.hangedVillagerProfession = hangedVillagerProfession;
-    }
-
-    public EnumHangedMobs getHangedMob() {
-        return hangedMob;
-    }
-
-    public void setHangedMob(EnumHangedMobs hangedMob) {
-        this.hangedMob = hangedMob;
     }
 
     public byte getDirection() {
@@ -97,9 +88,13 @@ public class TileEntityExecution extends TileEntityBase implements IInventory {
     }
 
     private void updateCorpseInfo() {
-        this.setHangedMob(EnumHangedMobs.VILLAGER);//TODO !!!
-        this.setHangedVillagerProfession(VillagerCorpseHelper.getVillagerType(corpse.getTagCompound()));
-
+        if (corpse == null) {
+            this.corpseType = null;
+            this.hangedVillagerProfession = 0;
+        } else {
+            this.corpseType = CorpseHelper.getTypeByCorpse(corpse);
+            this.hangedVillagerProfession = VillagerCorpseHelper.getVillagerType(corpse.getTagCompound());
+        }
     }
 
     @Override

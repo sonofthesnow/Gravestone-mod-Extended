@@ -92,6 +92,10 @@ item.grave.sword_name=Nombre
 item.grave.sword_damage=Daño
 
 ## Corpses
+## TODO !!!!!!!!!!
+item.corpse.steve=Steve Corpse
+## TODO !!!!!!!!!!
+item.corpse.player=Player Corpse
 ##TODO !!!!!!!!!!
 item.corpse.villager=Villager Corpse
 item.corpse.horse=Horse Corpse

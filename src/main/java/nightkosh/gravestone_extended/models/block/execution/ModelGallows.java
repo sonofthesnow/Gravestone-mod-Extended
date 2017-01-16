@@ -1,12 +1,10 @@
 package nightkosh.gravestone_extended.models.block.execution;
 
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.ModelRenderer;
-import net.minecraftforge.fml.common.registry.VillagerRegistry;
-import nightkosh.gravestone_extended.block.enums.EnumHangedMobs;
-import nightkosh.gravestone_extended.core.Resources;
+import net.minecraft.item.ItemStack;
+import nightkosh.gravestone_extended.block.enums.EnumCorpse;
 import nightkosh.gravestone_extended.models.block.ModelExecution;
-import nightkosh.gravestone_extended.models.block.memorials.*;
+import nightkosh.gravestone_extended.renderer.tileentity.CorpseRendererHelper;
 import org.lwjgl.opengl.GL11;
 
 /**
@@ -31,14 +29,6 @@ public class ModelGallows extends ModelExecution {
     private ModelRenderer loop3;
     private ModelRenderer loop4;
     private ModelRenderer loop5;
-
-    private static final ModelHangedBiped bipedModel = new ModelHangedBiped(false, true);
-    private static final ModelHangedBiped zombieModel = new ModelHangedBiped(false, true);
-    private static final ModelHangedSkeleton skeletonModel = new ModelHangedSkeleton(false);
-    private static final ModelHangedSkeleton witherSkeletonModel = new ModelHangedSkeleton(false, true);
-    private static final ModelHangedVillager villagerModel = new ModelHangedVillager(false);
-    private static final ModelHangedZombieVillager zombieVillagerModel = new ModelHangedZombieVillager(false);
-    private static final ModelHangedWitch witchModel = new ModelHangedWitch(false);
 
     public ModelGallows() {
         textureWidth = 64;
@@ -151,68 +141,15 @@ public class ModelGallows extends ModelExecution {
     }
 
     @Override
-    public void customRender(EnumHangedMobs mob, int villagerProfession) {
-        if (mob == EnumHangedMobs.NONE) {
+    public void customRender(ItemStack corpse, EnumCorpse corpseType, int villagerProfession) {
+        if (corpseType == null) {
             renderAll();
         } else {
             renderAllWithoutLoop();
 
             GL11.glPushMatrix();
             GL11.glTranslatef(0, -0.5F, -1.1F);
-            switch (mob) {
-                case STEVE:
-                    Minecraft.getMinecraft().renderEngine.bindTexture(Resources.STEVE);
-                    bipedModel.renderAll();
-                    break;
-                case VILLAGER:
-                    switch (villagerProfession) {
-                        case 0:
-                            Minecraft.getMinecraft().renderEngine.bindTexture(Resources.VILLAGER_FARMER);
-                            break;
-                        case 1:
-                            Minecraft.getMinecraft().renderEngine.bindTexture(Resources.VILLAGER_LIBRARIAN);
-                            break;
-                        case 2:
-                            Minecraft.getMinecraft().renderEngine.bindTexture(Resources.VILLAGER_PRIEST);
-                            break;
-                        case 3:
-                            Minecraft.getMinecraft().renderEngine.bindTexture(Resources.VILLAGER_SMITH);
-                            break;
-                        case 4:
-                            Minecraft.getMinecraft().renderEngine.bindTexture(Resources.VILLAGER_BUTCHER);
-                            break;
-                        default:
-                            Minecraft.getMinecraft().renderEngine.bindTexture(VillagerRegistry.getVillagerSkin(villagerProfession, Resources.VILLAGER));
-                            break;
-                    }
-                    villagerModel.renderAll();
-                    break;
-                case ZOMBIE:
-                    Minecraft.getMinecraft().renderEngine.bindTexture(Resources.ZOMBIE);
-                    zombieModel.renderAll();
-                    break;
-                case ZOMBIE_VILLAGER:
-                    Minecraft.getMinecraft().renderEngine.bindTexture(Resources.ZOMBIE_VILLAGER);
-                    zombieVillagerModel.renderAll();
-                    break;
-                case SKELETON:
-                    GL11.glTranslatef(0, 0, 0.1F);
-                    Minecraft.getMinecraft().renderEngine.bindTexture(Resources.SKELETON);
-                    skeletonModel.renderAll();
-                    break;
-                case WITHER_SKELETON:
-                    GL11.glTranslatef(0, 0, 0.1F);
-                    Minecraft.getMinecraft().renderEngine.bindTexture(Resources.WITHER_SKELETON);
-                    witherSkeletonModel.renderAll();
-                    break;
-                case WITCH:
-                    Minecraft.getMinecraft().renderEngine.bindTexture(Resources.WITCH);
-                    witchModel.renderAll();
-                    break;
-                case ZOMBIE_PIGMAN:
-                    Minecraft.getMinecraft().renderEngine.bindTexture(Resources.ZOMBIE_PIGMAN);
-                    zombieModel.renderAll();
-            }
+            CorpseRendererHelper.renderCorpse(corpseType, corpse.getTagCompound(), false, true);
             GL11.glPopMatrix();
         }
 

@@ -1,8 +1,7 @@
 package nightkosh.gravestone_extended.item.corpse;
 
-import nightkosh.gravestone_extended.ModGravestoneExtended;
-import nightkosh.gravestone_extended.core.GSItem;
-import nightkosh.gravestone_extended.item.enums.EnumCorpse;
+import com.mojang.authlib.GameProfile;
+import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.passive.EntityHorse;
@@ -12,13 +11,18 @@ import net.minecraft.entity.passive.EntityWolf;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.nbt.NBTUtil;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldSettings;
+import nightkosh.gravestone_extended.ModGravestoneExtended;
+import nightkosh.gravestone_extended.block.enums.EnumCorpse;
+import nightkosh.gravestone_extended.core.GSBlock;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 /**
  * GraveStone mod
@@ -69,17 +73,47 @@ public abstract class CorpseHelper {
         }
     }
 
-    public static List<ItemStack> getDefaultCorpse(net.minecraft.item.Item item, int corpseType) {
-        switch (EnumCorpse.values()[corpseType]) {
-            case HORSE:
-                return HorseCorpseHelper.getDefaultCorpses(item, corpseType);
-            case DOG:
-                return DogCorpseHelper.getDefaultCorpses(item, corpseType);
-            case CAT:
-                return CatCorpseHelper.getDefaultCorpses(item, corpseType);
+    public static ItemStack getDefaultCorpse(Random random, Block block, EnumCorpse corpseType) {
+        switch (corpseType) {
             case VILLAGER:
+                return VillagerCorpseHelper.getRandomCorpse(random);//, block, corpseType);
+            case DOG:
+                return DogCorpseHelper.getRandomCorpse(random);//.getDefaultCorpses(block, corpseType);
+            case CAT:
+                return CatCorpseHelper.getRandomCorpse(random);//.getDefaultCorpses(block, corpseType);
+            case HORSE:
+                return HorseCorpseHelper.getRandomCorpse(random);//.getDefaultCorpses(block, corpseType);
             default:
-                return VillagerCorpseHelper.getDefaultCorpses(item, corpseType);
+                return new ItemStack(block, 1, corpseType.ordinal());
+        }
+    }
+
+    public static ItemStack getDefaultPlayerCorpse(GameProfile profile) {
+        ItemStack corpse = new ItemStack(GSBlock.corpse, 1, EnumCorpse.STEVE.ordinal());
+
+        NBTTagCompound corpseNbt = new NBTTagCompound();
+        NBTTagCompound nbttagcompound = new NBTTagCompound();
+        NBTUtil.writeGameProfile(nbttagcompound, profile);
+        corpseNbt.setTag("Owner", nbttagcompound);
+        corpse.setTagCompound(corpseNbt);
+
+        return corpse;
+    }
+
+    public static List<ItemStack> getDefaultCorpse(int corpseType) {
+        switch (EnumCorpse.values()[corpseType]) {
+            case VILLAGER:
+                return VillagerCorpseHelper.getDefaultCorpses();
+            case DOG:
+                return DogCorpseHelper.getDefaultCorpses();
+            case CAT:
+                return CatCorpseHelper.getDefaultCorpses();
+            case HORSE:
+                return HorseCorpseHelper.getDefaultCorpses();
+            default:
+                List<ItemStack> list = new ArrayList<>();
+                list.add(new ItemStack(GSBlock.corpse, 1, corpseType));
+                return list;
         }
     }
 
@@ -100,8 +134,8 @@ public abstract class CorpseHelper {
                 break;
         }
 
-        List<ItemStack> corpse = new ArrayList<ItemStack>();
-        ItemStack stack = new ItemStack(GSItem.corpse, 1, type.ordinal());
+        List<ItemStack> corpse = new ArrayList<>();
+        ItemStack stack = new ItemStack(GSBlock.corpse, 1, type.ordinal());
         stack.setTagCompound(nbtTag);
         corpse.add(stack);
         return corpse;
@@ -153,6 +187,14 @@ public abstract class CorpseHelper {
             return getRequiredLevel(itemStack.getItemDamage());
         } else {
             return 0;
+        }
+    }
+
+    public static EnumCorpse getTypeByCorpse(ItemStack corpse) {
+        if (corpse == null) {
+            return null;
+        } else {
+            return EnumCorpse.getById((byte) corpse.getItemDamage());
         }
     }
 }

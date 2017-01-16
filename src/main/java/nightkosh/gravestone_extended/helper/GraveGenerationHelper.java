@@ -2,7 +2,7 @@ package nightkosh.gravestone_extended.helper;
 
 import nightkosh.gravestone.api.GraveStoneAPI;
 import nightkosh.gravestone_extended.item.corpse.CorpseHelper;
-import nightkosh.gravestone_extended.item.enums.EnumCorpse;
+import nightkosh.gravestone_extended.block.enums.EnumCorpse;
 
 import java.util.Random;
 

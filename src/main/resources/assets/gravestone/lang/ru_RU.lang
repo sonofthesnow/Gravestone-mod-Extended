@@ -80,6 +80,8 @@ item.grave.sword_name=Название меча
 item.grave.sword_damage=Повреждение меча
 
 ## Corpses
+item.corpse.steve=Труп Стива
+item.corpse.player=Труп игрока
 item.corpse.villager=Труп жителя
 item.corpse.horse=Труп лошади
 item.corpse.dog=Труп собаки

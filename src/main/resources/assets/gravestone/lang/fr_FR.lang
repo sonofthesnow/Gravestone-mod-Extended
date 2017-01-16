@@ -88,6 +88,10 @@ item.grave.sword_name=Nom de l'épée
 item.grave.sword_damage=Dégats de l'épée
 
 ## Corpses
+## TODO !!!!!!!!!!
+item.corpse.steve=Steve Corpse
+## TODO !!!!!!!!!!
+item.corpse.player=Player Corpse
 item.corpse.villager=Carcasse de villageois
 item.corpse.horse=Carcasse de cheval
 item.corpse.dog=Carcasse de chien

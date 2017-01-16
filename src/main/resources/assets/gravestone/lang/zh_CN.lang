@@ -81,6 +81,10 @@ item.grave.sword_name=剑的名字
 item.grave.sword_damage=剑的耐久值
 
 ## Corpses
+## TODO !!!!!!!!!!
+item.corpse.steve=Steve Corpse
+## TODO !!!!!!!!!!
+item.corpse.player=Player Corpse
 item.corpse.villager=村民的尸体
 item.corpse.horse=马的尸体
 item.corpse.dog=狗的尸体

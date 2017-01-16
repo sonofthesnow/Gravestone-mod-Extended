@@ -81,6 +81,10 @@ item.grave.sword_name=Jméno meče
 item.grave.sword_damage=Poškození meče
 
 ## Corpses
+## TODO !!!!!!!!!!
+item.corpse.steve=Steve Corpse
+## TODO !!!!!!!!!!
+item.corpse.player=Player Corpse
 item.corpse.villager=Mrtvola vesničana
 item.corpse.horse=Mrtvola koně
 item.corpse.dog=Mrtvola psa

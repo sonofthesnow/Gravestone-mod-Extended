@@ -1,4 +1,4 @@
-package nightkosh.gravestone_extended.models.block.memorials;
+package nightkosh.gravestone_extended.models.block.execution;
 
 import net.minecraft.client.model.ModelRenderer;
 import nightkosh.gravestone.models.IModelBaseAdapter;
@@ -59,12 +59,16 @@ public class ModelHangedSkeleton extends ModelGSSkeleton implements IModelBaseAd
     }
 
     public void renderAll() {
+        this.renderAll(this.isInStocks);
+    }
+
+    public void renderAll(boolean isInStocks) {
         float f5 = 0.0625F;
         this.bipedBody.render(f5);
         this.bipedRightLeg.render(f5);
         this.bipedLeftLeg.render(f5);
 
-        if (this.isInStocks) {
+        if (isInStocks) {
             this.rightArm.render(f5);
             this.leftArm.render(f5);
             this.rightArm2.render(f5);

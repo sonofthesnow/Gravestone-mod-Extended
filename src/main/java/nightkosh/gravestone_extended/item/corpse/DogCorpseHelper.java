@@ -3,15 +3,14 @@ package nightkosh.gravestone_extended.item.corpse;
 import net.minecraft.entity.passive.EntityWolf;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumDyeColor;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
 import nightkosh.gravestone_extended.ModGravestoneExtended;
-import nightkosh.gravestone_extended.core.GSItem;
+import nightkosh.gravestone_extended.block.enums.EnumCorpse;
+import nightkosh.gravestone_extended.core.GSBlock;
 import nightkosh.gravestone_extended.core.compatibility.Compatibility;
 import nightkosh.gravestone_extended.core.compatibility.CompatibilitySophisticatedWolves;
-import nightkosh.gravestone_extended.item.enums.EnumCorpse;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,7 +29,7 @@ public class DogCorpseHelper extends CorpseHelper {
 
     public static ItemStack getRandomCorpse(Random random) {
         //TODO sophisticated wolves
-        ItemStack corpse = new ItemStack(GSItem.corpse, 1, EnumCorpse.DOG.ordinal());
+        ItemStack corpse = new ItemStack(GSBlock.corpse, 1, EnumCorpse.DOG.ordinal());
         NBTTagCompound nbtTag = new NBTTagCompound();
         nbtTag.setByte("Collar", (byte) random.nextInt(16));
         corpse.setTagCompound(nbtTag);
@@ -38,10 +37,10 @@ public class DogCorpseHelper extends CorpseHelper {
         return corpse;
     }
 
-    public static List<ItemStack> getDefaultCorpses(Item item, int type) {
+    public static List<ItemStack> getDefaultCorpses() {
         List<ItemStack> list = new ArrayList<>();
 
-        ItemStack corpse = new ItemStack(item, 1, type);
+        ItemStack corpse = new ItemStack(GSBlock.corpse, 1, EnumCorpse.DOG.ordinal());
         NBTTagCompound nbtTag = new NBTTagCompound();
 
         nbtTag.setByte("Collar", (byte) 14);

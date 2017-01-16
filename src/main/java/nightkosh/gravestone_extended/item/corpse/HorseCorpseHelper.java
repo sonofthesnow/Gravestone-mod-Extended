@@ -1,15 +1,14 @@
 package nightkosh.gravestone_extended.item.corpse;
 
-import nightkosh.gravestone_extended.ModGravestoneExtended;
 import net.minecraft.entity.ai.attributes.BaseAttributeMap;
 import net.minecraft.entity.passive.EntityHorse;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
-import nightkosh.gravestone_extended.core.GSItem;
-import nightkosh.gravestone_extended.item.enums.EnumCorpse;
+import nightkosh.gravestone_extended.ModGravestoneExtended;
+import nightkosh.gravestone_extended.block.enums.EnumCorpse;
+import nightkosh.gravestone_extended.core.GSBlock;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,28 +25,39 @@ public class HorseCorpseHelper extends CorpseHelper {
     private HorseCorpseHelper() {
     }
 
-    public static ItemStack getRandomCorpse(Random random) {
-        //TODO !!! random variant, health ...
-        return getDefaultHorseCorpse(GSItem.corpse, EnumCorpse.HORSE.ordinal(), random.nextInt(5));
+    private static final int CORPSE_TYPE = EnumCorpse.HORSE.ordinal();
+
+    public static enum EnumHorseType {
+        HORSE,
+        DONKEY,
+        MULE,
+        ZOMBIE,
+        SKELETON
     }
 
-    public static List<ItemStack> getDefaultCorpses(Item item, int corpseType) {
+    public static ItemStack getRandomCorpse(Random random) {
+        //TODO !!! random variant, health ...
+        return getDefaultHorseCorpse(EnumHorseType.values()[random.nextInt(EnumHorseType.values().length)]);
+    }
+
+    public static List<ItemStack> getDefaultCorpses() {
         List<ItemStack> list = new ArrayList<>();
 
-        list.add(getDefaultHorseCorpse(item, corpseType, 0)); // horse
-        list.add(getDefaultHorseCorpse(item, corpseType, 1)); // donkey
-        list.add(getDefaultHorseCorpse(item, corpseType, 2)); // mule
-        list.add(getDefaultHorseCorpse(item, corpseType, 3)); // zombie
-        list.add(getDefaultHorseCorpse(item, corpseType, 4)); // skeleton
+        int corpseType = EnumCorpse.HORSE.ordinal();
+        list.add(getDefaultHorseCorpse(EnumHorseType.HORSE));
+        list.add(getDefaultHorseCorpse(EnumHorseType.DONKEY));
+        list.add(getDefaultHorseCorpse(EnumHorseType.MULE));
+        list.add(getDefaultHorseCorpse(EnumHorseType.ZOMBIE));
+        list.add(getDefaultHorseCorpse(EnumHorseType.SKELETON));
 
         return list;
     }
 
-    private static ItemStack getDefaultHorseCorpse(Item item, int corpseType, int type) {
-        ItemStack corpse = new ItemStack(item, 1, corpseType);
+    private static ItemStack getDefaultHorseCorpse(EnumHorseType horseType) {
+        ItemStack corpse = new ItemStack(GSBlock.corpse, 1, CORPSE_TYPE);
         NBTTagCompound nbtTag = new NBTTagCompound();
 
-        nbtTag.setInteger("HorseType", type);
+        nbtTag.setInteger("HorseType", horseType.ordinal());
         nbtTag.setInteger("Variant", 0);
 
         nbtTag.setDouble("Max Health", 25);

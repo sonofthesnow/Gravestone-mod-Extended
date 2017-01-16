@@ -1,16 +1,15 @@
-package nightkosh.gravestone_extended.item;
+package nightkosh.gravestone_extended.item.itemblock;
 
-import nightkosh.gravestone_extended.core.Tabs;
-import nightkosh.gravestone_extended.item.corpse.CorpseHelper;
-import nightkosh.gravestone_extended.item.enums.EnumCorpse;
-import net.minecraft.creativetab.CreativeTabs;
+import com.mojang.authlib.GameProfile;
+import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.Item;
+import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.nbt.NBTUtil;
 import net.minecraft.world.World;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
+import nightkosh.gravestone_extended.block.enums.EnumCorpse;
+import nightkosh.gravestone_extended.item.corpse.CorpseHelper;
 
 import java.util.List;
 
@@ -20,13 +19,11 @@ import java.util.List;
  * @author NightKosh
  * @license Lesser GNU Public License v3 (http://www.gnu.org/licenses/lgpl.html)
  */
-public class ItemCorpse extends Item {
+public class ItemBlockCorpse extends ItemBlock {
 
-    public ItemCorpse() {
-        super();
-        setCreativeTab(Tabs.otherItemsTab);
+    public ItemBlockCorpse(Block block) {
+        super(block);
         setUnlocalizedName("Corpse");
-        this.setHasSubtypes(true);
     }
 
     @Override
@@ -45,21 +42,6 @@ public class ItemCorpse extends Item {
         }
     }
 
-    /**
-     * returns a list of items with the same ID, but different meta (eg: dye
-     * returns 16 items)
-     */
-    @Override
-    @SideOnly(Side.CLIENT)
-    public void getSubItems(Item item, CreativeTabs tab, List list) {
-        for (int damage = 0; damage < EnumCorpse.values().length; damage++) {
-            list.addAll(CorpseHelper.getDefaultCorpse(item, damage));
-        }
-    }
-
-    /**
-     * Returns the metadata of the block which this Item (ItemBlock) can place
-     */
     @Override
     public int getMetadata(int metadata) {
         return metadata;
@@ -67,6 +49,15 @@ public class ItemCorpse extends Item {
 
     @Override
     public String getItemStackDisplayName(ItemStack itemStack) {
+        if (itemStack.getItemDamage() == EnumCorpse.STEVE.ordinal()) {
+            NBTTagCompound nbt = itemStack.getTagCompound();
+            if (nbt != null && nbt.hasKey("Owner", 10)) {
+                GameProfile playerProfile = NBTUtil.readGameProfileFromNBT(nbt.getCompoundTag("Owner"));
+                if (playerProfile != null) {
+                    return EnumCorpse.getPlayerUnLocalizedName() + " - " + playerProfile.getName();
+                }
+            }
+        }
         return EnumCorpse.getById((byte) itemStack.getItemDamage()).getUnLocalizedName();
     }
 }

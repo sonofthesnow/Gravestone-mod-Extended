@@ -28,5 +28,7 @@ public class TileEntity extends GSTileEntity{
         GameRegistry.registerTileEntity(TileEntityPileOfBones.class, "GSTEPileOfBones");
 
         GameRegistry.registerTileEntity(TileEntityAltar.class, "GSAltarTE");
+
+        GameRegistry.registerTileEntity(TileEntityCorpse.class, "GSTECorpse");
     }
 }

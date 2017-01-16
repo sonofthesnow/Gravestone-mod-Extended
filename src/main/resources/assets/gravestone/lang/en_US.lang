@@ -79,6 +79,8 @@ item.grave.sword_name=Sword Name
 item.grave.sword_damage=Sword Damage
 
 ## Corpses
+item.corpse.steve=Steve Corpse
+item.corpse.player=Player Corpse
 item.corpse.villager=Villager Corpse
 item.corpse.horse=Horse Corpse
 item.corpse.dog=Dog Corpse

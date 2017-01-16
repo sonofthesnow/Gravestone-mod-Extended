@@ -25,7 +25,7 @@ import nightkosh.gravestone_extended.entity.monster.*;
 import nightkosh.gravestone_extended.entity.monster.EntitySkullCrawler.SkullCrawlerType;
 import nightkosh.gravestone_extended.gui.GSGraveTextGui;
 import nightkosh.gravestone_extended.item.ItemGSMonsterPlacer;
-import nightkosh.gravestone_extended.item.enums.EnumCorpse;
+import nightkosh.gravestone_extended.block.enums.EnumCorpse;
 import nightkosh.gravestone_extended.models.entity.ModelUndeadCat;
 import nightkosh.gravestone_extended.models.entity.ModelUndeadDog;
 import nightkosh.gravestone_extended.renderer.entity.*;
@@ -91,7 +91,18 @@ public class ClientProxy extends CommonProxy {
         ClientRegistry.registerTileEntity(TileEntityPileOfBones.Crawler.class, "GSPileOfBonesCrawler", new TileEntityPileOfBonesRenderer.Crawler());
 
         // corpses
-//        MinecraftForgeClient.registerItemRenderer(Item.corpse, new ItemGSCorpseRenderer());//TODO !!!
+        ClientRegistry.registerTileEntity(TileEntityCorpse.class, "GSCorpse", new TileEntityCorpseRenderer());
+        ClientRegistry.registerTileEntity(TileEntityCorpse.Steve.class, "GSCorpseSteve", new TileEntityCorpseRenderer.Steve());
+        ClientRegistry.registerTileEntity(TileEntityCorpse.Villager.class, "GSCorpseVillager", new TileEntityCorpseRenderer.Villager());
+        ClientRegistry.registerTileEntity(TileEntityCorpse.Dog.class, "GSCorpseDog", new TileEntityCorpseRenderer.Dog());
+        ClientRegistry.registerTileEntity(TileEntityCorpse.Cat.class, "GSCorpseCat", new TileEntityCorpseRenderer.Cat());
+        ClientRegistry.registerTileEntity(TileEntityCorpse.Horse.class, "GSCorpseHorse", new TileEntityCorpseRenderer.Horse());
+        ClientRegistry.registerTileEntity(TileEntityCorpse.Zombie.class, "GSCorpseZombie", new TileEntityCorpseRenderer.Zombie());
+        ClientRegistry.registerTileEntity(TileEntityCorpse.ZombieVillager.class, "GSCorpseZombieVillager", new TileEntityCorpseRenderer.ZombieVillager());
+        ClientRegistry.registerTileEntity(TileEntityCorpse.ZombiePigmen.class, "GSCorpseZombiePigmen", new TileEntityCorpseRenderer.ZombiePigmen());
+        ClientRegistry.registerTileEntity(TileEntityCorpse.Skeleton.class, "GSCorpseSkeleton", new TileEntityCorpseRenderer.Skeleton());
+        ClientRegistry.registerTileEntity(TileEntityCorpse.WitherSkeleton.class, "GSCorpseWitherSkeleton", new TileEntityCorpseRenderer.WitherSkeleton());
+        ClientRegistry.registerTileEntity(TileEntityCorpse.Witch.class, "GSCorpseWitch", new TileEntityCorpseRenderer.Witch());
 
         ClientRegistry.registerTileEntity(TileEntityAltar.class, "GSAltar", new TileEntityRenderAltar());
     }
@@ -210,18 +221,25 @@ public class ClientProxy extends CommonProxy {
         ProxyHelper.registerModelsForTEBlocks(EnumSkullCandle.SKELETON_SKULL.ordinal(), GSBlock.skullCandle, ResourcesModels.skullCandleModel, TileEntitySkullCandle.class);
         ProxyHelper.registerModelsForTEBlocks(EnumSkullCandle.WITHER_SKULL.ordinal(), GSBlock.skullCandle, ResourcesModels.skullCandleModel, TileEntitySkullCandle.Wither.class);
         ProxyHelper.registerModelsForTEBlocks(EnumSkullCandle.ZOMBIE_SKULL.ordinal(), GSBlock.skullCandle, ResourcesModels.skullCandleModel, TileEntitySkullCandle.Zombie.class);
+
+        //corpses
+        ProxyHelper.registerModelsForTEBlocks(EnumCorpse.STEVE.ordinal(), GSBlock.corpse, ResourcesModels.CORPSE, TileEntityCorpse.Steve.class);
+        ProxyHelper.registerModelsForTEBlocks(EnumCorpse.VILLAGER.ordinal(), GSBlock.corpse, ResourcesModels.CORPSE, TileEntityCorpse.Villager.class);
+        ProxyHelper.registerModelsForTEBlocks(EnumCorpse.DOG.ordinal(), GSBlock.corpse, ResourcesModels.CORPSE, TileEntityCorpse.Dog.class);
+        ProxyHelper.registerModelsForTEBlocks(EnumCorpse.CAT.ordinal(), GSBlock.corpse, ResourcesModels.CORPSE, TileEntityCorpse.Cat.class);
+        ProxyHelper.registerModelsForTEBlocks(EnumCorpse.HORSE.ordinal(), GSBlock.corpse, ResourcesModels.CORPSE, TileEntityCorpse.Horse.class);
+        ProxyHelper.registerModelsForTEBlocks(EnumCorpse.ZOMBIE.ordinal(), GSBlock.corpse, ResourcesModels.CORPSE, TileEntityCorpse.Zombie.class);
+        ProxyHelper.registerModelsForTEBlocks(EnumCorpse.ZOMBIE_VILLAGER.ordinal(), GSBlock.corpse, ResourcesModels.CORPSE, TileEntityCorpse.ZombieVillager.class);
+        ProxyHelper.registerModelsForTEBlocks(EnumCorpse.ZOMBIE_PIGMEN.ordinal(), GSBlock.corpse, ResourcesModels.CORPSE, TileEntityCorpse.ZombiePigmen.class);
+        ProxyHelper.registerModelsForTEBlocks(EnumCorpse.SKELETON.ordinal(), GSBlock.corpse, ResourcesModels.CORPSE, TileEntityCorpse.Skeleton.class);
+        ProxyHelper.registerModelsForTEBlocks(EnumCorpse.WITHER_SKELETON.ordinal(), GSBlock.corpse, ResourcesModels.CORPSE, TileEntityCorpse.WitherSkeleton.class);
+        ProxyHelper.registerModelsForTEBlocks(EnumCorpse.WITCH.ordinal(), GSBlock.corpse, ResourcesModels.CORPSE, TileEntityCorpse.Witch.class);
     }
 
     @Override
     public void registerItemsModels() {
         Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(GSItem.chisel, 0, ResourcesModels.chiselModel);
         ModelBakery.registerItemVariants(GSItem.chisel, ResourcesModels.chiselModel);
-
-        Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(GSItem.corpse, EnumCorpse.VILLAGER.ordinal(), ResourcesModels.CORPSE_VILLAGER);
-        Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(GSItem.corpse, EnumCorpse.DOG.ordinal(), ResourcesModels.CORPSE_DOG);
-        Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(GSItem.corpse, EnumCorpse.CAT.ordinal(), ResourcesModels.CORPSE_CAT);
-        Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(GSItem.corpse, EnumCorpse.HORSE.ordinal(), ResourcesModels.CORPSE_HORSE);
-        ModelBakery.registerItemVariants(GSItem.corpse, ResourcesModels.CORPSE_VILLAGER, ResourcesModels.CORPSE_DOG, ResourcesModels.CORPSE_CAT, ResourcesModels.CORPSE_HORSE);
 
         for (ItemGSMonsterPlacer.EnumEggs egg : ItemGSMonsterPlacer.EnumEggs.values()) {
             Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(GSItem.spawnEgg, egg.ordinal(), ResourcesModels.spawnEggModel);

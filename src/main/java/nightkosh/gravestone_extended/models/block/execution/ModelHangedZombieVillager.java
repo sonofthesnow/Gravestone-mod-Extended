@@ -1,4 +1,4 @@
-package nightkosh.gravestone_extended.models.block.memorials;
+package nightkosh.gravestone_extended.models.block.execution;
 
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.client.model.ModelZombieVillager;

@@ -1,10 +1,7 @@
 package nightkosh.gravestone_extended.packets;
 
-import nightkosh.gravestone_extended.core.MessageHandler;
-import nightkosh.gravestone_extended.item.ItemCorpse;
-import nightkosh.gravestone_extended.item.corpse.CorpseHelper;
-import nightkosh.gravestone_extended.tileentity.TileEntityAltar;
 import io.netty.buffer.ByteBuf;
+import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
@@ -15,6 +12,10 @@ import net.minecraftforge.common.DimensionManager;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
+import nightkosh.gravestone_extended.block.BlockCorpse;
+import nightkosh.gravestone_extended.core.MessageHandler;
+import nightkosh.gravestone_extended.item.corpse.CorpseHelper;
+import nightkosh.gravestone_extended.tileentity.TileEntityAltar;
 
 /**
  * GraveStone mod
@@ -92,7 +93,7 @@ public class AltarMessageToServer implements IMessage, IMessageHandler<AltarMess
                 TileEntityAltar tileEntity = (TileEntityAltar) te;
                 if (tileEntity.hasCorpse()) {
                     ItemStack corpse = tileEntity.getCorpse();
-                    if (corpse != null && corpse.getItem() instanceof ItemCorpse && CorpseHelper.canSpawnMob(player, corpse.getItemDamage())) {
+                    if (corpse != null && Block.getBlockFromItem(corpse.getItem()) instanceof BlockCorpse && CorpseHelper.canSpawnMob(player, corpse.getItemDamage())) {
                         CorpseHelper.spawnMob(corpse.getItemDamage(), tileEntity.getWorld(), tileEntity.getPos().getX(), tileEntity.getPos().getY(), tileEntity.getPos().getZ(), corpse.getTagCompound(), player);
                         CorpseHelper.getExperience(player, corpse.getItemDamage());
                         MessageHandler.networkWrapper.sendTo(new AltarMessageToClient(), (EntityPlayerMP) player);

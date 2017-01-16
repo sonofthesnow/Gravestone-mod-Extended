@@ -89,6 +89,10 @@ item.grave.sword_name=Nome da espada
 item.grave.sword_damage=Dano da espada
 
 ## Corpses
+## TODO !!!!!!!!!!
+item.corpse.steve=Steve Corpse
+## TODO !!!!!!!!!!
+item.corpse.player=Player Corpse
 item.corpse.villager=Cadáver de Aldeão
 item.corpse.horse=Cadáver de Cavalo
 item.corpse.dog=Cadáver de Cachorro

@@ -16,10 +16,7 @@ public class ResourcesModels extends Resources {
     // MODEL RESOURCES
     public static final ModelResourceLocation chiselModel = new ModelResourceLocation(CHISEL, "inventory");
 
-    public static final ModelResourceLocation CORPSE_VILLAGER = new ModelResourceLocation(MOD_NAME + ":GSCorpseVillager", "inventory");
-    public static final ModelResourceLocation CORPSE_DOG = new ModelResourceLocation(MOD_NAME + ":GSCorpseDog", "inventory");
-    public static final ModelResourceLocation CORPSE_CAT = new ModelResourceLocation(MOD_NAME + ":GSCorpseCat", "inventory");
-    public static final ModelResourceLocation CORPSE_HORSE = new ModelResourceLocation(MOD_NAME + ":GSCorpseHorse", "inventory");
+    public static final ModelResourceLocation CORPSE = new ModelResourceLocation(MOD_NAME + ":GSCorpse", "inventory");
 
     public static final ModelResourceLocation spawnEggModel = new ModelResourceLocation(MOD_NAME + ":" + GSItem.SPAWN_EGG , "inventory");
 

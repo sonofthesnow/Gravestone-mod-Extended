@@ -1,9 +1,10 @@
 package nightkosh.gravestone_extended.gui.container;
 
+import net.minecraft.block.Block;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
-import nightkosh.gravestone_extended.item.ItemCorpse;
+import nightkosh.gravestone_extended.block.BlockCorpse;
 
 /**
  * GraveStone mod
@@ -19,7 +20,7 @@ public class ExecutionSlot extends Slot {
 
     @Override
     public boolean isItemValid(ItemStack stack) {
-        return (stack.getItem() instanceof ItemCorpse);
+        return (Block.getBlockFromItem(stack.getItem()) instanceof BlockCorpse);
     }
 
     @Override

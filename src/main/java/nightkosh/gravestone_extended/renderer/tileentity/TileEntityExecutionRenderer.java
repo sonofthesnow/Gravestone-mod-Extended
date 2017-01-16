@@ -1,11 +1,12 @@
 package nightkosh.gravestone_extended.renderer.tileentity;
 
+import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.world.World;
 import nightkosh.gravestone.renderer.tileentity.TileEntityRenderer;
+import nightkosh.gravestone_extended.block.enums.EnumCorpse;
 import nightkosh.gravestone_extended.block.enums.EnumExecution;
-import nightkosh.gravestone_extended.block.enums.EnumHangedMobs;
 import nightkosh.gravestone_extended.models.block.ModelExecution;
 import nightkosh.gravestone_extended.models.block.execution.ModelBurningStake;
 import nightkosh.gravestone_extended.models.block.execution.ModelGallows;
@@ -44,12 +45,11 @@ public class TileEntityExecutionRenderer extends TileEntityRenderer {
         }
         EnumExecution execution = EnumExecution.getById(tileEntity.getBlockMetadata());
         int direction = tileEntity.getDirection();
-
-        renderMemorial(x, y, z, tileEntity.getWorld(), execution, tileEntity.getHangedMob(), tileEntity.getHangedVillagerProfession(), EnumFacing.values()[direction]);
+        renderExecution(x, y, z, tileEntity.getWorld(), execution, tileEntity.getCorpse(), tileEntity.getCorpseType(), tileEntity.getHangedVillagerProfession(), EnumFacing.values()[direction]);
     }
 
-    private void renderMemorial(double x, double y, double z, World world, EnumExecution execution,
-                                EnumHangedMobs hangedMob, int hangedVillagerProfession, EnumFacing facing) {
+    private void renderExecution(double x, double y, double z, World world, EnumExecution execution,
+                                 ItemStack corpse, EnumCorpse corpseType, int hangedVillagerProfession, EnumFacing facing) {
         GL11.glPushMatrix();
 
         if (world != null) {
@@ -75,15 +75,15 @@ public class TileEntityExecutionRenderer extends TileEntityRenderer {
                 break;
         }
 
-        renderMemorial(execution, hangedMob, hangedVillagerProfession);
+        renderExecution(execution, corpse, corpseType, hangedVillagerProfession);
 
         GL11.glPopMatrix();
     }
 
-    private void renderMemorial(EnumExecution execution, EnumHangedMobs hangedMob, int hangedVillagerProfession) {
+    private void renderExecution(EnumExecution execution, ItemStack corpse, EnumCorpse corpseType, int hangedVillagerProfession) {
         ModelExecution model = getModel(execution);
         bindTextureByName(execution.getTexture());
-        model.customRender(hangedMob, hangedVillagerProfession);
+        model.customRender(corpse, corpseType, hangedVillagerProfession);
     }
 
     private static ModelExecution getModel(EnumExecution execution) {

@@ -32,6 +32,8 @@ public class GSBlock extends nightkosh.gravestone.core.GSBlock{
 
     public static BlockInvisibleWall invisibleWall;
 
+    public static BlockCorpse corpse;
+
     public static void registration() {
         // memorials
         memorial = new BlockMemorial();
@@ -81,6 +83,9 @@ public class GSBlock extends nightkosh.gravestone.core.GSBlock{
 
         invisibleWall = new BlockInvisibleWall();
         GameRegistry.registerBlock(invisibleWall, "GSInvisibleWall");
+
+        corpse = new BlockCorpse();
+        GameRegistry.registerBlock(corpse, ItemBlockCorpse.class, "GSCorpse");
 
         ModGravestoneExtended.proxy.registerBlocksModels();
     }

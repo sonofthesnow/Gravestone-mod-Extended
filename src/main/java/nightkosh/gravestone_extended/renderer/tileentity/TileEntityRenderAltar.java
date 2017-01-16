@@ -5,7 +5,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import nightkosh.gravestone_extended.renderer.item.ItemGSCorpseRenderer;
 import nightkosh.gravestone_extended.tileentity.TileEntityAltar;
 
 /**
@@ -21,7 +20,7 @@ public class TileEntityRenderAltar extends TileEntitySpecialRenderer {
     public void renderTileEntityAt(TileEntity te, double x, double y, double z, float partialTicks, int destroyStage) {
         ItemStack corpse = ((TileEntityAltar) te).getCorpse();
         if (corpse != null) {
-            ItemGSCorpseRenderer.renderItem(corpse, x, y, z, partialTicks);
+            TileEntityCorpseRenderer.renderCorpseOnAltar(corpse, x, y, z, partialTicks);
         }
     }
 }

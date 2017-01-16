@@ -10,7 +10,6 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.particle.EntityFX;
 import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
@@ -22,20 +21,17 @@ import net.minecraft.util.*;
 import net.minecraft.world.Explosion;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-import net.minecraftforge.fml.common.registry.VillagerRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import nightkosh.gravestone.inventory.GraveInventory;
 import nightkosh.gravestone_extended.ModGravestoneExtended;
 import nightkosh.gravestone_extended.block.enums.EnumExecution;
-import nightkosh.gravestone_extended.block.enums.EnumHangedMobs;
 import nightkosh.gravestone_extended.core.GSBlock;
 import nightkosh.gravestone_extended.core.GuiHandler;
 import nightkosh.gravestone_extended.core.Tabs;
 import nightkosh.gravestone_extended.particle.EntityBigFlameFX;
 import nightkosh.gravestone_extended.tileentity.TileEntityExecution;
 
-import java.util.Collection;
 import java.util.List;
 import java.util.Random;
 
@@ -55,7 +51,7 @@ public class BlockExecution extends BlockContainer {
         this.setStepSound(Block.soundTypeWood);
         this.setHardness(1);
         this.setResistance(5);
-        this.setCreativeTab(Tabs.memorialsTab);
+        this.setCreativeTab(Tabs.otherItemsTab);
     }
 
     @Override
@@ -118,13 +114,6 @@ public class BlockExecution extends BlockContainer {
 
         if (te != null && !player.isSneaking()) {
             player.openGui(ModGravestoneExtended.instance, GuiHandler.EXECUTION_GUI_ID, world, pos.getX(), pos.getY(), pos.getZ());
-
-//            ItemStack item = player.inventory.getCurrentItem();
-//            if (item != null && item.getItem() instanceof ItemCorpse && EnumCorpse.getById((byte) item.getItemDamage()).equals(EnumCorpse.VILLAGER) && te.getHangedMob() == EnumHangedMobs.NONE) {
-//                te.setCorpse(item);
-//                item.stackSize--;
-//                return true;
-//            }
         }
 
         return false;
@@ -134,33 +123,7 @@ public class BlockExecution extends BlockContainer {
     @SideOnly(Side.CLIENT)
     public void getSubBlocks(Item item, CreativeTabs tab, List list) {
         for (EnumExecution executionBlock : EnumExecution.values()) {
-            for (byte mobType = 0; mobType < EnumHangedMobs.values().length; mobType++) {
-                ItemStack stack = new ItemStack(item, 1, executionBlock.ordinal());
-                if (!stack.hasTagCompound()) {
-                    stack.setTagCompound(new NBTTagCompound());
-                }
-                stack.getTagCompound().setByte("HangedMob", mobType);
-                switch (EnumHangedMobs.values()[mobType]) {
-                    case VILLAGER:
-                        ItemStack villagerStack;
-                        for (byte villagerProfession = 0; villagerProfession <= 4; villagerProfession++) {
-                            villagerStack = stack.copy();
-                            villagerStack.getTagCompound().setInteger("HangedVillagerProfession", villagerProfession);
-                            list.add(villagerStack);
-                        }
-
-                        Collection<Integer> villagerIds = VillagerRegistry.getRegisteredVillagers();
-                        for (Integer villagerId : villagerIds) {
-                            villagerStack = stack.copy();
-                            villagerStack.getTagCompound().setInteger("HangedVillagerProfession", villagerId);
-                            list.add(villagerStack);
-                        }
-                        break;
-                    default:
-                        list.add(stack);
-                }
-
-            }
+            list.add(new ItemStack(item, 1, executionBlock.ordinal()));
         }
     }
 
@@ -168,38 +131,15 @@ public class BlockExecution extends BlockContainer {
     public void onBlockHarvested(World world, BlockPos pos, IBlockState state, EntityPlayer player) {
         player.addExhaustion(0.025F);
 
-        ItemStack itemStack;
-        if (EnchantmentHelper.getSilkTouchModifier(player)) {
-            itemStack = getBlockItemStack(world, pos);
-        } else {
-            itemStack = getBlockItemStackWithoutInfo(world, pos);
-        }
+        GraveInventory.dropItem(getBlockItemStackWithoutInfo(world, pos), world, pos);
 
-        if (itemStack != null) {
-            GraveInventory.dropItem(itemStack, world, pos);
-        }
-    }
-
-    private ItemStack getBlockItemStack(World world, BlockPos pos) {
-        ItemStack itemStack = this.createStackedBlock(world.getBlockState(pos));
         TileEntityExecution tileEntity = (TileEntityExecution) world.getTileEntity(pos);
-
-        if (tileEntity != null && itemStack != null) {
-            NBTTagCompound nbt = new NBTTagCompound();
-
-            if (tileEntity.getCorpse() != null) {
-                NBTTagCompound corpseNBT = new NBTTagCompound();
-                tileEntity.getCorpse().writeToNBT(corpseNBT);
-                nbt.setTag("Corpse", corpseNBT);
+        if (tileEntity != null) {
+            ItemStack corpse = tileEntity.getCorpse();
+            if (corpse != null) {
+                GraveInventory.dropItem(corpse, world, pos);
             }
-
-            nbt.setByte("HangedMob", (byte) tileEntity.getHangedMob().ordinal());
-            nbt.setInteger("HangedVillagerProfession", tileEntity.getHangedVillagerProfession());
-
-            itemStack.setTagCompound(nbt);
         }
-
-        return itemStack;
     }
 
     private ItemStack getBlockItemStackWithoutInfo(World world, BlockPos pos) {
@@ -224,9 +164,6 @@ public class BlockExecution extends BlockContainer {
                 nbt.setTag("Corpse", corpseNBT);
             }
 
-            nbt.setByte("HangedMob", (byte) tileEntity.getHangedMob().ordinal());
-            nbt.setInteger("HangedVillagerProfession", tileEntity.getHangedVillagerProfession());
-
             itemStack.setTagCompound(nbt);
         }
         return itemStack;
@@ -236,7 +173,8 @@ public class BlockExecution extends BlockContainer {
     public int getLightValue(IBlockAccess access, BlockPos pos) {
         TileEntityExecution tileEntity = (TileEntityExecution) access.getTileEntity(pos);
 
-        if (tileEntity != null && access.getBlockState(pos).getValue(VARIANT) == EnumExecution.BURNING_STAKE && tileEntity.getHangedMob() != EnumHangedMobs.NONE) {
+        if (tileEntity != null && access.getBlockState(pos).getValue(VARIANT) == EnumExecution.BURNING_STAKE &&
+                tileEntity.getCorpseType() != null && tileEntity.getCorpseType().canBeHanged()) {
             return 15;
         } else {
             return super.getLightValue(access, pos);
@@ -247,7 +185,8 @@ public class BlockExecution extends BlockContainer {
     @SideOnly(Side.CLIENT)
     public void randomDisplayTick(World world, BlockPos pos, IBlockState state, Random random) {
         TileEntityExecution tileEntity = (TileEntityExecution) world.getTileEntity(pos);
-        if (tileEntity != null && state.getValue(VARIANT) == EnumExecution.BURNING_STAKE && tileEntity.getHangedMob() != EnumHangedMobs.NONE) {
+        if (tileEntity != null && state.getValue(VARIANT) == EnumExecution.BURNING_STAKE &&
+                tileEntity.getCorpseType() != null && tileEntity.getCorpseType().canBeHanged()) {
             double xPos, zPos, yPos;
 
             yPos = pos.getY() + 0.25;
@@ -312,9 +251,6 @@ public class BlockExecution extends BlockContainer {
                     tileEntity.setCorpse(ItemStack.loadItemStackFromNBT(nbt.getCompoundTag("Corpse")));
                 }
 
-                tileEntity.setHangedMob(EnumHangedMobs.getById(nbt.getByte("HangedMob")));
-                tileEntity.setHangedVillagerProfession(nbt.getInteger("HangedVillagerProfession"));
-
                 placeWalls(world, pos);
             }
         }
@@ -324,17 +260,34 @@ public class BlockExecution extends BlockContainer {
         placeAdditionalBlock(world, pos, GSBlock.invisibleWall.getDefaultState(), Blocks.air);
     }
 
+    private static void dropCorpse(World world, BlockPos pos) {
+        if (!world.isRemote) {
+            TileEntityExecution tileEntity = (TileEntityExecution) world.getTileEntity(pos);
+
+            if (tileEntity != null) {
+                ItemStack corpse = tileEntity.getCorpse();
+                if (corpse != null) {
+                    GraveInventory.dropItem(corpse, world, pos);
+                    tileEntity.setCorpse(null);
+                }
+            }
+        }
+    }
+
     @Override
     public void onBlockDestroyedByExplosion(World world, BlockPos pos, Explosion explosionIn) {
         removeWalls(world, pos);
+        dropCorpse(world, pos);
         super.onBlockDestroyedByExplosion(world, pos, explosionIn);
     }
 
     @Override
     public boolean removedByPlayer(World world, BlockPos pos, EntityPlayer player, boolean willHarvest) {
         removeWalls(world, pos);
+        dropCorpse(world, pos);
         return super.removedByPlayer(world, pos, player, willHarvest);
     }
+
 
     private static void removeWalls(World world, BlockPos pos) {
         placeAdditionalBlock(world, pos, Blocks.air.getDefaultState(), GSBlock.invisibleWall);

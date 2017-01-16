@@ -1,7 +1,6 @@
 package nightkosh.gravestone_extended.item.corpse;
 
 import net.minecraft.entity.passive.EntityVillager;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.village.MerchantRecipe;
@@ -9,10 +8,10 @@ import net.minecraft.village.MerchantRecipeList;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.registry.VillagerRegistry;
 import nightkosh.gravestone_extended.ModGravestoneExtended;
+import nightkosh.gravestone_extended.block.enums.EnumCorpse;
 import nightkosh.gravestone_extended.config.ExtendedConfig;
-import nightkosh.gravestone_extended.core.GSItem;
+import nightkosh.gravestone_extended.core.GSBlock;
 import nightkosh.gravestone_extended.core.compatibility.forestry.CompatibilityForestry;
-import nightkosh.gravestone_extended.item.enums.EnumCorpse;
 import org.apache.commons.lang3.StringUtils;
 
 import java.util.ArrayList;
@@ -31,36 +30,38 @@ public class VillagerCorpseHelper extends CorpseHelper {
     private VillagerCorpseHelper() {
     }
 
+    private static final int CORPSE_TYPE = EnumCorpse.VILLAGER.ordinal();
+
     public static ItemStack getRandomCorpse(Random random) {
         //TODO !!! all type of professions and careers
-        return getDefaultVillagerCorpse(GSItem.corpse, EnumCorpse.VILLAGER.ordinal(), random.nextInt(5), 1);
+        return getDefaultVillagerCorpse(random.nextInt(5), 1);
     }
 
-    public static List<ItemStack> getDefaultCorpses(Item item, int corpseType) {
+    public static List<ItemStack> getDefaultCorpses() {
         List<ItemStack> list = new ArrayList<>();
 
-        list.add(getDefaultVillagerCorpse(item, corpseType, 0, 1)); // Farmer - farmer
-        list.add(getDefaultVillagerCorpse(item, corpseType, 0, 2)); // Farmer - fisherman
-        list.add(getDefaultVillagerCorpse(item, corpseType, 0, 3)); // Farmer - shepherd
-        list.add(getDefaultVillagerCorpse(item, corpseType, 0, 4)); // Farmer - fletcher
-        list.add(getDefaultVillagerCorpse(item, corpseType, 1, 1)); // Librarian
-        list.add(getDefaultVillagerCorpse(item, corpseType, 2, 1)); // Priest
-        list.add(getDefaultVillagerCorpse(item, corpseType, 3, 1)); // Smith - armor
-        list.add(getDefaultVillagerCorpse(item, corpseType, 3, 2)); // Smith - weapon
-        list.add(getDefaultVillagerCorpse(item, corpseType, 3, 3)); // Smith - tool
-        list.add(getDefaultVillagerCorpse(item, corpseType, 4, 1)); // Butcher - butcher
-        list.add(getDefaultVillagerCorpse(item, corpseType, 4, 2)); // Butcher - leather
+        list.add(getDefaultVillagerCorpse(0, 1)); // Farmer - farmer
+        list.add(getDefaultVillagerCorpse(0, 2)); // Farmer - fisherman
+        list.add(getDefaultVillagerCorpse(0, 3)); // Farmer - shepherd
+        list.add(getDefaultVillagerCorpse(0, 4)); // Farmer - fletcher
+        list.add(getDefaultVillagerCorpse(1, 1)); // Librarian
+        list.add(getDefaultVillagerCorpse(2, 1)); // Priest
+        list.add(getDefaultVillagerCorpse(3, 1)); // Smith - armor
+        list.add(getDefaultVillagerCorpse(3, 2)); // Smith - weapon
+        list.add(getDefaultVillagerCorpse(3, 3)); // Smith - tool
+        list.add(getDefaultVillagerCorpse(4, 1)); // Butcher - butcher
+        list.add(getDefaultVillagerCorpse(4, 2)); // Butcher - leather
 
         Collection<Integer> villagerIds = VillagerRegistry.getRegisteredVillagers();
         for (Integer villagerId : villagerIds) {
-            list.add(getDefaultVillagerCorpse(item, corpseType, villagerId, 1));//TODO career
+            list.add(getDefaultVillagerCorpse(villagerId, 1));//TODO career
         }
 
         return list;
     }
 
-    private static ItemStack getDefaultVillagerCorpse(Item item, int corpseType, int profession, int career) {
-        ItemStack corpse = new ItemStack(item, 1, corpseType);
+    private static ItemStack getDefaultVillagerCorpse(int profession, int career) {
+        ItemStack corpse = new ItemStack(GSBlock.corpse, 1, CORPSE_TYPE);
 
         NBTTagCompound nbtTag = new NBTTagCompound();
         nbtTag.setInteger("Profession", profession);
