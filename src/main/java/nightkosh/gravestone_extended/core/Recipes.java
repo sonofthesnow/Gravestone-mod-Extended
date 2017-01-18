@@ -42,9 +42,9 @@ public class Recipes {
 
 
         // gallows
-        GameRegistry.addRecipe(getStackWithNTB(GSBlock.execution, EnumExecution.GIBBET.ordinal(), "Type"), "ww ", "wr ", "ww  ", 'w', Blocks.planks, 'r', Items.lead);
+        GameRegistry.addRecipe(getStackWithNTB(GSBlock.execution, EnumExecution.GIBBET.ordinal(), "Type"), "ww ", "wr ", "ww ", 'w', Blocks.planks, 'r', Items.lead);
         // gibbets
-        GameRegistry.addRecipe(getStackWithNTB(GSBlock.execution, EnumExecution.GIBBET.ordinal(), "Type"), "ww ", "wr ", "wi  ", 'w', Blocks.planks, 'r', Items.lead, 'i', Blocks.iron_block);
+        GameRegistry.addRecipe(getStackWithNTB(GSBlock.execution, EnumExecution.GIBBET.ordinal(), "Type"), "ww ", "wr ", "wi ", 'w', Blocks.planks, 'r', Items.lead, 'i', Blocks.iron_block);
         // stocks
         GameRegistry.addRecipe(getStackWithNTB(GSBlock.execution, EnumExecution.STOCKS.ordinal(), "Type"), "wsw", "w w", 'w', Blocks.planks, 's', Blocks.wooden_slab);
         // burning stake
