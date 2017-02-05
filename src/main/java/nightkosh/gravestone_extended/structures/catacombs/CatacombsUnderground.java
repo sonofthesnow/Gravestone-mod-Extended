@@ -26,7 +26,7 @@ public class CatacombsUnderground {
         startComponents.add(entrance);
         CatacombsLevel level = null;
         for (int levelNum = 1; levelNum <= LEVELS_COUNT; levelNum++) {
-            level = new CatacombsLevel((level == null) ? startComponents : level.getEndParts(), levelNum, world, rand);
+            level = new CatacombsLevel((levelNum == 1) ? startComponents : level.getEndParts(), levelNum, world, rand);
         }
     }
 }

@@ -213,7 +213,7 @@ public class CatacombsLevel {
                     break;
             }
 
-            newComponent = tryCreateComponent(exit, componentClass, direction, level);
+            newComponent = tryCreateEndComponent(exit, componentClass, direction, level);
             if (newComponent != null) {
                 levelComponents.add(newComponent);
                 endComponents.add(newComponent);
@@ -254,6 +254,21 @@ public class CatacombsLevel {
         if (!canBePlaced(newComponent)) {
             buildComponent = Corridor.class;
             newComponent = CatacombsComponentsFactory.createComponent(exit, random, direction, level, buildComponent);
+        }
+
+        if (canBePlaced(newComponent)) {
+            levelComponents.add(newComponent);
+            return newComponent;
+        } else {
+            return null;
+        }
+    }
+
+    private CatacombsBaseComponent tryCreateEndComponent(CatacombsBaseComponent.Passage exit, Class componentClass, EnumFacing direction, int level) {
+        CatacombsBaseComponent newComponent = CatacombsComponentsFactory.createComponent(exit, random, direction, level, componentClass);
+
+        if (!canBePlaced(newComponent)) {
+            newComponent = CatacombsComponentsFactory.createComponent(exit, random, direction, level, componentClass);
         }
 
         if (canBePlaced(newComponent)) {
