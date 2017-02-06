@@ -43,8 +43,7 @@ public class BlockSpawner extends BlockMobSpawner {
 
     public static final List<EnumSpawner> MOB_SPAWNERS = new ArrayList<>(Arrays.asList(
             EnumSpawner.SKELETON_SPAWNER,
-            EnumSpawner.ZOMBIE_SPAWNER,
-            EnumSpawner.SPIDER_SPAWNER));
+            EnumSpawner.ZOMBIE_SPAWNER));
     public static final List<EnumSpawner> BOSS_SPAWNERS = new ArrayList<>(Arrays.asList(
             EnumSpawner.WITHER_SPAWNER));
 

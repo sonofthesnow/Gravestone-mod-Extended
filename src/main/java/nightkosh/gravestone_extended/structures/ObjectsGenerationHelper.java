@@ -19,6 +19,7 @@ import nightkosh.gravestone_extended.block.BlockPileOfBones;
 import nightkosh.gravestone_extended.block.BlockSpawner;
 import nightkosh.gravestone_extended.block.enums.EnumHauntedChest;
 import nightkosh.gravestone_extended.block.enums.EnumPileOfBones;
+import nightkosh.gravestone_extended.block.enums.EnumSpawner;
 import nightkosh.gravestone_extended.core.GSBlock;
 import nightkosh.gravestone_extended.core.Potion;
 import nightkosh.gravestone_extended.tileentity.TileEntityHauntedChest;
@@ -176,12 +177,24 @@ public class ObjectsGenerationHelper {
      * @param zCoord    Z coord
      */
     public static void generateSpawner(ComponentGraveStone component, World world, Random random, int xCoord, int yCoord, int zCoord) {
+        generateSpawner(component, world, xCoord, yCoord, zCoord, BlockSpawner.MOB_SPAWNERS.get(random.nextInt(BlockSpawner.MOB_SPAWNERS.size())));
+    }
+
+    /**
+     * Generate mob spawner
+     *
+     * @param component Component instatnce
+     * @param world     World object
+     * @param xCoord    X coord
+     * @param yCoord    Y coord
+     * @param zCoord    Z coord
+     */
+    public static void generateSpawner(ComponentGraveStone component, World world, int xCoord, int yCoord, int zCoord, EnumSpawner spawnerType) {
         int y = component.getYWithOffset(yCoord);
         int x = component.getXWithOffset(xCoord, zCoord);
         int z = component.getZWithOffset(xCoord, zCoord);
 
-        world.setBlockState(new BlockPos(x, y, z), GSBlock.spawner.getDefaultState().withProperty(BlockSpawner.VARIANT,
-                BlockSpawner.MOB_SPAWNERS.get(random.nextInt(BlockSpawner.MOB_SPAWNERS.size()))), 2);
+        world.setBlockState(new BlockPos(x, y, z), GSBlock.spawner.getDefaultState().withProperty(BlockSpawner.VARIANT, spawnerType), 2);
     }
 
     /**

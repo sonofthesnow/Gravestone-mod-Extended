@@ -3,6 +3,7 @@ package nightkosh.gravestone_extended.structures.catacombs.components;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.world.World;
+import nightkosh.gravestone_extended.block.enums.EnumSpawner;
 import nightkosh.gravestone_extended.structures.BoundingBoxHelper;
 import nightkosh.gravestone_extended.structures.ObjectsGenerationHelper;
 
@@ -64,7 +65,7 @@ public class SpidersCorridor extends CatacombsBaseComponent {
         this.fillWithRandomizedBlocks(world, boundingBox, 0, 0, 12, 4, 4, 12, false, random, stoneBricks);
 
         // spawner
-        ObjectsGenerationHelper.generateMinecraftSpawner(this, world, 2, 1, 6, "CaveSpider");
+        ObjectsGenerationHelper.generateSpawner(this, world, 2, 1, 6, EnumSpawner.SPIDER_SPAWNER);
         return true;
     }
 }
