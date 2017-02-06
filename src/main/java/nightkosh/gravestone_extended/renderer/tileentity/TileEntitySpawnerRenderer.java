@@ -42,17 +42,28 @@ public class TileEntitySpawnerRenderer extends TileEntityRenderer {
         if (tileEntity == null) {
             tileEntity = getDefaultTE();
         }
-        GL11.glPushMatrix();
-        if (tileEntity.getWorld() != null) {
-            GL11.glTranslatef(x + 0.5F, y + 1.5F, z + 0.5F);
-            GL11.glScalef(1, -1, -1);
-        } else {
-            GL11.glTranslatef(x + 0.5F, y + 1, z + 0.5F);
-            GL11.glScalef(0.6F, -0.6F, -0.6F);
-        }
-        GL11.glTranslated(0, -0.01, 0);
         byte type = (byte) tileEntity.getBlockMetadata();
         EnumSpawner spawnerType = EnumSpawner.getById(type);
+
+        GL11.glPushMatrix();
+        if (tileEntity.getWorld() != null) {
+            if (spawnerType == EnumSpawner.SPIDER_SPAWNER) {
+                GL11.glTranslatef(x + 0.5F, y + 0.75F, z + 0.5F);
+                GL11.glScalef(0.5F, -0.5F, -0.5F);
+            } else {
+                GL11.glTranslatef(x + 0.5F, y + 1.5F, z + 0.5F);
+                GL11.glScalef(1, -1, -1);
+            }
+        } else {
+            if (spawnerType == EnumSpawner.SPIDER_SPAWNER) {
+                GL11.glTranslatef(x + 0.5F, y + 0.5F, z + 0.5F);
+                GL11.glScalef(0.3F, -0.3F, -0.3F);
+            } else {
+                GL11.glTranslatef(x + 0.5F, y + 1, z + 0.5F);
+                GL11.glScalef(0.6F, -0.6F, -0.6F);
+            }
+        }
+        GL11.glTranslated(0, -0.01, 0);
         if (spawnerType == EnumSpawner.SPIDER_SPAWNER) {
             this.bindTexture(Resources.SPIDER_SPAWNER);
         } else {
