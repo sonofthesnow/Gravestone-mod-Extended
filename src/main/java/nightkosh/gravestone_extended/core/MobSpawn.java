@@ -30,19 +30,17 @@ import java.util.*;
  */
 public class MobSpawn {
 
-    public static final String WITHER_ID = "WitherBoss";
-    //
     private static final int HELL_HEIGHT = 51;
     private static final Random RANDOM = new Random();
     /**
      * Provides a mapping between entity classes and a string
      */
     public static Map<String, Constructor<EntityLiving>> mobNameToClassMapping = new HashMap<>();
-    public static List<String> MOB_ID = new ArrayList<>(Arrays.asList("Zombie", Entity.SKELETON_ID));
+    public static List<String> MOB_ID = new ArrayList<>(Arrays.asList(Entity.MINECRAFT_ZOMBIE_ID, Entity.SKELETON_ID));
     public static List<String> DOG_ID = new ArrayList<>(Arrays.asList(Entity.ZOMBIE_DOG_ID, Entity.SKELETON_DOG_ID));
     public static List<String> CAT_ID = new ArrayList<>(Arrays.asList(Entity.ZOMBIE_CAT_ID, Entity.SKELETON_CAT_ID));
     public static List<String> HORSE_ID = new ArrayList<>(Arrays.asList(Entity.ZOMBIE_HORSE_ID, Entity.SKELETON_HORSE_ID));
-    public static List<String> HELL_MOB_ID = new ArrayList<>(Arrays.asList("PigZombie", Entity.SKELETON_ID));
+    public static List<String> HELL_MOB_ID = new ArrayList<>(Arrays.asList(Entity.MINECRAFT_PIGZOMBIE_ID, Entity.SKELETON_ID));
     // spawner mobs
     public static List<String> skeletonSpawnerMobs = new ArrayList<>(Arrays.asList(
             Entity.SKELETON_ID, Entity.SKELETON_ID, Entity.SKELETON_ID, Entity.SKELETON_ID,
@@ -51,14 +49,16 @@ public class MobSpawn {
             Entity.SKELETON_HORSE_ID,
             Entity.SKELETON_RAIDER_ID));
     public static List<String> zombieSpawnerMobs = new ArrayList<>(Arrays.asList(
-            "Zombie", "Zombie", "Zombie", "Zombie",
+            Entity.MINECRAFT_ZOMBIE_ID, Entity.MINECRAFT_ZOMBIE_ID, Entity.MINECRAFT_ZOMBIE_ID, Entity.MINECRAFT_ZOMBIE_ID,
             Entity.ZOMBIE_DOG_ID,
             Entity.ZOMBIE_CAT_ID,
             Entity.ZOMBIE_HORSE_ID,
             Entity.ZOMBIE_RAIDER_ID));
+    public static List<String> spiderSpawnerMobs = new ArrayList<>(Arrays.asList(
+            Entity.MINECRAFT_SPIDER_ID, Entity.MINECRAFT_CAVE_SPIDER_ID, Entity.MINECRAFT_SPIDER_ID));
     // catacombs statues mobs
     public static List<String> catacombsStatuesMobs = new ArrayList<>(Arrays.asList(
-            Entity.SKELETON_ID, "Zombie"));
+            Entity.SKELETON_ID, Entity.MINECRAFT_ZOMBIE_ID));
 
 
     /**
@@ -136,7 +136,7 @@ public class MobSpawn {
 
         switch (spawnerType) {
             case WITHER_SPAWNER:
-                mobId = MobSpawn.WITHER_ID;
+                mobId = Entity.MINECRAFT_WITHER_ID;
                 break;
             case SKELETON_SPAWNER:
                 mobId = skeletonSpawnerMobs.get(world.rand.nextInt(skeletonSpawnerMobs.size()));
@@ -146,6 +146,9 @@ public class MobSpawn {
                     skeleton.setSkeletonType(1);
                     return skeleton;
                 }
+                break;
+            case SPIDER_SPAWNER:
+                mobId = spiderSpawnerMobs.get(world.rand.nextInt(spiderSpawnerMobs.size()));
                 break;
             case ZOMBIE_SPAWNER:
             default:

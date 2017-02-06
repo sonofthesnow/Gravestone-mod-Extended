@@ -53,4 +53,11 @@ public class TileEntitySpawner extends TileEntityBase implements ITickable, ISpa
             return EnumSpawner.ZOMBIE_SPAWNER.ordinal();
         }
     }
+
+    public static class Spider extends TileEntitySpawner {
+        @Override
+        public int getBlockMetadata() {
+            return EnumSpawner.SPIDER_SPAWNER.ordinal();
+        }
+    }
 }

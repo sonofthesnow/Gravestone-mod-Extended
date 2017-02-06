@@ -47,6 +47,13 @@ public class Entity {
     public static final String RAVEN_NAME = "GSRaven";
     public static final String SPAWNER_HELPER_NAME = "GSSpawnerHelper";
 
+    // EntityList
+    public static final String MINECRAFT_ZOMBIE_ID = "Zombie";
+    public static final String MINECRAFT_PIGZOMBIE_ID = "PigZombie";
+    public static final String MINECRAFT_SKELETON_ID = "Skeleton";
+    public static final String MINECRAFT_SPIDER_ID = "Spider";
+    public static final String MINECRAFT_CAVE_SPIDER_ID = "CaveSpider";
+    public static final String MINECRAFT_WITHER_ID = "WitherBoss";
 
     public static final String SKELETON_ID = ModInfo.ID + "." + SKELETON_NAME;
     public static final String ZOMBIE_DOG_ID = ModInfo.ID + "." + ZOMBIE_DOG_NAME;

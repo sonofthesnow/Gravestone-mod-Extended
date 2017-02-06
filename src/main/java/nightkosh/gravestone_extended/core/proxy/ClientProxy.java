@@ -73,6 +73,7 @@ public class ClientProxy extends CommonProxy {
         ClientRegistry.registerTileEntity(TileEntitySpawner.class, "GSSpawner", new TileEntitySpawnerRenderer());
         ClientRegistry.registerTileEntity(TileEntitySpawner.Skeleton.class, "GSSpawnerSkeleton", new TileEntitySpawnerRenderer.Skeleton());
         ClientRegistry.registerTileEntity(TileEntitySpawner.Zombie.class, "GSSpawnerZombie", new TileEntitySpawnerRenderer.Zombie());
+        ClientRegistry.registerTileEntity(TileEntitySpawner.Spider.class, "GSSpawnerSpider", new TileEntitySpawnerRenderer.Spider());
 
         // register HauntedChest renderer
         ClientRegistry.registerTileEntity(TileEntityHauntedChest.class, "GSHauntedChest", new TileEntityHauntedChestRenderer());
@@ -187,6 +188,7 @@ public class ClientProxy extends CommonProxy {
         ProxyHelper.registerModelsForTEBlocks(EnumSpawner.WITHER_SPAWNER.ordinal(), GSBlock.spawner, ResourcesModels.spawnerModel, TileEntitySpawner.class);
         ProxyHelper.registerModelsForTEBlocks(EnumSpawner.SKELETON_SPAWNER.ordinal(), GSBlock.spawner, ResourcesModels.spawnerModel, TileEntitySpawner.Skeleton.class);
         ProxyHelper.registerModelsForTEBlocks(EnumSpawner.ZOMBIE_SPAWNER.ordinal(), GSBlock.spawner, ResourcesModels.spawnerModel, TileEntitySpawner.Zombie.class);
+        ProxyHelper.registerModelsForTEBlocks(EnumSpawner.SPIDER_SPAWNER.ordinal(), GSBlock.spawner, ResourcesModels.spawnerModel, TileEntitySpawner.Spider.class);
         //traps
         Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(Item.getItemFromBlock(GSBlock.trap), EnumTrap.NIGHT_STONE.ordinal(), ResourcesModels.nightStoneModel);
         Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(Item.getItemFromBlock(GSBlock.trap), EnumTrap.THUNDER_STONE.ordinal(), ResourcesModels.thunderStoneModel);

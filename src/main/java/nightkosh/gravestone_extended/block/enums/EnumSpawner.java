@@ -13,7 +13,8 @@ public enum EnumSpawner implements IBlockEnum, IStringSerializable {
 
     WITHER_SPAWNER("block.spawner.wither", "wither_spawner"),
     SKELETON_SPAWNER("block.spawner.skeleton", "skeleton_spawner"),
-    ZOMBIE_SPAWNER("block.spawner.zombie", "zombie_spawner");
+    ZOMBIE_SPAWNER("block.spawner.zombie", "zombie_spawner"),
+    SPIDER_SPAWNER("block.spawner.spider", "spider_spawner");
     private String name;
     private String blockModelName;
 
