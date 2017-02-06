@@ -8,6 +8,7 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.particle.EntityFX;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.entity.Entity;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
@@ -170,6 +171,12 @@ public class BlockSpawner extends BlockMobSpawner {
     @Override
     public int quantityDropped(Random random) {
         return 3;
+    }
+
+    public void onEntityCollidedWithBlock(World worldIn, BlockPos pos, IBlockState state, Entity entityIn) {
+        if (EnumSpawner.SPIDER_SPAWNER.ordinal() == getMetaFromState(state)) {
+            entityIn.setInWeb();
+        }
     }
 
     /**
