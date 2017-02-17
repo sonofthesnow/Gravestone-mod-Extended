@@ -1,17 +1,22 @@
 package nightkosh.gravestone_extended.item;
 
-import nightkosh.gravestone_extended.core.*;
 import net.minecraft.block.BlockFence;
 import net.minecraft.block.BlockLiquid;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.entity.*;
+import net.minecraft.entity.EntityList;
+import net.minecraft.entity.EntityLiving;
+import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.IEntityLivingData;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemMonsterPlacer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.*;
 import net.minecraft.world.World;
+import nightkosh.gravestone_extended.core.Entity;
+import nightkosh.gravestone_extended.core.ModInfo;
+import nightkosh.gravestone_extended.core.Tabs;
 import org.apache.commons.lang3.StringUtils;
 
 import java.util.List;
@@ -24,18 +29,19 @@ import java.util.List;
  */
 public class ItemGSMonsterPlacer extends ItemMonsterPlacer {
     public static enum EnumEggs {
-        ZOMBIE_DOG(nightkosh.gravestone_extended.core.Entity.ZOMBIE_DOG_NAME, 0xD7D3D3, 0x799C65),
-        ZOMBIE_CAT(nightkosh.gravestone_extended.core.Entity.ZOMBIE_CAT_NAME, 0xEFDE7D, 0x799c65),
-        SKELETON_DOG(nightkosh.gravestone_extended.core.Entity.SKELETON_DOG_NAME, 0xD7D3D3, 0x494949),
-        SKELETON_CAT(nightkosh.gravestone_extended.core.Entity.SKELETON_CAT_NAME, 0xEFDE7D, 0x494949),
-        SKULL_CRAWLER(nightkosh.gravestone_extended.core.Entity.SKULL_CRAWLER_NAME, 0x000000, 0xA80E0E),
-        WITHER_SKULL_CRAWLER(nightkosh.gravestone_extended.core.Entity.WITHER_SKULL_CRAWLER_NAME, 0xC1C1C1, 0xA80E0E),
-        ZOMBIE_SKULL_CRAWLER(nightkosh.gravestone_extended.core.Entity.ZOMBIE_SKULL_CRAWLER_NAME, 0x00AFAF, 0xA80E0E),
-        SKELETON(nightkosh.gravestone_extended.core.Entity.SKELETON_NAME, 12698049, 4802889),
-        ZOMBIE_HORSE(nightkosh.gravestone_extended.core.Entity.ZOMBIE_HORSE_NAME, 44975, 15656192),
-        SKELETON_HORSE(nightkosh.gravestone_extended.core.Entity.SKELETON_HORSE_NAME, 12698049, 15656192),
-        ZOMBIE_RAIDER(nightkosh.gravestone_extended.core.Entity.ZOMBIE_RAIDER_NAME, 44975, 15656192),
-        SKELETON_RAIDER(nightkosh.gravestone_extended.core.Entity.SKELETON_RAIDER_NAME, 12698049, 15656192),
+        ZOMBIE_DOG(Entity.ZOMBIE_DOG_NAME, 0xD7D3D3, 0x799C65),
+        ZOMBIE_CAT(Entity.ZOMBIE_CAT_NAME, 0xEFDE7D, 0x799c65),
+        SKELETON_DOG(Entity.SKELETON_DOG_NAME, 0xD7D3D3, 0x494949),
+        SKELETON_CAT(Entity.SKELETON_CAT_NAME, 0xEFDE7D, 0x494949),
+        SKULL_CRAWLER(Entity.SKULL_CRAWLER_NAME, 0x000000, 0xA80E0E),
+        WITHER_SKULL_CRAWLER(Entity.WITHER_SKULL_CRAWLER_NAME, 0xC1C1C1, 0xA80E0E),
+        ZOMBIE_SKULL_CRAWLER(Entity.ZOMBIE_SKULL_CRAWLER_NAME, 0x00AFAF, 0xA80E0E),
+        SKELETON(Entity.SKELETON_NAME, 12698049, 4802889),
+        ZOMBIE_HORSE(Entity.ZOMBIE_HORSE_NAME, 44975, 15656192),
+        SKELETON_HORSE(Entity.SKELETON_HORSE_NAME, 12698049, 15656192),
+        ZOMBIE_RAIDER(Entity.ZOMBIE_RAIDER_NAME, 44975, 15656192),
+        SKELETON_RAIDER(Entity.SKELETON_RAIDER_NAME, 12698049, 15656192),
+        DAMNED_WARRIOR(Entity.DAMNED_WARRIOR_NAME, 12698049, 4802889),
         RAVEN(nightkosh.gravestone_extended.core.Entity.RAVEN_NAME, 14144467, 11013646);
 
         private String name;
@@ -80,7 +86,7 @@ public class ItemGSMonsterPlacer extends ItemMonsterPlacer {
         str.append(StatCollector.translateToLocal(this.getUnlocalizedName() + ".name").trim());
 
         String name = EnumEggs.getById(itemStack.getItemDamage()).getName();
-        if (StringUtils.isNotBlank(name) ) {
+        if (StringUtils.isNotBlank(name)) {
             str.append(" ").append(StatCollector.translateToLocal("entity." + name + ".name"));
         }
 

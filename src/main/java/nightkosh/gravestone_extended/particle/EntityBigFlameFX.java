@@ -13,14 +13,26 @@ import net.minecraft.world.World;
  */
 public class EntityBigFlameFX extends EntityFlameFX {
 
-    public EntityBigFlameFX(World world, double xPos, double yPos, double zPos, double p_i1209_8_, double p_i1209_10_, double p_i1209_12_) {
-        super(world, xPos, yPos, zPos, p_i1209_8_, p_i1209_10_, p_i1209_12_);
+    private float scale;
+
+    public EntityBigFlameFX(World world, double xPos, double yPos, double zPos) {
+        super(world, xPos, yPos, zPos, 0, 0, 0);
+        this.scale = 3.5F;
+    }
+
+    public EntityBigFlameFX(World world, double xPos, double yPos, double zPos, float scale, float red, float green, float blue) {
+        super(world, xPos, yPos, zPos, 0, 0, 0);
+
+        this.scale = scale;
+        this.particleRed = red;
+        this.particleGreen = green;
+        this.particleBlue = blue;
     }
 
     @Override
     public void renderParticle(WorldRenderer worldRenderer, Entity entity, float partialTicks, float x, float y, float z, float p_180434_7_, float p_180434_8_) {
         float xz = (this.particleAge + partialTicks) / (float) this.particleMaxAge;
-        this.particleScale = 3.5F * (1 - xz * xz * 0.5F);
+        this.particleScale = this.scale * (1 - xz * xz * 0.5F);
 
         float f = this.particleTextureIndexX / 16F;
         float f1 = f + 0.0624375F;

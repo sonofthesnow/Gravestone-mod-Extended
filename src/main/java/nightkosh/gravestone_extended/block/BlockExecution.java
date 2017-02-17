@@ -194,7 +194,7 @@ public class BlockExecution extends BlockContainer {
                 xPos = pos.getX() + 0.5 + Math.sin(angle * 0.2792) * 0.75;
                 zPos = pos.getZ() + 0.5 + Math.cos(angle * 0.2792) * 0.75;
 
-                EntityFX entityfx = new EntityBigFlameFX(world, xPos, yPos, zPos, 0, 0, 0);
+                EntityFX entityfx = new EntityBigFlameFX(world, xPos, yPos, zPos);
                 Minecraft.getMinecraft().effectRenderer.addEffect(entityfx);
             }
 
@@ -203,7 +203,7 @@ public class BlockExecution extends BlockContainer {
                 xPos = pos.getX() + 0.5 + Math.sin(angle * 0.5584) * 0.5;
                 zPos = pos.getZ() + 0.5 + Math.cos(angle * 0.5584) * 0.5;
 
-                EntityFX entityfx = new EntityBigFlameFX(world, xPos, yPos, zPos, 0, 0, 0);
+                EntityFX entityfx = new EntityBigFlameFX(world, xPos, yPos, zPos);
                 Minecraft.getMinecraft().effectRenderer.addEffect(entityfx);
             }
 
@@ -212,7 +212,7 @@ public class BlockExecution extends BlockContainer {
                 xPos = pos.getX() + 0.5 + Math.sin(angle * 1.1168) * 0.2;
                 zPos = pos.getZ() + 0.5 + Math.cos(angle * 1.1168) * 0.2;
 
-                EntityFX entityfx = new EntityBigFlameFX(world, xPos, yPos, zPos, 0, 0, 0);
+                EntityFX entityfx = new EntityBigFlameFX(world, xPos, yPos, zPos);
                 Minecraft.getMinecraft().effectRenderer.addEffect(entityfx);
                 world.spawnParticle(EnumParticleTypes.LAVA, xPos, yPos, zPos, 0, 0, 0);
                 world.spawnParticle(EnumParticleTypes.SMOKE_LARGE, xPos, yPos, zPos, 0, 0, 0);

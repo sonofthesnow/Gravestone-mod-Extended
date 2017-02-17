@@ -45,6 +45,7 @@ public class Entity {
     public static final String SKELETON_RAIDER_NAME = "GSSkeletonRaider";
     public static final String ZOMBIE_RAIDER_NAME = "GSZombieRaider";
     public static final String RAVEN_NAME = "GSRaven";
+    public static final String DAMNED_WARRIOR_NAME = "GSDamnedWarrior";
     public static final String SPAWNER_HELPER_NAME = "GSSpawnerHelper";
 
     // EntityList
@@ -67,9 +68,10 @@ public class Entity {
     public static final String SKELETON_HORSE_ID = ModInfo.ID + "." + SKELETON_HORSE_NAME;
     public static final String SKELETON_RAIDER_ID = ModInfo.ID + "." + SKELETON_RAIDER_NAME;
     public static final String ZOMBIE_RAIDER_ID = ModInfo.ID + "." + ZOMBIE_RAIDER_NAME;
+    public static final String DAMNED_WARRIOR_ID = ModInfo.ID + "." + DAMNED_WARRIOR_NAME;
     public static final String RAVEN_ID = ModInfo.ID + "." + RAVEN_NAME;
 
-    // eggs colors
+    // eggs colors //TODO!!!!!!
     public static final int ZOMBIE_BACKGROUND_EGG_COLOR = 44975;
     public static final int SKELETON_BACKGROUND_EGG_COLOR = 12698049;
     public static final int CAT_BACKGROUND_EGG_COLOR = 15720061;
@@ -133,6 +135,9 @@ public class Entity {
 
         registerModEntity(EntityRaven.class, RAVEN_NAME);
         EntityRegistry.addSpawn(EntityRaven.class, 1, 3, 10, EnumCreatureType.AMBIENT);
+
+        // Damned Warrior
+        registerModEntity(EntityDamnedWarrior.class, DAMNED_WARRIOR_NAME);
 
         // ghosts
         // LostSoul
