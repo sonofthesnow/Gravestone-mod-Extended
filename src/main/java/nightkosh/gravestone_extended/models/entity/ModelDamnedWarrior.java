@@ -659,7 +659,7 @@ public class ModelDamnedWarrior extends ModelBase implements IModelBaseAdapter {
         super.setTextureOffset(name, xPos, zPos);
     }
 
-    public float getSkullRotation() {
-        return skullRotation;
+    public ModelRendererSkull getSkull() {
+        return skull;
     }
 }
