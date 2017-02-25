@@ -71,18 +71,6 @@ public class Entity {
     public static final String DAMNED_WARRIOR_ID = ModInfo.ID + "." + DAMNED_WARRIOR_NAME;
     public static final String RAVEN_ID = ModInfo.ID + "." + RAVEN_NAME;
 
-    // eggs colors //TODO!!!!!!
-    public static final int ZOMBIE_BACKGROUND_EGG_COLOR = 44975;
-    public static final int SKELETON_BACKGROUND_EGG_COLOR = 12698049;
-    public static final int CAT_BACKGROUND_EGG_COLOR = 15720061;
-    public static final int DOG_BACKGROUND_EGG_COLOR = 14144467;
-    public static final int RAVEN_BACKGROUND_EGG_COLOR = 14144467;
-    public static final int HORSE_FOREGROUND_EGG_COLOR = 15656192;
-    public static final int SPIDER_FOREGROUND_EGG_COLOR = 11013646;
-    public static final int ZOMBIE_FOREGROUND_EGG_COLOR = 7969893;
-    public static final int SKELETON_FOREGROUND_EGG_COLOR = 4802889;
-    public static final int RAVEN_FOREGROUND_EGG_COLOR = 14144467;
-
     public void getEntity() {
         // zombie dog
         registerModEntity(EntityZombieDog.class, ZOMBIE_DOG_NAME);

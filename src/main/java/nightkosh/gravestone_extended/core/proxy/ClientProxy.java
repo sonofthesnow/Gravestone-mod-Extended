@@ -51,7 +51,6 @@ public class ClientProxy extends CommonProxy {
         registerMobsRenderers();
     }
 
-    //TODO ???
     private void registerBlocksRenderers() {
         // register Memorials renderers
         ClientRegistry.registerTileEntity(TileEntityMemorial.class, "GSMemorial", new TileEntityMemorialRenderer());

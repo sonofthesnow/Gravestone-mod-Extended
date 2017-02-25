@@ -152,8 +152,8 @@ public class GraveHall extends CatacombsBaseComponent {
 
         // graves
         IBlockState graveState = GSBlock.graveStone.getDefaultState();
-        IBlockState leftGraveState = graveState.withProperty(BlockGraveStone.FACING, this.getLeftDirectionForBlocks(this.coordBaseMode));
-        IBlockState rightGraveState = graveState.withProperty(BlockGraveStone.FACING, this.getRightDirectionForBlocks(this.coordBaseMode));
+        IBlockState leftGraveState = graveState.withProperty(BlockGraveStone.FACING, this.getLeftDirectionForBlocks());
+        IBlockState rightGraveState = graveState.withProperty(BlockGraveStone.FACING, this.getRightDirectionForBlocks());
         IBlockState topGraveState = graveState.withProperty(BlockGraveStone.FACING, this.coordBaseMode.getOpposite());
         IBlockState botGraveState = graveState.withProperty(BlockGraveStone.FACING, this.coordBaseMode);
 

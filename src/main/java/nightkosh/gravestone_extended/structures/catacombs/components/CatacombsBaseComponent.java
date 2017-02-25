@@ -47,11 +47,7 @@ public abstract class CatacombsBaseComponent extends ComponentGraveStone {
     }
 
     public EnumFacing getLeftDirectionForBlocks() {
-        return getLeftDirectionForBlocks(this.getDirection());
-    }
-
-    public static EnumFacing getLeftDirectionForBlocks(EnumFacing direction) {
-        switch (direction) {
+        switch (this.getDirection()) {
             case EAST:
             case WEST:
                 return EnumFacing.SOUTH;
@@ -63,11 +59,7 @@ public abstract class CatacombsBaseComponent extends ComponentGraveStone {
     }
 
     public EnumFacing getRightDirectionForBlocks() {
-        return getRightDirectionForBlocks(this.getDirection());
-    }
-
-    public static EnumFacing getRightDirectionForBlocks(EnumFacing direction) {
-        switch (direction) {
+        switch (this.getDirection()) {
             case EAST:
             case WEST:
                 return EnumFacing.NORTH;
