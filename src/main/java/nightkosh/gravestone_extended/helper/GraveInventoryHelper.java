@@ -170,7 +170,7 @@ public class GraveInventoryHelper {
             case ADVENTURER:
                 return getAdventureContentType(random);
             case TREASURY:
-                return ContentMaterials.OTHER; //TODO!!!
+                return getTreasuryContentType(random);
             default:
             case DOG:
             case CAT:
@@ -515,6 +515,59 @@ public class GraveInventoryHelper {
         }
     }
 
+    private static ContentMaterials getTreasuryContentType(Random random) {
+        int chance = random.nextInt(100);
+        if (chance < 10) {
+            return ContentMaterials.EMERALD;//10%
+        } else if (chance < 30) {
+            return ContentMaterials.DIAMOND;//20%
+        } else if (chance < 60) {
+            return ContentMaterials.GOLDEN;//30%
+        } else if (chance < 90) {
+            return ContentMaterials.IRON;//30%
+        } else {
+            return ContentMaterials.OTHER;//10%
+        }
+    }
+
+    private static void fillTreasuryGrave(Random random, List<ItemStack> itemList) {
+        if (random.nextInt(10) == 0) {
+            itemList.add(getRandomRecord(random));
+        }
+        if (random.nextInt(10) == 0) {
+            itemList.add(getRandomEgg(random));
+        }
+        if (random.nextInt(10) == 0) {// enchanted book
+            EnchantmentData data = new EnchantmentData(Enchantment.enchantmentsBookList[random.nextInt(Enchantment.enchantmentsBookList.length)], 1 + random.nextInt(5));
+            ItemStack items = Items.enchanted_book.getEnchantedItemStack(data);
+            itemList.add(items);
+        }
+        if (random.nextInt(10) == 0) {
+            itemList.add(new ItemStack(Items.ender_pearl, 1 + random.nextInt(5), 0));
+        }
+        if (random.nextInt(10) == 0) {
+            itemList.add(new ItemStack(Items.ghast_tear, 1 + random.nextInt(5), 0));
+        }
+        if (random.nextInt(10) == 0) {
+            itemList.add(new ItemStack(Items.blaze_rod, 1 + random.nextInt(5), 0));
+        }
+
+        if (random.nextInt(5) == 0) {
+            itemList.add(new ItemStack(Items.magma_cream, 1 + random.nextInt(5), 0));
+        }
+        if (random.nextInt(5) == 0) {
+            itemList.add(new ItemStack(Items.glowstone_dust, 3 + random.nextInt(13), 0));
+        }
+
+        if (random.nextInt(10) == 0) {
+            itemList.add(new ItemStack(Items.diamond, 1 + random.nextInt(5), 0));
+        } else if (random.nextInt(10) == 0) {
+            itemList.add(new ItemStack(Items.emerald, 1 + random.nextInt(5), 0));
+        } else {
+            itemList.add(new ItemStack(Items.gold_ingot, 3 + random.nextInt(8), 0));
+        }
+    }
+
     private static ContentMaterials getPetContentType(Random random) {
         int chance = random.nextInt(10);
         if (chance == 0) {
@@ -662,7 +715,7 @@ public class GraveInventoryHelper {
                             GraveInventoryHelper.fillAdventureGrave(random, itemList, contentMaterials);
                             break;
                         case TREASURY:
-                            //TODO
+                            GraveInventoryHelper.fillTreasuryGrave(random, itemList);
                             break;
                     }
             }
