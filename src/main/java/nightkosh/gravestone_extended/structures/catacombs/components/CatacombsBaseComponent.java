@@ -46,6 +46,38 @@ public abstract class CatacombsBaseComponent extends ComponentGraveStone {
         this.level = level;
     }
 
+    public EnumFacing getLeftDirectionForBlocks() {
+        return getLeftDirectionForBlocks(this.getDirection());
+    }
+
+    public static EnumFacing getLeftDirectionForBlocks(EnumFacing direction) {
+        switch (direction) {
+            case EAST:
+            case WEST:
+                return EnumFacing.SOUTH;
+            case SOUTH:
+            case NORTH:
+            default:
+                return EnumFacing.EAST;
+        }
+    }
+
+    public EnumFacing getRightDirectionForBlocks() {
+        return getRightDirectionForBlocks(this.getDirection());
+    }
+
+    public static EnumFacing getRightDirectionForBlocks(EnumFacing direction) {
+        switch (direction) {
+            case EAST:
+            case WEST:
+                return EnumFacing.NORTH;
+            case SOUTH:
+            case NORTH:
+            default:
+                return EnumFacing.WEST;
+        }
+    }
+
     public EnumFacing getLeftDirection() {
         return getLeftDirection(this.getDirection());
     }
@@ -56,20 +88,8 @@ public abstract class CatacombsBaseComponent extends ComponentGraveStone {
      * @param direction Component direction
      */
     public static EnumFacing getLeftDirection(EnumFacing direction) {
-        switch (direction) {
-            case SOUTH:
-                return EnumFacing.EAST;
-            case EAST:
-                return EnumFacing.NORTH;
-            case WEST:
-                return EnumFacing.SOUTH;
-            case NORTH:
-            default:
-                return EnumFacing.WEST;
-        }
-//        return direction.rotateYCCW(); TODO
+        return direction.rotateYCCW();
     }
-
 
     public EnumFacing getRightDirection() {
         return getRightDirection(this.getDirection());
@@ -81,18 +101,7 @@ public abstract class CatacombsBaseComponent extends ComponentGraveStone {
      * @param direction Component direction
      */
     public static EnumFacing getRightDirection(EnumFacing direction) {
-        switch (direction) {
-            case SOUTH:
-                return EnumFacing.WEST;
-            case EAST:
-                return EnumFacing.SOUTH;
-            case WEST:
-                return EnumFacing.NORTH;
-            case NORTH:
-            default:
-                return EnumFacing.EAST;
-        }
-//        return direction.rotateY(); TODO
+        return direction.rotateY();
     }
 
     public static Block getValuableBlock(Random random) {

@@ -1,16 +1,19 @@
 package nightkosh.gravestone_extended.structures.catacombs;
 
-import nightkosh.gravestone_extended.config.ExtendedConfig;
-import nightkosh.gravestone_extended.core.logger.GSLogger;
-import nightkosh.gravestone_extended.structures.GSStructureGenerator;
 import net.minecraft.util.BlockPos;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.village.Village;
 import net.minecraft.world.ChunkCoordIntPair;
 import net.minecraft.world.World;
 import net.minecraftforge.common.BiomeDictionary;
+import nightkosh.gravestone_extended.config.ExtendedConfig;
+import nightkosh.gravestone_extended.core.logger.GSLogger;
+import nightkosh.gravestone_extended.structures.GSStructureGenerator;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Random;
 
 /**
  * GraveStone mod
@@ -38,21 +41,25 @@ public class CatacombsGenerator implements GSStructureGenerator {
     public static final int CATACOMBS_DISTANCE = 1500;
     public static final int DISTANCE_FROM_SPAWN = 1000;
     public static final double DEFAULT_GENERATION_CHANCE = 0.00025D;
+    public static final int MINIMAL_SURFACE_HEIGHT = 55;
+
     protected static List<ChunkCoordIntPair> structuresList = new ArrayList<>();
 
     @Override
     public boolean generate(World world, Random rand, int x, int z, EnumFacing direction, double chance, boolean isCommand) {
         if (isCommand || (ExtendedConfig.generateCatacombs && canSpawnStructureAtCoords(world, x, z, chance) && isHeightAcceptable(world, x, z))) {
-//            CatacombsSurface surface = new CatacombsSurface(world, rand, x, z, direction);
-//            GSLogger.logInfo("Generate catacombs at " + x + "x" + z);
-//
-//            if (surface.getMausoleumY() > 55) {//TODO !!!!!!!!!!!!!!!!!!!!!!!!!!
-//                new CatacombsUnderground(world, rand, direction, surface.getMausoleumX(), surface.getMausoleumY(), surface.getMausoleumZ());
-                CatacombsUnderground.build(world, rand, direction, x, 100, z);
-//            }
+//            new Thread(() -> { // TODO ConcurrentModificationException !!
+                CatacombsSurface surface = new CatacombsSurface(world, rand, x, z, direction);
+                GSLogger.logInfo("Generate catacombs at " + x + "x" + z);
 
-            structuresList.add(new ChunkCoordIntPair(x, z));
-            GSLogger.logInfo("Catacombs was successfully generated!");
+                if (isCommand || surface.getMausoleumY() > MINIMAL_SURFACE_HEIGHT) {//TODO !!!!!!!!!!!!!!!!!!!!!!!!!!
+                    CatacombsUnderground.build(world, rand, direction, surface.getMausoleumX(), surface.getMausoleumY(), surface.getMausoleumZ());
+                }
+
+                structuresList.add(new ChunkCoordIntPair(x, z));
+                GSLogger.logInfo("Catacombs was successfully generated!");
+//            }).start();
+
             return true;
         }
 
@@ -70,7 +77,7 @@ public class CatacombsGenerator implements GSStructureGenerator {
                 !biomeTypesList.contains(BiomeDictionary.Type.HILLS) && !biomeTypesList.contains(BiomeDictionary.Type.MOUNTAIN)) {
 
             if (biomeTypesList.contains(BiomeDictionary.Type.PLAINS) || biomeTypesList.contains(BiomeDictionary.Type.FOREST) ||
-                    biomeTypesList.contains(BiomeDictionary.Type.FROZEN) || biomeTypesList.contains(BiomeDictionary.Type.WASTELAND)) {
+                    biomeTypesList.contains(BiomeDictionary.Type.SNOWY) || biomeTypesList.contains(BiomeDictionary.Type.WASTELAND)) {
                 return true;
             }
         }

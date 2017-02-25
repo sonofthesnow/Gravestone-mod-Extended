@@ -139,8 +139,8 @@ public class Crossing extends CatacombsBaseComponent {
         IBlockState netherBrickStairsState = Blocks.nether_brick_stairs.getDefaultState();
         IBlockState netherBrickStairsTopState = netherBrickStairsState.withProperty(BlockStairs.FACING, this.coordBaseMode.getOpposite());
         IBlockState netherBrickStairsBotState = netherBrickStairsState.withProperty(BlockStairs.FACING, this.coordBaseMode);
-        IBlockState netherBrickStairsLeftState = netherBrickStairsState.withProperty(BlockStairs.FACING, this.getLeftDirection(this.coordBaseMode));
-        IBlockState netherBrickStairsRightState = netherBrickStairsState.withProperty(BlockStairs.FACING, this.getRightDirection(this.coordBaseMode));
+        IBlockState netherBrickStairsLeftState = netherBrickStairsState.withProperty(BlockStairs.FACING, this.getLeftDirectionForBlocks());
+        IBlockState netherBrickStairsRightState = netherBrickStairsState.withProperty(BlockStairs.FACING, this.getRightDirectionForBlocks());
         this.placeBlockAtCurrentPosition(world, netherBrickStairsTopState, 1, 1, 2, boundingBox);
         this.placeBlockAtCurrentPosition(world, netherBrickStairsRightState, 2, 1, 2, boundingBox);
         this.placeBlockAtCurrentPosition(world, netherBrickStairsRightState, 2, 1, 1, boundingBox);

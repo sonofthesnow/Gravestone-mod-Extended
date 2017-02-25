@@ -19,63 +19,67 @@ public class CatacombsComponentsFactory {
      * Return component for level
      */
     public static Class getNextComponentForLevel(Class componentClass, Random random, int level) {
-        int chance = random.nextInt(100);
+        if (componentClass != Corridor.class) {
+            return Corridor.class;
+        } else {
+            int chance = random.nextInt(100);
 
-        switch (level) {
-            case 1:
-                if (chance >= 25) {
-                    return getCorridorType(random);
-                } else if (chance >= 10) {
-                    if (componentClass == Crossing.class) {
+            switch (level) {
+                case 1:
+                    if (chance >= 25) {
                         return getCorridorType(random);
+                    } else if (chance >= 10) {
+                        if (componentClass == Crossing.class) {
+                            return getCorridorType(random);
+                        } else {
+                            return getCrossingType(random);
+                        }
+                    } else if (chance >= 5) {
+                        if (componentClass == SpidersCorridor.class) {
+                            return getCorridorType(random);
+                        } else {
+                            return SpidersCorridor.class;
+                        }
                     } else {
-                        return getCrossingType(random);
+                        if (componentClass == EnderHall.class) {
+                            return getCorridorType(random);
+                        } else {
+                            return EnderHall.class;
+                        }
                     }
-                } else if (chance >= 5) {
-                    if (componentClass == SpidersCorridor.class) {
+                default:
+                    if (chance >= 55) {
                         return getCorridorType(random);
+                    } else if (chance >= 40) {
+                        if (componentClass == Crossing.class) {
+                            return getCorridorType(random);
+                        } else {
+                            return getCrossingType(random);
+                        }
+                    } else if (chance >= 30) {
+                        if (componentClass == SpidersCorridor.class) {
+                            return getCorridorType(random);
+                        } else {
+                            return SpidersCorridor.class;
+                        }
+                    } else if (chance >= 20) {
+                        if (componentClass == EnderHall.class) {
+                            return getCorridorType(random);
+                        } else {
+                            return EnderHall.class;
+                        }
+                    } else if (chance >= 10) {
+                        return getHallType(random);
+                    } else if (chance >= 5) {
+                        if (componentClass == Bridge.class) {
+                            return getCorridorType(random);
+                        } else {
+                            return Bridge.class;
+                        }
                     } else {
-                        return SpidersCorridor.class;
+                        return Treasury.class;
                     }
-                } else {
-                    if (componentClass == EnderHall.class) {
-                        return getCorridorType(random);
-                    } else {
-                        return EnderHall.class;
-                    }
-                }
-            default:
-                if (chance >= 55) {
-                    return getCorridorType(random);
-                } else if (chance >= 40) {
-                    if (componentClass == Crossing.class) {
-                        return getCorridorType(random);
-                    } else {
-                        return getCrossingType(random);
-                    }
-                } else if (chance >= 30) {
-                    if (componentClass == SpidersCorridor.class) {
-                        return getCorridorType(random);
-                    } else {
-                        return SpidersCorridor.class;
-                    }
-                } else if (chance >= 20) {
-                    if (componentClass == EnderHall.class) {
-                        return getCorridorType(random);
-                    } else {
-                        return EnderHall.class;
-                    }
-                } else if (chance >= 10) {
-                    return getHallType(random);
-                } else if (chance >= 5) {
-                    if (componentClass == Bridge.class) {
-                        return getCorridorType(random);
-                    } else {
-                        return Bridge.class;
-                    }
-                } else {
-                    return Treasury.class;
-                }
+            }
         }
     }
 

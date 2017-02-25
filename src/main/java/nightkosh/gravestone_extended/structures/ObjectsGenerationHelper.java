@@ -230,7 +230,9 @@ public class ObjectsGenerationHelper {
         int z = component.getZWithOffset(xCoord, zCoord);
 
         BlockPos pos = new BlockPos(x, y, z);
-        world.setBlockState(pos, Blocks.dispenser.getDefaultState().withProperty(BlockDispenser.FACING, direction));
+        world.setBlockState(pos, Blocks.dispenser.getDefaultState());
+        world.setBlockState(pos, Blocks.dispenser.getDefaultState().withProperty(BlockDispenser.FACING, direction)
+                .withProperty(BlockDispenser.TRIGGERED, Boolean.valueOf(false)));
         TileEntityDispenser dispenser = (TileEntityDispenser) world.getTileEntity(pos);
         if (dispenser != null) {
             generateDispenserContents(random, dispenser);
