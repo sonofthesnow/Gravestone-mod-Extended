@@ -27,7 +27,7 @@ minecraft {
     mappings = "snapshot_20160111"
 }
 
-//ext.apiGravestone = "./api/nightkosh.gravestone"
+//ext.apiGravestone = "./api/nightkosh/gravestone"
 ext.apiSophisticatedWolves = "./api/sophisticated_wolves"
 ext.apiThaumcraft = "./api/thaumcraft"
 
@@ -61,6 +61,11 @@ jar {
     exclude('gravestone/**')
     exclude('forestry/**')
     exclude('sophisticated_wolves/**')
+    exclude('thaumcraft/**')
+    exclude('tconstruct/**')
+    exclude('micdoodle8/**')
+    exclude('mariculture/**')
+    exclude('baubles/**')
     exclude('**/*.db')
     exclude('assets/gravestone/techne_models/**')
 }
