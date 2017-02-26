@@ -1,8 +1,7 @@
 package nightkosh.gravestone_extended.models.block;
 
 import net.minecraft.client.model.ModelRenderer;
-import net.minecraft.util.ResourceLocation;
-import nightkosh.gravestone_extended.renderer.tileentity.TileEntitySpawnerRenderer;
+import nightkosh.gravestone.models.ModelRendererSkull;
 import org.lwjgl.opengl.GL11;
 
 /**
@@ -19,22 +18,23 @@ public class ModelSpawnerPentagram extends ModelSpawnerBase {
     private ModelSkullCandle candle3;
     private ModelSkullCandle candle4;
     private ModelSkullCandle candle5;
-    private ResourceLocation candleTexture;
+    private ModelRendererSkull.EnumSkullType skullType;
 
-    public ModelSpawnerPentagram(ResourceLocation candleTexture) {
-        this.candleTexture = candleTexture;
-        textureWidth = 32;
-        textureHeight = 32;
-
-        pentagram = new ModelRenderer(this, -32, -32);
-        pentagram.addBox(0, 0, 0, 32, 0, 32);
-        pentagram.setRotationPoint(-16, 24, -16);
+    public ModelSpawnerPentagram(ModelRendererSkull.EnumSkullType skullType) {
+        this.skullType = skullType;
 
         candle1 = new ModelSkullCandle();
         candle2 = new ModelSkullCandle();
         candle3 = new ModelSkullCandle();
         candle4 = new ModelSkullCandle();
         candle5 = new ModelSkullCandle();
+
+        textureWidth = 32;
+        textureHeight = 32;
+
+        pentagram = new ModelRenderer(this, -32, -32);
+        pentagram.addBox(0, 0, 0, 32, 0, 32);
+        pentagram.setRotationPoint(-16, 24, -16);
     }
 
     private void setRotation(ModelRenderer model, float x, float y, float z) {
@@ -46,39 +46,34 @@ public class ModelSpawnerPentagram extends ModelSpawnerBase {
     public void renderAll() {
         pentagram.render(0.0625F);
 
-        TileEntitySpawnerRenderer.instance.bindTextureByName(candleTexture);
         GL11.glPushMatrix();
         GL11.glTranslated(0, 0, 1);
         GL11.glRotated(180, 0, 1, 0);
-        candle1.renderAll();
+        candle1.renderAll(skullType);
         GL11.glPopMatrix();
 
-        TileEntitySpawnerRenderer.instance.bindTextureByName(candleTexture);
         GL11.glPushMatrix();
         GL11.glTranslated(0.95, 0, 0.3);
         GL11.glRotated(252, 0, 1, 0);
-        candle2.renderAll();
+        candle2.renderAll(skullType);
         GL11.glPopMatrix();
 
-        TileEntitySpawnerRenderer.instance.bindTextureByName(candleTexture);
         GL11.glPushMatrix();
         GL11.glTranslated(-0.95, 0, 0.3);
         GL11.glRotated(108, 0, 1, 0);
-        candle3.renderAll();
+        candle3.renderAll(skullType);
         GL11.glPopMatrix();
 
-        TileEntitySpawnerRenderer.instance.bindTextureByName(candleTexture);
         GL11.glPushMatrix();
         GL11.glTranslated(-0.59, 0, -0.8);
         GL11.glRotated(36, 0, 1, 0);
-        candle4.renderAll();
+        candle4.renderAll(skullType);
         GL11.glPopMatrix();
 
-        TileEntitySpawnerRenderer.instance.bindTextureByName(candleTexture);
         GL11.glPushMatrix();
         GL11.glTranslated(0.61, 0, -0.8);
         GL11.glRotated(-36, 0, 1, 0);
-        candle5.renderAll();
+        candle5.renderAll(skullType);
         GL11.glPopMatrix();
     }
 }

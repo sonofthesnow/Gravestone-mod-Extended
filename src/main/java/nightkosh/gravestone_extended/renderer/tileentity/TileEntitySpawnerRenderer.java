@@ -3,6 +3,7 @@ package nightkosh.gravestone_extended.renderer.tileentity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import nightkosh.gravestone.models.ModelRendererSkull;
 import nightkosh.gravestone.renderer.tileentity.TileEntityRenderer;
 import nightkosh.gravestone_extended.block.enums.EnumSpawner;
 import nightkosh.gravestone_extended.core.Resources;
@@ -21,9 +22,9 @@ import org.lwjgl.opengl.GL11;
 @SideOnly(Side.CLIENT)
 public class TileEntitySpawnerRenderer extends TileEntityRenderer {
 
-    private static ModelSpawnerBase witherSpawnerModel = new ModelSpawnerPentagram(Resources.WITHER_SKULL_CANDLE);
-    private static ModelSpawnerBase skeletonSpawnerModel = new ModelSpawnerPentagram(Resources.SKELETON_SKULL_CANDLE);
-    private static ModelSpawnerBase zombieSpawnerModel = new ModelSpawnerPentagram(Resources.ZOMBIE_SKULL_CANDLE);
+    private static ModelSpawnerBase witherSpawnerModel = new ModelSpawnerPentagram(ModelRendererSkull.EnumSkullType.WITHER_SKULL);
+    private static ModelSpawnerBase skeletonSpawnerModel = new ModelSpawnerPentagram(ModelRendererSkull.EnumSkullType.SKELETON_SKULL);
+    private static ModelSpawnerBase zombieSpawnerModel = new ModelSpawnerPentagram(ModelRendererSkull.EnumSkullType.ZOMBIE_SKULL);
     private static ModelSpawnerBase spiderSpawnerModel = new ModelSpiderSpawner();
 
     public static TileEntitySpawnerRenderer instance;
@@ -92,7 +93,6 @@ public class TileEntitySpawnerRenderer extends TileEntityRenderer {
                 return zombieSpawnerModel;
         }
     }
-
 
     protected TileEntitySpawner getDefaultTE() {
         return SPAWNER_TE;

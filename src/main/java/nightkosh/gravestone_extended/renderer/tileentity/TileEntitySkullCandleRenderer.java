@@ -1,13 +1,13 @@
 package nightkosh.gravestone_extended.renderer.tileentity;
 
-import nightkosh.gravestone_extended.block.enums.EnumSkullCandle;
-import nightkosh.gravestone_extended.core.Resources;
-import nightkosh.gravestone_extended.models.block.ModelSkullCandle;
-import nightkosh.gravestone_extended.tileentity.TileEntitySkullCandle;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import nightkosh.gravestone.models.ModelRendererSkull;
+import nightkosh.gravestone_extended.block.enums.EnumSkullCandle;
+import nightkosh.gravestone_extended.models.block.ModelSkullCandle;
+import nightkosh.gravestone_extended.tileentity.TileEntitySkullCandle;
 import org.lwjgl.opengl.GL11;
 
 /**
@@ -36,8 +36,6 @@ public class TileEntitySkullCandleRenderer extends TileEntitySpecialRenderer {
             meta = (byte) tileEntity.getBlockMetadata();
         }
 
-        bindSkullCandleTexture(EnumSkullCandle.getById(meta));
-
         GL11.glPushMatrix();
         if (tileEntity.getWorld() == null) {
             GL11.glTranslatef(x + 0.5F, y + 2.2F, z + 0.5F);
@@ -48,7 +46,7 @@ public class TileEntitySkullCandleRenderer extends TileEntitySpecialRenderer {
         }
         GL11.glRotatef(rotation, 0, 1, 0);
 
-        skullCandleModel.renderAll();
+        skullCandleModel.renderAll(getSkullType(EnumSkullCandle.getById(meta)));
         GL11.glPopMatrix();
     }
 
@@ -57,17 +55,15 @@ public class TileEntitySkullCandleRenderer extends TileEntitySpecialRenderer {
         this.renderTileEntitySkullAt((TileEntitySkullCandle) tileEntity, (float) x, (float) y, (float) z, par8);
     }
 
-    private void bindSkullCandleTexture(EnumSkullCandle skullType) {
+    private ModelRendererSkull.EnumSkullType getSkullType(EnumSkullCandle skullType) {
         switch (skullType) {
-            case SKELETON_SKULL:
-                this.bindTexture(Resources.SKELETON_SKULL_CANDLE);
-                break;
             case WITHER_SKULL:
-                this.bindTexture(Resources.WITHER_SKULL_CANDLE);
-                break;
+                return ModelRendererSkull.EnumSkullType.WITHER_SKULL;
             case ZOMBIE_SKULL:
-                this.bindTexture(Resources.ZOMBIE_SKULL_CANDLE);
-                break;
+                return ModelRendererSkull.EnumSkullType.ZOMBIE_SKULL;
+            case SKELETON_SKULL:
+            default:
+                return ModelRendererSkull.EnumSkullType.SKELETON_SKULL;
         }
     }
 
@@ -83,6 +79,7 @@ public class TileEntitySkullCandleRenderer extends TileEntitySpecialRenderer {
             return SKULL_CANDLE_TE;
         }
     }
+
     public static class Wither extends TileEntitySkullCandleRenderer {
         private static final TileEntitySkullCandle SKULL_CANDLE_TE = new TileEntitySkullCandle.Wither();
 

@@ -1,6 +1,5 @@
 package nightkosh.gravestone_extended.models.block;
 
-import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
 import nightkosh.gravestone.models.ModelBaseAdapter;
 import nightkosh.gravestone.models.ModelRendererSkull;
@@ -16,15 +15,14 @@ import org.lwjgl.opengl.GL11;
  */
 public class ModelSkullCandle extends ModelBaseAdapter {
 
-    private ModelRenderer skull;
+    private ModelRendererSkull skull;
     private ModelCandle candle;
 
     public ModelSkullCandle() {
-        textureWidth = 32;
-        textureHeight = 32;
-
         skull = new ModelRendererSkull(this);
 
+        textureWidth = 32;
+        textureHeight = 32;
         candle = new ModelCandle();
     }
 
@@ -40,8 +38,8 @@ public class ModelSkullCandle extends ModelBaseAdapter {
         candle.render(entity, f, f1, f2, f3, f4, f5);
     }
 
-    public void renderAll() {
-        skull.render(0.0625F);
+    public void renderAll(ModelRendererSkull.EnumSkullType skullType) {
+        skull.renderWithTexture(0.0625F, skullType);
 
         TileEntityMemorialRenderer.instance.bindTextureByName(Resources.CANDLE);
 

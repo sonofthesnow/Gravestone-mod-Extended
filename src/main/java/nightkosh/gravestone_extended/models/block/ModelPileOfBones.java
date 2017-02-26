@@ -1,10 +1,10 @@
 package nightkosh.gravestone_extended.models.block;
 
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
-import nightkosh.gravestone.models.block.ModelSkull;
+import nightkosh.gravestone.models.ModelBaseAdapter;
+import nightkosh.gravestone.models.ModelRendererSkull;
 import nightkosh.gravestone_extended.core.Resources;
 import org.lwjgl.opengl.GL11;
 
@@ -14,7 +14,7 @@ import org.lwjgl.opengl.GL11;
  * @author NightKosh
  * @license Lesser GNU Public License v3 (http://www.gnu.org/licenses/lgpl.html)
  */
-public class ModelPileOfBones extends ModelBase {
+public class ModelPileOfBones extends ModelBaseAdapter {
 
     private ModelRenderer bone1;
     private ModelRenderer bone2;
@@ -25,9 +25,11 @@ public class ModelPileOfBones extends ModelBase {
     private ModelRenderer bone7;
     private ModelRenderer bone8;
 
-    private ModelSkull skull;
+    private ModelRendererSkull skull;
 
     public ModelPileOfBones() {
+        skull = new ModelRendererSkull(this);
+
         textureWidth = 32;
         textureHeight = 32;
 
@@ -79,8 +81,6 @@ public class ModelPileOfBones extends ModelBase {
         bone8.setTextureSize(32, 32);
         bone8.mirror = true;
         setRotation(bone8, 0, -0.5759587F, 0.3490659F);
-
-        skull = new ModelSkull();
     }
 
     private void setRotation(ModelRenderer model, float x, float y, float z) {
@@ -119,7 +119,7 @@ public class ModelPileOfBones extends ModelBase {
             GL11.glPushMatrix();
             GL11.glTranslated(0.4, 0, 0.5);
             GL11.glRotated(45, 0, 1, 0);
-            skull.renderAll();
+            skull.renderWithTexture(f5, false);
             GL11.glPopMatrix();
         }
     }
