@@ -18,6 +18,7 @@ tasks.withType(JavaCompile) {
 }
 
 version = "1.0.0"
+group = "nightkosh.gravestone_extended"
 archivesBaseName = "GraveStone-1.8.9-Extended"
 
 minecraft {
@@ -32,42 +33,44 @@ ext.apiSophisticatedWolves = "./api/sophisticated_wolves"
 ext.apiThaumcraft = "./api/thaumcraft"
 
 sourceSets {
-    main {
+//    main {
+//        java {
+//            //TODO remove !!!!
+//            srcDir "./../GraveStone 1.8-11.14.0.1285/src/main/java"
+//            srcDir "./../GraveStone 1.8-11.14.0.1285/api/gravestone"
+//        }
+//    }
+    api {
         java {
 //            srcDir project.apiGravestone
             srcDir project.apiSophisticatedWolves
             srcDir project.apiThaumcraft
+//            srcDir project.gravestone
+//            //TODO remove !!!!
+//            srcDir "./../GraveStone 1.8-11.14.0.1285/api/baubles"
         }
     }
 }
 
+
 dependencies {
+//    compile fileTree(include: ['*.jar'], dir: 'external_libs')
+//    compile files("external_libs/GraveStone-1.8.9-Graves-1.0.1 reobfJar.jar")
+//    compile files("external_libs/GraveStone-1.8.9-Graves-1.0.1-sources.jar")
+//    compile files("external_libs/GraveStone-1.8.9-Graves-1.0.1 jar.jar")
     compile files("external_libs/GraveStone-1.8.9-Graves-1.0.1.jar")
-    // you may put jars on which you depend on in ./libs
-    // or you may define them like so..
-    //compile "some.group:artifact:version:classifier"
-    //compile "some.group:artifact:version"
-
-    // real examples
-    //compile 'com.mod-buildcraft:buildcraft:6.0.8:dev'  // adds buildcraft to the dev env
-    //compile 'com.googlecode.efficient-java-matrix-library:ejml:0.24' // adds ejml to the dev env
-
-    // for more info...
-    // http://www.gradle.org/docs/current/userguide/artifact_dependencies_tutorial.html
-    // http://www.gradle.org/docs/current/userguide/dependency_management.html
 }
 
 jar {
-    exclude('gravestone/**')
-    exclude('forestry/**')
-    exclude('sophisticated_wolves/**')
-    exclude('thaumcraft/**')
-    exclude('tconstruct/**')
-    exclude('micdoodle8/**')
-    exclude('mariculture/**')
-    exclude('baubles/**')
+//    exclude('nightkosh/gravestone/**')
+//    exclude('forestry/**')
     exclude('**/*.db')
     exclude('assets/gravestone/techne_models/**')
+
+//    //TODO remove !!!!
+//    manifest {
+//        attributes 'FMLAT': 'Gravestone_mod_Graves_at.cfg'
+//    }
 }
 
 processResources {
