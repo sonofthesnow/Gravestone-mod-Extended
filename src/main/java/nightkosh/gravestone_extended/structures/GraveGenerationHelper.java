@@ -51,7 +51,7 @@ public class GraveGenerationHelper {
                                   IBlockState graveState, EntityGroupOfGravesMobSpawnerHelper spanwerHelper, EnumGraveTypeByEntity graveTypeByEntity,
                                   GraveInventoryHelper.GraveContentType contentType) {
         GraveWorldGenerationHelper.GraveGenerationInfo graveInfo = GraveWorldGenerationHelper.getGrave(world, random,
-                new BlockPos(component.getXWithOffset(x, z), component.getYWithOffset(y), component.getZWithOffset(x, z)),
+                new BlockPos(component.getIXWithOffset(x, z), component.getIYWithOffset(y), component.getIZWithOffset(x, z)),
                 graveTypeByEntity, contentType);
         placeGrave(component, world, x, y, z, graveState, graveInfo, spanwerHelper);
     }
@@ -59,7 +59,7 @@ public class GraveGenerationHelper {
     private static void placeGrave(IComponentGraveStone component, World world, int x, int y, int z,
                                   IBlockState graveState, GraveWorldGenerationHelper.GraveGenerationInfo graveInfo, EntityGroupOfGravesMobSpawnerHelper spanwerHelper) {
         component.placeBlockAtCurrentPosition(world, graveState, x, y, z, component.getBoundingBox());
-        TileEntityGraveStone tileEntity = (TileEntityGraveStone) world.getTileEntity(new BlockPos(component.getXWithOffset(x, z), component.getYWithOffset(y), component.getZWithOffset(x, z)));
+        TileEntityGraveStone tileEntity = (TileEntityGraveStone) world.getTileEntity(new BlockPos(component.getIXWithOffset(x, z), component.getIYWithOffset(y), component.getIZWithOffset(x, z)));
 
         if (tileEntity != null) {
             setGraveInfo(graveInfo, tileEntity);

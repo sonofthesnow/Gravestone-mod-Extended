@@ -15,8 +15,6 @@ import nightkosh.gravestone_extended.block.enums.EnumExecution;
 import nightkosh.gravestone_extended.item.corpse.CorpseHelper;
 import nightkosh.gravestone_extended.item.corpse.VillagerCorpseHelper;
 
-import java.util.Random;
-
 /**
  * GraveStone mod
  *
@@ -41,7 +39,6 @@ public class TileEntityExecution extends TileEntityBase implements IInventory {
 
             updateCorpseInfo();
         }
-
     }
 
     @Override
@@ -58,9 +55,9 @@ public class TileEntityExecution extends TileEntityBase implements IInventory {
 
     }
 
-    public void setRandomMob(Random random) {
-//        hangedMob = EnumHangedMobs.values()[random.nextInt(EnumHangedMobs.values().length)];
-    }
+//    public void setRandomMob(Random random) {
+////        hangedMob = EnumHangedMobs.values()[random.nextInt(EnumHangedMobs.values().length)];
+//    }
 
     public EnumCorpse getCorpseType() {
         return corpseType;
@@ -95,6 +92,11 @@ public class TileEntityExecution extends TileEntityBase implements IInventory {
             this.corpseType = CorpseHelper.getTypeByCorpse(corpse);
             this.hangedVillagerProfession = VillagerCorpseHelper.getVillagerType(corpse.getTagCompound());
         }
+    }
+
+    @Override
+    public boolean receiveClientEvent(int par1, int par2) {
+        return true;
     }
 
     @Override

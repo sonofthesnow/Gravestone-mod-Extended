@@ -92,6 +92,11 @@ public class ComponentGraveStone extends StructureComponent implements IComponen
         return super.getXWithOffset(x, z);
     }
 
+    @Override
+    public int getIXWithOffset(int x, int z) {
+        return getXWithOffset(x, z);
+    }
+
     /**
      * Return world y coord
      *
@@ -100,6 +105,11 @@ public class ComponentGraveStone extends StructureComponent implements IComponen
     @Override
     public int getYWithOffset(int y) {
         return super.getYWithOffset(y);
+    }
+
+    @Override
+    public int getIYWithOffset(int y) {
+        return getYWithOffset(y);
     }
 
     /**
@@ -111,6 +121,10 @@ public class ComponentGraveStone extends StructureComponent implements IComponen
     @Override
     public int getZWithOffset(int x, int z) {
         return super.getZWithOffset(x, z);
+    }
+    @Override
+    public int getIZWithOffset(int x, int z) {
+        return getZWithOffset(x, z);
     }
 
     /**

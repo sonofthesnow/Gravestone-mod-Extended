@@ -28,26 +28,14 @@ minecraft {
     mappings = "snapshot_20160111"
 }
 
-//ext.apiGravestone = "./api/nightkosh/gravestone"
 ext.apiSophisticatedWolves = "./api/sophisticated_wolves"
 ext.apiThaumcraft = "./api/thaumcraft"
 
 sourceSets {
-//    main {
-//        java {
-//            //TODO remove !!!!
-//            srcDir "./../GraveStone 1.8-11.14.0.1285/src/main/java"
-//            srcDir "./../GraveStone 1.8-11.14.0.1285/api/gravestone"
-//        }
-//    }
     api {
         java {
-//            srcDir project.apiGravestone
             srcDir project.apiSophisticatedWolves
             srcDir project.apiThaumcraft
-//            srcDir project.gravestone
-//            //TODO remove !!!!
-//            srcDir "./../GraveStone 1.8-11.14.0.1285/api/baubles"
         }
     }
 }
@@ -55,22 +43,13 @@ sourceSets {
 
 dependencies {
 //    compile fileTree(include: ['*.jar'], dir: 'external_libs')
-//    compile files("external_libs/GraveStone-1.8.9-Graves-1.0.1 reobfJar.jar")
-//    compile files("external_libs/GraveStone-1.8.9-Graves-1.0.1-sources.jar")
-//    compile files("external_libs/GraveStone-1.8.9-Graves-1.0.1 jar.jar")
     compile files("external_libs/GraveStone-1.8.9-Graves-1.0.1.jar")
 }
 
 jar {
-//    exclude('nightkosh/gravestone/**')
 //    exclude('forestry/**')
     exclude('**/*.db')
     exclude('assets/gravestone/techne_models/**')
-
-//    //TODO remove !!!!
-//    manifest {
-//        attributes 'FMLAT': 'Gravestone_mod_Graves_at.cfg'
-//    }
 }
 
 processResources {

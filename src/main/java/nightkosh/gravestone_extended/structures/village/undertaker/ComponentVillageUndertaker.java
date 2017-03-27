@@ -390,14 +390,26 @@ public class ComponentVillageUndertaker extends StructureVillagePieces.Village i
     public int getXWithOffset(int x, int z) {
         return super.getXWithOffset(x, z);
     }
+    @Override
+    public int getIXWithOffset(int x, int z) {
+        return getXWithOffset(x, z);
+    }
 
     @Override
     public int getYWithOffset(int y) {
         return super.getYWithOffset(y);
     }
+    @Override
+    public int getIYWithOffset(int y) {
+        return getYWithOffset(y);
+    }
 
     @Override
     public int getZWithOffset(int x, int z) {
         return super.getZWithOffset(x, z);
+    }
+    @Override
+    public int getIZWithOffset(int x, int z) {
+        return getZWithOffset(x, z);
     }
 }

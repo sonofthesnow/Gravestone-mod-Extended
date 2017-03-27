@@ -15,9 +15,9 @@ public interface IComponentGraveStone {
 
     public StructureBoundingBox getBoundingBox();
 
-    public int getXWithOffset(int x, int z);
+    public int getIXWithOffset(int x, int z);
 
-    public int getYWithOffset(int y);
+    public int getIYWithOffset(int y);
 
-    public int getZWithOffset(int x, int z);
+    public int getIZWithOffset(int x, int z);
 }
