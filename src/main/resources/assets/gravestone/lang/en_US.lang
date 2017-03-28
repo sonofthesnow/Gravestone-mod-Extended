@@ -30,6 +30,7 @@ block.trap.curse=Darkness is coming!
 block.spawner.wither.name=Wither Spawner
 block.spawner.skeleton.name=Skeleton Spawner
 block.spawner.zombie.name=Zombie Spawner
+block.spawner.spider.name=Spider Spawner
 
 ## Bone Blocks
 block.bone_block.default.name=Bone Block

@@ -31,6 +31,8 @@ block.trap.curse=Temnota přichází!
 block.spawner.wither.name=Spawner na withera
 block.spawner.skeleton.name=Spawner na kostlivce
 block.spawner.zombie.name=Spawner na zombie
+## TODO !!!!!
+block.spawner.spider.name=Spider Spawner
 
 ## Bone Blocks
 block.bone_block.default.name=Kostěný blok

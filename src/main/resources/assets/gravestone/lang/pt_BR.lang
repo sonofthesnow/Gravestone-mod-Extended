@@ -33,6 +33,8 @@ block.trap.curse=A escuridão está vindo!
 block.spawner.wither.name=Spawner de Wither
 block.spawner.skeleton.name=Spawner de Esqueleto
 block.spawner.zombie.name=Spawner de Zumbi
+## TODO !!!!!
+block.spawner.spider.name=Spider Spawner
 
 ## Bone Blocks
 block.bone_block.default.name=Bloco de Ossos

@@ -31,6 +31,8 @@ block.trap.curse=暗夜正在降临！
 block.spawner.wither.name=凋灵刷怪笼
 block.spawner.skeleton.name=骷髅刷怪笼
 block.spawner.zombie.name=僵尸刷怪笼
+## TODO !!!!!
+block.spawner.spider.name=Spider Spawner
 
 ## Bone Blocks
 block.bone_block.default.name=骨质方块

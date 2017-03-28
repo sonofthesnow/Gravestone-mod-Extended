@@ -33,6 +33,8 @@ block.trap.curse=Les ténèbres approchent !
 block.spawner.wither.name=Spawner à sorcière
 block.spawner.skeleton.name=Spawner à squelette
 block.spawner.zombie.name=Spawner à zombie
+## TODO !!!!!
+block.spawner.spider.name=Spider Spawner
 
 ## Bone Blocks
 block.bone_block.default.name=Block d'os

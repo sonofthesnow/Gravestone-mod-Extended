@@ -30,6 +30,7 @@ block.trap.curse=Тьма приближается!
 block.spawner.wither.name=Спаунер иссушителей
 block.spawner.skeleton.name=Спаунер скелетов
 block.spawner.zombie.name=Спаунер зомби
+block.spawner.spider.name=Спаунер пауков
 
 ## Bone Blocks
 block.bone_block.default.name=Костяной блок

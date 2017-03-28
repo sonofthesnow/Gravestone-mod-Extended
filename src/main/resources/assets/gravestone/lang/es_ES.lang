@@ -35,6 +35,8 @@ block.spawner.wither.name=Engendrador de wither
 block.spawner.skeleton.name=Skeleton Spawner
 ##TODO !!!!!!!!!!
 block.spawner.zombie.name=Zombie Spawner
+## TODO !!!!!
+block.spawner.spider.name=Spider Spawner
 
 ## Bone Blocks
 block.bone_block.default.name=Bloque de hueso
