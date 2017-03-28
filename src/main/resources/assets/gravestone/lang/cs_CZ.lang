@@ -1,19 +1,9 @@
 # Tabs
-itemGroup.tabGSGraveStone=Gravestone(Náhrobek)
 itemGroup.tabGSMemorials=Památníky
 itemGroup.tabGSOther=Předměty módu Gravestone
 
 
 # Blocks
-## Graves
-block.nightkosh.gravestone.nightkosh.gravestone.name=Náhrobek
-block.nightkosh.gravestone.cross.name=Kříž
-block.nightkosh.gravestone.plate.name=Náhrobní kámenk
-block.nightkosh.gravestone.dog_statue.name=Socha psa
-block.nightkosh.gravestone.cat_statue.name=Socha kočky
-block.nightkosh.gravestone.horse_statue.name=Socha koně
-block.nightkosh.gravestone.sword.name=Meč padlého válečníka
-
 ## Memorials
 block.memorial.cross.name=Křížový památník
 block.memorial.obelisk.name=Obelisk
@@ -74,11 +64,6 @@ tile.altar.name=Oltář
 ## Chisel
 item.nightkosh.gravestone.chisel.name=Hrobnické dláto
 
-## Graves
-item.grave.age=Žil
-item.grave.days=dní
-item.grave.sword_name=Jméno meče
-item.grave.sword_damage=Poškození meče
 
 ## Corpses
 ## TODO !!!!!!!!!!
@@ -182,23 +167,10 @@ entity.GSSkeletonRaider.name=Kostlivý nájezdník
 entity.GSZombieRaider.name=Zombie nájezdník
 
 
-# Death Messages
-death.GS.Herobrine=%1$s byl brutálně zavražděn Herobrinem
-death.GS.death_sentence=%1$s obdržel rozsudek smrti
-death.GS.tortures=%1$s zemřel v krutých bolestech
-death.GS.mom=Tvoje maminka
-
 # Console messages
-grave.cant_be_looted=Nemůžeš vykrást tento hrob!
 ## Console commands
-commands.not_enough_parameters=Není dost parametrů!
-commands.coordinate_error=Chyba souřadnic!
 commands.direction_error=Chyba umístění!
-
 commands.generate.unknown_structure=Neznámá struktura!
-
-commands.fill_grave.empty=Na souřadnicích není žádný blok!
-commands.fill_grave.wrong_block=Souřadnice jsou obsazeny špatnými bloky!
 
 # Parent Language: en_US
 # corrections and additions missing translations by DeRigeurEx

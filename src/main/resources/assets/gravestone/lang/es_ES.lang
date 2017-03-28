@@ -1,5 +1,4 @@
 # Tabs
-itemGroup.tabGSGraveStone=Lapida
 ##TODO !!!!!!!!!!
 itemGroup.tabGSMemorials=Memorials
 ##TODO !!!!!!!!!!
@@ -7,17 +6,6 @@ itemGroup.tabGSOther=Gravestone mod Items
 
 
 # Blocks
-## Graves
-block.nightkosh.gravestone.nightkosh.gravestone.name=Lapida
-block.nightkosh.gravestone.cross.name=Cruz
-block.nightkosh.gravestone.plate.name=Placa
-block.nightkosh.gravestone.dog_statue.name=Estatua de perro
-block.nightkosh.gravestone.cat_statue.name=Estatua de gato
-##TODO !!!!!!!!!!
-block.nightkosh.gravestone.horse_statue.name=Horse Statue
-##TODO !!!!!!!!!!
-block.nightkosh.gravestone.sword.name=Sword of A Fallen Warrior
-
 ## Memorials
 block.memorial.cross.name=Memorial Cruz
 block.memorial.obelisk.name=Obelisco
@@ -85,11 +73,6 @@ tile.altar.name=Altar
 ##TODO !!!!!!!!!!
 item.nightkosh.gravestone.chisel.name=Gravestone Chisel
 
-## Graves
-item.grave.age=Vivió
-item.grave.days=dias
-item.grave.sword_name=Nombre
-item.grave.sword_damage=Daño
 
 ## Corpses
 ## TODO !!!!!!!!!!
@@ -199,27 +182,9 @@ entity.GSSkeletonRaider.name=Skeleton Raider
 entity.GSZombieRaider.name=Zombie Raider
 
 
-# Death Messages
-death.GS.Herobrine=%1$s fue brutalmente asesinado por Herobrine.
-death.GS.death_sentence=%1$s recibió una sentencia de muerte.
-death.GS.tortures=%1$s murió a causa de terribles torturas.
-death.GS.mom=Your mom
-
 # Console messages
-##TODO !!!!!!!!!!
-grave.cant_be_looted=You can't loot this grave!
 ## Console commands
 ##TODO !!!!!!!!!!
-commands.not_enough_parameters=Not enough parameters!
-##TODO !!!!!!!!!!
-commands.coordinate_error=Coordinate error!
-##TODO !!!!!!!!!!
 commands.direction_error=Direction error!
-
 ##TODO !!!!!!!!!!
 commands.generate.unknown_structure=Unknown structure!
-
-##TODO !!!!!!!!!!
-commands.fill_grave.empty=There aren't any blocks at this coordinates!
-##TODO !!!!!!!!!!
-commands.fill_grave.wrong_block=This coordinates occupied by wrong blocks!
