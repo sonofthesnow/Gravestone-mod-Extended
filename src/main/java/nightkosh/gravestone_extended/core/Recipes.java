@@ -69,6 +69,8 @@ public class Recipes {
             GameRegistry.addRecipe(new ItemStack(GSBlock.spawner, 1, EnumSpawner.ZOMBIE_SPAWNER.ordinal()), "bcb", "cec", "cbc",
                     'c', new ItemStack(GSBlock.skullCandle, 1, EnumSkullCandle.ZOMBIE_SKULL.ordinal()),
                     'b', new ItemStack(Items.dye, 1, 15), 'e', Items.ender_eye);
+            GameRegistry.addRecipe(new ItemStack(GSBlock.spawner, 1, EnumSpawner.SPIDER_SPAWNER.ordinal()), "www", "ses", "www",
+                    'w', Blocks.web, 's', Items.spider_eye, 'e', Items.ender_eye);
         }
 
         // candles
