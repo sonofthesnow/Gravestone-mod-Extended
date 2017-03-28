@@ -143,4 +143,9 @@ public class ComponentGraveStone extends StructureComponent implements IComponen
     @Override
     protected void writeStructureToNBT(NBTTagCompound nbttagcompound) {
     }
+
+    @Override
+    public StructureBoundingBox getIBoundingBox() {
+        return getBoundingBox();
+    }
 }

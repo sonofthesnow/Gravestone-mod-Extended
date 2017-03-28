@@ -58,7 +58,7 @@ public class GraveGenerationHelper {
 
     private static void placeGrave(IComponentGraveStone component, World world, int x, int y, int z,
                                   IBlockState graveState, GraveWorldGenerationHelper.GraveGenerationInfo graveInfo, EntityGroupOfGravesMobSpawnerHelper spanwerHelper) {
-        component.placeBlockAtCurrentPosition(world, graveState, x, y, z, component.getBoundingBox());
+        component.placeBlockAtCurrentPosition(world, graveState, x, y, z, component.getIBoundingBox());
         TileEntityGraveStone tileEntity = (TileEntityGraveStone) world.getTileEntity(new BlockPos(component.getIXWithOffset(x, z), component.getIYWithOffset(y), component.getIZWithOffset(x, z)));
 
         if (tileEntity != null) {

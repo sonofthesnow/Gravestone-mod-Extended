@@ -412,4 +412,9 @@ public class ComponentVillageUndertaker extends StructureVillagePieces.Village i
     public int getIZWithOffset(int x, int z) {
         return getZWithOffset(x, z);
     }
+
+    @Override
+    public StructureBoundingBox getIBoundingBox() {
+        return getBoundingBox();
+    }
 }

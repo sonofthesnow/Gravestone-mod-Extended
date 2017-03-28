@@ -32,8 +32,8 @@ public class ComponentSingleGrave extends ComponentGraveStone {
     @Override
     public boolean addComponentParts(World world, Random random) {
         int positionX, positionZ, y;
-        positionX = getXWithOffset(0, 0);
-        positionZ = getZWithOffset(0, 0);
+        positionX = getIXWithOffset(0, 0);
+        positionZ = getIZWithOffset(0, 0);
         y = world.getTopSolidOrLiquidBlock(new BlockPos(positionX, 0, positionZ)).getY() - boundingBox.minY;
 
         if (GraveGenerationHelper.canPlaceGrave(world, positionX, boundingBox.minY + y, positionZ, boundingBox.maxY)) {

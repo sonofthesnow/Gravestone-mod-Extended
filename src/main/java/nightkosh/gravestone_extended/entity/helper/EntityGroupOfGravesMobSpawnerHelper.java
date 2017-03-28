@@ -42,7 +42,7 @@ public class EntityGroupOfGravesMobSpawnerHelper extends GroupOfGravesSpawnerHel
     public void onEntityUpdate() {
         super.onEntityUpdate();
 
-        if (!getWorld().isRemote) {
+        if (!getIWorld().isRemote) {
             if (gravesTEList != null && gravesTEList.isEmpty()) {
                 this.setDead();
             } else {
@@ -92,16 +92,6 @@ public class EntityGroupOfGravesMobSpawnerHelper extends GroupOfGravesSpawnerHel
 
             tagCompound.setTag("gravesList", tagList);
         }
-    }
-
-    @Override
-    public BlockPos getPos() {
-        return this.getPosition();
-    }
-
-    @Override
-    public World getWorld() {
-        return this.worldObj;
     }
 
     @Override

@@ -1,6 +1,8 @@
 package nightkosh.gravestone_extended.tileentity;
 
+import net.minecraft.util.BlockPos;
 import net.minecraft.util.ITickable;
+import net.minecraft.world.World;
 import nightkosh.gravestone.tileentity.ISpawnerEntity;
 import nightkosh.gravestone.tileentity.TileEntityBase;
 import nightkosh.gravestone_extended.block.enums.EnumSpawner;
@@ -28,6 +30,16 @@ public class TileEntitySpawner extends TileEntityBase implements ITickable, ISpa
     @Override
     public void update() {
         spawner.update();
+    }
+
+    @Override
+    public World getIWorld() {
+        return getWorld();
+    }
+
+    @Override
+    public BlockPos getIPos() {
+        return getPos();
     }
 
     @Override

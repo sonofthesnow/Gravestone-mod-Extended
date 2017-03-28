@@ -63,7 +63,7 @@ public class GraveStoneSpawn extends Spawner {
 
             if (this.delay > 0) {
                 this.delay--;
-            } else if (canSpawnMobs(spawnerEntity.getWorld()) && anyPlayerInRange()) {
+            } else if (canSpawnMobs(spawnerEntity.getIWorld()) && anyPlayerInRange()) {
                 return true;
             }
         }
@@ -72,8 +72,8 @@ public class GraveStoneSpawn extends Spawner {
 
     private void getAndSpawnMob() {
         if (this.newMobRequired) {
-            this.spawnedMob = MobSpawn.getMobEntity(this.spawnerEntity.getWorld(), EnumGraves.getById(((TileEntityGraveStone) this.spawnerEntity).getGraveType().ordinal()),
-                    this.spawnerEntity.getPos().getX(), this.spawnerEntity.getPos().getY(), this.spawnerEntity.getPos().getZ());
+            this.spawnedMob = MobSpawn.getMobEntity(this.spawnerEntity.getIWorld(), EnumGraves.getById(((TileEntityGraveStone) this.spawnerEntity).getGraveType().ordinal()),
+                    this.spawnerEntity.getIPos().getX(), this.spawnerEntity.getIPos().getY(), this.spawnerEntity.getIPos().getZ());
 
             if (this.spawnedMob == null) {
                 return;
@@ -82,16 +82,17 @@ public class GraveStoneSpawn extends Spawner {
             this.newMobRequired = false;
         }
 
-        int nearbyEntitiesCount = spawnerEntity.getWorld().getEntitiesWithinAABB(this.spawnedMob.getClass(), AxisAlignedBB.fromBounds(spawnerEntity.getPos().getX(), spawnerEntity.getPos().getY(), spawnerEntity.getPos().getZ(),
-                spawnerEntity.getPos().getX() + 1, spawnerEntity.getPos().getY() + 1, spawnerEntity.getPos().getZ() + 1).expand(1.0D, 4.0D, SPAWN_RANGE * 2)).size();
+        int nearbyEntitiesCount = spawnerEntity.getIWorld().getEntitiesWithinAABB(this.spawnedMob.getClass(),
+                AxisAlignedBB.fromBounds(spawnerEntity.getIPos().getX(), spawnerEntity.getIPos().getY(), spawnerEntity.getIPos().getZ(),
+                spawnerEntity.getIPos().getX() + 1, spawnerEntity.getIPos().getY() + 1, spawnerEntity.getIPos().getZ() + 1).expand(1.0D, 4.0D, SPAWN_RANGE * 2)).size();
 
         if (nearbyEntitiesCount >= MAX_NEARBY_ENTITIES) {
             this.updateDelay();
             return;
         }
 
-        if (MobSpawn.checkChance(this.spawnerEntity.getWorld().rand) && MobSpawn.spawnMob(this.spawnerEntity.getWorld(), this.spawnedMob,
-                this.spawnerEntity.getPos().getX(), this.spawnerEntity.getPos().getY(), this.spawnerEntity.getPos().getZ(), true)) {
+        if (MobSpawn.checkChance(this.spawnerEntity.getIWorld().rand) && MobSpawn.spawnMob(this.spawnerEntity.getIWorld(), this.spawnedMob,
+                this.spawnerEntity.getIPos().getX(), this.spawnerEntity.getIPos().getY(), this.spawnerEntity.getIPos().getZ(), true)) {
             this.newMobRequired = true;
         }
     }
@@ -127,7 +128,7 @@ public class GraveStoneSpawn extends Spawner {
 
     @Override
     protected Entity getMob() {
-        return MobSpawn.getMobEntity(this.spawnerEntity.getWorld(), EnumGraves.getById(((TileEntityGraveStone) this.spawnerEntity).getGraveType().ordinal()),
-                this.spawnerEntity.getPos().getX(), this.spawnerEntity.getPos().getY(), this.spawnerEntity.getPos().getZ());
+        return MobSpawn.getMobEntity(this.spawnerEntity.getIWorld(), EnumGraves.getById(((TileEntityGraveStone) this.spawnerEntity).getGraveType().ordinal()),
+                this.spawnerEntity.getIPos().getX(), this.spawnerEntity.getIPos().getY(), this.spawnerEntity.getIPos().getZ());
     }
 }

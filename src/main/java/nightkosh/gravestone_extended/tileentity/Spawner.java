@@ -28,8 +28,8 @@ public abstract class Spawner implements ISpawner {
      * Update entity state.
      */
     public void update() {
-        if (!spawnerEntity.getWorld().getDifficulty().equals(EnumDifficulty.PEACEFUL)) {
-            if (spawnerEntity.getWorld().isRemote) {
+        if (!spawnerEntity.getIWorld().getDifficulty().equals(EnumDifficulty.PEACEFUL)) {
+            if (spawnerEntity.getIWorld().isRemote) {
 //                clientUpdateLogic(); TODO
             } else {
                 serverUpdateLogic();
@@ -41,7 +41,7 @@ public abstract class Spawner implements ISpawner {
      * Sets the delay before a new spawn.
      */
     public void updateDelay() {
-        delay = getMinDelay() + spawnerEntity.getWorld().rand.nextInt(getMaxDelay() - getMinDelay());
+        delay = getMinDelay() + spawnerEntity.getIWorld().rand.nextInt(getMaxDelay() - getMinDelay());
     }
 
     public void setMinDelay() {
@@ -49,12 +49,12 @@ public abstract class Spawner implements ISpawner {
     }
 
     protected int getNearbyMobsCount() {
-        return spawnerEntity.getWorld().getEntitiesWithinAABB(this.spawnedMob.getClass(), AxisAlignedBB.fromBounds(spawnerEntity.getPos().getX(), spawnerEntity.getPos().getY(), spawnerEntity.getPos().getZ(),
-                spawnerEntity.getPos().getX() + 1, spawnerEntity.getPos().getY() + 1, spawnerEntity.getPos().getZ() + 1).expand(1, 4, getSpawnRange() * 2)).size();
+        return spawnerEntity.getIWorld().getEntitiesWithinAABB(this.spawnedMob.getClass(), AxisAlignedBB.fromBounds(spawnerEntity.getIPos().getX(), spawnerEntity.getIPos().getY(), spawnerEntity.getIPos().getZ(),
+                spawnerEntity.getIPos().getX() + 1, spawnerEntity.getIPos().getY() + 1, spawnerEntity.getIPos().getZ() + 1).expand(1, 4, getSpawnRange() * 2)).size();
     }
 
     protected boolean anyPlayerInRange() {
-        return spawnerEntity.getWorld().getClosestPlayer(spawnerEntity.getPos().getX() + 0.5D, spawnerEntity.getPos().getY() + 0.5D, spawnerEntity.getPos().getZ() + 0.5D, getPlayerRange()) != null;
+        return spawnerEntity.getIWorld().getClosestPlayer(spawnerEntity.getIPos().getX() + 0.5D, spawnerEntity.getIPos().getY() + 0.5D, spawnerEntity.getIPos().getZ() + 0.5D, getPlayerRange()) != null;
     }
 
     abstract protected boolean canSpawnMobs(World world);

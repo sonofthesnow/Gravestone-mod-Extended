@@ -13,7 +13,7 @@ import net.minecraft.world.gen.structure.StructureBoundingBox;
 public interface IComponentGraveStone {
     public void placeBlockAtCurrentPosition(World world, IBlockState blockState, int x, int y, int z, StructureBoundingBox boundingBox);
 
-    public StructureBoundingBox getBoundingBox();
+    public StructureBoundingBox getIBoundingBox();
 
     public int getIXWithOffset(int x, int z);
 
