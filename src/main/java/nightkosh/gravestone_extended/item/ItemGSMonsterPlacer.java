@@ -50,7 +50,7 @@ public class ItemGSMonsterPlacer extends ItemMonsterPlacer {
         SKULL_CRAWLER(Entity.SKULL_CRAWLER_NAME, SKELETON_BACKGROUND_COLOR, CRAWLER_FOREGROUND_COLOR),
         WITHER_SKULL_CRAWLER(Entity.WITHER_SKULL_CRAWLER_NAME, WITHER_BACKGROUND_COLOR, CRAWLER_FOREGROUND_COLOR),
         ZOMBIE_SKULL_CRAWLER(Entity.ZOMBIE_SKULL_CRAWLER_NAME, ZOMBIE_BACKGROUND_COLOR, CRAWLER_FOREGROUND_COLOR),
-        SKELETON(Entity.SKELETON_NAME, SKELETON_BACKGROUND_COLOR, SKELETON_FOREGROUND_COLOR),
+        SKELETON(Entity.SKELETON_NAME, SKELETON_BACKGROUND_COLOR, SKELETON_FOREGROUND_COLOR, Entity.MINECRAFT_SKELETON_ID),
         ZOMBIE_HORSE(Entity.ZOMBIE_HORSE_NAME, ZOMBIE_BACKGROUND_COLOR, HORSE_FOREGROUND_COLOR),
         SKELETON_HORSE(Entity.SKELETON_HORSE_NAME, SKELETON_BACKGROUND_COLOR, HORSE_FOREGROUND_COLOR),
         ZOMBIE_RAIDER(Entity.ZOMBIE_RAIDER_NAME, ZOMBIE_BACKGROUND_COLOR, HORSE_FOREGROUND_COLOR),
@@ -59,6 +59,7 @@ public class ItemGSMonsterPlacer extends ItemMonsterPlacer {
 //        RAVEN(nightkosh.gravestone_extended.core.Entity.RAVEN_NAME, RAVEN_BACKGROUND_COLOR, RAVEN_FOREGROUND_COLOR);
 
         private String name;
+        private String customName;
         private int backgroundColor;
         private int foregroundColor;
 
@@ -66,6 +67,11 @@ public class ItemGSMonsterPlacer extends ItemMonsterPlacer {
             this.name = name;
             this.backgroundColor = backgroundColor;
             this.foregroundColor = foregroundColor;
+        }
+
+        private EnumEggs(String name, int backgroundColor, int foregroundColor, String customName) {
+            this(name, backgroundColor, foregroundColor);
+            this.customName = customName;
         }
 
         public static EnumEggs getById(int id) {
@@ -77,6 +83,10 @@ public class ItemGSMonsterPlacer extends ItemMonsterPlacer {
 
         public String getName() {
             return name;
+        }
+
+        public String getCustomName() {
+            return customName;
         }
 
         public int getBackgroundColor() {
@@ -99,7 +109,8 @@ public class ItemGSMonsterPlacer extends ItemMonsterPlacer {
         StringBuilder str = new StringBuilder();
         str.append(StatCollector.translateToLocal(this.getUnlocalizedName() + ".name").trim());
 
-        String name = EnumEggs.getById(itemStack.getItemDamage()).getName();
+        EnumEggs egg = EnumEggs.getById(itemStack.getItemDamage());
+        String name = (StringUtils.isBlank(egg.getCustomName())) ? egg.getName() : egg.getCustomName();
         if (StringUtils.isNotBlank(name)) {
             str.append(" ").append(StatCollector.translateToLocal("entity." + name + ".name"));
         }

@@ -4,8 +4,10 @@ import net.minecraft.entity.IEntityLivingData;
 import net.minecraft.entity.monster.EntitySkeleton;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.StatCollector;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.World;
+import nightkosh.gravestone_extended.core.Entity;
 
 /**
  * GraveStone mod
@@ -29,5 +31,14 @@ public class EntityGSSkeleton extends EntitySkeleton {
         }
 
         return livingData;
+    }
+
+    @Override
+    public String getName() {
+        if (this.hasCustomName()) {
+            return this.getCustomNameTag();
+        } else {
+            return StatCollector.translateToLocal("entity." + Entity.MINECRAFT_SKELETON_ID + ".name");
+        }
     }
 }
