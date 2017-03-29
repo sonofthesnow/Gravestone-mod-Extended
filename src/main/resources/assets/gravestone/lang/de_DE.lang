@@ -1,1 +1,190 @@
-# Tabs##TODO !!!!!!!!!!itemGroup.tabGSMemorials=Memorials##TODO !!!!!!!!!!itemGroup.tabGSOther=Gravestone mod Items# Blocks## Memorialsblock.memorial.cross.name=Kreuz Denkmalblock.memorial.obelisk.name=Obelisk Denkmalblock.memorial.steve_statue.name=Steve Denkmalblock.memorial.villager_statue.name=Dorfbwohner Denkmalblock.memorial.angel_statue.name=Engel Denkmalblock.memorial.dog_statue.name=Hundedenkmalblock.memorial.cat_statue.name=Katzendenkmalblock.memorial.creeper_statue.name=Creeperdenkmalblock.memorial.celtic_cross.name=Keltenkreuz## Executions##TODO !!!!!!!!!!block.execution.gallows.name=Gallowsblock.execution.gibbet.name=Gibbetblock.execution.stocks.name=Stocksblock.execution.burning_stake.name=Burning Stake## Trapblock.trap.night.name=Nachtsteinblock.trap.thunder.name=Donnersteinblock.trap.curse=Die Dunkelheit bricht ein!## Spawnerblock.spawner.wither.name=Witherspawnerblock.spawner.skeleton.name=Skelettspawnerblock.spawner.zombie.name=Zombiespawner## TODO !!!!!block.spawner.spider.name=Spider Spawner## Bone blocksblock.bone_block.default.name=Knochenblockblock.bone_block.skull.name=Totenkopfknochenblockblock.bone_block.crawler.name=Knochenkriechers Knochenblockblock.bone_block.crawler_skull.name=Knochenkriechers Totenkopfknochenblocktile.bone_slab.name=Knochenstufetile.bone_stairs.name=Knochentreppe## Pile of bones##TODO !!!!!!!!!!block.pile_of_bones.name=Pile Of Bones##TODO !!!!!!!!!!block.pile_of_bones_with_skull.name=Pile Of Bones with Skull## Chestsblock.haunted_chest.bats_chest.name=Fledermauskisteblock.haunted_chest.skeleton_chest.name=Skelettkisteblock.haunted_chest.raven_chest.name=Rabenkisteblock.haunted_chest.ghost_chest.name=Geisterkiste## Candlestile.candle.name=Kerzeblock.skull_candle.skeleton.name=Totenkopfkerzeblock.skull_candle.wither_skeleton.name=Witherkopfkerzeblock.skull_candle.zombie.name=Zombiekopfkerze## Altar##TODO !!!!!!!!!!tile.altar.name=Altar# Items## Chisel##TODO !!!!!!!!!!item.nightkosh.gravestone.chisel.name=Gravestone Chisel## Corpse## TODO !!!!!!!!!!item.corpse.steve=Steve Corpse## TODO !!!!!!!!!!item.corpse.player=Player Corpseitem.corpse.villager=Dorfbewohner Leicheitem.corpse.horse=Pferdeleicheitem.corpse.dog=Hundeleicheitem.corpse.cat=Katzenleiche## TODO !!!!!!!!!!item.corpse.zombie=Zombie Corpse## TODO !!!!!!!!!!item.corpse.zombie_villager=Zombie Villager Corpse## TODO !!!!!!!!!!item.corpse.zombie_pigmen=Zombie Pigmen Corpse## TODO !!!!!!!!!!item.corpse.skeleton=Skeleton Corpse## TODO !!!!!!!!!!item.corpse.wither_skeleton=Wither Skeleton Corpse## TODO !!!!!!!!!!item.corpse.witch=Witch Corpseitem.corpse.entity_name=Nameitem.corpse.villager_type=Berufitem.corpse.villager_type.farmer=Landwirtitem.corpse.villager_type.librarian=Bibliothekaritem.corpse.villager_type.priest=Priesteritem.corpse.villager_type.smith=Schmieditem.corpse.villager_type.butcher=Metzgeritem.corpse.villager_type.undertaker=Totengräberitem.corpse.villager_type.brewer=Braueritem.corpse.villager_type.thaumaturge=Wunderheileritem.corpse.villager_type.beekeeper=Imkeritem.corpse.villager_type.lumberjack=Holzfälleritem.corpse.villager_type.Unknown=Unbekannt##TODO !!!!!!!!!!item.corpse.villager_career=Careeritem.corpse.villager_career.Unknown=Unbekanntitem.corpse.horse_type=Pferdeartitem.corpse.horse_type.horse=Pferditem.corpse.horse_type.donkey=Eselitem.corpse.horse_type.mule=Maultieritem.corpse.horse_type.zombie=Zombiepferditem.corpse.horse_type.skeleton=Skelettpferditem.corpse.horse_type.unknown=Unbekanntitem.corpse.horse_variant=Pferdegattungitem.corpse.health=Max. Gesundheititem.corpse.speed=Geschwindigkeititem.corpse.jump_strength=Sprunkraftitem.corpse.collar=Halsbanditem.corpse.collar.white=Weissitem.corpse.collar.orange=Orangeitem.corpse.collar.purple=Lilaitem.corpse.collar.azure=Himmelblauitem.corpse.collar.yellow=Gelbitem.corpse.collar.lime=Lindgrünitem.corpse.collar.pink=Rosaitem.corpse.collar.grey=Grauitem.corpse.collar.light_grey=Hellgrauitem.corpse.collar.turquoise=Türkisitem.corpse.collar.violet=Violettitem.corpse.collar.blue=Blauitem.corpse.collar.brown=Braunitem.corpse.collar.green=Grünitem.corpse.collar.red=Rotitem.corpse.collar.black=Schwarzitem.corpse.collar.unknown=Unbekanntitem.corpse.dog_type=Dog typeitem.corpse.cat_type=Katzenartitem.corpse.cat_type.ocelot=Ocelotitem.corpse.cat_type.black=Schwarzitem.corpse.cat_type.red=Rotitem.corpse.cat_type.siamese=Siamitem.corpse.cat_type.unknown=Unbekannt## Backpacks##TODO !!!!!!!!!!item.backpack.undertaker.t1=Undertaker's backpackitem.backpack.undertaker.t2=Undertaker's Woven backpack# Guigui.edit_grave.title=Setze Grabtext##TODO !!!!!!!!!!gui.edit_grave.close=Done##TODO !!!!!!!!!!gui.edit_grave.randomText=Set random text##TODO !!!!!!!!!!gui.altar.resurrect=Resurrect##TODO !!!!!!!!!!gui.altar.requirements=%d levels required# Entityentity.GSZombieDog.name=Zombiehundentity.GSSkeletonDog.name=Skeletthundentity.GSZombieCat.name=Zombiekatzeentity.GSSkeletonCat.name=Skelettkatzeentity.GSSkullCrawler.name=Totenkopfkriecherentity.GSWitherSkullCrawler.name=Witherkopfkriecherentity.GSZombieSkullCrawler.name=Zombiekopfkriecherentity.GSRaven.name=Rabe##TODO !!!!!!!!!!entity.GSSkeletonRaider.name=Skeleton Raider##TODO !!!!!!!!!!entity.GSZombieRaider.name=Zombie Raider# Console messages##TODO !!!!!!!!!!## Console commands##TODO !!!!!!!!!!commands.direction_error=Direction error!##TODO !!!!!!!!!!commands.generate.unknown_structure=Unknown structure!
+# Tabs
+##TODO !!!!!!!!!!
+itemGroup.tabGSMemorials=Denkmähler
+##TODO !!!!!!!!!!
+itemGroup.tabGSOther=Gravestone Mod-Gegenstände
+
+
+# Blocks
+## Memorials
+block.memorial.cross.name=Kreuz Denkmal
+block.memorial.obelisk.name=Obelisk Denkmal
+block.memorial.steve_statue.name=Steve Denkmal
+block.memorial.villager_statue.name=Dorfbwohner Denkmal
+block.memorial.angel_statue.name=Engel Denkmal
+block.memorial.dog_statue.name=Hundedenkmal
+block.memorial.cat_statue.name=Katzendenkmal
+block.memorial.creeper_statue.name=Creeperdenkmal
+block.memorial.celtic_cross.name=Keltenkreuz
+
+## Executions
+##TODO !!!!!!!!!!
+block.execution.gallows.name=Galgen
+block.execution.gibbet.name=Käfig
+block.execution.stocks.name=Pranger
+block.execution.burning_stake.name=Scheiterhaufen
+
+## Trap
+block.trap.night.name=Nachtstein
+block.trap.thunder.name=Donnerstein
+block.trap.curse=Die Dunkelheit bricht ein!
+
+## Spawner
+block.spawner.wither.name=Witherspawner
+block.spawner.skeleton.name=Skelettspawner
+block.spawner.zombie.name=Zombiespawner
+## TODO !!!!!
+block.spawner.spider.name=Spider Spawner
+
+## Bone blocks
+block.bone_block.default.name=Knochenblock
+block.bone_block.skull.name=Totenkopfknochenblock
+block.bone_block.crawler.name=Knochenkriechers Knochenblock
+block.bone_block.crawler_skull.name=Knochenkriechers Totenkopfknochenblock
+tile.bone_slab.name=Knochenstufe
+tile.bone_stairs.name=Knochentreppe
+
+## Pile of bones
+##TODO !!!!!!!!!!
+block.pile_of_bones.name=Knochenhaufen
+##TODO !!!!!!!!!!
+block.pile_of_bones_with_skull.name=Knochenhaufen mit Schädel
+
+## Chests
+block.haunted_chest.bats_chest.name=Fledermauskiste
+block.haunted_chest.skeleton_chest.name=Skelettkiste
+block.haunted_chest.raven_chest.name=Rabenkiste
+block.haunted_chest.ghost_chest.name=Geisterkiste
+
+## Candles
+tile.candle.name=Kerze
+block.skull_candle.skeleton.name=Totenkopfkerze
+block.skull_candle.wither_skeleton.name=Witherkopfkerze
+block.skull_candle.zombie.name=Zombiekopfkerze
+
+## Altar
+##TODO !!!!!!!!!!
+tile.altar.name=Altar
+
+
+# Items
+## Chisel
+##TODO !!!!!!!!!!
+item.nightkosh.gravestone.chisel.name=Grabsteinmeißel
+
+
+## Corpse
+## TODO !!!!!!!!!!
+item.corpse.steve=Steves Leiche
+## TODO !!!!!!!!!!
+item.corpse.player=Spielerleiche
+item.corpse.villager=Dorfbewohnerleiche
+item.corpse.horse=Pferdeleiche
+item.corpse.dog=Hundeleiche
+item.corpse.cat=Katzenleiche
+## TODO !!!!!!!!!!
+item.corpse.zombie=Zombieleiche
+## TODO !!!!!!!!!!
+item.corpse.zombie_villager=Zombiebewohnerleicher
+## TODO !!!!!!!!!!
+item.corpse.zombie_pigmen=Zombie-Pigmen-Leiche
+## TODO !!!!!!!!!!
+item.corpse.skeleton=Skelettleiche
+## TODO !!!!!!!!!!
+item.corpse.wither_skeleton=Wither-Skelettleiche
+## TODO !!!!!!!!!!
+item.corpse.witch=Hexenleiche
+item.corpse.entity_name=Name
+item.corpse.villager_type=Beruf
+item.corpse.villager_type.farmer=Landwirt
+item.corpse.villager_type.librarian=Bibliothekar
+item.corpse.villager_type.priest=Priester
+item.corpse.villager_type.smith=Schmied
+item.corpse.villager_type.butcher=Metzger
+item.corpse.villager_type.undertaker=Totengräber
+item.corpse.villager_type.brewer=Brauer
+item.corpse.villager_type.thaumaturge=Wunderheiler
+item.corpse.villager_type.beekeeper=Imker
+item.corpse.villager_type.lumberjack=Holzfäller
+item.corpse.villager_type.Unknown=Unbekannt
+
+##TODO !!!!!!!!!!
+item.corpse.villager_career=Beruf
+item.corpse.villager_career.Unknown=Unbekannt
+
+item.corpse.horse_type=Pferdeart
+item.corpse.horse_type.horse=Pferd
+item.corpse.horse_type.donkey=Esel
+item.corpse.horse_type.mule=Maultier
+item.corpse.horse_type.zombie=Zombiepferd
+item.corpse.horse_type.skeleton=Skelettpferd
+item.corpse.horse_type.unknown=Unbekannt
+item.corpse.horse_variant=Pferdegattung
+item.corpse.health=Max. Gesundheit
+item.corpse.speed=Geschwindigkeit
+item.corpse.jump_strength=Sprunkraft
+item.corpse.collar=Halsband
+item.corpse.collar.white=Weiss
+item.corpse.collar.orange=Orange
+item.corpse.collar.purple=Lila
+item.corpse.collar.azure=Himmelblau
+item.corpse.collar.yellow=Gelb
+item.corpse.collar.lime=Lindgrün
+item.corpse.collar.pink=Rosa
+item.corpse.collar.grey=Grau
+item.corpse.collar.light_grey=Hellgrau
+item.corpse.collar.turquoise=Türkis
+item.corpse.collar.violet=Violett
+item.corpse.collar.blue=Blau
+item.corpse.collar.brown=Braun
+item.corpse.collar.green=Grün
+item.corpse.collar.red=Rot
+item.corpse.collar.black=Schwarz
+item.corpse.collar.unknown=Unbekannt
+item.corpse.dog_type=Dog type
+item.corpse.cat_type=Katzenart
+item.corpse.cat_type.ocelot=Ocelot
+item.corpse.cat_type.black=Schwarz
+item.corpse.cat_type.red=Rot
+item.corpse.cat_type.siamese=Siam
+item.corpse.cat_type.unknown=Unbekannt
+
+## Backpacks
+##TODO !!!!!!!!!!
+item.backpack.undertaker.t1=Rucksack des Totengräbers
+item.backpack.undertaker.t2=Gewebter Rucksack des Totengräbers
+
+
+# Gui
+gui.edit_grave.title=Grabtext festelegen
+##TODO !!!!!!!!!!
+gui.edit_grave.close=Fertig
+##TODO !!!!!!!!!!
+gui.edit_grave.randomText=Zufälliger Text
+##TODO !!!!!!!!!!
+gui.altar.resurrect=Wiederauferstehung
+##TODO !!!!!!!!!!
+gui.altar.requirements=%d Level benötigt
+
+# Entity
+entity.GSZombieDog.name=Zombiehund
+entity.GSSkeletonDog.name=Skeletthund
+entity.GSZombieCat.name=Zombiekatze
+entity.GSSkeletonCat.name=Skelettkatze
+entity.GSSkullCrawler.name=Totenkopfkriecher
+entity.GSWitherSkullCrawler.name=Witherkopfkriecher
+entity.GSZombieSkullCrawler.name=Zombiekopfkriecher
+entity.GSRaven.name=Rabe
+##TODO !!!!!!!!!!
+entity.GSSkeletonRaider.name=Skeletträuber
+##TODO !!!!!!!!!!
+entity.GSZombieRaider.name=Zombieräuber
+
+
+# Console messages
+##TODO !!!!!!!!!!
+## Console commands
+##TODO !!!!!!!!!!
+commands.direction_error=Richtungsfehler!
+##TODO !!!!!!!!!!
+commands.generate.unknown_structure=Unbekannter Aufbau!
