@@ -21,8 +21,6 @@ import net.minecraft.util.*;
 import net.minecraft.world.Explosion;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-import net.minecraft.world.biome.BiomeGenBase;
-import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import nightkosh.gravestone.inventory.GraveInventory;
@@ -30,12 +28,10 @@ import nightkosh.gravestone_extended.ModGravestoneExtended;
 import nightkosh.gravestone_extended.block.enums.EnumMemorials;
 import nightkosh.gravestone_extended.core.GSBlock;
 import nightkosh.gravestone_extended.core.Tabs;
+import nightkosh.gravestone_extended.structures.MemorialGenerationHelper;
 import nightkosh.gravestone_extended.tileentity.TileEntityMemorial;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-import java.util.Random;
 
 /**
  * GraveStone mod
@@ -210,99 +206,6 @@ public class BlockMemorial extends BlockContainer {
             EnumMemorials.PRIZMARINE_CREEPER_STATUE.ordinal(),
             EnumMemorials.ICE_CREEPER_STATUE.ordinal()
     };
-    public static final EnumMemorials[] WOODEN_GENERATED_MEMORIALS = {
-            EnumMemorials.WOODEN_CROSS,
-            EnumMemorials.QUARTZ_OBELISK,
-            EnumMemorials.QUARTZ_CELTIC_CROSS,
-            EnumMemorials.WOODEN_STEVE_STATUE,
-            EnumMemorials.WOODEN_VILLAGER_STATUE,
-            EnumMemorials.WOODEN_ANGEL_STATUE,
-            EnumMemorials.WOODEN_DOG_STATUE,
-            EnumMemorials.WOODEN_CAT_STATUE
-    };
-    public static final EnumMemorials[] SANDSTONE_GENERATED_MEMORIALS = {
-            EnumMemorials.SANDSTONE_CROSS,
-            EnumMemorials.QUARTZ_OBELISK,
-            EnumMemorials.QUARTZ_CELTIC_CROSS,
-            EnumMemorials.SANDSTONE_STEVE_STATUE,
-            EnumMemorials.SANDSTONE_VILLAGER_STATUE,
-            EnumMemorials.SANDSTONE_ANGEL_STATUE,
-            EnumMemorials.SANDSTONE_DOG_STATUE,
-            EnumMemorials.SANDSTONE_CAT_STATUE
-    };
-    public static final EnumMemorials[] STONE_GENERATED_MEMORIALS = {
-            EnumMemorials.STONE_CROSS,
-            EnumMemorials.QUARTZ_OBELISK,
-            EnumMemorials.QUARTZ_CELTIC_CROSS,
-            EnumMemorials.STONE_STEVE_STATUE,
-            EnumMemorials.STONE_VILLAGER_STATUE,
-            EnumMemorials.STONE_ANGEL_STATUE,
-            EnumMemorials.STONE_DOG_STATUE,
-            EnumMemorials.STONE_CAT_STATUE
-    };
-    public static final EnumMemorials[] QUARTZ_GENERATED_MEMORIALS = {
-            EnumMemorials.QUARTZ_CROSS,
-            EnumMemorials.QUARTZ_OBELISK,
-            EnumMemorials.QUARTZ_CELTIC_CROSS,
-            EnumMemorials.QUARTZ_STEVE_STATUE,
-            EnumMemorials.QUARTZ_VILLAGER_STATUE,
-            EnumMemorials.QUARTZ_ANGEL_STATUE,
-            EnumMemorials.QUARTZ_DOG_STATUE,
-            EnumMemorials.QUARTZ_CAT_STATUE
-    };
-    public static final EnumMemorials[] ICE_GENERATED_MEMORIALS = {
-            EnumMemorials.ICE_CROSS,
-            EnumMemorials.ICE_OBELISK,
-            EnumMemorials.ICE_CELTIC_CROSS,
-            EnumMemorials.ICE_STEVE_STATUE,
-            EnumMemorials.ICE_VILLAGER_STATUE,
-            EnumMemorials.ICE_ANGEL_STATUE,
-            EnumMemorials.ICE_DOG_STATUE,
-            EnumMemorials.ICE_CAT_STATUE
-    };
-    public static final EnumMemorials[] WOODEN_DOG_MEMORIALS = {EnumMemorials.WOODEN_DOG_STATUE};
-    public static final EnumMemorials[] SANDSTONE_DOG_MEMORIALS = {EnumMemorials.SANDSTONE_DOG_STATUE};
-    public static final EnumMemorials[] STONE_DOG_MEMORIALS = {EnumMemorials.STONE_DOG_STATUE};
-    public static final EnumMemorials[] QUARTZ_DOG_MEMORIALS = {EnumMemorials.QUARTZ_DOG_STATUE};
-    public static final EnumMemorials[] ICE_DOG_MEMORIALS = {EnumMemorials.ICE_DOG_STATUE};
-
-    public static final EnumMemorials[] WOODEN_CAT_MEMORIALS = {EnumMemorials.WOODEN_CAT_STATUE};
-    public static final EnumMemorials[] SANDSTONE_CAT_MEMORIALS = {EnumMemorials.SANDSTONE_CAT_STATUE};
-    public static final EnumMemorials[] STONE_CAT_MEMORIALS = {EnumMemorials.STONE_CAT_STATUE};
-    public static final EnumMemorials[] QUARTZ_CAT_MEMORIALS = {EnumMemorials.QUARTZ_CAT_STATUE};
-    public static final EnumMemorials[] ICE_CAT_MEMORIALS = {EnumMemorials.ICE_CAT_STATUE};
-
-    public static final EnumMemorials[] WOODEN_CREEPER_MEMORIALS = {EnumMemorials.WOODEN_CREEPER_STATUE};
-    public static final EnumMemorials[] SANDSTONE_CREEPER_MEMORIALS = {EnumMemorials.SANDSTONE_CREEPER_STATUE};
-    public static final EnumMemorials[] STONE_CREEPER_MEMORIALS = {EnumMemorials.STONE_CREEPER_STATUE};
-    public static final EnumMemorials[] QUARTZ_CREEPER_MEMORIALS = {EnumMemorials.QUARTZ_CREEPER_STATUE};
-    public static final EnumMemorials[] ICE_CREEPER_MEMORIALS = {EnumMemorials.ICE_CREEPER_STATUE};
-
-    public static final EnumMemorials[] WOODEN_STATUES_MEMORIALS = {
-            EnumMemorials.WOODEN_STEVE_STATUE,
-            EnumMemorials.WOODEN_VILLAGER_STATUE,
-            EnumMemorials.WOODEN_ANGEL_STATUE
-    };
-    public static final EnumMemorials[] SANDSTONE_STATUES_MEMORIALS = {
-            EnumMemorials.SANDSTONE_STEVE_STATUE,
-            EnumMemorials.SANDSTONE_VILLAGER_STATUE,
-            EnumMemorials.SANDSTONE_ANGEL_STATUE
-    };
-    public static final EnumMemorials[] STONE_STATUES_MEMORIALS = {
-            EnumMemorials.STONE_STEVE_STATUE,
-            EnumMemorials.STONE_VILLAGER_STATUE,
-            EnumMemorials.STONE_ANGEL_STATUE
-    };
-    public static final EnumMemorials[] QUARTZ_STATUES_MEMORIALS = {
-            EnumMemorials.QUARTZ_STEVE_STATUE,
-            EnumMemorials.QUARTZ_VILLAGER_STATUE,
-            EnumMemorials.QUARTZ_ANGEL_STATUE
-    };
-    public static final EnumMemorials[] ICE_STATUES_MEMORIALS = {
-            EnumMemorials.ICE_STEVE_STATUE,
-            EnumMemorials.ICE_VILLAGER_STATUE,
-            EnumMemorials.ICE_ANGEL_STATUE
-    };
 
     public BlockMemorial() {
         super(Material.rock);
@@ -311,261 +214,6 @@ public class BlockMemorial extends BlockContainer {
         this.setHardness(1);
         this.setResistance(5);
         this.setCreativeTab(Tabs.memorialsTab);
-    }
-
-    /**
-     * Return random memorial type memorialTypetype - type of memorial 0 - all
-     * memorials(20% for pets graves), except creeper 1 - only pets memorials 2
-     * - only dogs memorials 3 - only cats memorials 4 - creeper memorials 5 -
-     * only statues memorials(steve, villager, angel)
-     */
-    public static int getMemorialType(World world, BlockPos pos, Random random, int memorialType) {
-        switch (memorialType) {
-            default:
-            case 0:
-                return getRandomMemorial(getGeneratedMemorialsTypes(world, pos), random);
-            case 1:
-                return getRandomMemorial(getPetsMemorialsTypes(world, pos), random);
-            case 2:
-                return getRandomMemorial(getDogsMemorialsTypes(world, pos), random);
-            case 3:
-                return getRandomMemorial(getCatsMemorialsTypes(world, pos), random);
-            case 4:
-                return getRandomMemorial(getCreeperMemorialsTypes(world, pos), random);
-            case 5:
-                return getRandomMemorial(getStatuesMemorialsTypes(world, pos), random);
-        }
-    }
-
-    public static int getRandomMemorial(List<EnumMemorials> memorialTypes, Random rand) {
-        if (memorialTypes.size() > 0) {
-            return memorialTypes.get(rand.nextInt(memorialTypes.size())).ordinal();
-        } else {
-            return 0;
-        }
-    }
-
-    public static ArrayList<EnumMemorials> getGeneratedMemorialsTypes(World world, BlockPos pos) {
-        BiomeGenBase biome = world.getBiomeGenForCoords(pos);
-
-        ArrayList<BiomeDictionary.Type> biomeTypesList = new ArrayList<>(Arrays.asList(BiomeDictionary.getTypesForBiome(biome)));
-        ArrayList<EnumMemorials> memorialTypes = new ArrayList<>();
-
-        if (biomeTypesList.contains(BiomeDictionary.Type.SANDY) || biomeTypesList.contains(BiomeDictionary.Type.BEACH)) {
-            memorialTypes.addAll(Arrays.asList(SANDSTONE_GENERATED_MEMORIALS));
-        }
-        if (biomeTypesList.contains(BiomeDictionary.Type.JUNGLE) || biomeTypesList.contains(BiomeDictionary.Type.SWAMP)) {
-            //TODO memorialTypes.addAll(Arrays.asList(MOSSY_GENERATED_MEMORIALS));
-        }
-        if (biomeTypesList.contains(BiomeDictionary.Type.MOUNTAIN) || biomeTypesList.contains(BiomeDictionary.Type.HILLS) ||
-                biomeTypesList.contains(BiomeDictionary.Type.PLAINS) || biomeTypesList.contains(BiomeDictionary.Type.MUSHROOM)) {
-            memorialTypes.addAll(Arrays.asList(STONE_GENERATED_MEMORIALS));
-        }
-        if (biomeTypesList.contains(BiomeDictionary.Type.FOREST)) {
-            memorialTypes.addAll(Arrays.asList(WOODEN_GENERATED_MEMORIALS));
-        }
-        if (biomeTypesList.contains(BiomeDictionary.Type.SNOWY)) {
-            memorialTypes.addAll(Arrays.asList(ICE_GENERATED_MEMORIALS));
-        }
-        if (biomeTypesList.contains(BiomeDictionary.Type.NETHER)) {
-            memorialTypes.addAll(Arrays.asList(QUARTZ_GENERATED_MEMORIALS));
-        }
-
-        // TODO
-//        if (biomeTypesList.contains(BiomeDictionary.Type.END)) {
-//        }
-//        if (biomeTypesList.contains(BiomeDictionary.Type.MAGICAL)) {
-//        }
-//        if (biomeTypesList.contains(BiomeDictionary.Type.WATER)) {// TODO !!!!!!!!!!!
-//        }
-//        if (biomeTypesList.contains(BiomeDictionary.Type.WASTELAND)) {
-//        }
-
-        if (memorialTypes.isEmpty()) {
-            memorialTypes.addAll(Arrays.asList(STONE_GENERATED_MEMORIALS));
-        }
-
-        return memorialTypes;
-    }
-
-    public static ArrayList<EnumMemorials> getPetsMemorialsTypes(World world, BlockPos pos) {
-        ArrayList<EnumMemorials> memorialTypes = new ArrayList<>();
-        memorialTypes.addAll(getDogsMemorialsTypes(world, pos));
-        memorialTypes.addAll(getCatsMemorialsTypes(world, pos));
-
-        return memorialTypes;
-    }
-
-    public static ArrayList<EnumMemorials> getDogsMemorialsTypes(World world, BlockPos pos) {
-        BiomeGenBase biome = world.getBiomeGenForCoords(pos);
-
-        ArrayList<BiomeDictionary.Type> biomeTypesList = new ArrayList<>(Arrays.asList(BiomeDictionary.getTypesForBiome(biome)));
-        ArrayList<EnumMemorials> memorialTypes = new ArrayList<>();
-
-        if (biomeTypesList.contains(BiomeDictionary.Type.SANDY) || biomeTypesList.contains(BiomeDictionary.Type.BEACH)) {
-            memorialTypes.addAll(Arrays.asList(SANDSTONE_DOG_MEMORIALS));
-        }
-        if (biomeTypesList.contains(BiomeDictionary.Type.JUNGLE) || biomeTypesList.contains(BiomeDictionary.Type.SWAMP)) {
-            //TODO memorialTypes.addAll(Arrays.asList(MOSSY_DOG_MEMORIALS));
-        }
-        if (biomeTypesList.contains(BiomeDictionary.Type.MOUNTAIN) || biomeTypesList.contains(BiomeDictionary.Type.HILLS) ||
-                biomeTypesList.contains(BiomeDictionary.Type.PLAINS) || biomeTypesList.contains(BiomeDictionary.Type.MUSHROOM)) {
-            memorialTypes.addAll(Arrays.asList(STONE_DOG_MEMORIALS));
-        }
-        if (biomeTypesList.contains(BiomeDictionary.Type.FOREST)) {
-            memorialTypes.addAll(Arrays.asList(WOODEN_DOG_MEMORIALS));
-        }
-        if (biomeTypesList.contains(BiomeDictionary.Type.SNOWY)) {
-            memorialTypes.addAll(Arrays.asList(ICE_DOG_MEMORIALS));
-        }
-        if (biomeTypesList.contains(BiomeDictionary.Type.NETHER)) {
-            memorialTypes.addAll(Arrays.asList(QUARTZ_DOG_MEMORIALS));
-        }
-
-        // TODO
-//        if (biomeTypesList.contains(BiomeDictionary.Type.END)) {
-//        }
-//        if (biomeTypesList.contains(BiomeDictionary.Type.MAGICAL)) {
-//        }
-//        if (biomeTypesList.contains(BiomeDictionary.Type.WATER)) {// TODO !!!!!!!!!!!
-//        }
-//        if (biomeTypesList.contains(BiomeDictionary.Type.WASTELAND)) {
-//        }
-
-        if (memorialTypes.isEmpty()) {
-            memorialTypes.addAll(Arrays.asList(STONE_DOG_MEMORIALS));
-        }
-
-        return memorialTypes;
-    }
-
-    public static ArrayList<EnumMemorials> getCatsMemorialsTypes(World world, BlockPos pos) {
-        BiomeGenBase biome = world.getBiomeGenForCoords(pos);
-
-        ArrayList<BiomeDictionary.Type> biomeTypesList = new ArrayList<>(Arrays.asList(BiomeDictionary.getTypesForBiome(biome)));
-        ArrayList<EnumMemorials> memorialTypes = new ArrayList<>();
-
-        if (biomeTypesList.contains(BiomeDictionary.Type.SANDY) || biomeTypesList.contains(BiomeDictionary.Type.BEACH)) {
-            memorialTypes.addAll(Arrays.asList(SANDSTONE_CAT_MEMORIALS));
-        }
-        if (biomeTypesList.contains(BiomeDictionary.Type.JUNGLE) || biomeTypesList.contains(BiomeDictionary.Type.SWAMP)) {
-            //TODO memorialTypes.addAll(Arrays.asList(MOSSY_CAT_MEMORIALS));
-        }
-        if (biomeTypesList.contains(BiomeDictionary.Type.MOUNTAIN) || biomeTypesList.contains(BiomeDictionary.Type.HILLS) ||
-                biomeTypesList.contains(BiomeDictionary.Type.PLAINS) || biomeTypesList.contains(BiomeDictionary.Type.MUSHROOM)) {
-            memorialTypes.addAll(Arrays.asList(STONE_CAT_MEMORIALS));
-        }
-        if (biomeTypesList.contains(BiomeDictionary.Type.FOREST)) {
-            memorialTypes.addAll(Arrays.asList(WOODEN_CAT_MEMORIALS));
-        }
-        if (biomeTypesList.contains(BiomeDictionary.Type.SNOWY)) {
-            memorialTypes.addAll(Arrays.asList(ICE_CAT_MEMORIALS));
-        }
-        if (biomeTypesList.contains(BiomeDictionary.Type.NETHER)) {
-            memorialTypes.addAll(Arrays.asList(QUARTZ_CAT_MEMORIALS));
-        }
-
-        // TODO
-//        if (biomeTypesList.contains(BiomeDictionary.Type.END)) {
-//        }
-//        if (biomeTypesList.contains(BiomeDictionary.Type.MAGICAL)) {
-//        }
-//        if (biomeTypesList.contains(BiomeDictionary.Type.WATER)) {// TODO !!!!!!!!!!!
-//        }
-//        if (biomeTypesList.contains(BiomeDictionary.Type.WASTELAND)) {
-//        }
-
-        if (memorialTypes.isEmpty()) {
-            memorialTypes.addAll(Arrays.asList(STONE_CAT_MEMORIALS));
-        }
-
-        return memorialTypes;
-    }
-
-    public static ArrayList<EnumMemorials> getCreeperMemorialsTypes(World world, BlockPos pos) {
-        BiomeGenBase biome = world.getBiomeGenForCoords(pos);
-
-        ArrayList<BiomeDictionary.Type> biomeTypesList = new ArrayList<>(Arrays.asList(BiomeDictionary.getTypesForBiome(biome)));
-        ArrayList<EnumMemorials> memorialTypes = new ArrayList<>();
-
-        if (biomeTypesList.contains(BiomeDictionary.Type.SANDY) || biomeTypesList.contains(BiomeDictionary.Type.BEACH)) {
-            memorialTypes.addAll(Arrays.asList(SANDSTONE_CREEPER_MEMORIALS));
-        }
-        if (biomeTypesList.contains(BiomeDictionary.Type.JUNGLE) || biomeTypesList.contains(BiomeDictionary.Type.SWAMP)) {
-            //TODO memorialTypes.addAll(Arrays.asList(MOSSY_CREEPER_MEMORIALS));
-        }
-        if (biomeTypesList.contains(BiomeDictionary.Type.MOUNTAIN) || biomeTypesList.contains(BiomeDictionary.Type.HILLS) ||
-                biomeTypesList.contains(BiomeDictionary.Type.PLAINS) || biomeTypesList.contains(BiomeDictionary.Type.MUSHROOM)) {
-            memorialTypes.addAll(Arrays.asList(STONE_CREEPER_MEMORIALS));
-        }
-        if (biomeTypesList.contains(BiomeDictionary.Type.FOREST)) {
-            memorialTypes.addAll(Arrays.asList(WOODEN_CREEPER_MEMORIALS));
-        }
-        if (biomeTypesList.contains(BiomeDictionary.Type.SNOWY)) {
-            memorialTypes.addAll(Arrays.asList(ICE_CREEPER_MEMORIALS));
-        }
-        if (biomeTypesList.contains(BiomeDictionary.Type.NETHER)) {
-            memorialTypes.addAll(Arrays.asList(QUARTZ_CREEPER_MEMORIALS));
-        }
-
-        // TODO
-//        if (biomeTypesList.contains(BiomeDictionary.Type.END)) {
-//        }
-//        if (biomeTypesList.contains(BiomeDictionary.Type.MAGICAL)) {
-//        }
-//        if (biomeTypesList.contains(BiomeDictionary.Type.WATER)) {// TODO !!!!!!!!!!!
-//        }
-//        if (biomeTypesList.contains(BiomeDictionary.Type.WASTELAND)) {
-//        }
-
-        if (memorialTypes.isEmpty()) {
-            memorialTypes.addAll(Arrays.asList(STONE_CREEPER_MEMORIALS));
-        }
-
-        return memorialTypes;
-    }
-
-    public static ArrayList<EnumMemorials> getStatuesMemorialsTypes(World world, BlockPos pos) {
-        BiomeGenBase biome = world.getBiomeGenForCoords(pos);
-
-        ArrayList<BiomeDictionary.Type> biomeTypesList = new ArrayList<>(Arrays.asList(BiomeDictionary.getTypesForBiome(biome)));
-        ArrayList<EnumMemorials> memorialTypes = new ArrayList<>();
-
-        if (biomeTypesList.contains(BiomeDictionary.Type.SANDY) || biomeTypesList.contains(BiomeDictionary.Type.BEACH)) {
-            memorialTypes.addAll(Arrays.asList(SANDSTONE_STATUES_MEMORIALS));
-        }
-        if (biomeTypesList.contains(BiomeDictionary.Type.JUNGLE) || biomeTypesList.contains(BiomeDictionary.Type.SWAMP)) {
-            //TODO memorialTypes.addAll(Arrays.asList(MOSSY_STATUES_MEMORIALS));
-        }
-        if (biomeTypesList.contains(BiomeDictionary.Type.MOUNTAIN) || biomeTypesList.contains(BiomeDictionary.Type.HILLS) ||
-                biomeTypesList.contains(BiomeDictionary.Type.PLAINS) || biomeTypesList.contains(BiomeDictionary.Type.MUSHROOM)) {
-            memorialTypes.addAll(Arrays.asList(STONE_STATUES_MEMORIALS));
-        }
-        if (biomeTypesList.contains(BiomeDictionary.Type.FOREST)) {
-            memorialTypes.addAll(Arrays.asList(WOODEN_STATUES_MEMORIALS));
-        }
-        if (biomeTypesList.contains(BiomeDictionary.Type.SNOWY)) {
-            memorialTypes.addAll(Arrays.asList(ICE_STATUES_MEMORIALS));
-        }
-        if (biomeTypesList.contains(BiomeDictionary.Type.NETHER)) {
-            memorialTypes.addAll(Arrays.asList(QUARTZ_STATUES_MEMORIALS));
-        }
-
-        // TODO
-//        if (biomeTypesList.contains(BiomeDictionary.Type.END)) {
-//        }
-//        if (biomeTypesList.contains(BiomeDictionary.Type.MAGICAL)) {
-//        }
-//        if (biomeTypesList.contains(BiomeDictionary.Type.WATER)) {// TODO !!!!!!!!!!!
-//        }
-//        if (biomeTypesList.contains(BiomeDictionary.Type.WASTELAND)) {
-//        }
-
-        if (memorialTypes.isEmpty()) {
-            memorialTypes.addAll(Arrays.asList(STONE_STATUES_MEMORIALS));
-        }
-
-        return memorialTypes;
     }
 
     @Override
@@ -885,7 +533,7 @@ public class BlockMemorial extends BlockContainer {
      * Drop sword as item
      */
     public void dropCreeperMemorial(World world, BlockPos pos) {
-        ItemStack itemStack = new ItemStack(this, 1, BlockMemorial.getMemorialType(world, pos, new Random(), 4));
+        ItemStack itemStack = new ItemStack(this, 1, MemorialGenerationHelper.getMemorialTypeByBiomes(world, pos, MemorialGenerationHelper.GENERATED_CREEPER_STATUES_MEMORIALS_TYPES, null, true).ordinal());
         GraveInventory.dropItem(itemStack, world, pos);
     }
 

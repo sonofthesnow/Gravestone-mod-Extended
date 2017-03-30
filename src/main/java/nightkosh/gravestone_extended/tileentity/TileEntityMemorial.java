@@ -81,8 +81,6 @@ public class TileEntityMemorial extends TileEntityGrave {
     }
 
     public void setMemorialContent(Random random) {
-        //TODO ?????
-//        deathText = DeathTextHelper.getRandomDeathTextAndNameForMemorial(random, EnumMemorials.getById(graveType));
     }
 
     @Override
@@ -134,12 +132,27 @@ public class TileEntityMemorial extends TileEntityGrave {
         }
     }
 
-    public static class Obelisk extends TileEntityMemorial {}
-    public static class CelticCross extends TileEntityMemorial {}
-    public static class SteveStatue extends TileEntityMemorial {}
-    public static class VillagerStatue extends TileEntityMemorial {}
-    public static class AngelStatue extends TileEntityMemorial {}
-    public static class DogStatue extends TileEntityMemorial {}
-    public static class CatStatue extends TileEntityMemorial {}
-    public static class CreeperStatue extends TileEntityMemorial {}
+    public static class Obelisk extends TileEntityMemorial {
+    }
+
+    public static class CelticCross extends TileEntityMemorial {
+    }
+
+    public static class SteveStatue extends TileEntityMemorial {
+    }
+
+    public static class VillagerStatue extends TileEntityMemorial {
+    }
+
+    public static class AngelStatue extends TileEntityMemorial {
+    }
+
+    public static class DogStatue extends TileEntityMemorial {
+    }
+
+    public static class CatStatue extends TileEntityMemorial {
+    }
+
+    public static class CreeperStatue extends TileEntityMemorial {
+    }
 }

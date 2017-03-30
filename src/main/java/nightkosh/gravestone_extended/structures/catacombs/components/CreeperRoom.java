@@ -1,13 +1,12 @@
 package nightkosh.gravestone_extended.structures.catacombs.components;
 
-import nightkosh.gravestone_extended.block.BlockMemorial;
+import net.minecraft.init.Blocks;
+import net.minecraft.util.EnumFacing;
+import net.minecraft.world.World;
+import nightkosh.gravestone.helper.GraveGenerationHelper;
 import nightkosh.gravestone_extended.structures.BoundingBoxHelper;
 import nightkosh.gravestone_extended.structures.MemorialGenerationHelper;
 import nightkosh.gravestone_extended.structures.ObjectsGenerationHelper;
-import net.minecraft.init.Blocks;
-import net.minecraft.util.BlockPos;
-import net.minecraft.util.EnumFacing;
-import net.minecraft.world.World;
 
 import java.util.Random;
 
@@ -166,7 +165,7 @@ public class CreeperRoom extends CatacombsBaseComponent {
 
         // creeper statue
         MemorialGenerationHelper.placeMemorial(this, world, random, 5, yStart + 1, 5, coordBaseMode.getOpposite(),
-                BlockMemorial.getMemorialType(world, new BlockPos(this.getXWithOffset(5, 5), this.getYWithOffset(yStart + 1), this.getZWithOffset(5, 5)), random, 4));
+                MemorialGenerationHelper.GENERATED_CREEPER_STATUES_MEMORIALS_TYPES, GraveGenerationHelper.EnumGraveTypeByEntity.HUMAN_GRAVES);
 
         // clear enter
         this.fillWithAir(world, boundingBox, 4, yStart + 1, 0, 6, yStart + 3, 0);

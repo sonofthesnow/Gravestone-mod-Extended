@@ -1,16 +1,16 @@
 package nightkosh.gravestone_extended.structures.catacombs.components;
 
-import nightkosh.gravestone_extended.block.BlockMemorial;
+import net.minecraft.init.Blocks;
+import net.minecraft.util.EnumFacing;
+import net.minecraft.world.World;
+import nightkosh.gravestone.helper.GraveGenerationHelper;
+import nightkosh.gravestone_extended.block.enums.EnumMemorials;
 import nightkosh.gravestone_extended.config.ExtendedConfig;
 import nightkosh.gravestone_extended.core.MobSpawn;
 import nightkosh.gravestone_extended.structures.BoundingBoxHelper;
 import nightkosh.gravestone_extended.structures.MemorialGenerationHelper;
 import nightkosh.gravestone_extended.structures.MobSpawnHelper;
 import nightkosh.gravestone_extended.structures.ObjectsGenerationHelper;
-import net.minecraft.init.Blocks;
-import net.minecraft.util.BlockPos;
-import net.minecraft.util.EnumFacing;
-import net.minecraft.world.World;
 
 import java.util.Random;
 
@@ -125,19 +125,20 @@ public class StatuesHall extends CatacombsBaseComponent {
         ObjectsGenerationHelper.generateChest(this, world, random, 7, 0, 12, this.coordBaseMode, false, ObjectsGenerationHelper.EnumChestTypes.ALL_CHESTS);
 
         // statues
-        int memorialType = BlockMemorial.getMemorialType(world, new BlockPos(this.getXWithOffset(0, 0), this.getYWithOffset(0), this.getZWithOffset(0, 0)), random, 5);
+        EnumMemorials.EnumMemorialType[] memorialTypes = MemorialGenerationHelper.GENERATED_HUMAN_STATUES_TYPES;
+        GraveGenerationHelper.EnumGraveTypeByEntity graveTypeByEntity = GraveGenerationHelper.EnumGraveTypeByEntity.HUMAN_GRAVES;
         EnumFacing left = this.getLeftDirectionForBlocks();
         EnumFacing right = this.getRightDirectionForBlocks();
-        MemorialGenerationHelper.placeMemorial(this, world, random, 3, 1, 3, left, memorialType);
-        MemorialGenerationHelper.placeMemorial(this, world, random, 3, 1, 6, left, memorialType);
-        MemorialGenerationHelper.placeMemorial(this, world, random, 3, 1, 9, left, memorialType);
-        MemorialGenerationHelper.placeMemorial(this, world, random, 3, 1, 12, left, memorialType);
-        MemorialGenerationHelper.placeMemorial(this, world, random, 3, 1, 15, left, memorialType);
-        MemorialGenerationHelper.placeMemorial(this, world, random, 7, 1, 3, right, memorialType);
-        MemorialGenerationHelper.placeMemorial(this, world, random, 7, 1, 6, right, memorialType);
-        MemorialGenerationHelper.placeMemorial(this, world, random, 7, 1, 9, right, memorialType);
-        MemorialGenerationHelper.placeMemorial(this, world, random, 7, 1, 12, right, memorialType);
-        MemorialGenerationHelper.placeMemorial(this, world, random, 7, 1, 15, right, memorialType);
+        MemorialGenerationHelper.placeMemorial(this, world, random, 3, 1, 3, left, memorialTypes, graveTypeByEntity);
+        MemorialGenerationHelper.placeMemorial(this, world, random, 3, 1, 6, left, memorialTypes, graveTypeByEntity);
+        MemorialGenerationHelper.placeMemorial(this, world, random, 3, 1, 9, left, memorialTypes, graveTypeByEntity);
+        MemorialGenerationHelper.placeMemorial(this, world, random, 3, 1, 12, left, memorialTypes, graveTypeByEntity);
+        MemorialGenerationHelper.placeMemorial(this, world, random, 3, 1, 15, left, memorialTypes, graveTypeByEntity);
+        MemorialGenerationHelper.placeMemorial(this, world, random, 7, 1, 3, right, memorialTypes, graveTypeByEntity);
+        MemorialGenerationHelper.placeMemorial(this, world, random, 7, 1, 6, right, memorialTypes, graveTypeByEntity);
+        MemorialGenerationHelper.placeMemorial(this, world, random, 7, 1, 9, right, memorialTypes, graveTypeByEntity);
+        MemorialGenerationHelper.placeMemorial(this, world, random, 7, 1, 12, right, memorialTypes, graveTypeByEntity);
+        MemorialGenerationHelper.placeMemorial(this, world, random, 7, 1, 15, right, memorialTypes, graveTypeByEntity);
 
         // fill exit with random blocks
         this.fillWithRandomizedBlocks(world, boundingBox, 4, 1, 18, 6, 3, 18, false, random, stoneBricks);

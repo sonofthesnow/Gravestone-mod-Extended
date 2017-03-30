@@ -1,8 +1,5 @@
 package nightkosh.gravestone_extended.structures.village.memorial;
 
-import nightkosh.gravestone_extended.block.BlockMemorial;
-import nightkosh.gravestone_extended.core.GSBlock;
-import nightkosh.gravestone_extended.tileentity.TileEntityMemorial;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
 import net.minecraft.nbt.NBTTagCompound;
@@ -13,6 +10,8 @@ import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraft.world.gen.structure.StructureBoundingBox;
 import net.minecraft.world.gen.structure.StructureComponent;
 import net.minecraft.world.gen.structure.StructureVillagePieces;
+import nightkosh.gravestone_extended.structures.IComponentGraveStone;
+import nightkosh.gravestone_extended.structures.MemorialGenerationHelper;
 
 import java.util.List;
 import java.util.Random;
@@ -23,7 +22,7 @@ import java.util.Random;
  * @author NightKosh
  * @license Lesser GNU Public License v3 (http://www.gnu.org/licenses/lgpl.html)
  */
-public class ComponentVillageMemorial extends StructureVillagePieces.Village {
+public class ComponentVillageMemorial extends StructureVillagePieces.Village implements IComponentGraveStone {
 
     private int averageGroundLevel = -1;
     private static final int HEIGHT = 6;
@@ -67,7 +66,8 @@ public class ComponentVillageMemorial extends StructureVillagePieces.Village {
         }
 
         this.fillWithBlocks(world, structureBoundingBox, 0, -5, 0, 5, 0, 5, groundState, groundState, false);
-        placeMemorial(world, random, 2, 1, 2);
+
+        MemorialGenerationHelper.placeMemorial(this, world, random, 2, 1, 2, this.coordBaseMode.getOpposite());
 
         for (int x = 0; x < 5; x++) {
             for (int z = 0; z < 5; z++) {
@@ -79,28 +79,34 @@ public class ComponentVillageMemorial extends StructureVillagePieces.Village {
         return true;
     }
 
-    protected void placeMemorial(World world, Random random, int x, int y, int z) {
-        int memorialType;
-//        boolean isTortureMemorial = random.nextInt(4) == 0;
-        BlockPos pos = new BlockPos(this.getXWithOffset(x, z), this.getYWithOffset(y), this.getZWithOffset(x, z));
-//        if (isTortureMemorial) {//TODO !!!!!!!
-//            memorialType = BlockMemorial.TORTURE_MEMORIALS[random.nextInt(BlockMemorial.TORTURE_MEMORIALS.length)].ordinal();
-//        } else {
-            memorialType = BlockMemorial.getMemorialType(world, pos, random, 0);
-//        }
+    @Override
+    public void setBlockState(World world, IBlockState blockState, int x, int y, int z, StructureBoundingBox boundingBox) {
+        super.setBlockState(world, blockState, x, y, z, boundingBox);
+    }
 
-        IBlockState memorialState = GSBlock.memorial.getDefaultState().withProperty(BlockMemorial.FACING, this.coordBaseMode.getOpposite());
-        this.setBlockState(world, memorialState, x, y, z, boundingBox);
+    @Override
+    public void placeBlockAtCurrentPosition(World world, IBlockState blockState, int x, int y, int z, StructureBoundingBox boundingBox) {
+        setBlockState(world, blockState, x, y, z, boundingBox);
+    }
 
-        TileEntityMemorial tileEntity = (TileEntityMemorial) world.getTileEntity(pos);
-        if (tileEntity != null) {
-            tileEntity.setGraveType(memorialType);
-//            if (isTortureMemorial) {
-//                tileEntity.setRandomMob(random);
-//            } else {
-                tileEntity.setMemorialContent(random);
-//            }
-        }
+    @Override
+    public StructureBoundingBox getIBoundingBox() {
+        return getBoundingBox();
+    }
+
+    @Override
+    public int getIXWithOffset(int x, int z) {
+        return getXWithOffset(x, z);
+    }
+
+    @Override
+    public int getIYWithOffset(int y) {
+        return getYWithOffset(y);
+    }
+
+    @Override
+    public int getIZWithOffset(int x, int z) {
+        return getZWithOffset(x, z);
     }
 
     @Override

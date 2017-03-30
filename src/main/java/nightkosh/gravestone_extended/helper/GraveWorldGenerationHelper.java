@@ -75,7 +75,7 @@ public class GraveWorldGenerationHelper extends GraveGenerationHelper {
         items = GraveInventoryHelper.getRandomGraveContent(random, graveTypeByEntity, contentType, GraveInventoryHelper.GraveCorpseContentType.RANDOM, contentMaterials);
 
         boolean enchanted = isMagicDamage(deathText.getDeathText());
-        boolean mossy = isMossyGrave(world, pos, grave);
+        boolean mossy = isMossyGrave(world, pos, grave.getMaterial());
         ItemStack flower = getRandomFlower(world, pos, random, grave);
 
         return new GraveGenerationInfo(grave, enchanted, mossy, items, sword, deathText, flower);
@@ -102,19 +102,6 @@ public class GraveWorldGenerationHelper extends GraveGenerationHelper {
             case OTHER:
                 return EnumGraveMaterial.STONE;
         }
-    }
-
-
-    private static boolean isFireDamage(String damageText) {
-        return damageText.toLowerCase().contains("nFire");
-    }
-
-    private static boolean isLavaDamage(String damageText) {
-        return damageText.toLowerCase().contains("lava");
-    }
-
-    private static boolean isMagicDamage(String damageText) {
-        return damageText.toLowerCase().contains("magic");
     }
 
     private static ItemStack getRandomFlower(World world, BlockPos pos, Random random, EnumGraves grave) {//TODO ? - EnumGraves grave

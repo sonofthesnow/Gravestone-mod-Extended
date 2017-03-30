@@ -16,7 +16,7 @@ public class GraveGenerationHelper extends nightkosh.gravestone.helper.GraveGene
 
     protected static final Random rand = new Random();
 
-    protected static EnumGraveTypeByEntity getRandomGraveType(Random random) {
+    public static EnumGraveTypeByEntity getRandomGraveType(Random random) {
         if (random.nextInt(5) < 4) {
             return getRandomHumanGraveType(random);//20%
         } else {
@@ -24,11 +24,11 @@ public class GraveGenerationHelper extends nightkosh.gravestone.helper.GraveGene
         }
     }
 
-    protected static EnumGraveTypeByEntity getRandomHumanGraveType(Random random) {
+    public static EnumGraveTypeByEntity getRandomHumanGraveType(Random random) {
         return random.nextBoolean() ? EnumGraveTypeByEntity.PLAYER_GRAVES : EnumGraveTypeByEntity.VILLAGERS_GRAVES;
     }
 
-    protected static EnumGraveTypeByEntity getRandomPetGraveType(Random random) {
+    public static EnumGraveTypeByEntity getRandomPetGraveType(Random random) {
         if (random.nextInt(5) == 0) {
             return EnumGraveTypeByEntity.HORSE_GRAVES;//20%
         } else if (random.nextBoolean()) {

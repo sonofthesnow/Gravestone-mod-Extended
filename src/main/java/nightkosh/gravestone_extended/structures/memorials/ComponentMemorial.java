@@ -1,16 +1,14 @@
 package nightkosh.gravestone_extended.structures.memorials;
 
-import nightkosh.gravestone_extended.block.BlockMemorial;
-import nightkosh.gravestone_extended.core.GSBlock;
-import nightkosh.gravestone_extended.structures.BoundingBoxHelper;
-import nightkosh.gravestone_extended.structures.ComponentGraveStone;
-import nightkosh.gravestone_extended.structures.MemorialGenerationHelper;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.BlockPos;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.BiomeGenBase;
+import nightkosh.gravestone_extended.structures.BoundingBoxHelper;
+import nightkosh.gravestone_extended.structures.ComponentGraveStone;
+import nightkosh.gravestone_extended.structures.MemorialGenerationHelper;
 
 import java.util.Random;
 
@@ -58,9 +56,7 @@ public class ComponentMemorial extends ComponentGraveStone {
 
         this.fillWithAir(world, boundingBox, 0, 0, 2, 0, 6, 2);
         this.fillWithBlocks(world, boundingBox, 0, 0, 0, 2, 0, 2, groundState);
-        int memorialType = BlockMemorial.getMemorialType(world, pos, random, 0);
-        MemorialGenerationHelper.placeMemorial(this, world, random, 1, 1, 1,
-                GSBlock.memorial.getDefaultState().withProperty(BlockMemorial.FACING, this.coordBaseMode.getOpposite()), memorialType);
+        MemorialGenerationHelper.placeMemorial(this, world, random, 1, 1, 1, this.coordBaseMode.getOpposite());
 
         for (int x = 0; x < 3; x++) {
             for (int z = 0; z < 3; z++) {
