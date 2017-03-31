@@ -1,7 +1,5 @@
 # Tabs
-##TODO !!!!!!!!!!
 itemGroup.tabGSMemorials=Memoriais
-##TODO !!!!!!!!!!
 itemGroup.tabGSOther=Itens do mod Gravestone
 
 
@@ -18,7 +16,6 @@ block.memorial.creeper_statue.name=Estátua de Creeper
 block.memorial.celtic_cross.name=Cruz Celta
 
 ## Executions
-##TODO !!!!!!!!!!
 block.execution.gallows.name=Forca
 block.execution.gibbet.name=Enforcado
 block.execution.stocks.name=Berlinda
@@ -33,7 +30,6 @@ block.trap.curse=A escuridão está vindo!
 block.spawner.wither.name=Spawner de Wither
 block.spawner.skeleton.name=Spawner de Esqueleto
 block.spawner.zombie.name=Spawner de Zumbi
-## TODO !!!!!
 block.spawner.spider.name=Spawner de Aranha
 
 ## Bone Blocks
@@ -45,9 +41,7 @@ tile.bone_slab.name=Laje de Ossos
 tile.bone_stairs.name=Escada de Ossos
 
 ## Pile of Bones
-##TODO !!!!!!!!!!
 block.pile_of_bones.name=Pilha de Ossos
-##TODO !!!!!!!!!!
 block.pile_of_bones_with_skull.name=Pilha de Ossos com Cabeça
 
 ## Chests
@@ -63,36 +57,26 @@ block.skull_candle.wither_skeleton.name=Vela de Cabeça Wither
 block.skull_candle.zombie.name=Vela de Cabeça de Zumbi
 
 ## Altar
-##TODO !!!!!!!!!!
 tile.altar.name=Altar
 
 
 # Items
 ## Chisel
-##TODO !!!!!!!!!!
 item.nightkosh.gravestone.chisel.name=Formão de Lápide
 
 
 ## Corpses
-## TODO !!!!!!!!!!
 item.corpse.steve=Cadáver de Steve
-## TODO !!!!!!!!!!
 item.corpse.player=Cadáver de Jogador
 item.corpse.villager=Cadáver de Aldeão
 item.corpse.horse=Cadáver de Cavalo
 item.corpse.dog=Cadáver de Cachorro
 item.corpse.cat=Cadáver de Gato
-## TODO !!!!!!!!!!
 item.corpse.zombie=Cadáver de Zumbi
-## TODO !!!!!!!!!!
 item.corpse.zombie_villager=Cadáver de Aldeão Zumbi
-## TODO !!!!!!!!!!
 item.corpse.zombie_pigmen=Cadáver de Homem-Porco Zumbi
-## TODO !!!!!!!!!!
 item.corpse.skeleton=Cadáver de Esqueleto
-## TODO !!!!!!!!!!
 item.corpse.wither_skeleton=Cadáver de Esqueleto Wither
-## TODO !!!!!!!!!!
 item.corpse.witch=Cadáver de Bruxa
 item.corpse.entity_name=Nome
 item.corpse.villager_type=Profissão
@@ -108,7 +92,6 @@ item.corpse.villager_type.beekeeper=Apicultor
 item.corpse.villager_type.lumberjack=Lenhador
 item.corpse.villager_type.Unknown=Desconhecido
 
-##TODO !!!!!!!!!!
 item.corpse.villager_career=Carreira
 item.corpse.villager_career.Unknown=Desconhecida
 
@@ -150,20 +133,14 @@ item.corpse.cat_type.siamese=Siamês
 item.corpse.cat_type.unknown=Desconhecido
 
 ##Backpacks
-##TODO !!!!!!!!!!
-item.backpack.undertaker.t1=Mochila do Agente Funerário 
-##TODO !!!!!!!!!!
+item.backpack.undertaker.t1=Mochila do Agente Funerário
 item.backpack.undertaker.t2=Mochila Tecida do Agente Funerário
 
 # GUI
 gui.edit_grave.title=Defina o texto do túmulo
-##TODO !!!!!!!!!!
 gui.edit_grave.close=Concluído
-##TODO !!!!!!!!!!
 gui.edit_grave.randomText=Por texto aleatório
-##TODO !!!!!!!!!!
 gui.altar.resurrect=Ressuscitar
-##TODO !!!!!!!!!!
 gui.altar.requirements=Níveis requeridos %d
 
 
@@ -176,15 +153,11 @@ entity.GSSkullCrawler.name=Rastejador Caveira
 entity.GSWitherSkullCrawler.name=Rastejador Caveira Wither
 entity.GSZombieSkullCrawler.name=Rastejador Caveira Zumbi
 entity.GSRaven.name=Corvo
-##TODO !!!!!!!!!!
 entity.GSSkeletonRaider.name=Incursor Esqueleto
-##TODO !!!!!!!!!!
 entity.GSZombieRaider.name=Incursor Zumbi
 
 
 # Console messages
 ## Console commands
-##TODO !!!!!!!!!!
 commands.direction_error=Erro de direção!
-##TODO !!!!!!!!!!
 commands.generate.unknown_structure=Estrutura desconhecida!

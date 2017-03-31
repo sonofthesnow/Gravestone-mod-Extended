@@ -1,7 +1,5 @@
 # Tabs
-##TODO !!!!!!!!!!
 itemGroup.tabGSMemorials=Denkmähler
-##TODO !!!!!!!!!!
 itemGroup.tabGSOther=Gravestone Mod-Gegenstände
 
 
@@ -18,7 +16,6 @@ block.memorial.creeper_statue.name=Creeperdenkmal
 block.memorial.celtic_cross.name=Keltenkreuz
 
 ## Executions
-##TODO !!!!!!!!!!
 block.execution.gallows.name=Galgen
 block.execution.gibbet.name=Käfig
 block.execution.stocks.name=Pranger
@@ -33,7 +30,6 @@ block.trap.curse=Die Dunkelheit bricht ein!
 block.spawner.wither.name=Witherspawner
 block.spawner.skeleton.name=Skelettspawner
 block.spawner.zombie.name=Zombiespawner
-## TODO !!!!!
 block.spawner.spider.name=Spider Spawner
 
 ## Bone blocks
@@ -45,9 +41,7 @@ tile.bone_slab.name=Knochenstufe
 tile.bone_stairs.name=Knochentreppe
 
 ## Pile of bones
-##TODO !!!!!!!!!!
 block.pile_of_bones.name=Knochenhaufen
-##TODO !!!!!!!!!!
 block.pile_of_bones_with_skull.name=Knochenhaufen mit Schädel
 
 ## Chests
@@ -63,36 +57,26 @@ block.skull_candle.wither_skeleton.name=Witherkopfkerze
 block.skull_candle.zombie.name=Zombiekopfkerze
 
 ## Altar
-##TODO !!!!!!!!!!
 tile.altar.name=Altar
 
 
 # Items
 ## Chisel
-##TODO !!!!!!!!!!
 item.nightkosh.gravestone.chisel.name=Grabsteinmeißel
 
 
 ## Corpse
-## TODO !!!!!!!!!!
 item.corpse.steve=Steves Leiche
-## TODO !!!!!!!!!!
 item.corpse.player=Spielerleiche
 item.corpse.villager=Dorfbewohnerleiche
 item.corpse.horse=Pferdeleiche
 item.corpse.dog=Hundeleiche
 item.corpse.cat=Katzenleiche
-## TODO !!!!!!!!!!
 item.corpse.zombie=Zombieleiche
-## TODO !!!!!!!!!!
 item.corpse.zombie_villager=Zombiebewohnerleicher
-## TODO !!!!!!!!!!
 item.corpse.zombie_pigmen=Zombie-Pigmen-Leiche
-## TODO !!!!!!!!!!
 item.corpse.skeleton=Skelettleiche
-## TODO !!!!!!!!!!
 item.corpse.wither_skeleton=Wither-Skelettleiche
-## TODO !!!!!!!!!!
 item.corpse.witch=Hexenleiche
 item.corpse.entity_name=Name
 item.corpse.villager_type=Beruf
@@ -108,7 +92,6 @@ item.corpse.villager_type.beekeeper=Imker
 item.corpse.villager_type.lumberjack=Holzfäller
 item.corpse.villager_type.Unknown=Unbekannt
 
-##TODO !!!!!!!!!!
 item.corpse.villager_career=Beruf
 item.corpse.villager_career.Unknown=Unbekannt
 
@@ -150,20 +133,15 @@ item.corpse.cat_type.siamese=Siam
 item.corpse.cat_type.unknown=Unbekannt
 
 ## Backpacks
-##TODO !!!!!!!!!!
 item.backpack.undertaker.t1=Rucksack des Totengräbers
 item.backpack.undertaker.t2=Gewebter Rucksack des Totengräbers
 
 
 # Gui
 gui.edit_grave.title=Grabtext festelegen
-##TODO !!!!!!!!!!
 gui.edit_grave.close=Fertig
-##TODO !!!!!!!!!!
 gui.edit_grave.randomText=Zufälliger Text
-##TODO !!!!!!!!!!
 gui.altar.resurrect=Wiederauferstehung
-##TODO !!!!!!!!!!
 gui.altar.requirements=%d Level benötigt
 
 # Entity
@@ -175,16 +153,11 @@ entity.GSSkullCrawler.name=Totenkopfkriecher
 entity.GSWitherSkullCrawler.name=Witherkopfkriecher
 entity.GSZombieSkullCrawler.name=Zombiekopfkriecher
 entity.GSRaven.name=Rabe
-##TODO !!!!!!!!!!
 entity.GSSkeletonRaider.name=Skeletträuber
-##TODO !!!!!!!!!!
 entity.GSZombieRaider.name=Zombieräuber
 
 
 # Console messages
-##TODO !!!!!!!!!!
 ## Console commands
-##TODO !!!!!!!!!!
 commands.direction_error=Richtungsfehler!
-##TODO !!!!!!!!!!
 commands.generate.unknown_structure=Unbekannter Aufbau!
