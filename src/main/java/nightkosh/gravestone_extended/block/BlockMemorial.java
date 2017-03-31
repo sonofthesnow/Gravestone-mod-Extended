@@ -354,7 +354,6 @@ public class BlockMemorial extends BlockContainer {
 
     @Override
     public void setBlockBoundsBasedOnState(IBlockAccess access, BlockPos pos) {
-        EnumFacing facing = (EnumFacing) access.getBlockState(pos).getValue(FACING);
         EnumMemorials.EnumMemorialType memorialType;
         TileEntityMemorial tileEntity = (TileEntityMemorial) access.getTileEntity(pos);
 
