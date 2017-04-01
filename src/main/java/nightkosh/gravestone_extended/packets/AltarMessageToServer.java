@@ -93,7 +93,7 @@ public class AltarMessageToServer implements IMessage, IMessageHandler<AltarMess
                 TileEntityAltar tileEntity = (TileEntityAltar) te;
                 if (tileEntity.hasCorpse()) {
                     ItemStack corpse = tileEntity.getCorpse();
-                    if (corpse != null && Block.getBlockFromItem(corpse.getItem()) instanceof BlockCorpse && CorpseHelper.canSpawnMob(player, corpse.getItemDamage())) {
+                    if (corpse != null && Block.getBlockFromItem(corpse.getItem()) instanceof BlockCorpse && CorpseHelper.canSpawnMob(player, corpse)) {
                         CorpseHelper.spawnMob(corpse.getItemDamage(), tileEntity.getWorld(), tileEntity.getPos().getX(), tileEntity.getPos().getY(), tileEntity.getPos().getZ(), corpse.getTagCompound(), player);
                         CorpseHelper.getExperience(player, corpse.getItemDamage());
                         MessageHandler.networkWrapper.sendTo(new AltarMessageToClient(), (EntityPlayerMP) player);

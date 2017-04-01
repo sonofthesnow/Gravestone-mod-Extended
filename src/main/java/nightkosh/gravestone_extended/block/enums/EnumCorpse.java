@@ -11,29 +11,35 @@ import nightkosh.gravestone_extended.ModGravestoneExtended;
  * @license Lesser GNU Public License v3 (http://www.gnu.org/licenses/lgpl.html)
  */
 public enum EnumCorpse implements IBlockEnum, IStringSerializable {
-    STEVE("item.corpse.steve", "corpse_steve"),
+    STEVE("item.corpse.steve", "corpse_steve", false),
     VILLAGER("item.corpse.villager", "corpse_villager"),
-    DOG("item.corpse.dog", "corpse_dog", false),
-    CAT("item.corpse.cat", "corpse_cat", false),
-    HORSE("item.corpse.horse", "corpse_horse", false),
-    ZOMBIE("item.corpse.zombie", "corpse_zombie"),
-    ZOMBIE_VILLAGER("item.corpse.zombie_villager", "corpse_zombie_villager"),
-    ZOMBIE_PIGMEN("item.corpse.zombie_pigmen", "corpse_zombie_pigmen"),
-    SKELETON("item.corpse.skeleton", "corpse_skeleton"),
-    WITHER_SKELETON("item.corpse.wither_skeleton", "corpse_wither_skeleton"),
-    WITCH("item.corpse.witch", "corpse_witch");
+    DOG("item.corpse.dog", "corpse_dog", true, false),
+    CAT("item.corpse.cat", "corpse_cat", true, false),
+    HORSE("item.corpse.horse", "corpse_horse", true, false),
+    ZOMBIE("item.corpse.zombie", "corpse_zombie", false),
+    ZOMBIE_VILLAGER("item.corpse.zombie_villager", "corpse_zombie_villager", false),
+    ZOMBIE_PIGMEN("item.corpse.zombie_pigmen", "corpse_zombie_pigmen", false),
+    SKELETON("item.corpse.skeleton", "corpse_skeleton", false),
+    WITHER_SKELETON("item.corpse.wither_skeleton", "corpse_wither_skeleton", false),
+    WITCH("item.corpse.witch", "corpse_witch", false);
 
     private String name;
     private String blockModelName;
+    private boolean canBeResurrected;
     private boolean canBeHanged;
 
     private EnumCorpse(String name, String blockModelName) {
         this(name, blockModelName, true);
     }
 
-    private EnumCorpse(String name, String blockModelName, boolean canBeHanged) {
+    private EnumCorpse(String name, String blockModelName, boolean canBeResurrected) {
+        this(name, blockModelName, canBeResurrected, true);
+    }
+
+    private EnumCorpse(String name, String blockModelName, boolean canBeResurrected, boolean canBeHanged) {
         this.name = name;
         this.blockModelName = blockModelName;
+        this.canBeResurrected = canBeResurrected;
         this.canBeHanged = canBeHanged;
     }
 
@@ -53,6 +59,10 @@ public enum EnumCorpse implements IBlockEnum, IStringSerializable {
 
     public boolean canBeHanged() {
         return this.canBeHanged;
+    }
+
+    public boolean canBeResurrected() {
+        return this.canBeResurrected;
     }
 
     public static EnumCorpse getById(byte id) {
