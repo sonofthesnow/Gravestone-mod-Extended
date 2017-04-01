@@ -1,13 +1,10 @@
 package nightkosh.gravestone_extended.gui;
 
-import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
-import nightkosh.gravestone_extended.core.MessageHandler;
 import nightkosh.gravestone_extended.core.Resources;
 import nightkosh.gravestone_extended.gui.container.ExecutionContainer;
-import nightkosh.gravestone_extended.packets.AltarMessageToServer;
 import nightkosh.gravestone_extended.tileentity.TileEntityExecution;
 import org.lwjgl.opengl.GL11;
 
@@ -28,15 +25,6 @@ public class ExecutionGui extends GuiContainer {
         this.tileEntity = tileEntity;
         this.player = inventoryPlayer.player;
         this.container = (ExecutionContainer) this.inventorySlots;
-    }
-
-    @Override
-    public void actionPerformed(GuiButton button) {
-        switch (button.id) {
-            case 0:
-                MessageHandler.networkWrapper.sendToServer(new AltarMessageToServer(this.player, tileEntity.getPos().getX(), tileEntity.getPos().getY(), tileEntity.getPos().getZ(), AltarMessageToServer.MOB_TYPE.LIVED));
-                break;
-        }
     }
 
     @Override

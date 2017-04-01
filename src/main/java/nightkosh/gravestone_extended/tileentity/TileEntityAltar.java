@@ -78,9 +78,7 @@ public class TileEntityAltar extends TileEntity implements IInventory {
         super.writeToNBT(nbtTag);
 
         if (corpse != null) {
-            NBTTagCompound swordNBT = new NBTTagCompound();
-            corpse.writeToNBT(swordNBT);
-            nbtTag.setTag("Corpse", swordNBT);
+            nbtTag.setTag("Corpse", corpse.writeToNBT(new NBTTagCompound()));
         }
     }
 

@@ -48,9 +48,7 @@ public class TileEntityExecution extends TileEntityBase implements IInventory {
         nbtTag.setByte("Direction", direction);
 
         if (corpse != null) {
-            NBTTagCompound corpseNBT = new NBTTagCompound();
-            corpse.writeToNBT(corpseNBT);
-            nbtTag.setTag("Corpse", corpseNBT);
+            nbtTag.setTag("Corpse", corpse.writeToNBT(new NBTTagCompound()));
         }
 
     }
@@ -103,7 +101,7 @@ public class TileEntityExecution extends TileEntityBase implements IInventory {
     public Packet getDescriptionPacket() {
         NBTTagCompound nbt = new NBTTagCompound();
         this.writeToNBT(nbt);
-        return new S35PacketUpdateTileEntity(this.pos, 4, nbt);
+        return new S35PacketUpdateTileEntity(this.pos, 1, nbt);
     }
 
     @Override

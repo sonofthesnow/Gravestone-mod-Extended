@@ -114,6 +114,7 @@ public class BlockExecution extends BlockContainer {
 
         if (te != null && !player.isSneaking()) {
             player.openGui(ModGravestoneExtended.instance, GuiHandler.EXECUTION_GUI_ID, world, pos.getX(), pos.getY(), pos.getZ());
+            return true;
         }
 
         return false;

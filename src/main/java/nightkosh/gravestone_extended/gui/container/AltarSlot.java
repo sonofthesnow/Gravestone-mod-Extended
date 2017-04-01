@@ -33,9 +33,4 @@ public class AltarSlot extends Slot {
     public int getSlotStackLimit() {
         return 1;
     }
-
-    @Override
-    public void onSlotChange(ItemStack p_75220_1_, ItemStack p_75220_2_) {
-        super.onSlotChange(p_75220_1_, p_75220_2_);
-    }
 }
