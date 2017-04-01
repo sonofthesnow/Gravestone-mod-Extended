@@ -11,7 +11,6 @@ import net.minecraft.entity.passive.EntityWolf;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.nbt.NBTUtil;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.world.World;
@@ -19,6 +18,7 @@ import net.minecraft.world.WorldSettings;
 import nightkosh.gravestone_extended.ModGravestoneExtended;
 import nightkosh.gravestone_extended.block.enums.EnumCorpse;
 import nightkosh.gravestone_extended.core.GSBlock;
+import nightkosh.gravestone_extended.helper.GameProfileHelper;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -89,15 +89,7 @@ public abstract class CorpseHelper {
     }
 
     public static ItemStack getDefaultPlayerCorpse(GameProfile profile) {
-        ItemStack corpse = new ItemStack(GSBlock.corpse, 1, EnumCorpse.STEVE.ordinal());
-
-        NBTTagCompound corpseNbt = new NBTTagCompound();
-        NBTTagCompound nbttagcompound = new NBTTagCompound();
-        NBTUtil.writeGameProfile(nbttagcompound, profile);
-        corpseNbt.setTag("Owner", nbttagcompound);
-        corpse.setTagCompound(corpseNbt);
-
-        return corpse;
+        return GameProfileHelper.getBlock(profile, GSBlock.corpse, EnumCorpse.STEVE.ordinal());
     }
 
     public static List<ItemStack> getDefaultCorpse(int corpseType) {

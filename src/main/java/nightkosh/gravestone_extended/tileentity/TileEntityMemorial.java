@@ -1,19 +1,15 @@
 package nightkosh.gravestone_extended.tileentity;
 
-import com.google.common.collect.Iterables;
 import com.mojang.authlib.GameProfile;
-import com.mojang.authlib.properties.Property;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTUtil;
-import net.minecraft.server.MinecraftServer;
-import net.minecraft.util.StringUtils;
 import net.minecraft.world.World;
 import nightkosh.gravestone.tileentity.GraveStoneDeathText;
 import nightkosh.gravestone.tileentity.TileEntityGrave;
 import nightkosh.gravestone_extended.block.enums.EnumMemorials;
+import nightkosh.gravestone_extended.helper.GameProfileHelper;
 
 import java.util.Random;
-import java.util.UUID;
 
 /**
  * GraveStone mod
@@ -52,16 +48,7 @@ public class TileEntityMemorial extends TileEntityGrave {
         // death text
         deathText.readText(nbtTag);
 
-        if (nbtTag.hasKey("Owner", 10)) {
-            this.playerProfile = NBTUtil.readGameProfileFromNBT(nbtTag.getCompoundTag("Owner"));
-        } else if (nbtTag.hasKey("ExtraType", 8)) {
-            String s = nbtTag.getString("ExtraType");
-
-            if (!StringUtils.isNullOrEmpty(s)) {
-                this.playerProfile = new GameProfile((UUID) null, s);
-                this.updatePlayerProfile();
-            }
-        }
+        setPlayerProfile(nbtTag);
     }
 
     /**
@@ -74,9 +61,7 @@ public class TileEntityMemorial extends TileEntityGrave {
         deathText.saveText(nbtTag);
 
         if (this.playerProfile != null) {
-            NBTTagCompound nbtTagCompound = new NBTTagCompound();
-            NBTUtil.writeGameProfile(nbtTagCompound, this.playerProfile);
-            nbtTag.setTag("Owner", nbtTagCompound);
+            nbtTag.setTag("Owner", NBTUtil.writeGameProfile(new NBTTagCompound(), this.playerProfile));
         }
     }
 
@@ -96,40 +81,12 @@ public class TileEntityMemorial extends TileEntityGrave {
         return this.playerProfile;
     }
 
+    public void setPlayerProfile(NBTTagCompound nbtTag) {
+        this.playerProfile = GameProfileHelper.getProfile(nbtTag);
+    }
+
     public void setPlayerProfile(GameProfile playerProfile) {
         this.playerProfile = playerProfile;
-        this.updatePlayerProfile();
-    }
-
-    private void updatePlayerProfile() {
-        this.playerProfile = updateGameprofile(this.playerProfile);
-        this.markDirty();
-    }
-
-    public static GameProfile updateGameprofile(GameProfile input) {
-        if (input != null && !StringUtils.isNullOrEmpty(input.getName())) {
-            if (input.isComplete() && input.getProperties().containsKey("textures")) {
-                return input;
-            } else if (MinecraftServer.getServer() == null) {
-                return input;
-            } else {
-                GameProfile gameprofile1 = MinecraftServer.getServer().getPlayerProfileCache().getGameProfileForUsername(input.getName());
-
-                if (gameprofile1 == null) {
-                    return input;
-                } else {
-                    Property property = (Property) Iterables.getFirst(gameprofile1.getProperties().get("textures"), (Object) null);
-
-                    if (property == null) {
-                        gameprofile1 = MinecraftServer.getServer().getMinecraftSessionService().fillProfileProperties(gameprofile1, true);
-                    }
-
-                    return gameprofile1;
-                }
-            }
-        } else {
-            return input;
-        }
     }
 
     public static class Obelisk extends TileEntityMemorial {

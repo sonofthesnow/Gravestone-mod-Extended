@@ -16,6 +16,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemShears;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.nbt.NBTUtil;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.*;
 import net.minecraft.world.Explosion;
@@ -242,6 +243,8 @@ public class BlockMemorial extends BlockContainer {
 
                 tileEntity.setGraveType(itemStack.getItemDamage());
                 tileEntity.setMossy(nbt.getBoolean("Mossy"));
+
+                tileEntity.setPlayerProfile(nbt);
 
                 placeWalls(world, pos);
             }
@@ -501,6 +504,10 @@ public class BlockMemorial extends BlockContainer {
 
             nbt.setBoolean("Mossy", tileEntity.isMossy());
 
+            if (tileEntity.getPlayerProfile() != null) {
+                nbt.setTag("Owner", NBTUtil.writeGameProfile(new NBTTagCompound(), tileEntity.getPlayerProfile()));
+            }
+
             itemStack.setTagCompound(nbt);
         }
 
@@ -515,6 +522,10 @@ public class BlockMemorial extends BlockContainer {
             itemStack.setItemDamage(tileEntity.getGraveTypeNum());
             NBTTagCompound nbt = new NBTTagCompound();
             nbt.setBoolean("Mossy", tileEntity.isMossy());
+            if (tileEntity.getPlayerProfile() != null) {
+                nbt.setTag("Owner", NBTUtil.writeGameProfile(new NBTTagCompound(), tileEntity.getPlayerProfile()));
+            }
+
             itemStack.setTagCompound(nbt);
         }
 
@@ -546,6 +557,9 @@ public class BlockMemorial extends BlockContainer {
                 itemStack.setItemDamage(tileEntity.getGraveTypeNum());
                 NBTTagCompound nbt = new NBTTagCompound();
                 nbt.setBoolean("Mossy", tileEntity.isMossy());
+                if (tileEntity.getPlayerProfile() != null) {
+                    nbt.setTag("Owner", NBTUtil.writeGameProfile(new NBTTagCompound(), tileEntity.getPlayerProfile()));
+                }
 
                 itemStack.setTagCompound(nbt);
             }

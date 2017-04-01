@@ -30,5 +30,6 @@ public class ExtendedCommands {
     private void initCommands(MinecraftServer server) {
         Command.addCommand(new SubCommandStructuresGenerator());
         Command.addCommand(new SubCommandCorpses());
+        Command.addCommand(new SubCommandStatue());
     }
 }

@@ -16,6 +16,7 @@ import nightkosh.gravestone.models.block.ModelObelisk;
 import nightkosh.gravestone.renderer.tileentity.TileEntityRenderer;
 import nightkosh.gravestone_extended.block.enums.EnumMemorials;
 import nightkosh.gravestone_extended.core.Resources;
+import nightkosh.gravestone_extended.helper.GameProfileHelper;
 import nightkosh.gravestone_extended.models.block.ModelMemorial;
 import nightkosh.gravestone_extended.models.block.memorials.*;
 import nightkosh.gravestone_extended.tileentity.TileEntityMemorial;
@@ -35,7 +36,6 @@ public class TileEntityMemorialRenderer extends TileEntityRenderer {
     private static final Map<EnumMemorials, ResourceLocation> mossyTextures = Maps.newHashMap();
     private static final Map<EnumGraveMaterial, ResourceLocation> mossyPedestalTextures = Maps.newHashMap();
     private static final Map<EnumGraveMaterial, ResourceLocation> mossyArmorTextures = Maps.newHashMap();
-    //    private static final Map<String, ResourceLocation> steveTextures = Maps.newHashMap();
     public static ModelMemorial cross = new ModelMemorialCross();
     public static ModelGraveStone obelisk = new ModelObelisk();
     public static ModelGraveStone celticCross = new ModelCelticCross();
@@ -49,6 +49,7 @@ public class TileEntityMemorialRenderer extends TileEntityRenderer {
     public static TileEntityMemorialRenderer instance;
 
     private static final TileEntityMemorial MEMORIAL_TE = new TileEntityMemorial();
+
     static {
         MEMORIAL_TE.setGraveType(EnumMemorials.STONE_CROSS.ordinal());
     }
@@ -72,7 +73,7 @@ public class TileEntityMemorialRenderer extends TileEntityRenderer {
         }
         EnumFacing facing = EnumFacing.values()[meta];
 
-        renderMemorial(x, y, z, tileEntity.getWorld(), memorial, memorial.getMemorialType(), tileEntity.isEnchanted(), tileEntity.isMossy(), facing);
+        renderMemorial(tileEntity, x, y, z, tileEntity.getWorld(), memorial, memorial.getMemorialType(), tileEntity.isEnchanted(), tileEntity.isMossy(), facing);
 
     }
 
@@ -88,12 +89,12 @@ public class TileEntityMemorialRenderer extends TileEntityRenderer {
         GL11.glScaled(scale, scale, scale);
 
 
-        renderMemorial(memorial, memorial.getMemorialType(), isEnchanted, isMossy);
+        renderMemorial(null, memorial, memorial.getMemorialType(), isEnchanted, isMossy);
 
         GL11.glPopMatrix();
     }
 
-    private void renderMemorial(double x, double y, double z, World world, EnumMemorials memorial, EnumMemorials.EnumMemorialType memorialType,
+    private void renderMemorial(TileEntityMemorial te, double x, double y, double z, World world, EnumMemorials memorial, EnumMemorials.EnumMemorialType memorialType,
                                 boolean isEnchanted, boolean isMossy, EnumFacing facing) {
         GL11.glPushMatrix();
 
@@ -129,12 +130,12 @@ public class TileEntityMemorialRenderer extends TileEntityRenderer {
                 break;
         }
 
-        renderMemorial(memorial, memorialType, isEnchanted, isMossy);
+        renderMemorial(te, memorial, memorialType, isEnchanted, isMossy);
 
         GL11.glPopMatrix();
     }
 
-    private void renderMemorial(EnumMemorials memorial, EnumMemorials.EnumMemorialType memorialType, boolean isEnchanted,
+    private void renderMemorial(TileEntityMemorial te, EnumMemorials memorial, EnumMemorials.EnumMemorialType memorialType, boolean isEnchanted,
                                 boolean isMossy) {
         ModelGraveStone model = getModel(memorialType);
         model.setPedestalTexture(getPedestalTexture(memorial, isMossy));
@@ -144,7 +145,11 @@ public class TileEntityMemorialRenderer extends TileEntityRenderer {
                 model.customRender(isEnchanted);
                 break;
             case STEVE_STATUE:
-                bindTextureByName(getTexture(memorial, memorial.getTexture(), isMossy));
+                if (te != null && te.getPlayerProfile() != null) {
+                    GameProfileHelper.bindPlayerTexture(te.getPlayerProfile());
+                } else {
+                    bindTextureByName(getTexture(memorial, memorial.getTexture(), isMossy));
+                }
                 ((ModelMemorial) model).customRender(getArmorTexture(memorial, isMossy), isEnchanted);
                 break;
             default:
@@ -155,7 +160,6 @@ public class TileEntityMemorialRenderer extends TileEntityRenderer {
                     model.renderAll();
                 }
         }
-
     }
 
     private static ResourceLocation getTexture(EnumMemorials memorialType, ResourceLocation texture, boolean isMossy) {
@@ -196,47 +200,6 @@ public class TileEntityMemorialRenderer extends TileEntityRenderer {
             return texture;
         }
     }
-
-//    private static ResourceLocation getSteveTexture(EnumMemorials memorialType, ResourceLocation texture, GameProfile profile, boolean isMossy) {
-//        ResourceLocation playerTexture;
-//        StringBuilder playerPrefix = new StringBuilder();
-//        if (isMossy) {
-//            playerPrefix.append("mossy_");
-//        }
-//        if (profile != null) {
-//            Minecraft minecraft = Minecraft.getMinecraft();
-//            Map map = minecraft.getSkinManager().loadSkinFromCache(profile);
-//
-//            playerPrefix.append(profile.getId().toString()).append("_");
-//            if (map.containsKey(MinecraftProfileTexture.Type.SKIN)) {
-//                playerTexture = minecraft.getSkinManager().loadSkin((MinecraftProfileTexture) map.get(MinecraftProfileTexture.Type.SKIN), MinecraftProfileTexture.Type.SKIN);
-//            } else {
-//                UUID uuid = EntityPlayer.getUUID(profile);
-//                playerTexture = DefaultPlayerSkin.getDefaultSkin(uuid);
-//            }
-//        } else {
-//            playerTexture = Resources.STEVE;
-//            playerPrefix.append("steve_");
-//        }
-//
-//        ResourceLocation mixedSteveTexture = steveTextures.get(memorialType.getMaterial());
-//        if (mixedSteveTexture == null) {
-//            mixedSteveTexture = new ResourceLocation(texture.getResourceDomain() + ":" + playerPrefix.toString() + texture.getResourcePath());
-//            if (isMossy) {
-//                ResourceLocation mossyTexture = getMossyTexture(memorialType.getMemorialType());
-//                Minecraft.getMinecraft().getTextureManager().loadTexture(mixedSteveTexture,
-//                        new LayeredTexture(playerTexture.getResourceDomain() + ":" + playerTexture.getResourcePath(),
-//                                texture.getResourceDomain() + ":" + texture.getResourcePath(),
-//                                mossyTexture.getResourceDomain() + ":" + mossyTexture.getResourcePath()));
-//            } else {
-//                Minecraft.getMinecraft().getTextureManager().loadTexture(mixedSteveTexture,
-//                        new LayeredTexture(playerTexture.getResourceDomain() + ":" + playerTexture.getResourcePath(),
-//                                texture.getResourceDomain() + ":" + texture.getResourcePath()));
-//            }
-//            steveTextures.put(mixedSteveTexture.getResourcePath(), mixedSteveTexture);
-//        }
-//        return mixedSteveTexture;
-//    }
 
     private static ResourceLocation getArmorTexture(EnumMemorials memorialType, boolean isMossy) {
         ResourceLocation texture = getArmorTexture(memorialType);
@@ -351,8 +314,7 @@ public class TileEntityMemorialRenderer extends TileEntityRenderer {
     }
 
     @Override
-    public boolean forceTileEntityRender()
-    {
+    public boolean forceTileEntityRender() {
         return true;
     }
 
@@ -362,6 +324,7 @@ public class TileEntityMemorialRenderer extends TileEntityRenderer {
 
     public static class Obelisk extends TileEntityMemorialRenderer {
         private static final TileEntityMemorial MEMORIAL_TE = new TileEntityMemorial();
+
         static {
             MEMORIAL_TE.setGraveType(EnumMemorials.QUARTZ_OBELISK.ordinal());
         }
@@ -374,6 +337,7 @@ public class TileEntityMemorialRenderer extends TileEntityRenderer {
 
     public static class CelticCross extends TileEntityMemorialRenderer {
         private static final TileEntityMemorial MEMORIAL_TE = new TileEntityMemorial();
+
         static {
             MEMORIAL_TE.setGraveType(EnumMemorials.STONE_CELTIC_CROSS.ordinal());
         }
@@ -386,6 +350,7 @@ public class TileEntityMemorialRenderer extends TileEntityRenderer {
 
     public static class SteveStatue extends TileEntityMemorialRenderer {
         private static final TileEntityMemorial MEMORIAL_TE = new TileEntityMemorial();
+
         static {
             MEMORIAL_TE.setGraveType(EnumMemorials.STONE_STEVE_STATUE.ordinal());
         }
@@ -398,6 +363,7 @@ public class TileEntityMemorialRenderer extends TileEntityRenderer {
 
     public static class VillagerStatue extends TileEntityMemorialRenderer {
         private static final TileEntityMemorial MEMORIAL_TE = new TileEntityMemorial();
+
         static {
             MEMORIAL_TE.setGraveType(EnumMemorials.STONE_VILLAGER_STATUE.ordinal());
         }
@@ -410,6 +376,7 @@ public class TileEntityMemorialRenderer extends TileEntityRenderer {
 
     public static class AngelStatue extends TileEntityMemorialRenderer {
         private static final TileEntityMemorial MEMORIAL_TE = new TileEntityMemorial();
+
         static {
             MEMORIAL_TE.setGraveType(EnumMemorials.STONE_ANGEL_STATUE.ordinal());
         }
@@ -422,6 +389,7 @@ public class TileEntityMemorialRenderer extends TileEntityRenderer {
 
     public static class DogStatue extends TileEntityMemorialRenderer {
         private static final TileEntityMemorial MEMORIAL_TE = new TileEntityMemorial();
+
         static {
             MEMORIAL_TE.setGraveType(EnumMemorials.STONE_DOG_STATUE.ordinal());
         }
@@ -434,6 +402,7 @@ public class TileEntityMemorialRenderer extends TileEntityRenderer {
 
     public static class CatStatue extends TileEntityMemorialRenderer {
         private static final TileEntityMemorial MEMORIAL_TE = new TileEntityMemorial();
+
         static {
             MEMORIAL_TE.setGraveType(EnumMemorials.STONE_CAT_STATUE.ordinal());
         }
@@ -446,6 +415,7 @@ public class TileEntityMemorialRenderer extends TileEntityRenderer {
 
     public static class CreeperStatue extends TileEntityMemorialRenderer {
         private static final TileEntityMemorial MEMORIAL_TE = new TileEntityMemorial();
+
         static {
             MEMORIAL_TE.setGraveType(EnumMemorials.STONE_CREEPER_STATUE.ordinal());
         }

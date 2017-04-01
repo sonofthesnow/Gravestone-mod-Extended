@@ -1,11 +1,13 @@
 package nightkosh.gravestone_extended.item.itemblock;
 
+import com.mojang.authlib.GameProfile;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.nbt.NBTUtil;
 import net.minecraft.util.BlockPos;
 import net.minecraft.util.ChatComponentTranslation;
 import net.minecraft.util.EnumFacing;
@@ -73,6 +75,13 @@ public class ItemBlockGSMemorial extends ItemBlock {
                 }
             } else {
                 list.add(deathText);
+            }
+
+            if (nbt != null && nbt.hasKey("Owner", 10)) {
+                GameProfile playerProfile = NBTUtil.readGameProfileFromNBT(nbt.getCompoundTag("Owner"));
+                if (playerProfile != null) {
+                    list.add(playerProfile.getName());
+                }
             }
 
             EnumGraveMaterial material = EnumMemorials.getById(stack.getItemDamage()).getMaterial();

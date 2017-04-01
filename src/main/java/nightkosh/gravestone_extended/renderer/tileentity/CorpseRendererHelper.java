@@ -1,8 +1,6 @@
 package nightkosh.gravestone_extended.renderer.tileentity;
 
 import com.google.common.collect.Maps;
-import com.mojang.authlib.GameProfile;
-import com.mojang.authlib.minecraft.MinecraftProfileTexture;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.ModelHorse;
 import net.minecraft.client.model.ModelOcelot;
@@ -12,18 +10,17 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.passive.EntityHorse;
 import net.minecraft.entity.passive.EntityWolf;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.nbt.NBTUtil;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.common.registry.VillagerRegistry;
 import nightkosh.gravestone_extended.block.enums.EnumCorpse;
 import nightkosh.gravestone_extended.core.Resources;
+import nightkosh.gravestone_extended.helper.GameProfileHelper;
 import nightkosh.gravestone_extended.item.corpse.CatCorpseHelper;
 import nightkosh.gravestone_extended.item.corpse.HorseCorpseHelper;
 import nightkosh.gravestone_extended.item.corpse.VillagerCorpseHelper;
 import nightkosh.gravestone_extended.models.block.execution.*;
 import org.lwjgl.opengl.GL11;
 
-import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -34,7 +31,6 @@ import java.util.Map;
  */
 public class CorpseRendererHelper {
 
-    private static final Map<GameProfile, ResourceLocation> playersTextureMap = new HashMap<>();
     private static final Map horsesTexturesMap = Maps.newHashMap();
     private static final ModelWolf dogModel = new ModelWolf();
     private static final ModelOcelot catModel = new ModelOcelot();
@@ -100,27 +96,7 @@ public class CorpseRendererHelper {
                     GL11.glTranslatef(0, -1.3F, -0.85F);
                 }
 
-                ResourceLocation texture = Resources.STEVE;
-                if (nbt != null && nbt.hasKey("Owner", 10)) {
-                    GameProfile playerProfile = NBTUtil.readGameProfileFromNBT(nbt.getCompoundTag("Owner"));
-                    if (playerProfile != null) {
-                        if (playersTextureMap.containsKey(playerProfile)) {
-                            texture = playersTextureMap.get(playerProfile);
-                        } else {
-                            Minecraft minecraft = Minecraft.getMinecraft();
-                            Map<MinecraftProfileTexture.Type, MinecraftProfileTexture> map = minecraft.getSkinManager().loadSkinFromCache(playerProfile);
-
-                            if (map.containsKey(MinecraftProfileTexture.Type.SKIN)) {
-                                texture = minecraft.getSkinManager().loadSkin(map.get(MinecraftProfileTexture.Type.SKIN), MinecraftProfileTexture.Type.SKIN);
-                                playersTextureMap.put(playerProfile, texture);
-                            } else {
-                                minecraft.getSkinManager().loadProfileTextures(playerProfile, (type, texture1, profileTexture) -> playersTextureMap.put(playerProfile, texture1), true);
-                            }
-                        }
-                    }
-                }
-
-                Minecraft.getMinecraft().renderEngine.bindTexture(texture);
+                GameProfileHelper.bindPlayerTexture(nbt);
                 zombieModel.renderAll(isInStocks);
                 break;
             case VILLAGER:

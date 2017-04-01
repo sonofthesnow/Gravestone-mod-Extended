@@ -1,12 +1,12 @@
 package nightkosh.gravestone_extended.models.block.memorials;
 
-import nightkosh.gravestone_extended.models.block.ModelMemorial;
-import nightkosh.gravestone_extended.renderer.tileentity.TileEntityMemorialRenderer;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import nightkosh.gravestone_extended.models.block.ModelMemorial;
+import nightkosh.gravestone_extended.renderer.tileentity.TileEntityMemorialRenderer;
 import org.lwjgl.opengl.GL11;
 
 
@@ -40,8 +40,8 @@ public class ModelSteveStatueMemorial extends ModelMemorial {
     public ModelSteveStatueMemorial() {
         float par1 = 0;
         float par2 = 0;
-        textureWidth = 64;
-        textureHeight = 32;
+        this.textureWidth = 64;
+        this.textureHeight = 64;
         this.heldItemLeft = 0;
         this.heldItemRight = 0;
         this.bipedHead = new ModelRenderer(this, 0, 0);
