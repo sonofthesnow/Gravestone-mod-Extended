@@ -64,7 +64,7 @@ tile.altar.name=祭坛
 
 # Items
 ## Chisel
-item.nightkosh.gravestone.chisel.name=墓碑凿
+item.gravestone.chisel.name=墓碑凿
 
 ## Corpses
 ## TODO !!!!!!!!!!

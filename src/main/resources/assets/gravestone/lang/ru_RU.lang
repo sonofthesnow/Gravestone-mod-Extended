@@ -62,7 +62,7 @@ tile.altar.name=Алтарь
 
 # Items
 ## Chisel
-item.nightkosh.gravestone.chisel.name=Резец для надгробий
+item.gravestone.chisel.name=Резец для надгробий
 
 ## Corpses
 item.corpse.steve=Труп Стива

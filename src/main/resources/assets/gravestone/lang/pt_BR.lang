@@ -62,7 +62,7 @@ tile.altar.name=Altar
 
 # Items
 ## Chisel
-item.nightkosh.gravestone.chisel.name=Formão de Lápide
+item.gravestone.chisel.name=Formão de Lápide
 
 
 ## Corpses

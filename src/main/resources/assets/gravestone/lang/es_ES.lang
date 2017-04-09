@@ -73,7 +73,7 @@ tile.altar.name=Altar
 # Items
 ## Chisel
 ##TODO !!!!!!!!!!
-item.nightkosh.gravestone.chisel.name=Gravestone Chisel
+item.gravestone.chisel.name=Gravestone Chisel
 
 
 ## Corpses
