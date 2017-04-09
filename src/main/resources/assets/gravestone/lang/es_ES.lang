@@ -51,6 +51,8 @@ tile.bone_stairs.name=Escaleras de hueso
 block.pile_of_bones.name=Pile of Bones
 ##TODO !!!!!!!!!!
 block.pile_of_bones_with_skull.name=Pile of Bones with Skull
+## TODO !!!!!
+block.pile_of_bones_with_skull_crawler.name=Pile of Bones with Skull Crawler
 
 ## Chests
 block.haunted_chest.bats_chest.name=Cofre con Murciélagos

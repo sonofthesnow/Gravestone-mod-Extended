@@ -43,6 +43,8 @@ tile.bone_stairs.name=Knochentreppe
 ## Pile of bones
 block.pile_of_bones.name=Knochenhaufen
 block.pile_of_bones_with_skull.name=Knochenhaufen mit Schädel
+## TODO !!!!!
+block.pile_of_bones_with_skull_crawler.name=Pile of Bones with Skull Crawler
 
 ## Chests
 block.haunted_chest.bats_chest.name=Fledermauskiste

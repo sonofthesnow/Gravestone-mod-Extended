@@ -43,6 +43,7 @@ tile.bone_stairs.name=Bone Stairs
 ## Pile of Bones
 block.pile_of_bones.name=Pile of Bones
 block.pile_of_bones_with_skull.name=Pile of Bones with Skull
+block.pile_of_bones_with_skull_crawler.name=Pile of Bones with Skull Crawler
 
 ## Chests
 block.haunted_chest.bats_chest.name=Chest with Bats
