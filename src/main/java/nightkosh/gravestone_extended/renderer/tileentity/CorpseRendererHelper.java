@@ -35,6 +35,10 @@ public class CorpseRendererHelper {
     private static final ModelWolf dogModel = new ModelWolf();
     private static final ModelOcelot catModel = new ModelOcelot();
     private static final ModelHorse horseModel = new ModelHorse();
+    static {
+        dogModel.isChild = false;
+        catModel.isChild = false;
+    }
 
     private static final ModelHangedBiped bipedModel = new ModelHangedBiped(false, true);
     private static final ModelHangedBiped zombieModel = new ModelHangedBiped(false, true);
@@ -124,7 +128,7 @@ public class CorpseRendererHelper {
                     dog = new EntityWolf(Minecraft.getMinecraft().theWorld);
                 }
                 dogModel.setLivingAnimations(dog, 0, 0, 0);
-                dogModel.render(dog, xz, xz, xz, xz, xz, xz);
+                dogModel.render(null, xz, xz, xz, xz, xz, xz);
                 break;
             case CAT:
                 if (atAltar) {
