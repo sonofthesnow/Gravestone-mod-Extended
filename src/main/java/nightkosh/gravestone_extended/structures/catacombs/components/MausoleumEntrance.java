@@ -43,16 +43,16 @@ public class MausoleumEntrance extends CatacombsBaseComponent {
             this.boundingBox.offset(0, this.offsetY + 1 - this.boundingBox.minY, 0);
         }
 
-        IBlockState netherBrickStairsState = Blocks.nether_brick_stairs.getDefaultState();
-        IBlockState netherBrickStairsTopState = netherBrickStairsState.withProperty(BlockStairs.FACING, this.coordBaseMode.getOpposite());
-        IBlockState netherBrickStairsBotState = netherBrickStairsState.withProperty(BlockStairs.FACING, this.coordBaseMode);
+        IBlockState netherBrickStairsState = Blocks.NETHER_BRICK_STAIRS.getDefaultState();
+        IBlockState netherBrickStairsTopState = netherBrickStairsState.withProperty(BlockStairs.FACING, this.getCoordBaseMode().getOpposite());
+        IBlockState netherBrickStairsBotState = netherBrickStairsState.withProperty(BlockStairs.FACING, this.getCoordBaseMode());
         IBlockState netherBrickStairsLeftState = netherBrickStairsState.withProperty(BlockStairs.FACING, this.getLeftDirectionForBlocks());
         IBlockState netherBrickStairsRightState = netherBrickStairsState.withProperty(BlockStairs.FACING, this.getRightDirectionForBlocks());
         this.fillWithAir(world, boundingBox, 0, 0, 6, 13, 5, 13);
 
         // fire
-        this.placeBlockAtCurrentPosition(world, Blocks.netherrack.getDefaultState(), 4, 0, 9, boundingBox);
-        this.placeBlockAtCurrentPosition(world, Blocks.fire.getDefaultState(), 4, 1, 9, boundingBox);
+        this.placeBlockAtCurrentPosition(world, Blocks.NETHERRACK.getDefaultState(), 4, 0, 9, boundingBox);
+        this.placeBlockAtCurrentPosition(world, Blocks.FIRE.getDefaultState(), 4, 1, 9, boundingBox);
 
         // fire stairs
         this.placeBlockAtCurrentPosition(world, netherBrickStairsBotState, 3, 0, 8, boundingBox);
@@ -71,8 +71,8 @@ public class MausoleumEntrance extends CatacombsBaseComponent {
         }
 
         // fire
-        this.placeBlockAtCurrentPosition(world, Blocks.netherrack.getDefaultState(), 9, 0, 9, boundingBox);
-        this.placeBlockAtCurrentPosition(world, Blocks.fire.getDefaultState(), 9, 1, 9, boundingBox);
+        this.placeBlockAtCurrentPosition(world, Blocks.NETHERRACK.getDefaultState(), 9, 0, 9, boundingBox);
+        this.placeBlockAtCurrentPosition(world, Blocks.FIRE.getDefaultState(), 9, 1, 9, boundingBox);
 
         // fire stairs
         this.placeBlockAtCurrentPosition(world, netherBrickStairsBotState, 8, 0, 8, boundingBox);

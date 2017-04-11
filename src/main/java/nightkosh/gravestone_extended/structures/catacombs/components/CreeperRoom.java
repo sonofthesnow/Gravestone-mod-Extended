@@ -69,7 +69,7 @@ public class CreeperRoom extends CatacombsBaseComponent {
         this.fillWithBlocks(world, boundingBox, 0, 0, 0, 10, 0, 10, netherBrick);
 
         // lava
-        this.fillWithBlocks(world, boundingBox, 1, 1, 1, 9, 2, 9, Blocks.lava.getDefaultState());
+        this.fillWithBlocks(world, boundingBox, 1, 1, 1, 9, 2, 9, Blocks.LAVA.getDefaultState());
 
         // bottom walls
         this.fillWithBlocks(world, boundingBox, 0, 1, 0, 10, 8, 0, netherBrick);
@@ -164,7 +164,7 @@ public class CreeperRoom extends CatacombsBaseComponent {
 
 
         // creeper statue
-        MemorialGenerationHelper.placeMemorial(this, world, random, 5, yStart + 1, 5, coordBaseMode.getOpposite(),
+        MemorialGenerationHelper.placeMemorial(this, world, random, 5, yStart + 1, 5, getCoordBaseMode().getOpposite(),
                 MemorialGenerationHelper.GENERATED_CREEPER_STATUES_MEMORIALS_TYPES, GraveGenerationHelper.EnumGraveTypeByEntity.HUMAN_GRAVES);
 
         // clear enter

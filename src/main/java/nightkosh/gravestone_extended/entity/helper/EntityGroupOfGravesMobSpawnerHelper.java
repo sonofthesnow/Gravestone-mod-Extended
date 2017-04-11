@@ -4,7 +4,7 @@ package nightkosh.gravestone_extended.entity.helper;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import nightkosh.gravestone.helper.GroupOfGravesSpawnerHelper;
 import nightkosh.gravestone.tileentity.TileEntityGraveStone;

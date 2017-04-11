@@ -2,7 +2,7 @@ package nightkosh.gravestone_extended.structures.catacombs.components;
 
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.structure.StructureBoundingBox;
@@ -43,7 +43,7 @@ public class GraveYard extends CatacombsBaseComponent {
                     positionX = getXWithOffset(x + 1, z + 1);
                     positionZ = getZWithOffset(x + 1, z + 1);
                     y = world.getTopSolidOrLiquidBlock(new BlockPos(positionX, 0, positionZ)).getY() - boundingBox.minY;
-                    this.placeBlockAtCurrentPosition(world, Blocks.deadbush.getDefaultState(), x + 1, y, z + 1, boundingBox);
+                    this.placeBlockAtCurrentPosition(world, Blocks.DEADBUSH.getDefaultState(), x + 1, y, z + 1, boundingBox);
                 }
 
                 if (random.nextInt(5) < 2) {
@@ -52,7 +52,7 @@ public class GraveYard extends CatacombsBaseComponent {
                     y = world.getTopSolidOrLiquidBlock(new BlockPos(positionX, 0, positionZ)).getY() - boundingBox.minY;
 
                     if (GraveGenerationHelper.canPlaceGrave(world, positionX, boundingBox.minY + y, positionZ, boundingBox.maxY)) {
-                        IBlockState graveState = GSBlock.graveStone.getDefaultState().withProperty(BlockGraveStone.FACING, this.coordBaseMode.getOpposite());
+                        IBlockState graveState = GSBlock.graveStone.getDefaultState().withProperty(BlockGraveStone.FACING, this.getCoordBaseMode().getOpposite());
                         GraveGenerationHelper.placeGrave(this, world, random, x, y, z, graveState, spawnerHelper, EnumGraveTypeByEntity.HUMAN_GRAVES, GraveInventoryHelper.GraveContentType.JUNK);
                     }
                 }

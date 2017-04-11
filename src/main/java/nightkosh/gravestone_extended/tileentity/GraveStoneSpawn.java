@@ -1,7 +1,7 @@
 package nightkosh.gravestone_extended.tileentity;
 
 import net.minecraft.entity.Entity;
-import net.minecraft.util.AxisAlignedBB;
+import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.world.World;
 import nightkosh.gravestone.block.enums.EnumGraves;
 import nightkosh.gravestone.tileentity.ISpawnerEntity;

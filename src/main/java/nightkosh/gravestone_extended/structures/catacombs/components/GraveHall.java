@@ -52,7 +52,7 @@ public class GraveHall extends CatacombsBaseComponent {
         this.fillWithRandomizedBlocks(world, boundingBox, 7, 1, 18, 9, 3, 18, false, random, stoneBricks);
 
         // web
-        this.randomlyFillWithBlocks(world, boundingBox, random, WEB_GENERATION_CHANCE, 3, 1, 3, 13, 5, 15, Blocks.web.getDefaultState(), false);
+        this.randomlyFillWithBlocks(world, boundingBox, random, WEB_GENERATION_CHANCE, 3, 1, 3, 13, 5, 15, Blocks.WEB.getDefaultState(), false);
         // piles of bones
         if (ExtendedConfig.generatePilesOfBones) {
             this.fillWithRandomizedPilesOfBones(world, boundingBox, 3, 1, 3, 13, 1, 15, false, random);
@@ -154,8 +154,8 @@ public class GraveHall extends CatacombsBaseComponent {
         IBlockState graveState = GSBlock.graveStone.getDefaultState();
         IBlockState leftGraveState = graveState.withProperty(BlockGraveStone.FACING, this.getLeftDirectionForBlocks());
         IBlockState rightGraveState = graveState.withProperty(BlockGraveStone.FACING, this.getRightDirectionForBlocks());
-        IBlockState topGraveState = graveState.withProperty(BlockGraveStone.FACING, this.coordBaseMode.getOpposite());
-        IBlockState botGraveState = graveState.withProperty(BlockGraveStone.FACING, this.coordBaseMode);
+        IBlockState topGraveState = graveState.withProperty(BlockGraveStone.FACING, this.getCoordBaseMode().getOpposite());
+        IBlockState botGraveState = graveState.withProperty(BlockGraveStone.FACING, this.getCoordBaseMode());
 
         EntityGroupOfGravesMobSpawnerHelper spawnerHelper = GraveGenerationHelper.createSpawnerHelper(world, this.boundingBox);
 
@@ -210,11 +210,11 @@ public class GraveHall extends CatacombsBaseComponent {
 
     private void buildColumn(World world, int x, int z) {
         this.fillWithBlocks(world, boundingBox, x, 1, z, x, 5, z, netherBrick);
-        IBlockState netherBrickStairsState = Blocks.nether_brick_stairs.getDefaultState();
-        IBlockState netherBrickStairsTopState = netherBrickStairsState.withProperty(BlockStairs.FACING, this.coordBaseMode.getOpposite());
-        IBlockState netherBrickStairsBotState = netherBrickStairsState.withProperty(BlockStairs.FACING, this.coordBaseMode);
-        IBlockState netherBrickStairsLeftState = netherBrickStairsState.withProperty(BlockStairs.FACING, this.getLeftDirection(this.coordBaseMode));
-        IBlockState netherBrickStairsRightState = netherBrickStairsState.withProperty(BlockStairs.FACING, this.getRightDirection(this.coordBaseMode));
+        IBlockState netherBrickStairsState = Blocks.NETHER_BRICK_STAIRS.getDefaultState();
+        IBlockState netherBrickStairsTopState = netherBrickStairsState.withProperty(BlockStairs.FACING, this.getCoordBaseMode().getOpposite());
+        IBlockState netherBrickStairsBotState = netherBrickStairsState.withProperty(BlockStairs.FACING, this.getCoordBaseMode());
+        IBlockState netherBrickStairsLeftState = netherBrickStairsState.withProperty(BlockStairs.FACING, this.getLeftDirection(this.getCoordBaseMode()));
+        IBlockState netherBrickStairsRightState = netherBrickStairsState.withProperty(BlockStairs.FACING, this.getRightDirection(this.getCoordBaseMode()));
 
         // stairs
         this.placeBlockAtCurrentPosition(world, netherBrickStairsBotState, x - 1, 1, z - 1, boundingBox);

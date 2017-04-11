@@ -1,16 +1,11 @@
 package nightkosh.gravestone_extended.block;
 
-import nightkosh.gravestone_extended.ModGravestoneExtended;
-import nightkosh.gravestone_extended.block.enums.EnumTrap;
-import nightkosh.gravestone_extended.config.ExtendedConfig;
-import nightkosh.gravestone_extended.core.Tabs;
-import nightkosh.gravestone_extended.core.Potion;
-import nightkosh.gravestone_extended.core.TimeHelper;
 import net.minecraft.block.Block;
+import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyEnum;
-import net.minecraft.block.state.BlockState;
+import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
@@ -19,11 +14,17 @@ import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.PotionEffect;
-import net.minecraft.util.BlockPos;
-import net.minecraft.util.ChatComponentTranslation;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import nightkosh.gravestone_extended.ModGravestoneExtended;
+import nightkosh.gravestone_extended.block.enums.EnumTrap;
+import nightkosh.gravestone_extended.config.ExtendedConfig;
+import nightkosh.gravestone_extended.core.Potion;
+import nightkosh.gravestone_extended.core.Tabs;
+import nightkosh.gravestone_extended.core.TimeHelper;
 
 import java.util.List;
 import java.util.Random;
@@ -40,8 +41,8 @@ public class BlockTrap extends Block {
     public static final String NIGHT_STONE_CURSE_TEXT = "block.trap.curse";
 
     public BlockTrap() {
-        super(Material.rock);
-        this.setStepSound(Block.soundTypeStone);
+        super(Material.ROCK);
+        this.setSoundType(SoundType.STONE);
         this.setHardness(4.5F);
         this.setResistance(5);
         this.setCreativeTab(Tabs.otherItemsTab);
@@ -55,10 +56,10 @@ public class BlockTrap extends Block {
     public Item getItemDropped(IBlockState state, Random random, int fortune) {
         switch ((EnumTrap) state.getValue(VARIANT)) {
             case THUNDER_STONE:
-                return Item.getItemFromBlock(Blocks.stonebrick);
+                return Item.getItemFromBlock(Blocks.STONEBRICK);
             case NIGHT_STONE:
             default:
-                return Item.getItemFromBlock(Blocks.nether_brick);
+                return Item.getItemFromBlock(Blocks.NETHER_BRICK);
         }
     }
 
@@ -94,7 +95,7 @@ public class BlockTrap extends Block {
                         time = time - dayTime + TimeHelper.PRE_NIGHT;
                         world.setWorldTime(time);
                         if (ExtendedConfig.showNightStoneMessage) {
-                            ((EntityPlayer) entity).addChatComponentMessage(new ChatComponentTranslation(ModGravestoneExtended.proxy.getLocalizedString(NIGHT_STONE_CURSE_TEXT)));
+                            ((EntityPlayer) entity).addChatComponentMessage(new TextComponentTranslation(ModGravestoneExtended.proxy.getLocalizedString(NIGHT_STONE_CURSE_TEXT)));
                         }
                     } else if (dayTime > 20000 && dayTime < TimeHelper.PRE_MORNING) {
                         time = time - dayTime + TimeHelper.NIGHT;
@@ -126,8 +127,8 @@ public class BlockTrap extends Block {
     }
 
     @Override
-    protected BlockState createBlockState() {
-        return new BlockState(this, new IProperty[]{VARIANT});
+    protected BlockStateContainer createBlockState() {
+        return new BlockStateContainer(this, new IProperty[]{VARIANT});
     }
 
     /**

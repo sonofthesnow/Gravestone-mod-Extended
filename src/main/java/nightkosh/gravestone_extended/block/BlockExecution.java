@@ -2,13 +2,14 @@ package nightkosh.gravestone_extended.block;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
+import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyEnum;
-import net.minecraft.block.state.BlockState;
+import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.particle.EntityFX;
+import net.minecraft.client.particle.Particle;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
@@ -17,7 +18,13 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.*;
+import net.minecraft.util.EnumFacing;
+import net.minecraft.util.EnumHand;
+import net.minecraft.util.EnumParticleTypes;
+import net.minecraft.util.math.AxisAlignedBB;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.Explosion;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
@@ -32,6 +39,7 @@ import nightkosh.gravestone_extended.core.Tabs;
 import nightkosh.gravestone_extended.particle.EntityBigFlameFX;
 import nightkosh.gravestone_extended.tileentity.TileEntityExecution;
 
+import javax.annotation.Nullable;
 import java.util.List;
 import java.util.Random;
 
@@ -46,9 +54,9 @@ public class BlockExecution extends BlockContainer {
     public static final PropertyEnum VARIANT = PropertyEnum.create("variant", EnumExecution.class);
 
     public BlockExecution() {
-        super(Material.rock);
+        super(Material.ROCK);
         this.isBlockContainer = true;
-        this.setStepSound(Block.soundTypeWood);
+        this.setSoundType(SoundType.WOOD);
         this.setHardness(1);
         this.setResistance(5);
         this.setCreativeTab(Tabs.otherItemsTab);
@@ -59,11 +67,15 @@ public class BlockExecution extends BlockContainer {
         return new TileEntityExecution();
     }
 
+    private static final AxisAlignedBB GALLOWS_BB = new AxisAlignedBB(0, 0, 0, 1, 3, 1);
+    private static final AxisAlignedBB STOCKS_SOUTH_NORTH_BB = new AxisAlignedBB(-0.5F, 0, 0, 1.5F, 2, 1);
+    private static final AxisAlignedBB STOCKS_EAST_WEST_BB = new AxisAlignedBB(0, 0, -0.5F, 1, 2, 1.5F);
+    private static final AxisAlignedBB ITEM_BB = new AxisAlignedBB(0, 0, 0, 1, 1, 1);
+
     @Override
-    public void setBlockBoundsBasedOnState(IBlockAccess access, BlockPos pos) {
+    public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess access, BlockPos pos) {
         EnumExecution executionBlockType = (EnumExecution) access.getBlockState(pos).getValue(VARIANT);
         TileEntityExecution tileEntity = (TileEntityExecution) access.getTileEntity(pos);
-
 
         EnumFacing facing;
         if (tileEntity != null) {
@@ -76,40 +88,39 @@ public class BlockExecution extends BlockContainer {
             case GALLOWS:
             case GIBBET:
             case BURNING_STAKE:
-                this.setBlockBounds(0, 0, 0, 1, 3, 1);
-                break;
+            default:
+                return GALLOWS_BB;
             case STOCKS:
                 switch (facing) {
                     case SOUTH:
                     case NORTH:
-                        this.setBlockBounds(-0.5F, 0, 0, 1.5F, 2, 1);
-                        break;
+                    default:
+                        return STOCKS_SOUTH_NORTH_BB;
                     case EAST:
                     case WEST:
-                        this.setBlockBounds(0, 0, -0.5F, 1, 2, 1.5F);
-                        break;
+                        return STOCKS_EAST_WEST_BB;
                 }
-                break;
         }
     }
 
-    @Override
-    public void setBlockBoundsForItemRender() {
-        this.setBlockBounds(0, 0, 0, 1, 1, 1);
-    }
+    //TODO ???????
+    //    @Override
+    //    public void setBlockBoundsForItemRender() {
+    //        return ITEM_BB;
+    //    }
 
     @Override
-    public boolean isOpaqueCube() {
+    public boolean isOpaqueCube(IBlockState state) {
         return false;
     }
 
     @Override
-    public boolean isFullCube() {
+    public boolean isFullCube(IBlockState state) {
         return false;
     }
 
     @Override
-    public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumFacing side, float hitX, float hitY, float hitZ) {
+    public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, @Nullable ItemStack heldItem, EnumFacing side, float hitX, float hitY, float hitZ) {
         TileEntityExecution te = (TileEntityExecution) world.getTileEntity(pos);
 
         if (te != null && !player.isSneaking()) {
@@ -148,11 +159,11 @@ public class BlockExecution extends BlockContainer {
     }
 
     @Override
-    public void harvestBlock(World world, EntityPlayer player, BlockPos pos, IBlockState state, TileEntity te) {
+    public void harvestBlock(World world, EntityPlayer player, BlockPos pos, IBlockState state, @Nullable TileEntity te, @Nullable ItemStack stack) {
     }
 
     @Override
-    public ItemStack getPickBlock(MovingObjectPosition target, World world, BlockPos pos, EntityPlayer player) {
+    public ItemStack getPickBlock(IBlockState state, RayTraceResult target, World world, BlockPos pos, EntityPlayer player) {
         ItemStack itemStack = this.createStackedBlock(world.getBlockState(pos));
         TileEntityExecution tileEntity = (TileEntityExecution) world.getTileEntity(pos);
 
@@ -171,20 +182,20 @@ public class BlockExecution extends BlockContainer {
     }
 
     @Override
-    public int getLightValue(IBlockAccess access, BlockPos pos) {
+    public int getLightValue(IBlockState state, IBlockAccess access, BlockPos pos) {
         TileEntityExecution tileEntity = (TileEntityExecution) access.getTileEntity(pos);
 
         if (tileEntity != null && access.getBlockState(pos).getValue(VARIANT) == EnumExecution.BURNING_STAKE &&
                 tileEntity.getCorpseType() != null && tileEntity.getCorpseType().canBeHanged()) {
             return 15;
         } else {
-            return super.getLightValue(access, pos);
+            return super.getLightValue(state, access, pos);
         }
     }
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void randomDisplayTick(World world, BlockPos pos, IBlockState state, Random random) {
+    public void randomDisplayTick(IBlockState state, World world, BlockPos pos, Random random) {
         TileEntityExecution tileEntity = (TileEntityExecution) world.getTileEntity(pos);
         if (tileEntity != null && state.getValue(VARIANT) == EnumExecution.BURNING_STAKE &&
                 tileEntity.getCorpseType() != null && tileEntity.getCorpseType().canBeHanged()) {
@@ -195,7 +206,7 @@ public class BlockExecution extends BlockContainer {
                 xPos = pos.getX() + 0.5 + Math.sin(angle * 0.2792) * 0.75;
                 zPos = pos.getZ() + 0.5 + Math.cos(angle * 0.2792) * 0.75;
 
-                EntityFX entityfx = new EntityBigFlameFX(world, xPos, yPos, zPos);
+                Particle entityfx = new EntityBigFlameFX(world, xPos, yPos, zPos);
                 Minecraft.getMinecraft().effectRenderer.addEffect(entityfx);
             }
 
@@ -204,7 +215,7 @@ public class BlockExecution extends BlockContainer {
                 xPos = pos.getX() + 0.5 + Math.sin(angle * 0.5584) * 0.5;
                 zPos = pos.getZ() + 0.5 + Math.cos(angle * 0.5584) * 0.5;
 
-                EntityFX entityfx = new EntityBigFlameFX(world, xPos, yPos, zPos);
+                Particle entityfx = new EntityBigFlameFX(world, xPos, yPos, zPos);
                 Minecraft.getMinecraft().effectRenderer.addEffect(entityfx);
             }
 
@@ -213,7 +224,7 @@ public class BlockExecution extends BlockContainer {
                 xPos = pos.getX() + 0.5 + Math.sin(angle * 1.1168) * 0.2;
                 zPos = pos.getZ() + 0.5 + Math.cos(angle * 1.1168) * 0.2;
 
-                EntityFX entityfx = new EntityBigFlameFX(world, xPos, yPos, zPos);
+                Particle entityfx = new EntityBigFlameFX(world, xPos, yPos, zPos);
                 Minecraft.getMinecraft().effectRenderer.addEffect(entityfx);
                 world.spawnParticle(EnumParticleTypes.LAVA, xPos, yPos, zPos, 0, 0, 0);
                 world.spawnParticle(EnumParticleTypes.SMOKE_LARGE, xPos, yPos, zPos, 0, 0, 0);
@@ -232,8 +243,8 @@ public class BlockExecution extends BlockContainer {
     }
 
     @Override
-    protected BlockState createBlockState() {
-        return new BlockState(this, new IProperty[]{VARIANT});
+    protected BlockStateContainer createBlockState() {
+        return new BlockStateContainer(this, new IProperty[]{VARIANT});
     }
 
     @Override
@@ -258,7 +269,7 @@ public class BlockExecution extends BlockContainer {
     }
 
     public static void placeWalls(World world, BlockPos pos) {
-        placeAdditionalBlock(world, pos, GSBlock.invisibleWall.getDefaultState(), Blocks.air);
+        placeAdditionalBlock(world, pos, GSBlock.invisibleWall.getDefaultState(), Blocks.AIR);
     }
 
     private static void dropCorpse(World world, BlockPos pos) {
@@ -283,15 +294,15 @@ public class BlockExecution extends BlockContainer {
     }
 
     @Override
-    public boolean removedByPlayer(World world, BlockPos pos, EntityPlayer player, boolean willHarvest) {
+    public boolean removedByPlayer(IBlockState state, World world, BlockPos pos, EntityPlayer player, boolean willHarvest) {
         removeWalls(world, pos);
         dropCorpse(world, pos);
-        return super.removedByPlayer(world, pos, player, willHarvest);
+        return super.removedByPlayer(state, world, pos, player, willHarvest);
     }
 
 
     private static void removeWalls(World world, BlockPos pos) {
-        placeAdditionalBlock(world, pos, Blocks.air.getDefaultState(), GSBlock.invisibleWall);
+        placeAdditionalBlock(world, pos, Blocks.AIR.getDefaultState(), GSBlock.invisibleWall);
     }
 
     public static void placeAdditionalBlock(World world, BlockPos pos, IBlockState blockState, Block replaceableBlock) {

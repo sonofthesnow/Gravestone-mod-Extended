@@ -62,7 +62,7 @@ public class Crossing extends CatacombsBaseComponent {
         this.fillWithAir(world, boundingBox, 1, 1, 1, 11, 4, 11);
 
         // web
-        this.randomlyFillWithBlocks(world, boundingBox, random, WEB_GENERATION_CHANCE, 1, 1, 1, 11, 4, 11, Blocks.web.getDefaultState(), false);
+        this.randomlyFillWithBlocks(world, boundingBox, random, WEB_GENERATION_CHANCE, 1, 1, 1, 11, 4, 11, Blocks.WEB.getDefaultState(), false);
         // piles of bones
         if (ExtendedConfig.generatePilesOfBones) {
             this.fillWithRandomizedPilesOfBones(world, boundingBox, 1, 1, 1, 12, 1, 12, false, random);
@@ -109,7 +109,7 @@ public class Crossing extends CatacombsBaseComponent {
         this.fillWithRandomizedBlocks(world, boundingBox, 9, 5, 9, 11, 5, 11, false, random, stoneBricks);
 
         // cutted stoneBrick floor and ceiling
-        IBlockState chiseledStoneState = Blocks.stonebrick.getDefaultState().withProperty(BlockStoneBrick.VARIANT, BlockStoneBrick.EnumType.CHISELED);
+        IBlockState chiseledStoneState = Blocks.STONEBRICK.getDefaultState().withProperty(BlockStoneBrick.VARIANT, BlockStoneBrick.EnumType.CHISELED);
         this.fillWithBlocks(world, boundingBox, 5, 0, 5, 7, 0, 7, chiseledStoneState);
         this.fillWithBlocks(world, boundingBox, 5, 5, 5, 7, 5, 7, chiseledStoneState);
 
@@ -126,19 +126,19 @@ public class Crossing extends CatacombsBaseComponent {
         this.fillWithRandomizedBlocks(world, boundingBox, 8, 1, 4, 8, 4, 4, false, random, stoneBricks);
 
         // fire
-        this.placeBlockAtCurrentPosition(world, Blocks.netherrack.getDefaultState(), 1, 1, 11, boundingBox);
-        this.placeBlockAtCurrentPosition(world, Blocks.netherrack.getDefaultState(), 1, 1, 1, boundingBox);
-        this.placeBlockAtCurrentPosition(world, Blocks.netherrack.getDefaultState(), 11, 1, 11, boundingBox);
-        this.placeBlockAtCurrentPosition(world, Blocks.netherrack.getDefaultState(), 11, 1, 1, boundingBox);
-        this.placeBlockAtCurrentPosition(world, Blocks.fire.getDefaultState(), 1, 2, 11, boundingBox);
-        this.placeBlockAtCurrentPosition(world, Blocks.fire.getDefaultState(), 1, 2, 1, boundingBox);
-        this.placeBlockAtCurrentPosition(world, Blocks.fire.getDefaultState(), 11, 2, 11, boundingBox);
-        this.placeBlockAtCurrentPosition(world, Blocks.fire.getDefaultState(), 11, 2, 1, boundingBox);
+        this.placeBlockAtCurrentPosition(world, Blocks.NETHERRACK.getDefaultState(), 1, 1, 11, boundingBox);
+        this.placeBlockAtCurrentPosition(world, Blocks.NETHERRACK.getDefaultState(), 1, 1, 1, boundingBox);
+        this.placeBlockAtCurrentPosition(world, Blocks.NETHERRACK.getDefaultState(), 11, 1, 11, boundingBox);
+        this.placeBlockAtCurrentPosition(world, Blocks.NETHERRACK.getDefaultState(), 11, 1, 1, boundingBox);
+        this.placeBlockAtCurrentPosition(world, Blocks.FIRE.getDefaultState(), 1, 2, 11, boundingBox);
+        this.placeBlockAtCurrentPosition(world, Blocks.FIRE.getDefaultState(), 1, 2, 1, boundingBox);
+        this.placeBlockAtCurrentPosition(world, Blocks.FIRE.getDefaultState(), 11, 2, 11, boundingBox);
+        this.placeBlockAtCurrentPosition(world, Blocks.FIRE.getDefaultState(), 11, 2, 1, boundingBox);
 
         // fire stairs
-        IBlockState netherBrickStairsState = Blocks.nether_brick_stairs.getDefaultState();
-        IBlockState netherBrickStairsTopState = netherBrickStairsState.withProperty(BlockStairs.FACING, this.coordBaseMode.getOpposite());
-        IBlockState netherBrickStairsBotState = netherBrickStairsState.withProperty(BlockStairs.FACING, this.coordBaseMode);
+        IBlockState netherBrickStairsState = Blocks.NETHER_BRICK_STAIRS.getDefaultState();
+        IBlockState netherBrickStairsTopState = netherBrickStairsState.withProperty(BlockStairs.FACING, this.getCoordBaseMode().getOpposite());
+        IBlockState netherBrickStairsBotState = netherBrickStairsState.withProperty(BlockStairs.FACING, this.getCoordBaseMode());
         IBlockState netherBrickStairsLeftState = netherBrickStairsState.withProperty(BlockStairs.FACING, this.getLeftDirectionForBlocks());
         IBlockState netherBrickStairsRightState = netherBrickStairsState.withProperty(BlockStairs.FACING, this.getRightDirectionForBlocks());
         this.placeBlockAtCurrentPosition(world, netherBrickStairsTopState, 1, 1, 2, boundingBox);

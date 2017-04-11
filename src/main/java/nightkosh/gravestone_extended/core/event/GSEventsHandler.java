@@ -3,7 +3,7 @@ package nightkosh.gravestone_extended.core.event;
 import net.minecraft.entity.monster.EntityCreeper;
 import net.minecraft.entity.monster.EntitySkeleton;
 import net.minecraft.entity.monster.EntityZombie;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.eventhandler.EventPriority;
@@ -28,21 +28,21 @@ public class GSEventsHandler {
     public void onEntityLivingDeath(LivingDeathEvent event) {
         if (FMLCommonHandler.instance().getEffectiveSide().isServer()) {
             if (ExtendedConfig.spawnSkullCrawlersAtMobsDeath) {
-                if (event.entity instanceof EntitySkeleton) {
+                if (event.getEntity() instanceof EntitySkeleton) {
                     EntitySkullCrawler crawler;
-                    if (MobSpawn.isWitherSkeleton((EntitySkeleton) event.entity)) {
-                        crawler = new EntityWitherSkullCrawler(event.entity.worldObj);
+                    if (MobSpawn.isWitherSkeleton((EntitySkeleton) event.getEntity())) {
+                        crawler = new EntityWitherSkullCrawler(event.getEntity().worldObj);
                     } else {
-                        crawler = new EntitySkullCrawler(event.entity.worldObj);
+                        crawler = new EntitySkullCrawler(event.getEntity().worldObj);
                     }
-                    MobSpawn.spawnCrawler(event.entity, crawler);
-                } else if (event.entity instanceof EntityZombie) {
-                    MobSpawn.spawnCrawler(event.entity, new EntityZombieSkullCrawler(event.entity.worldObj));
+                    MobSpawn.spawnCrawler(event.getEntity(), crawler);
+                } else if (event.getEntity() instanceof EntityZombie) {
+                    MobSpawn.spawnCrawler(event.getEntity(), new EntityZombieSkullCrawler(event.getEntity().worldObj));
                 }
             }
-            if (event.entity instanceof EntityCreeper && ((EntityCreeper) event.entity).getPowered()) {
+            if (event.getEntity() instanceof EntityCreeper && ((EntityCreeper) event.getEntity()).getPowered()) {
                 // drop creeper statue if entity is a charged creeper
-                GSBlock.memorial.dropCreeperMemorial(event.entity.worldObj, new BlockPos(event.entity));
+                GSBlock.memorial.dropCreeperMemorial(event.getEntity().worldObj, new BlockPos(event.getEntity()));
             }
         }
     }

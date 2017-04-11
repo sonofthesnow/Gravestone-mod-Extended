@@ -3,7 +3,7 @@ package nightkosh.gravestone_extended.structures.village.memorial;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.BiomeGenBase;
@@ -32,7 +32,7 @@ public class ComponentVillageMemorial extends StructureVillagePieces.Village imp
 
     public ComponentVillageMemorial(StructureVillagePieces.Start startPiece, int componentType, Random random, StructureBoundingBox structureBoundingBox, EnumFacing direction) {
         super(startPiece, componentType);
-        this.coordBaseMode = direction;
+        this.setCoordBaseMode(direction);
         this.boundingBox = structureBoundingBox;
     }
 
@@ -60,14 +60,14 @@ public class ComponentVillageMemorial extends StructureVillagePieces.Village imp
         IBlockState groundState;
         int biomeId = world.getBiomeGenForCoords(new BlockPos(this.getXWithOffset(0, 0), this.getYWithOffset(0), this.getZWithOffset(0, 0))).biomeID;
         if (biomeId == BiomeGenBase.desert.biomeID || biomeId == BiomeGenBase.desertHills.biomeID) {
-            groundState = Blocks.sand.getDefaultState();
+            groundState = Blocks.SAND.getDefaultState();
         } else {
-            groundState = Blocks.grass.getDefaultState();
+            groundState = Blocks.GRASS.getDefaultState();
         }
 
         this.fillWithBlocks(world, structureBoundingBox, 0, -5, 0, 5, 0, 5, groundState, groundState, false);
 
-        MemorialGenerationHelper.placeMemorial(this, world, random, 2, 1, 2, this.coordBaseMode.getOpposite());
+        MemorialGenerationHelper.placeMemorial(this, world, random, 2, 1, 2, this.getCoordBaseMode().getOpposite());
 
         for (int x = 0; x < 5; x++) {
             for (int z = 0; z < 5; z++) {
@@ -114,7 +114,7 @@ public class ComponentVillageMemorial extends StructureVillagePieces.Village imp
         NBTTagCompound nbttagcompound = new NBTTagCompound();
         nbttagcompound.setString("id", "GSVillageMemorial");
         nbttagcompound.setTag("BB", this.boundingBox.toNBTTagIntArray());
-        nbttagcompound.setInteger("O", this.coordBaseMode == null ? -1 : this.coordBaseMode.getHorizontalIndex());
+        nbttagcompound.setInteger("O", this.getCoordBaseMode() == null ? -1 : this.getCoordBaseMode().getHorizontalIndex());
         nbttagcompound.setInteger("GD", this.componentType);
         this.writeStructureToNBT(nbttagcompound);
         return nbttagcompound;

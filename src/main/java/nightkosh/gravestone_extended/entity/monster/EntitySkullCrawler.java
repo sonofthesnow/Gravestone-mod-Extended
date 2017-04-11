@@ -1,9 +1,5 @@
 package nightkosh.gravestone_extended.entity.monster;
 
-import nightkosh.gravestone_extended.core.GSBlock;
-import nightkosh.gravestone_extended.entity.ai.AIHideInBones;
-import nightkosh.gravestone_extended.entity.ai.AIHideInPilesOfBones;
-import nightkosh.gravestone_extended.entity.ai.AISummonSkullCrawler;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.EnumCreatureAttribute;
@@ -19,8 +15,15 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
-import net.minecraft.util.*;
+import net.minecraft.util.DamageSource;
+import net.minecraft.util.EntityDamageSource;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
+import nightkosh.gravestone_extended.core.GSBlock;
+import nightkosh.gravestone_extended.entity.ai.AIHideInBones;
+import nightkosh.gravestone_extended.entity.ai.AIHideInPilesOfBones;
+import nightkosh.gravestone_extended.entity.ai.AISummonSkullCrawler;
 
 /**
  * GraveStone mod
@@ -153,11 +156,11 @@ public class EntitySkullCrawler extends EntityMob {
      */
     @Override
     protected Item getDropItem() {
-        return Items.bone;
+        return Items.BONE;
     }
 
     protected ItemStack getRareDrop() {
-        return new ItemStack(Items.skull, 1, 0);
+        return new ItemStack(Items.SKULL, 1, 0);
     }
 
     @Override

@@ -1,30 +1,32 @@
 package nightkosh.gravestone_extended.block;
 
-import nightkosh.gravestone_extended.block.enums.EnumSkullCandle;
-import nightkosh.gravestone_extended.core.Tabs;
-import nightkosh.gravestone_extended.core.TimeHelper;
-import nightkosh.gravestone_extended.particle.EntityGreenFlameFX;
-import nightkosh.gravestone_extended.tileentity.TileEntitySkullCandle;
-import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
+import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyEnum;
-import net.minecraft.block.state.BlockState;
+import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.particle.EntityFX;
+import net.minecraft.client.particle.Particle;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.BlockPos;
 import net.minecraft.util.EnumParticleTypes;
-import net.minecraft.util.MathHelper;
+import net.minecraft.util.math.AxisAlignedBB;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.MathHelper;
+import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import nightkosh.gravestone_extended.block.enums.EnumSkullCandle;
+import nightkosh.gravestone_extended.core.Tabs;
+import nightkosh.gravestone_extended.core.TimeHelper;
+import nightkosh.gravestone_extended.particle.EntityGreenFlameFX;
+import nightkosh.gravestone_extended.tileentity.TileEntitySkullCandle;
 
 import java.util.List;
 import java.util.Random;
@@ -40,13 +42,12 @@ public class BlockSkullCandle extends BlockContainer {
     public static final PropertyEnum VARIANT = PropertyEnum.create("variant", EnumSkullCandle.class);
 
     public BlockSkullCandle() {
-        super(Material.circuits);
-        this.setStepSound(Block.soundTypeStone);
+        super(Material.CIRCUITS);
+        this.setSoundType(SoundType.STONE);
         this.setHardness(0.5F);
         this.setResistance(5);
         this.setLightLevel(1);
         this.setCreativeTab(Tabs.otherItemsTab);
-        this.setBlockBounds(0.25F, 0, 0.25F, 0.75F, 0.5F, 0.75F);
     }
 
     /**
@@ -55,13 +56,20 @@ public class BlockSkullCandle extends BlockContainer {
      * the player can attach torches, redstone wire, etc to this block.
      */
     @Override
-    public boolean isOpaqueCube() {
+    public boolean isOpaqueCube(IBlockState state) {
         return false;
     }
 
     @Override
-    public boolean isFullCube() {
+    public boolean isFullCube(IBlockState state) {
         return false;
+    }
+
+    private static final AxisAlignedBB BB = new AxisAlignedBB(0.25F, 0, 0.25F, 0.75F, 0.5F, 0.75F);
+
+    @Override
+    public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess access, BlockPos pos) {
+        return BB;
     }
 
     /**
@@ -89,8 +97,8 @@ public class BlockSkullCandle extends BlockContainer {
     }
 
     @Override
-    protected BlockState createBlockState() {
-        return new BlockState(this, new IProperty[]{VARIANT});
+    protected BlockStateContainer createBlockState() {
+        return new BlockStateContainer(this, new IProperty[]{VARIANT});
     }
 
     /**
@@ -128,7 +136,7 @@ public class BlockSkullCandle extends BlockContainer {
      */
     @Override
     @SideOnly(Side.CLIENT)
-    public void randomDisplayTick(World world, BlockPos pos, IBlockState state, Random random) {
+    public void randomDisplayTick(IBlockState state, World world, BlockPos pos, Random random) {
         TileEntitySkullCandle tileEntity = (TileEntitySkullCandle) world.getTileEntity(pos);
         if (tileEntity != null) {
             double xPos = pos.getX() + 0.5F;
@@ -143,7 +151,7 @@ public class BlockSkullCandle extends BlockContainer {
             if (dayTime < TimeHelper.SUN_SET || dayTime > TimeHelper.SUN_RISING) {
                 world.spawnParticle(EnumParticleTypes.FLAME, xPos + dx, yPos, zPos + dz, 0, 0, 0);
             } else {
-                EntityFX entityfx = new EntityGreenFlameFX(world, xPos + dx, yPos, zPos + dz, 0, 0, 0);
+                Particle entityfx = new EntityGreenFlameFX(world, xPos + dx, yPos, zPos + dz, 0, 0, 0);
                 Minecraft.getMinecraft().effectRenderer.addEffect(entityfx);
             }
 

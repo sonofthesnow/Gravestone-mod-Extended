@@ -2,10 +2,11 @@ package nightkosh.gravestone_extended.core.commands;
 
 import net.minecraft.command.CommandException;
 import net.minecraft.command.ICommandSender;
-import net.minecraft.util.ChatComponentTranslation;
-import net.minecraft.util.ChatStyle;
-import net.minecraft.util.EnumChatFormatting;
+import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.text.Style;
+import net.minecraft.util.text.TextComponentTranslation;
+import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 import nightkosh.gravestone.core.commands.Command;
 import nightkosh.gravestone.core.commands.ISubCommand;
@@ -40,7 +41,8 @@ public class SubCommandStructuresGenerator implements ISubCommand {
         return COMMAND_USAGE;
     }
 
-    public void execute(ICommandSender sender, String[] args) throws CommandException {
+    @Override
+    public void execute(MinecraftServer minecraftServer, ICommandSender sender, String[] args) throws CommandException {
         GSLogger.logInfo("Structure generation command received");
 
         if (args.length >= 2) {
@@ -56,14 +58,14 @@ public class SubCommandStructuresGenerator implements ISubCommand {
                         if (args.length >= 5) {
                             facing = EnumFacing.byName(args[4]);
                             if (facing == null) {
-                                sender.addChatMessage(new ChatComponentTranslation("commands.direction_error").setChatStyle(new ChatStyle().setColor(EnumChatFormatting.RED)));
+                                sender.addChatMessage(new TextComponentTranslation("commands.direction_error").setStyle(new Style().setColor(TextFormatting.RED)));
                                 return;
                             }
                         }
                     }
                 }
             } catch (NumberFormatException e) {
-                sender.addChatMessage(new ChatComponentTranslation("commands.coordinate_error").setChatStyle(new ChatStyle().setColor(EnumChatFormatting.RED)));
+                sender.addChatMessage(new TextComponentTranslation("commands.coordinate_error").setStyle(new Style().setColor(TextFormatting.RED)));
                 return;
             }
 
@@ -87,11 +89,11 @@ public class SubCommandStructuresGenerator implements ISubCommand {
                     generateStructure(sender, sender.getEntityWorld(), x, z, facing, VillageUndertakerGenerator.getInstance());
                     break;
                 default:
-                    sender.addChatMessage(new ChatComponentTranslation("commands.generate.unknown_structure").setChatStyle(new ChatStyle().setColor(EnumChatFormatting.RED)));
+                    sender.addChatMessage(new TextComponentTranslation("commands.generate.unknown_structure").setStyle(new Style().setColor(TextFormatting.RED)));
                     break;
             }
         } else {
-            sender.addChatMessage(new ChatComponentTranslation("commands.not_enough_parameters").setChatStyle(new ChatStyle().setColor(EnumChatFormatting.RED)));
+            sender.addChatMessage(new TextComponentTranslation("commands.not_enough_parameters").setStyle(new Style().setColor(TextFormatting.RED)));
         }
 
     }

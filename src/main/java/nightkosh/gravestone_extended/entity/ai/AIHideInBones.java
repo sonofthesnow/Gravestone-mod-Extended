@@ -5,7 +5,7 @@ import nightkosh.gravestone_extended.core.GSBlock;
 import nightkosh.gravestone_extended.entity.monster.EntitySkullCrawler;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.ai.EntityAIWander;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.world.World;
 

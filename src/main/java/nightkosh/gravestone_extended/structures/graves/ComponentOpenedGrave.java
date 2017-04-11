@@ -1,6 +1,6 @@
 package nightkosh.gravestone_extended.structures.graves;
 
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.world.World;
 import nightkosh.gravestone.block.BlockGraveStone;
@@ -39,13 +39,13 @@ public class ComponentOpenedGrave extends ComponentGraveStone {
             GSLogger.logInfo("Generate opened grave at " + gravePositionX + "x" + gravePositionZ);
 
             GraveGenerationHelper.placeGrave(this, world, random, 0, y, 2,
-                    GSBlock.graveStone.getDefaultState().withProperty(BlockGraveStone.FACING, this.coordBaseMode.getOpposite()),
+                    GSBlock.graveStone.getDefaultState().withProperty(BlockGraveStone.FACING, this.getCoordBaseMode().getOpposite()),
                     null, EnumGraveTypeByEntity.HUMAN_GRAVES, GraveInventoryHelper.GraveContentType.RANDOM);
                     //, GraveInventory.GraveCorpseContentType.EMPTY); TODO
 
             this.fillWithAir(world, this.boundingBox, 0, y - 1, 0, 0, y + 1, 1);
-            ObjectsGenerationHelper.generatePileOfBones(this, world, 0, y - 2, 0, this.coordBaseMode, EnumPileOfBones.PILE_OF_BONES);
-            ObjectsGenerationHelper.generatePileOfBones(this, world, 0, y - 2, 1, this.coordBaseMode, EnumPileOfBones.PILE_OF_BONES_WITH_SKULL);
+            ObjectsGenerationHelper.generatePileOfBones(this, world, 0, y - 2, 0, this.getCoordBaseMode(), EnumPileOfBones.PILE_OF_BONES);
+            ObjectsGenerationHelper.generatePileOfBones(this, world, 0, y - 2, 1, this.getCoordBaseMode(), EnumPileOfBones.PILE_OF_BONES_WITH_SKULL);
         }
 
         return true;

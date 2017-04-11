@@ -2,7 +2,7 @@ package nightkosh.gravestone_extended.entity.ai;
 
 import net.minecraft.block.Block;
 import net.minecraft.entity.EntityLiving;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.EnumDifficulty;
 
 /**
@@ -67,8 +67,8 @@ public class EntityAIBreakBlock extends EntityAIBlockInteract {
             //TODO
 //            this.targetBlock.dropBlockAsItem(this.theEntity.worldObj, pos, 0, 0);
             this.theEntity.worldObj.setBlockToAir(pos);
-            this.theEntity.worldObj.playAuxSFX(1012, pos, 0);
-            this.theEntity.worldObj.playAuxSFX(2001, pos, 0);
+//            this.theEntity.worldObj.playAuxSFX(1012, pos, 0);
+//            this.theEntity.worldObj.playAuxSFX(2001, pos, 0);
         }
     }
 }

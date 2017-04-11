@@ -1,7 +1,7 @@
 package nightkosh.gravestone_extended.models.block.memorials;
 
 import net.minecraft.client.model.ModelRenderer;
-import net.minecraft.util.MathHelper;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;

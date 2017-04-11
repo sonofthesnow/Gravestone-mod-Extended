@@ -3,9 +3,8 @@ package nightkosh.gravestone_extended.structures.graves;
 import nightkosh.gravestone_extended.config.ExtendedConfig;
 import nightkosh.gravestone_extended.structures.GSStructureGenerator;
 import nightkosh.gravestone_extended.structures.catacombs.CatacombsGenerator;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.EnumFacing;
-import net.minecraft.world.ChunkCoordIntPair;
 import net.minecraft.world.World;
 import net.minecraftforge.common.BiomeDictionary;
 

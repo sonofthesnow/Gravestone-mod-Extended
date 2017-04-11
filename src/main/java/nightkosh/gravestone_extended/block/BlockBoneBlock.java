@@ -1,22 +1,23 @@
 package nightkosh.gravestone_extended.block;
 
+import net.minecraft.block.SoundType;
+import net.minecraft.block.material.Material;
+import net.minecraft.block.properties.IProperty;
+import net.minecraft.block.properties.PropertyEnum;
+import net.minecraft.block.state.BlockStateContainer;
+import net.minecraft.block.state.IBlockState;
+import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import nightkosh.gravestone_extended.block.enums.EnumBoneBlock;
 import nightkosh.gravestone_extended.config.ExtendedConfig;
 import nightkosh.gravestone_extended.core.GSBlock;
 import nightkosh.gravestone_extended.core.Tabs;
 import nightkosh.gravestone_extended.entity.monster.EntitySkullCrawler;
-import net.minecraft.block.material.Material;
-import net.minecraft.block.properties.IProperty;
-import net.minecraft.block.properties.PropertyEnum;
-import net.minecraft.block.state.BlockState;
-import net.minecraft.block.state.IBlockState;
-import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.BlockPos;
-import net.minecraft.world.World;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 
 import java.util.List;
 
@@ -31,8 +32,8 @@ public class BlockBoneBlock extends net.minecraft.block.Block {
     public static final PropertyEnum VARIANT = PropertyEnum.create("variant", EnumBoneBlock.class);
 
     public BlockBoneBlock() {
-        super(Material.rock);
-        this.setStepSound(net.minecraft.block.Block.soundTypeStone);
+        super(Material.ROCK);
+        this.setSoundType(SoundType.STONE);
         this.setHardness(2);
         this.setResistance(2);
         this.setCreativeTab(Tabs.otherItemsTab);
@@ -73,8 +74,8 @@ public class BlockBoneBlock extends net.minecraft.block.Block {
     }
 
     @Override
-    protected BlockState createBlockState() {
-        return new BlockState(this, new IProperty[]{VARIANT});
+    protected BlockStateContainer createBlockState() {
+        return new BlockStateContainer(this, new IProperty[]{VARIANT});
     }
 
     public boolean isSkullCrawlerBlock(IBlockState state) {

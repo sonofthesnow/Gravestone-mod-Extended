@@ -1,25 +1,29 @@
 package nightkosh.gravestone_extended.block;
 
-import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
+import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyDirection;
-import net.minecraft.block.state.BlockState;
+import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
+import net.minecraft.init.Enchantments;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.EnumBlockRenderType;
 import net.minecraft.util.EnumFacing;
-import net.minecraft.util.MathHelper;
-import net.minecraft.util.MovingObjectPosition;
+import net.minecraft.util.EnumHand;
+import net.minecraft.util.math.AxisAlignedBB;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.FakePlayer;
@@ -30,6 +34,7 @@ import nightkosh.gravestone_extended.block.enums.EnumHauntedChest;
 import nightkosh.gravestone_extended.core.Tabs;
 import nightkosh.gravestone_extended.tileentity.TileEntityHauntedChest;
 
+import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -45,8 +50,8 @@ public class BlockHauntedChest extends BlockContainer {
     public static final PropertyDirection FACING = PropertyDirection.create("facing", EnumFacing.Plane.HORIZONTAL);
 
     public BlockHauntedChest() {
-        super(Material.wood);
-        this.setStepSound(Block.soundTypeWood);
+        super(Material.WOOD);
+        this.setSoundType(SoundType.STONE);
         this.setHardness(2.5F);
         this.setCreativeTab(Tabs.otherItemsTab);
         this.setHarvestLevel("axe", 0);
@@ -58,12 +63,12 @@ public class BlockHauntedChest extends BlockContainer {
      * the player can attach torches, redstone wire, etc to this block.
      */
     @Override
-    public boolean isOpaqueCube() {
+    public boolean isOpaqueCube(IBlockState state) {
         return false;
     }
 
     @Override
-    public boolean isFullCube() {
+    public boolean isFullCube(IBlockState state) {
         return false;
     }
 
@@ -71,16 +76,15 @@ public class BlockHauntedChest extends BlockContainer {
      * The type of render function that is called for this block
      */
     @Override
-    public int getRenderType() {
-        return 2;
+    public EnumBlockRenderType getRenderType(IBlockState state) {
+        return EnumBlockRenderType.ENTITYBLOCK_ANIMATED;
     }
 
-    /**
-     * Updates the blocks bounds based on its current state. Args: world, x, y, z
-     */
+    private static final AxisAlignedBB BB = new AxisAlignedBB(0.0625F, 0, 0.0625F, 0.9375F, 0.875F, 0.9375F);
+
     @Override
-    public void setBlockBoundsBasedOnState(IBlockAccess access, BlockPos pos) {
-        this.setBlockBounds(0.0625F, 0, 0.0625F, 0.9375F, 0.875F, 0.9375F);
+    public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess access, BlockPos pos) {
+        return BB;
     }
 
     /**
@@ -112,7 +116,7 @@ public class BlockHauntedChest extends BlockContainer {
      * Called upon block activation (right click on the block.)
      */
     @Override
-    public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumFacing side, float hitX, float hitY, float hitZ) {
+    public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, @Nullable ItemStack heldItem, EnumFacing side, float hitX, float hitY, float hitZ) {
         if (player instanceof FakePlayer) {
             return false;
         } else {
@@ -152,7 +156,7 @@ public class BlockHauntedChest extends BlockContainer {
      * Called when the player destroys a block with an item that can harvest it.
      */
     @Override
-    public void harvestBlock(World world, EntityPlayer player, BlockPos pos, IBlockState state, TileEntity te) {
+    public void harvestBlock(World world, EntityPlayer player, BlockPos pos, IBlockState state, @Nullable TileEntity te, @Nullable ItemStack stack) {
     }
 
     /**
@@ -162,10 +166,10 @@ public class BlockHauntedChest extends BlockContainer {
     public void onBlockHarvested(World world, BlockPos pos, IBlockState state, EntityPlayer player) {
         player.addExhaustion(0.025F);
         ItemStack itemStack;
-        if (EnchantmentHelper.getSilkTouchModifier(player)) {
+        if (EnchantmentHelper.getEnchantmentLevel(Enchantments.SILK_TOUCH, player.getHeldItemMainhand()) > 0) {
             itemStack = getBlockItemStack(world, pos, state);
         } else {
-            itemStack = new ItemStack(Blocks.chest, 1, 0);
+            itemStack = new ItemStack(Blocks.CHEST, 1, 0);
         }
 
         if (itemStack != null) {
@@ -178,8 +182,8 @@ public class BlockHauntedChest extends BlockContainer {
      */
     @Override
     public List<ItemStack> getDrops(IBlockAccess access, BlockPos pos, IBlockState state, int fortune) {
-        List<ItemStack> ret = new ArrayList<ItemStack>();
-        ret.add(new ItemStack(Blocks.chest, 1, 0));
+        List<ItemStack> ret = new ArrayList<>();
+        ret.add(new ItemStack(Blocks.CHEST, 1, 0));
 
         return ret;
     }
@@ -202,7 +206,7 @@ public class BlockHauntedChest extends BlockContainer {
     }
 
     @Override
-    public ItemStack getPickBlock(MovingObjectPosition target, World world, BlockPos pos) {
+    public ItemStack getPickBlock(IBlockState state, RayTraceResult target, World world, BlockPos pos, EntityPlayer player) {
         return getBlockItemStack(world, pos, world.getBlockState(pos));
     }
 
@@ -239,7 +243,7 @@ public class BlockHauntedChest extends BlockContainer {
     }
 
     @Override
-    protected BlockState createBlockState() {
-        return new BlockState(this, new IProperty[]{FACING});
+    protected BlockStateContainer createBlockState() {
+        return new BlockStateContainer(this, new IProperty[]{FACING});
     }
 }

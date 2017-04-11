@@ -20,7 +20,7 @@ public class ComponentGraveStone extends StructureComponent implements IComponen
 
     protected ComponentGraveStone(int componentType, EnumFacing facing) {
         super(componentType);
-        this.coordBaseMode = facing;
+        this.setCoordBaseMode(facing);
     }
 
     /**

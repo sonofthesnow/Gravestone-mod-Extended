@@ -2,23 +2,31 @@ package nightkosh.gravestone_extended.block;
 
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.BlockVine;
+import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyDirection;
-import net.minecraft.block.state.BlockState;
+import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
+import net.minecraft.init.Enchantments;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemShears;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTUtil;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.*;
+import net.minecraft.util.EnumFacing;
+import net.minecraft.util.EnumHand;
+import net.minecraft.util.math.AxisAlignedBB;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.math.RayTraceResult;
+import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.world.Explosion;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
@@ -32,6 +40,7 @@ import nightkosh.gravestone_extended.core.Tabs;
 import nightkosh.gravestone_extended.structures.MemorialGenerationHelper;
 import nightkosh.gravestone_extended.tileentity.TileEntityMemorial;
 
+import javax.annotation.Nullable;
 import java.util.List;
 
 /**
@@ -209,9 +218,9 @@ public class BlockMemorial extends BlockContainer {
     };
 
     public BlockMemorial() {
-        super(Material.rock);
+        super(Material.ROCK);
         this.isBlockContainer = true;
-        this.setStepSound(net.minecraft.block.Block.soundTypeStone);
+        this.setSoundType(SoundType.STONE);
         this.setHardness(1);
         this.setResistance(5);
         this.setCreativeTab(Tabs.memorialsTab);
@@ -288,7 +297,7 @@ public class BlockMemorial extends BlockContainer {
                 for (byte shiftZ = startZ; shiftZ < maxZ; shiftZ++) {
                     for (byte shiftX = startX; shiftX < maxX; shiftX++) {
                         BlockPos newPos = new BlockPos(pos.getX() + shiftX, pos.getY() + shiftY, pos.getZ() + shiftZ);
-                        if (world.getBlockState(newPos).getBlock() == Blocks.air) {
+                        if (world.getBlockState(newPos).getBlock() == Blocks.AIR) {
                             world.setBlockState(newPos, GSBlock.invisibleWall.getDefaultState());
                         }
                     }
@@ -304,9 +313,9 @@ public class BlockMemorial extends BlockContainer {
     }
 
     @Override
-    public boolean removedByPlayer(World world, BlockPos pos, EntityPlayer player, boolean willHarvest) {
+    public boolean removedByPlayer(IBlockState state, World world, BlockPos pos, EntityPlayer player, boolean willHarvest) {
         removeWalls(world, pos);
-        return super.removedByPlayer(world, pos, player, willHarvest);
+        return super.removedByPlayer(state, world, pos, player, willHarvest);
     }
 
     private static void removeWalls(World world, BlockPos pos) {
@@ -347,7 +356,7 @@ public class BlockMemorial extends BlockContainer {
                     for (byte shiftX = startX; shiftX < maxX; shiftX++) {
                         BlockPos newPos = new BlockPos(pos.getX() + shiftX, pos.getY() + shiftY, pos.getZ() + shiftZ);
                         if (world.getBlockState(newPos).getBlock() == GSBlock.invisibleWall) {
-                            world.setBlockState(new BlockPos(pos.getX() + shiftX, pos.getY() + shiftY, pos.getZ() + shiftZ), Blocks.air.getDefaultState());
+                            world.setBlockState(new BlockPos(pos.getX() + shiftX, pos.getY() + shiftY, pos.getZ() + shiftZ), Blocks.AIR.getDefaultState());
                         }
                     }
                 }
@@ -355,8 +364,14 @@ public class BlockMemorial extends BlockContainer {
         }
     }
 
+    private static final AxisAlignedBB CROSS_BB = new AxisAlignedBB(-1, 0, -1, 2, 5, 2);
+    private static final AxisAlignedBB STEVE_BB = new AxisAlignedBB(0.125F, 0, 0.125F, 0.875F, 3F, 0.875F);
+    private static final AxisAlignedBB PET_BB = new AxisAlignedBB(0.125F, 0, 0.125F, 0.875F, 2, 0.875F);
+    private static final AxisAlignedBB CREEPER_BB = new AxisAlignedBB(0.125F, 0, 0.125F, 0.875F, 2.5F, 0.875F);
+    private static final AxisAlignedBB ITEM_BB = new AxisAlignedBB(0, 0, 0, 1, 1, 2);
+
     @Override
-    public void setBlockBoundsBasedOnState(IBlockAccess access, BlockPos pos) {
+    public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess access, BlockPos pos) {
         EnumMemorials.EnumMemorialType memorialType;
         TileEntityMemorial tileEntity = (TileEntityMemorial) access.getTileEntity(pos);
 
@@ -369,41 +384,39 @@ public class BlockMemorial extends BlockContainer {
         switch (memorialType) {
             case CROSS:
             case OBELISK:
-                this.setBlockBounds(-1, 0, -1, 2, 5, 2);
-                break;
+            default:
+                return CROSS_BB;
             case CELTIC_CROSS:
             case STEVE_STATUE:
             case VILLAGER_STATUE:
             case ANGEL_STATUE:
-                this.setBlockBounds(0.125F, 0, 0.125F, 0.875F, 3F, 0.875F);
-                break;
+                return STEVE_BB;
             case DOG_STATUE:
             case CAT_STATUE:
-                this.setBlockBounds(0.125F, 0, 0.125F, 0.875F, 2, 0.875F);
-                break;
+                return PET_BB;
             case CREEPER_STATUE:
-                this.setBlockBounds(0.125F, 0, 0.125F, 0.875F, 2.5F, 0.875F);
-                break;
+                return CREEPER_BB;
         }
     }
 
-    @Override
-    public void setBlockBoundsForItemRender() {
-        this.setBlockBounds(0, 0, 0, 1, 1, 2);
-    }
+//TODO ????????
+//    @Override
+//    public AxisAlignedBB setBlockBoundsForItemRender() {
+//        return ITEM_BB;
+//    }
 
     @Override
-    public boolean isOpaqueCube() {
+    public boolean isOpaqueCube(IBlockState state) {
         return false;
     }
 
     @Override
-    public boolean isFullCube() {
+    public boolean isFullCube(IBlockState state) {
         return false;
     }
 
     @Override
-    public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumFacing side, float hitX, float hitY, float hitZ) {
+    public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, @Nullable ItemStack heldItem, EnumFacing side, float hitX, float hitY, float hitZ) {
         TileEntityMemorial te = (TileEntityMemorial) world.getTileEntity(pos);
 
         if (te != null) {
@@ -412,7 +425,7 @@ public class BlockMemorial extends BlockContainer {
                 if (te.isMossy()) {
                     if (item.getItem() instanceof ItemShears) {
                         if (!world.isRemote) {
-                            GraveInventory.dropItem(new ItemStack(Blocks.vine, 1), world, pos);
+                            GraveInventory.dropItem(new ItemStack(Blocks.VINE, 1), world, pos);
                         }
                         te.setMossy(false);
                         return false;
@@ -438,14 +451,14 @@ public class BlockMemorial extends BlockContainer {
                             killerName = ModGravestoneExtended.proxy.getLocalizedEntityName(te.getDeathTextComponent().getKillerName());
 
                             if (killerName.length() == 0) {
-                                player.addChatComponentMessage(new ChatComponentTranslation(deathText, new Object[]{name}));
+                                player.addChatComponentMessage(new TextComponentTranslation(deathText, new Object[]{name}));
                             } else {
-                                player.addChatComponentMessage(new ChatComponentTranslation(deathText, new Object[]{name, killerName}));
+                                player.addChatComponentMessage(new TextComponentTranslation(deathText, new Object[]{name, killerName}));
                             }
                             return false;
                         }
                     }
-                    player.addChatComponentMessage(new ChatComponentTranslation(deathText));
+                    player.addChatComponentMessage(new TextComponentTranslation(deathText));
                 }
             }
         }
@@ -475,7 +488,7 @@ public class BlockMemorial extends BlockContainer {
         player.addExhaustion(0.025F);
 
         ItemStack itemStack;
-        if (EnchantmentHelper.getSilkTouchModifier(player)) {
+        if (EnchantmentHelper.getEnchantmentLevel(Enchantments.SILK_TOUCH, player.getHeldItemMainhand()) > 0) {
             itemStack = getBlockItemStack(world, pos);
         } else {
             itemStack = getBlockItemStackWithoutInfo(world, pos);
@@ -536,7 +549,7 @@ public class BlockMemorial extends BlockContainer {
      * Called when the player destroys a block with an item that can harvest it.
      */
     @Override
-    public void harvestBlock(World world, EntityPlayer player, BlockPos pos, IBlockState state, TileEntity te) {
+    public void harvestBlock(World world, EntityPlayer player, BlockPos pos, IBlockState state, @Nullable TileEntity te, @Nullable ItemStack stack) {
     }
 
     /*
@@ -548,7 +561,7 @@ public class BlockMemorial extends BlockContainer {
     }
 
     @Override
-    public ItemStack getPickBlock(MovingObjectPosition target, World world, BlockPos pos, EntityPlayer player) {
+    public ItemStack getPickBlock(IBlockState state, RayTraceResult target, World world, BlockPos pos, EntityPlayer player) {
         ItemStack itemStack = this.createStackedBlock(this.getDefaultState());
         TileEntityMemorial tileEntity = (TileEntityMemorial) world.getTileEntity(pos);
 
@@ -584,7 +597,7 @@ public class BlockMemorial extends BlockContainer {
     }
 
     @Override
-    protected BlockState createBlockState() {
-        return new BlockState(this, new IProperty[]{FACING});
+    protected BlockStateContainer createBlockState() {
+        return new BlockStateContainer(this, new IProperty[]{FACING});
     }
 }

@@ -1,6 +1,6 @@
 package nightkosh.gravestone_extended.structures.catacombs;
 
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.village.Village;
 import net.minecraft.world.ChunkCoordIntPair;

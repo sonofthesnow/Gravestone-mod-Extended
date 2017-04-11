@@ -71,10 +71,10 @@ public class GravestoneRecipe {
     public List<ItemStack> getRequiredItems(boolean isEnchanted, boolean isMossy) {
         List<ItemStack> items = this.getRequiredItems();
         if (isEnchanted) {
-            items.add(new ItemStack(Items.enchanted_book, 1));
+            items.add(new ItemStack(Items.ENCHANTED_BOOK, 1));
         }
         if (isMossy) {
-            items.add(new ItemStack(Blocks.vine, 1));
+            items.add(new ItemStack(Blocks.VINE, 1));
         }
         return items;
     }

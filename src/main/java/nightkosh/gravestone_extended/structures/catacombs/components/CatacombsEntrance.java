@@ -63,8 +63,8 @@ public class CatacombsEntrance extends CatacombsBaseComponent {
     public boolean addComponentParts(World world, Random random) {
         BlockSelector stoneBricks = getCemeteryCatacombsStones();
         int top = boundingBox.maxY - boundingBox.minY - 1;
-        IBlockState netherBrickStairsBotState = Blocks.nether_brick_stairs.getDefaultState().withProperty(BlockStairs.FACING, this.coordBaseMode.getOpposite());
-        IBlockState stairsTopState = Blocks.stone_brick_stairs.getDefaultState().withProperty(BlockStairs.FACING, this.coordBaseMode)
+        IBlockState netherBrickStairsBotState = Blocks.NETHER_BRICK_STAIRS.getDefaultState().withProperty(BlockStairs.FACING, this.getCoordBaseMode().getOpposite());
+        IBlockState stairsTopState = Blocks.STONE_BRICK_STAIRS.getDefaultState().withProperty(BlockStairs.FACING, this.getCoordBaseMode())
                 .withProperty(BlockStairs.HALF, BlockStairs.EnumHalf.TOP);
         int shiftY = top;
         int shiftZ = 0;
@@ -120,7 +120,7 @@ public class CatacombsEntrance extends CatacombsBaseComponent {
             this.fillWithRandomizedBlocks(world, boundingBox, 3, shiftY - 3, shiftZ + 1, 3, shiftY - 1, shiftZ + 2, false, random, stoneBricks);
 
             // web
-            this.randomlyFillWithBlocks(world, boundingBox, random, this.WEB_GENERATION_CHANCE, 1, shiftY - 3, shiftZ, 2, shiftY - 1, shiftZ + 2, Blocks.web.getDefaultState(), false);
+            this.randomlyFillWithBlocks(world, boundingBox, random, this.WEB_GENERATION_CHANCE, 1, shiftY - 3, shiftZ, 2, shiftY - 1, shiftZ + 2, Blocks.WEB.getDefaultState(), false);
             shiftZ += 3;
         }
 

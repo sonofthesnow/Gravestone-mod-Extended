@@ -22,9 +22,9 @@ import nightkosh.gravestone_extended.structures.village.undertaker.VillageHandle
 public class Structures {
 
     public static final Block[] VALUABLE_BLOCKS = {
-            Blocks.gold_block, Blocks.lapis_block, Blocks.redstone_block,
-            Blocks.gold_block, Blocks.lapis_block, Blocks.redstone_block,
-            Blocks.diamond_block, Blocks.emerald_block
+            Blocks.GOLD_BLOCK, Blocks.LAPIS_BLOCK, Blocks.REDSTONE_BLOCK,
+            Blocks.GOLD_BLOCK, Blocks.LAPIS_BLOCK, Blocks.REDSTONE_BLOCK,
+            Blocks.DIAMOND_BLOCK, Blocks.EMERALD_BLOCK
     };
     private static Structures instance;
 

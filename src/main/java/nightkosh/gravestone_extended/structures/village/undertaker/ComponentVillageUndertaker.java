@@ -6,9 +6,9 @@ import net.minecraft.entity.item.EntityPainting;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.EnumDyeColor;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.util.AxisAlignedBB;
-import net.minecraft.util.BlockPos;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.math.AxisAlignedBB;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraft.world.gen.structure.StructureBoundingBox;
@@ -51,7 +51,7 @@ public class ComponentVillageUndertaker extends StructureVillagePieces.Village i
 
     public ComponentVillageUndertaker(StructureVillagePieces.Start startPiece, int componentType, Random random, StructureBoundingBox structureBoundingBox, EnumFacing direction) {
         super(startPiece, componentType);
-        this.coordBaseMode = direction;
+        this.setCoordBaseMode(direction);
         this.boundingBox = structureBoundingBox;
 
         if (ExtendedConfig.generateCemeteries) {
@@ -85,27 +85,27 @@ public class ComponentVillageUndertaker extends StructureVillagePieces.Village i
 
         IBlockState groundState;
         IBlockState fenceState;
-        IBlockState gateState = Blocks.dark_oak_fence_gate.getDefaultState().withProperty(BlockFenceGate.FACING, this.coordBaseMode);
+        IBlockState gateState = Blocks.DARK_OAK_FENCE_GATE.getDefaultState().withProperty(BlockFenceGate.FACING, this.getCoordBaseMode());
 
         int biomeId = world.getBiomeGenForCoords(new BlockPos(this.getXWithOffset(0, 0), this.getYWithOffset(0), this.getZWithOffset(0, 0))).biomeID;
         if (biomeId == BiomeGenBase.desert.biomeID || biomeId == BiomeGenBase.desertHills.biomeID) {
-            groundState = Blocks.sand.getDefaultState();
-            fenceState = Blocks.cobblestone_wall.getStateFromMeta(BlockWall.EnumType.NORMAL.getMetadata());
+            groundState = Blocks.SAND.getDefaultState();
+            fenceState = Blocks.COBBLESTONE_WALL.getStateFromMeta(BlockWall.EnumType.NORMAL.getMetadata());
         } else {
-            groundState = Blocks.grass.getDefaultState();
-            fenceState = Blocks.cobblestone_wall.getStateFromMeta(BlockWall.EnumType.MOSSY.getMetadata());
+            groundState = Blocks.GRASS.getDefaultState();
+            fenceState = Blocks.COBBLESTONE_WALL.getStateFromMeta(BlockWall.EnumType.MOSSY.getMetadata());
         }
 
         if (isCemetery) {
             generateCemetery(world, random, boundingBox, 0, 0, isCemetery, groundState, fenceState, gateState);
         } else {
-            fenceState = Blocks.dark_oak_fence.getDefaultState();
+            fenceState = Blocks.DARK_OAK_FENCE.getDefaultState();
 
             this.fillWithAir(world, boundingBox, 0, 1, 0, X_LENGTH, HEIGHT, HOUSE_WIDTH);
 
-            IBlockState glassState = Blocks.stained_glass_pane.getDefaultState().withProperty(BlockStainedGlassPane.COLOR, EnumDyeColor.GRAY);
-            IBlockState darkClayState = Blocks.stained_hardened_clay.getDefaultState().withProperty(BlockColored.COLOR, EnumDyeColor.BLACK);
-            IBlockState brownClayState = Blocks.stained_hardened_clay.getDefaultState().withProperty(BlockColored.COLOR, EnumDyeColor.BROWN);
+            IBlockState glassState = Blocks.STAINED_GLASS_PANE.getDefaultState().withProperty(BlockStainedGlassPane.COLOR, EnumDyeColor.GRAY);
+            IBlockState darkClayState = Blocks.STAINED_HARDENED_CLAY.getDefaultState().withProperty(BlockColored.COLOR, EnumDyeColor.BLACK);
+            IBlockState brownClayState = Blocks.STAINED_HARDENED_CLAY.getDefaultState().withProperty(BlockColored.COLOR, EnumDyeColor.BROWN);
 
             // ground
             this.fillWithBlocks(world, boundingBox, 1, 0, 0, 11, 0, 5, darkClayState, darkClayState, false);
@@ -155,25 +155,25 @@ public class ComponentVillageUndertaker extends StructureVillagePieces.Village i
             this.setBlockState(world, glassState, 10, 2, 2, boundingBox);
 
             // door
-            this.placeDoorCurrentPosition(world, boundingBox, random, 8, 1, 2, EnumFacing.getHorizontal(this.getMetadataWithOffset(Blocks.dark_oak_door, 3)));
+            this.placeDoorCurrentPosition(world, boundingBox, random, 8, 1, 2, EnumFacing.getHorizontal(this.getMetadataWithOffset(Blocks.DARK_OAK_DOOR, 3)));
 
             // book shelf
-            this.fillWithBlocks(world, boundingBox, 6, 1, 3, 6, 1, 4, Blocks.bookshelf.getDefaultState(), Blocks.bookshelf.getDefaultState(), false);
-            this.setBlockState(world, Blocks.bookshelf.getDefaultState(), 10, 1, 4, boundingBox);
+            this.fillWithBlocks(world, boundingBox, 6, 1, 3, 6, 1, 4, Blocks.BOOKSHELF.getDefaultState(), Blocks.BOOKSHELF.getDefaultState(), false);
+            this.setBlockState(world, Blocks.BOOKSHELF.getDefaultState(), 10, 1, 4, boundingBox);
 
             // candle
-            this.generateSkullCandle(world, boundingBox, 10, 2, 4, coordBaseMode);
+            this.generateSkullCandle(world, boundingBox, 10, 2, 4, getCoordBaseMode());
 
             // painting
-            this.generatePainting(world, 5, 2, 3, coordBaseMode);
+            this.generatePainting(world, 5, 2, 3, getCoordBaseMode());
 
             // bed
             this.generateBed(world, 9, 1, 3, boundingBox);
 
             // roof
-            IBlockState slabState = Blocks.wooden_slab.getDefaultState().withProperty(BlockWoodSlab.VARIANT, BlockPlanks.EnumType.DARK_OAK);
-            IBlockState stairsState = Blocks.dark_oak_stairs.getDefaultState().withProperty(BlockStairs.FACING, coordBaseMode);
-            IBlockState stairsBackState = Blocks.dark_oak_stairs.getDefaultState().withProperty(BlockStairs.FACING, coordBaseMode.getOpposite());
+            IBlockState slabState = Blocks.WOODEN_SLAB.getDefaultState().withProperty(BlockWoodSlab.VARIANT, BlockPlanks.EnumType.DARK_OAK);
+            IBlockState stairsState = Blocks.DARK_OAK_STAIRS.getDefaultState().withProperty(BlockStairs.FACING, getCoordBaseMode());
+            IBlockState stairsBackState = Blocks.DARK_OAK_STAIRS.getDefaultState().withProperty(BlockStairs.FACING, getCoordBaseMode().getOpposite());
             this.fillWithBlocks(world, boundingBox, 1, 4, 1, 11, 4, 5, slabState, slabState, false);
 
             this.fillWithBlocks(world, boundingBox, 0, 4, 0, 12, 4, 0, stairsState, stairsState, false);
@@ -187,7 +187,7 @@ public class ComponentVillageUndertaker extends StructureVillagePieces.Village i
 
             this.fillWithBlocks(world, boundingBox, 0, 7, 3, 12, 7, 3, slabState, slabState, false);
 
-            IBlockState planksState = Blocks.planks.getDefaultState().withProperty(BlockPlanks.VARIANT, BlockPlanks.EnumType.DARK_OAK);
+            IBlockState planksState = Blocks.PLANKS.getDefaultState().withProperty(BlockPlanks.VARIANT, BlockPlanks.EnumType.DARK_OAK);
             this.fillWithBlocks(world, boundingBox, 1, 4, 1, 1, 4, 5, planksState, planksState, false);
             this.fillWithBlocks(world, boundingBox, 11, 4, 1, 11, 4, 5, planksState, planksState, false);
             this.setBlockState(world, planksState, 1, 5, 2, boundingBox);
@@ -205,7 +205,7 @@ public class ComponentVillageUndertaker extends StructureVillagePieces.Village i
             for (int i = 0; i < X_LENGTH; i++) {
                 for (int j = 0; j < Z_LENGTH; j++) {
                     this.clearCurrentPositionBlocksUpwards(world, i, 8, j, boundingBox);
-                    this.setBlockState(world, Blocks.cobblestone.getDefaultState(), i, -1, j, boundingBox);
+                    this.setBlockState(world, Blocks.COBBLESTONE.getDefaultState(), i, -1, j, boundingBox);
                 }
             }
 
@@ -244,7 +244,7 @@ public class ComponentVillageUndertaker extends StructureVillagePieces.Village i
 
         this.setBlockState(world, gateState, startX + 6, 1, startZ + 9, structureBoundingBox);
 
-        IBlockState graveState = GSBlock.graveStone.getDefaultState().withProperty(BlockGraveStone.FACING, this.coordBaseMode.getOpposite());
+        IBlockState graveState = GSBlock.graveStone.getDefaultState().withProperty(BlockGraveStone.FACING, this.getCoordBaseMode().getOpposite());
         EntityGroupOfGravesMobSpawnerHelper spawnerHelper = GraveGenerationHelper.createSpawnerHelper(world, boundingBox);
 
         for (int x = startX + 3; x < startX + 11; x += 2) {
@@ -283,8 +283,8 @@ public class ComponentVillageUndertaker extends StructureVillagePieces.Village i
     }
 
     protected void generateBed(World world, int x, int y, int z, StructureBoundingBox boundingBox) {
-        EnumFacing facing = getBedMeta(this.coordBaseMode);
-        IBlockState bedState = Blocks.bed.getDefaultState().withProperty(BlockBed.FACING, facing);
+        EnumFacing facing = getBedMeta(this.getCoordBaseMode());
+        IBlockState bedState = Blocks.BED.getDefaultState().withProperty(BlockBed.FACING, facing);
         this.setBlockState(world, bedState.withProperty(BlockBed.PART, BlockBed.EnumPartType.FOOT), x, y, z, boundingBox);
         this.setBlockState(world, bedState.withProperty(BlockBed.PART, BlockBed.EnumPartType.HEAD), x + 1, y, z, boundingBox);
     }
@@ -375,7 +375,7 @@ public class ComponentVillageUndertaker extends StructureVillagePieces.Village i
         NBTTagCompound nbttagcompound = new NBTTagCompound();
         nbttagcompound.setString("id", "GSVillageUndertaker");
         nbttagcompound.setTag("BB", this.boundingBox.toNBTTagIntArray());
-        nbttagcompound.setInteger("O", this.coordBaseMode == null ? -1 : this.coordBaseMode.getHorizontalIndex());
+        nbttagcompound.setInteger("O", this.getCoordBaseMode() == null ? -1 : this.getCoordBaseMode().getHorizontalIndex());
         nbttagcompound.setInteger("GD", this.componentType);
         this.writeStructureToNBT(nbttagcompound);
         return nbttagcompound;

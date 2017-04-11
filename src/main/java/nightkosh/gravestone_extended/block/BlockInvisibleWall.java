@@ -1,11 +1,12 @@
 package nightkosh.gravestone_extended.block;
 
 import net.minecraft.block.Block;
+import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
-import net.minecraft.util.AxisAlignedBB;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.math.AxisAlignedBB;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
@@ -17,14 +18,13 @@ import net.minecraft.world.World;
  */
 public class BlockInvisibleWall extends Block {
     public BlockInvisibleWall() {
-        super(Material.rock);
+        super(Material.ROCK);
         this.setResistance(100500);
-        this.setStepSound(Block.soundTypeStone);
-        this.setBlockBounds(0, 0, 0, 0, 0, 0);
+        this.setSoundType(SoundType.STONE);
     }
 
     @Override
-    public AxisAlignedBB getCollisionBoundingBox(World world, BlockPos pos, IBlockState state) {
+    public AxisAlignedBB getCollisionBoundingBox(IBlockState state, World world, BlockPos pos) {
         return new AxisAlignedBB(pos.getX(), pos.getY(), pos.getZ(), pos.getX() + 1, pos.getY() + 1, pos.getZ() + 1);
     }
 
@@ -34,8 +34,15 @@ public class BlockInvisibleWall extends Block {
     }
 
     @Override
-    public boolean isOpaqueCube() {
+    public boolean isOpaqueCube(IBlockState state) {
         return false;
+    }
+
+    private static final AxisAlignedBB BB = new AxisAlignedBB(0, 0, 0, 0, 0, 0);
+
+    @Override
+    public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess access, BlockPos pos) {
+        return BB;
     }
 
     @Override
@@ -44,7 +51,7 @@ public class BlockInvisibleWall extends Block {
     }
 
     @Override
-    public boolean isReplaceable(World world, BlockPos pos) {
+    public boolean isReplaceable(IBlockAccess world, BlockPos pos) {
         return false;
     }
 

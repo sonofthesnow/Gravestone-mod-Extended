@@ -4,13 +4,10 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityFlying;
 import net.minecraft.entity.EnumCreatureAttribute;
 import net.minecraft.entity.monster.IMob;
-import net.minecraft.potion.Potion;
-import net.minecraft.util.BlockPos;
 import net.minecraft.util.DamageSource;
-import net.minecraft.util.MathHelper;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
-
-import java.util.Random;
 
 /**
  * GraveStone mod
@@ -85,15 +82,15 @@ public class EntityGhost extends EntityFlying implements IMob {
     /**
      * Get random potion id
      */
-    protected int getPotionId(Random random) {
-        switch (random.nextInt(3)) {
-            case 1:
-                return Potion.weakness.getId();
-            case 2:
-                return Potion.hunger.getId();
-            case 0:
-            default:
-                return Potion.moveSlowdown.getId();
-        }
-    }
+//    protected int getPotionId(Random random) {
+//        switch (random.nextInt(3)) {
+//            case 1:
+//                return Potion.weakness.getId();
+//            case 2:
+//                return Potion.hunger.getId();
+//            case 0:
+//            default:
+//                return Potion.moveSlowdown.getId();
+//        }
+//    }
 }

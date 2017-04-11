@@ -127,7 +127,7 @@ public class ExtendedConfig {
     private static void gravesConfig() {
         // spawn rate
         Property graveSpawnRateProperty = config.get(Config.CATEGORY_GRAVES, "GravesMobsSpawnRate", 1000);
-        graveSpawnRateProperty.comment = "This value must be bigger than 600!";
+        graveSpawnRateProperty.setComment("This value must be bigger than 600!");
         graveSpawnRate = graveSpawnRateProperty.getInt();
 
         if (graveSpawnRate < 600) {

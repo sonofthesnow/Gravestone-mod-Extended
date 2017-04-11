@@ -2,7 +2,7 @@ package nightkosh.gravestone_extended.core;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import nightkosh.gravestone_extended.gui.ExecutionGui;
 import nightkosh.gravestone_extended.gui.GSAltarGui;

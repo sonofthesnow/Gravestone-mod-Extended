@@ -2,9 +2,10 @@ package nightkosh.gravestone_extended.core.commands;
 
 import net.minecraft.command.CommandException;
 import net.minecraft.command.ICommandSender;
-import net.minecraft.util.ChatComponentTranslation;
-import net.minecraft.util.ChatStyle;
-import net.minecraft.util.EnumChatFormatting;
+import net.minecraft.server.MinecraftServer;
+import net.minecraft.util.text.Style;
+import net.minecraft.util.text.TextComponentTranslation;
+import net.minecraft.util.text.TextFormatting;
 import nightkosh.gravestone.core.commands.Command;
 import nightkosh.gravestone.core.commands.ISubCommand;
 import nightkosh.gravestone_extended.block.enums.EnumCorpse;
@@ -34,13 +35,13 @@ public class SubCommandCorpses implements ISubCommand {
     }
 
     @Override
-    public void execute(ICommandSender sender, String[] args) throws CommandException {
+    public void execute(MinecraftServer minecraftServer, ICommandSender sender, String[] args) throws CommandException {
         GSLogger.logInfo("Corpse generation command received");
 
         if (args.length >= 1) {
             GameProfileHelper.dropItem(sender, args[1], GSBlock.corpse, EnumCorpse.STEVE.ordinal());
         } else {
-            sender.addChatMessage(new ChatComponentTranslation("commands.not_enough_parameters").setChatStyle(new ChatStyle().setColor(EnumChatFormatting.RED)));
+            sender.addChatMessage(new TextComponentTranslation("commands.not_enough_parameters").setStyle(new Style().setColor(TextFormatting.RED)));
         }
 
     }

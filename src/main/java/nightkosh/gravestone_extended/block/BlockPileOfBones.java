@@ -1,16 +1,12 @@
 package nightkosh.gravestone_extended.block;
 
-import nightkosh.gravestone_extended.block.enums.EnumPileOfBones;
-import nightkosh.gravestone_extended.config.ExtendedConfig;
-import nightkosh.gravestone_extended.core.GSBlock;
-import nightkosh.gravestone_extended.core.Tabs;
-import nightkosh.gravestone_extended.entity.monster.EntitySkullCrawler;
-import nightkosh.gravestone_extended.tileentity.TileEntityPileOfBones;
+import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
+import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyEnum;
-import net.minecraft.block.state.BlockState;
+import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLivingBase;
@@ -18,12 +14,19 @@ import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.AxisAlignedBB;
-import net.minecraft.util.BlockPos;
-import net.minecraft.util.MathHelper;
+import net.minecraft.util.math.AxisAlignedBB;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.MathHelper;
+import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import nightkosh.gravestone_extended.block.enums.EnumPileOfBones;
+import nightkosh.gravestone_extended.config.ExtendedConfig;
+import nightkosh.gravestone_extended.core.GSBlock;
+import nightkosh.gravestone_extended.core.Tabs;
+import nightkosh.gravestone_extended.entity.monster.EntitySkullCrawler;
+import nightkosh.gravestone_extended.tileentity.TileEntityPileOfBones;
 
 import java.util.List;
 import java.util.Random;
@@ -39,12 +42,11 @@ public class BlockPileOfBones extends BlockContainer {
     public static final PropertyEnum VARIANT = PropertyEnum.create("variant", EnumPileOfBones.class);
 
     public BlockPileOfBones() {
-        super(Material.circuits);
-        this.setStepSound(net.minecraft.block.Block.soundTypeStone);
+        super(Material.CIRCUITS);
+        this.setSoundType(SoundType.STONE);
         this.setHardness(0.1F);
         this.setResistance(0);
         this.setCreativeTab(Tabs.otherItemsTab);
-        this.setBlockBounds(0.1F, 0, 0.1F, 0.9F, 0.2F, 0.9F);
     }
 
     @Override
@@ -53,18 +55,25 @@ public class BlockPileOfBones extends BlockContainer {
     }
 
     @Override
-    public AxisAlignedBB getCollisionBoundingBox(World world, BlockPos pos, IBlockState state) {
+    public AxisAlignedBB getCollisionBoundingBox(IBlockState state, World world, BlockPos pos) {
         return null;
     }
 
     @Override
-    public boolean isOpaqueCube() {
+    public boolean isOpaqueCube(IBlockState state) {
         return false;
     }
 
     @Override
-    public boolean isFullCube() {
+    public boolean isFullCube(IBlockState state) {
         return false;
+    }
+
+    private static final AxisAlignedBB BB = new AxisAlignedBB(0.1F, 0, 0.1F, 0.9F, 0.2F, 0.9F);
+
+    @Override
+    public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess access, BlockPos pos) {
+        return BB;
     }
 
     @Override
@@ -74,7 +83,7 @@ public class BlockPileOfBones extends BlockContainer {
 
     @Override
     public Item getItemDropped(IBlockState state, Random random, int fortune) {
-        return this.isSkullCrawlerBlock(state) ? null : Items.bone;
+        return this.isSkullCrawlerBlock(state) ? null : Items.BONE;
     }
 
     @Override
@@ -98,8 +107,8 @@ public class BlockPileOfBones extends BlockContainer {
     }
 
     @Override
-    protected BlockState createBlockState() {
-        return new BlockState(this, new IProperty[]{VARIANT});
+    protected BlockStateContainer createBlockState() {
+        return new BlockStateContainer(this, new IProperty[]{VARIANT});
     }
 
     public boolean isSkullCrawlerBlock(IBlockState state) {
@@ -153,7 +162,7 @@ public class BlockPileOfBones extends BlockContainer {
     }
 
     @Override
-    public void onNeighborBlockChange(World world, BlockPos pos, IBlockState state, net.minecraft.block.Block block) {
+    public void neighborChanged(IBlockState state, World world, BlockPos pos, Block block) {
         if (!canPlaceBlockAt(world, pos)) {
             this.dropBlockAsItem(world, pos, state, 0);
             world.setBlockToAir(pos);

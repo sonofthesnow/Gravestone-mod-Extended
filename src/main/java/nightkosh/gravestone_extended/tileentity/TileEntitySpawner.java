@@ -1,6 +1,6 @@
 package nightkosh.gravestone_extended.tileentity;
 
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.ITickable;
 import net.minecraft.world.World;
 import nightkosh.gravestone.tileentity.ISpawnerEntity;

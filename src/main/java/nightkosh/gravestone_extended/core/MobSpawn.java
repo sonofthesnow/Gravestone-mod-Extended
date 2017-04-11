@@ -8,7 +8,7 @@ import net.minecraft.entity.monster.EntityZombie;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.world.World;
 import nightkosh.gravestone.block.enums.EnumGraves;
@@ -71,7 +71,7 @@ public class MobSpawn {
      */
     private static boolean canSpawnHellCreatures(World world, int x, int y, int z) {
         if (world != null) {
-            return y < HELL_HEIGHT && world.getBlockState(new BlockPos(x, y - 1, z)).getBlock().equals(Blocks.nether_brick);
+            return y < HELL_HEIGHT && world.getBlockState(new BlockPos(x, y - 1, z)).getBlock().equals(Blocks.NETHER_BRICK);
         } else {
             return false;
         }
@@ -179,9 +179,9 @@ public class MobSpawn {
         EntityGSSkeleton skeleton = (EntityGSSkeleton) EntityList.createEntityByName(Entity.SKELETON_ID, world);
 
         if (withBow) {
-            skeleton.setCurrentItemOrArmor(0, new ItemStack(Items.bow, 1));
+            skeleton.setCurrentItemOrArmor(0, new ItemStack(Items.BOW, 1));
         } else {
-            skeleton.setCurrentItemOrArmor(0, new ItemStack(Items.stone_sword, 1));
+            skeleton.setCurrentItemOrArmor(0, new ItemStack(Items.STONE_SWORD, 1));
         }
 
         return skeleton;

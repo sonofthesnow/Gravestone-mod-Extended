@@ -1,13 +1,13 @@
 package nightkosh.gravestone_extended.block;
 
-import nightkosh.gravestone_extended.core.Tabs;
-import net.minecraft.block.Block;
 import net.minecraft.block.BlockSlab;
+import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
-import net.minecraft.block.state.BlockState;
+import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.item.ItemStack;
+import nightkosh.gravestone_extended.core.Tabs;
 
 /**
  * GraveStone mod
@@ -18,8 +18,8 @@ import net.minecraft.item.ItemStack;
 public class BlockBoneSlab extends BlockSlab {
 
     public BlockBoneSlab() {
-        super(Material.rock);
-        this.setStepSound(Block.soundTypeStone);
+        super(Material.ROCK);
+        this.setSoundType(SoundType.STONE);
         this.setUnlocalizedName("bone_slab");
         this.setHardness(2);
         this.setResistance(2);
@@ -43,7 +43,7 @@ public class BlockBoneSlab extends BlockSlab {
     }
 
     @Override
-    public Object getVariant(ItemStack stack) {
+    public Comparable<?> getTypeForItem(ItemStack stack) {
         return BlockSlab.EnumBlockHalf.values()[stack.getMetadata()];
     }
 
@@ -51,7 +51,7 @@ public class BlockBoneSlab extends BlockSlab {
         return ((Enum) state.getValue(HALF)).ordinal();
     }
 
-    protected BlockState createBlockState() {
-        return new BlockState(this, new IProperty[]{HALF});
+    protected BlockStateContainer createBlockState() {
+        return new BlockStateContainer(this, new IProperty[]{HALF});
     }
 }

@@ -2,9 +2,10 @@ package nightkosh.gravestone_extended.core.commands;
 
 import net.minecraft.command.CommandException;
 import net.minecraft.command.ICommandSender;
-import net.minecraft.util.ChatComponentTranslation;
-import net.minecraft.util.ChatStyle;
-import net.minecraft.util.EnumChatFormatting;
+import net.minecraft.server.MinecraftServer;
+import net.minecraft.util.text.Style;
+import net.minecraft.util.text.TextComponentTranslation;
+import net.minecraft.util.text.TextFormatting;
 import nightkosh.gravestone.api.grave.EnumGraveMaterial;
 import nightkosh.gravestone.core.commands.Command;
 import nightkosh.gravestone.core.commands.ISubCommand;
@@ -38,7 +39,7 @@ public class SubCommandStatue implements ISubCommand {
     }
 
     @Override
-    public void execute(ICommandSender sender, String[] args) throws CommandException {
+    public void execute(MinecraftServer minecraftServer, ICommandSender sender, String[] args) throws CommandException {
         GSLogger.logInfo("Player statue command received");
 
         if (args.length >= 1) {
@@ -47,12 +48,12 @@ public class SubCommandStatue implements ISubCommand {
                 try {
                     memorialType = EnumMemorials.getByTypeAndMaterial(EnumMemorialType.STEVE_STATUE, EnumGraveMaterial.valueOf(args[2].toUpperCase()));
                 } catch (Exception e) {
-                    sender.addChatMessage(new ChatComponentTranslation("commands.unknown_material").setChatStyle(new ChatStyle().setColor(EnumChatFormatting.RED)));
+                    sender.addChatMessage(new TextComponentTranslation("commands.unknown_material").setStyle(new Style().setColor(TextFormatting.RED)));
                 }
             }
             GameProfileHelper.dropItem(sender, args[1], GSBlock.memorial, memorialType.ordinal());
         } else {
-            sender.addChatMessage(new ChatComponentTranslation("commands.not_enough_parameters").setChatStyle(new ChatStyle().setColor(EnumChatFormatting.RED)));
+            sender.addChatMessage(new TextComponentTranslation("commands.not_enough_parameters").setStyle(new Style().setColor(TextFormatting.RED)));
         }
     }
 }

@@ -4,7 +4,7 @@ import net.minecraft.entity.IEntityLivingData;
 import net.minecraft.entity.monster.EntitySkeleton;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.StatCollector;
+import net.minecraft.util.text.translation.I18n;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.World;
 import nightkosh.gravestone_extended.core.Entity;
@@ -25,9 +25,9 @@ public class EntityGSSkeleton extends EntitySkeleton {
         livingData = super.onInitialSpawn(difficulty, livingData);
 
         if (this.rand.nextBoolean()) {
-            this.setCurrentItemOrArmor(0, new ItemStack(Items.stone_sword, 1, 0));
+            this.setCurrentItemOrArmor(0, new ItemStack(Items.STONE_SWORD, 1, 0));
         } else {
-            this.setCurrentItemOrArmor(0, new ItemStack(Items.bow, 1, 0));
+            this.setCurrentItemOrArmor(0, new ItemStack(Items.BOW, 1, 0));
         }
 
         return livingData;
@@ -38,7 +38,7 @@ public class EntityGSSkeleton extends EntitySkeleton {
         if (this.hasCustomName()) {
             return this.getCustomNameTag();
         } else {
-            return StatCollector.translateToLocal("entity." + Entity.MINECRAFT_SKELETON_ID + ".name");
+            return I18n.translateToLocal("entity." + Entity.MINECRAFT_SKELETON_ID + ".name");
         }
     }
 }

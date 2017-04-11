@@ -8,9 +8,9 @@ import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTUtil;
-import net.minecraft.util.BlockPos;
-import net.minecraft.util.ChatComponentTranslation;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -68,9 +68,9 @@ public class ItemBlockGSMemorial extends ItemBlock {
                     String name = ModGravestoneExtended.proxy.getLocalizedEntityName(nbt.getString("name"));
                     String killerName = ModGravestoneExtended.proxy.getLocalizedEntityName(nbt.getString("KillerName"));
                     if (killerName.length() == 0) {
-                        list.add(new ChatComponentTranslation(deathText, new Object[]{name}).getFormattedText());
+                        list.add(new TextComponentTranslation(deathText, new Object[]{name}).getFormattedText());
                     } else {
-                        list.add(new ChatComponentTranslation(deathText, new Object[]{name, killerName.toLowerCase()}).getFormattedText());
+                        list.add(new TextComponentTranslation(deathText, new Object[]{name, killerName.toLowerCase()}).getFormattedText());
                     }
                 }
             } else {
@@ -159,7 +159,7 @@ public class ItemBlockGSMemorial extends ItemBlock {
                 break;
         }
 
-        int airBlockId = Block.getIdFromBlock(Blocks.air);
+        int airBlockId = Block.getIdFromBlock(Blocks.AIR);
         for (byte shiftY = 0; shiftY < maxY; shiftY++) {
             for (byte shiftZ = startZ; shiftZ < maxZ; shiftZ++) {
                 for (byte shiftX = startX; shiftX < maxX; shiftX++) {

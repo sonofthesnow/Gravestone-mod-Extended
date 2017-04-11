@@ -2,16 +2,15 @@ package nightkosh.gravestone_extended.core.proxy;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.ModelHorse;
-import net.minecraft.client.resources.model.ModelBakery;
+import net.minecraft.client.renderer.block.model.ModelBakery;
 import net.minecraft.item.Item;
-import net.minecraft.util.StatCollector;
+import net.minecraft.util.text.translation.I18n;
 import net.minecraftforge.client.ForgeHooksClient;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.client.FMLClientHandler;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
-import net.minecraftforge.fml.common.registry.LanguageRegistry;
 import nightkosh.gravestone.core.proxy.ProxyHelper;
 import nightkosh.gravestone.tileentity.TileEntityGrave;
 import nightkosh.gravestone_extended.block.enums.*;
@@ -25,14 +24,12 @@ import nightkosh.gravestone_extended.entity.monster.*;
 import nightkosh.gravestone_extended.entity.monster.EntitySkullCrawler.SkullCrawlerType;
 import nightkosh.gravestone_extended.gui.GSGraveTextGui;
 import nightkosh.gravestone_extended.item.ItemGSMonsterPlacer;
-import nightkosh.gravestone_extended.block.enums.EnumCorpse;
 import nightkosh.gravestone_extended.models.entity.ModelDamnedWarrior;
 import nightkosh.gravestone_extended.models.entity.ModelUndeadCat;
 import nightkosh.gravestone_extended.models.entity.ModelUndeadDog;
 import nightkosh.gravestone_extended.renderer.entity.*;
 import nightkosh.gravestone_extended.renderer.tileentity.*;
 import nightkosh.gravestone_extended.tileentity.*;
-import org.apache.commons.lang3.StringUtils;
 
 /**
  * GraveStone mod
@@ -143,21 +140,22 @@ public class ClientProxy extends CommonProxy {
 
     @Override
     public String getLocalizedString(String str) {
-        String localizedString = null;
-        try {
-            localizedString = LanguageRegistry.instance().getStringLocalization(str);
-        } catch (Exception e) {
-        }
-        if (StringUtils.isBlank(localizedString)) {
-            return LanguageRegistry.instance().getStringLocalization(str, "en_US");
-        } else {
-            return localizedString;
-        }
+//        String localizedString = null;
+//        try {
+//            localizedString = LanguageRegistry.instance().getStringLocalization(str);
+//        } catch (Exception e) {
+//        }
+//        if (StringUtils.isBlank(localizedString)) {
+//            return LanguageRegistry.instance().getStringLocalization(str, "en_US");
+//        } else {
+//            return localizedString;
+//        }
+        return I18n.translateToLocal(str);
     }
 
     @Override
     public String getLocalizedEntityName(String name) {
-        return StatCollector.translateToLocal(name);
+        return I18n.translateToLocal(name);
     }
 
     @Override

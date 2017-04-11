@@ -3,7 +3,7 @@ package nightkosh.gravestone_extended.entity.ai;
 import nightkosh.gravestone_extended.entity.EntityRaven;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.ai.EntityMoveHelper;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.WorldType;
 
 /**

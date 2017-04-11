@@ -2,7 +2,7 @@ package nightkosh.gravestone_extended.structures.memorials;
 
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.BiomeGenBase;
@@ -47,16 +47,16 @@ public class ComponentMemorial extends ComponentGraveStone {
         BiomeGenBase biome = world.getBiomeGenForCoords(pos);
 
         if (biome.biomeID == BiomeGenBase.desert.biomeID || biome.biomeID == BiomeGenBase.desertHills.biomeID || biome.biomeID == BiomeGenBase.beach.biomeID) {
-            groundState = Blocks.sand.getDefaultState();
-            undergroundState = Blocks.sand.getDefaultState();
+            groundState = Blocks.SAND.getDefaultState();
+            undergroundState = Blocks.SAND.getDefaultState();
         } else {
-            groundState = Blocks.grass.getDefaultState();
-            undergroundState = Blocks.dirt.getDefaultState();
+            groundState = Blocks.GRASS.getDefaultState();
+            undergroundState = Blocks.DIRT.getDefaultState();
         }
 
         this.fillWithAir(world, boundingBox, 0, 0, 2, 0, 6, 2);
         this.fillWithBlocks(world, boundingBox, 0, 0, 0, 2, 0, 2, groundState);
-        MemorialGenerationHelper.placeMemorial(this, world, random, 1, 1, 1, this.coordBaseMode.getOpposite());
+        MemorialGenerationHelper.placeMemorial(this, world, random, 1, 1, 1, this.getCoordBaseMode().getOpposite());
 
         for (int x = 0; x < 3; x++) {
             for (int z = 0; z < 3; z++) {

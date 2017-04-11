@@ -1,12 +1,13 @@
 package nightkosh.gravestone_extended.block;
 
 import net.minecraft.block.BlockMobSpawner;
+import net.minecraft.block.SoundType;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyEnum;
-import net.minecraft.block.state.BlockState;
+import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.particle.EntityFX;
+import net.minecraft.client.particle.Particle;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
 import net.minecraft.init.Blocks;
@@ -14,9 +15,10 @@ import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.AxisAlignedBB;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.EnumBlockRenderType;
 import net.minecraft.util.EnumParticleTypes;
+import net.minecraft.util.math.AxisAlignedBB;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
@@ -53,10 +55,9 @@ public class BlockSpawner extends BlockMobSpawner {
         super();
         this.setHardness(4);
         this.setLightLevel(0.45F);
-        this.setStepSound(net.minecraft.block.Block.soundTypeMetal);
+        this.setSoundType(SoundType.METAL);
         this.disableStats();
         this.setCreativeTab(Tabs.otherItemsTab);
-        this.setBlockBounds(-0.5F, 0, -0.5F, 1.5F, 0.05F, 1.5F);
         this.setHarvestLevel("pickaxe", 1);
     }
 
@@ -73,8 +74,8 @@ public class BlockSpawner extends BlockMobSpawner {
      * The type of render function that is called for this block
      */
     @Override
-    public int getRenderType() {
-        return -1;
+    public EnumBlockRenderType getRenderType(IBlockState state) {
+        return EnumBlockRenderType.MODEL;
     }
 
     /**
@@ -83,17 +84,24 @@ public class BlockSpawner extends BlockMobSpawner {
      * the player can attach torches, redstone wire, etc to this block.
      */
     @Override
-    public boolean isOpaqueCube() {
+    public boolean isOpaqueCube(IBlockState state) {
         return false;
     }
 
     @Override
-    public boolean isFullCube() {
+    public boolean isFullCube(IBlockState state) {
         return false;
     }
 
+    private static final AxisAlignedBB BB = new AxisAlignedBB(-0.5F, 0, -0.5F, 1.5F, 0.05F, 1.5F);
+
     @Override
-    public AxisAlignedBB getCollisionBoundingBox(World world, BlockPos pos, IBlockState state) {
+    public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess access, BlockPos pos) {
+        return BB;
+    }
+
+    @Override
+    public AxisAlignedBB getCollisionBoundingBox(IBlockState state, World world, BlockPos pos) {
         return null;
     }
 
@@ -103,7 +111,7 @@ public class BlockSpawner extends BlockMobSpawner {
      */
     @Override
     @SideOnly(Side.CLIENT)
-    public void randomDisplayTick(World world, BlockPos pos, IBlockState state, Random random) {
+    public void randomDisplayTick(IBlockState state, World world, BlockPos pos, Random random) {
         if (EnumSpawner.SPIDER_SPAWNER.ordinal() != getMetaFromState(state)) {
             double xPos = pos.getX() + 0.5F;
             double yPos = pos.getY() + 0.85;
@@ -118,7 +126,7 @@ public class BlockSpawner extends BlockMobSpawner {
                 dx = -Math.sin(rotation) * d;
                 dz = Math.cos(rotation) * d;
                 world.spawnParticle(EnumParticleTypes.SMOKE_NORMAL, xPos + dx, yPos, zPos + dz, 0, 0, 0);
-                EntityFX entityfx = new EntityGreenFlameFX(world, xPos + dx, yPos, zPos + dz, 0, 0, 0);
+                Particle entityfx = new EntityGreenFlameFX(world, xPos + dx, yPos, zPos + dz, 0, 0, 0);
                 Minecraft.getMinecraft().effectRenderer.addEffect(entityfx);
                 rotation += dRotation;
             }
@@ -130,8 +138,8 @@ public class BlockSpawner extends BlockMobSpawner {
         List<ItemStack> ret = new ArrayList<>();
         if (EnumSpawner.SPIDER_SPAWNER.ordinal() == getMetaFromState(state)) {
             Random random = new Random();
-            ret.add(new ItemStack(Blocks.web, 1 + random.nextInt(5)));
-            ret.add(new ItemStack(Items.string, 3 + random.nextInt(5)));
+            ret.add(new ItemStack(Blocks.WEB, 1 + random.nextInt(5)));
+            ret.add(new ItemStack(Items.STRING, 3 + random.nextInt(5)));
         } else {
             Random random = new Random();
             int metadata = ((Enum) state.getValue(VARIANT)).ordinal();
@@ -166,7 +174,7 @@ public class BlockSpawner extends BlockMobSpawner {
 
     @Override
     public Item getItemDropped(IBlockState state, Random random, int fortune) {
-        return Items.dye;
+        return Items.DYE;
     }
 
     @Override
@@ -206,7 +214,7 @@ public class BlockSpawner extends BlockMobSpawner {
     }
 
     @Override
-    protected BlockState createBlockState() {
-        return new BlockState(this, new IProperty[]{VARIANT});
+    protected BlockStateContainer createBlockState() {
+        return new BlockStateContainer(this, new IProperty[]{VARIANT});
     }
 }

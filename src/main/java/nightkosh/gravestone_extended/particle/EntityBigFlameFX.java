@@ -1,6 +1,6 @@
 package nightkosh.gravestone_extended.particle;
 
-import net.minecraft.client.particle.EntityFlameFX;
+import net.minecraft.client.particle.ParticleFlame;
 import net.minecraft.client.renderer.WorldRenderer;
 import net.minecraft.entity.Entity;
 import net.minecraft.world.World;
@@ -11,7 +11,7 @@ import net.minecraft.world.World;
  * @author NightKosh
  * @license Lesser GNU Public License v3 (http://www.gnu.org/licenses/lgpl.html)
  */
-public class EntityBigFlameFX extends EntityFlameFX {
+public class EntityBigFlameFX extends ParticleFlame {
 
     private float scale;
 

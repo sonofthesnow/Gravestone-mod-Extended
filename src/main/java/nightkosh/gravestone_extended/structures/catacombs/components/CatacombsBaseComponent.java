@@ -4,7 +4,7 @@ import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.structure.StructureBoundingBox;
@@ -124,7 +124,7 @@ public abstract class CatacombsBaseComponent extends ComponentGraveStone {
     }
 
     public boolean canBePlacedHere(StructureBoundingBox boundingBox) {
-        if (coordBaseMode == EnumFacing.SOUTH || coordBaseMode == EnumFacing.NORTH) {
+        if (getCoordBaseMode() == EnumFacing.SOUTH || getCoordBaseMode() == EnumFacing.NORTH) {
             return this.boundingBox.maxX > boundingBox.minX && this.boundingBox.minX < boundingBox.maxX
                     && this.boundingBox.maxZ - 1 > boundingBox.minZ && this.boundingBox.minZ + 1 < boundingBox.maxZ;
         } else {
@@ -154,7 +154,7 @@ public abstract class CatacombsBaseComponent extends ComponentGraveStone {
         for (int y = startY; y <= endY; ++y) {
             for (int x = startX; x <= endX; ++x) {
                 for (int z = startZ; z <= endZ; ++z) {
-                    if (!p_74882_9_ || this.getBlockStateFromPos(world, x, y, z, box).getBlock().getMaterial() != Material.air) {
+                    if (!p_74882_9_ || this.getBlockStateFromPos(world, x, y, z, box).getBlock().getMaterial() != Material.AIR) {
                         //TODO wtf ??? y == startY || y == endY || x == startX || x == endX || z == startZ || z == endZ
                         getPileOfBonesSelector().selectBlocks(random, x, y, z, y == startY || y == endY || x == startX || x == endX || z == startZ || z == endZ);
                         ObjectsGenerationHelper.generatePileOfBones(this, world, x, y, z, getPileOfBonesSelector().getBlockState());
@@ -165,7 +165,7 @@ public abstract class CatacombsBaseComponent extends ComponentGraveStone {
     }
 
     public EnumFacing getDirection() {
-        return coordBaseMode;
+        return getCoordBaseMode();
     }
 
     protected Passage entrance;

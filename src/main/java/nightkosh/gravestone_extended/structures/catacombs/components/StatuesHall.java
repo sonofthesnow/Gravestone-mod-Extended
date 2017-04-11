@@ -50,7 +50,7 @@ public class StatuesHall extends CatacombsBaseComponent {
         this.fillWithRandomizedBlocks(world, boundingBox, 1, 5, 1, 9, 5, 17, false, random, stoneBricks);
 
         // web
-        this.randomlyFillWithBlocks(world, boundingBox, random, WEB_GENERATION_CHANCE, 1, 1, 1, 10, 4, 18, Blocks.web.getDefaultState(), false);
+        this.randomlyFillWithBlocks(world, boundingBox, random, WEB_GENERATION_CHANCE, 1, 1, 1, 10, 4, 18, Blocks.WEB.getDefaultState(), false);
         // piles of bones
         if (ExtendedConfig.generatePilesOfBones) {
             this.fillWithRandomizedPilesOfBones(world, boundingBox, 1, 1, 1, 10, 1, 18, false, random);
@@ -119,10 +119,10 @@ public class StatuesHall extends CatacombsBaseComponent {
         ObjectsGenerationHelper.generateMinecraftSpawner(this, world, 7, 0, 15, MobSpawn.getMobForStatueSpawner(random));
 
         // loot chests
-        ObjectsGenerationHelper.generateChest(this, world, random, 3, 0, 6, this.coordBaseMode, false, ObjectsGenerationHelper.EnumChestTypes.ALL_CHESTS);
-        ObjectsGenerationHelper.generateChest(this, world, random, 3, 0, 12, this.coordBaseMode, false, ObjectsGenerationHelper.EnumChestTypes.ALL_CHESTS);
-        ObjectsGenerationHelper.generateChest(this, world, random, 7, 0, 6, this.coordBaseMode, false, ObjectsGenerationHelper.EnumChestTypes.ALL_CHESTS);
-        ObjectsGenerationHelper.generateChest(this, world, random, 7, 0, 12, this.coordBaseMode, false, ObjectsGenerationHelper.EnumChestTypes.ALL_CHESTS);
+        ObjectsGenerationHelper.generateChest(this, world, random, 3, 0, 6, this.getCoordBaseMode(), false, ObjectsGenerationHelper.EnumChestTypes.ALL_CHESTS);
+        ObjectsGenerationHelper.generateChest(this, world, random, 3, 0, 12, this.getCoordBaseMode(), false, ObjectsGenerationHelper.EnumChestTypes.ALL_CHESTS);
+        ObjectsGenerationHelper.generateChest(this, world, random, 7, 0, 6, this.getCoordBaseMode(), false, ObjectsGenerationHelper.EnumChestTypes.ALL_CHESTS);
+        ObjectsGenerationHelper.generateChest(this, world, random, 7, 0, 12, this.getCoordBaseMode(), false, ObjectsGenerationHelper.EnumChestTypes.ALL_CHESTS);
 
         // statues
         EnumMemorials.EnumMemorialType[] memorialTypes = MemorialGenerationHelper.GENERATED_HUMAN_STATUES_TYPES;

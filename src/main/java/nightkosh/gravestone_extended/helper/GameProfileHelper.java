@@ -11,10 +11,10 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTUtil;
 import net.minecraft.server.MinecraftServer;
-import net.minecraft.util.ChatComponentTranslation;
-import net.minecraft.util.ChatStyle;
-import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.text.Style;
+import net.minecraft.util.text.TextComponentTranslation;
+import net.minecraft.util.text.TextFormatting;
 import nightkosh.gravestone.inventory.GraveInventory;
 import nightkosh.gravestone_extended.core.Resources;
 import org.apache.commons.lang3.StringUtils;
@@ -45,7 +45,7 @@ public class GameProfileHelper {
 
                     @Override
                     public void onProfileLookupFailed(GameProfile gameProfile, Exception e) {
-                        sender.addChatMessage(new ChatComponentTranslation("commands.corpse_search_failed").setChatStyle(new ChatStyle().setColor(EnumChatFormatting.RED)));
+                        sender.addChatMessage(new TextComponentTranslation("commands.corpse_search_failed").setStyle(new Style().setColor(TextFormatting.RED)));
                     }
                 });
             } else {

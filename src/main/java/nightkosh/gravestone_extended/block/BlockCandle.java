@@ -2,14 +2,16 @@ package nightkosh.gravestone_extended.block;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
+import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.particle.EntityFX;
+import net.minecraft.client.particle.Particle;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.AxisAlignedBB;
-import net.minecraft.util.BlockPos;
 import net.minecraft.util.EnumParticleTypes;
+import net.minecraft.util.math.AxisAlignedBB;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -29,14 +31,13 @@ import java.util.Random;
 public class BlockCandle extends BlockContainer {
 
     public BlockCandle() {
-        super(Material.carpet);
-        this.setStepSound(Block.soundTypeCloth);
+        super(Material.CARPET);
+        this.setSoundType(SoundType.CLOTH);
         this.setUnlocalizedName("candle");
         this.setHardness(0);
         this.setLightLevel(1);
         this.setResistance(0);
         this.setCreativeTab(Tabs.otherItemsTab);
-        this.setBlockBounds(0.4F, 0, 0.4F, 0.6F, 0.6F, 0.6F);
     }
 
     /**
@@ -45,7 +46,7 @@ public class BlockCandle extends BlockContainer {
      */
     @Override
     @SideOnly(Side.CLIENT)
-    public void randomDisplayTick(World world, BlockPos pos, IBlockState state, Random random) {
+    public void randomDisplayTick(IBlockState state, World world, BlockPos pos, Random random) {
         double xPos = pos.getX() + 0.5;
         double yPos = pos.getY() + 0.5;
         double zPos = pos.getZ() + 0.5;
@@ -54,7 +55,7 @@ public class BlockCandle extends BlockContainer {
         if (dayTime < TimeHelper.SUN_SET || dayTime > TimeHelper.SUN_RISING) {
             world.spawnParticle(EnumParticleTypes.FLAME, xPos, yPos, zPos, 0, 0, 0);
         } else {
-            EntityFX entityfx = new EntityGreenFlameFX(world, xPos, yPos, zPos, 0, 0, 0);
+            Particle entityfx = new EntityGreenFlameFX(world, xPos, yPos, zPos, 0, 0, 0);
             Minecraft.getMinecraft().effectRenderer.addEffect(entityfx);
         }
         world.spawnParticle(EnumParticleTypes.SMOKE_NORMAL, xPos, yPos, zPos, 0, 0, 0);
@@ -65,7 +66,7 @@ public class BlockCandle extends BlockContainer {
      * box can change after the pool has been cleared to be reused)
      */
     @Override
-    public AxisAlignedBB getCollisionBoundingBox(World world, BlockPos pos, IBlockState state) {
+    public AxisAlignedBB getCollisionBoundingBox(IBlockState state, World world, BlockPos pos) {
         return null;
     }
 
@@ -75,13 +76,20 @@ public class BlockCandle extends BlockContainer {
      * the player can attach torches, redstone wire, etc to this block.
      */
     @Override
-    public boolean isOpaqueCube() {
+    public boolean isOpaqueCube(IBlockState state) {
         return false;
     }
 
     @Override
-    public boolean isFullCube() {
+    public boolean isFullCube(IBlockState state) {
         return false;
+    }
+
+    private static final AxisAlignedBB BB = new AxisAlignedBB(0.4F, 0, 0.4F, 0.6F, 0.6F, 0.6F);
+
+    @Override
+    public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess access, BlockPos pos) {
+        return BB;
     }
 
     /**
@@ -99,7 +107,7 @@ public class BlockCandle extends BlockContainer {
      * neighbor blockID
      */
     @Override
-    public void onNeighborBlockChange(World world, BlockPos pos, IBlockState state, Block block) {
+    public void neighborChanged(IBlockState state, World world, BlockPos pos, Block block) {
         if (!this.canPlaceCandleOn(world, pos.down())) {
             this.dropBlockAsItem(world, pos, state, 0);
             world.setBlockToAir(pos);

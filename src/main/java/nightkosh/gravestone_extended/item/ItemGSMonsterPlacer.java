@@ -12,7 +12,11 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemMonsterPlacer;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.*;
+import net.minecraft.util.EnumFacing;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.math.RayTraceResult;
+import net.minecraft.util.text.translation.I18n;
 import net.minecraft.world.World;
 import nightkosh.gravestone_extended.core.Entity;
 import nightkosh.gravestone_extended.core.ModInfo;
@@ -107,12 +111,12 @@ public class ItemGSMonsterPlacer extends ItemMonsterPlacer {
     @Override
     public String getItemStackDisplayName(ItemStack itemStack) {
         StringBuilder str = new StringBuilder();
-        str.append(StatCollector.translateToLocal(this.getUnlocalizedName() + ".name").trim());
+        str.append(I18n.translateToLocal(this.getUnlocalizedName() + ".name").trim());
 
         EnumEggs egg = EnumEggs.getById(itemStack.getItemDamage());
         String name = (StringUtils.isBlank(egg.getCustomName())) ? egg.getName() : egg.getCustomName();
         if (StringUtils.isNotBlank(name)) {
-            str.append(" ").append(StatCollector.translateToLocal("entity." + name + ".name"));
+            str.append(" ").append(I18n.translateToLocal("entity." + name + ".name"));
         }
 
         return str.toString();
@@ -170,12 +174,12 @@ public class ItemGSMonsterPlacer extends ItemMonsterPlacer {
         if (world.isRemote) {
             return item;
         } else {
-            MovingObjectPosition movingobjectposition = this.getMovingObjectPositionFromPlayer(world, player, true);
+            RayTraceResult movingobjectposition = this.getMovingObjectPositionFromPlayer(world, player, true);
 
             if (movingobjectposition == null) {
                 return item;
             } else {
-                if (movingobjectposition.typeOfHit == MovingObjectPosition.MovingObjectType.BLOCK) {
+                if (movingobjectposition.typeOfHit == RayTraceResult.Type.BLOCK) {
                     if (!world.canMineBlockBody(player, movingobjectposition.getBlockPos())) {
                         return item;
                     }

@@ -50,7 +50,7 @@ public class GraveCorridor extends CatacombsBaseComponent {
         this.fillWithRandomizedBlocks(world, boundingBox, 2, 0, 1, 4, 0, 3, false, random, stoneBricks);
 
         // web
-        this.randomlyFillWithBlocks(world, boundingBox, random, WEB_GENERATION_CHANCE, 2, 1, 2, 5, 3, 3, Blocks.web.getDefaultState(), false);
+        this.randomlyFillWithBlocks(world, boundingBox, random, WEB_GENERATION_CHANCE, 2, 1, 2, 5, 3, 3, Blocks.WEB.getDefaultState(), false);
         // piles of bones
         if (ExtendedConfig.generatePilesOfBones) {
             this.fillWithRandomizedPilesOfBones(world, boundingBox, 2, 1, 2, 5, 1, 3, false, random);
@@ -90,7 +90,7 @@ public class GraveCorridor extends CatacombsBaseComponent {
 
         // chest
         if (random.nextInt(5) < 2) {
-            ObjectsGenerationHelper.generateChest(this, world, random, 3, 1, 2, this.coordBaseMode, true, ObjectsGenerationHelper.EnumChestTypes.ALL_CHESTS);
+            ObjectsGenerationHelper.generateChest(this, world, random, 3, 1, 2, this.getCoordBaseMode(), true, ObjectsGenerationHelper.EnumChestTypes.ALL_CHESTS);
         }
 
         // spawn bats

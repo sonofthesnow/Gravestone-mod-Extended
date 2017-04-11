@@ -1,7 +1,7 @@
 package nightkosh.gravestone_extended.renderer.entity;
 
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.particle.EntityFX;
+import net.minecraft.client.particle.Particle;
 import net.minecraft.client.renderer.entity.RenderLiving;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.entity.Entity;
@@ -37,7 +37,7 @@ public class RenderDamnedWarrior extends RenderLiving {
         super.doRender(entity, x, y, z, entityYaw, partialTicks);
 
         if (ticks > 40) {
-            EntityFX chestFlame = new EntityBigFlameFX(entity.getEntityWorld(), entity.posX, entity.posY + 2.1, entity.posZ, 3, 0.1F, 0.85F, 0.1F);
+            Particle chestFlame = new EntityBigFlameFX(entity.getEntityWorld(), entity.posX, entity.posY + 2.1, entity.posZ, 3, 0.1F, 0.85F, 0.1F);
             Minecraft.getMinecraft().effectRenderer.addEffect(chestFlame);
 
 
@@ -45,10 +45,10 @@ public class RenderDamnedWarrior extends RenderLiving {
             double dy = Math.sin(model.getSkull().rotateAngleY);
             double dx = 0.65 * Math.cos(Math.toRadians(45) + model.getSkull().rotateAngleX) * dy;
 
-            EntityFX leftEyeFlame = new EntityBigFlameFX(entity.getEntityWorld(), entity.posX - dx, entity.posY + 2.82 - dy, entity.posZ + dz, 0.9F, 0.1F, 0.85F, 0.1F);
+            Particle leftEyeFlame = new EntityBigFlameFX(entity.getEntityWorld(), entity.posX - dx, entity.posY + 2.82 - dy, entity.posZ + dz, 0.9F, 0.1F, 0.85F, 0.1F);
             Minecraft.getMinecraft().effectRenderer.addEffect(leftEyeFlame);
 
-            EntityFX rightEyeFlame = new EntityBigFlameFX(entity.getEntityWorld(), entity.posX + dx, entity.posY + 2.82 - dy, entity.posZ + dz, 0.9F, 0.1F, 0.85F, 0.1F);
+            Particle rightEyeFlame = new EntityBigFlameFX(entity.getEntityWorld(), entity.posX + dx, entity.posY + 2.82 - dy, entity.posZ + dz, 0.9F, 0.1F, 0.85F, 0.1F);
             Minecraft.getMinecraft().effectRenderer.addEffect(rightEyeFlame);
             ticks = 0;
         } else {
