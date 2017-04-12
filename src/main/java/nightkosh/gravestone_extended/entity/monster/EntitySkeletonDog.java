@@ -6,7 +6,9 @@ import net.minecraft.entity.ai.*;
 import net.minecraft.entity.passive.EntityWolf;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
+import net.minecraft.init.SoundEvents;
 import net.minecraft.item.Item;
+import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import nightkosh.gravestone_extended.core.Resources;
@@ -35,32 +37,32 @@ public class EntitySkeletonDog extends EntityUndeadDog {
     @Override
     protected void applyEntityAttributes() {
         super.applyEntityAttributes();
-        this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(8); // max health
-        this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(0.5); // movespeed
+        this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(8);
+        this.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.5);
     }
 
     /**
      * Returns the sound this mob makes while it's alive.
      */
     @Override
-    protected String getLivingSound() {
-        return "mob.skeleton.say";
+    protected SoundEvent getAmbientSound() {
+        return SoundEvents.ENTITY_SKELETON_AMBIENT;
     }
 
     /**
      * Returns the sound this mob makes when it is hurt.
      */
     @Override
-    protected String getHurtSound() {
-        return "mob.skeleton.hurt";
+    protected SoundEvent getHurtSound() {
+        return SoundEvents.ENTITY_SKELETON_HURT;
     }
 
     /**
      * Returns the sound this mob makes on death.
      */
     @Override
-    protected String getDeathSound() {
-        return "mob.skeleton.death";
+    protected SoundEvent getDeathSound() {
+        return SoundEvents.ENTITY_SKELETON_DEATH;
     }
 
     /**
@@ -68,7 +70,7 @@ public class EntitySkeletonDog extends EntityUndeadDog {
      */
     @Override
     protected void playStepSound(BlockPos pos, Block block) {
-        this.playSound("mob.skeleton.step", 0.15F, 1);
+        this.playSound(SoundEvents.ENTITY_SKELETON_STEP, 0.15F, 1);
     }
 
     /**
@@ -76,6 +78,6 @@ public class EntitySkeletonDog extends EntityUndeadDog {
      */
     @Override
     protected Item getDropItem() {
-        return Items.bone;
+        return Items.BONE;
     }
 }

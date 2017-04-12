@@ -23,7 +23,7 @@ public class EntityZombieRaider extends EntityZombie {
 
     @Override
     public IEntityLivingData onInitialSpawn(DifficultyInstance difficulty, IEntityLivingData data) {
-        this.setCurrentItemOrArmor(0, new ItemStack(Items.iron_sword));
+        this.setCurrentItemOrArmor(0, new ItemStack(Items.IRON_SWORD));
         this.setChild(false);
 
         EntityUndeadHorse horse = new EntityZombieHorse(this.worldObj);

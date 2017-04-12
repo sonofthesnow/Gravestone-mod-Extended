@@ -1,5 +1,7 @@
 package nightkosh.gravestone_extended.entity;
 
+import net.minecraft.init.SoundEvents;
+import net.minecraft.util.SoundEvent;
 import nightkosh.gravestone_extended.entity.ai.EntityRavenMoveHelper;
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.SharedMonsterAttributes;
@@ -29,7 +31,7 @@ public class EntityRaven extends EntityAnimal {
 
         this.tasks.addTask(0, new EntityAISwimming(this));
         this.tasks.addTask(1, new EntityAIPanic(this, 1.5D));
-        this.tasks.addTask(2, new EntityAITempt(this, 0.9, Items.rotten_flesh, true));
+        this.tasks.addTask(2, new EntityAITempt(this, 0.9, Items.ROTTEN_FLESH, true));
         this.tasks.addTask(5, new EntityAIWander(this, 1));
         this.tasks.addTask(6, new EntityAIWatchClosest(this, EntityPlayer.class, 20));
         this.tasks.addTask(7, new EntityAILookIdle(this));
@@ -41,8 +43,8 @@ public class EntityRaven extends EntityAnimal {
     @Override
     protected void applyEntityAttributes() {
         super.applyEntityAttributes();
-        this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(0.3);
-        this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(8);
+        this.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.3);
+        this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(8);
 //        this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(1);
     }
 
@@ -62,18 +64,18 @@ public class EntityRaven extends EntityAnimal {
     }
 
     @Override
-    protected String getLivingSound() {
-        return "";//TODO
+    protected SoundEvent getAmbientSound() {
+        return SoundEvents.AMBIENT_CAVE; //TODO !!!!!!!!!!!!
     }
 
     @Override
-    protected String getHurtSound() {
-        return "";//TODO
+    protected SoundEvent getHurtSound() {
+        return SoundEvents.AMBIENT_CAVE; //TODO !!!!!!!!!!!!
     }
 
     @Override
-    protected String getDeathSound() {
-        return "";//TODO
+    protected SoundEvent getDeathSound() {
+        return SoundEvents.AMBIENT_CAVE; //TODO !!!!!!!!!!!!
     }
 
     @Override

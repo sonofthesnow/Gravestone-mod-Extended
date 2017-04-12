@@ -87,12 +87,12 @@ public abstract class EntityUndeadHorse extends EntityHorse {
     protected void applyEntityAttributes() {
         super.applyEntityAttributes();
 
-        this.getAttributeMap().registerAttribute(SharedMonsterAttributes.attackDamage);
+        this.getAttributeMap().registerAttribute(SharedMonsterAttributes.ATTACK_DAMAGE);
     }
 
     @Override
     public boolean attackEntityAsMob(Entity entity) {
-        float f = (float) this.getEntityAttribute(SharedMonsterAttributes.attackDamage).getAttributeValue();
+        float f = (float) this.getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).getAttributeValue();
         int i = 0;
 
         if (entity instanceof EntityLivingBase) {
@@ -182,7 +182,7 @@ public abstract class EntityUndeadHorse extends EntityHorse {
     @Override
     public boolean interact(EntityPlayer player) {
         ItemStack itemstack = player.inventory.getCurrentItem();
-        if (itemstack != null && itemstack.getItem() == Items.spawn_egg) {
+        if (itemstack != null && itemstack.getItem() == Items.SPAWN_EGG) {
             return super.interact(player);
         } else if (this.isTame() && this.isAdultHorse() && player.isSneaking()) {
             this.openGUI(player);
@@ -194,11 +194,11 @@ public abstract class EntityUndeadHorse extends EntityHorse {
                 boolean flag = false;
                 if (this.canWearArmor()) {
                     byte armorType = -1;
-                    if (itemstack.getItem() == Items.iron_horse_armor) {
+                    if (itemstack.getItem() == Items.IRON_HORSE_ARMOR) {
                         armorType = 1;
-                    } else if (itemstack.getItem() == Items.golden_horse_armor) {
+                    } else if (itemstack.getItem() == Items.GOLDEN_HORSE_ARMOR) {
                         armorType = 2;
-                    } else if (itemstack.getItem() == Items.diamond_horse_armor) {
+                    } else if (itemstack.getItem() == Items.DIAMOND_HORSE_ARMOR) {
                         armorType = 3;
                     }
 
@@ -215,10 +215,10 @@ public abstract class EntityUndeadHorse extends EntityHorse {
 
                 float healedHealth = 0;
                 short growth = 0;
-                if (itemstack.getItem() == Items.bone) {
+                if (itemstack.getItem() == Items.BONE) {
                     healedHealth = 2;
                     growth = 20;
-                } else if (itemstack.getItem() == Items.rotten_flesh) {
+                } else if (itemstack.getItem() == Items.ROTTEN_FLESH) {
                     healedHealth = 4;
                     growth = 60;
                 }
@@ -249,7 +249,7 @@ public abstract class EntityUndeadHorse extends EntityHorse {
                         return true;
                     }
 
-                    if (this.func_110253_bW() && !this.isHorseSaddled() && itemstack.getItem() == Items.saddle) {
+                    if (this.func_110253_bW() && !this.isHorseSaddled() && itemstack.getItem() == Items.SADDLE) {
                         this.openGUI(player);
                         return true;
                     }
@@ -367,7 +367,7 @@ public abstract class EntityUndeadHorse extends EntityHorse {
             return 0;
         } else {
             Item item = itemStack.getItem();
-            return item == Items.iron_horse_armor ? 1 : (item == Items.golden_horse_armor ? 2 : (item == Items.diamond_horse_armor ? 3 : 0));
+            return item == Items.IRON_HORSE_ARMOR ? 1 : (item == Items.GOLDEN_HORSE_ARMOR ? 2 : (item == Items.DIAMOND_HORSE_ARMOR ? 3 : 0));
         }
     }
 

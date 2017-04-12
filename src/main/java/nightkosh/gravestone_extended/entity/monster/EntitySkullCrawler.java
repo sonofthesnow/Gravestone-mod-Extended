@@ -11,12 +11,17 @@ import net.minecraft.entity.ai.EntityAISwimming;
 import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
+import net.minecraft.init.SoundEvents;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.network.datasync.DataParameter;
+import net.minecraft.network.datasync.DataSerializers;
+import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EntityDamageSource;
+import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
@@ -32,6 +37,7 @@ import nightkosh.gravestone_extended.entity.ai.AISummonSkullCrawler;
  * @license Lesser GNU Public License v3 (http://www.gnu.org/licenses/lgpl.html)
  */
 public class EntitySkullCrawler extends EntityMob {
+    private static final DataParameter<Byte> CLIMBING = EntityDataManager.createKey(EntitySkullCrawler.class, DataSerializers.BYTE);
 
     private AISummonSkullCrawler summonAI;
     private AIHideInBones hideInBonesAI;
@@ -59,9 +65,9 @@ public class EntitySkullCrawler extends EntityMob {
     @Override
     protected void applyEntityAttributes() {
         super.applyEntityAttributes();
-        this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(12);
-        this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(0.4D);
-        this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(1.5);
+        this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(12);
+        this.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.4D);
+        this.getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(1.5);
     }
 
     /**
@@ -74,23 +80,23 @@ public class EntitySkullCrawler extends EntityMob {
     }
 
     @Override
-    protected String getLivingSound() {
-        return "mob.skeleton.say";
+    protected SoundEvent getAmbientSound() {
+        return SoundEvents.ENTITY_SKELETON_AMBIENT;
     }
 
     @Override
-    protected String getHurtSound() {
-        return "mob.skeleton.say";
+    protected SoundEvent getHurtSound() {
+        return SoundEvents.ENTITY_SKELETON_HURT;
     }
 
     @Override
-    protected String getDeathSound() {
-        return "mob.skeleton.death";
+    protected SoundEvent getDeathSound() {
+        return SoundEvents.ENTITY_SKELETON_DEATH;
     }
 
     @Override
     protected void playStepSound(BlockPos pos, net.minecraft.block.Block block) {
-        this.playSound("mob.spider.step", 0.15F, 1);
+        this.playSound(SoundEvents.ENTITY_SPIDER_STEP, 0.15F, 1);
     }
 
     /**
@@ -112,7 +118,7 @@ public class EntitySkullCrawler extends EntityMob {
     @Override
     protected void entityInit() {
         super.entityInit();
-        this.dataWatcher.addObject(16, new Byte((byte) 0));
+        this.dataManager.register(CLIMBING, Byte.valueOf((byte) 0));
     }
 
     /**
@@ -197,7 +203,7 @@ public class EntitySkullCrawler extends EntityMob {
      * false. The WatchableObject is updated using setBesideClimableBlock.
      */
     public boolean isBesideClimbableBlock() {
-        return (this.dataWatcher.getWatchableObjectByte(16) & 1) != 0;
+        return (this.dataManager.get(CLIMBING).byteValue() & 1) != 0;
     }
 
     /**
@@ -205,7 +211,7 @@ public class EntitySkullCrawler extends EntityMob {
      * 0x01 if par1 is true or 0x00 if it is false.
      */
     public void setBesideClimbableBlock(boolean par1) {
-        byte b0 = this.dataWatcher.getWatchableObjectByte(16);
+        byte b0 = this.dataManager.get(CLIMBING).byteValue();
 
         if (par1) {
             b0 = (byte) (b0 | 1);
@@ -213,7 +219,7 @@ public class EntitySkullCrawler extends EntityMob {
             b0 &= -2;
         }
 
-        this.dataWatcher.updateObject(16, Byte.valueOf(b0));
+        this.dataManager.set(CLIMBING, Byte.valueOf(b0));
 //        switch (getHorizontalFacing()) {
 //            case WEST:
 //                if (worldObj.isSideSolid(getPosition().south(), EnumFacing.NORTH)) {

@@ -23,12 +23,12 @@ public class EntityWitherSkullCrawler extends EntitySkullCrawler {
     @Override
     protected void applyEntityAttributes() {
         super.applyEntityAttributes();
-        this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(2);
+        this.getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(2);
     }
 
     @Override
     protected ItemStack getRareDrop() {
-        return new ItemStack(Items.skull, 1, 1);
+        return new ItemStack(Items.SKULL, 1, 1);
     }
 
     @Override

@@ -1,5 +1,7 @@
 package nightkosh.gravestone_extended.entity.monster;
 
+import net.minecraft.init.SoundEvents;
+import net.minecraft.util.SoundEvent;
 import nightkosh.gravestone_extended.core.Resources;
 import nightkosh.gravestone_extended.entity.ai.EntityAIAttackLivingHorse;
 import net.minecraft.block.Block;
@@ -62,8 +64,8 @@ public class EntityZombieCat extends EntityUndeadCat {
     @Override
     protected void applyEntityAttributes() {
         super.applyEntityAttributes();
-        this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(10); // max health
-        this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(0.5D); // movespeed
+        this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(10); // max health
+        this.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.5D); // movespeed
     }
 
     @Override
@@ -126,24 +128,24 @@ public class EntityZombieCat extends EntityUndeadCat {
      * Returns the sound this mob makes while it's alive.
      */
     @Override
-    protected String getLivingSound() {
-        return (this.rand.nextInt(4) == 0) ? "mob.cat.purreow" : "mob.cat.meow";
+    protected SoundEvent getAmbientSound() {
+        return (this.rand.nextInt(4) == 0) ? SoundEvents.ENTITY_CAT_PURREOW : SoundEvents.ENTITY_CAT_AMBIENT;
     }
 
     /**
      * Returns the sound this mob makes when it is hurt.
      */
     @Override
-    protected String getHurtSound() {
-        return "mob.cat.hitt";
+    protected SoundEvent getHurtSound() {
+        return SoundEvents.ENTITY_CAT_HURT;
     }
 
     /**
      * Returns the sound this mob makes on death.
      */
     @Override
-    protected String getDeathSound() {
-        return "mob.cat.hitt";
+    protected SoundEvent getDeathSound() {
+        return SoundEvents.ENTITY_CAT_DEATH;
     }
 
     /**
@@ -166,7 +168,7 @@ public class EntityZombieCat extends EntityUndeadCat {
      */
     @Override
     protected Item getDropItem() {
-        return Items.rotten_flesh;
+        return Items.ROTTEN_FLESH;
     }
 
     public int getSkin() {

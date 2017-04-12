@@ -1,7 +1,5 @@
 package nightkosh.gravestone_extended.entity.monster;
 
-import com.google.common.base.Predicate;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityAIAvoidEntity;
 import net.minecraft.entity.passive.EntityWolf;
@@ -29,6 +27,6 @@ public class EntitySkeletonHorse extends EntityUndeadHorse {
     @Override
     protected void applyEntityAttributes() {
         super.applyEntityAttributes();
-        this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(3);
+        this.getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(3);
     }
 }

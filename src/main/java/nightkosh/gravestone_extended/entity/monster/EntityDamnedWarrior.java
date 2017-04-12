@@ -5,7 +5,9 @@ import net.minecraft.entity.EnumCreatureAttribute;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.init.Items;
+import net.minecraft.init.SoundEvents;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
@@ -39,27 +41,27 @@ public class EntityDamnedWarrior extends EntityMob {
     @Override
     protected void applyEntityAttributes() {
         super.applyEntityAttributes();
-        this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(0.25D);
+        this.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.25D);
     }
 
     @Override
-    protected String getLivingSound() {
-        return "mob.skeleton.say";
+    protected SoundEvent getAmbientSound() {
+        return SoundEvents.ENTITY_SKELETON_AMBIENT;
     }
 
     @Override
-    protected String getHurtSound() {
-        return "mob.skeleton.hurt";
+    protected SoundEvent getHurtSound() {
+        return SoundEvents.ENTITY_SKELETON_HURT;
     }
 
     @Override
-    protected String getDeathSound() {
-        return "mob.skeleton.death";
+    protected SoundEvent getDeathSound() {
+        return SoundEvents.ENTITY_SKELETON_DEATH;
     }
 
     @Override
     protected void playStepSound(BlockPos pos, Block blockIn) {
-        this.playSound("mob.skeleton.step", 0.15F, 1);
+        this.playSound(SoundEvents.ENTITY_SKELETON_STEP, 0.15F, 1);
     }
 
     @Override
@@ -72,13 +74,13 @@ public class EntityDamnedWarrior extends EntityMob {
         int l = this.rand.nextInt(3 + lootingModifier);
 
         for (int j1 = 0; j1 < l; ++j1) {
-            this.dropItem(Items.bone, 1);
+            this.dropItem(Items.BONE, 1);
         }
     }
 
     @Override
     protected void addRandomDrop() {
-        this.entityDropItem(new ItemStack(Items.skull, 1, 1), 0.0F);
+        this.entityDropItem(new ItemStack(Items.SKULL, 1, 1), 0.0F);
     }
 
     @Override
