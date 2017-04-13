@@ -55,14 +55,16 @@ public class TileEntityMemorial extends TileEntityGrave {
      * Writes a tile entity to NBT.
      */
     @Override
-    public void writeToNBT(NBTTagCompound nbtTag) {
-        super.writeToNBT(nbtTag);
+    public NBTTagCompound writeToNBT(NBTTagCompound nbtTag) {
+        nbtTag = super.writeToNBT(nbtTag);
         // death text
         deathText.saveText(nbtTag);
 
         if (this.playerProfile != null) {
             nbtTag.setTag("Owner", NBTUtil.writeGameProfile(new NBTTagCompound(), this.playerProfile));
         }
+
+        return nbtTag;
     }
 
     public void setMemorialContent(Random random) {

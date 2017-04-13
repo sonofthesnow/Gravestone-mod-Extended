@@ -3,6 +3,7 @@ package nightkosh.gravestone_extended.entity.monster;
 import net.minecraft.entity.IEntityLivingData;
 import net.minecraft.entity.monster.EntitySkeleton;
 import net.minecraft.init.Items;
+import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.text.translation.I18n;
 import net.minecraft.world.DifficultyInstance;
@@ -25,9 +26,9 @@ public class EntityGSSkeleton extends EntitySkeleton {
         livingData = super.onInitialSpawn(difficulty, livingData);
 
         if (this.rand.nextBoolean()) {
-            this.setCurrentItemOrArmor(0, new ItemStack(Items.STONE_SWORD, 1, 0));
+            this.setItemStackToSlot(EntityEquipmentSlot.MAINHAND, new ItemStack(Items.STONE_SWORD, 1, 0));
         } else {
-            this.setCurrentItemOrArmor(0, new ItemStack(Items.BOW, 1, 0));
+            this.setItemStackToSlot(EntityEquipmentSlot.MAINHAND, new ItemStack(Items.BOW, 1, 0));
         }
 
         return livingData;

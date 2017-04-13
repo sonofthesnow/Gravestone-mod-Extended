@@ -5,10 +5,9 @@ import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.NetworkManager;
-import net.minecraft.network.Packet;
-import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
+import net.minecraft.network.play.server.SPacketUpdateTileEntity;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.IChatComponent;
+import net.minecraft.util.text.ITextComponent;
 import nightkosh.gravestone.tileentity.TileEntityBase;
 import nightkosh.gravestone_extended.block.enums.EnumCorpse;
 import nightkosh.gravestone_extended.block.enums.EnumExecution;
@@ -42,8 +41,8 @@ public class TileEntityExecution extends TileEntityBase implements IInventory {
     }
 
     @Override
-    public void writeToNBT(NBTTagCompound nbtTag) {
-        super.writeToNBT(nbtTag);
+    public NBTTagCompound writeToNBT(NBTTagCompound nbtTag) {
+        nbtTag = super.writeToNBT(nbtTag);
 
         nbtTag.setByte("Direction", direction);
 
@@ -51,11 +50,12 @@ public class TileEntityExecution extends TileEntityBase implements IInventory {
             nbtTag.setTag("Corpse", corpse.writeToNBT(new NBTTagCompound()));
         }
 
+        return nbtTag;
     }
 
-//    public void setRandomMob(Random random) {
-////        hangedMob = EnumHangedMobs.values()[random.nextInt(EnumHangedMobs.values().length)];
-//    }
+    //    public void setRandomMob(Random random) {
+    ////        hangedMob = EnumHangedMobs.values()[random.nextInt(EnumHangedMobs.values().length)];
+    //    }
 
     public EnumCorpse getCorpseType() {
         return corpseType;
@@ -97,15 +97,19 @@ public class TileEntityExecution extends TileEntityBase implements IInventory {
         return true;
     }
 
+
     @Override
-    public Packet getDescriptionPacket() {
-        NBTTagCompound nbt = new NBTTagCompound();
-        this.writeToNBT(nbt);
-        return new S35PacketUpdateTileEntity(this.pos, 1, nbt);
+    public SPacketUpdateTileEntity getUpdatePacket() {
+        return new SPacketUpdateTileEntity(this.pos, 1, this.getUpdateTag());
     }
 
     @Override
-    public void onDataPacket(NetworkManager net, S35PacketUpdateTileEntity packet) {
+    public NBTTagCompound getUpdateTag() {
+        return this.writeToNBT(new NBTTagCompound());
+    }
+
+    @Override
+    public void onDataPacket(NetworkManager net, SPacketUpdateTileEntity packet) {
         readFromNBT(packet.getNbtCompound());
     }
 
@@ -207,7 +211,7 @@ public class TileEntityExecution extends TileEntityBase implements IInventory {
     }
 
     @Override
-    public IChatComponent getDisplayName() {
+    public ITextComponent getDisplayName() {
         return null;
     }
 

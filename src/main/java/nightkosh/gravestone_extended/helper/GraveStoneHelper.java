@@ -26,17 +26,15 @@ import java.util.Random;
 public class GraveStoneHelper extends nightkosh.gravestone.helper.GraveStoneHelper {
 
     public static final Item[] GENERATED_SWORD_GRAVES = {
-            Items.wooden_sword,
-            Items.stone_sword
+            Items.WOODEN_SWORD,
+            Items.STONE_SWORD
     };
 
-
     public static final List<net.minecraft.block.Block> FLOWERS_GROUND = Arrays.asList(
-            Blocks.grass, Blocks.dirt);
+            Blocks.GRASS, Blocks.DIRT);
 
     public GraveStoneHelper() {
     }
-
 
     /**
      * Return random grave type

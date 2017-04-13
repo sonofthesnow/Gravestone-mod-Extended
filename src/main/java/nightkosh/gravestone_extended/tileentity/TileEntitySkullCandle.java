@@ -2,8 +2,7 @@ package nightkosh.gravestone_extended.tileentity;
 
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.NetworkManager;
-import net.minecraft.network.Packet;
-import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
+import net.minecraft.network.play.server.SPacketUpdateTileEntity;
 import nightkosh.gravestone.tileentity.TileEntityBase;
 import nightkosh.gravestone_extended.block.enums.EnumSkullCandle;
 
@@ -21,9 +20,11 @@ public class TileEntitySkullCandle extends TileEntityBase {
      * Writes a tile entity to NBT.
      */
     @Override
-    public void writeToNBT(NBTTagCompound nbt) {
-        super.writeToNBT(nbt);
+    public NBTTagCompound writeToNBT(NBTTagCompound nbt) {
+        nbt = super.writeToNBT(nbt);
         nbt.setByte("Rotation", this.rotation);
+
+        return nbt;
     }
 
     /**
@@ -35,19 +36,19 @@ public class TileEntitySkullCandle extends TileEntityBase {
         this.rotation = nbt.getByte("Rotation");
     }
 
-    /**
-     * Overriden in a sign to provide the text.
-     */
     @Override
-    public Packet getDescriptionPacket() {
-        NBTTagCompound nbt = new NBTTagCompound();
-        this.writeToNBT(nbt);
-        return new S35PacketUpdateTileEntity(this.pos, 4, nbt);
+    public void onDataPacket(NetworkManager net, SPacketUpdateTileEntity packet) {
+        readFromNBT(packet.getNbtCompound());
     }
 
     @Override
-    public void onDataPacket(NetworkManager net, S35PacketUpdateTileEntity packet) {
-        readFromNBT(packet.getNbtCompound());
+    public SPacketUpdateTileEntity getUpdatePacket() {
+        return new SPacketUpdateTileEntity(this.pos, 4, this.getUpdateTag());
+    }
+
+    @Override
+    public NBTTagCompound getUpdateTag() {
+        return this.writeToNBT(new NBTTagCompound());
     }
 
     /**

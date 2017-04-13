@@ -1,15 +1,22 @@
 package nightkosh.gravestone_extended.entity.monster;
 
+import com.google.common.base.Optional;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.*;
+import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.entity.passive.EntityHorse;
+import net.minecraft.entity.passive.HorseArmorType;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.network.datasync.DataParameter;
+import net.minecraft.network.datasync.DataSerializers;
+import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.DifficultyInstance;
@@ -17,7 +24,9 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
+import javax.annotation.Nullable;
 import java.util.Iterator;
+import java.util.UUID;
 
 /**
  * GraveStone mod
@@ -144,7 +153,7 @@ public abstract class EntityUndeadHorse extends EntityHorse {
     }
 
     @Override
-    public boolean allowLeashing() {
+    public boolean canBeLeashedTo(EntityPlayer player) {
         return !this.getLeashed();
     }
 
@@ -180,25 +189,24 @@ public abstract class EntityUndeadHorse extends EntityHorse {
     }
 
     @Override
-    public boolean interact(EntityPlayer player) {
-        ItemStack itemstack = player.inventory.getCurrentItem();
-        if (itemstack != null && itemstack.getItem() == Items.SPAWN_EGG) {
-            return super.interact(player);
+    public boolean processInteract(EntityPlayer player, EnumHand hand, @Nullable ItemStack stack) {
+        if (stack != null && stack.getItem() == Items.SPAWN_EGG) {
+            return super.processInteract(player, hand, stack);
         } else if (this.isTame() && this.isAdultHorse() && player.isSneaking()) {
             this.openGUI(player);
             return true;
-        } else if (this.func_110253_bW() && this.riddenByEntity != null) {
-            return super.interact(player);
+        } else if (this.isRidable() && this.isBeingRidden()) {
+            return super.processInteract(player, hand, stack);
         } else {
-            if (itemstack != null) {
+            if (stack != null) {
                 boolean flag = false;
                 if (this.canWearArmor()) {
                     byte armorType = -1;
-                    if (itemstack.getItem() == Items.IRON_HORSE_ARMOR) {
+                    if (stack.getItem() == Items.IRON_HORSE_ARMOR) {
                         armorType = 1;
-                    } else if (itemstack.getItem() == Items.GOLDEN_HORSE_ARMOR) {
+                    } else if (stack.getItem() == Items.GOLDEN_HORSE_ARMOR) {
                         armorType = 2;
-                    } else if (itemstack.getItem() == Items.DIAMOND_HORSE_ARMOR) {
+                    } else if (stack.getItem() == Items.DIAMOND_HORSE_ARMOR) {
                         armorType = 3;
                     }
 
@@ -215,10 +223,10 @@ public abstract class EntityUndeadHorse extends EntityHorse {
 
                 float healedHealth = 0;
                 short growth = 0;
-                if (itemstack.getItem() == Items.BONE) {
+                if (stack.getItem() == Items.BONE) {
                     healedHealth = 2;
                     growth = 20;
-                } else if (itemstack.getItem() == Items.ROTTEN_FLESH) {
+                } else if (stack.getItem() == Items.ROTTEN_FLESH) {
                     healedHealth = 4;
                     growth = 60;
                 }
@@ -234,14 +242,14 @@ public abstract class EntityUndeadHorse extends EntityHorse {
                 }
 
                 if (flag) {
-                    if (!player.capabilities.isCreativeMode && --itemstack.stackSize == 0) {
+                    if (!player.capabilities.isCreativeMode && --stack.stackSize == 0) {
                         player.inventory.setInventorySlotContents(player.inventory.currentItem, (ItemStack) null);
                     }
 
                     return true;
                 } else {
                     if (!this.isTame()) {
-                        if (itemstack.interactWithEntity(player, this)) {
+                        if (stack.interactWithEntity(player, this, hand)) {
                             return true;
                         }
 
@@ -249,22 +257,22 @@ public abstract class EntityUndeadHorse extends EntityHorse {
                         return true;
                     }
 
-                    if (this.func_110253_bW() && !this.isHorseSaddled() && itemstack.getItem() == Items.SADDLE) {
+                    if (this.isRidable() && !this.isHorseSaddled() && stack.getItem() == Items.SADDLE) {
                         this.openGUI(player);
                         return true;
                     }
                 }
             }
 
-            if (this.func_110253_bW() && this.riddenByEntity == null) {
-                if (itemstack != null && itemstack.interactWithEntity(player, this)) {
+            if (this.isRidable() && this.isBeingRidden()) {
+                if (stack != null && stack.interactWithEntity(player, this, hand)) {
                     return true;
                 } else if (this.isTame()) {
                     this.mountHorse(player);
                     return true;
                 }
             } else {
-                return super.interact(player);
+                return super.processInteract(player, hand, stack);
             }
         }
         return false;
@@ -289,13 +297,13 @@ public abstract class EntityUndeadHorse extends EntityHorse {
         this.setEatingHaystack(false);
         this.setRearing(false);
         if (!this.worldObj.isRemote) {
-            player.mountEntity(this);
+            player.startRiding(this);
         }
     }
 
     @Override
     protected boolean isMovementBlocked() {
-        return this.riddenByEntity != null && this.isHorseSaddled() || this.isEatingHaystack() || this.isRearing();
+        return this.getRidingEntity().getControllingPassenger() != null && this.isHorseSaddled() || this.isEatingHaystack() || this.isRearing();
     }
 
     @Override
@@ -340,22 +348,38 @@ public abstract class EntityUndeadHorse extends EntityHorse {
         return this.variantTexturePaths;
     }
 
+    private static final UUID ARMOR_MODIFIER_UUID = UUID.fromString("556E1665-8B10-40C8-8F9D-CF9B1667F295");
+    private static final DataParameter<Integer> HORSE_TYPE = EntityDataManager.createKey(EntityHorse.class, DataSerializers.VARINT);
+    private static final DataParameter<Integer> HORSE_VARIANT = EntityDataManager.createKey(EntityHorse.class, DataSerializers.VARINT);
+    private static final DataParameter<Optional<UUID>> OWNER_UNIQUE_ID = EntityDataManager.createKey(EntityHorse.class, DataSerializers.OPTIONAL_UNIQUE_ID);
+    private static final DataParameter<Integer> HORSE_ARMOR = EntityDataManager.createKey(EntityHorse.class, DataSerializers.VARINT);
+
     @Override
     public void setHorseType(int horseType) {
-        this.dataWatcher.updateObject(19, (byte) horseType);
+        this.dataManager.set(HORSE_TYPE, Integer.valueOf(horseType));
         this.resetTexturePrefix();
     }
 
     @Override
     public void setHorseVariant(int horseVariant) {
-        this.dataWatcher.updateObject(20, horseVariant);
+        this.dataManager.set(HORSE_VARIANT, Integer.valueOf(horseVariant));
         this.resetTexturePrefix();
     }
 
     @Override
     public void setHorseArmorStack(ItemStack itemStack) {
-        this.dataWatcher.updateObject(22, this.getHorseArmorIndex(itemStack));
+        HorseArmorType horsearmortype = HorseArmorType.getByItemStack(itemStack);
+        this.dataManager.set(HORSE_ARMOR, Integer.valueOf(horsearmortype.getOrdinal()));
         this.resetTexturePrefix();
+
+        if (!this.worldObj.isRemote) {
+            this.getEntityAttribute(SharedMonsterAttributes.ARMOR).removeModifier(ARMOR_MODIFIER_UUID);
+            int i = horsearmortype.getProtection();
+
+            if (i != 0) {
+                this.getEntityAttribute(SharedMonsterAttributes.ARMOR).applyModifier((new AttributeModifier(ARMOR_MODIFIER_UUID, "Horse armor bonus", (double) i, 0)).setSaved(false));
+            }
+        }
     }
 
     protected void resetTexturePrefix() {
@@ -373,7 +397,7 @@ public abstract class EntityUndeadHorse extends EntityHorse {
 
     @Override
     public void onUpdate() {
-        if (this.worldObj.isRemote && this.dataWatcher.hasObjectChanged()) {
+        if (this.worldObj.isRemote && this.dataManager.isDirty()) {
             this.resetTexturePrefix();
         }
         super.onUpdate();

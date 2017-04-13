@@ -4,6 +4,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.IEntityLivingData;
 import net.minecraft.entity.monster.EntityZombie;
 import net.minecraft.init.Items;
+import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.ItemStack;
 import net.minecraft.pathfinding.PathNavigateGround;
 import net.minecraft.world.DifficultyInstance;
@@ -23,7 +24,7 @@ public class EntityZombieRaider extends EntityZombie {
 
     @Override
     public IEntityLivingData onInitialSpawn(DifficultyInstance difficulty, IEntityLivingData data) {
-        this.setCurrentItemOrArmor(0, new ItemStack(Items.IRON_SWORD));
+        this.setItemStackToSlot(EntityEquipmentSlot.MAINHAND, new ItemStack(Items.IRON_SWORD));
         this.setChild(false);
 
         EntityUndeadHorse horse = new EntityZombieHorse(this.worldObj);
@@ -32,7 +33,7 @@ public class EntityZombieRaider extends EntityZombie {
         horse.onInitialSpawn(difficulty, (IEntityLivingData) null);
 
         this.worldObj.spawnEntityInWorld(horse);
-        this.mountEntity(horse);
+        this.startRiding(horse);
 
         return super.onInitialSpawn(difficulty, data);
     }

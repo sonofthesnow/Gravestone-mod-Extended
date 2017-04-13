@@ -4,15 +4,15 @@ import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.Vec3i;
+import net.minecraft.util.math.Vec3i;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.structure.StructureBoundingBox;
+import nightkosh.gravestone.helper.GraveGenerationHelper.EnumGraveTypeByEntity;
 import nightkosh.gravestone.tileentity.TileEntityGraveStone;
 import nightkosh.gravestone_extended.entity.helper.EntityGroupOfGravesMobSpawnerHelper;
 import nightkosh.gravestone_extended.helper.GraveInventoryHelper;
 import nightkosh.gravestone_extended.helper.GraveStoneHelper;
 import nightkosh.gravestone_extended.helper.GraveWorldGenerationHelper;
-import nightkosh.gravestone.helper.GraveGenerationHelper.EnumGraveTypeByEntity;
 
 import java.util.Random;
 
@@ -112,7 +112,7 @@ public class GraveGenerationHelper {
             block = world.getBlockState(pos).getBlock();
 
             if (block != null) {
-                if (block.equals(Blocks.water) || block.equals(Blocks.lava)) {
+                if (block.equals(Blocks.WATER) || block.equals(Blocks.LAVA)) {
                     return false;
                 } else if (GraveStoneHelper.canPlaceBlockAt(world, block, pos)) {
                     return true;

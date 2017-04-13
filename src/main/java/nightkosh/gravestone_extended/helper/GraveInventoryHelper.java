@@ -89,15 +89,15 @@ public class GraveInventoryHelper {
     }
 
     private static void addBonesAndFlesh(Random random, List<ItemStack> itemList) {
-        itemList.add(new ItemStack(Items.bone, 1 + random.nextInt(5), 0));
-        itemList.add(new ItemStack(Items.rotten_flesh, 1 + random.nextInt(5), 0));
+        itemList.add(new ItemStack(Items.BONE, 1 + random.nextInt(5), 0));
+        itemList.add(new ItemStack(Items.ROTTEN_FLESH, 1 + random.nextInt(5), 0));
     }
 
     private static void addSkull(Random random, List<ItemStack> itemList) {
         if (random.nextBoolean()) {
-            itemList.add(new ItemStack(Items.skull, 1, 0));//SKELETON
+            itemList.add(new ItemStack(Items.SKULL, 1, 0));//SKELETON
         } else {
-            itemList.add(new ItemStack(Items.skull, 1, 2));//ZOMBIE
+            itemList.add(new ItemStack(Items.SKULL, 1, 2));//ZOMBIE
         }
     }
 
@@ -201,79 +201,79 @@ public class GraveInventoryHelper {
         switch (materials) {
             case OTHER:
                 if (random.nextBoolean()) {
-                    itemList.add(new ItemStack(Items.leather_chestplate, 1, getRandomDamage(random, 30)));
+                    itemList.add(new ItemStack(Items.LEATHER_CHESTPLATE, 1, getRandomDamage(random, 30)));
                 }
                 if (random.nextBoolean()) {
-                    itemList.add(new ItemStack(Items.leather_leggings, 1, getRandomDamage(random, 30)));
+                    itemList.add(new ItemStack(Items.LEATHER_LEGGINGS, 1, getRandomDamage(random, 30)));
                 }
                 if (random.nextBoolean()) {
-                    itemList.add(new ItemStack(Items.leather_helmet, 1, getRandomDamage(random, 30)));
+                    itemList.add(new ItemStack(Items.LEATHER_HELMET, 1, getRandomDamage(random, 30)));
                 }
                 if (random.nextBoolean()) {
-                    itemList.add(new ItemStack(Items.leather_boots, 1, getRandomDamage(random, 30)));
+                    itemList.add(new ItemStack(Items.LEATHER_BOOTS, 1, getRandomDamage(random, 30)));
                 }
                 break;
             case IRON:
                 if (random.nextBoolean()) {
-                    itemList.add(new ItemStack(Items.iron_chestplate, 1, getRandomDamage(random)));
+                    itemList.add(new ItemStack(Items.IRON_CHESTPLATE, 1, getRandomDamage(random)));
                 }
                 if (random.nextBoolean()) {
-                    itemList.add(new ItemStack(Items.iron_leggings, 1, getRandomDamage(random)));
+                    itemList.add(new ItemStack(Items.IRON_LEGGINGS, 1, getRandomDamage(random)));
                 }
                 if (random.nextBoolean()) {
-                    itemList.add(new ItemStack(Items.iron_helmet, 1, getRandomDamage(random)));
+                    itemList.add(new ItemStack(Items.IRON_HELMET, 1, getRandomDamage(random)));
                 }
                 if (random.nextBoolean()) {
-                    itemList.add(new ItemStack(Items.iron_boots, 1, getRandomDamage(random)));
+                    itemList.add(new ItemStack(Items.IRON_BOOTS, 1, getRandomDamage(random)));
                 }
                 break;
             case CHAINMAIL:
                 if (random.nextBoolean()) {
-                    itemList.add(new ItemStack(Items.chainmail_chestplate, 1, getRandomDamage(random)));
+                    itemList.add(new ItemStack(Items.CHAINMAIL_CHESTPLATE, 1, getRandomDamage(random)));
                 }
                 if (random.nextBoolean()) {
-                    itemList.add(new ItemStack(Items.chainmail_leggings, 1, getRandomDamage(random)));
+                    itemList.add(new ItemStack(Items.CHAINMAIL_LEGGINGS, 1, getRandomDamage(random)));
                 }
                 if (random.nextBoolean()) {
-                    itemList.add(new ItemStack(Items.chainmail_helmet, 1, getRandomDamage(random)));
+                    itemList.add(new ItemStack(Items.CHAINMAIL_HELMET, 1, getRandomDamage(random)));
                 }
                 if (random.nextBoolean()) {
-                    itemList.add(new ItemStack(Items.chainmail_boots, 1, getRandomDamage(random)));
+                    itemList.add(new ItemStack(Items.CHAINMAIL_BOOTS, 1, getRandomDamage(random)));
                 }
                 break;
             case GOLDEN:
                 if (random.nextBoolean()) {
-                    itemList.add(new ItemStack(Items.golden_chestplate, 1, getRandomDamage(random, 50)));
+                    itemList.add(new ItemStack(Items.GOLDEN_CHESTPLATE, 1, getRandomDamage(random, 50)));
                 }
                 if (random.nextBoolean()) {
-                    itemList.add(new ItemStack(Items.golden_leggings, 1, getRandomDamage(random, 50)));
+                    itemList.add(new ItemStack(Items.GOLDEN_LEGGINGS, 1, getRandomDamage(random, 50)));
                 }
                 if (random.nextBoolean()) {
-                    itemList.add(new ItemStack(Items.golden_helmet, 1, getRandomDamage(random, 30)));
+                    itemList.add(new ItemStack(Items.GOLDEN_HELMET, 1, getRandomDamage(random, 30)));
                 }
                 if (random.nextBoolean()) {
-                    itemList.add(new ItemStack(Items.golden_boots, 1, getRandomDamage(random, 40)));
+                    itemList.add(new ItemStack(Items.GOLDEN_BOOTS, 1, getRandomDamage(random, 40)));
                 }
                 break;
             case DIAMOND:
                 if (random.nextBoolean()) {
-                    itemList.add(new ItemStack(Items.diamond_chestplate, 1, getRandomDamage(random)));
+                    itemList.add(new ItemStack(Items.DIAMOND_CHESTPLATE, 1, getRandomDamage(random)));
                 }
                 if (random.nextBoolean()) {
-                    itemList.add(new ItemStack(Items.diamond_leggings, 1, getRandomDamage(random)));
+                    itemList.add(new ItemStack(Items.DIAMOND_LEGGINGS, 1, getRandomDamage(random)));
                 }
                 if (random.nextBoolean()) {
-                    itemList.add(new ItemStack(Items.diamond_helmet, 1, getRandomDamage(random)));
+                    itemList.add(new ItemStack(Items.DIAMOND_HELMET, 1, getRandomDamage(random)));
                 }
                 if (random.nextBoolean()) {
-                    itemList.add(new ItemStack(Items.diamond_boots, 1, getRandomDamage(random)));
+                    itemList.add(new ItemStack(Items.DIAMOND_BOOTS, 1, getRandomDamage(random)));
                 }
                 break;
         }
 
         if (random.nextInt(3) == 0) {
-            itemList.add(new ItemStack(Items.bow, 1, getRandomDamage(random)));
-            itemList.add(new ItemStack(Items.arrow, 10 + random.nextInt(54), 0));
+            itemList.add(new ItemStack(Items.BOW, 1, getRandomDamage(random)));
+            itemList.add(new ItemStack(Items.ARROW, 10 + random.nextInt(54), 0));
         }
     }
 
@@ -282,17 +282,17 @@ public class GraveInventoryHelper {
         switch (contentMaterial) {
             case IRON:
             case CHAINMAIL:
-                sword = Items.iron_sword;
+                sword = Items.IRON_SWORD;
                 break;
             case GOLDEN:
-                sword = Items.golden_sword;
+                sword = Items.GOLDEN_SWORD;
                 break;
             case DIAMOND:
-                sword = Items.diamond_sword;
+                sword = Items.DIAMOND_SWORD;
                 break;
             default:
             case OTHER:
-                sword = random.nextBoolean() ? Items.stone_sword : Items.wooden_sword;
+                sword = random.nextBoolean() ? Items.STONE_SWORD : Items.WOODEN_SWORD;
                 break;
         }
         return new ItemStack(sword, 1, getRandomDamage(random, 30));
@@ -314,42 +314,42 @@ public class GraveInventoryHelper {
     private static void fillMinerGrave(Random random, List<ItemStack> itemList, ContentMaterials materials) {
         switch (materials) {
             case IRON:
-                itemList.add(new ItemStack(Items.iron_pickaxe, 1, getRandomDamage(random)));
+                itemList.add(new ItemStack(Items.IRON_PICKAXE, 1, getRandomDamage(random)));
                 break;
             case GOLDEN:
-                itemList.add(new ItemStack(Items.golden_pickaxe, 1, getRandomDamage(random, 15)));
+                itemList.add(new ItemStack(Items.GOLDEN_PICKAXE, 1, getRandomDamage(random, 15)));
                 break;
             case DIAMOND:
-                itemList.add(new ItemStack(Items.diamond_pickaxe, 1, getRandomDamage(random)));
+                itemList.add(new ItemStack(Items.DIAMOND_PICKAXE, 1, getRandomDamage(random)));
                 break;
             default:
-                itemList.add(new ItemStack(Items.stone_pickaxe, 1, getRandomDamage(random, 30)));
+                itemList.add(new ItemStack(Items.STONE_PICKAXE, 1, getRandomDamage(random, 30)));
                 break;
         }
 
         switch (random.nextInt(10)) {
             case 0:
-                itemList.add(new ItemStack(Items.diamond, 1 + random.nextInt(3), 0));
+                itemList.add(new ItemStack(Items.DIAMOND, 1 + random.nextInt(3), 0));
                 break;
             case 1:
-                itemList.add(new ItemStack(Items.emerald, 1 + random.nextInt(3), 0));
+                itemList.add(new ItemStack(Items.EMERALD, 1 + random.nextInt(3), 0));
                 break;
         }
         switch (random.nextInt(5)) {
             case 0:
-                itemList.add(new ItemStack(Items.gold_ingot, 3 + random.nextInt(5), 0));
+                itemList.add(new ItemStack(Items.GOLD_INGOT, 3 + random.nextInt(5), 0));
                 break;
             case 1:
             case 2:
-                itemList.add(new ItemStack(Items.iron_ingot, 3 + random.nextInt(5), 0));
+                itemList.add(new ItemStack(Items.IRON_INGOT, 3 + random.nextInt(5), 0));
                 break;
         }
         switch (random.nextInt(5)) {
             case 0:
-                itemList.add(new ItemStack(Items.redstone, 3 + random.nextInt(8), 0));
+                itemList.add(new ItemStack(Items.REDSTONE, 3 + random.nextInt(8), 0));
                 break;
             case 1:
-                itemList.add(new ItemStack(Items.dye, 3 + random.nextInt(8), 4));
+                itemList.add(new ItemStack(Items.DYE, 3 + random.nextInt(8), 4));
                 break;
         }
     }
@@ -371,57 +371,57 @@ public class GraveInventoryHelper {
         switch (contentMaterials) {
             case REDSTONE: // enchanted book
                 EnchantmentData data = new EnchantmentData(Enchantment.enchantmentsBookList[random.nextInt(Enchantment.enchantmentsBookList.length)], 1 + random.nextInt(5));
-                ItemStack items = Items.enchanted_book.getEnchantedItemStack(data);
+                ItemStack items = Items.ENCHANTED_BOOK.getEnchantedItemStack(data);
                 itemList.add(items);
                 break;
             case QUARTZ:
-                itemList.add(new ItemStack(Items.potionitem, 1 + random.nextInt(5), POTION_LIST[random.nextInt(POTION_LIST.length)]));
+                itemList.add(new ItemStack(Items.POTIONITEM, 1 + random.nextInt(5), POTION_LIST[random.nextInt(POTION_LIST.length)]));
                 break;
             case LAPIS:
-                itemList.add(new ItemStack(Items.book, 3 + random.nextInt(8), 0));
+                itemList.add(new ItemStack(Items.BOOK, 3 + random.nextInt(8), 0));
                 break;
         }
         switch (random.nextInt(15)) {
             case 0:
-                itemList.add(new ItemStack(Items.ender_pearl, 1, 0));
+                itemList.add(new ItemStack(Items.ENDER_PEARL, 1, 0));
                 break;
             case 1:
-                itemList.add(new ItemStack(Items.blaze_powder, 1, 0));
+                itemList.add(new ItemStack(Items.BLAZE_POWDER, 1, 0));
                 break;
             case 2:
-                itemList.add(new ItemStack(Items.glowstone_dust, 3 + random.nextInt(8), 0));
+                itemList.add(new ItemStack(Items.GLOWSTONE_DUST, 3 + random.nextInt(8), 0));
                 break;
         }
         switch (random.nextInt(6)) {
             case 0:
-                itemList.add(new ItemStack(Items.magma_cream, 1, 0));
+                itemList.add(new ItemStack(Items.MAGMA_CREAM, 1, 0));
                 break;
             case 1:
-                itemList.add(new ItemStack(Items.gunpowder, 1, 0));
+                itemList.add(new ItemStack(Items.GUNPOWDER, 1, 0));
                 break;
         }
         switch (random.nextInt(10)) {
             case 0:
-                itemList.add(new ItemStack(Items.ghast_tear, 1, 0));
+                itemList.add(new ItemStack(Items.GHAST_TEAR, 1, 0));
                 break;
             case 1:
-                itemList.add(new ItemStack(Items.nether_wart, 1, 0));
+                itemList.add(new ItemStack(Items.NETHER_WART, 1, 0));
                 break;
         }
         switch (random.nextInt(5)) {
             case 0:
-                itemList.add(new ItemStack(Items.spider_eye, 1, 0));
+                itemList.add(new ItemStack(Items.SPIDER_EYE, 1, 0));
                 break;
             case 1:
-                itemList.add(new ItemStack(Items.fermented_spider_eye, 1, 0));
+                itemList.add(new ItemStack(Items.FERMENTED_SPIDER_EYE, 1, 0));
                 break;
         }
         switch (random.nextInt(8)) {
             case 0:
-                itemList.add(new ItemStack(Items.golden_carrot, 1, 0));
+                itemList.add(new ItemStack(Items.GOLDEN_CARROT, 1, 0));
                 break;
             case 1:
-                itemList.add(new ItemStack(Items.speckled_melon, 1, 0));
+                itemList.add(new ItemStack(Items.SPECKLED_MELON, 1, 0));
                 break;
         }
     }
@@ -443,29 +443,29 @@ public class GraveInventoryHelper {
         switch (materials) {
             case IRON:
                 if (random.nextBoolean()) {
-                    itemList.add(new ItemStack(Items.iron_axe, 1, getRandomDamage(random)));
+                    itemList.add(new ItemStack(Items.IRON_AXE, 1, getRandomDamage(random)));
                 } else {
-                    itemList.add(new ItemStack(Items.iron_shovel, 1, getRandomDamage(random)));
+                    itemList.add(new ItemStack(Items.IRON_SHOVEL, 1, getRandomDamage(random)));
                 }
                 break;
             case GOLDEN:
                 if (random.nextBoolean()) {
-                    itemList.add(new ItemStack(Items.golden_axe, 1, getRandomDamage(random, 15)));
+                    itemList.add(new ItemStack(Items.GOLDEN_AXE, 1, getRandomDamage(random, 15)));
                 } else {
-                    itemList.add(new ItemStack(Items.golden_shovel, 1, getRandomDamage(random, 15)));
+                    itemList.add(new ItemStack(Items.GOLDEN_SHOVEL, 1, getRandomDamage(random, 15)));
                 }
                 break;
             case DIAMOND:
                 if (random.nextBoolean()) {
-                    itemList.add(new ItemStack(Items.diamond_axe, 1, getRandomDamage(random)));
+                    itemList.add(new ItemStack(Items.DIAMOND_AXE, 1, getRandomDamage(random)));
                 } else {
-                    itemList.add(new ItemStack(Items.diamond_shovel, 1, getRandomDamage(random)));
+                    itemList.add(new ItemStack(Items.DIAMOND_SHOVEL, 1, getRandomDamage(random)));
                 }
                 break;
         }
 
         if (random.nextInt(8) == 0) {
-            itemList.add(new ItemStack(Items.saddle, 1, 0));
+            itemList.add(new ItemStack(Items.SADDLE, 1, 0));
         }
     }
 
@@ -480,34 +480,34 @@ public class GraveInventoryHelper {
     private static void fillAdventureGrave(Random random, List<ItemStack> itemList, ContentMaterials contentMaterials) {
         switch (random.nextInt(8)) {
             case 0:
-                itemList.add(new ItemStack(Items.compass, 1, 0));
+                itemList.add(new ItemStack(Items.COMPASS, 1, 0));
                 break;
             case 1:
-                itemList.add(new ItemStack(Items.clock, 1, 0));
+                itemList.add(new ItemStack(Items.CLOCK, 1, 0));
                 break;
             case 2:
-                itemList.add(new ItemStack(Items.map, 1, 0));
+                itemList.add(new ItemStack(Items.MAP, 1, 0));
                 break;
         }
 
         switch (random.nextInt(10)) {
             case 0:
-                itemList.add(new ItemStack(Items.painting, 1 + random.nextInt(5), 0));
+                itemList.add(new ItemStack(Items.PAINTING, 1 + random.nextInt(5), 0));
                 break;
             case 1:
                 itemList.add(getRandomRecord(random));
                 break;
             case 2:
-                itemList.add(new ItemStack(Items.writable_book, 1, 0));
+                itemList.add(new ItemStack(Items.WRITABLE_BOOK, 1, 0));
                 break;
         }
 
         if (random.nextInt(4) == 0) {
-            itemList.add(new ItemStack(Items.stick, 3 + random.nextInt(9), 0));
+            itemList.add(new ItemStack(Items.STICK, 3 + random.nextInt(9), 0));
         }
 
         if (random.nextInt(5) == 0) {
-            itemList.add(new ItemStack(Items.cookie, 3 + random.nextInt(5), 0));
+            itemList.add(new ItemStack(Items.COOKIE, 3 + random.nextInt(5), 0));
         }
 
         if (contentMaterials == ContentMaterials.EMERALD) {
@@ -539,32 +539,32 @@ public class GraveInventoryHelper {
         }
         if (random.nextInt(10) == 0) {// enchanted book
             EnchantmentData data = new EnchantmentData(Enchantment.enchantmentsBookList[random.nextInt(Enchantment.enchantmentsBookList.length)], 1 + random.nextInt(5));
-            ItemStack items = Items.enchanted_book.getEnchantedItemStack(data);
+            ItemStack items = Items.ENCHANTED_BOOK.getEnchantedItemStack(data);
             itemList.add(items);
         }
         if (random.nextInt(10) == 0) {
-            itemList.add(new ItemStack(Items.ender_pearl, 1 + random.nextInt(5), 0));
+            itemList.add(new ItemStack(Items.ENDER_PEARL, 1 + random.nextInt(5), 0));
         }
         if (random.nextInt(10) == 0) {
-            itemList.add(new ItemStack(Items.ghast_tear, 1 + random.nextInt(5), 0));
+            itemList.add(new ItemStack(Items.GHAST_TEAR, 1 + random.nextInt(5), 0));
         }
         if (random.nextInt(10) == 0) {
-            itemList.add(new ItemStack(Items.blaze_rod, 1 + random.nextInt(5), 0));
+            itemList.add(new ItemStack(Items.BLAZE_ROD, 1 + random.nextInt(5), 0));
         }
 
         if (random.nextInt(5) == 0) {
-            itemList.add(new ItemStack(Items.magma_cream, 1 + random.nextInt(5), 0));
+            itemList.add(new ItemStack(Items.MAGMA_CREAM, 1 + random.nextInt(5), 0));
         }
         if (random.nextInt(5) == 0) {
-            itemList.add(new ItemStack(Items.glowstone_dust, 3 + random.nextInt(13), 0));
+            itemList.add(new ItemStack(Items.GLOWSTONE_DUST, 3 + random.nextInt(13), 0));
         }
 
         if (random.nextInt(10) == 0) {
-            itemList.add(new ItemStack(Items.diamond, 1 + random.nextInt(5), 0));
+            itemList.add(new ItemStack(Items.DIAMOND, 1 + random.nextInt(5), 0));
         } else if (random.nextInt(10) == 0) {
-            itemList.add(new ItemStack(Items.emerald, 1 + random.nextInt(5), 0));
+            itemList.add(new ItemStack(Items.EMERALD, 1 + random.nextInt(5), 0));
         } else {
-            itemList.add(new ItemStack(Items.gold_ingot, 3 + random.nextInt(8), 0));
+            itemList.add(new ItemStack(Items.GOLD_INGOT, 3 + random.nextInt(8), 0));
         }
     }
 
@@ -582,11 +582,11 @@ public class GraveInventoryHelper {
     private static void fillPetGrave(List<ItemStack> itemList, ContentMaterials contentMaterials) {
         switch (contentMaterials) {
             case GOLDEN:
-                itemList.add(new ItemStack(Items.lead, 1, 0));
+                itemList.add(new ItemStack(Items.LEAD, 1, 0));
                 break;
             case DIAMOND:
-                itemList.add(new ItemStack(Items.lead, 1, 0));
-                itemList.add(new ItemStack(Items.name_tag, 1, 0));
+                itemList.add(new ItemStack(Items.LEAD, 1, 0));
+                itemList.add(new ItemStack(Items.NAME_TAG, 1, 0));
                 break;
         }
     }
@@ -602,32 +602,32 @@ public class GraveInventoryHelper {
     private static ItemStack getRandomRecord(Random random) {
         switch (random.nextInt(13)) {
             case 1:
-                return new ItemStack(Items.record_cat, 1, 0);
+                return new ItemStack(Items.RECORD_CAT, 1, 0);
             case 2:
-                return new ItemStack(Items.record_blocks, 1, 0);
+                return new ItemStack(Items.RECORD_BLOCKS, 1, 0);
             case 3:
-                return new ItemStack(Items.record_chirp, 1, 0);
+                return new ItemStack(Items.RECORD_CHIRP, 1, 0);
             case 4:
-                return new ItemStack(Items.record_far, 1, 0);
+                return new ItemStack(Items.RECORD_FAR, 1, 0);
             case 5:
-                return new ItemStack(Items.record_mall, 1, 0);
+                return new ItemStack(Items.RECORD_MALL, 1, 0);
             case 6:
-                return new ItemStack(Items.record_mellohi, 1, 0);
+                return new ItemStack(Items.RECORD_MELLOHI, 1, 0);
             case 7:
-                return new ItemStack(Items.record_stal, 1, 0);
+                return new ItemStack(Items.RECORD_STAL, 1, 0);
             case 8:
-                return new ItemStack(Items.record_strad, 1, 0);
+                return new ItemStack(Items.RECORD_STRAD, 1, 0);
             case 9:
-                return new ItemStack(Items.record_ward, 1, 0);
+                return new ItemStack(Items.RECORD_WARD, 1, 0);
             case 10:
-                return new ItemStack(Items.record_11, 1, 0);
+                return new ItemStack(Items.RECORD_11, 1, 0);
             case 11:
-                return new ItemStack(Items.record_wait, 1, 0);
+                return new ItemStack(Items.RECORD_WAIT, 1, 0);
             case 12:
-                return new ItemStack(Items.record_13, 1, 0);
+                return new ItemStack(Items.RECORD_13, 1, 0);
             case 0:
             default:
-                return new ItemStack(Items.record_cat, 1, 0);
+                return new ItemStack(Items.RECORD_CAT, 1, 0);
         }
     }
 
@@ -645,28 +645,28 @@ public class GraveInventoryHelper {
     private static ItemStack getRandomEgg(Random random) {
         switch (random.nextInt(11)) {
             case 1:
-                return new ItemStack(Items.spawn_egg, 1, EGG_PIG);
+                return new ItemStack(Items.SPAWN_EGG, 1, EGG_PIG);
             case 2:
-                return new ItemStack(Items.spawn_egg, 1, EGG_SHEEP);
+                return new ItemStack(Items.SPAWN_EGG, 1, EGG_SHEEP);
             case 3:
-                return new ItemStack(Items.spawn_egg, 1, EGG_COW);
+                return new ItemStack(Items.SPAWN_EGG, 1, EGG_COW);
             case 4:
-                return new ItemStack(Items.spawn_egg, 1, EGG_CHICKEN);
+                return new ItemStack(Items.SPAWN_EGG, 1, EGG_CHICKEN);
             case 5:
-                return new ItemStack(Items.spawn_egg, 1, EGG_SQUID);
+                return new ItemStack(Items.SPAWN_EGG, 1, EGG_SQUID);
             case 6:
-                return new ItemStack(Items.spawn_egg, 1, EGG_WOLF);
+                return new ItemStack(Items.SPAWN_EGG, 1, EGG_WOLF);
             case 7:
-                return new ItemStack(Items.spawn_egg, 1, EGG_MUSHROOM_COW);
+                return new ItemStack(Items.SPAWN_EGG, 1, EGG_MUSHROOM_COW);
             case 8:
-                return new ItemStack(Items.spawn_egg, 1, EGG_CAT);
+                return new ItemStack(Items.SPAWN_EGG, 1, EGG_CAT);
             case 9:
-                return new ItemStack(Items.spawn_egg, 1, EGG_HORSE);
+                return new ItemStack(Items.SPAWN_EGG, 1, EGG_HORSE);
             case 10:
-                return new ItemStack(Items.spawn_egg, 1, EGG_VILLAGER);
+                return new ItemStack(Items.SPAWN_EGG, 1, EGG_VILLAGER);
             case 0:
             default:
-                return new ItemStack(Items.spawn_egg, 1, 120);
+                return new ItemStack(Items.SPAWN_EGG, 1, 120);
         }
     }
 

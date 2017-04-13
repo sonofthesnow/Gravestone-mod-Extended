@@ -3,6 +3,9 @@ package nightkosh.gravestone_extended.item;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemTool;
+import net.minecraft.util.ActionResult;
+import net.minecraft.util.EnumActionResult;
+import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.world.World;
@@ -21,7 +24,7 @@ import nightkosh.gravestone_extended.core.Tabs;
 public class ItemChisel extends ItemTool {
 
     public ItemChisel() {
-        super(1, ToolMaterial.IRON, null);
+        super(1, 5, ToolMaterial.IRON, null);
         setMaxStackSize(1);
         setCreativeTab(Tabs.otherItemsTab);
         setUnlocalizedName("gravestone.chisel");
@@ -33,9 +36,9 @@ public class ItemChisel extends ItemTool {
      * pressed. Args: itemStack, world, entityPlayer
      */
     @Override
-    public ItemStack onItemRightClick(ItemStack itemStack, World world, EntityPlayer player) {
+    public ActionResult<ItemStack> onItemRightClick(ItemStack itemStack, World world, EntityPlayer player, EnumHand hand) {
         player.setItemInUse(itemStack, this.getMaxItemUseDuration(itemStack));
-        return itemStack;
+        return new ActionResult(EnumActionResult.PASS, itemStack);
     }
 
     /**
@@ -44,7 +47,7 @@ public class ItemChisel extends ItemTool {
      * false if it don't. This is for ITEMS, not BLOCKS
      */
     @Override
-    public boolean onItemUse(ItemStack stack, EntityPlayer player, World world, BlockPos pos, EnumFacing side, float hitX, float hitY, float hitZ) {
+    public EnumActionResult onItemUse(ItemStack stack, EntityPlayer player, World world, BlockPos pos, EnumHand hand, EnumFacing side, float hitX, float hitY, float hitZ) {
         if (world.getBlockState(pos).getBlock().equals(GSBlock.graveStone)) {
             return setGraveText(stack, player, world, pos, false);
         } else if (world.getBlockState(pos).getBlock().equals(GSBlock.memorial)) {
@@ -53,10 +56,10 @@ public class ItemChisel extends ItemTool {
             player.openGui(ModGravestoneExtended.instance, GuiHandler.CHISEL_CRAFTING_GUI_ID, world, pos.getX(), pos.getY(), pos.getZ());
         }
 
-        return true;
+        return EnumActionResult.SUCCESS;
     }
 
-    private boolean setGraveText(ItemStack stack, EntityPlayer player, World world, BlockPos pos, boolean isMemorial) {
+    private EnumActionResult setGraveText(ItemStack stack, EntityPlayer player, World world, BlockPos pos, boolean isMemorial) {
         if (world.isRemote) {
             TileEntityGrave tileEntity = (TileEntityGrave) world.getTileEntity(pos);
 
@@ -68,10 +71,10 @@ public class ItemChisel extends ItemTool {
                     stack.damageItem(2, player);
                 }
 
-                return true;
+                return EnumActionResult.SUCCESS;
             }
         }
 
-        return false;
+        return EnumActionResult.FAIL;
     }
 }

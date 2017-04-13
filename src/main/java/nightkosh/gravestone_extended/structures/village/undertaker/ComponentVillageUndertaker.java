@@ -3,14 +3,14 @@ package nightkosh.gravestone_extended.structures.village.undertaker;
 import net.minecraft.block.*;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.item.EntityPainting;
+import net.minecraft.init.Biomes;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.EnumDyeColor;
-import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import net.minecraft.world.biome.BiomeGenBase;
+import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.structure.StructureBoundingBox;
 import net.minecraft.world.gen.structure.StructureComponent;
 import net.minecraft.world.gen.structure.StructureVillagePieces;
@@ -87,8 +87,8 @@ public class ComponentVillageUndertaker extends StructureVillagePieces.Village i
         IBlockState fenceState;
         IBlockState gateState = Blocks.DARK_OAK_FENCE_GATE.getDefaultState().withProperty(BlockFenceGate.FACING, this.getCoordBaseMode());
 
-        int biomeId = world.getBiomeGenForCoords(new BlockPos(this.getXWithOffset(0, 0), this.getYWithOffset(0), this.getZWithOffset(0, 0))).biomeID;
-        if (biomeId == BiomeGenBase.desert.biomeID || biomeId == BiomeGenBase.desertHills.biomeID) {
+        Biome biome = world.getBiomeGenForCoords(new BlockPos(this.getXWithOffset(0, 0), this.getYWithOffset(0), this.getZWithOffset(0, 0)));
+        if (biome == Biomes.DESERT || biome == Biomes.DESERT_HILLS) {
             groundState = Blocks.SAND.getDefaultState();
             fenceState = Blocks.COBBLESTONE_WALL.getStateFromMeta(BlockWall.EnumType.NORMAL.getMetadata());
         } else {
@@ -277,6 +277,7 @@ public class ComponentVillageUndertaker extends StructureVillagePieces.Village i
      * Returns the villager type to spawn in this component, based on the number
      * of villagers already spawned.
      */
+
     @Override
     protected int func_180779_c(int par1, int par2) {
         return VillagersHandler.UNDERTAKER_ID;
@@ -366,20 +367,19 @@ public class ComponentVillageUndertaker extends StructureVillagePieces.Village i
     }
 
     public static boolean checkPainting(World world, int x, int y, int z) {
-        return world.getEntitiesWithinAABB(EntityPainting.class, AxisAlignedBB.fromBounds(x, y, z,
-                x, y, z).expand(1, 1, 1)).size() == 0;
+        return world.getEntitiesWithinAABB(EntityPainting.class, new AxisAlignedBB(x, y, z, x, y, z).expand(1, 1, 1)).size() == 0;
     }
 
-    @Override
-    public NBTTagCompound createStructureBaseNBT() {
-        NBTTagCompound nbttagcompound = new NBTTagCompound();
-        nbttagcompound.setString("id", "GSVillageUndertaker");
-        nbttagcompound.setTag("BB", this.boundingBox.toNBTTagIntArray());
-        nbttagcompound.setInteger("O", this.getCoordBaseMode() == null ? -1 : this.getCoordBaseMode().getHorizontalIndex());
-        nbttagcompound.setInteger("GD", this.componentType);
-        this.writeStructureToNBT(nbttagcompound);
-        return nbttagcompound;
-    }
+//    @Override
+//    public NBTTagCompound createStructureBaseNBT() {
+//        NBTTagCompound nbttagcompound = new NBTTagCompound();
+//        nbttagcompound.setString("id", "GSVillageUndertaker");
+//        nbttagcompound.setTag("BB", this.boundingBox.toNBTTagIntArray());
+//        nbttagcompound.setInteger("O", this.getCoordBaseMode() == null ? -1 : this.getCoordBaseMode().getHorizontalIndex());
+//        nbttagcompound.setInteger("GD", this.componentType);
+//        this.writeStructureToNBT(nbttagcompound);
+//        return nbttagcompound;
+//    }
 
     @Override
     public void placeBlockAtCurrentPosition(World world, IBlockState blockState, int x, int y, int z, StructureBoundingBox boundingBox) {
@@ -390,6 +390,7 @@ public class ComponentVillageUndertaker extends StructureVillagePieces.Village i
     public int getXWithOffset(int x, int z) {
         return super.getXWithOffset(x, z);
     }
+
     @Override
     public int getIXWithOffset(int x, int z) {
         return getXWithOffset(x, z);
@@ -399,6 +400,7 @@ public class ComponentVillageUndertaker extends StructureVillagePieces.Village i
     public int getYWithOffset(int y) {
         return super.getYWithOffset(y);
     }
+
     @Override
     public int getIYWithOffset(int y) {
         return getYWithOffset(y);
@@ -408,6 +410,7 @@ public class ComponentVillageUndertaker extends StructureVillagePieces.Village i
     public int getZWithOffset(int x, int z) {
         return super.getZWithOffset(x, z);
     }
+
     @Override
     public int getIZWithOffset(int x, int z) {
         return getZWithOffset(x, z);

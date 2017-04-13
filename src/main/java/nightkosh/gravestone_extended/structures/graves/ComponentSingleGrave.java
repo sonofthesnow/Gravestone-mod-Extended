@@ -1,8 +1,7 @@
 package nightkosh.gravestone_extended.structures.graves;
 
-import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.structure.StructureBoundingBox;
 import nightkosh.gravestone.block.BlockGraveStone;
@@ -46,14 +45,14 @@ public class ComponentSingleGrave extends ComponentGraveStone {
         return true;
     }
 
-    @Override
-    public NBTTagCompound createStructureBaseNBT() {
-        NBTTagCompound nbttagcompound = new NBTTagCompound();
-        nbttagcompound.setString("id", "GSSingleGrave");
-        nbttagcompound.setTag("BB", this.boundingBox.toNBTTagIntArray());
-        nbttagcompound.setInteger("O", this.getCoordBaseMode() == null ? -1 : this.getCoordBaseMode().getHorizontalIndex());
-        nbttagcompound.setInteger("GD", this.componentType);
-        this.writeStructureToNBT(nbttagcompound);
-        return nbttagcompound;
-    }
+//    @Override
+//    public NBTTagCompound createStructureBaseNBT() {
+//        NBTTagCompound nbttagcompound = new NBTTagCompound();
+//        nbttagcompound.setString("id", "GSSingleGrave");
+//        nbttagcompound.setTag("BB", this.boundingBox.toNBTTagIntArray());
+//        nbttagcompound.setInteger("O", this.getCoordBaseMode() == null ? -1 : this.getCoordBaseMode().getHorizontalIndex());
+//        nbttagcompound.setInteger("GD", this.componentType);
+//        this.writeStructureToNBT(nbttagcompound);
+//        return nbttagcompound;
+//    }
 }

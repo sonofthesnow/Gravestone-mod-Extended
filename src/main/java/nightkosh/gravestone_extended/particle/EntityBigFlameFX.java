@@ -1,7 +1,7 @@
 package nightkosh.gravestone_extended.particle;
 
 import net.minecraft.client.particle.ParticleFlame;
-import net.minecraft.client.renderer.WorldRenderer;
+import net.minecraft.client.renderer.VertexBuffer;
 import net.minecraft.entity.Entity;
 import net.minecraft.world.World;
 
@@ -30,7 +30,7 @@ public class EntityBigFlameFX extends ParticleFlame {
     }
 
     @Override
-    public void renderParticle(WorldRenderer worldRenderer, Entity entity, float partialTicks, float x, float y, float z, float p_180434_7_, float p_180434_8_) {
+    public void renderParticle(VertexBuffer worldRenderer, Entity entity, float partialTicks, float x, float y, float z, float p_180434_7_, float p_180434_8_) {
         float xz = (this.particleAge + partialTicks) / (float) this.particleMaxAge;
         this.particleScale = this.scale * (1 - xz * xz * 0.5F);
 
@@ -40,11 +40,11 @@ public class EntityBigFlameFX extends ParticleFlame {
         float f3 = f2 + 0.0624375F;
         float scale = 0.1F * this.particleScale;
 
-        if (this.particleIcon != null) {
-            f = this.particleIcon.getMinU();
-            f1 = this.particleIcon.getMaxU();
-            f2 = this.particleIcon.getMinV();
-            f3 = this.particleIcon.getMaxV();
+        if (this.particleTexture != null) {
+            f = this.particleTexture.getMinU();
+            f1 = this.particleTexture.getMaxU();
+            f2 = this.particleTexture.getMinV();
+            f3 = this.particleTexture.getMaxV();
         }
 
         float xPos = (float) (this.prevPosX + (this.posX - this.prevPosX) * (double) partialTicks - interpPosX);

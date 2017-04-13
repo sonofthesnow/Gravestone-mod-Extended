@@ -41,7 +41,7 @@ public class AIHideInPilesOfBones extends EntityAIWander {
                     BlockPos blockPos = (new BlockPos(crawler.posX, crawler.posY + 0.5, crawler.posZ)).offset(this.enumFacing);
                     IBlockState blockState = crawler.worldObj.getBlockState(blockPos);
 
-                    if (blockState.getBlock().isAir(crawler.worldObj, blockPos)) {
+                    if (blockState.getBlock().isAir(blockState, crawler.worldObj, blockPos)) {
                         this.field_179484_c = true;
                         return true;
                     }

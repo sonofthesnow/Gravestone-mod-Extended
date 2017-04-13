@@ -18,10 +18,13 @@ public abstract class Spawner implements ISpawner {
     protected ISpawnerEntity spawnerEntity;
     protected int delay;
     protected Entity spawnedMob;
+    protected AxisAlignedBB bb;
 
     public Spawner(ISpawnerEntity tileEntity, int delay) {
         this.spawnerEntity = tileEntity;
         this.delay = delay;
+        this.bb = new AxisAlignedBB(spawnerEntity.getIPos().getX(), spawnerEntity.getIPos().getY(), spawnerEntity.getIPos().getZ(),
+                spawnerEntity.getIPos().getX() + 1, spawnerEntity.getIPos().getY() + 1, spawnerEntity.getIPos().getZ() + 1).expand(1, 4, getSpawnRange() * 2);
     }
 
     /**
@@ -49,12 +52,11 @@ public abstract class Spawner implements ISpawner {
     }
 
     protected int getNearbyMobsCount() {
-        return spawnerEntity.getIWorld().getEntitiesWithinAABB(this.spawnedMob.getClass(), AxisAlignedBB.fromBounds(spawnerEntity.getIPos().getX(), spawnerEntity.getIPos().getY(), spawnerEntity.getIPos().getZ(),
-                spawnerEntity.getIPos().getX() + 1, spawnerEntity.getIPos().getY() + 1, spawnerEntity.getIPos().getZ() + 1).expand(1, 4, getSpawnRange() * 2)).size();
+        return spawnerEntity.getIWorld().getEntitiesWithinAABB(this.spawnedMob.getClass(), bb).size();
     }
 
     protected boolean anyPlayerInRange() {
-        return spawnerEntity.getIWorld().getClosestPlayer(spawnerEntity.getIPos().getX() + 0.5D, spawnerEntity.getIPos().getY() + 0.5D, spawnerEntity.getIPos().getZ() + 0.5D, getPlayerRange()) != null;
+        return spawnerEntity.getIWorld().getClosestPlayer(spawnerEntity.getIPos().getX() + 0.5D, spawnerEntity.getIPos().getY() + 0.5D, spawnerEntity.getIPos().getZ() + 0.5D, getPlayerRange(), false) != null;
     }
 
     abstract protected boolean canSpawnMobs(World world);

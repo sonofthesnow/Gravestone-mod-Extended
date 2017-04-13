@@ -24,7 +24,7 @@ public class EntitySkeletonRaider extends EntityGSSkeleton {
         horse.onInitialSpawn(difficulty, (IEntityLivingData) null);
 
         this.worldObj.spawnEntityInWorld(horse);
-        this.mountEntity(horse);
+        this.startRiding(horse);
 
         return super.onInitialSpawn(difficulty, data);
     }

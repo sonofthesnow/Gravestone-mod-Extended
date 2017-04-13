@@ -1,12 +1,12 @@
 package nightkosh.gravestone_extended.structures.village.memorial;
 
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.init.Biomes;
 import net.minecraft.init.Blocks;
-import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import net.minecraft.world.biome.BiomeGenBase;
+import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.structure.StructureBoundingBox;
 import net.minecraft.world.gen.structure.StructureComponent;
 import net.minecraft.world.gen.structure.StructureVillagePieces;
@@ -58,8 +58,8 @@ public class ComponentVillageMemorial extends StructureVillagePieces.Village imp
         }
 
         IBlockState groundState;
-        int biomeId = world.getBiomeGenForCoords(new BlockPos(this.getXWithOffset(0, 0), this.getYWithOffset(0), this.getZWithOffset(0, 0))).biomeID;
-        if (biomeId == BiomeGenBase.desert.biomeID || biomeId == BiomeGenBase.desertHills.biomeID) {
+        Biome biome = world.getBiomeGenForCoords(new BlockPos(this.getXWithOffset(0, 0), this.getYWithOffset(0), this.getZWithOffset(0, 0)));
+        if (biome == Biomes.DESERT || biome == Biomes.DESERT_HILLS) {
             groundState = Blocks.SAND.getDefaultState();
         } else {
             groundState = Blocks.GRASS.getDefaultState();
@@ -109,14 +109,14 @@ public class ComponentVillageMemorial extends StructureVillagePieces.Village imp
         return getZWithOffset(x, z);
     }
 
-    @Override
-    public NBTTagCompound createStructureBaseNBT() {
-        NBTTagCompound nbttagcompound = new NBTTagCompound();
-        nbttagcompound.setString("id", "GSVillageMemorial");
-        nbttagcompound.setTag("BB", this.boundingBox.toNBTTagIntArray());
-        nbttagcompound.setInteger("O", this.getCoordBaseMode() == null ? -1 : this.getCoordBaseMode().getHorizontalIndex());
-        nbttagcompound.setInteger("GD", this.componentType);
-        this.writeStructureToNBT(nbttagcompound);
-        return nbttagcompound;
-    }
+//    @Override
+//    public NBTTagCompound createStructureBaseNBT() {
+//        NBTTagCompound nbttagcompound = new NBTTagCompound();
+//        nbttagcompound.setString("id", "GSVillageMemorial");
+//        nbttagcompound.setTag("BB", this.boundingBox.toNBTTagIntArray());
+//        nbttagcompound.setInteger("O", this.getCoordBaseMode() == null ? -1 : this.getCoordBaseMode().getHorizontalIndex());
+//        nbttagcompound.setInteger("GD", this.componentType);
+//        this.writeStructureToNBT(nbttagcompound);
+//        return nbttagcompound;
+//    }
 }

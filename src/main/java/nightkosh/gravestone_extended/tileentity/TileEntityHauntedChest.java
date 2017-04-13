@@ -3,12 +3,13 @@ package nightkosh.gravestone_extended.tileentity;
 import net.minecraft.entity.monster.EntitySkeleton;
 import net.minecraft.entity.passive.EntityBat;
 import net.minecraft.init.Blocks;
+import net.minecraft.init.SoundEvents;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.NetworkManager;
-import net.minecraft.network.Packet;
-import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
+import net.minecraft.network.play.server.SPacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ITickable;
+import net.minecraft.util.SoundCategory;
 import net.minecraft.world.World;
 import nightkosh.gravestone_extended.block.enums.EnumHauntedChest;
 import nightkosh.gravestone_extended.config.ExtendedConfig;
@@ -60,7 +61,7 @@ public class TileEntityHauntedChest extends TileEntity implements ITickable {
                 double d1 = (double) this.pos.getX() + 0.5D;
                 d0 = (double) this.pos.getZ() + 0.5D;
 
-                this.worldObj.playSoundEffect(d1, (double) this.pos.getY() + 0.5D, d0, "random.chestopen", 0.5F, this.worldObj.rand.nextFloat() * 0.1F + 0.9F);
+                this.worldObj.playSound(null, d1, (double) this.pos.getY() + 0.5D, d0, SoundEvents.BLOCK_CHEST_OPEN, SoundCategory.BLOCKS, 0.5F, this.worldObj.rand.nextFloat() * 0.1F + 0.9F);
             }
 
             if (this.openTicks == 0 && this.lidAngle > 0 || this.openTicks > 0 && this.lidAngle < 1) {
@@ -81,7 +82,7 @@ public class TileEntityHauntedChest extends TileEntity implements ITickable {
                     d0 = (double) this.pos.getX() + 0.5D;
                     double d2 = (double) this.pos.getZ() + 0.5D;
 
-                    this.worldObj.playSoundEffect(d0, (double) this.pos.getY() + 0.5D, d2, "random.chestclosed", 0.5F, this.worldObj.rand.nextFloat() * 0.1F + 0.9F);
+                    this.worldObj.playSound(null, d0, (double) this.pos.getY() + 0.5D, d2, SoundEvents.BLOCK_CHEST_CLOSE, SoundCategory.BLOCKS, 0.5F, this.worldObj.rand.nextFloat() * 0.1F + 0.9F);
                 }
 
                 if (this.lidAngle < 0) {
@@ -97,7 +98,7 @@ public class TileEntityHauntedChest extends TileEntity implements ITickable {
         if (openTicks == 0) {
             if (this.isOpen && ExtendedConfig.replaceHauntedChest) {
                 this.worldObj.removeTileEntity(this.pos);
-                this.worldObj.setBlockState(this.pos, Blocks.chest.getStateFromMeta(GSBlock.hauntedChest.getMetaFromState(worldObj.getBlockState(this.pos))));
+                this.worldObj.setBlockState(this.pos, Blocks.CHEST.getStateFromMeta(GSBlock.hauntedChest.getMetaFromState(worldObj.getBlockState(this.pos))));
             }
             this.isOpen = false;
         }
@@ -132,10 +133,12 @@ public class TileEntityHauntedChest extends TileEntity implements ITickable {
      * Writes a tile entity to NBT.
      */
     @Override
-    public void writeToNBT(NBTTagCompound nbt) {
-        super.writeToNBT(nbt);
+    public NBTTagCompound writeToNBT(NBTTagCompound nbt) {
+        nbt = super.writeToNBT(nbt);
 
         nbt.setInteger("ChestType", chestType.ordinal());
+
+        return nbt;
     }
 
     public void spawnMobs(World world) {
@@ -161,14 +164,17 @@ public class TileEntityHauntedChest extends TileEntity implements ITickable {
     }
 
     @Override
-    public void onDataPacket(NetworkManager net, S35PacketUpdateTileEntity packet) {
+    public void onDataPacket(NetworkManager net, SPacketUpdateTileEntity packet) {
         readFromNBT(packet.getNbtCompound());
     }
 
     @Override
-    public Packet getDescriptionPacket() {
-        NBTTagCompound nbtTag = new NBTTagCompound();
-        this.writeToNBT(nbtTag);
-        return new S35PacketUpdateTileEntity(this.pos, 1, nbtTag);
+    public SPacketUpdateTileEntity getUpdatePacket() {
+        return new SPacketUpdateTileEntity(this.pos, 1, this.getUpdateTag());
+    }
+
+    @Override
+    public NBTTagCompound getUpdateTag() {
+        return this.writeToNBT(new NBTTagCompound());
     }
 }

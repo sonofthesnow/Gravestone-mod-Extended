@@ -81,10 +81,10 @@ public class GraveStoneSpawn extends Spawner {
 
             this.newMobRequired = false;
         }
-
-        int nearbyEntitiesCount = spawnerEntity.getIWorld().getEntitiesWithinAABB(this.spawnedMob.getClass(),
-                AxisAlignedBB.fromBounds(spawnerEntity.getIPos().getX(), spawnerEntity.getIPos().getY(), spawnerEntity.getIPos().getZ(),
-                spawnerEntity.getIPos().getX() + 1, spawnerEntity.getIPos().getY() + 1, spawnerEntity.getIPos().getZ() + 1).expand(1.0D, 4.0D, SPAWN_RANGE * 2)).size();
+        //TODO !!!!
+        AxisAlignedBB bb = new AxisAlignedBB(spawnerEntity.getIPos().getX(), spawnerEntity.getIPos().getY(), spawnerEntity.getIPos().getZ(),
+                spawnerEntity.getIPos().getX() + 1, spawnerEntity.getIPos().getY() + 1, spawnerEntity.getIPos().getZ() + 1).expand(1.0D, 4.0D, SPAWN_RANGE * 2);
+        int nearbyEntitiesCount = spawnerEntity.getIWorld().getEntitiesWithinAABB(this.spawnedMob.getClass(), bb).size();
 
         if (nearbyEntitiesCount >= MAX_NEARBY_ENTITIES) {
             this.updateDelay();

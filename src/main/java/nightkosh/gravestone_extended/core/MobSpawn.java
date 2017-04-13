@@ -7,6 +7,7 @@ import net.minecraft.entity.monster.EntitySkeleton;
 import net.minecraft.entity.monster.EntityZombie;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
+import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.EnumParticleTypes;
@@ -179,9 +180,9 @@ public class MobSpawn {
         EntityGSSkeleton skeleton = (EntityGSSkeleton) EntityList.createEntityByName(Entity.SKELETON_ID, world);
 
         if (withBow) {
-            skeleton.setCurrentItemOrArmor(0, new ItemStack(Items.BOW, 1));
+            skeleton.setItemStackToSlot(EntityEquipmentSlot.MAINHAND, new ItemStack(Items.BOW, 1));
         } else {
-            skeleton.setCurrentItemOrArmor(0, new ItemStack(Items.STONE_SWORD, 1));
+            skeleton.setItemStackToSlot(EntityEquipmentSlot.MAINHAND, new ItemStack(Items.STONE_SWORD, 1));
         }
 
         return skeleton;
@@ -306,7 +307,7 @@ public class MobSpawn {
             world.spawnParticle(EnumParticleTypes.SMOKE_LARGE, xPosition, yPosition + 2, zPosition, 0.0D, 0.0D, 0.0D);
             world.spawnParticle(EnumParticleTypes.FLAME, xPosition, yPosition + 1, zPosition, 0.0D, 0.0D, 0.0D);
             world.spawnEntityInWorld(mob);
-            world.playAuxSFX(2004, new BlockPos(x, y, z), 0);
+            world.playEvent(2004, new BlockPos(x, y, z), 0);
             return true;
         } else {
             return false;

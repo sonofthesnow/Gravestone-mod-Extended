@@ -1,7 +1,7 @@
 package nightkosh.gravestone_extended.structures;
 
 import net.minecraft.entity.passive.EntityBat;
-import net.minecraft.util.Vec3i;
+import net.minecraft.util.math.Vec3i;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.structure.StructureBoundingBox;
 

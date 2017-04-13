@@ -12,7 +12,10 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemMonsterPlacer;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.ActionResult;
+import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.RayTraceResult;
@@ -140,9 +143,9 @@ public class ItemGSMonsterPlacer extends ItemMonsterPlacer {
      * True if something happen and false if it don't. This is for ITEMS, not BLOCKS
      */
     @Override
-    public boolean onItemUse(ItemStack item, EntityPlayer player, World world, BlockPos blockPos, EnumFacing facing, float hitX, float hitY, float hitZ) {
+    public EnumActionResult onItemUse(ItemStack item, EntityPlayer player, World world, BlockPos blockPos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
         if (world.isRemote) {
-            return true;
+            return EnumActionResult.SUCCESS;
         } else {
             IBlockState block = world.getBlockState(blockPos);
             double d0 = 0;
@@ -162,7 +165,7 @@ public class ItemGSMonsterPlacer extends ItemMonsterPlacer {
                 }
             }
 
-            return true;
+            return EnumActionResult.SUCCESS;
         }
     }
 
@@ -170,22 +173,22 @@ public class ItemGSMonsterPlacer extends ItemMonsterPlacer {
      * Called whenever this item is equipped and the right mouse button is pressed. Args: itemStack, world, entityPlayer
      */
     @Override
-    public ItemStack onItemRightClick(ItemStack item, World world, EntityPlayer player) {
+    public ActionResult<ItemStack> onItemRightClick(ItemStack item, World world, EntityPlayer player, EnumHand hand) {
         if (world.isRemote) {
-            return item;
+            return new ActionResult(EnumActionResult.PASS, item);
         } else {
-            RayTraceResult movingobjectposition = this.getMovingObjectPositionFromPlayer(world, player, true);
+            RayTraceResult movingobjectposition = this.rayTrace(world, player, true);
 
             if (movingobjectposition == null) {
-                return item;
+                return new ActionResult(EnumActionResult.PASS, item);
             } else {
                 if (movingobjectposition.typeOfHit == RayTraceResult.Type.BLOCK) {
                     if (!world.canMineBlockBody(player, movingobjectposition.getBlockPos())) {
-                        return item;
+                        return new ActionResult(EnumActionResult.PASS, item);
                     }
 
                     if (!player.canPlayerEdit(movingobjectposition.getBlockPos(), movingobjectposition.sideHit, item)) {
-                        return item;
+                        return new ActionResult(EnumActionResult.PASS, item);
                     }
 
                     if (world.getBlockState(movingobjectposition.getBlockPos()).getBlock() instanceof BlockLiquid) {
@@ -204,7 +207,7 @@ public class ItemGSMonsterPlacer extends ItemMonsterPlacer {
                     }
                 }
 
-                return item;
+                return new ActionResult(EnumActionResult.PASS, item);
             }
         }
     }
@@ -219,7 +222,7 @@ public class ItemGSMonsterPlacer extends ItemMonsterPlacer {
 
         if (entity != null && entity instanceof EntityLivingBase) {
             EntityLiving entityliving = (EntityLiving) entity;
-            entity.setLocationAndAngles(x, y, z, MathHelper.wrapAngleTo180_float(world.rand.nextFloat() * 360), 0);
+            entity.setLocationAndAngles(x, y, z, MathHelper.wrapDegrees(world.rand.nextFloat() * 360), 0);
             entityliving.rotationYawHead = entityliving.rotationYaw;
             entityliving.renderYawOffset = entityliving.rotationYaw;
             entityliving.onInitialSpawn(world.getDifficultyForLocation(new BlockPos(entityliving)), (IEntityLivingData) null);
