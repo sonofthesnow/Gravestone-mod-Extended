@@ -30,7 +30,7 @@ public class ChiselMessageToServer implements IMessage, IMessageHandler<ChiselMe
 
     public ChiselMessageToServer(EntityPlayer player, boolean isGravestone, int graveType, int material, boolean isEnchanted, boolean isMossy) {
         this.playerID = player.getEntityId();
-        this.dimensionID = player.worldObj.provider.getDimensionId();
+        this.dimensionID = player.worldObj.provider.getDimension();
         this.isGravestone = isGravestone;
         this.graveType = graveType;
         this.material = material;

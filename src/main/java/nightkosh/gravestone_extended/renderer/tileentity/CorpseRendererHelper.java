@@ -240,7 +240,8 @@ public class CorpseRendererHelper {
                 Minecraft.getMinecraft().renderEngine.bindTexture(Resources.VILLAGER_BUTCHER);
                 break;
             default:
-                Minecraft.getMinecraft().renderEngine.bindTexture(VillagerRegistry.getVillagerSkin(profession, Resources.VILLAGER));
+//                Minecraft.getMinecraft().renderEngine.bindTexture(VillagerRegistry.getVillagerSkin(profession, Resources.VILLAGER));
+                Minecraft.getMinecraft().renderEngine.bindTexture(VillagerRegistry.getRegistry().getKey(profession));//.getSkin()
                 break;
         }
     }

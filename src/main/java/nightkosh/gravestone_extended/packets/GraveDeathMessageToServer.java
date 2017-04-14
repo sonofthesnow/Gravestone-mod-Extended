@@ -36,7 +36,7 @@ public class GraveDeathMessageToServer implements IMessage, IMessageHandler<Grav
     }
 
     public GraveDeathMessageToServer(World world, int x, int y, int z, String text, boolean randomText) {
-        this.dimensionID = world.provider.getDimensionId();
+        this.dimensionID = world.provider.getDimension();
         this.x = x;
         this.y = y;
         this.z = z;

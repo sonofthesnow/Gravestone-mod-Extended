@@ -51,7 +51,7 @@ public class SubCommandStatue implements ISubCommand {
                     sender.addChatMessage(new TextComponentTranslation("commands.unknown_material").setStyle(new Style().setColor(TextFormatting.RED)));
                 }
             }
-            GameProfileHelper.dropItem(sender, args[1], GSBlock.memorial, memorialType.ordinal());
+            GameProfileHelper.dropItem(minecraftServer, sender, args[1], GSBlock.memorial, memorialType.ordinal());
         } else {
             sender.addChatMessage(new TextComponentTranslation("commands.not_enough_parameters").setStyle(new Style().setColor(TextFormatting.RED)));
         }

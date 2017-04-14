@@ -1,7 +1,6 @@
 package nightkosh.gravestone_extended.helper;
 
-import net.minecraft.enchantment.Enchantment;
-import net.minecraft.enchantment.EnchantmentData;
+import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -367,12 +366,11 @@ public class GraveInventoryHelper {
         }
     }
 
+
     private static void fillWizardGrave(Random random, List<ItemStack> itemList, ContentMaterials contentMaterials) {
         switch (contentMaterials) {
             case REDSTONE: // enchanted book
-                EnchantmentData data = new EnchantmentData(Enchantment.enchantmentsBookList[random.nextInt(Enchantment.enchantmentsBookList.length)], 1 + random.nextInt(5));
-                ItemStack items = Items.ENCHANTED_BOOK.getEnchantedItemStack(data);
-                itemList.add(items);
+                itemList.add(EnchantmentHelper.addRandomEnchantment(random, new ItemStack(Items.ENCHANTED_BOOK), 5, true));
                 break;
             case QUARTZ:
                 itemList.add(new ItemStack(Items.POTIONITEM, 1 + random.nextInt(5), POTION_LIST[random.nextInt(POTION_LIST.length)]));
@@ -538,9 +536,7 @@ public class GraveInventoryHelper {
             itemList.add(getRandomEgg(random));
         }
         if (random.nextInt(10) == 0) {// enchanted book
-            EnchantmentData data = new EnchantmentData(Enchantment.enchantmentsBookList[random.nextInt(Enchantment.enchantmentsBookList.length)], 1 + random.nextInt(5));
-            ItemStack items = Items.ENCHANTED_BOOK.getEnchantedItemStack(data);
-            itemList.add(items);
+            itemList.add(EnchantmentHelper.addRandomEnchantment(random, new ItemStack(Items.ENCHANTED_BOOK), 5, true));
         }
         if (random.nextInt(10) == 0) {
             itemList.add(new ItemStack(Items.ENDER_PEARL, 1 + random.nextInt(5), 0));

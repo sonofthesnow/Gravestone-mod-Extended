@@ -105,7 +105,7 @@ public abstract class EntityUndeadHorse extends EntityHorse {
         int i = 0;
 
         if (entity instanceof EntityLivingBase) {
-            f += EnchantmentHelper.func_152377_a(this.getHeldItem(), ((EntityLivingBase) entity).getCreatureAttribute());
+            f += EnchantmentHelper.func_152377_a(this.getHeldItem(EnumHand.MAIN_HAND), ((EntityLivingBase) entity).getCreatureAttribute());
             i += EnchantmentHelper.getKnockbackModifier(this);
         }
 

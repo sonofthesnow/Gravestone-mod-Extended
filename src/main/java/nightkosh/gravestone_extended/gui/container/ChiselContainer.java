@@ -98,7 +98,8 @@ public class ChiselContainer extends Container {
                 ItemStack itemstack = this.craftMatrix.getStackInSlot(i);
 
                 if (itemstack != null) {
-                    player.dropPlayerItemWithRandomChoice(itemstack, false);
+//                    player.dropPlayerItemWithRandomChoice(itemstack, false); //TODO
+                    player.dropItem(itemstack, false);
                 }
             }
         }

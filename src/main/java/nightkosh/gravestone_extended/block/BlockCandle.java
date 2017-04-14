@@ -8,6 +8,7 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.particle.Particle;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
@@ -118,11 +119,12 @@ public class BlockCandle extends BlockContainer {
      * Gets if we can place a torch on a block.
      */
     private boolean canPlaceCandleOn(World world, BlockPos pos) {
-        if (world.doesBlockHaveSolidTopSurface(world, pos)) {
+        if (world.isSideSolid(pos, EnumFacing.UP)) {
+//        if (world.doesBlockHaveSolidTopSurface(world, pos)) {
             return true;
         } else {
-            Block block = world.getBlockState(pos).getBlock();
-            return (block != null && block.canPlaceTorchOnTop(world, pos));
+            IBlockState state = world.getBlockState(pos);
+            return (state.getBlock() != null && state.getBlock().canPlaceTorchOnTop(state, world, pos));
         }
     }
 

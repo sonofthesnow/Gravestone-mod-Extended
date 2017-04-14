@@ -8,7 +8,6 @@ import net.minecraft.world.World;
 import net.minecraft.world.gen.structure.StructureBoundingBox;
 import net.minecraft.world.gen.structure.StructureComponent;
 
-import java.util.List;
 import java.util.Random;
 
 /**
@@ -69,13 +68,13 @@ public class ComponentGraveStone extends StructureComponent implements IComponen
     }
 
     @Override
-    protected void func_175805_a(World world, StructureBoundingBox boundingBox, Random random, float chance, int startX, int startY, int startZ, int endX, int endY, int endZ, IBlockState state1, IBlockState state2, boolean replace) {
-        super.func_175805_a(world, boundingBox, random, chance, startX, startY, startZ, endX, endY, endZ, state1, state2, replace);
+    protected void fillWithBlocksRandomly(World world, StructureBoundingBox boundingBox, Random random, float chance, int startX, int startY, int startZ, int endX, int endY, int endZ, IBlockState state1, IBlockState state2, boolean replace) {
+        super.fillWithBlocksRandomly(world, boundingBox, random, chance, startX, startY, startZ, endX, endY, endZ, state1, state2, replace);
     }
 
     // TODO Temporal fix
     protected void randomlyFillWithBlocks(World world, StructureBoundingBox boundingBox, Random random, float chance, int startX, int startY, int startZ, int endX, int endY, int endZ, IBlockState state1, IBlockState state2, boolean replace) {
-        func_175805_a(world, boundingBox, random, chance, startX, startY, startZ, endX, endY, endZ, state1, state2, replace);
+        fillWithBlocksRandomly(world, boundingBox, random, chance, startX, startY, startZ, endX, endY, endZ, state1, state2, replace);
     }
 
     protected void randomlyFillWithBlocks(World world, StructureBoundingBox boundingBox, Random random, float chance, int startX, int startY, int startZ, int endX, int endY, int endZ, IBlockState state, boolean replace) {

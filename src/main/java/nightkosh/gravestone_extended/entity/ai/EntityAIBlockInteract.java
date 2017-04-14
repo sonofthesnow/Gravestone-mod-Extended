@@ -3,11 +3,8 @@ package nightkosh.gravestone_extended.entity.ai;
 import net.minecraft.block.Block;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.ai.EntityAIBase;
-import net.minecraft.pathfinding.PathEntity;
 import net.minecraft.pathfinding.PathNavigate;
-import net.minecraft.pathfinding.PathPoint;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.MathHelper;
 
 /**
  * GraveStone mod
@@ -42,32 +39,32 @@ public class EntityAIBlockInteract extends EntityAIBase {
     @Override
     public boolean shouldExecute() {
         PathNavigate pathnavigate = this.theEntity.getNavigator();
-        PathEntity pathentity = pathnavigate.getPath();
-
-        if (pathentity != null && !pathentity.isFinished()) {
-            for (int i = 0; i < Math.min(pathentity.getCurrentPathIndex() + 2, pathentity.getCurrentPathLength()); ++i) {
-                PathPoint pathpoint = pathentity.getPathPointFromIndex(i);
-                this.entityPosX = pathpoint.xCoord;
-                this.entityPosY = pathpoint.yCoord;
-                this.entityPosZ = pathpoint.zCoord;
-
-                if (this.theEntity.getDistanceSq((double) this.entityPosX, this.theEntity.posY, (double) this.entityPosZ) <= 2.25D) {
-                    this.targetBlock = this.findBlock(this.entityPosX, this.entityPosY, this.entityPosZ);
-
-                    if (this.targetBlock != null) {
-                        return true;
-                    }
-                }
-            }
-
-            this.entityPosX = MathHelper.floor_double(this.theEntity.posX);
-            this.entityPosY = MathHelper.floor_double(this.theEntity.posY);
-            this.entityPosZ = MathHelper.floor_double(this.theEntity.posZ);
-            this.targetBlock = this.findBlock(this.entityPosX, this.entityPosY, this.entityPosZ);
-            return this.targetBlock != null;
-        } else {
+//        PathEntity pathentity = pathnavigate.getPath();
+//
+//        if (pathentity != null && !pathentity.isFinished()) {
+//            for (int i = 0; i < Math.min(pathentity.getCurrentPathIndex() + 2, pathentity.getCurrentPathLength()); ++i) {
+//                PathPoint pathpoint = pathentity.getPathPointFromIndex(i);
+//                this.entityPosX = pathpoint.xCoord;
+//                this.entityPosY = pathpoint.yCoord;
+//                this.entityPosZ = pathpoint.zCoord;
+//
+//                if (this.theEntity.getDistanceSq((double) this.entityPosX, this.theEntity.posY, (double) this.entityPosZ) <= 2.25D) {
+//                    this.targetBlock = this.findBlock(this.entityPosX, this.entityPosY, this.entityPosZ);
+//
+//                    if (this.targetBlock != null) {
+//                        return true;
+//                    }
+//                }
+//            }
+//
+//            this.entityPosX = MathHelper.floor_double(this.theEntity.posX);
+//            this.entityPosY = MathHelper.floor_double(this.theEntity.posY);
+//            this.entityPosZ = MathHelper.floor_double(this.theEntity.posZ);
+//            this.targetBlock = this.findBlock(this.entityPosX, this.entityPosY, this.entityPosZ);
+//            return this.targetBlock != null;
+//        } else {
             return false;
-        }
+//        }
     }
 
     /**

@@ -110,6 +110,6 @@ public class ModGravestoneExtended {
 
     @SubscribeEvent
     public void spawning(EntityEvent.EntityConstructing entityConstructing) {
-        VillagersHandler.atVillagerSpawn(entityConstructing.entity);
+        VillagersHandler.atVillagerSpawn(entityConstructing.getEntity());
     }
 }

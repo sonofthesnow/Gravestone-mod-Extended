@@ -31,13 +31,13 @@ import java.util.Map;
 public class GameProfileHelper {
     private static final Map<GameProfile, ResourceLocation> playersTextureMap = new HashMap<>();
 
-    public static void dropItem(ICommandSender sender, String playerName, Block block, int meta) {
+    public static void dropItem(MinecraftServer minecraftServer, ICommandSender sender, String playerName, Block block, int meta) {
         if (StringUtils.isNotBlank(playerName)) {
-            GameProfile profile = MinecraftServer.getServer().getPlayerProfileCache().getGameProfileForUsername(playerName);
+            GameProfile profile = minecraftServer.getPlayerProfileCache().getGameProfileForUsername(playerName);
             if (profile == null) {
                 String[] profArr = new String[1];
                 profArr[0] = playerName;
-                MinecraftServer.getServer().getGameProfileRepository().findProfilesByNames(profArr, Agent.MINECRAFT, new ProfileLookupCallback() {
+                minecraftServer.getGameProfileRepository().findProfilesByNames(profArr, Agent.MINECRAFT, new ProfileLookupCallback() {
                     @Override
                     public void onProfileLookupSucceeded(GameProfile profile) {
                         GraveInventory.dropItem(getBlock(profile, block, meta), sender.getEntityWorld(), sender.getPosition());

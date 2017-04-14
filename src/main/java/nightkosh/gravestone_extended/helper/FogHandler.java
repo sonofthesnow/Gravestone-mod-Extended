@@ -22,7 +22,7 @@ public class FogHandler implements IFog {
 
     public void addFog(World world, BlockPos pos) {
         if (world.isRemote && ExtendedConfig.isFogEnabled && TickEventHandler.getFogTicCount() == 0) {
-            EntityPlayer player = world.getClosestPlayer(pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, FOG_RANGE);
+            EntityPlayer player = world.getClosestPlayer(pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, FOG_RANGE, false);
             if (player != null && player.getCommandSenderEntity().equals(Minecraft.getMinecraft().thePlayer) && TimeHelper.isFogTime(world)) {
                 RenderEventHandler.addFog();
             }

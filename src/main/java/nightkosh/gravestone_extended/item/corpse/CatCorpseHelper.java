@@ -72,7 +72,7 @@ public class CatCorpseHelper extends CorpseHelper {
 
         cat.setTamed(true);
         cat.setTameSkin(getCatType(nbtTag));
-        cat.setOwnerId(player.getUniqueID().toString());
+        cat.setOwnerId(player.getUniqueID());
         world.setEntityState(cat, (byte) 7);
         spawnMob(cat, world, x, y, z);
     }
