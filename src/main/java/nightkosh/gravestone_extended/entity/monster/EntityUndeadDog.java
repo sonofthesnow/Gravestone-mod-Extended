@@ -1,5 +1,8 @@
 package nightkosh.gravestone_extended.entity.monster;
 
+import net.minecraft.network.datasync.DataParameter;
+import net.minecraft.network.datasync.DataSerializers;
+import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -12,6 +15,8 @@ import net.minecraftforge.fml.relauncher.SideOnly;
  */
 public abstract class EntityUndeadDog extends EntityUndeadPet {
 
+    private static final DataParameter<Float> DATA_HEALTH_ID = EntityDataManager.createKey(EntityUndeadDog.class, DataSerializers.FLOAT);
+    private static final DataParameter<Boolean> BEGGING = EntityDataManager.<Boolean>createKey(EntityUndeadDog.class, DataSerializers.BOOLEAN);
     protected float headRotationCourse;
     protected float headRotationCourseOld;
 
@@ -20,15 +25,15 @@ public abstract class EntityUndeadDog extends EntityUndeadPet {
     }
 
     @Override
-    protected void updateAITick() {
-        this.dataWatcher.updateObject(18, Float.valueOf(this.getHealth()));
+    protected void updateAITasks() {
+        this.dataManager.set(DATA_HEALTH_ID, Float.valueOf(this.getHealth()));
     }
 
     @Override
     protected void entityInit() {
         super.entityInit();
-        this.dataWatcher.addObject(18, new Float(this.getHealth()));
-        this.dataWatcher.addObject(19, new Byte((byte) 0));
+        this.dataManager.register(DATA_HEALTH_ID, Float.valueOf(this.getHealth()));
+        this.dataManager.register(BEGGING, Boolean.valueOf(false));
     }
 
     /**
@@ -39,7 +44,7 @@ public abstract class EntityUndeadDog extends EntityUndeadPet {
         super.onUpdate();
         this.headRotationCourseOld = this.headRotationCourse;
 
-        if (this.func_70922_bv()) {
+        if (this.isBegging()) {
             this.headRotationCourse += (1 - this.headRotationCourse) * 0.4F;
         } else {
             this.headRotationCourse += (0 - this.headRotationCourse) * 0.4F;
@@ -58,10 +63,10 @@ public abstract class EntityUndeadDog extends EntityUndeadPet {
 
     @SideOnly(Side.CLIENT)
     public float getTailRotation() {
-        return (0.55F - (20 - this.dataWatcher.getWatchableObjectFloat(18)) * 0.02F) * (float) Math.PI;
+        return (0.55F - (20 - this.dataManager.get(DATA_HEALTH_ID)) * 0.02F) * (float) Math.PI;
     }
 
-    public boolean func_70922_bv() {
-        return this.dataWatcher.getWatchableObjectByte(19) == 1;
+    public boolean isBegging() {
+        return this.dataManager.get(BEGGING).booleanValue();
     }
 }

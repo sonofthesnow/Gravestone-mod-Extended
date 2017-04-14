@@ -45,7 +45,7 @@ public class Mausoleum extends CatacombsBaseComponent {
         this.fillWithAir(world, boundingBox, 6, 0, 6, 7, 0, 8);
 
         // web
-        this.randomlyFillWithBlocks(world, boundingBox, random, WEB_GENERATION_CHANCE, 4, 1, 4, 9, 3, 9, Blocks.web.getDefaultState(), false);
+        this.randomlyFillWithBlocks(world, boundingBox, random, WEB_GENERATION_CHANCE, 4, 1, 4, 9, 3, 9, Blocks.WEB.getDefaultState(), false);
         // brick floor
         this.fillWithRandomizedBlocks(world, boundingBox, 3, 0, 3, 10, 0, 10, false, random, stoneBricks);
 
@@ -98,7 +98,7 @@ public class Mausoleum extends CatacombsBaseComponent {
         this.fillWithRandomizedBlocks(world, boundingBox, 5, 1, 8, 5, 4, 8, false, random, stoneBricks);
         this.fillWithRandomizedBlocks(world, boundingBox, 8, 1, 8, 8, 4, 8, false, random, stoneBricks);
 
-        IBlockState netherSlabsState = Blocks.stone_slab.getDefaultState().withProperty(BlockStoneSlab.VARIANT, BlockStoneSlab.EnumType.NETHERBRICK);
+        IBlockState netherSlabsState = Blocks.STONE_SLAB.getDefaultState().withProperty(BlockStoneSlab.VARIANT, BlockStoneSlab.EnumType.NETHERBRICK);
         IBlockState netherSlabsBotState = netherSlabsState.withProperty(BlockSlab.HALF, BlockSlab.EnumBlockHalf.BOTTOM);
         IBlockState netherSlabsTopState = netherSlabsState.withProperty(BlockSlab.HALF, BlockSlab.EnumBlockHalf.TOP);
         // roof 1
@@ -133,7 +133,7 @@ public class Mausoleum extends CatacombsBaseComponent {
 
         for (int x = 2; x < 12; x++) {
             for (int z = 2; z < 12; z++) {
-                this.fillDownwards(world, Blocks.stonebrick.getDefaultState().withProperty(BlockStoneBrick.VARIANT, BlockStoneBrick.EnumType.MOSSY), x, -1, z, boundingBox);
+                this.fillDownwards(world, Blocks.STONEBRICK.getDefaultState().withProperty(BlockStoneBrick.VARIANT, BlockStoneBrick.EnumType.MOSSY), x, -1, z, boundingBox);
             }
         }
 

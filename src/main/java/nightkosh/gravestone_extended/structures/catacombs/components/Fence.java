@@ -125,8 +125,8 @@ public class Fence extends CatacombsBaseComponent {
         int xPos = getXWithOffset(x, 0);
         int zPos = getZWithOffset(x, 0);
         BlockPos pos = world.getTopSolidOrLiquidBlock(new BlockPos(xPos, 0, zPos));
-        while (world.getBlockState(pos).getBlock().getMaterial().equals(Material.wood) ||
-                world.getBlockState(pos).getBlock().getMaterial().equals(Material.leaves)) {
+        while (world.getBlockState(pos).getBlock().getMaterial(null).equals(Material.WOOD) ||
+                world.getBlockState(pos).getBlock().getMaterial(null).equals(Material.LEAVES)) {
             pos = pos.down();
         }
 
@@ -137,7 +137,7 @@ public class Fence extends CatacombsBaseComponent {
         Block block = world.getBlockState(new BlockPos(getXWithOffset(x, 0), y, getZWithOffset(x, 0))).getBlock();
 
         if (block != null) {
-            return (!block.equals(Blocks.water) && !block.equals(Blocks.lava));
+            return (!block.equals(Blocks.WATER) && !block.equals(Blocks.LAVA));
         } else {
             return true;
         }
@@ -150,7 +150,7 @@ public class Fence extends CatacombsBaseComponent {
             block = world.getBlockState(new BlockPos(getXWithOffset(x, 0), y, getZWithOffset(x, 0))).getBlock();
 
             if (block != null) {
-                if (block.equals(Blocks.water) || block.equals(Blocks.lava)) {
+                if (block.equals(Blocks.WATER) || block.equals(Blocks.LAVA)) {
                     return false;
                 }
             }
@@ -163,7 +163,7 @@ public class Fence extends CatacombsBaseComponent {
         int y = getGroundY(world, x);
 
         if (checkGround(world, x, y)) {
-            this.fillWithBlocks(world, boundingBox, x, y, 0, x, y + 3, 0, Blocks.iron_bars.getDefaultState());
+            this.fillWithBlocks(world, boundingBox, x, y, 0, x, y + 3, 0, Blocks.IRON_BARS.getDefaultState());
         }
     }
 
@@ -173,8 +173,8 @@ public class Fence extends CatacombsBaseComponent {
             int xPos = getXWithOffset(x, 0);
             int zPos = getZWithOffset(x, 0);
             BlockPos pos = world.getTopSolidOrLiquidBlock(new BlockPos(xPos, 0, zPos));
-            while (world.getBlockState(pos).getBlock().getMaterial().equals(Material.wood) ||
-                    world.getBlockState(pos).getBlock().getMaterial().equals(Material.leaves)) {
+            while (world.getBlockState(pos).getBlock().getMaterial(null).equals(Material.WOOD) ||
+                    world.getBlockState(pos).getBlock().getMaterial(null).equals(Material.LEAVES)) {
                 pos = pos.down();
             }
             y += pos.getY();
@@ -189,12 +189,12 @@ public class Fence extends CatacombsBaseComponent {
             this.fillWithRandomizedBlocks(world, boundingBox, 46, y + 4, 0, 46, y + 4, 0, false, random, stoneBricks);
 
             // fence
-            this.fillWithBlocks(world, boundingBox, 43, y, 0, 43, y + 3, 0, Blocks.iron_bars.getDefaultState());
-            this.fillWithBlocks(world, boundingBox, 46, y, 0, 46, y + 3, 0, Blocks.iron_bars.getDefaultState());
-            this.fillWithBlocks(world, boundingBox, 44, y + 3, 0, 45, y + 4, 0, Blocks.iron_bars.getDefaultState());
+            this.fillWithBlocks(world, boundingBox, 43, y, 0, 43, y + 3, 0, Blocks.IRON_BARS.getDefaultState());
+            this.fillWithBlocks(world, boundingBox, 46, y, 0, 46, y + 3, 0, Blocks.IRON_BARS.getDefaultState());
+            this.fillWithBlocks(world, boundingBox, 44, y + 3, 0, 45, y + 4, 0, Blocks.IRON_BARS.getDefaultState());
 
             // slabs
-            IBlockState stoneSlabsState = Blocks.stone_slab.getDefaultState().withProperty(BlockStoneSlab.VARIANT, BlockStoneSlab.EnumType.SMOOTHBRICK)
+            IBlockState stoneSlabsState = Blocks.STONE_SLAB.getDefaultState().withProperty(BlockStoneSlab.VARIANT, BlockStoneSlab.EnumType.SMOOTHBRICK)
                     .withProperty(BlockSlab.HALF, BlockSlab.EnumBlockHalf.BOTTOM);
             this.fillWithBlocks(world, boundingBox, 44, y + 5, 0, 45, y + 5, 0, stoneSlabsState);
             this.placeBlockAtCurrentPosition(world, stoneSlabsState, 42, y + 4, 0, boundingBox);

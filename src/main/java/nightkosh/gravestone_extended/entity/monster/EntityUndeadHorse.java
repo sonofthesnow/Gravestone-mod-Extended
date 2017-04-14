@@ -86,7 +86,7 @@ public abstract class EntityUndeadHorse extends EntityHorse {
             }
         }
 
-        this.tasks.addTask(2, new EntityAIAttackOnCollide(this, EntityPlayer.class, 1, false));
+//        this.tasks.addTask(2, new EntityAIAttackOnCollide(this, EntityPlayer.class, 1, false));
 
         this.targetTasks.addTask(1, new EntityAIHurtByTarget(this, true));
         this.targetTasks.addTask(2, new EntityAINearestAttackableTarget(this, EntityPlayer.class, true));

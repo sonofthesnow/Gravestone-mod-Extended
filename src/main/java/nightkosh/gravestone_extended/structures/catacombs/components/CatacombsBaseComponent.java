@@ -30,7 +30,7 @@ public abstract class CatacombsBaseComponent extends ComponentGraveStone {
 
     public static final float WEB_GENERATION_CHANCE = 0.05F;
     protected static final StructureComponent.BlockSelector catacombsPileOfBones = new CatacombsPileOfBonesSelector();
-    protected static final IBlockState netherBrick = Blocks.nether_brick.getDefaultState();
+    protected static final IBlockState netherBrick = Blocks.NETHER_BRICK.getDefaultState();
     protected static final IBlockState nightStone = GSBlock.trap.getDefaultState();
 
     protected int level = 0;
@@ -143,7 +143,8 @@ public abstract class CatacombsBaseComponent extends ComponentGraveStone {
         int y = this.getYWithOffset(yCoord);
         int z = this.getZWithOffset(xCoord, zCoord);
 
-        while ((world.isAirBlock(new BlockPos(x, y, z)) || world.getBlockState(new BlockPos(x, y, z)).getBlock().getMaterial().isLiquid() || world.getBlockState(new BlockPos(x, y, z)).getBlock().getMaterial().isReplaceable()) && y > 1) {
+        while ((world.isAirBlock(new BlockPos(x, y, z)) || world.getBlockState(new BlockPos(x, y, z)).getBlock().getMaterial(null).isLiquid() ||
+                world.getBlockState(new BlockPos(x, y, z)).getBlock().getMaterial(null).isReplaceable()) && y > 1) {
             world.setBlockState(new BlockPos(x, y, z), blockState, 2);
             --y;
         }
@@ -154,7 +155,7 @@ public abstract class CatacombsBaseComponent extends ComponentGraveStone {
         for (int y = startY; y <= endY; ++y) {
             for (int x = startX; x <= endX; ++x) {
                 for (int z = startZ; z <= endZ; ++z) {
-                    if (!p_74882_9_ || this.getBlockStateFromPos(world, x, y, z, box).getBlock().getMaterial() != Material.AIR) {
+                    if (!p_74882_9_ || this.getBlockStateFromPos(world, x, y, z, box).getBlock().getMaterial(null) != Material.AIR) {
                         //TODO wtf ??? y == startY || y == endY || x == startX || x == endX || z == startZ || z == endZ
                         getPileOfBonesSelector().selectBlocks(random, x, y, z, y == startY || y == endY || x == startX || x == endX || z == startZ || z == endZ);
                         ObjectsGenerationHelper.generatePileOfBones(this, world, x, y, z, getPileOfBonesSelector().getBlockState());

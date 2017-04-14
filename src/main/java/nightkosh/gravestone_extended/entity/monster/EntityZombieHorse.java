@@ -1,11 +1,9 @@
 package nightkosh.gravestone_extended.entity.monster;
 
-import nightkosh.gravestone_extended.entity.ai.EntityAIAttackLivingHorse;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.IEntityLivingData;
 import net.minecraft.entity.SharedMonsterAttributes;
-import net.minecraft.entity.ai.EntityAIAttackOnCollide;
 import net.minecraft.entity.ai.EntityAIMoveThroughVillage;
 import net.minecraft.entity.ai.EntityAIMoveTowardsRestriction;
 import net.minecraft.entity.ai.EntityAINearestAttackableTarget;
@@ -30,10 +28,10 @@ public class EntityZombieHorse extends EntityUndeadHorse {
         super(worldIn);
 
         this.tasks.addTask(4, new EntityAIMoveTowardsRestriction(this, 1));
-        this.tasks.addTask(3, new EntityAIAttackOnCollide(this, EntityVillager.class, 1, true));
-        this.tasks.addTask(3, new EntityAIAttackOnCollide(this, EntityWolf.class, 1, true));
-        this.tasks.addTask(3, new EntityAIAttackOnCollide(this, EntityOcelot.class, 1, true));
-        this.tasks.addTask(4, new EntityAIAttackLivingHorse(this, 1, false));
+//        this.tasks.addTask(3, new EntityAIAttackOnCollide(this, EntityVillager.class, 1, true));
+//        this.tasks.addTask(3, new EntityAIAttackOnCollide(this, EntityWolf.class, 1, true));
+//        this.tasks.addTask(3, new EntityAIAttackOnCollide(this, EntityOcelot.class, 1, true));
+//        this.tasks.addTask(4, new EntityAIAttackLivingHorse(this, 1, false));
         this.tasks.addTask(5, new EntityAIMoveThroughVillage(this, 1, false));
 
         this.targetTasks.addTask(2, new EntityAINearestAttackableTarget(this, EntityVillager.class, false));
@@ -61,18 +59,23 @@ public class EntityZombieHorse extends EntityUndeadHorse {
             EntityLiving entity = (EntityLiving) entityLivingBase;
             EntityLiving zombie = null;
             if (entity instanceof EntityVillager) {
+                EntityVillager villager = (EntityVillager) entityLivingBase;
                 EntityZombie entityZombie = new EntityZombie(this.worldObj);
                 entityZombie.copyLocationAndAnglesFrom(entity);
                 this.worldObj.removeEntity(entity);
                 entityZombie.onInitialSpawn(this.worldObj.getDifficultyForLocation(new BlockPos(this)), (IEntityLivingData) null);
-                entityZombie.setVillager(true);
 
-                if (entity.isChild()) {
-                    entityZombie.setChild(true);
+                entityZombie.setVillagerType(villager.getProfessionForge());
+                entityZombie.setChild(entityLivingBase.isChild());
+                entityZombie.setNoAI(villager.isAIDisabled());
+
+                if (villager.hasCustomName()) {
+                    entityZombie.setCustomNameTag(villager.getCustomNameTag());
+                    entityZombie.setAlwaysRenderNameTag(villager.getAlwaysRenderNameTag());
                 }
 
                 this.worldObj.spawnEntityInWorld(entityZombie);
-                this.worldObj.playAuxSFXAtEntity((EntityPlayer) null, 1016, new BlockPos(this), 0);
+                this.worldObj.playEvent((EntityPlayer) null, 1026, new BlockPos(this), 0);
                 zombie = entityZombie;
             } else if (entity instanceof EntityWolf) {
                 EntityZombieDog zombieDog = new EntityZombieDog(this.worldObj, false);
@@ -80,7 +83,7 @@ public class EntityZombieHorse extends EntityUndeadHorse {
 
                 this.worldObj.removeEntity(entity);
                 this.worldObj.spawnEntityInWorld(zombieDog);
-                this.worldObj.playAuxSFXAtEntity((EntityPlayer) null, 1016, new BlockPos(this), 0);
+                this.worldObj.playEvent((EntityPlayer) null, 1026, new BlockPos(this), 0);
 
                 zombie = zombieDog;
             } else if (entity instanceof EntityOcelot) {
@@ -95,7 +98,7 @@ public class EntityZombieHorse extends EntityUndeadHorse {
 
                 zombieCat.onInitialSpawn(this.worldObj.getDifficultyForLocation(new BlockPos(this)), (IEntityLivingData) null);
                 this.worldObj.spawnEntityInWorld(zombieCat);
-                this.worldObj.playAuxSFXAtEntity((EntityPlayer) null, 1016, new BlockPos(this), 0);
+                this.worldObj.playEvent((EntityPlayer) null, 1026, new BlockPos(this), 0);
 
                 zombie = zombieCat;
             } else if (entity instanceof EntityHorse) {
@@ -105,7 +108,7 @@ public class EntityZombieHorse extends EntityUndeadHorse {
 
                 this.worldObj.removeEntity(entity);
                 this.worldObj.spawnEntityInWorld(zombieHorse);
-                this.worldObj.playAuxSFXAtEntity((EntityPlayer) null, 1016, new BlockPos(this), 0);
+                this.worldObj.playEvent((EntityPlayer) null, 1026, new BlockPos(this), 0);
 
                 zombie = zombieHorse;
             }

@@ -84,15 +84,15 @@ public class Bridge extends CatacombsBaseComponent {
         GraveGenerationHelper.fillGraves(this, world, random, 1, 9, 1, 1, 9, 6, leftGraveState, spawnerHelper);
         GraveGenerationHelper.fillGraves(this, world, random, 11, 9, 1, 11, 9, 6, rightGraveState, spawnerHelper);
         // lava
-        this.fillWithBlocks(world, boundingBox, 3, 1, 1, 9, 2, 6, Blocks.lava.getDefaultState());
+        this.fillWithBlocks(world, boundingBox, 3, 1, 1, 9, 2, 6, Blocks.LAVA.getDefaultState());
         // bridge
-        IBlockState slabState = Blocks.stone_slab.getDefaultState().withProperty(BlockStoneSlab.VARIANT, BlockStoneSlab.EnumType.NETHERBRICK)
+        IBlockState slabState = Blocks.STONE_SLAB.getDefaultState().withProperty(BlockStoneSlab.VARIANT, BlockStoneSlab.EnumType.NETHERBRICK)
                 .withProperty(BlockSlab.HALF, BlockSlab.EnumBlockHalf.TOP);
 
         this.fillWithBlocks(world, boundingBox, 6, 8, 1, 6, 8, 6, slabState);
 
         if (random.nextInt(10) < 4) {
-            this.placeBlockAtCurrentPosition(world, Blocks.air.getDefaultState(), 6, 8, 5, boundingBox);
+            this.placeBlockAtCurrentPosition(world, Blocks.AIR.getDefaultState(), 6, 8, 5, boundingBox);
         }
 
         // block exit wall

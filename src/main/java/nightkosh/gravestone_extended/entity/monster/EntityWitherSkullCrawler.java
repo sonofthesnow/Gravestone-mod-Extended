@@ -2,8 +2,8 @@ package nightkosh.gravestone_extended.entity.monster;
 
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.init.Items;
+import net.minecraft.init.MobEffects;
 import net.minecraft.item.ItemStack;
-import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.world.World;
 
@@ -33,7 +33,7 @@ public class EntityWitherSkullCrawler extends EntitySkullCrawler {
 
     @Override
     protected PotionEffect getPotionEffect() {
-        return new PotionEffect(Potion.wither.id, 100);
+        return new PotionEffect(MobEffects.WITHER, 100);
     }
 
     @Override

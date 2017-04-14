@@ -63,7 +63,7 @@ public class Corridor extends CatacombsBaseComponent {
         this.fillWithRandomizedBlocks(world, boundingBox, 0, 0, 1, 4, 0, 3, false, random, stoneBricks);
 
         // web
-        this.randomlyFillWithBlocks(world, boundingBox, random, WEB_GENERATION_CHANCE, 1, 1, 0, 3, 3, 3, Blocks.web.getDefaultState(), false);
+        this.randomlyFillWithBlocks(world, boundingBox, random, WEB_GENERATION_CHANCE, 1, 1, 0, 3, 3, 3, Blocks.WEB.getDefaultState(), false);
         //piles of bones
         if (ExtendedConfig.generatePilesOfBones) {
             this.fillWithRandomizedPilesOfBones(world, boundingBox, 1, 1, 1, 4, 1, 4, false, random);

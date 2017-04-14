@@ -1,5 +1,6 @@
 package nightkosh.gravestone_extended.structures.graves;
 
+import net.minecraft.util.math.ChunkPos;
 import nightkosh.gravestone_extended.config.ExtendedConfig;
 import nightkosh.gravestone_extended.structures.GSStructureGenerator;
 import nightkosh.gravestone_extended.structures.catacombs.CatacombsGenerator;
@@ -30,7 +31,7 @@ public class SingleGraveGenerator implements GSStructureGenerator {
     // chance to generate a structure
     public static final double DEFAULT_GENERATION_CHANCE = 0.1D;
     public static final byte RANGE = 100;
-    protected static List<ChunkCoordIntPair> structuresList = new ArrayList<>();
+    protected static List<ChunkPos> structuresList = new ArrayList<>();
 
     @Override
     public boolean generate(World world, Random rand, int x, int z, EnumFacing direction, double chance, boolean isCommand) {
@@ -44,7 +45,7 @@ public class SingleGraveGenerator implements GSStructureGenerator {
             } else {
                 new ComponentSingleGrave(0, direction, rand, x, z).addComponentParts(world, rand);
             }
-            structuresList.add(new ChunkCoordIntPair(x, z));
+            structuresList.add(new ChunkPos(x, z));
             return true;
         }
 
@@ -62,14 +63,14 @@ public class SingleGraveGenerator implements GSStructureGenerator {
     }
 
     protected static boolean noAnyInRange(int x, int z) {
-        for (ChunkCoordIntPair position : structuresList) {
+        for (ChunkPos position : structuresList) {
             if (position.chunkXPos > x - RANGE && position.chunkXPos < x + RANGE
                     && position.chunkZPos > z - RANGE && position.chunkZPos < z + RANGE) {
                 return false;
             }
         }
 
-        for (ChunkCoordIntPair position : CatacombsGenerator.getStructuresList()) {
+        for (ChunkPos position : CatacombsGenerator.getStructuresList()) {
             if (position.chunkXPos > x - CatacombsGenerator.CATACOMBS_RANGE && position.chunkXPos < x + CatacombsGenerator.CATACOMBS_RANGE
                     && position.chunkZPos > z - CatacombsGenerator.CATACOMBS_RANGE && position.chunkZPos < z + CatacombsGenerator.CATACOMBS_RANGE) {
                 return false;
@@ -79,7 +80,7 @@ public class SingleGraveGenerator implements GSStructureGenerator {
         return true;
     }
 
-    public static List<ChunkCoordIntPair> getStructuresList() {
+    public static List<ChunkPos> getStructuresList() {
         return structuresList;
     }
 }

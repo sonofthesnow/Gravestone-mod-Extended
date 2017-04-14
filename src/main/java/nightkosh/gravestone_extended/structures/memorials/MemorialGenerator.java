@@ -1,17 +1,20 @@
 package nightkosh.gravestone_extended.structures.memorials;
 
+import net.minecraft.block.material.Material;
+import net.minecraft.util.EnumFacing;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.ChunkPos;
+import net.minecraft.world.World;
+import net.minecraftforge.common.BiomeDictionary;
 import nightkosh.gravestone_extended.config.ExtendedConfig;
 import nightkosh.gravestone_extended.core.logger.GSLogger;
 import nightkosh.gravestone_extended.structures.GSStructureGenerator;
 import nightkosh.gravestone_extended.structures.catacombs.CatacombsGenerator;
-import net.minecraft.block.material.Material;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.EnumFacing;
-import net.minecraft.world.ChunkCoordIntPair;
-import net.minecraft.world.World;
-import net.minecraftforge.common.BiomeDictionary;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Random;
 
 /**
  * GraveStone mod
@@ -37,7 +40,7 @@ public class MemorialGenerator implements GSStructureGenerator {
 
     public static final double DEFAULT_GENERATION_CHANCE = 0.05;
     public static final short RANGE = 400;
-    private static List<ChunkCoordIntPair> structuresList = new ArrayList<>();
+    private static List<ChunkPos> structuresList = new ArrayList<>();
 
     @Override
     public boolean generate(World world, Random rand, int x, int z, EnumFacing direction, double chance, boolean isCommand) {
@@ -48,7 +51,7 @@ public class MemorialGenerator implements GSStructureGenerator {
         if (isCommand || (ExtendedConfig.generateMemorials && canSpawnStructureAtCoords(world, x, z, chance) && isNoWarterUnder(world, x, z))) {
             new ComponentMemorial(0, direction, rand, x, z).addComponentParts(world, rand);
             GSLogger.logInfo("Generate memorial at " + x + "x" + z);
-            structuresList.add(new ChunkCoordIntPair(x, z));
+            structuresList.add(new ChunkPos(x, z));
             return true;
         }
 
@@ -65,14 +68,14 @@ public class MemorialGenerator implements GSStructureGenerator {
     }
 
     protected static boolean noAnyInRange(int x, int z) {
-        for (ChunkCoordIntPair position : structuresList) {
+        for (ChunkPos position : structuresList) {
             if (position.chunkXPos > x - RANGE && position.chunkXPos < x + RANGE
                     && position.chunkZPos > z - RANGE && position.chunkZPos < z + RANGE) {
                 return false;
             }
         }
 
-        for (ChunkCoordIntPair position : CatacombsGenerator.getStructuresList()) {
+        for (ChunkPos position : CatacombsGenerator.getStructuresList()) {
             if (position.chunkXPos > x - CatacombsGenerator.CATACOMBS_RANGE && position.chunkXPos < x + CatacombsGenerator.CATACOMBS_RANGE
                     && position.chunkZPos > z - CatacombsGenerator.CATACOMBS_RANGE && position.chunkZPos < z + CatacombsGenerator.CATACOMBS_RANGE) {
                 return false;
@@ -82,12 +85,12 @@ public class MemorialGenerator implements GSStructureGenerator {
         return true;
     }
 
-    public static List<ChunkCoordIntPair> getStructuresList() {
+    public static List<ChunkPos> getStructuresList() {
         return structuresList;
     }
 
     private static boolean isNoWarterUnder(World world, int x, int z) {
         BlockPos pos = world.getTopSolidOrLiquidBlock(new BlockPos(x, 0, z));
-        return !world.getBlockState(pos).getBlock().getMaterial().equals(Material.water);
+        return !world.getBlockState(pos).getBlock().getMaterial(null).equals(Material.WATER);
     }
 }

@@ -8,7 +8,6 @@ import net.minecraft.entity.ai.EntityAIMoveTowardsRestriction;
 import net.minecraft.entity.ai.EntityAINearestAttackableTarget;
 import net.minecraft.entity.ai.EntityAIWander;
 import net.minecraft.entity.passive.*;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.item.Item;
@@ -18,7 +17,6 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.World;
 import nightkosh.gravestone_extended.core.Resources;
-import nightkosh.gravestone_extended.entity.ai.EntityAIAttackLivingHorse;
 
 /**
  * GraveStone mod
@@ -45,7 +43,7 @@ public class EntityZombieDog extends EntityUndeadDog {
 //        this.tasks.addTask(3, new EntityAIAttackOnCollide(this, EntityVillager.class, 1, true));
 //        this.tasks.addTask(3, new EntityAIAttackOnCollide(this, EntityWolf.class, 1, true));
 //        this.tasks.addTask(3, new EntityAIAttackOnCollide(this, EntityOcelot.class, 1, true));
-        this.tasks.addTask(4, new EntityAIAttackLivingHorse(this, 1, false));
+//        this.tasks.addTask(4, new EntityAIAttackLivingHorse(this, 1, false));
 //        this.tasks.addTask(4, new EntityAIAttackOnCollide(this, EntitySheep.class, 1, false));
         this.tasks.addTask(5, new EntityAIMoveThroughVillage(this, 1, false));
         this.targetTasks.addTask(2, new EntityAINearestAttackableTarget(this, EntityVillager.class, false));

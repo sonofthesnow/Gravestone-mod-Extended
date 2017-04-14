@@ -46,7 +46,7 @@ public class TrapCorridor extends CatacombsBaseComponent {
         this.fillWithBlocks(world, boundingBox, 1, 0, 0, 5, 0, 0, nightStone);
 
         // web
-        this.randomlyFillWithBlocks(world, boundingBox, random, WEB_GENERATION_CHANCE, 2, 1, 0, 4, 3, 3, Blocks.web.getDefaultState(), false);
+        this.randomlyFillWithBlocks(world, boundingBox, random, WEB_GENERATION_CHANCE, 2, 1, 0, 4, 3, 3, Blocks.WEB.getDefaultState(), false);
 
         // neter ceiling
         this.fillWithBlocks(world, boundingBox, 1, 4, 0, 5, 4, 3, netherBrick);
@@ -60,21 +60,21 @@ public class TrapCorridor extends CatacombsBaseComponent {
         this.fillWithBlocks(world, boundingBox, 1, 1, 0, 1, 3, 0, netherBrick);
         this.fillWithBlocks(world, boundingBox, 5, 1, 0, 5, 3, 0, netherBrick);
         // blocks
-        this.placeBlockAtCurrentPosition(world, Blocks.stonebrick.getDefaultState(), 0, 1, 2, boundingBox);
-        this.placeBlockAtCurrentPosition(world, Blocks.stonebrick.getDefaultState(), 6, 1, 2, boundingBox);
+        this.placeBlockAtCurrentPosition(world, Blocks.STONEBRICK.getDefaultState(), 0, 1, 2, boundingBox);
+        this.placeBlockAtCurrentPosition(world, Blocks.STONEBRICK.getDefaultState(), 6, 1, 2, boundingBox);
 
         // tripWire hook
-        this.placeBlockAtCurrentPosition(world, Blocks.tripwire_hook.getDefaultState().withProperty(BlockTripWireHook.FACING, this.getRightDirectionForBlocks().getOpposite()), 1, 1, 2, boundingBox);
-        this.placeBlockAtCurrentPosition(world, Blocks.tripwire_hook.getDefaultState().withProperty(BlockTripWireHook.FACING, this.getLeftDirectionForBlocks().getOpposite()), 5, 1, 2, boundingBox);
+        this.placeBlockAtCurrentPosition(world, Blocks.TRIPWIRE_HOOK.getDefaultState().withProperty(BlockTripWireHook.FACING, this.getRightDirectionForBlocks().getOpposite()), 1, 1, 2, boundingBox);
+        this.placeBlockAtCurrentPosition(world, Blocks.TRIPWIRE_HOOK.getDefaultState().withProperty(BlockTripWireHook.FACING, this.getLeftDirectionForBlocks().getOpposite()), 5, 1, 2, boundingBox);
 
         // tripWire
-        this.fillWithBlocks(world, boundingBox, 2, 1, 2, 4, 1, 2, Blocks.tripwire.getDefaultState());
+        this.fillWithBlocks(world, boundingBox, 2, 1, 2, 4, 1, 2, Blocks.TRIPWIRE.getDefaultState());
 
         //dispencer
         ObjectsGenerationHelper.generateDispenser(world, this, random, 0, 2, 2, this.getRightDirectionForBlocks().getOpposite());
         ObjectsGenerationHelper.generateDispenser(world, this, random, 6, 2, 2, this.getLeftDirectionForBlocks().getOpposite());
-        this.placeBlockAtCurrentPosition(world, Blocks.air.getDefaultState(), 1, 2, 2, boundingBox);
-        this.placeBlockAtCurrentPosition(world, Blocks.air.getDefaultState(), 5, 2, 2, boundingBox);
+        this.placeBlockAtCurrentPosition(world, Blocks.AIR.getDefaultState(), 1, 2, 2, boundingBox);
+        this.placeBlockAtCurrentPosition(world, Blocks.AIR.getDefaultState(), 5, 2, 2, boundingBox);
 
         return true;
     }

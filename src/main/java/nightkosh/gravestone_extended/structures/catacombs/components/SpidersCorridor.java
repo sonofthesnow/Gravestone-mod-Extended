@@ -39,7 +39,7 @@ public class SpidersCorridor extends CatacombsBaseComponent {
         BlockSelector stoneBricks = getCemeteryCatacombsStones();
         this.fillWithAir(world, boundingBox, 1, 1, 0, 3, 3, Z_LENGTH - 1);
         // web
-        this.randomlyFillWithBlocks(world, boundingBox, random, WEB_GENERATION_CHANCE + 0.3F, 1, 1, 0, 3, 3, Z_LENGTH - 1, Blocks.web.getDefaultState(), false);
+        this.randomlyFillWithBlocks(world, boundingBox, random, WEB_GENERATION_CHANCE + 0.3F, 1, 1, 0, 3, 3, Z_LENGTH - 1, Blocks.WEB.getDefaultState(), false);
 
         for (int i = 0; i < 3; i++) {
             int z = i * 4;

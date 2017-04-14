@@ -3,6 +3,7 @@ package nightkosh.gravestone_extended.structures;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.structure.StructureBoundingBox;
 import net.minecraft.world.gen.structure.StructureComponent;
@@ -132,8 +133,8 @@ public class ComponentGraveStone extends StructureComponent implements IComponen
      * Blacksmith Chests, Mineshaft Chests.
      */
     @Override
-    public boolean generateChestContents(World world, StructureBoundingBox boundingBox, Random random, int x, int y, int z, List chestContent, int par8) {
-        return super.generateChestContents(world, boundingBox, random, x, y, z, chestContent, par8);
+    public boolean generateChest(World world, StructureBoundingBox boundingBox, Random random, int x, int y, int z, ResourceLocation loot) {
+        return super.generateChest(world, boundingBox, random, x, y, z, loot);
     }
 
     @Override

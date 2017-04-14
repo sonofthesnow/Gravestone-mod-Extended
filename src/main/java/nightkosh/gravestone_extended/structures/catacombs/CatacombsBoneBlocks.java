@@ -39,7 +39,7 @@ public class CatacombsBoneBlocks extends StructureComponent.BlockSelector {
                 }
             }
         } else {
-            this.blockstate = Blocks.air.getDefaultState();
+            this.blockstate = Blocks.AIR.getDefaultState();
         }
     }
 }

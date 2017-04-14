@@ -9,11 +9,11 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntityChest;
 import net.minecraft.tileentity.TileEntityDispenser;
 import net.minecraft.tileentity.TileEntityMobSpawner;
-import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.EnumFacing;
-import net.minecraft.util.WeightedRandomChestContent;
+import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import net.minecraftforge.common.ChestGenHooks;
+import net.minecraft.world.storage.loot.LootTableList;
 import nightkosh.gravestone_extended.block.BlockHauntedChest;
 import nightkosh.gravestone_extended.block.BlockPileOfBones;
 import nightkosh.gravestone_extended.block.BlockSpawner;
@@ -25,7 +25,6 @@ import nightkosh.gravestone_extended.core.Potion;
 import nightkosh.gravestone_extended.tileentity.TileEntityHauntedChest;
 import nightkosh.gravestone_extended.tileentity.TileEntityPileOfBones;
 
-import java.util.List;
 import java.util.Random;
 
 /**
@@ -80,14 +79,11 @@ public class ObjectsGenerationHelper {
         int x = component.getXWithOffset(xCoord, zCoord);
         int z = component.getZWithOffset(xCoord, zCoord);
 
-        ChestGenHooks chest = getChest(random, chestType);
-        List<WeightedRandomChestContent> items = chest.getItems(random);
-        int count = chest.getCount(random);
-
+        ResourceLocation loot = getChest(random, chestType);
         if (defaultChest) {
-            component.generateChestContents(world, component.getBoundingBox(), random, xCoord, yCoord, zCoord, items, count);
+            component.generateChest(world, component.getBoundingBox(), random, xCoord, yCoord, zCoord, loot);
         } else {
-            generateTrappedChestContents(component, world, random, xCoord, yCoord, zCoord, facing, items, count);
+            generateTrappedChestContents(component, world, random, xCoord, yCoord, zCoord, facing, loot);
         }
     }
 
@@ -107,62 +103,62 @@ public class ObjectsGenerationHelper {
     /**
      * Generate trapped chests with items.
      */
-    public static void generateTrappedChestContents(ComponentGraveStone component, World world, Random random, int xCoord, int yCoord, int zCoord, EnumFacing facing, List<WeightedRandomChestContent> chestContent, int count) {
+    public static void generateTrappedChestContents(ComponentGraveStone component, World world, Random random, int xCoord, int yCoord, int zCoord, EnumFacing facing, ResourceLocation loot) {
         int x = component.getXWithOffset(xCoord, zCoord);
         int y = component.getYWithOffset(yCoord);
         int z = component.getZWithOffset(xCoord, zCoord);
 
         BlockPos pos = new BlockPos(x, y, z);
-        world.setBlockState(pos, Blocks.trapped_chest.getDefaultState().withProperty(BlockChest.FACING, facing), 2);
-        TileEntityChest tileentitychest = (TileEntityChest) world.getTileEntity(pos);
+        world.setBlockState(pos, Blocks.TRAPPED_CHEST.getDefaultState().withProperty(BlockChest.FACING, facing), 2);
+        TileEntityChest tileentity = (TileEntityChest) world.getTileEntity(pos);
 
-        if (tileentitychest != null) {
-            WeightedRandomChestContent.generateChestContents(random, chestContent, tileentitychest, count);
+        if (tileentity != null) {
+            tileentity.setLootTable(loot, random.nextLong());
         }
     }
 
-    private static ChestGenHooks getChest(Random random, EnumChestTypes chestType) {
+    private static ResourceLocation getChest(Random random, EnumChestTypes chestType) {
         switch (chestType) {
             case VALUABLE_CHESTS:
                 switch (random.nextInt(7)) {
                     case 1:
-                        return ChestGenHooks.getInfo(ChestGenHooks.DUNGEON_CHEST);
+                        return LootTableList.CHESTS_SIMPLE_DUNGEON;
                     case 2:
-                        return ChestGenHooks.getInfo(ChestGenHooks.MINESHAFT_CORRIDOR);
+                        return LootTableList.CHESTS_ABANDONED_MINESHAFT;
                     case 3:
-                        return ChestGenHooks.getInfo(ChestGenHooks.PYRAMID_DESERT_CHEST);
+                        return LootTableList.CHESTS_DESERT_PYRAMID;
                     case 4:
-                        return ChestGenHooks.getInfo(ChestGenHooks.STRONGHOLD_CROSSING);
+                        return LootTableList.CHESTS_STRONGHOLD_CROSSING;
                     case 5:
-                        return ChestGenHooks.getInfo(ChestGenHooks.STRONGHOLD_LIBRARY);
+                        return LootTableList.CHESTS_STRONGHOLD_LIBRARY;
                     case 6:
-                        return ChestGenHooks.getInfo(ChestGenHooks.NETHER_FORTRESS);
+                        return LootTableList.CHESTS_NETHER_BRIDGE;
                     case 0:
                     default:
-                        return ChestGenHooks.getInfo(ChestGenHooks.STRONGHOLD_CORRIDOR);
+                        return LootTableList.CHESTS_STRONGHOLD_CORRIDOR;
                 }
             case ALL_CHESTS:
             default:
                 switch (random.nextInt(9)) {
                     case 1:
-                        return ChestGenHooks.getInfo(ChestGenHooks.DUNGEON_CHEST);
+                        return LootTableList.CHESTS_SIMPLE_DUNGEON;
                     case 2:
-                        return ChestGenHooks.getInfo(ChestGenHooks.MINESHAFT_CORRIDOR);
+                        return LootTableList.CHESTS_ABANDONED_MINESHAFT;
                     case 3:
-                        return ChestGenHooks.getInfo(ChestGenHooks.PYRAMID_DESERT_CHEST);
+                        return LootTableList.CHESTS_DESERT_PYRAMID;
                     case 4:
-                        return ChestGenHooks.getInfo(ChestGenHooks.PYRAMID_JUNGLE_CHEST);
+                        return LootTableList.CHESTS_JUNGLE_TEMPLE;
                     case 5:
-                        return ChestGenHooks.getInfo(ChestGenHooks.STRONGHOLD_CROSSING);
+                        return LootTableList.CHESTS_STRONGHOLD_CROSSING;
                     case 6:
-                        return ChestGenHooks.getInfo(ChestGenHooks.STRONGHOLD_LIBRARY);
+                        return LootTableList.CHESTS_STRONGHOLD_LIBRARY;
                     case 7:
-                        return ChestGenHooks.getInfo(ChestGenHooks.VILLAGE_BLACKSMITH);
+                        return LootTableList.CHESTS_VILLAGE_BLACKSMITH;
                     case 8:
-                        return ChestGenHooks.getInfo(ChestGenHooks.NETHER_FORTRESS);
+                        return LootTableList.CHESTS_NETHER_BRIDGE;
                     case 0:
                     default:
-                        return ChestGenHooks.getInfo(ChestGenHooks.STRONGHOLD_CORRIDOR);
+                        return LootTableList.CHESTS_STRONGHOLD_CORRIDOR;
                 }
         }
     }
@@ -213,7 +209,7 @@ public class ObjectsGenerationHelper {
         int z = component.getZWithOffset(xCoord, zCoord);
 
         BlockPos pos = new BlockPos(x, y, z);
-        world.setBlockState(pos, Blocks.mob_spawner.getDefaultState());
+        world.setBlockState(pos, Blocks.MOB_SPAWNER.getDefaultState());
         TileEntityMobSpawner tileEntity = (TileEntityMobSpawner) world.getTileEntity(pos);
 
         if (tileEntity != null) {
@@ -230,8 +226,8 @@ public class ObjectsGenerationHelper {
         int z = component.getZWithOffset(xCoord, zCoord);
 
         BlockPos pos = new BlockPos(x, y, z);
-        world.setBlockState(pos, Blocks.dispenser.getDefaultState());
-        world.setBlockState(pos, Blocks.dispenser.getDefaultState().withProperty(BlockDispenser.FACING, direction)
+        world.setBlockState(pos, Blocks.DISPENSER.getDefaultState());
+        world.setBlockState(pos, Blocks.DISPENSER.getDefaultState().withProperty(BlockDispenser.FACING, direction)
                 .withProperty(BlockDispenser.TRIGGERED, Boolean.valueOf(false)));
         TileEntityDispenser dispenser = (TileEntityDispenser) world.getTileEntity(pos);
         if (dispenser != null) {
@@ -244,7 +240,7 @@ public class ObjectsGenerationHelper {
      */
     public static void generateDispenserContents(Random random, TileEntityDispenser dispenserEntity) {
         for (int i = 0; i < 9; i++) {
-            ItemStack stack = new ItemStack(Items.potionitem, getRandomCount(random), POTIONS[random.nextInt(POTIONS.length)]);
+            ItemStack stack = new ItemStack(Items.POTIONITEM, getRandomCount(random), POTIONS[random.nextInt(POTIONS.length)]);
             dispenserEntity.setInventorySlotContents(i, stack);
         }
     }

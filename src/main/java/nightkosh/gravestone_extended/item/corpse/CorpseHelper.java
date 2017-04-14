@@ -9,9 +9,9 @@ import net.minecraft.entity.passive.EntityOcelot;
 import net.minecraft.entity.passive.EntityVillager;
 import net.minecraft.entity.passive.EntityWolf;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.MobEffects;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldSettings;
@@ -47,7 +47,7 @@ public abstract class CorpseHelper {
     protected static void spawnMob(EntityLiving entity, World world, int x, int y, int z) {
         entity.setPosition(x + 0.5, y + 1, z + 0.5);
         world.spawnEntityInWorld(entity);
-        entity.addPotionEffect(new PotionEffect(Potion.regeneration.getId(), 300));
+        entity.addPotionEffect(new PotionEffect(MobEffects.REGENERATION, 300));
     }
 
     protected static void addNameInfo(List list, NBTTagCompound nbtTag) {

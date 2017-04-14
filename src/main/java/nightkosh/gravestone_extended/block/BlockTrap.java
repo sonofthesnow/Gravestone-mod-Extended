@@ -101,7 +101,7 @@ public class BlockTrap extends Block {
                         time = time - dayTime + TimeHelper.NIGHT;
                         world.setWorldTime(time);
                     }
-                    ((EntityPlayer) entity).addPotionEffect(new PotionEffect(Potion.curse.getId(), 1200));
+                    ((EntityPlayer) entity).addPotionEffect(new PotionEffect(Potion.curse, 1200));
                 }
             } else {
                 if (ExtendedConfig.enableThunderStone) {

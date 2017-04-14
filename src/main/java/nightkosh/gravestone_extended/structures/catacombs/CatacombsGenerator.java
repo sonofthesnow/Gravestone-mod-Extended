@@ -1,9 +1,9 @@
 package nightkosh.gravestone_extended.structures.catacombs;
 
-import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.ChunkPos;
 import net.minecraft.village.Village;
-import net.minecraft.world.ChunkCoordIntPair;
 import net.minecraft.world.World;
 import net.minecraftforge.common.BiomeDictionary;
 import nightkosh.gravestone_extended.config.ExtendedConfig;
@@ -43,7 +43,7 @@ public class CatacombsGenerator implements GSStructureGenerator {
     public static final double DEFAULT_GENERATION_CHANCE = 0.00025D;
     public static final int MINIMAL_SURFACE_HEIGHT = 55;
 
-    protected static List<ChunkCoordIntPair> structuresList = new ArrayList<>();
+    protected static List<ChunkPos> structuresList = new ArrayList<>();
 
     @Override
     public boolean generate(World world, Random rand, int x, int z, EnumFacing direction, double chance, boolean isCommand) {
@@ -56,7 +56,7 @@ public class CatacombsGenerator implements GSStructureGenerator {
                     CatacombsUnderground.build(world, rand, direction, surface.getMausoleumX(), surface.getMausoleumY(), surface.getMausoleumZ());
                 }
 
-                structuresList.add(new ChunkCoordIntPair(x, z));
+                structuresList.add(new ChunkPos(x, z));
                 GSLogger.logInfo("Catacombs was successfully generated!");
 //            }).start();
 
@@ -86,7 +86,7 @@ public class CatacombsGenerator implements GSStructureGenerator {
 
     protected static boolean noAnyInRange(int x, int z, World world) {
         GSLogger.logInfo("Catacombs generation - Begin Checking area for another catacombs or villages");
-        for (ChunkCoordIntPair position : structuresList) {
+        for (ChunkPos position : structuresList) {
             if (checkStructuresInRange(position.chunkXPos, position.chunkZPos, x, z, CATACOMBS_DISTANCE)) {
                 return false;
             }
@@ -116,7 +116,7 @@ public class CatacombsGenerator implements GSStructureGenerator {
                 && zPos > z - range && zPos < z + range;
     }
 
-    public static List<ChunkCoordIntPair> getStructuresList() {
+    public static List<ChunkPos> getStructuresList() {
         return structuresList;
     }
 

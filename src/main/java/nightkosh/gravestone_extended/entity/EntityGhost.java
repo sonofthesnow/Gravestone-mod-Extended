@@ -85,12 +85,12 @@ public class EntityGhost extends EntityFlying implements IMob {
 //    protected int getPotionId(Random random) {
 //        switch (random.nextInt(3)) {
 //            case 1:
-//                return Potion.weakness.getId();
+//                return MobEffects.weakness.getId();
 //            case 2:
-//                return Potion.hunger.getId();
+//                return MobEffects.hunger.getId();
 //            case 0:
 //            default:
-//                return Potion.moveSlowdown.getId();
+//                return MobEffects.moveSlowdown.getId();
 //        }
 //    }
 }

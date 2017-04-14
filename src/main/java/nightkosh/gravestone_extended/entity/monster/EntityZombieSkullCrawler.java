@@ -2,10 +2,10 @@ package nightkosh.gravestone_extended.entity.monster;
 
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.init.Items;
+import net.minecraft.init.MobEffects;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.world.World;
@@ -67,7 +67,7 @@ public class EntityZombieSkullCrawler extends EntitySkullCrawler {
 
     @Override
     protected PotionEffect getPotionEffect() {
-        return new PotionEffect(Potion.hunger.id, 200);
+        return new PotionEffect(MobEffects.HUNGER, 200);
     }
 
     @Override

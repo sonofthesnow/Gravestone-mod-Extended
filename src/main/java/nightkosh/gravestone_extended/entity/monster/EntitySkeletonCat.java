@@ -4,7 +4,6 @@ import net.minecraft.block.Block;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.*;
 import net.minecraft.entity.passive.EntityWolf;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.item.Item;
@@ -28,7 +27,7 @@ public class EntitySkeletonCat extends EntityUndeadCat {
         this.tasks.addTask(1, new EntityAIRestrictSun(this));
         this.tasks.addTask(1, new EntityAIFleeSun(this, 1));
         this.tasks.addTask(1, new EntityAIAvoidEntity(this, EntityWolf.class, 6, 1, 1.2));
-        this.tasks.addTask(2, new EntityAIAttackOnCollide(this, EntityPlayer.class, 1, false));
+//        this.tasks.addTask(2, new EntityAIAttackOnCollide(this, EntityPlayer.class, 1, false));
         this.tasks.addTask(4, new EntityAIMoveTowardsRestriction(this, 1));
         this.tasks.addTask(6, new EntityAIWander(this, 1));
         this.tasks.addTask(8, new EntityAIOcelotAttack(this));

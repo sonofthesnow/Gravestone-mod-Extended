@@ -76,7 +76,7 @@ public class CatacombsLevel {
     }
 
     public static net.minecraft.block.Block getCatacombsStairsByLevelId(int level) {
-        return (level < 3) ? Blocks.stone_brick_stairs : GSBlock.boneStairs;
+        return (level < 3) ? Blocks.STONE_BRICK_STAIRS : GSBlock.boneStairs;
     }
 
     public final void prepareLevel(List<CatacombsBaseComponent> currentComponents) {

@@ -1,9 +1,9 @@
 package nightkosh.gravestone_extended.structures.graves;
 
-import nightkosh.gravestone_extended.config.ExtendedConfig;
 import net.minecraft.util.EnumFacing;
-import net.minecraft.world.ChunkCoordIntPair;
+import net.minecraft.util.math.ChunkPos;
 import net.minecraft.world.World;
+import nightkosh.gravestone_extended.config.ExtendedConfig;
 
 import java.util.Random;
 
@@ -31,7 +31,7 @@ public class OpenedGraveGenerator extends SingleGraveGenerator {
         }
         if (isCommand || (ExtendedConfig.generateSingleGraves && canSpawnStructureAtCoords(world, x, z, chance))) {
             new ComponentOpenedGrave(0, direction, rand, x, z).addComponentParts(world, rand);
-            structuresList.add(new ChunkCoordIntPair(x, z));
+            structuresList.add(new ChunkPos(x, z));
             return true;
         }
 

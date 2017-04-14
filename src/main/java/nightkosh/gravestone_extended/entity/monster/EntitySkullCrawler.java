@@ -4,20 +4,19 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.EnumCreatureAttribute;
 import net.minecraft.entity.SharedMonsterAttributes;
-import net.minecraft.entity.ai.EntityAIAttackOnCollide;
 import net.minecraft.entity.ai.EntityAIHurtByTarget;
 import net.minecraft.entity.ai.EntityAINearestAttackableTarget;
 import net.minecraft.entity.ai.EntityAISwimming;
 import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
+import net.minecraft.init.MobEffects;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
-import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EntityDamageSource;
@@ -50,7 +49,7 @@ public class EntitySkullCrawler extends EntityMob {
 
         this.tasks.addTask(1, new EntityAISwimming(this));
         this.tasks.addTask(3, this.summonAI = new AISummonSkullCrawler(this));
-        this.tasks.addTask(4, new EntityAIAttackOnCollide(this, EntityPlayer.class, 1, false));
+//        this.tasks.addTask(4, new EntityAIAttackOnCollide(this, EntityPlayer.class, 1, false));
         this.tasks.addTask(5, this.hideInBonesAI = new AIHideInBones(this));
         this.tasks.addTask(6, new AIHideInPilesOfBones(this));
         this.targetTasks.addTask(1, new EntityAIHurtByTarget(this, true, new Class[0]));
@@ -273,7 +272,7 @@ public class EntitySkullCrawler extends EntityMob {
     }
 
     protected PotionEffect getPotionEffect() {
-        return new PotionEffect(Potion.moveSlowdown.id, 200);
+        return new PotionEffect(MobEffects.SLOWNESS, 200);
     }
 
     /**

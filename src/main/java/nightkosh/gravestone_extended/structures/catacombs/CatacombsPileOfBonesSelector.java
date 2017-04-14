@@ -37,7 +37,7 @@ public class CatacombsPileOfBonesSelector extends StructureComponent.BlockSelect
                 this.blockstate = GSBlock.pileOfBones.getDefaultState().withProperty(BlockPileOfBones.VARIANT, EnumPileOfBones.PILE_OF_BONES);
             }
         } else {
-            this.blockstate = Blocks.air.getDefaultState();
+            this.blockstate = Blocks.AIR.getDefaultState();
         }
     }
 }

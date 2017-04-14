@@ -1,5 +1,8 @@
 package nightkosh.gravestone_extended.entity.monster;
 
+import net.minecraft.network.datasync.DataParameter;
+import net.minecraft.network.datasync.DataSerializers;
+import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.world.World;
 
 /**
@@ -10,6 +13,8 @@ import net.minecraft.world.World;
  */
 public abstract class EntityUndeadCat extends EntityUndeadPet {
 
+    protected static final DataParameter<Integer> OCELOT_VARIANT = EntityDataManager.createKey(EntityUndeadCat.class, DataSerializers.VARINT);
+
     public EntityUndeadCat(World world) {
         super(world);
         this.setSize(0.6F, 0.8F);
@@ -18,14 +23,14 @@ public abstract class EntityUndeadCat extends EntityUndeadPet {
     @Override
     protected void entityInit() {
         super.entityInit();
-        this.dataWatcher.addObject(18, Byte.valueOf((byte) 0));
+        this.dataManager.register(OCELOT_VARIANT, Integer.valueOf(0));
     }
 
     /**
      * main AI tick function, replaces updateEntityActionState
      */
     @Override
-    public void updateAITick() {
+    public void updateAITasks() {
         if (this.getMoveHelper().isUpdating()) {
             double f = this.getMoveHelper().getSpeed();
 

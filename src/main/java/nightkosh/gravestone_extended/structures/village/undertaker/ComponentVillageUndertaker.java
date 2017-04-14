@@ -155,7 +155,8 @@ public class ComponentVillageUndertaker extends StructureVillagePieces.Village i
             this.setBlockState(world, glassState, 10, 2, 2, boundingBox);
 
             // door
-            this.placeDoorCurrentPosition(world, boundingBox, random, 8, 1, 2, EnumFacing.getHorizontal(this.getMetadataWithOffset(Blocks.DARK_OAK_DOOR, 3)));
+//            this.placeDoorCurrentPosition(world, boundingBox, random, 8, 1, 2, EnumFacing.getHorizontal(this.getMetadataWithOffset(Blocks.DARK_OAK_DOOR, 3))); //TODO
+            this.placeDoorCurrentPosition(world, boundingBox, random, 8, 1, 2, EnumFacing.NORTH);
 
             // book shelf
             this.fillWithBlocks(world, boundingBox, 6, 1, 3, 6, 1, 4, Blocks.BOOKSHELF.getDefaultState(), Blocks.BOOKSHELF.getDefaultState(), false);
@@ -277,9 +278,8 @@ public class ComponentVillageUndertaker extends StructureVillagePieces.Village i
      * Returns the villager type to spawn in this component, based on the number
      * of villagers already spawned.
      */
-
     @Override
-    protected int func_180779_c(int par1, int par2) {
+    protected int chooseProfession(int villagersSpawnedIn, int currentVillagerProfession) {
         return VillagersHandler.UNDERTAKER_ID;
     }
 

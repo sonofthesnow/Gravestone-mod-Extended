@@ -1,26 +1,27 @@
 package nightkosh.gravestone_extended.entity.monster;
 
-import net.minecraft.init.SoundEvents;
-import net.minecraft.util.SoundEvent;
-import nightkosh.gravestone_extended.core.Resources;
-import nightkosh.gravestone_extended.entity.ai.EntityAIAttackLivingHorse;
 import net.minecraft.block.Block;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.IEntityLivingData;
 import net.minecraft.entity.SharedMonsterAttributes;
-import net.minecraft.entity.ai.*;
+import net.minecraft.entity.ai.EntityAIMoveThroughVillage;
+import net.minecraft.entity.ai.EntityAIMoveTowardsRestriction;
+import net.minecraft.entity.ai.EntityAINearestAttackableTarget;
+import net.minecraft.entity.ai.EntityAIWander;
 import net.minecraft.entity.passive.*;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
+import net.minecraft.init.SoundEvents;
 import net.minecraft.item.Item;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.SoundEvent;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import nightkosh.gravestone_extended.core.Resources;
 
 import java.util.Random;
 
@@ -46,13 +47,13 @@ public class EntityZombieCat extends EntityUndeadCat {
         this.isGreen = isGreen;
         texture = (isGreen) ? Resources.GREEN_ZOMBIE_OZELOT : Resources.ZOMBIE_OZELOT;
 
-        this.tasks.addTask(2, new EntityAIAttackOnCollide(this, EntityPlayer.class, 1, false));
+//        this.tasks.addTask(2, new EntityAIAttackOnCollide(this, EntityPlayer.class, 1, false));
         this.tasks.addTask(4, new EntityAIMoveTowardsRestriction(this, 1));
         this.tasks.addTask(6, new EntityAIWander(this, 1));
-        this.tasks.addTask(3, new EntityAIAttackOnCollide(this, EntityVillager.class, 1, true));
-        this.tasks.addTask(3, new EntityAIAttackOnCollide(this, EntityWolf.class, 1, true));
-        this.tasks.addTask(3, new EntityAIAttackOnCollide(this, EntityOcelot.class, 1, true));
-        this.tasks.addTask(4, new EntityAIAttackLivingHorse(this, 1, false));
+//        this.tasks.addTask(3, new EntityAIAttackOnCollide(this, EntityVillager.class, 1, true));
+//        this.tasks.addTask(3, new EntityAIAttackOnCollide(this, EntityWolf.class, 1, true));
+//        this.tasks.addTask(3, new EntityAIAttackOnCollide(this, EntityOcelot.class, 1, true));
+//        this.tasks.addTask(4, new EntityAIAttackLivingHorse(this, 1, false));
         this.tasks.addTask(5, new EntityAIMoveThroughVillage(this, 1, false));
         this.targetTasks.addTask(2, new EntityAINearestAttackableTarget(this, EntityVillager.class, false));
         this.targetTasks.addTask(2, new EntityAINearestAttackableTarget(this, EntityWolf.class, false));
@@ -172,11 +173,11 @@ public class EntityZombieCat extends EntityUndeadCat {
     }
 
     public int getSkin() {
-        return this.dataWatcher.getWatchableObjectByte(18);
+        return this.dataManager.get(OCELOT_VARIANT).intValue();
     }
 
-    public void setSkin(int par1) {
-        this.dataWatcher.updateObject(18, Byte.valueOf((byte) par1));
+    public void setSkin(int skinId) {
+        this.dataManager.set(OCELOT_VARIANT, Integer.valueOf(skinId));
     }
 
     /**
