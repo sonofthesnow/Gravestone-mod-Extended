@@ -56,8 +56,9 @@ public class TileEntityExecutionRenderer extends TileEntityRenderer {
             GL11.glTranslatef((float) x + 0.5F, (float) y + 1.5F, (float) z + 0.5F);
             GL11.glScalef(1, -1, -1);
         } else {
-            GL11.glTranslatef((float) x + 0.5F, (float) y + 0.8F, (float) z + 0.5F);
-            GL11.glScalef(0.7F, -0.7F, -0.7F);
+            GL11.glRotatef(-35, 0, 1, 0);
+            GL11.glTranslatef((float) x + 0.9F, (float) y + 0.5F, (float) z + 0.5F);
+            GL11.glScalef(0.3F, -0.3F, -0.3F);
         }
 
         switch (facing) {
