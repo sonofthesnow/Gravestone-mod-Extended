@@ -37,15 +37,20 @@ public class TileEntityHauntedChestRenderer extends TileEntitySpecialRenderer {
     /**
      * Renders the TileEntity for the chest at a position.
      */
-    public void renderTileEntityChestAt(TileEntityHauntedChest te, double par2, double par4, double par6, float par8) {
+    public void renderTileEntityChestAt(TileEntityHauntedChest te, double x, double y, double z, float par8) {
         int metadata = 0;
 
         if(te == null) {
             te = CHEST_TE;
         }
 
+        GL11.glPushMatrix();
         if (te.hasWorldObj()) {
             metadata = te.getBlockMetadata();
+        } else {
+            GL11.glRotatef(45, 0, 1, 0);
+            GL11.glScalef(0.6F, 0.6F, 0.6F);
+            GL11.glTranslatef((float) x + 0.2F, (float) y + 0.3F, (float) z);
         }
 
 
@@ -57,10 +62,9 @@ public class TileEntityHauntedChestRenderer extends TileEntitySpecialRenderer {
             this.bindTexture(Resources.DEFAULT_CHEST);
         }
 
-        GL11.glPushMatrix();
         GL11.glEnable(GL12.GL_RESCALE_NORMAL);
         GL11.glColor4f(1, 1, 1, 1);
-        GL11.glTranslatef((float) par2, (float) par4 + 1, (float) par6 + 1);
+        GL11.glTranslatef((float) x, (float) y + 1, (float) z + 1);
         GL11.glScalef(1, -1, -1);
         GL11.glTranslatef(0.5F, 0.5F, 0.5F);
         float direction = 0;
