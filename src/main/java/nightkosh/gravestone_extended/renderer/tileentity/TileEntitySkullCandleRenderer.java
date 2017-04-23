@@ -29,18 +29,18 @@ public class TileEntitySkullCandleRenderer extends TileEntitySpecialRenderer {
         if (tileEntity == null) {
             tileEntity = getDefaultTE();
         }
-        if (tileEntity.getWorld() != null) {
-            rotation = (tileEntity.getRotation() * 360) / 8F;
-            meta = (byte) tileEntity.getBlockMetadata();
-        } else {
-            meta = (byte) tileEntity.getBlockMetadata();
-        }
 
         GL11.glPushMatrix();
         if (tileEntity.getWorld() == null) {
-            GL11.glTranslatef(x + 0.5F, y + 2.2F, z + 0.5F);
-            GL11.glScalef(1.5F, -1.5F, -1.5F);
+            meta = (byte) tileEntity.getBlockMetadata();
+
+            GL11.glRotatef(-35, 0, 1, 0);
+            GL11.glTranslatef(x + 1, y + 1.9F, z + 0.5F);
+            GL11.glScalef(1.2F, -1.2F, -1.2F);
         } else {
+            rotation = (tileEntity.getRotation() * 360) / 8F;
+            meta = (byte) tileEntity.getBlockMetadata();
+
             GL11.glTranslatef(x + 0.5F, y + 1.5F, z + 0.5F);
             GL11.glScalef(1, -1, -1);
         }
