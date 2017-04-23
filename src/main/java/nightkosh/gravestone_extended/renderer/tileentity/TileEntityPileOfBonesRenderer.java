@@ -32,8 +32,10 @@ public class TileEntityPileOfBonesRenderer extends TileEntitySpecialRenderer {
         int meta = tileEntity.getBlockMetadata();
         GL11.glPushMatrix();
         if (tileEntity.getWorld() == null) {
-            GL11.glTranslatef(x + 0.5F, y + 2.7F, z + 0.5F);
-            GL11.glScalef(1.8F, -1.8F, -1.8F);
+            GL11.glRotatef(35, 1, 0, 0);
+
+            GL11.glTranslatef(x + 0.5F, y + 2.5F, z + 0.5F);
+            GL11.glScalef(1.2F, -1.2F, -1.2F);
             GL11.glRotatef(0, 0, 1, 0);
         } else {
             GL11.glTranslatef(x + 0.5F, y + 1.5F, z + 0.5F);
