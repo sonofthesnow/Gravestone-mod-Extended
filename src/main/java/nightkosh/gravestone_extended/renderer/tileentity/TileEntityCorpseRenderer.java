@@ -37,6 +37,10 @@ public class TileEntityCorpseRenderer extends TileEntitySpecialRenderer {
         }
 
         GL11.glPushMatrix();
+
+        GL11.glRotatef(-35, 0, 1, 0);
+        GL11.glScalef(0.5F, 0.5F, 0.5F);
+        GL11.glTranslated(x + 1.7F, y, z);
         CorpseRendererHelper.renderCorpse(EnumCorpse.getById((byte) te.getBlockMetadata()), null, false);
         GL11.glPopMatrix();
     }
