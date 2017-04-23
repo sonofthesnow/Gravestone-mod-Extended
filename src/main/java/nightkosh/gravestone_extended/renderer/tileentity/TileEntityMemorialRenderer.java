@@ -102,15 +102,16 @@ public class TileEntityMemorialRenderer extends TileEntityRenderer {
             GL11.glTranslatef((float) x + 0.5F, (float) y + 1.5F, (float) z + 0.5F);
             GL11.glScalef(1, -1, -1);
         } else {
+            GL11.glRotatef(-35, 0, 1, 0);
             switch (memorialType) {
                 case CROSS:
                 case OBELISK:
-                    GL11.glTranslatef((float) x + 0.5F, (float) y + 0.5F, (float) z + 0.5F);
-                    GL11.glScalef(0.4F, -0.4F, -0.4F);
+                    GL11.glTranslatef((float) x + 0.9F, (float) y + 0.3F, (float) z + 0.5F);
+                    GL11.glScalef(0.2F, -0.2F, -0.2F);
                     break;
                 default:
-                    GL11.glTranslatef((float) x + 0.5F, (float) y + 0.8F, (float) z + 0.5F);
-                    GL11.glScalef(0.7F, -0.7F, -0.7F);
+                    GL11.glTranslatef((float) x + 0.9F, (float) y + 0.6F, (float) z + 0.5F);
+                    GL11.glScalef(0.4F, -0.4F, -0.4F);
                     break;
             }
         }
