@@ -4,10 +4,7 @@ import net.minecraft.block.Block;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.IEntityLivingData;
 import net.minecraft.entity.SharedMonsterAttributes;
-import net.minecraft.entity.ai.EntityAIMoveThroughVillage;
-import net.minecraft.entity.ai.EntityAIMoveTowardsRestriction;
-import net.minecraft.entity.ai.EntityAINearestAttackableTarget;
-import net.minecraft.entity.ai.EntityAIWander;
+import net.minecraft.entity.ai.*;
 import net.minecraft.entity.passive.*;
 import net.minecraft.init.Items;
 import net.minecraft.init.SoundEvents;
@@ -47,7 +44,7 @@ public class EntityZombieCat extends EntityUndeadCat {
         this.isGreen = isGreen;
         texture = (isGreen) ? Resources.GREEN_ZOMBIE_OZELOT : Resources.ZOMBIE_OZELOT;
 
-//        this.tasks.addTask(2, new EntityAIAttackOnCollide(this, EntityPlayer.class, 1, false));
+        this.tasks.addTask(2, new EntityAIAttackMelee(this, 1, false));
         this.tasks.addTask(4, new EntityAIMoveTowardsRestriction(this, 1));
         this.tasks.addTask(6, new EntityAIWander(this, 1));
 //        this.tasks.addTask(3, new EntityAIAttackOnCollide(this, EntityVillager.class, 1, true));

@@ -1,7 +1,8 @@
 package nightkosh.gravestone_extended.item.corpse;
 
-import net.minecraft.entity.ai.attributes.BaseAttributeMap;
+import net.minecraft.entity.ai.attributes.AbstractAttributeMap;
 import net.minecraft.entity.passive.EntityHorse;
+import net.minecraft.entity.passive.HorseType;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -70,10 +71,10 @@ public class HorseCorpseHelper extends CorpseHelper {
     public static void setNbt(EntityHorse horse, NBTTagCompound nbt) {
         setName(horse, nbt);
 
-        nbt.setInteger("HorseType", horse.getHorseType());
+        nbt.setInteger("HorseType", horse.getType().getOrdinal());
         nbt.setInteger("Variant", horse.getHorseVariant());
 
-        BaseAttributeMap attrMap = horse.getAttributeMap();
+        AbstractAttributeMap attrMap = horse.getAttributeMap();
         nbt.setDouble("Max Health", attrMap.getAttributeInstanceByName("Max Health").getAttributeValue());
         nbt.setDouble("Movement Speed", attrMap.getAttributeInstanceByName("Movement Speed").getAttributeValue());
         nbt.setDouble("Jump Strength", attrMap.getAttributeInstanceByName("Jump Strength").getAttributeValue());
@@ -83,10 +84,10 @@ public class HorseCorpseHelper extends CorpseHelper {
         EntityHorse horse = new EntityHorse(world);
         setMobName(horse, nbtTag);
 
-        horse.setHorseType(getHorseType(nbtTag));
+        horse.setType(HorseType.getArmorType(getHorseType(nbtTag)));
         horse.setHorseVariant(getHorseVariant(nbtTag));
 
-        BaseAttributeMap attrMap = horse.getAttributeMap();
+        AbstractAttributeMap attrMap = horse.getAttributeMap();
         attrMap.getAttributeInstanceByName("Max Health").setBaseValue(nbtTag.getDouble("Max Health"));
         attrMap.getAttributeInstanceByName("Movement Speed").setBaseValue(nbtTag.getDouble("Movement Speed"));
         attrMap.getAttributeInstanceByName("Jump Strength").setBaseValue(nbtTag.getDouble("Jump Strength"));

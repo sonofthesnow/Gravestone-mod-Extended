@@ -23,7 +23,7 @@ public class EntityLostSoul extends EntityGhost {
         this.tasks.addTask(4, new EntityAIBreakBlock(this, Blocks.TORCH));
         
         /*
-        this.tasks.addTask(2, new EntityAIAttackOnCollide(this, EntityPlayer.class, 1.0D, false));
+        this.tasks.addTask(2, new EntityAIAttackMelee(this, EntityPlayer.class, 1.0D, false));
         this.tasks.addTask(4, new EntityAIMoveTowardsRestriction(this, 1.0D));
         this.tasks.addTask(5, new EntityAIMoveThroughVillage(this, 1.0D, false));
         this.tasks.addTask(6, new EntityAIWander(this, 1.0D));

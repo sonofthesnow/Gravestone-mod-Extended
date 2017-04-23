@@ -210,7 +210,7 @@ public class ComponentVillageUndertaker extends StructureVillagePieces.Village i
                 }
             }
 
-            this.spawnVillagers(world, boundingBox, 8, 1, 3, 1);
+//            this.spawnVillagers(world, boundingBox, 8, 1, 3, 1);TODO !!!!
         }
         return true;
     }

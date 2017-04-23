@@ -37,7 +37,8 @@ public class ItemChisel extends ItemTool {
      */
     @Override
     public ActionResult<ItemStack> onItemRightClick(ItemStack itemStack, World world, EntityPlayer player, EnumHand hand) {
-        player.setItemInUse(itemStack, this.getMaxItemUseDuration(itemStack));
+//        player.setItemInUse(itemStack, this.getMaxItemUseDuration(itemStack));
+        player.setActiveHand(EnumHand.MAIN_HAND);
         return new ActionResult(EnumActionResult.PASS, itemStack);
     }
 

@@ -4,6 +4,7 @@ import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.IEntityLivingData;
 import net.minecraft.entity.SharedMonsterAttributes;
+import net.minecraft.entity.ai.EntityAIAttackMelee;
 import net.minecraft.entity.ai.EntityAIMoveThroughVillage;
 import net.minecraft.entity.ai.EntityAIMoveTowardsRestriction;
 import net.minecraft.entity.ai.EntityAINearestAttackableTarget;
@@ -28,7 +29,7 @@ public class EntityZombieHorse extends EntityUndeadHorse {
         super(worldIn);
 
         this.tasks.addTask(4, new EntityAIMoveTowardsRestriction(this, 1));
-//        this.tasks.addTask(3, new EntityAIAttackOnCollide(this, EntityVillager.class, 1, true));
+        this.tasks.addTask(3, new EntityAIAttackMelee(this, 1, true));
 //        this.tasks.addTask(3, new EntityAIAttackOnCollide(this, EntityWolf.class, 1, true));
 //        this.tasks.addTask(3, new EntityAIAttackOnCollide(this, EntityOcelot.class, 1, true));
 //        this.tasks.addTask(4, new EntityAIAttackLivingHorse(this, 1, false));

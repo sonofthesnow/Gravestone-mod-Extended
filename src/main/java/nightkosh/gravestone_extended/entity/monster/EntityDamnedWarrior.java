@@ -3,6 +3,7 @@ package nightkosh.gravestone_extended.entity.monster;
 import net.minecraft.block.Block;
 import net.minecraft.entity.EnumCreatureAttribute;
 import net.minecraft.entity.SharedMonsterAttributes;
+import net.minecraft.entity.ai.EntityAIAttackMelee;
 import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.init.Items;
 import net.minecraft.init.SoundEvents;
@@ -32,9 +33,9 @@ public class EntityDamnedWarrior extends EntityMob {
 //        this.targetTasks.addTask(2, new EntityAINearestAttackableTarget(this, EntityPlayer.class, true));
 //        this.targetTasks.addTask(3, new EntityAINearestAttackableTarget(this, EntityIronGolem.class, true));
 //
-//        if (world != null && !world.isRemote) {
-//            this.tasks.addTask(4, new EntityAIAttackOnCollide(this, EntityPlayer.class, 1.2D, false));
-//        }
+        if (world != null && !world.isRemote) {
+            this.tasks.addTask(4, new EntityAIAttackMelee(this, 1.2D, false));
+        }
     }
 
     @Override

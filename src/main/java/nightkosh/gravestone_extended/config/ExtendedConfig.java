@@ -3,7 +3,6 @@ package nightkosh.gravestone_extended.config;
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.common.config.Property;
 import nightkosh.gravestone.config.Config;
-import nightkosh.gravestone_extended.core.Potion;
 import nightkosh.gravestone_extended.structures.GraveStoneWorldGenerator;
 import nightkosh.gravestone_extended.structures.catacombs.CatacombsGenerator;
 import nightkosh.gravestone_extended.structures.catacombs.CatacombsLevel;
@@ -148,7 +147,7 @@ public class ExtendedConfig {
     // haunted chest
     public static boolean replaceHauntedChest;
     // potions id
-    public static int cursePotionEffectId;
+//    public static int cursePotionEffectId;
 
     private static void otherConfigs() {
         // trap blocks
@@ -160,7 +159,7 @@ public class ExtendedConfig {
         replaceHauntedChest = config.get(Configuration.CATEGORY_GENERAL, "ReplaceHauntedChest", false).getBoolean(false);
 
         // potions
-        cursePotionEffectId = config.get(CATEGORY_POTIONS, "CursePotionEffectId", Potion.CURSE_DEFAULT_ID).getInt();
+//        cursePotionEffectId = config.get(CATEGORY_POTIONS, "CursePotionEffectId", Potion.CURSE_DEFAULT_ID).getInt();
     }
 
     // recipes

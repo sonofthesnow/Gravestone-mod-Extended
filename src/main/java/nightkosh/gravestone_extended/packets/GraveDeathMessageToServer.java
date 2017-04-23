@@ -1,6 +1,7 @@
 package nightkosh.gravestone_extended.packets;
 
 import io.netty.buffer.ByteBuf;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -84,7 +85,10 @@ public class GraveDeathMessageToServer implements IMessage, IMessageHandler<Grav
                     } else {
                         tileEntity.getDeathTextComponent().setDeathText(message.text);
                     }
-                    world.markBlockForUpdate(new BlockPos(message.x, message.y, message.z));
+//                    world.markBlockForUpdate(new BlockPos(message.x, message.y, message.z));//TODO &&
+                    BlockPos pos = new BlockPos(message.x, message.y, message.z);
+                    IBlockState state = world.getBlockState(pos);
+                    world.notifyBlockUpdate(pos, state, state, 3);
                 }
             }
         }

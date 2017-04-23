@@ -1,12 +1,14 @@
 package nightkosh.gravestone_extended.entity.monster;
 
 import com.google.common.base.Optional;
-import net.minecraft.enchantment.EnchantmentHelper;
-import net.minecraft.entity.*;
+import net.minecraft.entity.EnumCreatureAttribute;
+import net.minecraft.entity.IEntityLivingData;
+import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.*;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.entity.passive.EntityHorse;
 import net.minecraft.entity.passive.HorseArmorType;
+import net.minecraft.entity.passive.HorseType;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
@@ -15,10 +17,8 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
-import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
@@ -86,7 +86,7 @@ public abstract class EntityUndeadHorse extends EntityHorse {
             }
         }
 
-//        this.tasks.addTask(2, new EntityAIAttackOnCollide(this, EntityPlayer.class, 1, false));
+        this.tasks.addTask(2, new EntityAIAttackMelee(this, 1, false));
 
         this.targetTasks.addTask(1, new EntityAIHurtByTarget(this, true));
         this.targetTasks.addTask(2, new EntityAINearestAttackableTarget(this, EntityPlayer.class, true));
@@ -99,51 +99,51 @@ public abstract class EntityUndeadHorse extends EntityHorse {
         this.getAttributeMap().registerAttribute(SharedMonsterAttributes.ATTACK_DAMAGE);
     }
 
-    @Override
-    public boolean attackEntityAsMob(Entity entity) {
-        float f = (float) this.getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).getAttributeValue();
-        int i = 0;
+//    @Override
+//    public boolean attackEntityAsMob(Entity entity) {
+//        float f = (float) this.getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).getAttributeValue();
+//        int i = 0;
+//
+//        if (entity instanceof EntityLivingBase) {
+//            f += EnchantmentHelper.func_152377_a(this.getHeldItem(EnumHand.MAIN_HAND), ((EntityLivingBase) entity).getCreatureAttribute());
+//            i += EnchantmentHelper.getKnockbackModifier(this);
+//        }
+//
+//        boolean flag = entity.attackEntityFrom(DamageSource.causeMobDamage(this), f);
+//
+//        if (flag) {
+//            if (i > 0) {
+//                entity.addVelocity((double) (-MathHelper.sin(this.rotationYaw * (float) Math.PI / 180F) * (float) i * 0.5F), 0.1, (double) (MathHelper.cos(this.rotationYaw * (float) Math.PI / 180F) * (float) i * 0.5F));
+//                this.motionX *= 0.6;
+//                this.motionZ *= 0.6;
+//            }
+//
+//            int j = EnchantmentHelper.getFireAspectModifier(this);
+//
+//            if (j > 0) {
+//                entity.setFire(j * 4);
+//            }
+//
+//            this.applyEnchantments(this, entity);
+//        }
+//
+//        return flag;
+//    }
 
-        if (entity instanceof EntityLivingBase) {
-            f += EnchantmentHelper.func_152377_a(this.getHeldItem(EnumHand.MAIN_HAND), ((EntityLivingBase) entity).getCreatureAttribute());
-            i += EnchantmentHelper.getKnockbackModifier(this);
-        }
+//    @Override
+//    public boolean isUndead() {
+//        return true;
+//    }
 
-        boolean flag = entity.attackEntityFrom(DamageSource.causeMobDamage(this), f);
+//    @Override
+//    public boolean isSterile() {
+//        return true;
+//    }
 
-        if (flag) {
-            if (i > 0) {
-                entity.addVelocity((double) (-MathHelper.sin(this.rotationYaw * (float) Math.PI / 180F) * (float) i * 0.5F), 0.1, (double) (MathHelper.cos(this.rotationYaw * (float) Math.PI / 180F) * (float) i * 0.5F));
-                this.motionX *= 0.6;
-                this.motionZ *= 0.6;
-            }
-
-            int j = EnchantmentHelper.getFireAspectModifier(this);
-
-            if (j > 0) {
-                entity.setFire(j * 4);
-            }
-
-            this.applyEnchantments(this, entity);
-        }
-
-        return flag;
-    }
-
-    @Override
-    public boolean isUndead() {
-        return true;
-    }
-
-    @Override
-    public boolean isSterile() {
-        return true;
-    }
-
-    @Override
-    public boolean canWearArmor() {
-        return true;
-    }
+//    @Override
+//    public boolean canWearArmor() {
+//        return true;
+//    }
 
     public boolean hasArmor() {
         NBTTagCompound nbt = new NBTTagCompound();
@@ -159,8 +159,8 @@ public abstract class EntityUndeadHorse extends EntityHorse {
 
     public abstract EnumHorseType getUndeadHorseType();
 
-    public void setHorseType(EnumHorseType horseType) {
-        super.setHorseType(horseType.getId());
+    public void setHorseType(HorseType horseType) {
+        super.setType(horseType);
     }
 
     @Override
@@ -176,10 +176,12 @@ public abstract class EntityUndeadHorse extends EntityHorse {
     @Override
     public IEntityLivingData onInitialSpawn(DifficultyInstance difficulty, IEntityLivingData livingData) {
         Object entityLivingData = super.onInitialSpawn(difficulty, livingData);
-        int horseType = getUndeadHorseType().getId();
+        HorseType horseType = HorseType.ZOMBIE;
+//        int i = 0;
 
         if (entityLivingData instanceof EntityHorse.GroupData) {
-            ((EntityHorse.GroupData) entityLivingData).horseType = horseType;
+            horseType = ((EntityHorse.GroupData) livingData).horseType;
+//            i = ((EntityHorse.GroupData)livingData).horseVariant & 255 | this.rand.nextInt(5) << 8;
         } else {
             entityLivingData = new EntityHorse.GroupData(horseType, 0);
         }
@@ -200,25 +202,16 @@ public abstract class EntityUndeadHorse extends EntityHorse {
         } else {
             if (stack != null) {
                 boolean flag = false;
-                if (this.canWearArmor()) {
-                    byte armorType = -1;
-                    if (stack.getItem() == Items.IRON_HORSE_ARMOR) {
-                        armorType = 1;
-                    } else if (stack.getItem() == Items.GOLDEN_HORSE_ARMOR) {
-                        armorType = 2;
-                    } else if (stack.getItem() == Items.DIAMOND_HORSE_ARMOR) {
-                        armorType = 3;
-                    }
+                HorseArmorType horsearmortype = HorseArmorType.getByItemStack(stack);
 
-                    if (armorType >= 0) {
-                        if (!this.isTame()) {
-                            this.makeHorseRearWithSound();
-                            return true;
-                        }
-
-                        this.openGUI(player);
+                if (horsearmortype != HorseArmorType.NONE) {
+                    if (!this.isTame()) {
+                        this.makeHorseRearWithSound();
                         return true;
                     }
+
+                    this.openGUI(player);
+                    return true;
                 }
 
                 float healedHealth = 0;
@@ -308,17 +301,24 @@ public abstract class EntityUndeadHorse extends EntityHorse {
 
     @Override
     @SideOnly(Side.CLIENT)
-    public boolean func_175507_cI() {
+    public boolean hasTexture() {
         return this.field_175508_bO;
     }
 
     @SideOnly(Side.CLIENT)
     private void setHorseTexturePaths() {
         this.texturePrefix = "horse/";
-        int horseType = this.getHorseType();
+        HorseType horseType = this.getType();
 
-        this.texturePrefix = this.texturePrefix + horseType + "_";
-        int horseArmorTextureNum = this.getHorseArmorIndexSynced();
+        this.texturePrefix = this.texturePrefix + horseType.ordinal() + "_";
+        HorseArmorType horsearmortype = this.getHorseArmorType();
+
+
+//        this.horseTexturesArray[2] = horsearmortype.getTextureName();
+//        this.texturePrefix = this.texturePrefix + horsearmortype.getHash();
+//
+//        int horseArmorTextureNum = this.getHorseArmorIndexSynced();
+        int horseArmorTextureNum = horsearmortype.ordinal();
 
         if (horseArmorTextureNum >= horseArmorTextures.length) {
             this.field_175508_bO = false;
@@ -355,8 +355,8 @@ public abstract class EntityUndeadHorse extends EntityHorse {
     private static final DataParameter<Integer> HORSE_ARMOR = EntityDataManager.createKey(EntityHorse.class, DataSerializers.VARINT);
 
     @Override
-    public void setHorseType(int horseType) {
-        this.dataManager.set(HORSE_TYPE, Integer.valueOf(horseType));
+    public void setType(HorseType horseType) {
+        this.dataManager.set(HORSE_TYPE, Integer.valueOf(horseType.ordinal()));
         this.resetTexturePrefix();
     }
 

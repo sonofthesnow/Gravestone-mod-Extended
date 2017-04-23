@@ -1,6 +1,5 @@
 package nightkosh.gravestone_extended.core;
 
-import nightkosh.gravestone_extended.config.ExtendedConfig;
 import nightkosh.gravestone_extended.potion.CursePotion;
 
 /**
@@ -36,9 +35,10 @@ public class Potion {
 
     public static CursePotion curse;
 
-    public static final int CURSE_DEFAULT_ID = 31;
+//    public static final int CURSE_DEFAULT_ID = 31;
 
     public static void init() {
-        curse = new CursePotion(ExtendedConfig.cursePotionEffectId);
+//        curse = new CursePotion(ExtendedConfig.cursePotionEffectId);//TODO
+        curse = new CursePotion();
     }
 }

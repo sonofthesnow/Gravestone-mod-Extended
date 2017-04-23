@@ -9,9 +9,9 @@ import net.minecraft.client.renderer.texture.LayeredTexture;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.passive.EntityHorse;
 import net.minecraft.entity.passive.EntityWolf;
+import net.minecraft.entity.passive.HorseType;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.fml.common.registry.VillagerRegistry;
 import nightkosh.gravestone_extended.block.enums.EnumCorpse;
 import nightkosh.gravestone_extended.core.Resources;
 import nightkosh.gravestone_extended.helper.GameProfileHelper;
@@ -149,7 +149,7 @@ public class CorpseRendererHelper {
                 if (horse == null) {
                     horse = new EntityHorse(Minecraft.getMinecraft().theWorld);
                 }
-                horse.setHorseType((nbt == null) ? 0 : HorseCorpseHelper.getHorseType(nbt));
+                horse.setType(HorseType.getArmorType((nbt == null) ? 0 : HorseCorpseHelper.getHorseType(nbt)));
                 horse.setHorseVariant((nbt == null) ? 0 : HorseCorpseHelper.getHorseVariant(nbt));
 
                 bindHorseTexture((nbt == null) ? 0 : HorseCorpseHelper.getHorseType(nbt));
@@ -241,7 +241,7 @@ public class CorpseRendererHelper {
                 break;
             default:
 //                Minecraft.getMinecraft().renderEngine.bindTexture(VillagerRegistry.getVillagerSkin(profession, Resources.VILLAGER));
-                Minecraft.getMinecraft().renderEngine.bindTexture(VillagerRegistry.getRegistry().getKey(profession));//.getSkin()
+//                Minecraft.getMinecraft().renderEngine.bindTexture(VillagerRegistry.instance().getRegistry().getKey(profession));//.getSkin()//TODO
                 break;
         }
     }

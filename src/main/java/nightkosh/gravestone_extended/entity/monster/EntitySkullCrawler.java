@@ -4,6 +4,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.EnumCreatureAttribute;
 import net.minecraft.entity.SharedMonsterAttributes;
+import net.minecraft.entity.ai.EntityAIAttackMelee;
 import net.minecraft.entity.ai.EntityAIHurtByTarget;
 import net.minecraft.entity.ai.EntityAINearestAttackableTarget;
 import net.minecraft.entity.ai.EntityAISwimming;
@@ -49,7 +50,7 @@ public class EntitySkullCrawler extends EntityMob {
 
         this.tasks.addTask(1, new EntityAISwimming(this));
         this.tasks.addTask(3, this.summonAI = new AISummonSkullCrawler(this));
-//        this.tasks.addTask(4, new EntityAIAttackOnCollide(this, EntityPlayer.class, 1, false));
+        this.tasks.addTask(4, new EntityAIAttackMelee(this, 1, false));
         this.tasks.addTask(5, this.hideInBonesAI = new AIHideInBones(this));
         this.tasks.addTask(6, new AIHideInPilesOfBones(this));
         this.targetTasks.addTask(1, new EntityAIHurtByTarget(this, true, new Class[0]));

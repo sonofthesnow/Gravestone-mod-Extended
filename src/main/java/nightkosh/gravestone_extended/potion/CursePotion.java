@@ -15,8 +15,9 @@ import net.minecraftforge.fml.relauncher.SideOnly;
  */
 public class CursePotion extends Potion {
 
-    public CursePotion(int id) {
-        super(id, Resources.POTIONS, true, 0);
+    public CursePotion() {
+//        super(id, Resources.POTIONS, true, 0);
+        super(true, 0);
         setIconIndex(0, 0);
     }
 

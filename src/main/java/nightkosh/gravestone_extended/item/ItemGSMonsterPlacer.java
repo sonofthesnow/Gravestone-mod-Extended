@@ -125,7 +125,7 @@ public class ItemGSMonsterPlacer extends ItemMonsterPlacer {
         return str.toString();
     }
 
-    @Override
+//    @Override //TODO
     public int getColorFromItemStack(ItemStack item, int colorID) {
         int itemDamage = item.getItemDamage();
         if (itemDamage >= 0 && itemDamage < EnumEggs.values().length) {
