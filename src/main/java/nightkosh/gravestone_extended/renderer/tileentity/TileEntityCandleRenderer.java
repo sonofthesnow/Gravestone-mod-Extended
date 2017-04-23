@@ -25,7 +25,8 @@ public class TileEntityCandleRenderer extends TileEntitySpecialRenderer {
 
         GL11.glPushMatrix();//TODO tileEntity == null ??
         if (tileEntity == null || tileEntity.getWorld() == null) {
-//            GL11.glRotatef(-35, 0, 1, 0);
+            GL11.glTranslatef(x + 0.5F, y + 2.9F, z + 0.5F);
+            GL11.glScalef(1.9F, -1.9F, -1.9F);
         } else {
             GL11.glTranslatef(x + 0.5F, y + 1.5F, z + 0.5F);
             GL11.glScalef(1, -1, -1);
