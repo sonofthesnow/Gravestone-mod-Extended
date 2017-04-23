@@ -56,12 +56,13 @@ public class TileEntitySpawnerRenderer extends TileEntityRenderer {
                 GL11.glScalef(1, -1, -1);
             }
         } else {
+            GL11.glRotatef(35, 1, 0, 0);
             if (spawnerType == EnumSpawner.SPIDER_SPAWNER) {
-                GL11.glTranslatef(x + 0.5F, y + 0.5F, z + 0.5F);
+                GL11.glTranslatef(x + 0.5F, y + 1F, z + 0.5F);
                 GL11.glScalef(0.3F, -0.3F, -0.3F);
             } else {
-                GL11.glTranslatef(x + 0.5F, y + 1, z + 0.5F);
-                GL11.glScalef(0.6F, -0.6F, -0.6F);
+                GL11.glTranslatef(x + 0.5F, y + 1.4F, z + 0.5F);
+                GL11.glScalef(0.4F, -0.4F, -0.4F);
             }
         }
         GL11.glTranslated(0, -0.01, 0);
