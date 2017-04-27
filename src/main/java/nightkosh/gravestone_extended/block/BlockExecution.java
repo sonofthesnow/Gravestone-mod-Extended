@@ -74,14 +74,16 @@ public class BlockExecution extends BlockContainer {
 
     @Override
     public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess access, BlockPos pos) {
-        EnumExecution executionBlockType = (EnumExecution) access.getBlockState(pos).getValue(VARIANT);
         TileEntityExecution tileEntity = (TileEntityExecution) access.getTileEntity(pos);
 
         EnumFacing facing;
+        EnumExecution executionBlockType;
         if (tileEntity != null) {
             facing = EnumFacing.values()[tileEntity.getDirection()];
+            executionBlockType = (EnumExecution) access.getBlockState(pos).getValue(VARIANT);
         } else {
             facing = EnumFacing.NORTH;
+            executionBlockType = EnumExecution.GALLOWS;
         }
 
         switch (executionBlockType) {
