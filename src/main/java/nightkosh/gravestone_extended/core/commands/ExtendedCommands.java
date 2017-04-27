@@ -3,6 +3,7 @@ package nightkosh.gravestone_extended.core.commands;
 import net.minecraft.server.MinecraftServer;
 import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
 import nightkosh.gravestone.core.commands.Command;
+import nightkosh.gravestone_extended.config.ExtendedConfig;
 
 /**
  * GraveStone mod
@@ -31,5 +32,8 @@ public class ExtendedCommands {
         Command.addCommand(new SubCommandStructuresGenerator());
         Command.addCommand(new SubCommandCorpses());
         Command.addCommand(new SubCommandStatue());
+        if (ExtendedConfig.debugMode) {
+            Command.addCommand(new SubCommandCatacombsPartsGrenerator());
+        }
     }
 }

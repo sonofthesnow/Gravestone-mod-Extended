@@ -29,6 +29,7 @@ public class ExtendedConfig {
     public static final String CATEGORY_POTIONS = "potions";
     public static final String CATEGORY_RECIPES = "recipes";
     public static final String CATEGORY_MOBS = "mobs";
+    public static final String CATEGORY_DEBUG = "debug"; //TODO move to graves module
 
     private ExtendedConfig(String path, File configFile) {
         this.config = new Configuration(configFile);
@@ -51,6 +52,7 @@ public class ExtendedConfig {
         recipesConfigs();
         entityConfig();
         compatibilityConfigs();
+        debugConfigs();
         config.save();
     }
 
@@ -219,5 +221,12 @@ public class ExtendedConfig {
         enableForestryBackpacks = config.get(Config.CATEGORY_COMPATIBILITY, "EnableForestryBackpacks", true).getBoolean(true);
 
         enableAntiqueAtlasDeathMarkers = config.get(Config.CATEGORY_COMPATIBILITY, "EnableAntiqueAtlasDeathMarkers", true).getBoolean(true);
+    }
+
+
+    public static boolean debugMode;
+
+    private static void debugConfigs() {
+        debugMode = config.get(CATEGORY_DEBUG, "DebugMode", false).getBoolean(false);
     }
 }
