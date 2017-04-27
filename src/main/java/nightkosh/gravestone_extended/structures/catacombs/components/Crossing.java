@@ -1,14 +1,14 @@
 package nightkosh.gravestone_extended.structures.catacombs.components;
 
-import nightkosh.gravestone_extended.config.ExtendedConfig;
-import nightkosh.gravestone_extended.structures.BoundingBoxHelper;
-import nightkosh.gravestone_extended.structures.ObjectsGenerationHelper;
 import net.minecraft.block.BlockStairs;
 import net.minecraft.block.BlockStoneBrick;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.world.World;
+import nightkosh.gravestone_extended.config.ExtendedConfig;
+import nightkosh.gravestone_extended.structures.BoundingBoxHelper;
+import nightkosh.gravestone_extended.structures.ObjectsGenerationHelper;
 
 import java.util.Random;
 
@@ -69,14 +69,14 @@ public class Crossing extends CatacombsBaseComponent {
         }
 
         // trap floor
-        this.fillWithBlocks(world, boundingBox, 0, 0, 0, 0, 0, 12, netherBrick);
-        this.fillWithBlocks(world, boundingBox, 4, 0, 0, 4, 0, 12, netherBrick);
-        this.fillWithBlocks(world, boundingBox, 8, 0, 0, 8, 0, 12, netherBrick);
-        this.fillWithBlocks(world, boundingBox, 12, 0, 0, 12, 0, 12, netherBrick);
-        this.fillWithBlocks(world, boundingBox, 1, 0, 0, 11, 0, 0, netherBrick);
-        this.fillWithBlocks(world, boundingBox, 1, 0, 4, 11, 0, 4, netherBrick);
-        this.fillWithBlocks(world, boundingBox, 1, 0, 8, 11, 0, 8, netherBrick);
-        this.fillWithBlocks(world, boundingBox, 1, 0, 12, 11, 0, 12, netherBrick);
+        this.fillWithBlocks(world, boundingBox, 0, 0, 0, 0, 0, 12, nightStone);
+        this.fillWithBlocks(world, boundingBox, 4, 0, 0, 4, 0, 12, nightStone);
+        this.fillWithBlocks(world, boundingBox, 8, 0, 0, 8, 0, 12, nightStone);
+        this.fillWithBlocks(world, boundingBox, 12, 0, 0, 12, 0, 12, nightStone);
+        this.fillWithBlocks(world, boundingBox, 1, 0, 0, 11, 0, 0, nightStone);
+        this.fillWithBlocks(world, boundingBox, 1, 0, 4, 11, 0, 4, nightStone);
+        this.fillWithBlocks(world, boundingBox, 1, 0, 8, 11, 0, 8, nightStone);
+        this.fillWithBlocks(world, boundingBox, 1, 0, 12, 11, 0, 12, nightStone);
 
         // stoneBrick floor
         this.fillWithRandomizedBlocks(world, boundingBox, 1, 0, 1, 3, 0, 3, false, random, stoneBricks);
