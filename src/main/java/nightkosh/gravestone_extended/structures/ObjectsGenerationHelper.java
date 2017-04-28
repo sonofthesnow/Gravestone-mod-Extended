@@ -169,7 +169,7 @@ public class ObjectsGenerationHelper {
      * @param zCoord    Z coord
      */
     public static void generateSpawner(ComponentGraveStone component, World world, Random random, int xCoord, int yCoord, int zCoord) {
-        generateSpawner(component, world, xCoord, yCoord, zCoord, BlockSpawner.MOB_SPAWNERS.get(random.nextInt(BlockSpawner.MOB_SPAWNERS.size())));
+        generateSpawner(component, world, xCoord, yCoord, zCoord, BlockSpawner.CATACOMBS_CROSSING_SPAWNERS.get(random.nextInt(BlockSpawner.CATACOMBS_CROSSING_SPAWNERS.size())));
     }
 
     /**
