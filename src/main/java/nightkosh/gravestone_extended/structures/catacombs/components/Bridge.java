@@ -1,14 +1,9 @@
 package nightkosh.gravestone_extended.structures.catacombs.components;
 
-import net.minecraft.block.BlockSlab;
-import net.minecraft.block.BlockStoneSlab;
-import net.minecraft.block.state.IBlockState;
-import net.minecraft.init.Blocks;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.world.World;
-import nightkosh.gravestone.block.BlockGraveStone;
-import nightkosh.gravestone_extended.core.GSBlock;
 import nightkosh.gravestone_extended.entity.helper.EntityGroupOfGravesMobSpawnerHelper;
+import nightkosh.gravestone_extended.helper.StateHelper;
 import nightkosh.gravestone_extended.structures.BoundingBoxHelper;
 import nightkosh.gravestone_extended.structures.GraveGenerationHelper;
 import nightkosh.gravestone_extended.structures.MobSpawnHelper;
@@ -48,11 +43,11 @@ public class Bridge extends CatacombsBaseComponent {
         this.fillWithAir(world, boundingBox, 1, 9, 1, 2, 10, 6);
         this.fillWithAir(world, boundingBox, 10, 9, 1, 11, 10, 6);
         // neter floor and ceiling
-        this.fillWithBlocks(world, boundingBox, 2, 0, 0, 10, 0, 7, netherBrick);
-        this.fillWithBlocks(world, boundingBox, 2, 13, 0, 10, 13, 7, netherBrick);
+        this.fillWithBlocks(world, boundingBox, 2, 0, 0, 10, 0, 7, StateHelper.NETHER_BRICK);
+        this.fillWithBlocks(world, boundingBox, 2, 13, 0, 10, 13, 7, StateHelper.NETHER_BRICK);
         // nether walls
-        this.fillWithBlocks(world, boundingBox, 3, 1, 0, 9, 12, 0, netherBrick);
-        this.fillWithBlocks(world, boundingBox, 3, 1, 7, 9, 12, 7, netherBrick);
+        this.fillWithBlocks(world, boundingBox, 3, 1, 0, 9, 12, 0, StateHelper.NETHER_BRICK);
+        this.fillWithBlocks(world, boundingBox, 3, 1, 7, 9, 12, 7, StateHelper.NETHER_BRICK);
         // block walls
         this.fillWithRandomizedBlocks(world, boundingBox, 2, 1, 0, 2, 8, 7, false, random, stoneBricks);
         this.fillWithRandomizedBlocks(world, boundingBox, 2, 11, 0, 2, 12, 7, false, random, stoneBricks);
@@ -75,24 +70,17 @@ public class Bridge extends CatacombsBaseComponent {
         this.fillWithRandomizedBlocks(world, boundingBox, 10, 9, 7, 11, 10, 7, false, random, stoneBricks);
         this.fillWithRandomizedBlocks(world, boundingBox, 10, 9, 7, 11, 10, 7, false, random, stoneBricks);
 
-        IBlockState graveState = GSBlock.graveStone.getDefaultState();
-        IBlockState leftGraveState = graveState.withProperty(BlockGraveStone.FACING, this.getLeftDirectionForBlocks());
-        IBlockState rightGraveState = graveState.withProperty(BlockGraveStone.FACING, this.getRightDirectionForBlocks());
-
         EntityGroupOfGravesMobSpawnerHelper spawnerHelper = GraveGenerationHelper.createSpawnerHelper(world, this.boundingBox);
 
-        GraveGenerationHelper.fillGraves(this, world, random, 1, 9, 1, 1, 9, 6, leftGraveState, spawnerHelper);
-        GraveGenerationHelper.fillGraves(this, world, random, 11, 9, 1, 11, 9, 6, rightGraveState, spawnerHelper);
+        GraveGenerationHelper.fillGraves(this, world, random, 1, 9, 1, 1, 9, 6, StateHelper.getGravestone(this.getLeftDirectionForBlocks()), spawnerHelper);
+        GraveGenerationHelper.fillGraves(this, world, random, 11, 9, 1, 11, 9, 6, StateHelper.getGravestone(this.getRightDirectionForBlocks()), spawnerHelper);
         // lava
-        this.fillWithBlocks(world, boundingBox, 3, 1, 1, 9, 2, 6, Blocks.LAVA.getDefaultState());
+        this.fillWithBlocks(world, boundingBox, 3, 1, 1, 9, 2, 6, StateHelper.LAVA);
         // bridge
-        IBlockState slabState = Blocks.STONE_SLAB.getDefaultState().withProperty(BlockStoneSlab.VARIANT, BlockStoneSlab.EnumType.NETHERBRICK)
-                .withProperty(BlockSlab.HALF, BlockSlab.EnumBlockHalf.TOP);
-
-        this.fillWithBlocks(world, boundingBox, 6, 8, 1, 6, 8, 6, slabState);
+        this.fillWithBlocks(world, boundingBox, 6, 8, 1, 6, 8, 6, StateHelper.NETHERBRICK_SLAB_TOP);
 
         if (random.nextInt(10) < 4) {
-            this.placeBlockAtCurrentPosition(world, Blocks.AIR.getDefaultState(), 6, 8, 5, boundingBox);
+            this.placeBlockAtCurrentPosition(world, StateHelper.AIR, 6, 8, 5, boundingBox);
         }
 
         // block exit wall

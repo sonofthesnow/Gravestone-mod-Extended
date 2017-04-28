@@ -2,11 +2,11 @@ package nightkosh.gravestone_extended.structures.memorials;
 
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Biomes;
-import net.minecraft.init.Blocks;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
+import nightkosh.gravestone_extended.helper.StateHelper;
 import nightkosh.gravestone_extended.structures.BoundingBoxHelper;
 import nightkosh.gravestone_extended.structures.ComponentGraveStone;
 import nightkosh.gravestone_extended.structures.MemorialGenerationHelper;
@@ -48,11 +48,11 @@ public class ComponentMemorial extends ComponentGraveStone {
         Biome biome = world.getBiomeGenForCoords(pos);
 
         if (biome == Biomes.DESERT || biome == Biomes.DESERT_HILLS || biome == Biomes.BEACH) {
-            groundState = Blocks.SAND.getDefaultState();
-            undergroundState = Blocks.SAND.getDefaultState();
+            groundState = StateHelper.SAND;
+            undergroundState = StateHelper.SAND;
         } else {
-            groundState = Blocks.GRASS.getDefaultState();
-            undergroundState = Blocks.DIRT.getDefaultState();
+            groundState = StateHelper.GRASS;
+            undergroundState = StateHelper.DIRT;
         }
 
         this.fillWithAir(world, boundingBox, 0, 0, 2, 0, 6, 2);

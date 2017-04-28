@@ -1,9 +1,9 @@
 package nightkosh.gravestone_extended.structures.catacombs.components;
 
-import net.minecraft.init.Blocks;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.world.World;
 import nightkosh.gravestone_extended.config.ExtendedConfig;
+import nightkosh.gravestone_extended.helper.StateHelper;
 import nightkosh.gravestone_extended.structures.BoundingBoxHelper;
 import nightkosh.gravestone_extended.structures.MobSpawnHelper;
 
@@ -63,17 +63,17 @@ public class Corridor extends CatacombsBaseComponent {
         this.fillWithRandomizedBlocks(world, boundingBox, 0, 0, 1, 4, 0, 3, false, random, stoneBricks);
 
         // web
-        this.randomlyFillWithBlocks(world, boundingBox, random, WEB_GENERATION_CHANCE, 1, 1, 0, 3, 3, 3, Blocks.WEB.getDefaultState(), false);
+        this.randomlyFillWithBlocks(world, boundingBox, random, WEB_GENERATION_CHANCE, 1, 1, 0, 3, 3, 3, StateHelper.WEB, false);
         //piles of bones
         if (ExtendedConfig.generatePilesOfBones) {
             this.fillWithRandomizedPilesOfBones(world, boundingBox, 1, 1, 1, 4, 1, 4, false, random);
         }
 
         // trap floor
-        this.fillWithBlocks(world, boundingBox, 0, 0, 0, 4, 0, 0, nightStone);
+        this.fillWithBlocks(world, boundingBox, 0, 0, 0, 4, 0, 0, StateHelper.NIGHTSTONE);
 
         // neter ceiling
-        this.fillWithBlocks(world, boundingBox, 0, 4, 0, 4, 4, 3, netherBrick);
+        this.fillWithBlocks(world, boundingBox, 0, 4, 0, 4, 4, 3, StateHelper.NETHER_BRICK);
 
         // block walls
         this.fillWithRandomizedBlocks(world, boundingBox, 0, 1, 1, 0, 3, 3, false, random, stoneBricks);
@@ -81,8 +81,8 @@ public class Corridor extends CatacombsBaseComponent {
         this.fillWithRandomizedBlocks(world, boundingBox, 0, 0, 4, 4, 4, 4, false, random, stoneBricks);
 
         // nether walls
-        this.fillWithBlocks(world, boundingBox, 0, 1, 0, 0, 3, 0, netherBrick);
-        this.fillWithBlocks(world, boundingBox, 4, 1, 0, 4, 3, 0, netherBrick);
+        this.fillWithBlocks(world, boundingBox, 0, 1, 0, 0, 3, 0, StateHelper.NETHER_BRICK);
+        this.fillWithBlocks(world, boundingBox, 4, 1, 0, 4, 3, 0, StateHelper.NETHER_BRICK);
 
         // spawn bats
         MobSpawnHelper.spawnBats(world, random, boundingBox);

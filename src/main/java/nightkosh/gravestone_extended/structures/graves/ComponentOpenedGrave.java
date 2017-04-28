@@ -1,14 +1,13 @@
 package nightkosh.gravestone_extended.structures.graves;
 
-import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import nightkosh.gravestone.block.BlockGraveStone;
-import nightkosh.gravestone_extended.block.enums.EnumPileOfBones;
-import nightkosh.gravestone_extended.core.GSBlock;
-import nightkosh.gravestone_extended.core.logger.GSLogger;
 import nightkosh.gravestone.helper.GraveGenerationHelper.EnumGraveTypeByEntity;
+import nightkosh.gravestone_extended.block.enums.EnumPileOfBones;
+import nightkosh.gravestone_extended.core.logger.GSLogger;
 import nightkosh.gravestone_extended.helper.GraveInventoryHelper;
+import nightkosh.gravestone_extended.helper.StateHelper;
 import nightkosh.gravestone_extended.structures.BoundingBoxHelper;
 import nightkosh.gravestone_extended.structures.ComponentGraveStone;
 import nightkosh.gravestone_extended.structures.GraveGenerationHelper;
@@ -39,7 +38,7 @@ public class ComponentOpenedGrave extends ComponentGraveStone {
             GSLogger.logInfo("Generate opened grave at " + gravePositionX + "x" + gravePositionZ);
 
             GraveGenerationHelper.placeGrave(this, world, random, 0, y, 2,
-                    GSBlock.graveStone.getDefaultState().withProperty(BlockGraveStone.FACING, this.getCoordBaseMode().getOpposite()),
+                    StateHelper.getGravestone(this.getCoordBaseMode().getOpposite()),
                     null, EnumGraveTypeByEntity.HUMAN_GRAVES, GraveInventoryHelper.GraveContentType.RANDOM);
                     //, GraveInventory.GraveCorpseContentType.EMPTY); TODO
 

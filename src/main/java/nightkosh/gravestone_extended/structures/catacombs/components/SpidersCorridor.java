@@ -1,9 +1,9 @@
 package nightkosh.gravestone_extended.structures.catacombs.components;
 
-import net.minecraft.init.Blocks;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.world.World;
 import nightkosh.gravestone_extended.block.enums.EnumSpawner;
+import nightkosh.gravestone_extended.helper.StateHelper;
 import nightkosh.gravestone_extended.structures.BoundingBoxHelper;
 import nightkosh.gravestone_extended.structures.ObjectsGenerationHelper;
 
@@ -39,7 +39,7 @@ public class SpidersCorridor extends CatacombsBaseComponent {
         BlockSelector stoneBricks = getCemeteryCatacombsStones();
         this.fillWithAir(world, boundingBox, 1, 1, 0, 3, 3, Z_LENGTH - 1);
         // web
-        this.randomlyFillWithBlocks(world, boundingBox, random, WEB_GENERATION_CHANCE + 0.3F, 1, 1, 0, 3, 3, Z_LENGTH - 1, Blocks.WEB.getDefaultState(), false);
+        this.randomlyFillWithBlocks(world, boundingBox, random, WEB_GENERATION_CHANCE + 0.3F, 1, 1, 0, 3, 3, Z_LENGTH - 1, StateHelper.WEB, false);
 
         for (int i = 0; i < 3; i++) {
             int z = i * 4;
@@ -48,18 +48,18 @@ public class SpidersCorridor extends CatacombsBaseComponent {
             this.fillWithRandomizedBlocks(world, boundingBox, 0, 0, 1 + z, 4, 0, 3 + z, false, random, stoneBricks);
 
             // neter ceiling
-            this.fillWithBlocks(world, boundingBox, 0, 4, 0 + z, 4, 4, 3 + z, netherBrick);
+            this.fillWithBlocks(world, boundingBox, 0, 4, 0 + z, 4, 4, 3 + z, StateHelper.NETHER_BRICK);
 
             // trap floor
-            this.fillWithBlocks(world, boundingBox, 0, 0, 0 + z, 4, 0, 0 + z, nightStone);
+            this.fillWithBlocks(world, boundingBox, 0, 0, 0 + z, 4, 0, 0 + z, StateHelper.NIGHTSTONE);
 
             // block walls
             this.fillWithRandomizedBlocks(world, boundingBox, 0, 1, 1 + z, 0, 3, 3 + z, false, random, stoneBricks);
             this.fillWithRandomizedBlocks(world, boundingBox, 4, 1, 1 + z, 4, 3, 3 + z, false, random, stoneBricks);
 
             // nether walls
-            this.fillWithBlocks(world, boundingBox, 0, 1, 0 + z, 0, 3, 0 + z, netherBrick);
-            this.fillWithBlocks(world, boundingBox, 4, 1, 0 + z, 4, 3, 0 + z, netherBrick);
+            this.fillWithBlocks(world, boundingBox, 0, 1, 0 + z, 0, 3, 0 + z, StateHelper.NETHER_BRICK);
+            this.fillWithBlocks(world, boundingBox, 4, 1, 0 + z, 4, 3, 0 + z, StateHelper.NETHER_BRICK);
         }
 
         this.fillWithRandomizedBlocks(world, boundingBox, 0, 0, 12, 4, 4, 12, false, random, stoneBricks);

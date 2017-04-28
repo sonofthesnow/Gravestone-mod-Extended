@@ -1,9 +1,7 @@
 package nightkosh.gravestone_extended.structures.catacombs;
 
-import net.minecraft.block.BlockSilverfish;
-import net.minecraft.block.BlockStoneBrick;
-import net.minecraft.init.Blocks;
 import net.minecraft.world.gen.structure.StructureComponent;
+import nightkosh.gravestone_extended.helper.StateHelper;
 
 import java.util.Random;
 
@@ -27,16 +25,16 @@ public class CatacombsStonesBlocks extends StructureComponent.BlockSelector {
             float randFloat = random.nextFloat();
 
             if (randFloat < 0.2F) {
-                this.blockstate = Blocks.STONEBRICK.getStateFromMeta(BlockStoneBrick.CRACKED_META);
+                this.blockstate = StateHelper.STONEBRICK_CRACKED;
             } else if (randFloat < 0.4F) {
-                this.blockstate = Blocks.STONEBRICK.getStateFromMeta(BlockStoneBrick.MOSSY_META);
+                this.blockstate = StateHelper.STONEBRICK_MOSSY;
             } else if (randFloat < 0.45F) {
-                this.blockstate = Blocks.MONSTER_EGG.getStateFromMeta(BlockSilverfish.EnumType.STONEBRICK.getMetadata());
+                this.blockstate = StateHelper.STONEBRICK_MONSTER;
             } else {
-                this.blockstate = Blocks.STONEBRICK.getDefaultState();
+                this.blockstate = StateHelper.STONEBRICK;
             }
         } else {
-            this.blockstate = Blocks.AIR.getDefaultState();
+            this.blockstate = StateHelper.AIR;
         }
     }
 }

@@ -1,11 +1,8 @@
 package nightkosh.gravestone_extended.structures.village.undertaker;
 
-import net.minecraft.block.*;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.item.EntityPainting;
 import net.minecraft.init.Biomes;
-import net.minecraft.init.Blocks;
-import net.minecraft.item.EnumDyeColor;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
@@ -14,13 +11,11 @@ import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.structure.StructureBoundingBox;
 import net.minecraft.world.gen.structure.StructureComponent;
 import net.minecraft.world.gen.structure.StructureVillagePieces;
-import nightkosh.gravestone.block.BlockGraveStone;
 import nightkosh.gravestone.helper.GraveGenerationHelper.EnumGraveTypeByEntity;
-import nightkosh.gravestone_extended.block.BlockSkullCandle;
-import nightkosh.gravestone_extended.block.enums.EnumSkullCandle;
 import nightkosh.gravestone_extended.config.ExtendedConfig;
 import nightkosh.gravestone_extended.core.GSBlock;
 import nightkosh.gravestone_extended.entity.helper.EntityGroupOfGravesMobSpawnerHelper;
+import nightkosh.gravestone_extended.helper.StateHelper;
 import nightkosh.gravestone_extended.structures.BoundingBoxHelper;
 import nightkosh.gravestone_extended.structures.GraveGenerationHelper;
 import nightkosh.gravestone_extended.structures.IComponentGraveStone;
@@ -85,82 +80,77 @@ public class ComponentVillageUndertaker extends StructureVillagePieces.Village i
 
         IBlockState groundState;
         IBlockState fenceState;
-        IBlockState gateState = Blocks.DARK_OAK_FENCE_GATE.getDefaultState().withProperty(BlockFenceGate.FACING, this.getCoordBaseMode());
+        IBlockState gateState = StateHelper.getDarkOakFenceGate(this.getCoordBaseMode());
 
         Biome biome = world.getBiomeGenForCoords(new BlockPos(this.getXWithOffset(0, 0), this.getYWithOffset(0), this.getZWithOffset(0, 0)));
         if (biome == Biomes.DESERT || biome == Biomes.DESERT_HILLS) {
-            groundState = Blocks.SAND.getDefaultState();
-            fenceState = Blocks.COBBLESTONE_WALL.getStateFromMeta(BlockWall.EnumType.NORMAL.getMetadata());
+            groundState = StateHelper.SAND;
+            fenceState = StateHelper.COBBLESTONE_WALL;
         } else {
-            groundState = Blocks.GRASS.getDefaultState();
-            fenceState = Blocks.COBBLESTONE_WALL.getStateFromMeta(BlockWall.EnumType.MOSSY.getMetadata());
+            groundState = StateHelper.GRASS;
+            fenceState = StateHelper.COBBLESTONE_WALL_MOSSY;
         }
 
         if (isCemetery) {
             generateCemetery(world, random, boundingBox, 0, 0, isCemetery, groundState, fenceState, gateState);
         } else {
-            fenceState = Blocks.DARK_OAK_FENCE.getDefaultState();
-
             this.fillWithAir(world, boundingBox, 0, 1, 0, X_LENGTH, HEIGHT, HOUSE_WIDTH);
 
-            IBlockState glassState = Blocks.STAINED_GLASS_PANE.getDefaultState().withProperty(BlockStainedGlassPane.COLOR, EnumDyeColor.GRAY);
-            IBlockState darkClayState = Blocks.STAINED_HARDENED_CLAY.getDefaultState().withProperty(BlockColored.COLOR, EnumDyeColor.BLACK);
-            IBlockState brownClayState = Blocks.STAINED_HARDENED_CLAY.getDefaultState().withProperty(BlockColored.COLOR, EnumDyeColor.BROWN);
 
             // ground
-            this.fillWithBlocks(world, boundingBox, 1, 0, 0, 11, 0, 5, darkClayState, darkClayState, false);
+            this.fillWithBlocks(world, boundingBox, 1, 0, 0, 11, 0, 5, StateHelper.STAINED_HARDENED_CLAY_BLACK, StateHelper.STAINED_HARDENED_CLAY_BLACK, false);
 
-            generateCemetery(world, random, boundingBox, 0, 4, isCemetery, groundState, fenceState, gateState);
+            generateCemetery(world, random, boundingBox, 0, 4, isCemetery, groundState, StateHelper.DARK_OAK_FENCE, gateState);
 
             // fence
-            this.fillWithBlocks(world, boundingBox, 1, 1, 1, 1, 1, 6, fenceState, fenceState, false);
-            this.fillWithBlocks(world, boundingBox, 2, 1, 5, 4, 1, 5, fenceState, fenceState, false);
-            this.fillWithBlocks(world, boundingBox, 1, 1, 0, 1, 3, 0, fenceState, fenceState, false);
-            this.fillWithBlocks(world, boundingBox, 1, 1, 5, 1, 3, 5, fenceState, fenceState, false);
+            this.fillWithBlocks(world, boundingBox, 1, 1, 1, 1, 1, 6, StateHelper.DARK_OAK_FENCE, StateHelper.DARK_OAK_FENCE, false);
+            this.fillWithBlocks(world, boundingBox, 2, 1, 5, 4, 1, 5, StateHelper.DARK_OAK_FENCE, StateHelper.DARK_OAK_FENCE, false);
+            this.fillWithBlocks(world, boundingBox, 1, 1, 0, 1, 3, 0, StateHelper.DARK_OAK_FENCE, StateHelper.DARK_OAK_FENCE, false);
+            this.fillWithBlocks(world, boundingBox, 1, 1, 5, 1, 3, 5, StateHelper.DARK_OAK_FENCE, StateHelper.DARK_OAK_FENCE, false);
 
-            this.fillWithBlocks(world, boundingBox, 6, 1, 0, 7, 1, 0, fenceState, fenceState, false);
-            this.fillWithBlocks(world, boundingBox, 9, 1, 0, 10, 1, 0, fenceState, fenceState, false);
-            this.fillWithBlocks(world, boundingBox, 5, 1, 0, 5, 3, 0, fenceState, fenceState, false);
-            this.fillWithBlocks(world, boundingBox, 11, 1, 0, 11, 3, 0, fenceState, fenceState, false);
+            this.fillWithBlocks(world, boundingBox, 6, 1, 0, 7, 1, 0, StateHelper.DARK_OAK_FENCE, StateHelper.DARK_OAK_FENCE, false);
+            this.fillWithBlocks(world, boundingBox, 9, 1, 0, 10, 1, 0, StateHelper.DARK_OAK_FENCE, StateHelper.DARK_OAK_FENCE, false);
+            this.fillWithBlocks(world, boundingBox, 5, 1, 0, 5, 3, 0, StateHelper.DARK_OAK_FENCE, StateHelper.DARK_OAK_FENCE, false);
+            this.fillWithBlocks(world, boundingBox, 11, 1, 0, 11, 3, 0, StateHelper.DARK_OAK_FENCE, StateHelper.DARK_OAK_FENCE, false);
 
             //gate
             this.setBlockState(world, gateState, 3, 1, 5, boundingBox);
 
             // candles
-            this.setBlockState(world, GSBlock.candle.getDefaultState(), 1, 2, 1, boundingBox);
-            this.setBlockState(world, GSBlock.candle.getDefaultState(), 1, 2, 4, boundingBox);
-            this.setBlockState(world, GSBlock.candle.getDefaultState(), 2, 2, 5, boundingBox);
-            this.setBlockState(world, GSBlock.candle.getDefaultState(), 4, 2, 5, boundingBox);
-            this.setBlockState(world, GSBlock.candle.getDefaultState(), 7, 2, 0, boundingBox);
-            this.setBlockState(world, GSBlock.candle.getDefaultState(), 9, 2, 0, boundingBox);
-            this.setBlockState(world, GSBlock.candle.getDefaultState(), 1, 2, 13, boundingBox);
-            this.setBlockState(world, GSBlock.candle.getDefaultState(), 11, 2, 13, boundingBox);
+            this.setBlockState(world, StateHelper.CANDLE, 1, 2, 1, boundingBox);
+            this.setBlockState(world, StateHelper.CANDLE, 1, 2, 4, boundingBox);
+            this.setBlockState(world, StateHelper.CANDLE, 2, 2, 5, boundingBox);
+            this.setBlockState(world, StateHelper.CANDLE, 4, 2, 5, boundingBox);
+            this.setBlockState(world, StateHelper.CANDLE, 7, 2, 0, boundingBox);
+            this.setBlockState(world, StateHelper.CANDLE, 9, 2, 0, boundingBox);
+            this.setBlockState(world, StateHelper.CANDLE, 1, 2, 13, boundingBox);
+            this.setBlockState(world, StateHelper.CANDLE, 11, 2, 13, boundingBox);
 
             // walls
-            this.fillWithBlocks(world, boundingBox, 5, 1, 2, 5, 3, 2, darkClayState, darkClayState, false);
-            this.fillWithBlocks(world, boundingBox, 5, 1, 5, 5, 3, 5, darkClayState, darkClayState, false);
-            this.fillWithBlocks(world, boundingBox, 11, 1, 2, 11, 3, 2, darkClayState, darkClayState, false);
-            this.fillWithBlocks(world, boundingBox, 11, 1, 5, 11, 3, 5, darkClayState, darkClayState, false);
-            this.fillWithBlocks(world, boundingBox, 7, 1, 2, 7, 3, 2, darkClayState, darkClayState, false);
-            this.fillWithBlocks(world, boundingBox, 9, 1, 2, 9, 3, 2, darkClayState, darkClayState, false);
-            this.setBlockState(world, darkClayState, 8, 3, 2, boundingBox);
+            this.fillWithBlocks(world, boundingBox, 5, 1, 2, 5, 3, 2, StateHelper.STAINED_HARDENED_CLAY_BLACK, StateHelper.STAINED_HARDENED_CLAY_BLACK, false);
+            this.fillWithBlocks(world, boundingBox, 5, 1, 5, 5, 3, 5, StateHelper.STAINED_HARDENED_CLAY_BLACK, StateHelper.STAINED_HARDENED_CLAY_BLACK, false);
+            this.fillWithBlocks(world, boundingBox, 11, 1, 2, 11, 3, 2, StateHelper.STAINED_HARDENED_CLAY_BLACK, StateHelper.STAINED_HARDENED_CLAY_BLACK, false);
+            this.fillWithBlocks(world, boundingBox, 11, 1, 5, 11, 3, 5, StateHelper.STAINED_HARDENED_CLAY_BLACK, StateHelper.STAINED_HARDENED_CLAY_BLACK, false);
+            this.fillWithBlocks(world, boundingBox, 7, 1, 2, 7, 3, 2, StateHelper.STAINED_HARDENED_CLAY_BLACK, StateHelper.STAINED_HARDENED_CLAY_BLACK, false);
+            this.fillWithBlocks(world, boundingBox, 9, 1, 2, 9, 3, 2, StateHelper.STAINED_HARDENED_CLAY_BLACK, StateHelper.STAINED_HARDENED_CLAY_BLACK, false);
+            this.setBlockState(world, StateHelper.STAINED_HARDENED_CLAY_BLACK, 8, 3, 2, boundingBox);
 
-            this.fillWithBlocks(world, boundingBox, 5, 1, 3, 5, 3, 4, brownClayState, brownClayState, false);
-            this.fillWithBlocks(world, boundingBox, 11, 1, 3, 11, 3, 4, brownClayState, brownClayState, false);
-            this.fillWithBlocks(world, boundingBox, 6, 1, 5, 10, 3, 5, brownClayState, brownClayState, false);
-            this.fillWithBlocks(world, boundingBox, 6, 1, 2, 6, 3, 2, brownClayState, brownClayState, false);
-            this.fillWithBlocks(world, boundingBox, 10, 1, 2, 10, 3, 2, brownClayState, brownClayState, false);
+            this.fillWithBlocks(world, boundingBox, 5, 1, 3, 5, 3, 4, StateHelper.STAINED_HARDENED_CLAY_BROWN, StateHelper.STAINED_HARDENED_CLAY_BROWN, false);
+            this.fillWithBlocks(world, boundingBox, 11, 1, 3, 11, 3, 4, StateHelper.STAINED_HARDENED_CLAY_BROWN, StateHelper.STAINED_HARDENED_CLAY_BROWN, false);
+            this.fillWithBlocks(world, boundingBox, 6, 1, 5, 10, 3, 5, StateHelper.STAINED_HARDENED_CLAY_BROWN, StateHelper.STAINED_HARDENED_CLAY_BROWN, false);
+            this.fillWithBlocks(world, boundingBox, 6, 1, 2, 6, 3, 2, StateHelper.STAINED_HARDENED_CLAY_BROWN, StateHelper.STAINED_HARDENED_CLAY_BROWN, false);
+            this.fillWithBlocks(world, boundingBox, 10, 1, 2, 10, 3, 2, StateHelper.STAINED_HARDENED_CLAY_BROWN, StateHelper.STAINED_HARDENED_CLAY_BROWN, false);
 
-            this.setBlockState(world, glassState, 6, 2, 2, boundingBox);
-            this.setBlockState(world, glassState, 10, 2, 2, boundingBox);
+            this.setBlockState(world, StateHelper.STAINED_GLASS_PANE_GRAY, 6, 2, 2, boundingBox);
+            this.setBlockState(world, StateHelper.STAINED_GLASS_PANE_GRAY, 10, 2, 2, boundingBox);
 
             // door
 //            this.placeDoorCurrentPosition(world, boundingBox, random, 8, 1, 2, EnumFacing.getHorizontal(this.getMetadataWithOffset(Blocks.DARK_OAK_DOOR, 3))); //TODO
             this.placeDoorCurrentPosition(world, boundingBox, random, 8, 1, 2, EnumFacing.NORTH);
 
             // book shelf
-            this.fillWithBlocks(world, boundingBox, 6, 1, 3, 6, 1, 4, Blocks.BOOKSHELF.getDefaultState(), Blocks.BOOKSHELF.getDefaultState(), false);
-            this.setBlockState(world, Blocks.BOOKSHELF.getDefaultState(), 10, 1, 4, boundingBox);
+            this.fillWithBlocks(world, boundingBox, 6, 1, 3, 6, 1, 4, StateHelper.BOOKSHELF, StateHelper.BOOKSHELF, false);
+            this.setBlockState(world, StateHelper.BOOKSHELF, 10, 1, 4, boundingBox);
 
             // candle
             this.generateSkullCandle(world, boundingBox, 10, 2, 4, getCoordBaseMode());
@@ -172,10 +162,9 @@ public class ComponentVillageUndertaker extends StructureVillagePieces.Village i
             this.generateBed(world, 9, 1, 3, boundingBox);
 
             // roof
-            IBlockState slabState = Blocks.WOODEN_SLAB.getDefaultState().withProperty(BlockWoodSlab.VARIANT, BlockPlanks.EnumType.DARK_OAK);
-            IBlockState stairsState = Blocks.DARK_OAK_STAIRS.getDefaultState().withProperty(BlockStairs.FACING, getCoordBaseMode());
-            IBlockState stairsBackState = Blocks.DARK_OAK_STAIRS.getDefaultState().withProperty(BlockStairs.FACING, getCoordBaseMode().getOpposite());
-            this.fillWithBlocks(world, boundingBox, 1, 4, 1, 11, 4, 5, slabState, slabState, false);
+            IBlockState stairsState = StateHelper.getStairs(StateHelper.DARK_OAK_STAIRS, getCoordBaseMode());
+            IBlockState stairsBackState = StateHelper.getStairs(StateHelper.DARK_OAK_STAIRS, getCoordBaseMode().getOpposite());
+            this.fillWithBlocks(world, boundingBox, 1, 4, 1, 11, 4, 5, StateHelper.WOODEN_SLAB_DARK_OAK, StateHelper.WOODEN_SLAB_DARK_OAK, false);
 
             this.fillWithBlocks(world, boundingBox, 0, 4, 0, 12, 4, 0, stairsState, stairsState, false);
             this.fillWithBlocks(world, boundingBox, 0, 4, 6, 12, 4, 6, stairsBackState, stairsBackState, false);
@@ -186,27 +175,26 @@ public class ComponentVillageUndertaker extends StructureVillagePieces.Village i
             this.fillWithBlocks(world, boundingBox, 0, 6, 2, 12, 6, 2, stairsState, stairsState, false);
             this.fillWithBlocks(world, boundingBox, 0, 6, 4, 12, 6, 4, stairsBackState, stairsBackState, false);
 
-            this.fillWithBlocks(world, boundingBox, 0, 7, 3, 12, 7, 3, slabState, slabState, false);
+            this.fillWithBlocks(world, boundingBox, 0, 7, 3, 12, 7, 3, StateHelper.WOODEN_SLAB_DARK_OAK, StateHelper.WOODEN_SLAB_DARK_OAK, false);
 
-            IBlockState planksState = Blocks.PLANKS.getDefaultState().withProperty(BlockPlanks.VARIANT, BlockPlanks.EnumType.DARK_OAK);
-            this.fillWithBlocks(world, boundingBox, 1, 4, 1, 1, 4, 5, planksState, planksState, false);
-            this.fillWithBlocks(world, boundingBox, 11, 4, 1, 11, 4, 5, planksState, planksState, false);
-            this.setBlockState(world, planksState, 1, 5, 2, boundingBox);
-            this.setBlockState(world, planksState, 1, 5, 4, boundingBox);
-            this.setBlockState(world, planksState, 11, 5, 2, boundingBox);
-            this.setBlockState(world, planksState, 11, 5, 4, boundingBox);
+            this.fillWithBlocks(world, boundingBox, 1, 4, 1, 1, 4, 5, StateHelper.PLANKS_DARK_OAK, StateHelper.PLANKS_DARK_OAK, false);
+            this.fillWithBlocks(world, boundingBox, 11, 4, 1, 11, 4, 5, StateHelper.PLANKS_DARK_OAK, StateHelper.PLANKS_DARK_OAK, false);
+            this.setBlockState(world, StateHelper.PLANKS_DARK_OAK, 1, 5, 2, boundingBox);
+            this.setBlockState(world, StateHelper.PLANKS_DARK_OAK, 1, 5, 4, boundingBox);
+            this.setBlockState(world, StateHelper.PLANKS_DARK_OAK, 11, 5, 2, boundingBox);
+            this.setBlockState(world, StateHelper.PLANKS_DARK_OAK, 11, 5, 4, boundingBox);
 
-            this.setBlockState(world, planksState, 1, 6, 3, boundingBox);
-            this.setBlockState(world, planksState, 11, 6, 3, boundingBox);
+            this.setBlockState(world, StateHelper.PLANKS_DARK_OAK, 1, 6, 3, boundingBox);
+            this.setBlockState(world, StateHelper.PLANKS_DARK_OAK, 11, 6, 3, boundingBox);
 
-            this.setBlockState(world, glassState, 1, 5, 3, boundingBox);
-            this.setBlockState(world, glassState, 11, 5, 3, boundingBox);
+            this.setBlockState(world, StateHelper.STAINED_GLASS_PANE_GRAY, 1, 5, 3, boundingBox);
+            this.setBlockState(world, StateHelper.STAINED_GLASS_PANE_GRAY, 11, 5, 3, boundingBox);
 
 
             for (int i = 0; i < X_LENGTH; i++) {
                 for (int j = 0; j < Z_LENGTH; j++) {
                     this.clearCurrentPositionBlocksUpwards(world, i, 8, j, boundingBox);
-                    this.setBlockState(world, Blocks.COBBLESTONE.getDefaultState(), i, -1, j, boundingBox);
+                    this.setBlockState(world, StateHelper.COBBLESTONE, i, -1, j, boundingBox);
                 }
             }
 
@@ -245,7 +233,7 @@ public class ComponentVillageUndertaker extends StructureVillagePieces.Village i
 
         this.setBlockState(world, gateState, startX + 6, 1, startZ + 9, structureBoundingBox);
 
-        IBlockState graveState = GSBlock.graveStone.getDefaultState().withProperty(BlockGraveStone.FACING, this.getCoordBaseMode().getOpposite());
+        IBlockState graveState = StateHelper.getGravestone(this.getCoordBaseMode().getOpposite());
         EntityGroupOfGravesMobSpawnerHelper spawnerHelper = GraveGenerationHelper.createSpawnerHelper(world, boundingBox);
 
         for (int x = startX + 3; x < startX + 11; x += 2) {
@@ -285,9 +273,8 @@ public class ComponentVillageUndertaker extends StructureVillagePieces.Village i
 
     protected void generateBed(World world, int x, int y, int z, StructureBoundingBox boundingBox) {
         EnumFacing facing = getBedMeta(this.getCoordBaseMode());
-        IBlockState bedState = Blocks.BED.getDefaultState().withProperty(BlockBed.FACING, facing);
-        this.setBlockState(world, bedState.withProperty(BlockBed.PART, BlockBed.EnumPartType.FOOT), x, y, z, boundingBox);
-        this.setBlockState(world, bedState.withProperty(BlockBed.PART, BlockBed.EnumPartType.HEAD), x + 1, y, z, boundingBox);
+        this.setBlockState(world, StateHelper.getBedState(StateHelper.BED_FOOT, facing), x, y, z, boundingBox);
+        this.setBlockState(world, StateHelper.getBedState(StateHelper.BED_HEAD, facing), x + 1, y, z, boundingBox);
     }
 
     public static EnumFacing getBedMeta(EnumFacing direction) {
@@ -318,8 +305,7 @@ public class ComponentVillageUndertaker extends StructureVillagePieces.Village i
     protected void generateSkullCandle(World world, StructureBoundingBox boundingBox, int x, int y, int z, EnumFacing direction) {
         BlockPos pos = new BlockPos(this.getXWithOffset(x, z), this.getYWithOffset(y), this.getZWithOffset(x, z));
         if (world.getBlockState(pos).getBlock() != GSBlock.skullCandle) {
-            IBlockState skullCandleState = GSBlock.skullCandle.getDefaultState().withProperty(BlockSkullCandle.VARIANT, EnumSkullCandle.SKELETON_SKULL);
-            this.setBlockState(world, skullCandleState, x, y, z, boundingBox);
+            this.setBlockState(world, StateHelper.SKELETON_SKULL_CANDLE, x, y, z, boundingBox);
             TileEntitySkullCandle tileEntity = (TileEntitySkullCandle) world.getTileEntity(pos);
             if (tileEntity != null) {
                 tileEntity.setRotation(getSkullCandleDirection(direction));

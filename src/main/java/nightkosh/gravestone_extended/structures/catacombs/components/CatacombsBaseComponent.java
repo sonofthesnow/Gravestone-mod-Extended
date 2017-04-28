@@ -3,13 +3,11 @@ package nightkosh.gravestone_extended.structures.catacombs.components;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.init.Blocks;
-import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.structure.StructureBoundingBox;
 import net.minecraft.world.gen.structure.StructureComponent;
-import nightkosh.gravestone_extended.core.GSBlock;
 import nightkosh.gravestone_extended.core.Structures;
 import nightkosh.gravestone_extended.structures.ComponentGraveStone;
 import nightkosh.gravestone_extended.structures.ObjectsGenerationHelper;
@@ -30,8 +28,6 @@ public abstract class CatacombsBaseComponent extends ComponentGraveStone {
 
     public static final float WEB_GENERATION_CHANCE = 0.05F;
     protected static final StructureComponent.BlockSelector catacombsPileOfBones = new CatacombsPileOfBonesSelector();
-    protected static final IBlockState netherBrick = Blocks.NETHER_BRICK.getDefaultState();
-    protected static final IBlockState nightStone = GSBlock.trap.getDefaultState();
 
     protected int level = 0;
     protected CatacombsBaseComponent prevComponent;

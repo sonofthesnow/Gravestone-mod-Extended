@@ -1,10 +1,7 @@
 package nightkosh.gravestone_extended.structures.catacombs;
 
-import nightkosh.gravestone_extended.block.BlockPileOfBones;
-import nightkosh.gravestone_extended.block.enums.EnumPileOfBones;
-import nightkosh.gravestone_extended.core.GSBlock;
-import net.minecraft.init.Blocks;
 import net.minecraft.world.gen.structure.StructureComponent;
+import nightkosh.gravestone_extended.helper.StateHelper;
 
 import java.util.Random;
 
@@ -29,15 +26,15 @@ public class CatacombsPileOfBonesSelector extends StructureComponent.BlockSelect
         if (flag && random.nextFloat() <= PILE_OF_BONES_GENERATION_CHANCE) {
             if (random.nextInt(30) == 0) {
                 if (random.nextBoolean()) {
-                    this.blockstate = GSBlock.pileOfBones.getDefaultState().withProperty(BlockPileOfBones.VARIANT, EnumPileOfBones.PILE_OF_BONES_WITH_SKULL_CRAWLER);
+                    this.blockstate = StateHelper.PILE_OF_BONES_WITH_SKULL_CRAWLER;
                 } else {
-                    this.blockstate = GSBlock.pileOfBones.getDefaultState().withProperty(BlockPileOfBones.VARIANT, EnumPileOfBones.PILE_OF_BONES_WITH_SKULL);
+                    this.blockstate = StateHelper.PILE_OF_BONES_WITH_SKULL;
                 }
             } else {
-                this.blockstate = GSBlock.pileOfBones.getDefaultState().withProperty(BlockPileOfBones.VARIANT, EnumPileOfBones.PILE_OF_BONES);
+                this.blockstate = StateHelper.PILE_OF_BONES;
             }
         } else {
-            this.blockstate = Blocks.AIR.getDefaultState();
+            this.blockstate = StateHelper.AIR;
         }
     }
 }

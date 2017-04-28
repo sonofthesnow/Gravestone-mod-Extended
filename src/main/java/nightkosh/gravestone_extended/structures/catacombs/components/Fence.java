@@ -1,15 +1,12 @@
 package nightkosh.gravestone_extended.structures.catacombs.components;
 
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockSlab;
-import net.minecraft.block.BlockStoneSlab;
-import net.minecraft.block.material.Material;
-import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
-import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.structure.StructureBoundingBox;
+import nightkosh.gravestone_extended.helper.StateHelper;
 
 import java.util.Random;
 
@@ -125,8 +122,7 @@ public class Fence extends CatacombsBaseComponent {
         int xPos = getXWithOffset(x, 0);
         int zPos = getZWithOffset(x, 0);
         BlockPos pos = world.getTopSolidOrLiquidBlock(new BlockPos(xPos, 0, zPos));
-        while (world.getBlockState(pos).getBlock().getMaterial(null).equals(Material.WOOD) ||
-                world.getBlockState(pos).getBlock().getMaterial(null).equals(Material.LEAVES)) {
+        while (StateHelper.isWoodMaterial(world, pos) || StateHelper.isLeavesMaterial(world, pos)) {
             pos = pos.down();
         }
 
@@ -136,11 +132,7 @@ public class Fence extends CatacombsBaseComponent {
     private boolean checkGround(World world, int x, int y) {
         Block block = world.getBlockState(new BlockPos(getXWithOffset(x, 0), y, getZWithOffset(x, 0))).getBlock();
 
-        if (block != null) {
-            return (!block.equals(Blocks.WATER) && !block.equals(Blocks.LAVA));
-        } else {
-            return true;
-        }
+        return block == null || (!block.equals(Blocks.WATER) && !block.equals(Blocks.LAVA));
     }
 
     private boolean checkGround(World world, int startX, int endX, int y) {
@@ -163,7 +155,7 @@ public class Fence extends CatacombsBaseComponent {
         int y = getGroundY(world, x);
 
         if (checkGround(world, x, y)) {
-            this.fillWithBlocks(world, boundingBox, x, y, 0, x, y + 3, 0, Blocks.IRON_BARS.getDefaultState());
+            this.fillWithBlocks(world, boundingBox, x, y, 0, x, y + 3, 0, StateHelper.IRON_BARS);
         }
     }
 
@@ -173,8 +165,7 @@ public class Fence extends CatacombsBaseComponent {
             int xPos = getXWithOffset(x, 0);
             int zPos = getZWithOffset(x, 0);
             BlockPos pos = world.getTopSolidOrLiquidBlock(new BlockPos(xPos, 0, zPos));
-            while (world.getBlockState(pos).getBlock().getMaterial(null).equals(Material.WOOD) ||
-                    world.getBlockState(pos).getBlock().getMaterial(null).equals(Material.LEAVES)) {
+            while (StateHelper.isWoodMaterial(world, pos) || StateHelper.isLeavesMaterial(world, pos)) {
                 pos = pos.down();
             }
             y += pos.getY();
@@ -189,16 +180,14 @@ public class Fence extends CatacombsBaseComponent {
             this.fillWithRandomizedBlocks(world, boundingBox, 46, y + 4, 0, 46, y + 4, 0, false, random, stoneBricks);
 
             // fence
-            this.fillWithBlocks(world, boundingBox, 43, y, 0, 43, y + 3, 0, Blocks.IRON_BARS.getDefaultState());
-            this.fillWithBlocks(world, boundingBox, 46, y, 0, 46, y + 3, 0, Blocks.IRON_BARS.getDefaultState());
-            this.fillWithBlocks(world, boundingBox, 44, y + 3, 0, 45, y + 4, 0, Blocks.IRON_BARS.getDefaultState());
+            this.fillWithBlocks(world, boundingBox, 43, y, 0, 43, y + 3, 0, StateHelper.IRON_BARS);
+            this.fillWithBlocks(world, boundingBox, 46, y, 0, 46, y + 3, 0, StateHelper.IRON_BARS);
+            this.fillWithBlocks(world, boundingBox, 44, y + 3, 0, 45, y + 4, 0, StateHelper.IRON_BARS);
 
             // slabs
-            IBlockState stoneSlabsState = Blocks.STONE_SLAB.getDefaultState().withProperty(BlockStoneSlab.VARIANT, BlockStoneSlab.EnumType.SMOOTHBRICK)
-                    .withProperty(BlockSlab.HALF, BlockSlab.EnumBlockHalf.BOTTOM);
-            this.fillWithBlocks(world, boundingBox, 44, y + 5, 0, 45, y + 5, 0, stoneSlabsState);
-            this.placeBlockAtCurrentPosition(world, stoneSlabsState, 42, y + 4, 0, boundingBox);
-            this.placeBlockAtCurrentPosition(world, stoneSlabsState, 47, y + 4, 0, boundingBox);
+            this.fillWithBlocks(world, boundingBox, 44, y + 5, 0, 45, y + 5, 0, StateHelper.SMOOTHBRICK_SLAB_BOTTOM);
+            this.placeBlockAtCurrentPosition(world, StateHelper.SMOOTHBRICK_SLAB_BOTTOM, 42, y + 4, 0, boundingBox);
+            this.placeBlockAtCurrentPosition(world, StateHelper.SMOOTHBRICK_SLAB_BOTTOM, 47, y + 4, 0, boundingBox);
         }
     }
 

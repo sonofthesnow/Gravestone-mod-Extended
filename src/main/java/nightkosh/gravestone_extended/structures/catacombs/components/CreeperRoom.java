@@ -1,9 +1,9 @@
 package nightkosh.gravestone_extended.structures.catacombs.components;
 
-import net.minecraft.init.Blocks;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.world.World;
 import nightkosh.gravestone.helper.GraveGenerationHelper;
+import nightkosh.gravestone_extended.helper.StateHelper;
 import nightkosh.gravestone_extended.structures.BoundingBoxHelper;
 import nightkosh.gravestone_extended.structures.MemorialGenerationHelper;
 import nightkosh.gravestone_extended.structures.ObjectsGenerationHelper;
@@ -60,22 +60,22 @@ public class CreeperRoom extends CatacombsBaseComponent {
         buildTopPart(world, random, 8);
 
         // columns
-        this.fillWithBlocks(world, boundingBox, 4, 1, 4, 4, 8, 4, netherBrick);
-        this.fillWithBlocks(world, boundingBox, 4, 1, 6, 4, 8, 6, netherBrick);
-        this.fillWithBlocks(world, boundingBox, 6, 1, 4, 6, 8, 4, netherBrick);
-        this.fillWithBlocks(world, boundingBox, 6, 1, 6, 6, 8, 6, netherBrick);
+        this.fillWithBlocks(world, boundingBox, 4, 1, 4, 4, 8, 4, StateHelper.NETHER_BRICK);
+        this.fillWithBlocks(world, boundingBox, 4, 1, 6, 4, 8, 6, StateHelper.NETHER_BRICK);
+        this.fillWithBlocks(world, boundingBox, 6, 1, 4, 6, 8, 4, StateHelper.NETHER_BRICK);
+        this.fillWithBlocks(world, boundingBox, 6, 1, 6, 6, 8, 6, StateHelper.NETHER_BRICK);
 
         // bottom
-        this.fillWithBlocks(world, boundingBox, 0, 0, 0, 10, 0, 10, netherBrick);
+        this.fillWithBlocks(world, boundingBox, 0, 0, 0, 10, 0, 10, StateHelper.NETHER_BRICK);
 
         // lava
-        this.fillWithBlocks(world, boundingBox, 1, 1, 1, 9, 2, 9, Blocks.LAVA.getDefaultState());
+        this.fillWithBlocks(world, boundingBox, 1, 1, 1, 9, 2, 9, StateHelper.LAVA);
 
         // bottom walls
-        this.fillWithBlocks(world, boundingBox, 0, 1, 0, 10, 8, 0, netherBrick);
-        this.fillWithBlocks(world, boundingBox, 0, 1, 10, 10, 8, 10, netherBrick);
-        this.fillWithBlocks(world, boundingBox, 0, 1, 1, 0, 8, 9, netherBrick);
-        this.fillWithBlocks(world, boundingBox, 10, 1, 1, 10, 8, 9, netherBrick);
+        this.fillWithBlocks(world, boundingBox, 0, 1, 0, 10, 8, 0, StateHelper.NETHER_BRICK);
+        this.fillWithBlocks(world, boundingBox, 0, 1, 10, 10, 8, 10, StateHelper.NETHER_BRICK);
+        this.fillWithBlocks(world, boundingBox, 0, 1, 1, 0, 8, 9, StateHelper.NETHER_BRICK);
+        this.fillWithBlocks(world, boundingBox, 10, 1, 1, 10, 8, 9, StateHelper.NETHER_BRICK);
 
         return true;
     }
@@ -83,14 +83,14 @@ public class CreeperRoom extends CatacombsBaseComponent {
     private void buildTopPart(World world, Random random, int yStart) {
         BlockSelector stoneBricks = getCemeteryCatacombsStones();
         // nether floor
-        this.fillWithBlocks(world, boundingBox, 4, yStart, 1, 4, yStart, 4, netherBrick);
-        this.fillWithBlocks(world, boundingBox, 6, yStart, 1, 6, yStart, 4, netherBrick);
-        this.fillWithBlocks(world, boundingBox, 4, yStart, 6, 4, yStart, 9, netherBrick);
-        this.fillWithBlocks(world, boundingBox, 6, yStart, 6, 6, yStart, 9, netherBrick);
-        this.fillWithBlocks(world, boundingBox, 1, yStart, 4, 3, yStart, 4, netherBrick);
-        this.fillWithBlocks(world, boundingBox, 7, yStart, 4, 9, yStart, 4, netherBrick);
-        this.fillWithBlocks(world, boundingBox, 1, yStart, 6, 3, yStart, 6, netherBrick);
-        this.fillWithBlocks(world, boundingBox, 7, yStart, 6, 9, yStart, 6, netherBrick);
+        this.fillWithBlocks(world, boundingBox, 4, yStart, 1, 4, yStart, 4, StateHelper.NETHER_BRICK);
+        this.fillWithBlocks(world, boundingBox, 6, yStart, 1, 6, yStart, 4, StateHelper.NETHER_BRICK);
+        this.fillWithBlocks(world, boundingBox, 4, yStart, 6, 4, yStart, 9, StateHelper.NETHER_BRICK);
+        this.fillWithBlocks(world, boundingBox, 6, yStart, 6, 6, yStart, 9, StateHelper.NETHER_BRICK);
+        this.fillWithBlocks(world, boundingBox, 1, yStart, 4, 3, yStart, 4, StateHelper.NETHER_BRICK);
+        this.fillWithBlocks(world, boundingBox, 7, yStart, 4, 9, yStart, 4, StateHelper.NETHER_BRICK);
+        this.fillWithBlocks(world, boundingBox, 1, yStart, 6, 3, yStart, 6, StateHelper.NETHER_BRICK);
+        this.fillWithBlocks(world, boundingBox, 7, yStart, 6, 9, yStart, 6, StateHelper.NETHER_BRICK);
 
         // stoneBrick floor
         this.fillWithRandomizedBlocks(world, boundingBox, 5, yStart, 1, 5, yStart, 4, false, random, stoneBricks);
@@ -111,18 +111,18 @@ public class CreeperRoom extends CatacombsBaseComponent {
 
         // nether ceiling
         int ceilingLevel = yStart + 5;
-        this.fillWithBlocks(world, boundingBox, 4, ceilingLevel, 1, 4, ceilingLevel, 4, netherBrick);
-        this.fillWithBlocks(world, boundingBox, 6, ceilingLevel, 1, 6, ceilingLevel, 4, netherBrick);
-        this.fillWithBlocks(world, boundingBox, 4, ceilingLevel, 6, 4, ceilingLevel, 9, netherBrick);
-        this.fillWithBlocks(world, boundingBox, 6, ceilingLevel, 6, 6, ceilingLevel, 9, netherBrick);
-        this.fillWithBlocks(world, boundingBox, 1, ceilingLevel, 4, 3, ceilingLevel, 4, netherBrick);
-        this.fillWithBlocks(world, boundingBox, 7, ceilingLevel, 4, 9, ceilingLevel, 4, netherBrick);
-        this.fillWithBlocks(world, boundingBox, 1, ceilingLevel, 6, 3, ceilingLevel, 6, netherBrick);
-        this.fillWithBlocks(world, boundingBox, 7, ceilingLevel, 6, 9, ceilingLevel, 6, netherBrick);
-        this.fillWithBlocks(world, boundingBox, 0, ceilingLevel, 0, 10, ceilingLevel, 0, netherBrick);
-        this.fillWithBlocks(world, boundingBox, 0, ceilingLevel, 10, 10, ceilingLevel, 10, netherBrick);
-        this.fillWithBlocks(world, boundingBox, 1, ceilingLevel, 0, 9, ceilingLevel, 0, netherBrick);
-        this.fillWithBlocks(world, boundingBox, 1, ceilingLevel, 10, 9, ceilingLevel, 10, netherBrick);
+        this.fillWithBlocks(world, boundingBox, 4, ceilingLevel, 1, 4, ceilingLevel, 4, StateHelper.NETHER_BRICK);
+        this.fillWithBlocks(world, boundingBox, 6, ceilingLevel, 1, 6, ceilingLevel, 4, StateHelper.NETHER_BRICK);
+        this.fillWithBlocks(world, boundingBox, 4, ceilingLevel, 6, 4, ceilingLevel, 9, StateHelper.NETHER_BRICK);
+        this.fillWithBlocks(world, boundingBox, 6, ceilingLevel, 6, 6, ceilingLevel, 9, StateHelper.NETHER_BRICK);
+        this.fillWithBlocks(world, boundingBox, 1, ceilingLevel, 4, 3, ceilingLevel, 4, StateHelper.NETHER_BRICK);
+        this.fillWithBlocks(world, boundingBox, 7, ceilingLevel, 4, 9, ceilingLevel, 4, StateHelper.NETHER_BRICK);
+        this.fillWithBlocks(world, boundingBox, 1, ceilingLevel, 6, 3, ceilingLevel, 6, StateHelper.NETHER_BRICK);
+        this.fillWithBlocks(world, boundingBox, 7, ceilingLevel, 6, 9, ceilingLevel, 6, StateHelper.NETHER_BRICK);
+        this.fillWithBlocks(world, boundingBox, 0, ceilingLevel, 0, 10, ceilingLevel, 0, StateHelper.NETHER_BRICK);
+        this.fillWithBlocks(world, boundingBox, 0, ceilingLevel, 10, 10, ceilingLevel, 10, StateHelper.NETHER_BRICK);
+        this.fillWithBlocks(world, boundingBox, 1, ceilingLevel, 0, 9, ceilingLevel, 0, StateHelper.NETHER_BRICK);
+        this.fillWithBlocks(world, boundingBox, 1, ceilingLevel, 10, 9, ceilingLevel, 10, StateHelper.NETHER_BRICK);
 
         // stoneBrick ceiling
         this.fillWithRandomizedBlocks(world, boundingBox, 5, ceilingLevel, 1, 5, ceilingLevel, 4, false, random, stoneBricks);
@@ -138,10 +138,10 @@ public class CreeperRoom extends CatacombsBaseComponent {
         this.placeBlockAtCurrentPosition(world, getValuableBlock(random).getDefaultState(), 5, ceilingLevel, 5, boundingBox);
 
         // nether walls
-        this.fillWithBlocks(world, boundingBox, 0, yStart + 1, 0, 0, yStart + 4, 0, netherBrick);
-        this.fillWithBlocks(world, boundingBox, 10, yStart + 1, 0, 10, yStart + 4, 0, netherBrick);
-        this.fillWithBlocks(world, boundingBox, 0, yStart + 1, 10, 0, yStart + 4, 10, netherBrick);
-        this.fillWithBlocks(world, boundingBox, 10, yStart + 1, 10, 10, yStart + 4, 10, netherBrick);
+        this.fillWithBlocks(world, boundingBox, 0, yStart + 1, 0, 0, yStart + 4, 0, StateHelper.NETHER_BRICK);
+        this.fillWithBlocks(world, boundingBox, 10, yStart + 1, 0, 10, yStart + 4, 0, StateHelper.NETHER_BRICK);
+        this.fillWithBlocks(world, boundingBox, 0, yStart + 1, 10, 0, yStart + 4, 10, StateHelper.NETHER_BRICK);
+        this.fillWithBlocks(world, boundingBox, 10, yStart + 1, 10, 10, yStart + 4, 10, StateHelper.NETHER_BRICK);
 
         // stoneBrick walls
         this.fillWithRandomizedBlocks(world, boundingBox, 1, yStart + 1, 0, 2, yStart + 4, 0, false, random, stoneBricks);
@@ -154,10 +154,10 @@ public class CreeperRoom extends CatacombsBaseComponent {
         this.fillWithRandomizedBlocks(world, boundingBox, 10, yStart + 1, 8, 10, yStart + 4, 9, false, random, stoneBricks);
 
         // doors
-        this.fillWithBlocks(world, boundingBox, 3, yStart + 1, 0, 7, yStart + 4, 0, netherBrick);
-        this.fillWithBlocks(world, boundingBox, 3, yStart + 1, 10, 7, yStart + 4, 10, netherBrick);
-        this.fillWithBlocks(world, boundingBox, 0, yStart + 1, 3, 0, yStart + 4, 7, netherBrick);
-        this.fillWithBlocks(world, boundingBox, 10, yStart + 1, 3, 10, yStart + 4, 7, netherBrick);
+        this.fillWithBlocks(world, boundingBox, 3, yStart + 1, 0, 7, yStart + 4, 0, StateHelper.NETHER_BRICK);
+        this.fillWithBlocks(world, boundingBox, 3, yStart + 1, 10, 7, yStart + 4, 10, StateHelper.NETHER_BRICK);
+        this.fillWithBlocks(world, boundingBox, 0, yStart + 1, 3, 0, yStart + 4, 7, StateHelper.NETHER_BRICK);
+        this.fillWithBlocks(world, boundingBox, 10, yStart + 1, 3, 10, yStart + 4, 7, StateHelper.NETHER_BRICK);
         this.fillWithRandomizedBlocks(world, boundingBox, 4, yStart + 1, 10, 6, yStart + 3, 10, false, random, stoneBricks);
         this.fillWithRandomizedBlocks(world, boundingBox, 0, yStart + 1, 4, 0, yStart + 3, 6, false, random, stoneBricks);
         this.fillWithRandomizedBlocks(world, boundingBox, 10, yStart + 1, 4, 10, yStart + 3, 6, false, random, stoneBricks);

@@ -1,14 +1,11 @@
 package nightkosh.gravestone_extended.structures.catacombs.components;
 
-import net.minecraft.block.state.IBlockState;
-import net.minecraft.init.Blocks;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.world.World;
-import nightkosh.gravestone.block.BlockGraveStone;
 import nightkosh.gravestone.helper.GraveGenerationHelper.EnumGraveTypeByEntity;
 import nightkosh.gravestone_extended.config.ExtendedConfig;
-import nightkosh.gravestone_extended.core.GSBlock;
 import nightkosh.gravestone_extended.entity.helper.EntityGroupOfGravesMobSpawnerHelper;
+import nightkosh.gravestone_extended.helper.StateHelper;
 import nightkosh.gravestone_extended.structures.BoundingBoxHelper;
 import nightkosh.gravestone_extended.structures.GraveGenerationHelper;
 import nightkosh.gravestone_extended.structures.MobSpawnHelper;
@@ -50,22 +47,22 @@ public class GraveCorridor extends CatacombsBaseComponent {
         this.fillWithRandomizedBlocks(world, boundingBox, 2, 0, 1, 4, 0, 3, false, random, stoneBricks);
 
         // web
-        this.randomlyFillWithBlocks(world, boundingBox, random, WEB_GENERATION_CHANCE, 2, 1, 2, 5, 3, 3, Blocks.WEB.getDefaultState(), false);
+        this.randomlyFillWithBlocks(world, boundingBox, random, WEB_GENERATION_CHANCE, 2, 1, 2, 5, 3, 3, StateHelper.WEB, false);
         // piles of bones
         if (ExtendedConfig.generatePilesOfBones) {
             this.fillWithRandomizedPilesOfBones(world, boundingBox, 2, 1, 2, 5, 1, 3, false, random);
         }
 
         // trap floor
-        this.fillWithBlocks(world, boundingBox, 1, 0, 0, 5, 0, 0, nightStone);
+        this.fillWithBlocks(world, boundingBox, 1, 0, 0, 5, 0, 0, StateHelper.NIGHTSTONE);
 
         // neter floor
-        this.fillWithBlocks(world, boundingBox, 1, 0, 4, 5, 0, 4, netherBrick);
-        this.fillWithBlocks(world, boundingBox, 1, 0, 1, 1, 0, 3, netherBrick);
-        this.fillWithBlocks(world, boundingBox, 5, 0, 1, 5, 0, 3, netherBrick);
+        this.fillWithBlocks(world, boundingBox, 1, 0, 4, 5, 0, 4, StateHelper.NETHER_BRICK);
+        this.fillWithBlocks(world, boundingBox, 1, 0, 1, 1, 0, 3, StateHelper.NETHER_BRICK);
+        this.fillWithBlocks(world, boundingBox, 5, 0, 1, 5, 0, 3, StateHelper.NETHER_BRICK);
 
         // neter ceiling
-        this.fillWithBlocks(world, boundingBox, 1, 4, 0, 5, 4, 4, netherBrick);
+        this.fillWithBlocks(world, boundingBox, 1, 4, 0, 5, 4, 4, StateHelper.NETHER_BRICK);
 
         // block walls
         this.fillWithRandomizedBlocks(world, boundingBox, 0, 0, 1, 0, 4, 3, false, random, stoneBricks);
@@ -73,20 +70,15 @@ public class GraveCorridor extends CatacombsBaseComponent {
         this.fillWithRandomizedBlocks(world, boundingBox, 2, 0, 4, 4, 4, 4, false, random, stoneBricks);
 
         // nether walls
-        this.fillWithBlocks(world, boundingBox, 1, 1, 0, 1, 3, 0, netherBrick);
-        this.fillWithBlocks(world, boundingBox, 1, 1, 4, 1, 3, 4, netherBrick);
-        this.fillWithBlocks(world, boundingBox, 5, 1, 0, 5, 3, 0, netherBrick);
-        this.fillWithBlocks(world, boundingBox, 5, 1, 4, 5, 3, 4, netherBrick);
+        this.fillWithBlocks(world, boundingBox, 1, 1, 0, 1, 3, 0, StateHelper.NETHER_BRICK);
+        this.fillWithBlocks(world, boundingBox, 1, 1, 4, 1, 3, 4, StateHelper.NETHER_BRICK);
+        this.fillWithBlocks(world, boundingBox, 5, 1, 0, 5, 3, 0, StateHelper.NETHER_BRICK);
+        this.fillWithBlocks(world, boundingBox, 5, 1, 4, 5, 3, 4, StateHelper.NETHER_BRICK);
 
         // graves
-        IBlockState graveState = GSBlock.graveStone.getDefaultState();
-        IBlockState leftGraveState = graveState.withProperty(BlockGraveStone.FACING, this.getLeftDirectionForBlocks());
-        IBlockState rightGraveState = graveState.withProperty(BlockGraveStone.FACING, this.getRightDirectionForBlocks());
-
         EntityGroupOfGravesMobSpawnerHelper spawnerHelper = GraveGenerationHelper.createSpawnerHelper(world, this.boundingBox);
-
-        GraveGenerationHelper.fillGraves(this, world, random, 1, 1, 1, 1, 1, 3, leftGraveState, spawnerHelper, EnumGraveTypeByEntity.ALL_GRAVES);
-        GraveGenerationHelper.fillGraves(this, world, random, 5, 1, 1, 5, 1, 3, rightGraveState, spawnerHelper, EnumGraveTypeByEntity.ALL_GRAVES);
+        GraveGenerationHelper.fillGraves(this, world, random, 1, 1, 1, 1, 1, 3, StateHelper.getGravestone(this.getLeftDirectionForBlocks()), spawnerHelper, EnumGraveTypeByEntity.ALL_GRAVES);
+        GraveGenerationHelper.fillGraves(this, world, random, 5, 1, 1, 5, 1, 3, StateHelper.getGravestone(this.getRightDirectionForBlocks()), spawnerHelper, EnumGraveTypeByEntity.ALL_GRAVES);
 
         // chest
         if (random.nextInt(5) < 2) {

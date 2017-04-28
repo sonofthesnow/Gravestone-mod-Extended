@@ -4,9 +4,8 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.structure.StructureBoundingBox;
-import nightkosh.gravestone.block.BlockGraveStone;
-import nightkosh.gravestone_extended.core.GSBlock;
 import nightkosh.gravestone_extended.core.logger.GSLogger;
+import nightkosh.gravestone_extended.helper.StateHelper;
 import nightkosh.gravestone_extended.structures.ComponentGraveStone;
 import nightkosh.gravestone_extended.structures.GraveGenerationHelper;
 
@@ -38,8 +37,7 @@ public class ComponentSingleGrave extends ComponentGraveStone {
         if (GraveGenerationHelper.canPlaceGrave(world, positionX, boundingBox.minY + y, positionZ, boundingBox.maxY)) {
             GSLogger.logInfo("Generate grave at " + positionX + "x" + positionZ);
 
-            GraveGenerationHelper.placeGrave(this, world, random, 0, y, 0,
-                    GSBlock.graveStone.getDefaultState().withProperty(BlockGraveStone.FACING, this.getCoordBaseMode().getOpposite()), null);
+            GraveGenerationHelper.placeGrave(this, world, random, 0, y, 0, StateHelper.getGravestone(this.getCoordBaseMode().getOpposite()), null);
         }
 
         return true;

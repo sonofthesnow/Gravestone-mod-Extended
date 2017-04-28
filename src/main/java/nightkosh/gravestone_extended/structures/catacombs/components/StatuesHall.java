@@ -1,12 +1,12 @@
 package nightkosh.gravestone_extended.structures.catacombs.components;
 
-import net.minecraft.init.Blocks;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.world.World;
 import nightkosh.gravestone.helper.GraveGenerationHelper;
 import nightkosh.gravestone_extended.block.enums.EnumMemorials;
 import nightkosh.gravestone_extended.config.ExtendedConfig;
 import nightkosh.gravestone_extended.core.MobSpawn;
+import nightkosh.gravestone_extended.helper.StateHelper;
 import nightkosh.gravestone_extended.structures.BoundingBoxHelper;
 import nightkosh.gravestone_extended.structures.MemorialGenerationHelper;
 import nightkosh.gravestone_extended.structures.MobSpawnHelper;
@@ -50,7 +50,7 @@ public class StatuesHall extends CatacombsBaseComponent {
         this.fillWithRandomizedBlocks(world, boundingBox, 1, 5, 1, 9, 5, 17, false, random, stoneBricks);
 
         // web
-        this.randomlyFillWithBlocks(world, boundingBox, random, WEB_GENERATION_CHANCE, 1, 1, 1, 10, 4, 18, Blocks.WEB.getDefaultState(), false);
+        this.randomlyFillWithBlocks(world, boundingBox, random, WEB_GENERATION_CHANCE, 1, 1, 1, 10, 4, 18, StateHelper.WEB, false);
         // piles of bones
         if (ExtendedConfig.generatePilesOfBones) {
             this.fillWithRandomizedPilesOfBones(world, boundingBox, 1, 1, 1, 10, 1, 18, false, random);
@@ -65,50 +65,50 @@ public class StatuesHall extends CatacombsBaseComponent {
         this.fillWithRandomizedBlocks(world, boundingBox, 8, 1, 18, 9, 4, 18, false, random, stoneBricks);
 
         // nether floor and ceiling
-        this.fillWithBlocks(world, boundingBox, 0, 0, 0, 0, 0, 18, netherBrick);
-        this.fillWithBlocks(world, boundingBox, 3, 0, 0, 3, 0, 18, netherBrick);
-        this.fillWithBlocks(world, boundingBox, 7, 0, 0, 7, 0, 18, netherBrick);
-        this.fillWithBlocks(world, boundingBox, 10, 0, 0, 10, 0, 18, netherBrick);
-        this.fillWithBlocks(world, boundingBox, 0, 5, 0, 0, 5, 18, netherBrick);
-        this.fillWithBlocks(world, boundingBox, 3, 5, 0, 3, 5, 18, netherBrick);
-        this.fillWithBlocks(world, boundingBox, 7, 5, 0, 7, 5, 18, netherBrick);
-        this.fillWithBlocks(world, boundingBox, 10, 5, 0, 10, 5, 18, netherBrick);
-        this.fillWithBlocks(world, boundingBox, 1, 0, 0, 9, 0, 0, netherBrick);
-        this.fillWithBlocks(world, boundingBox, 1, 0, 3, 9, 0, 3, netherBrick);
-        this.fillWithBlocks(world, boundingBox, 1, 0, 6, 9, 0, 6, netherBrick);
-        this.fillWithBlocks(world, boundingBox, 1, 0, 9, 9, 0, 9, netherBrick);
-        this.fillWithBlocks(world, boundingBox, 1, 0, 12, 9, 0, 12, netherBrick);
-        this.fillWithBlocks(world, boundingBox, 1, 0, 15, 9, 0, 15, netherBrick);
-        this.fillWithBlocks(world, boundingBox, 1, 0, 18, 9, 0, 18, netherBrick);
-        this.fillWithBlocks(world, boundingBox, 1, 5, 0, 9, 5, 0, netherBrick);
-        this.fillWithBlocks(world, boundingBox, 1, 5, 3, 9, 5, 3, netherBrick);
-        this.fillWithBlocks(world, boundingBox, 1, 5, 6, 9, 5, 6, netherBrick);
-        this.fillWithBlocks(world, boundingBox, 1, 5, 9, 9, 5, 9, netherBrick);
-        this.fillWithBlocks(world, boundingBox, 1, 5, 12, 9, 5, 12, netherBrick);
-        this.fillWithBlocks(world, boundingBox, 1, 5, 15, 9, 5, 15, netherBrick);
-        this.fillWithBlocks(world, boundingBox, 1, 5, 18, 9, 5, 18, netherBrick);
+        this.fillWithBlocks(world, boundingBox, 0, 0, 0, 0, 0, 18, StateHelper.NETHER_BRICK);
+        this.fillWithBlocks(world, boundingBox, 3, 0, 0, 3, 0, 18, StateHelper.NETHER_BRICK);
+        this.fillWithBlocks(world, boundingBox, 7, 0, 0, 7, 0, 18, StateHelper.NETHER_BRICK);
+        this.fillWithBlocks(world, boundingBox, 10, 0, 0, 10, 0, 18, StateHelper.NETHER_BRICK);
+        this.fillWithBlocks(world, boundingBox, 0, 5, 0, 0, 5, 18, StateHelper.NETHER_BRICK);
+        this.fillWithBlocks(world, boundingBox, 3, 5, 0, 3, 5, 18, StateHelper.NETHER_BRICK);
+        this.fillWithBlocks(world, boundingBox, 7, 5, 0, 7, 5, 18, StateHelper.NETHER_BRICK);
+        this.fillWithBlocks(world, boundingBox, 10, 5, 0, 10, 5, 18, StateHelper.NETHER_BRICK);
+        this.fillWithBlocks(world, boundingBox, 1, 0, 0, 9, 0, 0, StateHelper.NETHER_BRICK);
+        this.fillWithBlocks(world, boundingBox, 1, 0, 3, 9, 0, 3, StateHelper.NETHER_BRICK);
+        this.fillWithBlocks(world, boundingBox, 1, 0, 6, 9, 0, 6, StateHelper.NETHER_BRICK);
+        this.fillWithBlocks(world, boundingBox, 1, 0, 9, 9, 0, 9, StateHelper.NETHER_BRICK);
+        this.fillWithBlocks(world, boundingBox, 1, 0, 12, 9, 0, 12, StateHelper.NETHER_BRICK);
+        this.fillWithBlocks(world, boundingBox, 1, 0, 15, 9, 0, 15, StateHelper.NETHER_BRICK);
+        this.fillWithBlocks(world, boundingBox, 1, 0, 18, 9, 0, 18, StateHelper.NETHER_BRICK);
+        this.fillWithBlocks(world, boundingBox, 1, 5, 0, 9, 5, 0, StateHelper.NETHER_BRICK);
+        this.fillWithBlocks(world, boundingBox, 1, 5, 3, 9, 5, 3, StateHelper.NETHER_BRICK);
+        this.fillWithBlocks(world, boundingBox, 1, 5, 6, 9, 5, 6, StateHelper.NETHER_BRICK);
+        this.fillWithBlocks(world, boundingBox, 1, 5, 9, 9, 5, 9, StateHelper.NETHER_BRICK);
+        this.fillWithBlocks(world, boundingBox, 1, 5, 12, 9, 5, 12, StateHelper.NETHER_BRICK);
+        this.fillWithBlocks(world, boundingBox, 1, 5, 15, 9, 5, 15, StateHelper.NETHER_BRICK);
+        this.fillWithBlocks(world, boundingBox, 1, 5, 18, 9, 5, 18, StateHelper.NETHER_BRICK);
 
         // nether wall
-        this.fillWithBlocks(world, boundingBox, 0, 1, 0, 0, 4, 0, netherBrick);
-        this.fillWithBlocks(world, boundingBox, 0, 1, 3, 0, 4, 3, netherBrick);
-        this.fillWithBlocks(world, boundingBox, 0, 1, 6, 0, 4, 6, netherBrick);
-        this.fillWithBlocks(world, boundingBox, 0, 1, 9, 0, 4, 9, netherBrick);
-        this.fillWithBlocks(world, boundingBox, 0, 1, 12, 0, 4, 12, netherBrick);
-        this.fillWithBlocks(world, boundingBox, 0, 1, 15, 0, 4, 15, netherBrick);
-        this.fillWithBlocks(world, boundingBox, 0, 1, 18, 0, 4, 18, netherBrick);
-        this.fillWithBlocks(world, boundingBox, 10, 1, 0, 10, 4, 0, netherBrick);
-        this.fillWithBlocks(world, boundingBox, 10, 1, 3, 10, 4, 3, netherBrick);
-        this.fillWithBlocks(world, boundingBox, 10, 1, 6, 10, 4, 6, netherBrick);
-        this.fillWithBlocks(world, boundingBox, 10, 1, 9, 10, 4, 9, netherBrick);
-        this.fillWithBlocks(world, boundingBox, 10, 1, 12, 10, 4, 12, netherBrick);
-        this.fillWithBlocks(world, boundingBox, 10, 1, 15, 10, 4, 15, netherBrick);
-        this.fillWithBlocks(world, boundingBox, 10, 1, 18, 10, 4, 18, netherBrick);
-        this.fillWithBlocks(world, boundingBox, 3, 1, 0, 3, 4, 0, netherBrick);
-        this.fillWithBlocks(world, boundingBox, 7, 1, 0, 7, 4, 0, netherBrick);
-        this.fillWithBlocks(world, boundingBox, 3, 4, 0, 7, 4, 0, netherBrick);
-        this.fillWithBlocks(world, boundingBox, 3, 1, 18, 3, 4, 18, netherBrick);
-        this.fillWithBlocks(world, boundingBox, 7, 1, 18, 7, 4, 18, netherBrick);
-        this.fillWithBlocks(world, boundingBox, 3, 4, 18, 7, 4, 18, netherBrick);
+        this.fillWithBlocks(world, boundingBox, 0, 1, 0, 0, 4, 0, StateHelper.NETHER_BRICK);
+        this.fillWithBlocks(world, boundingBox, 0, 1, 3, 0, 4, 3, StateHelper.NETHER_BRICK);
+        this.fillWithBlocks(world, boundingBox, 0, 1, 6, 0, 4, 6, StateHelper.NETHER_BRICK);
+        this.fillWithBlocks(world, boundingBox, 0, 1, 9, 0, 4, 9, StateHelper.NETHER_BRICK);
+        this.fillWithBlocks(world, boundingBox, 0, 1, 12, 0, 4, 12, StateHelper.NETHER_BRICK);
+        this.fillWithBlocks(world, boundingBox, 0, 1, 15, 0, 4, 15, StateHelper.NETHER_BRICK);
+        this.fillWithBlocks(world, boundingBox, 0, 1, 18, 0, 4, 18, StateHelper.NETHER_BRICK);
+        this.fillWithBlocks(world, boundingBox, 10, 1, 0, 10, 4, 0, StateHelper.NETHER_BRICK);
+        this.fillWithBlocks(world, boundingBox, 10, 1, 3, 10, 4, 3, StateHelper.NETHER_BRICK);
+        this.fillWithBlocks(world, boundingBox, 10, 1, 6, 10, 4, 6, StateHelper.NETHER_BRICK);
+        this.fillWithBlocks(world, boundingBox, 10, 1, 9, 10, 4, 9, StateHelper.NETHER_BRICK);
+        this.fillWithBlocks(world, boundingBox, 10, 1, 12, 10, 4, 12, StateHelper.NETHER_BRICK);
+        this.fillWithBlocks(world, boundingBox, 10, 1, 15, 10, 4, 15, StateHelper.NETHER_BRICK);
+        this.fillWithBlocks(world, boundingBox, 10, 1, 18, 10, 4, 18, StateHelper.NETHER_BRICK);
+        this.fillWithBlocks(world, boundingBox, 3, 1, 0, 3, 4, 0, StateHelper.NETHER_BRICK);
+        this.fillWithBlocks(world, boundingBox, 7, 1, 0, 7, 4, 0, StateHelper.NETHER_BRICK);
+        this.fillWithBlocks(world, boundingBox, 3, 4, 0, 7, 4, 0, StateHelper.NETHER_BRICK);
+        this.fillWithBlocks(world, boundingBox, 3, 1, 18, 3, 4, 18, StateHelper.NETHER_BRICK);
+        this.fillWithBlocks(world, boundingBox, 7, 1, 18, 7, 4, 18, StateHelper.NETHER_BRICK);
+        this.fillWithBlocks(world, boundingBox, 3, 4, 18, 7, 4, 18, StateHelper.NETHER_BRICK);
 
         // spawners
         ObjectsGenerationHelper.generateMinecraftSpawner(this, world, 3, 0, 3, MobSpawn.getMobForStatueSpawner(random));

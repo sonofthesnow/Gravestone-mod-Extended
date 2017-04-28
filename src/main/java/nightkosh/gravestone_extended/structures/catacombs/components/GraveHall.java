@@ -2,14 +2,12 @@ package nightkosh.gravestone_extended.structures.catacombs.components;
 
 import net.minecraft.block.BlockStairs;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.init.Blocks;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.world.World;
-import nightkosh.gravestone.block.BlockGraveStone;
 import nightkosh.gravestone.helper.GraveGenerationHelper.EnumGraveTypeByEntity;
 import nightkosh.gravestone_extended.config.ExtendedConfig;
-import nightkosh.gravestone_extended.core.GSBlock;
 import nightkosh.gravestone_extended.entity.helper.EntityGroupOfGravesMobSpawnerHelper;
+import nightkosh.gravestone_extended.helper.StateHelper;
 import nightkosh.gravestone_extended.structures.BoundingBoxHelper;
 import nightkosh.gravestone_extended.structures.GraveGenerationHelper;
 import nightkosh.gravestone_extended.structures.MobSpawnHelper;
@@ -52,27 +50,27 @@ public class GraveHall extends CatacombsBaseComponent {
         this.fillWithRandomizedBlocks(world, boundingBox, 7, 1, 18, 9, 3, 18, false, random, stoneBricks);
 
         // web
-        this.randomlyFillWithBlocks(world, boundingBox, random, WEB_GENERATION_CHANCE, 3, 1, 3, 13, 5, 15, Blocks.WEB.getDefaultState(), false);
+        this.randomlyFillWithBlocks(world, boundingBox, random, WEB_GENERATION_CHANCE, 3, 1, 3, 13, 5, 15, StateHelper.WEB, false);
         // piles of bones
         if (ExtendedConfig.generatePilesOfBones) {
             this.fillWithRandomizedPilesOfBones(world, boundingBox, 3, 1, 3, 13, 1, 15, false, random);
         }
 
         // nether floor
-        this.fillWithBlocks(world, boundingBox, 1, 0, 1, 1, 0, 17, netherBrick);
-        this.fillWithBlocks(world, boundingBox, 15, 0, 1, 15, 0, 17, netherBrick);
-        this.fillWithBlocks(world, boundingBox, 5, 0, 3, 5, 0, 15, netherBrick);
-        this.fillWithBlocks(world, boundingBox, 11, 0, 3, 11, 0, 15, netherBrick);
+        this.fillWithBlocks(world, boundingBox, 1, 0, 1, 1, 0, 17, StateHelper.NETHER_BRICK);
+        this.fillWithBlocks(world, boundingBox, 15, 0, 1, 15, 0, 17, StateHelper.NETHER_BRICK);
+        this.fillWithBlocks(world, boundingBox, 5, 0, 3, 5, 0, 15, StateHelper.NETHER_BRICK);
+        this.fillWithBlocks(world, boundingBox, 11, 0, 3, 11, 0, 15, StateHelper.NETHER_BRICK);
 
         // nether floor lines
-        this.fillWithBlocks(world, boundingBox, 2, 0, 1, 14, 0, 1, netherBrick);
-        this.fillWithBlocks(world, boundingBox, 2, 0, 6, 14, 0, 6, netherBrick);
-        this.fillWithBlocks(world, boundingBox, 2, 0, 12, 14, 0, 12, netherBrick);
-        this.fillWithBlocks(world, boundingBox, 2, 0, 17, 14, 0, 17, netherBrick);
+        this.fillWithBlocks(world, boundingBox, 2, 0, 1, 14, 0, 1, StateHelper.NETHER_BRICK);
+        this.fillWithBlocks(world, boundingBox, 2, 0, 6, 14, 0, 6, StateHelper.NETHER_BRICK);
+        this.fillWithBlocks(world, boundingBox, 2, 0, 12, 14, 0, 12, StateHelper.NETHER_BRICK);
+        this.fillWithBlocks(world, boundingBox, 2, 0, 17, 14, 0, 17, StateHelper.NETHER_BRICK);
 
         // floor entrance
-        this.fillWithBlocks(world, boundingBox, 5, 0, 0, 11, 0, 2, netherBrick);
-        this.fillWithBlocks(world, boundingBox, 5, 0, 16, 11, 0, 18, netherBrick);
+        this.fillWithBlocks(world, boundingBox, 5, 0, 0, 11, 0, 2, StateHelper.NETHER_BRICK);
+        this.fillWithBlocks(world, boundingBox, 5, 0, 16, 11, 0, 18, StateHelper.NETHER_BRICK);
 
         // block floor
         this.fillWithRandomizedBlocks(world, boundingBox, 2, 0, 2, 4, 0, 5, false, random, stoneBricks);
@@ -86,20 +84,20 @@ public class GraveHall extends CatacombsBaseComponent {
         this.fillWithRandomizedBlocks(world, boundingBox, 12, 0, 13, 14, 0, 16, false, random, stoneBricks);
 
         // nether ceiling
-        this.fillWithBlocks(world, boundingBox, 1, 6, 1, 1, 6, 17, netherBrick);
-        this.fillWithBlocks(world, boundingBox, 15, 6, 1, 15, 6, 17, netherBrick);
-        this.fillWithBlocks(world, boundingBox, 5, 6, 3, 5, 6, 15, netherBrick);
-        this.fillWithBlocks(world, boundingBox, 11, 6, 3, 11, 6, 15, netherBrick);
+        this.fillWithBlocks(world, boundingBox, 1, 6, 1, 1, 6, 17, StateHelper.NETHER_BRICK);
+        this.fillWithBlocks(world, boundingBox, 15, 6, 1, 15, 6, 17, StateHelper.NETHER_BRICK);
+        this.fillWithBlocks(world, boundingBox, 5, 6, 3, 5, 6, 15, StateHelper.NETHER_BRICK);
+        this.fillWithBlocks(world, boundingBox, 11, 6, 3, 11, 6, 15, StateHelper.NETHER_BRICK);
 
         // nether ceiling lines
-        this.fillWithBlocks(world, boundingBox, 2, 6, 1, 14, 6, 1, netherBrick);
-        this.fillWithBlocks(world, boundingBox, 2, 6, 6, 14, 6, 6, netherBrick);
-        this.fillWithBlocks(world, boundingBox, 2, 6, 12, 14, 6, 12, netherBrick);
-        this.fillWithBlocks(world, boundingBox, 2, 6, 17, 14, 6, 17, netherBrick);
+        this.fillWithBlocks(world, boundingBox, 2, 6, 1, 14, 6, 1, StateHelper.NETHER_BRICK);
+        this.fillWithBlocks(world, boundingBox, 2, 6, 6, 14, 6, 6, StateHelper.NETHER_BRICK);
+        this.fillWithBlocks(world, boundingBox, 2, 6, 12, 14, 6, 12, StateHelper.NETHER_BRICK);
+        this.fillWithBlocks(world, boundingBox, 2, 6, 17, 14, 6, 17, StateHelper.NETHER_BRICK);
 
         // ceiling entrance
-        this.fillWithBlocks(world, boundingBox, 5, 4, 0, 11, 6, 2, netherBrick);
-        this.fillWithBlocks(world, boundingBox, 5, 4, 16, 11, 6, 18, netherBrick);
+        this.fillWithBlocks(world, boundingBox, 5, 4, 0, 11, 6, 2, StateHelper.NETHER_BRICK);
+        this.fillWithBlocks(world, boundingBox, 5, 4, 16, 11, 6, 18, StateHelper.NETHER_BRICK);
 
         // block ceiling
         this.fillWithRandomizedBlocks(world, boundingBox, 2, 6, 2, 4, 6, 5, false, random, stoneBricks);
@@ -113,28 +111,28 @@ public class GraveHall extends CatacombsBaseComponent {
         this.fillWithRandomizedBlocks(world, boundingBox, 12, 6, 13, 14, 6, 16, false, random, stoneBricks);
 
         // nether walls
-        this.fillWithBlocks(world, boundingBox, 1, 1, 1, 1, 5, 1, netherBrick);
-        this.fillWithBlocks(world, boundingBox, 15, 1, 1, 15, 5, 1, netherBrick);
-        this.fillWithBlocks(world, boundingBox, 1, 1, 6, 1, 5, 6, netherBrick);
-        this.fillWithBlocks(world, boundingBox, 15, 1, 6, 15, 5, 6, netherBrick);
-        this.fillWithBlocks(world, boundingBox, 1, 1, 12, 1, 5, 12, netherBrick);
-        this.fillWithBlocks(world, boundingBox, 15, 1, 12, 15, 5, 12, netherBrick);
-        this.fillWithBlocks(world, boundingBox, 1, 1, 17, 1, 5, 17, netherBrick);
-        this.fillWithBlocks(world, boundingBox, 15, 1, 17, 15, 5, 17, netherBrick);
+        this.fillWithBlocks(world, boundingBox, 1, 1, 1, 1, 5, 1, StateHelper.NETHER_BRICK);
+        this.fillWithBlocks(world, boundingBox, 15, 1, 1, 15, 5, 1, StateHelper.NETHER_BRICK);
+        this.fillWithBlocks(world, boundingBox, 1, 1, 6, 1, 5, 6, StateHelper.NETHER_BRICK);
+        this.fillWithBlocks(world, boundingBox, 15, 1, 6, 15, 5, 6, StateHelper.NETHER_BRICK);
+        this.fillWithBlocks(world, boundingBox, 1, 1, 12, 1, 5, 12, StateHelper.NETHER_BRICK);
+        this.fillWithBlocks(world, boundingBox, 15, 1, 12, 15, 5, 12, StateHelper.NETHER_BRICK);
+        this.fillWithBlocks(world, boundingBox, 1, 1, 17, 1, 5, 17, StateHelper.NETHER_BRICK);
+        this.fillWithBlocks(world, boundingBox, 15, 1, 17, 15, 5, 17, StateHelper.NETHER_BRICK);
 
         // nether walls lines
-        this.fillWithBlocks(world, boundingBox, 1, 3, 1, 1, 3, 17, netherBrick);
-        this.fillWithBlocks(world, boundingBox, 15, 3, 1, 15, 3, 17, netherBrick);
-        this.fillWithBlocks(world, boundingBox, 2, 3, 1, 4, 3, 1, netherBrick);
-        this.fillWithBlocks(world, boundingBox, 12, 3, 1, 14, 3, 1, netherBrick);
-        this.fillWithBlocks(world, boundingBox, 2, 3, 17, 4, 3, 17, netherBrick);
-        this.fillWithBlocks(world, boundingBox, 12, 3, 17, 14, 3, 17, netherBrick);
+        this.fillWithBlocks(world, boundingBox, 1, 3, 1, 1, 3, 17, StateHelper.NETHER_BRICK);
+        this.fillWithBlocks(world, boundingBox, 15, 3, 1, 15, 3, 17, StateHelper.NETHER_BRICK);
+        this.fillWithBlocks(world, boundingBox, 2, 3, 1, 4, 3, 1, StateHelper.NETHER_BRICK);
+        this.fillWithBlocks(world, boundingBox, 12, 3, 1, 14, 3, 1, StateHelper.NETHER_BRICK);
+        this.fillWithBlocks(world, boundingBox, 2, 3, 17, 4, 3, 17, StateHelper.NETHER_BRICK);
+        this.fillWithBlocks(world, boundingBox, 12, 3, 17, 14, 3, 17, StateHelper.NETHER_BRICK);
 
         // nether wall entrance
-        this.fillWithBlocks(world, boundingBox, 5, 1, 0, 6, 3, 2, netherBrick);
-        this.fillWithBlocks(world, boundingBox, 10, 1, 0, 11, 3, 2, netherBrick);
-        this.fillWithBlocks(world, boundingBox, 5, 1, 16, 6, 3, 18, netherBrick);
-        this.fillWithBlocks(world, boundingBox, 10, 1, 16, 11, 3, 18, netherBrick);
+        this.fillWithBlocks(world, boundingBox, 5, 1, 0, 6, 3, 2, StateHelper.NETHER_BRICK);
+        this.fillWithBlocks(world, boundingBox, 10, 1, 0, 11, 3, 2, StateHelper.NETHER_BRICK);
+        this.fillWithBlocks(world, boundingBox, 5, 1, 16, 6, 3, 18, StateHelper.NETHER_BRICK);
+        this.fillWithBlocks(world, boundingBox, 10, 1, 16, 11, 3, 18, StateHelper.NETHER_BRICK);
 
         // block walls
         this.fillWithRandomizedBlocks(world, boundingBox, 0, 0, 0, 0, 6, 18, false, random, stoneBricks);
@@ -151,11 +149,10 @@ public class GraveHall extends CatacombsBaseComponent {
         buildColumn(world, 11, 12);
 
         // graves
-        IBlockState graveState = GSBlock.graveStone.getDefaultState();
-        IBlockState leftGraveState = graveState.withProperty(BlockGraveStone.FACING, this.getLeftDirectionForBlocks());
-        IBlockState rightGraveState = graveState.withProperty(BlockGraveStone.FACING, this.getRightDirectionForBlocks());
-        IBlockState topGraveState = graveState.withProperty(BlockGraveStone.FACING, this.getCoordBaseMode().getOpposite());
-        IBlockState botGraveState = graveState.withProperty(BlockGraveStone.FACING, this.getCoordBaseMode());
+        IBlockState leftGraveState = StateHelper.getGravestone(this.getLeftDirectionForBlocks());
+        IBlockState rightGraveState = StateHelper.getGravestone(this.getRightDirectionForBlocks());
+        IBlockState topGraveState = StateHelper.getGravestone(this.getCoordBaseMode().getOpposite());
+        IBlockState botGraveState = StateHelper.getGravestone(this.getCoordBaseMode());
 
         EntityGroupOfGravesMobSpawnerHelper spawnerHelper = GraveGenerationHelper.createSpawnerHelper(world, this.boundingBox);
 
@@ -199,8 +196,8 @@ public class GraveHall extends CatacombsBaseComponent {
         GraveGenerationHelper.placeGrave(this, world, random, 13, 4, 1, botGraveState, spawnerHelper, EnumGraveTypeByEntity.HUMAN_GRAVES);
 
         // trap floor
-        this.fillWithBlocks(world, boundingBox, 7, 0, 6, 9, 0, 6, nightStone);
-        this.fillWithBlocks(world, boundingBox, 7, 0, 12, 9, 0, 12, nightStone);
+        this.fillWithBlocks(world, boundingBox, 7, 0, 6, 9, 0, 6, StateHelper.NIGHTSTONE);
+        this.fillWithBlocks(world, boundingBox, 7, 0, 12, 9, 0, 12, StateHelper.NIGHTSTONE);
 
         // spawn bats
         MobSpawnHelper.spawnBats(world, random, boundingBox);
@@ -209,12 +206,11 @@ public class GraveHall extends CatacombsBaseComponent {
     }
 
     private void buildColumn(World world, int x, int z) {
-        this.fillWithBlocks(world, boundingBox, x, 1, z, x, 5, z, netherBrick);
-        IBlockState netherBrickStairsState = Blocks.NETHER_BRICK_STAIRS.getDefaultState();
-        IBlockState netherBrickStairsTopState = netherBrickStairsState.withProperty(BlockStairs.FACING, this.getCoordBaseMode().getOpposite());
-        IBlockState netherBrickStairsBotState = netherBrickStairsState.withProperty(BlockStairs.FACING, this.getCoordBaseMode());
-        IBlockState netherBrickStairsLeftState = netherBrickStairsState.withProperty(BlockStairs.FACING, this.getLeftDirection(this.getCoordBaseMode()));
-        IBlockState netherBrickStairsRightState = netherBrickStairsState.withProperty(BlockStairs.FACING, this.getRightDirection(this.getCoordBaseMode()));
+        this.fillWithBlocks(world, boundingBox, x, 1, z, x, 5, z, StateHelper.NETHER_BRICK);
+        IBlockState netherBrickStairsTopState = StateHelper.getNetherBrickStairs(this.getCoordBaseMode().getOpposite());
+        IBlockState netherBrickStairsBotState = StateHelper.getNetherBrickStairs(this.getCoordBaseMode());
+        IBlockState netherBrickStairsLeftState = StateHelper.getNetherBrickStairs(this.getLeftDirection(this.getCoordBaseMode()));
+        IBlockState netherBrickStairsRightState = StateHelper.getNetherBrickStairs(this.getRightDirection(this.getCoordBaseMode()));
 
         // stairs
         this.placeBlockAtCurrentPosition(world, netherBrickStairsBotState, x - 1, 1, z - 1, boundingBox);

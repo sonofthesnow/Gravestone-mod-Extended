@@ -1,9 +1,7 @@
 package nightkosh.gravestone_extended.structures;
 
-import net.minecraft.block.BlockChest;
 import net.minecraft.block.BlockDispenser;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntityChest;
@@ -14,14 +12,12 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.storage.loot.LootTableList;
-import nightkosh.gravestone_extended.block.BlockHauntedChest;
-import nightkosh.gravestone_extended.block.BlockPileOfBones;
 import nightkosh.gravestone_extended.block.BlockSpawner;
 import nightkosh.gravestone_extended.block.enums.EnumHauntedChest;
 import nightkosh.gravestone_extended.block.enums.EnumPileOfBones;
 import nightkosh.gravestone_extended.block.enums.EnumSpawner;
-import nightkosh.gravestone_extended.core.GSBlock;
 import nightkosh.gravestone_extended.core.Potion;
+import nightkosh.gravestone_extended.helper.StateHelper;
 import nightkosh.gravestone_extended.tileentity.TileEntityHauntedChest;
 import nightkosh.gravestone_extended.tileentity.TileEntityPileOfBones;
 
@@ -57,7 +53,7 @@ public class ObjectsGenerationHelper {
     }
 
     public static void generatePileOfBones(ComponentGraveStone component, World world, int xCoord, int yCoord, int zCoord, EnumFacing facing, EnumPileOfBones type) {
-        generatePileOfBones(component, world, xCoord, yCoord, zCoord, (byte) facing.getHorizontalIndex(), GSBlock.pileOfBones.getDefaultState().withProperty(BlockPileOfBones.VARIANT, type));
+        generatePileOfBones(component, world, xCoord, yCoord, zCoord, (byte) facing.getHorizontalIndex(), StateHelper.getPileOfBones(type));
     }
 
     /**
@@ -93,7 +89,7 @@ public class ObjectsGenerationHelper {
         int z = component.getZWithOffset(xCoord, zCoord);
 
         BlockPos pos = new BlockPos(x, y, z);
-        world.setBlockState(pos, GSBlock.hauntedChest.getDefaultState().withProperty(BlockHauntedChest.FACING, facing), 2);
+        world.setBlockState(pos, StateHelper.getHauntedChest(facing), 2);
         TileEntityHauntedChest te = (TileEntityHauntedChest) world.getTileEntity(pos);
         if (te != null) {
             te.setChestType(EnumHauntedChest.getById(random.nextInt(EnumHauntedChest.values().length)));
@@ -109,7 +105,7 @@ public class ObjectsGenerationHelper {
         int z = component.getZWithOffset(xCoord, zCoord);
 
         BlockPos pos = new BlockPos(x, y, z);
-        world.setBlockState(pos, Blocks.TRAPPED_CHEST.getDefaultState().withProperty(BlockChest.FACING, facing), 2);
+        world.setBlockState(pos, StateHelper.getTrappedChest(facing), 2);
         TileEntityChest tileentity = (TileEntityChest) world.getTileEntity(pos);
 
         if (tileentity != null) {
@@ -190,7 +186,7 @@ public class ObjectsGenerationHelper {
         int x = component.getXWithOffset(xCoord, zCoord);
         int z = component.getZWithOffset(xCoord, zCoord);
 
-        world.setBlockState(new BlockPos(x, y, z), GSBlock.spawner.getDefaultState().withProperty(BlockSpawner.VARIANT, spawnerType), 2);
+        world.setBlockState(new BlockPos(x, y, z), StateHelper.getSpawner(spawnerType), 2);
     }
 
     /**
@@ -209,7 +205,7 @@ public class ObjectsGenerationHelper {
         int z = component.getZWithOffset(xCoord, zCoord);
 
         BlockPos pos = new BlockPos(x, y, z);
-        world.setBlockState(pos, Blocks.MOB_SPAWNER.getDefaultState());
+        world.setBlockState(pos, StateHelper.MOB_SPAWNER);
         TileEntityMobSpawner tileEntity = (TileEntityMobSpawner) world.getTileEntity(pos);
 
         if (tileEntity != null) {
@@ -226,9 +222,8 @@ public class ObjectsGenerationHelper {
         int z = component.getZWithOffset(xCoord, zCoord);
 
         BlockPos pos = new BlockPos(x, y, z);
-        world.setBlockState(pos, Blocks.DISPENSER.getDefaultState());
-        world.setBlockState(pos, Blocks.DISPENSER.getDefaultState().withProperty(BlockDispenser.FACING, direction)
-                .withProperty(BlockDispenser.TRIGGERED, Boolean.valueOf(false)));
+        world.setBlockState(pos, StateHelper.DISPENSER);
+        world.setBlockState(pos, StateHelper.DISPENSER_TRIGGERED.withProperty(BlockDispenser.FACING, direction));
         TileEntityDispenser dispenser = (TileEntityDispenser) world.getTileEntity(pos);
         if (dispenser != null) {
             generateDispenserContents(random, dispenser);

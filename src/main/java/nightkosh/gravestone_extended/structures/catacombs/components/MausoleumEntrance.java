@@ -1,12 +1,11 @@
 package nightkosh.gravestone_extended.structures.catacombs.components;
 
-import nightkosh.gravestone_extended.structures.BoundingBoxHelper;
-import net.minecraft.block.BlockStairs;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.init.Blocks;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.structure.StructureBoundingBox;
+import nightkosh.gravestone_extended.helper.StateHelper;
+import nightkosh.gravestone_extended.structures.BoundingBoxHelper;
 
 import java.util.Random;
 
@@ -43,16 +42,15 @@ public class MausoleumEntrance extends CatacombsBaseComponent {
             this.boundingBox.offset(0, this.offsetY + 1 - this.boundingBox.minY, 0);
         }
 
-        IBlockState netherBrickStairsState = Blocks.NETHER_BRICK_STAIRS.getDefaultState();
-        IBlockState netherBrickStairsTopState = netherBrickStairsState.withProperty(BlockStairs.FACING, this.getCoordBaseMode().getOpposite());
-        IBlockState netherBrickStairsBotState = netherBrickStairsState.withProperty(BlockStairs.FACING, this.getCoordBaseMode());
-        IBlockState netherBrickStairsLeftState = netherBrickStairsState.withProperty(BlockStairs.FACING, this.getLeftDirectionForBlocks());
-        IBlockState netherBrickStairsRightState = netherBrickStairsState.withProperty(BlockStairs.FACING, this.getRightDirectionForBlocks());
+        IBlockState netherBrickStairsTopState = StateHelper.getNetherBrickStairs(this.getCoordBaseMode().getOpposite());
+        IBlockState netherBrickStairsBotState = StateHelper.getNetherBrickStairs(this.getCoordBaseMode());
+        IBlockState netherBrickStairsLeftState = StateHelper.getNetherBrickStairs(this.getLeftDirectionForBlocks());
+        IBlockState netherBrickStairsRightState = StateHelper.getNetherBrickStairs(this.getRightDirectionForBlocks());
         this.fillWithAir(world, boundingBox, 0, 0, 6, 13, 5, 13);
 
         // fire
-        this.placeBlockAtCurrentPosition(world, Blocks.NETHERRACK.getDefaultState(), 4, 0, 9, boundingBox);
-        this.placeBlockAtCurrentPosition(world, Blocks.FIRE.getDefaultState(), 4, 1, 9, boundingBox);
+        this.placeBlockAtCurrentPosition(world, StateHelper.NETHERRACK, 4, 0, 9, boundingBox);
+        this.placeBlockAtCurrentPosition(world, StateHelper.FIRE, 4, 1, 9, boundingBox);
 
         // fire stairs
         this.placeBlockAtCurrentPosition(world, netherBrickStairsBotState, 3, 0, 8, boundingBox);
@@ -66,13 +64,13 @@ public class MausoleumEntrance extends CatacombsBaseComponent {
 
         for (int x = 3; x < 5; x++) {
             for (int z = 8; z < 10; z++) {
-                this.fillDownwards(world, netherBrick, x, -1, z, boundingBox);
+                this.fillDownwards(world, StateHelper.NETHER_BRICK, x, -1, z, boundingBox);
             }
         }
 
         // fire
-        this.placeBlockAtCurrentPosition(world, Blocks.NETHERRACK.getDefaultState(), 9, 0, 9, boundingBox);
-        this.placeBlockAtCurrentPosition(world, Blocks.FIRE.getDefaultState(), 9, 1, 9, boundingBox);
+        this.placeBlockAtCurrentPosition(world, StateHelper.NETHERRACK, 9, 0, 9, boundingBox);
+        this.placeBlockAtCurrentPosition(world, StateHelper.FIRE, 9, 1, 9, boundingBox);
 
         // fire stairs
         this.placeBlockAtCurrentPosition(world, netherBrickStairsBotState, 8, 0, 8, boundingBox);
@@ -86,13 +84,13 @@ public class MausoleumEntrance extends CatacombsBaseComponent {
 
         for (int x = 3; x < 6; x++) {
             for (int z = 8; z < 11; z++) {
-                this.fillDownwards(world, netherBrick, x, -1, z, boundingBox);
+                this.fillDownwards(world, StateHelper.NETHER_BRICK, x, -1, z, boundingBox);
             }
         }
 
         for (int x = 8; x < 11; x++) {
             for (int z = 8; z < 11; z++) {
-                this.fillDownwards(world, netherBrick, x, -1, z, boundingBox);
+                this.fillDownwards(world, StateHelper.NETHER_BRICK, x, -1, z, boundingBox);
             }
         }
 

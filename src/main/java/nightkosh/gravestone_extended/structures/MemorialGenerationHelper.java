@@ -1,7 +1,7 @@
 package nightkosh.gravestone_extended.structures;
 
-import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import nightkosh.gravestone.api.grave.EnumGraveMaterial;
 import nightkosh.gravestone.helper.DeathTextHelper;
@@ -9,8 +9,8 @@ import nightkosh.gravestone.helper.GraveGenerationHelper;
 import nightkosh.gravestone.tileentity.GraveStoneDeathText;
 import nightkosh.gravestone_extended.block.BlockMemorial;
 import nightkosh.gravestone_extended.block.enums.EnumMemorials;
-import nightkosh.gravestone_extended.core.GSBlock;
 import nightkosh.gravestone_extended.helper.GraveWorldGenerationHelper;
+import nightkosh.gravestone_extended.helper.StateHelper;
 import nightkosh.gravestone_extended.tileentity.TileEntityMemorial;
 
 import java.util.Random;
@@ -54,7 +54,7 @@ public class MemorialGenerationHelper {
 
     public static void placeMemorial(IComponentGraveStone component, World world, Random random, int x, int y, int z, EnumFacing facing,
                                      EnumMemorials.EnumMemorialType[] memorialTypes, GraveGenerationHelper.EnumGraveTypeByEntity graveTypeByEntity) {
-        component.placeBlockAtCurrentPosition(world, GSBlock.memorial.getDefaultState().withProperty(BlockMemorial.FACING, facing), x, y, z, component.getIBoundingBox());
+        component.placeBlockAtCurrentPosition(world, StateHelper.getMemorial(facing), x, y, z, component.getIBoundingBox());
         TileEntityMemorial tileEntity = (TileEntityMemorial) world.getTileEntity(new BlockPos(component.getIXWithOffset(x, z), component.getIYWithOffset(y), component.getIZWithOffset(x, z)));
 
         if (tileEntity != null) {

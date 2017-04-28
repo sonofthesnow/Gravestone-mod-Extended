@@ -1,12 +1,12 @@
 package nightkosh.gravestone_extended.structures.catacombs;
 
-import net.minecraft.init.Blocks;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.structure.StructureComponent;
 import nightkosh.gravestone_extended.config.ExtendedConfig;
-import nightkosh.gravestone_extended.core.GSBlock;
 import nightkosh.gravestone_extended.core.logger.GSLogger;
+import nightkosh.gravestone_extended.helper.StateHelper;
 import nightkosh.gravestone_extended.structures.catacombs.components.CatacombsBaseComponent;
 import nightkosh.gravestone_extended.structures.catacombs.components.Corridor;
 
@@ -75,8 +75,8 @@ public class CatacombsLevel {
         return (level < 3) ? catacombsStoneBlocks : catacombsBoneBlocks;
     }
 
-    public static net.minecraft.block.Block getCatacombsStairsByLevelId(int level) {
-        return (level < 3) ? Blocks.STONE_BRICK_STAIRS : GSBlock.boneStairs;
+    public static IBlockState getCatacombsStairsByLevelId(int level) {
+        return (level < 3) ? StateHelper.STONE_BRICK_STAIRS_TOP : StateHelper.BONE_STAIRS_TOP;
     }
 
     public final void prepareLevel(List<CatacombsBaseComponent> currentComponents) {

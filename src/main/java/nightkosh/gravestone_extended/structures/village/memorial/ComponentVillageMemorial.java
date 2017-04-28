@@ -2,7 +2,6 @@ package nightkosh.gravestone_extended.structures.village.memorial;
 
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Biomes;
-import net.minecraft.init.Blocks;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -10,6 +9,7 @@ import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.structure.StructureBoundingBox;
 import net.minecraft.world.gen.structure.StructureComponent;
 import net.minecraft.world.gen.structure.StructureVillagePieces;
+import nightkosh.gravestone_extended.helper.StateHelper;
 import nightkosh.gravestone_extended.structures.IComponentGraveStone;
 import nightkosh.gravestone_extended.structures.MemorialGenerationHelper;
 
@@ -60,9 +60,9 @@ public class ComponentVillageMemorial extends StructureVillagePieces.Village imp
         IBlockState groundState;
         Biome biome = world.getBiomeGenForCoords(new BlockPos(this.getXWithOffset(0, 0), this.getYWithOffset(0), this.getZWithOffset(0, 0)));
         if (biome == Biomes.DESERT || biome == Biomes.DESERT_HILLS) {
-            groundState = Blocks.SAND.getDefaultState();
+            groundState = StateHelper.SAND;
         } else {
-            groundState = Blocks.GRASS.getDefaultState();
+            groundState = StateHelper.GRASS;
         }
 
         this.fillWithBlocks(world, structureBoundingBox, 0, -5, 0, 5, 0, 5, groundState, groundState, false);
