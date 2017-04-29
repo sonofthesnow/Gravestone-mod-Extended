@@ -1,8 +1,10 @@
 package nightkosh.gravestone_extended.structures.village.undertaker;
 
+import net.minecraft.block.BlockDoor;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.item.EntityPainting;
 import net.minecraft.init.Biomes;
+import net.minecraft.init.Blocks;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
@@ -145,7 +147,6 @@ public class ComponentVillageUndertaker extends StructureVillagePieces.Village i
             this.setBlockState(world, StateHelper.STAINED_GLASS_PANE_GRAY, 10, 2, 2, boundingBox);
 
             // door
-//            this.placeDoorCurrentPosition(world, boundingBox, random, 8, 1, 2, EnumFacing.getHorizontal(this.getMetadataWithOffset(Blocks.DARK_OAK_DOOR, 3))); //TODO
             this.placeDoorCurrentPosition(world, boundingBox, random, 8, 1, 2, EnumFacing.NORTH);
 
             // book shelf
@@ -156,7 +157,7 @@ public class ComponentVillageUndertaker extends StructureVillagePieces.Village i
             this.generateSkullCandle(world, boundingBox, 10, 2, 4, getCoordBaseMode());
 
             // painting
-            this.generatePainting(world, 5, 2, 3, getCoordBaseMode());
+            this.generatePainting(world, 6, 2, 3, getCoordBaseMode());
 
             // bed
             this.generateBed(world, 9, 1, 3, boundingBox);
@@ -251,6 +252,12 @@ public class ComponentVillageUndertaker extends StructureVillagePieces.Village i
     }
 
     @Override
+    protected void placeDoorCurrentPosition(World worldIn, StructureBoundingBox boundingBoxIn, Random rand, int x, int y, int z, EnumFacing facing) {
+        this.setBlockState(worldIn, Blocks.DARK_OAK_DOOR.getDefaultState().withProperty(BlockDoor.FACING, facing), x, y, z, boundingBoxIn);
+        this.setBlockState(worldIn, Blocks.DARK_OAK_DOOR.getDefaultState().withProperty(BlockDoor.FACING, facing).withProperty(BlockDoor.HALF, BlockDoor.EnumDoorHalf.UPPER), x, y + 1, z, boundingBoxIn);
+    }
+
+    @Override
     protected void setBlockState(World world, IBlockState blockState, int x, int y, int z, StructureBoundingBox boundingBox) {
         int xPos = this.getXWithOffset(x, z);
         int yPos = this.getYWithOffset(y);
@@ -333,10 +340,12 @@ public class ComponentVillageUndertaker extends StructureVillagePieces.Village i
     }
 
     public static int getPaintingZCoordinateShift(EnumFacing direction) {
-        if (direction == EnumFacing.SOUTH || direction == EnumFacing.NORTH) {
-            return 1;
-        } else {
-            return 0;
+        switch (direction) {
+            case SOUTH:
+            case WEST:
+                return 1;
+            default:
+                return 0;
         }
     }
 
