@@ -40,8 +40,8 @@ public class Entity {
     public static final String SKULL_CRAWLER_NAME = "GSSkullCrawler";
     public static final String WITHER_SKULL_CRAWLER_NAME = "GSWitherSkullCrawler";
     public static final String ZOMBIE_SKULL_CRAWLER_NAME = "GSZombieSkullCrawler";
-    public static final String ZOMBIE_HORSE_NAME = "zombiehorse";
-    public static final String SKELETON_HORSE_NAME = "skeletonhorse";
+    public static final String ZOMBIE_HORSE_NAME = "GSZombieHorse";
+    public static final String SKELETON_HORSE_NAME = "GSSkeletonHorse";
     public static final String SKELETON_RAIDER_NAME = "GSSkeletonRaider";
     public static final String ZOMBIE_RAIDER_NAME = "GSZombieRaider";
     public static final String RAVEN_NAME = "GSRaven";
@@ -55,6 +55,8 @@ public class Entity {
     public static final String MINECRAFT_SPIDER_ID = "Spider";
     public static final String MINECRAFT_CAVE_SPIDER_ID = "CaveSpider";
     public static final String MINECRAFT_WITHER_ID = "WitherBoss";
+    public static final String MINECRAFT_ZOMBIE_HORSE_NAME = "zombiehorse";
+    public static final String MINECRAFT_SKELETON_HORSE_NAME = "skeletonhorse";
 
     public static final String SKELETON_ID = ModInfo.ID + "." + SKELETON_NAME;
     public static final String ZOMBIE_DOG_ID = ModInfo.ID + "." + ZOMBIE_DOG_NAME;

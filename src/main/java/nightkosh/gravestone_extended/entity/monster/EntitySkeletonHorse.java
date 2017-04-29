@@ -3,7 +3,9 @@ package nightkosh.gravestone_extended.entity.monster;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityAIAvoidEntity;
 import net.minecraft.entity.passive.EntityWolf;
+import net.minecraft.util.text.translation.I18n;
 import net.minecraft.world.World;
+import nightkosh.gravestone_extended.core.Entity;
 
 /**
  * GraveStone mod
@@ -28,5 +30,14 @@ public class EntitySkeletonHorse extends EntityUndeadHorse {
     protected void applyEntityAttributes() {
         super.applyEntityAttributes();
         this.getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(3);
+    }
+
+    @Override
+    public String getName() {
+        if (this.hasCustomName()) {
+            return this.getCustomNameTag();
+        } else {
+            return I18n.translateToLocal("entity." + Entity.MINECRAFT_SKELETON_HORSE_NAME + ".name");
+        }
     }
 }

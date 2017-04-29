@@ -15,8 +15,10 @@ import net.minecraft.entity.passive.EntityVillager;
 import net.minecraft.entity.passive.EntityWolf;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.text.translation.I18n;
 import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.World;
+import nightkosh.gravestone_extended.core.Entity;
 
 /**
  * GraveStone mod
@@ -123,5 +125,14 @@ public class EntityZombieHorse extends EntityUndeadHorse {
     protected void applyEntityAttributes() {
         super.applyEntityAttributes();
         this.getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(5);
+    }
+
+    @Override
+    public String getName() {
+        if (this.hasCustomName()) {
+            return this.getCustomNameTag();
+        } else {
+            return I18n.translateToLocal("entity." + Entity.MINECRAFT_ZOMBIE_HORSE_NAME + ".name");
+        }
     }
 }
