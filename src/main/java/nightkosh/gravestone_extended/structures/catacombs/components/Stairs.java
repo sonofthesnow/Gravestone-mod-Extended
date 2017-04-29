@@ -85,9 +85,10 @@ public class Stairs extends CatacombsBaseComponent {
             this.randomlyFillWithBlocks(world, boundingBox, random, 0.2F, 3, shiftY - 5, shiftZ + 3, 3, shiftY - 5, shiftZ + 3, StateHelper.WEB, false);
         }
 
-        this.fillWithBlocks(world, boundingBox, 0, 0, Z_LENGTH - 1, 4, 0, Z_LENGTH - 1, StateHelper.NETHER_BRICK);
         this.fillWithRandomizedBlocks(world, boundingBox, 0, 0, Z_LENGTH - 1, 0, 4, Z_LENGTH - 1, false, random, stoneBricks);
         this.fillWithRandomizedBlocks(world, boundingBox, 4, 0, Z_LENGTH - 1, 4, 4, Z_LENGTH - 1, false, random, stoneBricks);
+        this.fillWithRandomizedBlocks(world, boundingBox, 0, 0, Z_LENGTH , 4, 4, Z_LENGTH, false, random, stoneBricks);
+        this.fillWithBlocks(world, boundingBox, 0, 0, Z_LENGTH - 1, 4, 0, Z_LENGTH, StateHelper.NETHER_BRICK);
         return true;
     }
 }
