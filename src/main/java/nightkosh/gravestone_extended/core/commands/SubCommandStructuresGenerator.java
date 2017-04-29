@@ -2,8 +2,10 @@ package nightkosh.gravestone_extended.core.commands;
 
 import net.minecraft.command.CommandException;
 import net.minecraft.command.ICommandSender;
+import net.minecraft.entity.Entity;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.text.Style;
 import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.util.text.TextFormatting;
@@ -49,7 +51,7 @@ public class SubCommandStructuresGenerator implements ISubCommand {
             String structureName = args[1];
             int x = sender.getPosition().getX();
             int z = sender.getPosition().getZ();
-            EnumFacing facing = EnumFacing.NORTH;
+            EnumFacing facing = EnumFacing.getHorizontal(MathHelper.floor_double((double) (((Entity) sender).rotationYaw * 4 / 360F) + 0.5) & 3);
             try {
                 if (args.length >= 3) {
                     x = Integer.parseInt(args[2]);

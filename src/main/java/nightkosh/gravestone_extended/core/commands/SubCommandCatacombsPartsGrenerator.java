@@ -2,8 +2,10 @@ package nightkosh.gravestone_extended.core.commands;
 
 import net.minecraft.command.CommandException;
 import net.minecraft.command.ICommandSender;
+import net.minecraft.entity.Entity;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.text.Style;
 import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.util.text.TextFormatting;
@@ -50,7 +52,7 @@ public class SubCommandCatacombsPartsGrenerator implements ISubCommand {
             int y = sender.getPosition().getY();
             int z = sender.getPosition().getZ();
             int level = 0;
-            EnumFacing facing = EnumFacing.NORTH;
+            EnumFacing facing = EnumFacing.getHorizontal(MathHelper.floor_double((double) (((Entity) sender).rotationYaw * 4 / 360F) + 0.5) & 3);
             try {
                 if (args.length >= 3) {
                     facing = EnumFacing.byName(args[2]);
