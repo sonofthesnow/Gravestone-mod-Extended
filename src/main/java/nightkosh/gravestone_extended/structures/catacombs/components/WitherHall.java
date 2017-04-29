@@ -42,10 +42,10 @@ public class WitherHall extends CatacombsBaseComponent {
         Vec3i center = boundingBox.getCenter();
         GSLogger.logInfo("Generate Wither hall at " + center.getX() + "x" + center.getY() + "x" + center.getZ());
 
-        netherBrickStairsTopState = StateHelper.getNetherBrickStairs(this.getCoordBaseMode().getOpposite());
-        netherBrickStairsBotState = StateHelper.getNetherBrickStairs(this.getCoordBaseMode());
-        netherBrickStairsLeftState = StateHelper.getNetherBrickStairs(this.getLeftDirectionForBlocks());
-        netherBrickStairsRightState = StateHelper.getNetherBrickStairs(this.getRightDirectionForBlocks());
+        netherBrickStairsTopState = StateHelper.NETHER_BRICK_STAIRS_SOUTH;
+        netherBrickStairsBotState = StateHelper.NETHER_BRICK_STAIRS_NORTH;
+        netherBrickStairsLeftState = StateHelper.NETHER_BRICK_STAIRS_EAST;
+        netherBrickStairsRightState = StateHelper.NETHER_BRICK_STAIRS_WEST;
 
 
         netherBrickStairsTopUPState = netherBrickStairsTopState.withProperty(BlockStairs.HALF, BlockStairs.EnumHalf.TOP);

@@ -62,9 +62,9 @@ public class CatacombsEntrance extends CatacombsBaseComponent {
     public boolean addComponentParts(World world, Random random) {
         BlockSelector stoneBricks = getCemeteryCatacombsStones();
         int top = boundingBox.maxY - boundingBox.minY - 1;
-        IBlockState netherBrickStairsBotState = StateHelper.getNetherBrickStairs(this.getCoordBaseMode().getOpposite());
+        IBlockState netherBrickStairsBotState = StateHelper.NETHER_BRICK_STAIRS_SOUTH;
 
-        IBlockState stairsTopState = StateHelper.getStairs(StateHelper.STONE_BRICK_STAIRS_TOP, this.getCoordBaseMode());
+        IBlockState stairsTopState = StateHelper.getStairs(StateHelper.STONE_BRICK_STAIRS_TOP, EnumFacing.NORTH);
         int shiftY = top;
         int shiftZ = 0;
         int i;

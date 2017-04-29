@@ -63,15 +63,15 @@ public class TrapCorridor extends CatacombsBaseComponent {
         this.placeBlockAtCurrentPosition(world, StateHelper.STONEBRICK, 6, 1, 2, boundingBox);
 
         // tripWire hook
-        this.placeBlockAtCurrentPosition(world, StateHelper.getTripWireHook(this.getRightDirectionForBlocks().getOpposite()), 1, 1, 2, boundingBox);
-        this.placeBlockAtCurrentPosition(world, StateHelper.getTripWireHook(this.getLeftDirectionForBlocks().getOpposite()), 5, 1, 2, boundingBox);
+        this.placeBlockAtCurrentPosition(world, StateHelper.getTripWireHook(EnumFacing.EAST), 1, 1, 2, boundingBox);
+        this.placeBlockAtCurrentPosition(world, StateHelper.getTripWireHook(EnumFacing.WEST), 5, 1, 2, boundingBox);
 
         // tripWire
         this.fillWithBlocks(world, boundingBox, 2, 1, 2, 4, 1, 2, StateHelper.TRIPWIRE);
 
         //dispencer
-        ObjectsGenerationHelper.generateDispenser(world, this, random, 0, 2, 2, this.getRightDirectionForBlocks().getOpposite());
-        ObjectsGenerationHelper.generateDispenser(world, this, random, 6, 2, 2, this.getLeftDirectionForBlocks().getOpposite());
+        ObjectsGenerationHelper.generateDispenser(world, this, random, 0, 2, 2, this.getLeftDirectionForBlocks());
+        ObjectsGenerationHelper.generateDispenser(world, this, random, 6, 2, 2, this.getRightDirectionForBlocks());
         this.placeBlockAtCurrentPosition(world, StateHelper.AIR, 1, 2, 2, boundingBox);
         this.placeBlockAtCurrentPosition(world, StateHelper.AIR, 5, 2, 2, boundingBox);
 

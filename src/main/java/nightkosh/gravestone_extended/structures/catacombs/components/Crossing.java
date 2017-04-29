@@ -133,10 +133,10 @@ public class Crossing extends CatacombsBaseComponent {
         this.placeBlockAtCurrentPosition(world, StateHelper.FIRE, 11, 2, 1, boundingBox);
 
         // fire stairs
-        IBlockState netherBrickStairsTopState = StateHelper.getNetherBrickStairs(this.getCoordBaseMode().getOpposite());
-        IBlockState netherBrickStairsBotState = StateHelper.getNetherBrickStairs(this.getCoordBaseMode());
-        IBlockState netherBrickStairsLeftState = StateHelper.getNetherBrickStairs(this.getLeftDirectionForBlocks());
-        IBlockState netherBrickStairsRightState = StateHelper.getNetherBrickStairs(this.getRightDirectionForBlocks());
+        IBlockState netherBrickStairsTopState = StateHelper.NETHER_BRICK_STAIRS_SOUTH;
+        IBlockState netherBrickStairsBotState = StateHelper.NETHER_BRICK_STAIRS_NORTH;
+        IBlockState netherBrickStairsLeftState = StateHelper.NETHER_BRICK_STAIRS_EAST;
+        IBlockState netherBrickStairsRightState = StateHelper.NETHER_BRICK_STAIRS_WEST;
         this.placeBlockAtCurrentPosition(world, netherBrickStairsTopState, 1, 1, 2, boundingBox);
         this.placeBlockAtCurrentPosition(world, netherBrickStairsRightState, 2, 1, 2, boundingBox);
         this.placeBlockAtCurrentPosition(world, netherBrickStairsRightState, 2, 1, 1, boundingBox);

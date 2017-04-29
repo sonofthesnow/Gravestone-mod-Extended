@@ -42,10 +42,10 @@ public class MausoleumEntrance extends CatacombsBaseComponent {
             this.boundingBox.offset(0, this.offsetY + 1 - this.boundingBox.minY, 0);
         }
 
-        IBlockState netherBrickStairsTopState = StateHelper.getNetherBrickStairs(this.getCoordBaseMode().getOpposite());
-        IBlockState netherBrickStairsBotState = StateHelper.getNetherBrickStairs(this.getCoordBaseMode());
-        IBlockState netherBrickStairsLeftState = StateHelper.getNetherBrickStairs(this.getLeftDirectionForBlocks());
-        IBlockState netherBrickStairsRightState = StateHelper.getNetherBrickStairs(this.getRightDirectionForBlocks());
+        IBlockState netherBrickStairsTopState = StateHelper.NETHER_BRICK_STAIRS_SOUTH;
+        IBlockState netherBrickStairsBotState = StateHelper.NETHER_BRICK_STAIRS_NORTH;
+        IBlockState netherBrickStairsLeftState = StateHelper.NETHER_BRICK_STAIRS_EAST;
+        IBlockState netherBrickStairsRightState = StateHelper.NETHER_BRICK_STAIRS_WEST;
         this.fillWithAir(world, boundingBox, 0, 0, 6, 13, 5, 13);
 
         // fire
