@@ -26,7 +26,7 @@ import java.util.Random;
 public class SubCommandCatacombsPartsGrenerator implements ISubCommand {
 
     public static final String COMMAND_NAME = "catacombs_part";
-    public static final String COMMAND_USAGE = Command.MAIN_COMMAND_NAME + COMMAND_NAME + " <part name> <x coordinate> <y coordinate> <z coordinate> <direction> <level>";
+    public static final String COMMAND_USAGE = Command.MAIN_COMMAND_NAME + COMMAND_NAME + " <part name> <direction> <x coordinate> <y coordinate> <z coordinate> <level>";
 
 
     @Override
@@ -53,17 +53,17 @@ public class SubCommandCatacombsPartsGrenerator implements ISubCommand {
             EnumFacing facing = EnumFacing.NORTH;
             try {
                 if (args.length >= 3) {
-                    x = Integer.parseInt(args[2]);
+                    facing = EnumFacing.byName(args[2]);
+                    if (facing == null) {
+                        sender.addChatMessage(new TextComponentTranslation("commands.direction_error").setStyle(new Style().setColor(TextFormatting.RED)));
+                        return;
+                    }
                     if (args.length >= 4) {
-                        y = Integer.parseInt(args[3]);
+                        x = Integer.parseInt(args[3]);
                         if (args.length >= 5) {
-                            z = Integer.parseInt(args[4]);
+                            y = Integer.parseInt(args[4]);
                             if (args.length >= 6) {
-                                facing = EnumFacing.byName(args[5]);
-                                if (facing == null) {
-                                    sender.addChatMessage(new TextComponentTranslation("commands.direction_error").setStyle(new Style().setColor(TextFormatting.RED)));
-                                    return;
-                                }
+                                z = Integer.parseInt(args[5]);
                                 if (args.length >= 7) {
                                     level = Integer.parseInt(args[6]);
                                 }
