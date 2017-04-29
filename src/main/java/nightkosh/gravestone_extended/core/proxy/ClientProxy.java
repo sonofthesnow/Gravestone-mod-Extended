@@ -248,5 +248,17 @@ public class ClientProxy extends CommonProxy {
             Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(GSItem.spawnEgg, egg.ordinal(), ResourcesModels.spawnEggModel);
         }
         ModelBakery.registerItemVariants(GSItem.spawnEgg, ResourcesModels.spawnEggModel);
+        FMLClientHandler.instance().getClient().getItemColors().registerItemColorHandler((stack, tintIndex) -> {
+            int itemDamage = stack.getItemDamage();
+            if (itemDamage >= 0 && itemDamage < ItemGSMonsterPlacer.EnumEggs.values().length) {
+                if ((tintIndex & 1) == 0) {
+                    return ItemGSMonsterPlacer.EnumEggs.getById(itemDamage).getBackgroundColor();
+                } else {
+                    return ItemGSMonsterPlacer.EnumEggs.getById(itemDamage).getForegroundColor();
+                }
+            }
+            return 0xFFFFFF;
+        }, GSItem.spawnEgg);
+
     }
 }

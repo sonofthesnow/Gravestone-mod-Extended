@@ -125,19 +125,6 @@ public class ItemGSMonsterPlacer extends ItemMonsterPlacer {
         return str.toString();
     }
 
-//    @Override //TODO
-    public int getColorFromItemStack(ItemStack item, int colorID) {
-        int itemDamage = item.getItemDamage();
-        if (itemDamage >= 0 && itemDamage < EnumEggs.values().length) {
-            if ((colorID & 1) == 0) {
-                return EnumEggs.getById(itemDamage).getBackgroundColor();
-            } else {
-                return EnumEggs.getById(itemDamage).getForegroundColor();
-            }
-        }
-        return 0xFFFFFF;
-    }
-
     /**
      * Callback for item usage. If the item does something special on right clicking, he will have one of those. Return
      * True if something happen and false if it don't. This is for ITEMS, not BLOCKS
@@ -234,9 +221,9 @@ public class ItemGSMonsterPlacer extends ItemMonsterPlacer {
     }
 
     @Override
-    public void getSubItems(Item item, CreativeTabs tabs, List subitems) {
+    public void getSubItems(Item item, CreativeTabs tabs, List subItems) {
         for (int i = 0; i < EnumEggs.values().length; i++) {
-            subitems.add(new ItemStack(item, 1, i));
+            subItems.add(new ItemStack(item, 1, i));
         }
     }
 }
