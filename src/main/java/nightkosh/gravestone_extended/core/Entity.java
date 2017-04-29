@@ -107,12 +107,14 @@ public class Entity {
         registerModEntity(EntityZombieSkullCrawler.class, ZOMBIE_SKULL_CRAWLER_NAME);
 
         registerModEntity(EntityGSSkeleton.class, SKELETON_NAME);
-//        EntityRegistry.addSpawn(EntityGSSkeleton.class, 1, 1, 3, EnumCreatureType.MONSTER);
-//        EntityRegistry.removeSpawn(EntitySkeleton.class, new BiomeGenBase.SpawnListEntry(EntitySkeleton.class, 100, 4, 4));
-        //this.spawnableMonsterList.add(new BiomeGenBase.SpawnListEntry(EntitySkeleton.class, 100, 4, 4));
-        //TODO addSpawn
+        EntityRegistry.addSpawn(EntityGSSkeleton.class, 1, 1, 3, EnumCreatureType.MONSTER);
+
         registerModEntity(EntityZombieHorse.class, ZOMBIE_HORSE_NAME);
         registerModEntity(EntitySkeletonHorse.class, SKELETON_HORSE_NAME);
+        if (ExtendedConfig.spawnUndeadHorses) {
+            EntityRegistry.addSpawn(EntityZombieHorse.class, 2, 1, 3, EnumCreatureType.MONSTER, BiomeDictionary.getBiomesForType(BiomeDictionary.Type.PLAINS));
+            EntityRegistry.addSpawn(EntitySkeletonHorse.class, 2, 1, 3, EnumCreatureType.MONSTER, BiomeDictionary.getBiomesForType(BiomeDictionary.Type.PLAINS));
+        }
 
         registerModEntity(EntityZombieRaider.class, ZOMBIE_RAIDER_NAME);
         if (ExtendedConfig.spawnZombieRaiders) {
@@ -124,7 +126,7 @@ public class Entity {
         }
 
         registerModEntity(EntityRaven.class, RAVEN_NAME);
-        EntityRegistry.addSpawn(EntityRaven.class, 1, 3, 10, EnumCreatureType.AMBIENT);
+//        EntityRegistry.addSpawn(EntityRaven.class, 1, 3, 10, EnumCreatureType.AMBIENT);//TODO!!!!
 
         // Damned Warrior
         registerModEntity(EntityDamnedWarrior.class, DAMNED_WARRIOR_NAME);
