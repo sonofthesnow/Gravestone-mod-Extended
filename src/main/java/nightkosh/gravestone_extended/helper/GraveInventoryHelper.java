@@ -5,7 +5,6 @@ import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import nightkosh.gravestone.helper.GraveGenerationHelper.EnumGraveTypeByEntity;
-import nightkosh.gravestone_extended.core.Potion;
 import nightkosh.gravestone_extended.item.corpse.CatCorpseHelper;
 import nightkosh.gravestone_extended.item.corpse.DogCorpseHelper;
 import nightkosh.gravestone_extended.item.corpse.HorseCorpseHelper;
@@ -22,14 +21,6 @@ import java.util.Random;
  * @license Lesser GNU Public License v3 (http://www.gnu.org/licenses/lgpl.html)
  */
 public class GraveInventoryHelper {
-    private static final int[] POTION_LIST = {
-            Potion.REGENERATION_POTION_ID, Potion.SWIFTNESS_POTION_ID, Potion.FIRE_RESISTANCE_POTION_ID,
-            Potion.HEALING_POTION_ID, Potion.NIGHT_VISION_POTION_ID, Potion.STRENGTH_POTION_ID,
-            Potion.INVISIBILITY_POTION_ID, Potion.WATER_BREATHING_POTION_ID, Potion.LEAPING_POTION_ID,
-            Potion.SPLASH_REGENERATION_POTION_ID, Potion.SPLASH_SWIFTNESS_POTION_ID, Potion.SPLASH_FIRE_RESISTANCE_POTION_ID,
-            Potion.SPLASH_HEALING_POTION_ID, Potion.SPLASH_NIGHT_VISION_POTION_ID, Potion.SPLASH_STRENGTH_POTION_ID,
-            Potion.SPLASH_INVISIBILITY_POTION_ID, Potion.SPLASH_WATER_BREATHING_POTION_ID, Potion.SPLASH_LEAPING_POTION_ID
-    };
 
     public static enum GraveCorpseContentType {
         EMPTY,
@@ -373,7 +364,7 @@ public class GraveInventoryHelper {
                 itemList.add(EnchantmentHelper.addRandomEnchantment(random, new ItemStack(Items.BOOK), 5, true));
                 break;
             case QUARTZ:
-                itemList.add(new ItemStack(Items.POTIONITEM, 1 + random.nextInt(5), POTION_LIST[random.nextInt(POTION_LIST.length)]));
+                itemList.add(PotionHelper.getGravesPotion(random));
                 break;
             case LAPIS:
                 itemList.add(new ItemStack(Items.BOOK, 3 + random.nextInt(8), 0));
@@ -692,7 +683,7 @@ public class GraveInventoryHelper {
                     GraveInventoryHelper.fillPetGrave(itemList, contentMaterials);
                     break;
                 case HORSE_GRAVES:
-                    break;
+                    break;//TODO !!!!!
                 default:
                     switch (contentType) {
                         case WORKER:
