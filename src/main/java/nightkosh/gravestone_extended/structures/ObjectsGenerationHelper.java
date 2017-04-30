@@ -4,6 +4,8 @@ import net.minecraft.block.BlockDispenser;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
+import net.minecraft.potion.PotionEffect;
+import net.minecraft.potion.PotionUtils;
 import net.minecraft.tileentity.TileEntityChest;
 import net.minecraft.tileentity.TileEntityDispenser;
 import net.minecraft.tileentity.TileEntityMobSpawner;
@@ -21,6 +23,7 @@ import nightkosh.gravestone_extended.helper.StateHelper;
 import nightkosh.gravestone_extended.tileentity.TileEntityHauntedChest;
 import nightkosh.gravestone_extended.tileentity.TileEntityPileOfBones;
 
+import java.util.ArrayList;
 import java.util.Random;
 
 /**
@@ -30,10 +33,10 @@ import java.util.Random;
  * @license Lesser GNU Public License v3 (http://www.gnu.org/licenses/lgpl.html)
  */
 public class ObjectsGenerationHelper {
-    private static final int[] POTIONS = {
+    private static final PotionEffect[] POTIONS = {
             Potion.SPLASH_POISON_2_POTION_ID, Potion.SPLASH_HARM_POTION_2_ID,
-            Potion.SPLASH_WEAKNESS_POTION_ID, Potion.SPLASH_SLOWNESS_POTION_ID,
-            Potion.SPLASH_INVISIBILITY_POTION_ID
+            Potion.SPLASH_WEAKNESS_POTION_ID, Potion.SPLASH_SLOWNESS_POTION_ID//,
+//            Potion.SPLASH_INVISIBILITY_POTION_ID
     };
 
     private ObjectsGenerationHelper() {
@@ -235,7 +238,11 @@ public class ObjectsGenerationHelper {
      */
     public static void generateDispenserContents(Random random, TileEntityDispenser dispenserEntity) {
         for (int i = 0; i < 9; i++) {
-            ItemStack stack = new ItemStack(Items.POTIONITEM, getRandomCount(random), POTIONS[random.nextInt(POTIONS.length)]);
+//            ItemStack stack = new ItemStack(Items.POTIONITEM, getRandomCount(random), POTIONS[random.nextInt(POTIONS.length)]);
+//            ItemStack stack = PotionUtils.addPotionToItemStack(new ItemStack(Items.POTIONITEM, getRandomCount(random)), PotionType.getPotionTypeForID(POTIONS[random.nextInt(POTIONS.length)]));
+            ArrayList<PotionEffect> effectList = new ArrayList<>();
+            effectList.add(POTIONS[random.nextInt(POTIONS.length)]);
+            ItemStack stack = PotionUtils.appendEffects(new ItemStack(Items.POTIONITEM, getRandomCount(random)), effectList);
             dispenserEntity.setInventorySlotContents(i, stack);
         }
     }
