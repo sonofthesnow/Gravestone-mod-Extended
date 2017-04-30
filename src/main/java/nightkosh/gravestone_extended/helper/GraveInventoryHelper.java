@@ -370,7 +370,7 @@ public class GraveInventoryHelper {
     private static void fillWizardGrave(Random random, List<ItemStack> itemList, ContentMaterials contentMaterials) {
         switch (contentMaterials) {
             case REDSTONE: // enchanted book
-                itemList.add(EnchantmentHelper.addRandomEnchantment(random, new ItemStack(Items.ENCHANTED_BOOK), 5, true));
+                itemList.add(EnchantmentHelper.addRandomEnchantment(random, new ItemStack(Items.BOOK), 5, true));
                 break;
             case QUARTZ:
                 itemList.add(new ItemStack(Items.POTIONITEM, 1 + random.nextInt(5), POTION_LIST[random.nextInt(POTION_LIST.length)]));
@@ -536,7 +536,7 @@ public class GraveInventoryHelper {
             itemList.add(getRandomEgg(random));
         }
         if (random.nextInt(10) == 0) {// enchanted book
-            itemList.add(EnchantmentHelper.addRandomEnchantment(random, new ItemStack(Items.ENCHANTED_BOOK), 5, true));
+            itemList.add(EnchantmentHelper.addRandomEnchantment(random, new ItemStack(Items.BOOK), 5, true));
         }
         if (random.nextInt(10) == 0) {
             itemList.add(new ItemStack(Items.ENDER_PEARL, 1 + random.nextInt(5), 0));
