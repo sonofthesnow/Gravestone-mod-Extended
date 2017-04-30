@@ -70,9 +70,9 @@ public class ObjectsGenerationHelper {
 
         ResourceLocation loot = getChest(random, chestType);
         if (defaultChest) {
-            component.generateChest(world, component.getBoundingBox(), random, xCoord, yCoord, zCoord, loot);
+            generateChestContents(component, world, random, xCoord, yCoord, zCoord, facing, loot, false);
         } else {
-            generateTrappedChestContents(component, world, random, xCoord, yCoord, zCoord, facing, loot);
+            generateChestContents(component, world, random, xCoord, yCoord, zCoord, facing, loot, true);
         }
     }
 
@@ -92,13 +92,19 @@ public class ObjectsGenerationHelper {
     /**
      * Generate trapped chests with items.
      */
-    public static void generateTrappedChestContents(ComponentGraveStone component, World world, Random random, int xCoord, int yCoord, int zCoord, EnumFacing facing, ResourceLocation loot) {
+    public static void generateChestContents(ComponentGraveStone component, World world, Random random, int xCoord, int yCoord, int zCoord, EnumFacing facing, ResourceLocation loot, boolean trapped) {
         int x = component.getXWithOffset(xCoord, zCoord);
         int y = component.getYWithOffset(yCoord);
         int z = component.getZWithOffset(xCoord, zCoord);
 
         BlockPos pos = new BlockPos(x, y, z);
-        world.setBlockState(pos, StateHelper.getTrappedChest(facing), 2);
+        IBlockState chest;
+        if (trapped) {
+            chest = StateHelper.getChest(StateHelper.TRAPPED_CHEST, facing);
+        } else {
+            chest = StateHelper.getChest(StateHelper.CHEST, facing);
+        }
+        world.setBlockState(pos, chest, 2);
         TileEntityChest tileentity = (TileEntityChest) world.getTileEntity(pos);
 
         if (tileentity != null) {

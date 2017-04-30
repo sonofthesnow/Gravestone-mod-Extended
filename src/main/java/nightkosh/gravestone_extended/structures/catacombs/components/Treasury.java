@@ -91,11 +91,11 @@ public class Treasury extends CatacombsBaseComponent {
         this.fillWithBlocks(world, boundingBox, 3, 0, 6, 3, 0, 7, StateHelper.TNT);
 
         // treasury chests
-        ObjectsGenerationHelper.generateChest(this, world, random, 1, 1, 3, this.getCoordBaseMode(), false, ObjectsGenerationHelper.EnumChestTypes.VALUABLE_CHESTS);
-        ObjectsGenerationHelper.generateChest(this, world, random, 1, 1, 5, this.getCoordBaseMode(), false, ObjectsGenerationHelper.EnumChestTypes.VALUABLE_CHESTS);
-        ObjectsGenerationHelper.generateChest(this, world, random, 5, 1, 3, this.getCoordBaseMode(), false, ObjectsGenerationHelper.EnumChestTypes.VALUABLE_CHESTS);
-        ObjectsGenerationHelper.generateChest(this, world, random, 5, 1, 5, this.getCoordBaseMode(), false, ObjectsGenerationHelper.EnumChestTypes.VALUABLE_CHESTS);
-        ObjectsGenerationHelper.generateChest(this, world, random, 3, 1, 6, this.getCoordBaseMode(), false, ObjectsGenerationHelper.EnumChestTypes.VALUABLE_CHESTS);
+        ObjectsGenerationHelper.generateChest(this, world, random, 1, 1, 3, this.getLeftDirectionForBlocks(), false, ObjectsGenerationHelper.EnumChestTypes.VALUABLE_CHESTS);
+        ObjectsGenerationHelper.generateChest(this, world, random, 1, 1, 5, this.getLeftDirectionForBlocks(), false, ObjectsGenerationHelper.EnumChestTypes.VALUABLE_CHESTS);
+        ObjectsGenerationHelper.generateChest(this, world, random, 5, 1, 3, this.getRightDirectionForBlocks(), false, ObjectsGenerationHelper.EnumChestTypes.VALUABLE_CHESTS);
+        ObjectsGenerationHelper.generateChest(this, world, random, 5, 1, 5, this.getRightDirectionForBlocks(), false, ObjectsGenerationHelper.EnumChestTypes.VALUABLE_CHESTS);
+        ObjectsGenerationHelper.generateChest(this, world, random, 3, 1, 6, this.getCoordBaseMode().getOpposite(), false, ObjectsGenerationHelper.EnumChestTypes.VALUABLE_CHESTS);
 
         // treasury column
         this.fillWithBlocks(world, boundingBox, 3, 1, 4, 3, 3, 4, getValuableBlock(random).getDefaultState());

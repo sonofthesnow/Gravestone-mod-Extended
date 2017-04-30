@@ -119,10 +119,10 @@ public class StatuesHall extends CatacombsBaseComponent {
         ObjectsGenerationHelper.generateMinecraftSpawner(this, world, 7, 0, 15, MobSpawn.getMobForStatueSpawner(random));
 
         // loot chests
-        ObjectsGenerationHelper.generateChest(this, world, random, 3, 0, 6, this.getCoordBaseMode(), false, ObjectsGenerationHelper.EnumChestTypes.ALL_CHESTS);
-        ObjectsGenerationHelper.generateChest(this, world, random, 3, 0, 12, this.getCoordBaseMode(), false, ObjectsGenerationHelper.EnumChestTypes.ALL_CHESTS);
-        ObjectsGenerationHelper.generateChest(this, world, random, 7, 0, 6, this.getCoordBaseMode(), false, ObjectsGenerationHelper.EnumChestTypes.ALL_CHESTS);
-        ObjectsGenerationHelper.generateChest(this, world, random, 7, 0, 12, this.getCoordBaseMode(), false, ObjectsGenerationHelper.EnumChestTypes.ALL_CHESTS);
+        ObjectsGenerationHelper.generateChest(this, world, random, 3, 0, 6, this.getLeftDirectionForBlocks(), false, ObjectsGenerationHelper.EnumChestTypes.ALL_CHESTS);
+        ObjectsGenerationHelper.generateChest(this, world, random, 3, 0, 12, this.getLeftDirectionForBlocks(), false, ObjectsGenerationHelper.EnumChestTypes.ALL_CHESTS);
+        ObjectsGenerationHelper.generateChest(this, world, random, 7, 0, 6, this.getRightDirectionForBlocks(), false, ObjectsGenerationHelper.EnumChestTypes.ALL_CHESTS);
+        ObjectsGenerationHelper.generateChest(this, world, random, 7, 0, 12, this.getRightDirectionForBlocks(), false, ObjectsGenerationHelper.EnumChestTypes.ALL_CHESTS);
 
         // statues
         EnumMemorials.EnumMemorialType[] memorialTypes = MemorialGenerationHelper.GENERATED_HUMAN_STATUES_TYPES;

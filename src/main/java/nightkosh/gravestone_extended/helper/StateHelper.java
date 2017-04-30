@@ -80,6 +80,7 @@ public class StateHelper {
     public static final IBlockState DARK_OAK_FENCE_GATE = Blocks.DARK_OAK_FENCE_GATE.getDefaultState();
     public static final IBlockState STONE_BRICK_STAIRS = Blocks.STONE_BRICK_STAIRS.getDefaultState();
     public static final IBlockState STONE_BRICK_STAIRS_TOP = STONE_BRICK_STAIRS.withProperty(BlockStairs.HALF, BlockStairs.EnumHalf.TOP);
+    public static final IBlockState CHEST = Blocks.CHEST.getDefaultState();
     public static final IBlockState TRAPPED_CHEST = Blocks.TRAPPED_CHEST.getDefaultState();
     public static final IBlockState DARK_OAK_STAIRS = Blocks.DARK_OAK_STAIRS.getDefaultState();
     public static final IBlockState WOODEN_SLAB = Blocks.WOODEN_SLAB.getDefaultState();
@@ -181,8 +182,8 @@ public class StateHelper {
         }
     }
 
-    public static IBlockState getTrappedChest(EnumFacing direction) {
-        return TRAPPED_CHEST.withProperty(BlockChest.FACING, direction);
+    public static IBlockState getChest(IBlockState chest, EnumFacing direction) {
+        return chest.withProperty(BlockChest.FACING, direction);
     }
 
     public static IBlockState getDarkOakFenceGate(EnumFacing direction) {
