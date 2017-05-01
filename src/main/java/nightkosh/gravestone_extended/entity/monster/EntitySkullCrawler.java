@@ -295,6 +295,11 @@ public class EntitySkullCrawler extends EntityMob {
         super.onLivingUpdate();
     }
 
+    @Override
+    protected boolean canDespawn() {
+        return !this.hasCustomName();
+    }
+
     public boolean canHideInBones() {
         return true;
     }

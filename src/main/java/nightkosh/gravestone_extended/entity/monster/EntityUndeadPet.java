@@ -52,7 +52,7 @@ public abstract class EntityUndeadPet extends EntityMob {
      */
     @Override
     protected boolean canDespawn() {
-        return true;
+        return !this.hasCustomName();
     }
 
     @Override

@@ -87,4 +87,9 @@ public class EntityDamnedWarrior extends EntityMob {
     public float getEyeHeight() {
         return 2.74F;
     }
+
+    @Override
+    protected boolean canDespawn() {
+        return !this.hasCustomName();
+    }
 }

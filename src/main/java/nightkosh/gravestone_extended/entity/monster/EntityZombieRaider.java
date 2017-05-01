@@ -51,4 +51,9 @@ public class EntityZombieRaider extends EntityZombie {
 
         super.onLivingUpdate();
     }
+    
+    @Override
+    protected boolean canDespawn() {
+        return !this.hasCustomName();
+    }
 }

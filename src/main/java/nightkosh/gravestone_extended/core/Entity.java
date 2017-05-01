@@ -1,12 +1,12 @@
 package nightkosh.gravestone_extended.core;
 
+import net.minecraft.entity.EnumCreatureType;
+import net.minecraftforge.common.BiomeDictionary;
+import net.minecraftforge.fml.common.registry.EntityRegistry;
 import nightkosh.gravestone_extended.config.ExtendedConfig;
 import nightkosh.gravestone_extended.entity.EntityRaven;
 import nightkosh.gravestone_extended.entity.helper.EntityGroupOfGravesMobSpawnerHelper;
 import nightkosh.gravestone_extended.entity.monster.*;
-import net.minecraft.entity.EnumCreatureType;
-import net.minecraftforge.common.BiomeDictionary;
-import net.minecraftforge.fml.common.registry.EntityRegistry;
 
 /**
  * GraveStone mod
@@ -149,7 +149,8 @@ public class Entity {
         mobId++;
     }
 
-    private void registerModEntity(Class<? extends net.minecraft.entity.Entity> entityClass, String entityName, int id, Object mod, int trackingRange, int updateFrequency, boolean sendsVelocityUpdates) {
+    private void registerModEntity(Class<? extends net.minecraft.entity.Entity> entityClass, String entityName, int id,
+                                   Object mod, int trackingRange, int updateFrequency, boolean sendsVelocityUpdates) {
         EntityRegistry.registerModEntity(entityClass, entityName, id, mod, trackingRange, updateFrequency, sendsVelocityUpdates);
     }
 }

@@ -48,4 +48,9 @@ public class EntitySkeletonRaider extends EntityGSSkeleton {
 
         super.onLivingUpdate();
     }
+
+    @Override
+    protected boolean canDespawn() {
+        return !this.hasCustomName();
+    }
 }

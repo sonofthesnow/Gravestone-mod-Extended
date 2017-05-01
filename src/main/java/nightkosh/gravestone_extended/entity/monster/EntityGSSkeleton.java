@@ -42,4 +42,9 @@ public class EntityGSSkeleton extends EntitySkeleton {
             return I18n.translateToLocal("entity." + Entity.MINECRAFT_SKELETON_ID + ".name");
         }
     }
+
+    @Override
+    protected boolean canDespawn() {
+        return !this.hasCustomName();
+    }
 }
