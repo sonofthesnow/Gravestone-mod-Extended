@@ -86,7 +86,7 @@ public class BlockAltar extends BlockContainer {
 
     @Override
     public EnumBlockRenderType getRenderType(IBlockState state) {
-        return EnumBlockRenderType.ENTITYBLOCK_ANIMATED;
+        return EnumBlockRenderType.MODEL;
     }
 
     private static final AxisAlignedBB BB = new AxisAlignedBB(0, 0, 0, 1, 0.75F, 1);
