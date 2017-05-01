@@ -500,7 +500,7 @@ public class GraveInventoryHelper {
         }
 
         if (contentMaterials == ContentMaterials.EMERALD) {
-            itemList.add(getRandomEgg(random));
+            itemList.add(EggHelper.getRandomEgg(random));
         }
     }
 
@@ -524,7 +524,7 @@ public class GraveInventoryHelper {
             itemList.add(getRandomRecord(random));
         }
         if (random.nextInt(10) == 0) {
-            itemList.add(getRandomEgg(random));
+            itemList.add(EggHelper.getRandomEgg(random));
         }
         if (random.nextInt(10) == 0) {// enchanted book
             itemList.add(EnchantmentHelper.addRandomEnchantment(random, new ItemStack(Items.BOOK), 5, true));
@@ -615,45 +615,6 @@ public class GraveInventoryHelper {
             case 0:
             default:
                 return new ItemStack(Items.RECORD_CAT, 1, 0);
-        }
-    }
-
-    private static final int EGG_PIG = 90;
-    private static final int EGG_SHEEP = 91;
-    private static final int EGG_COW = 92;
-    private static final int EGG_CHICKEN = 93;
-    private static final int EGG_SQUID = 94;
-    private static final int EGG_WOLF = 95;
-    private static final int EGG_MUSHROOM_COW = 96;
-    private static final int EGG_CAT = 98;
-    private static final int EGG_HORSE = 100;
-    private static final int EGG_VILLAGER = 120;
-
-    private static ItemStack getRandomEgg(Random random) {
-        switch (random.nextInt(11)) {
-            case 1:
-                return new ItemStack(Items.SPAWN_EGG, 1, EGG_PIG);
-            case 2:
-                return new ItemStack(Items.SPAWN_EGG, 1, EGG_SHEEP);
-            case 3:
-                return new ItemStack(Items.SPAWN_EGG, 1, EGG_COW);
-            case 4:
-                return new ItemStack(Items.SPAWN_EGG, 1, EGG_CHICKEN);
-            case 5:
-                return new ItemStack(Items.SPAWN_EGG, 1, EGG_SQUID);
-            case 6:
-                return new ItemStack(Items.SPAWN_EGG, 1, EGG_WOLF);
-            case 7:
-                return new ItemStack(Items.SPAWN_EGG, 1, EGG_MUSHROOM_COW);
-            case 8:
-                return new ItemStack(Items.SPAWN_EGG, 1, EGG_CAT);
-            case 9:
-                return new ItemStack(Items.SPAWN_EGG, 1, EGG_HORSE);
-            case 10:
-                return new ItemStack(Items.SPAWN_EGG, 1, EGG_VILLAGER);
-            case 0:
-            default:
-                return new ItemStack(Items.SPAWN_EGG, 1, 120);
         }
     }
 
