@@ -81,12 +81,10 @@ public class BlockTrap extends Block {
         return true;
     }
 
-    /**
-     * Called whenever an entity is walking on top of this block. Args: world, x, y, z, entity
-     */
     @Override
-    public void onEntityCollidedWithBlock(World world, BlockPos pos, IBlockState state, Entity entity) {
+    public void onEntityWalk(World world, BlockPos pos, Entity entity) {
         if (entity instanceof EntityPlayer) {
+            IBlockState state = world.getBlockState(pos);
             if (state.getValue(VARIANT) == EnumTrap.NIGHT_STONE) {
                 if (ExtendedConfig.enableNightStone) {
                     long time = world.getWorldTime();
