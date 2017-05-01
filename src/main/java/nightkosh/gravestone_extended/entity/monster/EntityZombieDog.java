@@ -4,7 +4,10 @@ import net.minecraft.block.Block;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.*;
-import net.minecraft.entity.passive.*;
+import net.minecraft.entity.passive.EntityOcelot;
+import net.minecraft.entity.passive.EntitySheep;
+import net.minecraft.entity.passive.EntityVillager;
+import net.minecraft.entity.passive.EntityWolf;
 import net.minecraft.init.Items;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.item.Item;
@@ -14,6 +17,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.World;
 import nightkosh.gravestone_extended.core.Resources;
+import nightkosh.gravestone_extended.entity.ai.EntityAINearestAttackableHorse;
 
 /**
  * GraveStone mod
@@ -46,7 +50,7 @@ public class EntityZombieDog extends EntityUndeadDog {
         this.targetTasks.addTask(2, new EntityAINearestAttackableTarget(this, EntityVillager.class, false));
         this.targetTasks.addTask(2, new EntityAINearestAttackableTarget(this, EntityWolf.class, false));
         this.targetTasks.addTask(2, new EntityAINearestAttackableTarget(this, EntityOcelot.class, false));
-        this.targetTasks.addTask(4, new EntityAINearestAttackableTarget(this, EntityHorse.class, false));
+        this.targetTasks.addTask(4, new EntityAINearestAttackableHorse(this, false));
         this.targetTasks.addTask(4, new EntityAINearestAttackableTarget(this, EntitySheep.class, false));
     }
 

@@ -2,6 +2,9 @@ package nightkosh.gravestone_extended.entity.monster;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.IEntityLivingData;
+import net.minecraft.init.Items;
+import net.minecraft.inventory.EntityEquipmentSlot;
+import net.minecraft.item.ItemStack;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.World;
 
@@ -26,7 +29,10 @@ public class EntitySkeletonRaider extends EntityGSSkeleton {
         this.worldObj.spawnEntityInWorld(horse);
         this.startRiding(horse);
 
-        return super.onInitialSpawn(difficulty, data);
+        data = super.onInitialSpawn(difficulty, data);
+        this.setItemStackToSlot(EntityEquipmentSlot.MAINHAND, new ItemStack(Items.BOW, 1, 0));
+
+        return data;
     }
 
     @Override

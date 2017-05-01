@@ -3,6 +3,7 @@ package nightkosh.gravestone_extended.entity.monster;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityAIAvoidEntity;
 import net.minecraft.entity.passive.EntityWolf;
+import net.minecraft.entity.passive.HorseType;
 import net.minecraft.util.text.translation.I18n;
 import net.minecraft.world.World;
 import nightkosh.gravestone_extended.core.Entity;
@@ -22,8 +23,8 @@ public class EntitySkeletonHorse extends EntityUndeadHorse {
     }
 
     @Override
-    public EnumHorseType getUndeadHorseType() {
-        return EnumHorseType.SKELETON_HORSE_TYPE;
+    public HorseType getUndeadHorseType() {
+        return HorseType.SKELETON;
     }
 
     @Override

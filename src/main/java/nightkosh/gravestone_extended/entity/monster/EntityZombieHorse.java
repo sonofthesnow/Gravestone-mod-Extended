@@ -9,16 +9,14 @@ import net.minecraft.entity.ai.EntityAIMoveThroughVillage;
 import net.minecraft.entity.ai.EntityAIMoveTowardsRestriction;
 import net.minecraft.entity.ai.EntityAINearestAttackableTarget;
 import net.minecraft.entity.monster.EntityZombie;
-import net.minecraft.entity.passive.EntityHorse;
-import net.minecraft.entity.passive.EntityOcelot;
-import net.minecraft.entity.passive.EntityVillager;
-import net.minecraft.entity.passive.EntityWolf;
+import net.minecraft.entity.passive.*;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.translation.I18n;
 import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.World;
 import nightkosh.gravestone_extended.core.Entity;
+import nightkosh.gravestone_extended.entity.ai.EntityAINearestAttackableHorse;
 
 /**
  * GraveStone mod
@@ -40,12 +38,12 @@ public class EntityZombieHorse extends EntityUndeadHorse {
         this.targetTasks.addTask(2, new EntityAINearestAttackableTarget(this, EntityVillager.class, false));
         this.targetTasks.addTask(2, new EntityAINearestAttackableTarget(this, EntityWolf.class, false));
         this.targetTasks.addTask(2, new EntityAINearestAttackableTarget(this, EntityOcelot.class, false));
-        this.targetTasks.addTask(4, new EntityAINearestAttackableTarget(this, EntityHorse.class, false));
+        this.targetTasks.addTask(4, new EntityAINearestAttackableHorse(this, false));
     }
 
     @Override
-    public EnumHorseType getUndeadHorseType() {
-        return EnumHorseType.ZOMBIE_HORSE_TYPE;
+    public HorseType getUndeadHorseType() {
+        return HorseType.ZOMBIE;
     }
 
     @Override

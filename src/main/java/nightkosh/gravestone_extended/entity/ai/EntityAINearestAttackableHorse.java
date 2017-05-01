@@ -2,7 +2,7 @@ package nightkosh.gravestone_extended.entity.ai;
 
 import net.minecraft.entity.EntityCreature;
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.ai.EntityAIAttackMelee;
+import net.minecraft.entity.ai.EntityAINearestAttackableTarget;
 import net.minecraft.entity.passive.EntityHorse;
 import nightkosh.gravestone_extended.entity.monster.EntityUndeadHorse;
 
@@ -12,13 +12,12 @@ import nightkosh.gravestone_extended.entity.monster.EntityUndeadHorse;
  * @author NightKosh
  * @license Lesser GNU Public License v3 (http://www.gnu.org/licenses/lgpl.html)
  */
-public class EntityAIAttackLivingHorse extends EntityAIAttackMelee {
+public class EntityAINearestAttackableHorse extends EntityAINearestAttackableTarget {
 
     protected EntityCreature attacker;
 
-    public EntityAIAttackLivingHorse(EntityCreature creature, double speedTowardsTarget, boolean longMemory) {
-//        super(creature, EntityHorse.class, speedTowardsTarget, longMemory);
-        super(creature, speedTowardsTarget, longMemory);
+    public EntityAINearestAttackableHorse(EntityCreature creature, boolean checkSight) {
+        super(creature, EntityHorse.class, checkSight);
         attacker = creature;
     }
 

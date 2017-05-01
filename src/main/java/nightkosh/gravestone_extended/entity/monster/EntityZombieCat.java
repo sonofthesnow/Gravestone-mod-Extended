@@ -5,7 +5,10 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.IEntityLivingData;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.*;
-import net.minecraft.entity.passive.*;
+import net.minecraft.entity.passive.EntityChicken;
+import net.minecraft.entity.passive.EntityOcelot;
+import net.minecraft.entity.passive.EntityVillager;
+import net.minecraft.entity.passive.EntityWolf;
 import net.minecraft.init.Items;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.item.Item;
@@ -19,6 +22,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import nightkosh.gravestone_extended.core.Resources;
+import nightkosh.gravestone_extended.entity.ai.EntityAINearestAttackableHorse;
 
 import java.util.Random;
 
@@ -56,14 +60,14 @@ public class EntityZombieCat extends EntityUndeadCat {
         this.targetTasks.addTask(2, new EntityAINearestAttackableTarget(this, EntityWolf.class, false));
         this.targetTasks.addTask(2, new EntityAINearestAttackableTarget(this, EntityOcelot.class, false));
         this.targetTasks.addTask(4, new EntityAINearestAttackableTarget(this, EntityChicken.class, false));
-        this.targetTasks.addTask(4, new EntityAINearestAttackableTarget(this, EntityHorse.class, false));
+        this.targetTasks.addTask(4, new EntityAINearestAttackableHorse(this, false));
     }
 
     @Override
     protected void applyEntityAttributes() {
         super.applyEntityAttributes();
-        this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(10); // max health
-        this.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.5D); // movespeed
+        this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(10);
+        this.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.5D);
     }
 
     @Override
