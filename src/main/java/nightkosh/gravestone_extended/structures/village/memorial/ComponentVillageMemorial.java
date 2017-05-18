@@ -58,7 +58,7 @@ public class ComponentVillageMemorial extends StructureVillagePieces.Village imp
         }
 
         IBlockState groundState;
-        Biome biome = world.getBiomeGenForCoords(new BlockPos(this.getXWithOffset(0, 0), this.getYWithOffset(0), this.getZWithOffset(0, 0)));
+        Biome biome = world.getBiome(new BlockPos(this.getXWithOffset(0, 0), this.getYWithOffset(0), this.getZWithOffset(0, 0)));
         if (biome == Biomes.DESERT || biome == Biomes.DESERT_HILLS) {
             groundState = StateHelper.SAND;
         } else {

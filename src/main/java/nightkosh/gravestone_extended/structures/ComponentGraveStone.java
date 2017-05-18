@@ -1,15 +1,12 @@
 package nightkosh.gravestone_extended.structures;
 
-import net.minecraft.block.BlockStairs;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.init.Blocks;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.structure.StructureBoundingBox;
 import net.minecraft.world.gen.structure.StructureComponent;
-import nightkosh.gravestone_extended.core.GSBlock;
 
 import java.util.Random;
 
@@ -70,9 +67,10 @@ public class ComponentGraveStone extends StructureComponent implements IComponen
         fillWithBlocks(world, boundingBox, startX, startY, startZ, endX, endY, endZ, state, state, false);
     }
 
-    @Override
+//    @Override
     protected void fillWithBlocksRandomly(World world, StructureBoundingBox boundingBox, Random random, float chance, int startX, int startY, int startZ, int endX, int endY, int endZ, IBlockState state1, IBlockState state2, boolean replace) {
-        super.fillWithBlocksRandomly(world, boundingBox, random, chance, startX, startY, startZ, endX, endY, endZ, state1, state2, replace);
+//        super.fillWithBlocksRandomly(world, boundingBox, random, chance, startX, startY, startZ, endX, endY, endZ, state1, state2, replace);
+        super.func_189914_a(world, boundingBox, random, chance, startX, startY, startZ, endX, endY, endZ, state1, state2, replace, 0);
     }
 
     // TODO Temporal fix

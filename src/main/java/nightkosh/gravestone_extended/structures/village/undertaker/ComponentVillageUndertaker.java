@@ -84,7 +84,7 @@ public class ComponentVillageUndertaker extends StructureVillagePieces.Village i
         IBlockState fenceState;
         IBlockState gateState = StateHelper.getDarkOakFenceGate(this.getCoordBaseMode());
 
-        Biome biome = world.getBiomeGenForCoords(new BlockPos(this.getXWithOffset(0, 0), this.getYWithOffset(0), this.getZWithOffset(0, 0)));
+        Biome biome = world.getBiome(new BlockPos(this.getXWithOffset(0, 0), this.getYWithOffset(0), this.getZWithOffset(0, 0)));
         if (biome == Biomes.DESERT || biome == Biomes.DESERT_HILLS) {
             groundState = StateHelper.SAND;
             fenceState = StateHelper.COBBLESTONE_WALL;
@@ -251,7 +251,7 @@ public class ComponentVillageUndertaker extends StructureVillagePieces.Village i
         }
     }
 
-    @Override
+//    @Override
     protected void placeDoorCurrentPosition(World worldIn, StructureBoundingBox boundingBoxIn, Random rand, int x, int y, int z, EnumFacing facing) {
         this.setBlockState(worldIn, Blocks.DARK_OAK_DOOR.getDefaultState().withProperty(BlockDoor.FACING, facing), x, y, z, boundingBoxIn);
         this.setBlockState(worldIn, Blocks.DARK_OAK_DOOR.getDefaultState().withProperty(BlockDoor.FACING, facing).withProperty(BlockDoor.HALF, BlockDoor.EnumDoorHalf.UPPER), x, y + 1, z, boundingBoxIn);

@@ -45,7 +45,7 @@ public class ComponentMemorial extends ComponentGraveStone {
 
         IBlockState groundState, undergroundState;
         BlockPos pos = new BlockPos(getXWithOffset(0, 0), getYWithOffset(0), getZWithOffset(0, 0));
-        Biome biome = world.getBiomeGenForCoords(pos);
+        Biome biome = world.getBiome(pos);
 
         if (biome == Biomes.DESERT || biome == Biomes.DESERT_HILLS || biome == Biomes.BEACH) {
             groundState = StateHelper.SAND;

@@ -1,16 +1,16 @@
 package nightkosh.gravestone_extended.gui;
 
+import net.minecraft.client.gui.GuiButton;
+import net.minecraft.client.gui.inventory.GuiContainer;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.InventoryPlayer;
+import net.minecraft.world.GameType;
 import nightkosh.gravestone_extended.ModGravestoneExtended;
 import nightkosh.gravestone_extended.core.MessageHandler;
 import nightkosh.gravestone_extended.core.Resources;
 import nightkosh.gravestone_extended.gui.container.AltarContainer;
 import nightkosh.gravestone_extended.packets.AltarMessageToServer;
 import nightkosh.gravestone_extended.tileentity.TileEntityAltar;
-import net.minecraft.client.gui.GuiButton;
-import net.minecraft.client.gui.inventory.GuiContainer;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.player.InventoryPlayer;
-import net.minecraft.world.WorldSettings;
 import org.lwjgl.opengl.GL11;
 
 /**
@@ -34,7 +34,7 @@ public class GSAltarGui extends GuiContainer {
         this.tileEntity = tileEntity;
         this.player = inventoryPlayer.player;
         this.container = (AltarContainer) this.inventorySlots;
-        isCreative = player.worldObj.getWorldInfo().getGameType().equals(WorldSettings.GameType.CREATIVE);
+        isCreative = player.worldObj.getWorldInfo().getGameType().equals(GameType.CREATIVE);
     }
 
     @Override

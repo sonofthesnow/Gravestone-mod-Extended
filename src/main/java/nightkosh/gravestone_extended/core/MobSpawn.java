@@ -5,6 +5,7 @@ import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.IEntityLivingData;
 import net.minecraft.entity.monster.EntitySkeleton;
 import net.minecraft.entity.monster.EntityZombie;
+import net.minecraft.entity.monster.SkeletonType;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.inventory.EntityEquipmentSlot;
@@ -100,14 +101,18 @@ public class MobSpawn {
 
                     if (id.equals(Entity.SKELETON_ID)) {
                         EntityGSSkeleton skeleton = getSkeleton(world, RANDOM.nextBoolean());
-                        skeleton.setSkeletonType(1);
+                        skeleton.setSkeletonType(SkeletonType.WITHER);
                         return skeleton;
                     }
                 } else {
                     id = getMobID(world.rand, EnumMobType.DEFAULT_MOBS);
 
                     if (id.equals(Entity.SKELETON_ID)) {
-                        return getSkeleton(world, RANDOM.nextBoolean());
+                        EntityGSSkeleton skeleton = getSkeleton(world, RANDOM.nextBoolean());
+                        if (RANDOM.nextInt(5) == 0) {
+                            skeleton.setSkeletonType(SkeletonType.STRAY);
+                        }
+                        return skeleton;
                     }
                 }
                 break;
@@ -139,19 +144,19 @@ public class MobSpawn {
             case WITHER_SPAWNER:
                 mobId = Entity.MINECRAFT_WITHER_ID;
                 break;
-            case SKELETON_SPAWNER:
+            case SKELETON_SPAWNER: //TODO STRAY !!!!!!!!!!!!!!!!
                 mobId = skeletonSpawnerMobs.get(world.rand.nextInt(skeletonSpawnerMobs.size()));
 
                 if (mobId.equals(Entity.SKELETON_ID) && world.rand.nextInt(10) == 0) {
                     EntityGSSkeleton skeleton = (EntityGSSkeleton) EntityList.createEntityByName(Entity.SKELETON_ID, world);
-                    skeleton.setSkeletonType(1);
+                    skeleton.setSkeletonType(SkeletonType.WITHER);
                     return skeleton;
                 }
                 break;
             case SPIDER_SPAWNER:
                 mobId = spiderSpawnerMobs.get(world.rand.nextInt(spiderSpawnerMobs.size()));
                 break;
-            case ZOMBIE_SPAWNER:
+            case ZOMBIE_SPAWNER://TODO CADAVER !!!!!!!!!!!!!!!!!!!!!!
             default:
                 mobId = zombieSpawnerMobs.get(world.rand.nextInt(zombieSpawnerMobs.size()));
                 break;
@@ -189,7 +194,7 @@ public class MobSpawn {
     }
 
     public static boolean isWitherSkeleton(EntitySkeleton skeleton) {
-        return skeleton.getSkeletonType() == 1;
+        return skeleton.getSkeletonType() == SkeletonType.WITHER;
     }
 
     /**

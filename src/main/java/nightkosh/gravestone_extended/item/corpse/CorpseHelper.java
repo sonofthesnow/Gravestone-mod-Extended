@@ -13,8 +13,8 @@ import net.minecraft.init.MobEffects;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.potion.PotionEffect;
+import net.minecraft.world.GameType;
 import net.minecraft.world.World;
-import net.minecraft.world.WorldSettings;
 import nightkosh.gravestone_extended.ModGravestoneExtended;
 import nightkosh.gravestone_extended.block.enums.EnumCorpse;
 import nightkosh.gravestone_extended.core.GSBlock;
@@ -154,7 +154,7 @@ public abstract class CorpseHelper {
 
     public static boolean canSpawnMob(EntityPlayer player, ItemStack corpse) {
         return EnumCorpse.getById((byte) corpse.getItemDamage()).canBeResurrected() &&
-                player.worldObj.getWorldInfo().getGameType().equals(WorldSettings.GameType.CREATIVE) || player.experienceLevel >= getRequiredLevel(corpse.getItemDamage());
+                player.worldObj.getWorldInfo().getGameType().equals(GameType.CREATIVE) || player.experienceLevel >= getRequiredLevel(corpse.getItemDamage());
     }
 
     public static void getExperience(EntityPlayer player, int damage) {

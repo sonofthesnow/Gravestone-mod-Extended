@@ -57,9 +57,9 @@ public class SingleGraveGenerator implements GSStructureGenerator {
     }
 
     protected static boolean isBiomeAllowed(World world, int x, int z) {
-        List<BiomeDictionary.Type> biomeTypesList = new ArrayList<>(Arrays.asList(BiomeDictionary.getTypesForBiome(world.getBiomeGenForCoords(new BlockPos(x, 0, z)))));
+        List<BiomeDictionary.Type> biomeTypesList = new ArrayList<>(Arrays.asList(BiomeDictionary.getTypesForBiome(world.getBiome(new BlockPos(x, 0, z)))));
         return !biomeTypesList.contains(BiomeDictionary.Type.WATER) &&
-                (ExtendedConfig.generateGravesInMushroomBiomes || !BiomeDictionary.getTypesForBiome(world.getBiomeGenForCoords(new BlockPos(x, 0, z))).equals(BiomeDictionary.Type.MUSHROOM));
+                (ExtendedConfig.generateGravesInMushroomBiomes || !BiomeDictionary.getTypesForBiome(world.getBiome(new BlockPos(x, 0, z))).equals(BiomeDictionary.Type.MUSHROOM));
     }
 
     protected static boolean noAnyInRange(int x, int z) {
