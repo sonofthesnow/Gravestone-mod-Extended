@@ -6,6 +6,7 @@ import net.minecraft.entity.IEntityLivingData;
 import net.minecraft.entity.monster.EntitySkeleton;
 import net.minecraft.entity.monster.EntityZombie;
 import net.minecraft.entity.monster.SkeletonType;
+import net.minecraft.entity.monster.ZombieType;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.inventory.EntityEquipmentSlot;
@@ -114,6 +115,12 @@ public class MobSpawn {
                         }
                         return skeleton;
                     }
+
+                    if (id.equals(Entity.MINECRAFT_ZOMBIE_ID) && world.rand.nextInt(5) == 0) {
+                        EntityZombie zombie = (EntityZombie) EntityList.createEntityByName(Entity.MINECRAFT_ZOMBIE_ID, world);
+                        zombie.setZombieType(ZombieType.HUSK);
+                        return zombie;
+                    }
                 }
                 break;
         }
@@ -144,21 +151,31 @@ public class MobSpawn {
             case WITHER_SPAWNER:
                 mobId = Entity.MINECRAFT_WITHER_ID;
                 break;
-            case SKELETON_SPAWNER: //TODO STRAY !!!!!!!!!!!!!!!!
+            case SKELETON_SPAWNER:
                 mobId = skeletonSpawnerMobs.get(world.rand.nextInt(skeletonSpawnerMobs.size()));
 
-                if (mobId.equals(Entity.SKELETON_ID) && world.rand.nextInt(10) == 0) {
+                if (mobId.equals(Entity.SKELETON_ID)) {
                     EntityGSSkeleton skeleton = (EntityGSSkeleton) EntityList.createEntityByName(Entity.SKELETON_ID, world);
-                    skeleton.setSkeletonType(SkeletonType.WITHER);
+                    if (world.rand.nextInt(5) == 0) {
+                        skeleton.setSkeletonType(SkeletonType.STRAY);
+                    } else if (world.rand.nextInt(10) == 0) {
+                        skeleton.setSkeletonType(SkeletonType.WITHER);
+                    }
                     return skeleton;
                 }
                 break;
             case SPIDER_SPAWNER:
                 mobId = spiderSpawnerMobs.get(world.rand.nextInt(spiderSpawnerMobs.size()));
                 break;
-            case ZOMBIE_SPAWNER://TODO CADAVER !!!!!!!!!!!!!!!!!!!!!!
+            case ZOMBIE_SPAWNER:
             default:
                 mobId = zombieSpawnerMobs.get(world.rand.nextInt(zombieSpawnerMobs.size()));
+
+                if (mobId.equals(Entity.MINECRAFT_ZOMBIE_ID) && world.rand.nextInt(5) == 0) {
+                    EntityZombie zombie = (EntityZombie) EntityList.createEntityByName(Entity.MINECRAFT_ZOMBIE_ID, world);
+                    zombie.setZombieType(ZombieType.HUSK);
+                    return zombie;
+                }
                 break;
         }
 
