@@ -145,13 +145,15 @@ public class BlockExecution extends BlockContainer {
     public void onBlockHarvested(World world, BlockPos pos, IBlockState state, EntityPlayer player) {
         player.addExhaustion(0.025F);
 
-        GraveInventory.dropItem(getBlockItemStackWithoutInfo(world, pos), world, pos);
+        if (!world.isRemote && !world.restoringBlockSnapshots) {
+            GraveInventory.dropItem(getBlockItemStackWithoutInfo(world, pos), world, pos);
 
-        TileEntityExecution tileEntity = (TileEntityExecution) world.getTileEntity(pos);
-        if (tileEntity != null) {
-            ItemStack corpse = tileEntity.getCorpse();
-            if (corpse != null) {
-                GraveInventory.dropItem(corpse, world, pos);
+            TileEntityExecution tileEntity = (TileEntityExecution) world.getTileEntity(pos);
+            if (tileEntity != null) {
+                ItemStack corpse = tileEntity.getCorpse();
+                if (corpse != null) {
+                    GraveInventory.dropItem(corpse, world, pos);
+                }
             }
         }
     }

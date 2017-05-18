@@ -487,15 +487,17 @@ public class BlockMemorial extends BlockContainer {
     public void onBlockHarvested(World world, BlockPos pos, IBlockState state, EntityPlayer player) {
         player.addExhaustion(0.025F);
 
-        ItemStack itemStack;
-        if (EnchantmentHelper.getEnchantmentLevel(Enchantments.SILK_TOUCH, player.getHeldItemMainhand()) > 0) {
-            itemStack = getBlockItemStack(world, pos);
-        } else {
-            itemStack = getBlockItemStackWithoutInfo(world, pos);
-        }
+        if (!world.isRemote && !world.restoringBlockSnapshots) {
+            ItemStack itemStack;
+            if (EnchantmentHelper.getEnchantmentLevel(Enchantments.SILK_TOUCH, player.getHeldItemMainhand()) > 0) {
+                itemStack = getBlockItemStack(world, pos);
+            } else {
+                itemStack = getBlockItemStackWithoutInfo(world, pos);
+            }
 
-        if (itemStack != null) {
-            GraveInventory.dropItem(itemStack, world, pos);
+            if (itemStack != null) {
+                GraveInventory.dropItem(itemStack, world, pos);
+            }
         }
     }
 
