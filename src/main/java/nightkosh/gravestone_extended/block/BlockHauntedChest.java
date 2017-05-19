@@ -165,15 +165,17 @@ public class BlockHauntedChest extends BlockContainer {
     @Override
     public void onBlockHarvested(World world, BlockPos pos, IBlockState state, EntityPlayer player) {
         player.addExhaustion(0.025F);
-        ItemStack itemStack;
-        if (EnchantmentHelper.getEnchantmentLevel(Enchantments.SILK_TOUCH, player.getHeldItemMainhand()) > 0) {
-            itemStack = getBlockItemStack(world, pos, state);
-        } else {
-            itemStack = new ItemStack(Blocks.CHEST, 1, 0);
-        }
+        if (!world.isRemote && !world.restoringBlockSnapshots) {
+            ItemStack itemStack;
+            if (EnchantmentHelper.getEnchantmentLevel(Enchantments.SILK_TOUCH, player.getHeldItemMainhand()) > 0) {
+                itemStack = getBlockItemStack(world, pos, state);
+            } else {
+                itemStack = new ItemStack(Blocks.CHEST, 1, 0);
+            }
 
-        if (itemStack != null) {
-            GraveInventory.dropItem(itemStack, world, pos);
+            if (itemStack != null) {
+                GraveInventory.dropItem(itemStack, world, pos);
+            }
         }
     }
 
