@@ -199,7 +199,7 @@ public class ComponentVillageUndertaker extends StructureVillagePieces.Village i
                 }
             }
 
-//            this.spawnVillagers(world, boundingBox, 8, 1, 3, 1);TODO !!!!
+            this.spawnVillagers(world, boundingBox, 8, 1, 3, 1);
         }
         return true;
     }
@@ -251,7 +251,7 @@ public class ComponentVillageUndertaker extends StructureVillagePieces.Village i
         }
     }
 
-//    @Override
+    //    @Override
     protected void placeDoorCurrentPosition(World worldIn, StructureBoundingBox boundingBoxIn, Random rand, int x, int y, int z, EnumFacing facing) {
         this.setBlockState(worldIn, Blocks.DARK_OAK_DOOR.getDefaultState().withProperty(BlockDoor.FACING, facing), x, y, z, boundingBoxIn);
         this.setBlockState(worldIn, Blocks.DARK_OAK_DOOR.getDefaultState().withProperty(BlockDoor.FACING, facing).withProperty(BlockDoor.HALF, BlockDoor.EnumDoorHalf.UPPER), x, y + 1, z, boundingBoxIn);
@@ -269,13 +269,9 @@ public class ComponentVillageUndertaker extends StructureVillagePieces.Village i
         }
     }
 
-    /**
-     * Returns the villager type to spawn in this component, based on the number
-     * of villagers already spawned.
-     */
     @Override
-    protected int chooseProfession(int villagersSpawnedIn, int currentVillagerProfession) {
-        return VillagersHandler.UNDERTAKER_ID;
+    protected net.minecraftforge.fml.common.registry.VillagerRegistry.VillagerProfession chooseForgeProfession(int count, net.minecraftforge.fml.common.registry.VillagerRegistry.VillagerProfession prof) {
+        return VillagersHandler.UNDERTAKER_PROFESSION;
     }
 
     protected void generateBed(World world, int x, int y, int z, StructureBoundingBox boundingBox) {
