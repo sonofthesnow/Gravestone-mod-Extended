@@ -9,6 +9,8 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.pathfinding.PathNavigateGround;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.World;
+import nightkosh.gravestone_extended.entity.monster.horse.EntityUndeadHorse;
+import nightkosh.gravestone_extended.entity.monster.horse.EntityZombieHorse;
 
 /**
  * GraveStone mod

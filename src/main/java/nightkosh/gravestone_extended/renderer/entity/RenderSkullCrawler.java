@@ -1,8 +1,8 @@
 package nightkosh.gravestone_extended.renderer.entity;
 
 import nightkosh.gravestone_extended.core.Resources;
-import nightkosh.gravestone_extended.entity.monster.EntitySkullCrawler;
-import nightkosh.gravestone_extended.entity.monster.EntitySkullCrawler.SkullCrawlerType;
+import nightkosh.gravestone_extended.entity.monster.crawler.EntitySkullCrawler;
+import nightkosh.gravestone_extended.entity.monster.crawler.EntitySkullCrawler.SkullCrawlerType;
 import nightkosh.gravestone_extended.models.entity.ModelSkullCrawler;
 import net.minecraft.client.renderer.entity.RenderLiving;
 import net.minecraft.client.renderer.entity.RenderManager;

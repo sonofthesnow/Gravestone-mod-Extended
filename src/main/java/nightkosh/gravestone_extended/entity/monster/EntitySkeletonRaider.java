@@ -7,6 +7,7 @@ import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.World;
+import nightkosh.gravestone_extended.entity.monster.horse.EntitySkeletonHorse;
 
 /**
  * GraveStone mod

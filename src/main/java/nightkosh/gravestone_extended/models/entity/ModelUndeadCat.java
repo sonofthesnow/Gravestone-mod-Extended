@@ -1,6 +1,6 @@
 package nightkosh.gravestone_extended.models.entity;
 
-import nightkosh.gravestone_extended.entity.monster.EntityUndeadCat;
+import nightkosh.gravestone_extended.entity.monster.pet.EntityUndeadCat;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;

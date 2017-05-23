@@ -1,4 +1,4 @@
-package nightkosh.gravestone_extended.entity.monster;
+package nightkosh.gravestone_extended.entity.monster.horse;
 
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityAIAvoidEntity;

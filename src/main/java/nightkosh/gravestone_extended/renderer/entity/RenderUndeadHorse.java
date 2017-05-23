@@ -8,7 +8,7 @@ import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.client.renderer.texture.LayeredTexture;
 import net.minecraft.entity.passive.EntityHorse;
 import net.minecraft.util.ResourceLocation;
-import nightkosh.gravestone_extended.entity.monster.EntityUndeadHorse;
+import nightkosh.gravestone_extended.entity.monster.horse.EntityUndeadHorse;
 
 import java.util.Map;
 

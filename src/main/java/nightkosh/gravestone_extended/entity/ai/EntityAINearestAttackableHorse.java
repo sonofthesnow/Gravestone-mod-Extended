@@ -4,7 +4,7 @@ import net.minecraft.entity.EntityCreature;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.ai.EntityAINearestAttackableTarget;
 import net.minecraft.entity.passive.EntityHorse;
-import nightkosh.gravestone_extended.entity.monster.EntityUndeadHorse;
+import nightkosh.gravestone_extended.entity.monster.horse.EntityUndeadHorse;
 
 /**
  * GraveStone mod

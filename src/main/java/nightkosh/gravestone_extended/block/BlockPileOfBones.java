@@ -26,7 +26,7 @@ import nightkosh.gravestone_extended.block.enums.EnumPileOfBones;
 import nightkosh.gravestone_extended.config.ExtendedConfig;
 import nightkosh.gravestone_extended.core.GSBlock;
 import nightkosh.gravestone_extended.core.Tabs;
-import nightkosh.gravestone_extended.entity.monster.EntitySkullCrawler;
+import nightkosh.gravestone_extended.entity.monster.crawler.EntitySkullCrawler;
 import nightkosh.gravestone_extended.tileentity.TileEntityPileOfBones;
 
 import java.util.List;
@@ -84,7 +84,7 @@ public class BlockPileOfBones extends BlockContainer {
 
     @Override
     public Item getItemDropped(IBlockState state, Random random, int fortune) {
-        return this.isSkullCrawlerBlock(state) ? null : Items.BONE;
+        return Items.BONE;
     }
 
     @Override

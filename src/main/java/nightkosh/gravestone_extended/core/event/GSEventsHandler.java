@@ -11,9 +11,9 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import nightkosh.gravestone_extended.config.ExtendedConfig;
 import nightkosh.gravestone_extended.core.GSBlock;
 import nightkosh.gravestone_extended.core.MobSpawn;
-import nightkosh.gravestone_extended.entity.monster.EntitySkullCrawler;
-import nightkosh.gravestone_extended.entity.monster.EntityWitherSkullCrawler;
-import nightkosh.gravestone_extended.entity.monster.EntityZombieSkullCrawler;
+import nightkosh.gravestone_extended.entity.monster.crawler.EntitySkullCrawler;
+import nightkosh.gravestone_extended.entity.monster.crawler.EntityWitherSkullCrawler;
+import nightkosh.gravestone_extended.entity.monster.crawler.EntityZombieSkullCrawler;
 
 /**
  * GraveStone mod

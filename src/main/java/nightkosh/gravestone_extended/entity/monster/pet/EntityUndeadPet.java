@@ -1,4 +1,4 @@
-package nightkosh.gravestone_extended.entity.monster;
+package nightkosh.gravestone_extended.entity.monster.pet;
 
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.*;
@@ -17,6 +17,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import nightkosh.gravestone_extended.entity.monster.horse.EntityZombieHorse;
 
 /**
  * GraveStone mod

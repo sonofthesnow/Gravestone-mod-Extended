@@ -7,6 +7,15 @@ import nightkosh.gravestone_extended.config.ExtendedConfig;
 import nightkosh.gravestone_extended.entity.EntityRaven;
 import nightkosh.gravestone_extended.entity.helper.EntityGroupOfGravesMobSpawnerHelper;
 import nightkosh.gravestone_extended.entity.monster.*;
+import nightkosh.gravestone_extended.entity.monster.crawler.EntitySkullCrawler;
+import nightkosh.gravestone_extended.entity.monster.crawler.EntityWitherSkullCrawler;
+import nightkosh.gravestone_extended.entity.monster.crawler.EntityZombieSkullCrawler;
+import nightkosh.gravestone_extended.entity.monster.horse.EntitySkeletonHorse;
+import nightkosh.gravestone_extended.entity.monster.horse.EntityZombieHorse;
+import nightkosh.gravestone_extended.entity.monster.pet.EntitySkeletonCat;
+import nightkosh.gravestone_extended.entity.monster.pet.EntitySkeletonDog;
+import nightkosh.gravestone_extended.entity.monster.pet.EntityZombieCat;
+import nightkosh.gravestone_extended.entity.monster.pet.EntityZombieDog;
 
 /**
  * GraveStone mod

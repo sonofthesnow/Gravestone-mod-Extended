@@ -1,4 +1,4 @@
-package nightkosh.gravestone_extended.entity.monster;
+package nightkosh.gravestone_extended.entity.monster.horse;
 
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
@@ -17,6 +17,8 @@ import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.World;
 import nightkosh.gravestone_extended.core.Entity;
 import nightkosh.gravestone_extended.entity.ai.EntityAINearestAttackableHorse;
+import nightkosh.gravestone_extended.entity.monster.pet.EntityZombieCat;
+import nightkosh.gravestone_extended.entity.monster.pet.EntityZombieDog;
 
 /**
  * GraveStone mod

@@ -1,4 +1,4 @@
-package nightkosh.gravestone_extended.entity.monster;
+package nightkosh.gravestone_extended.entity.monster.pet;
 
 import net.minecraft.block.Block;
 import net.minecraft.entity.SharedMonsterAttributes;

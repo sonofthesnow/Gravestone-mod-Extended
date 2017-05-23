@@ -2,7 +2,7 @@ package nightkosh.gravestone_extended.entity.ai;
 
 import nightkosh.gravestone_extended.block.BlockBoneBlock;
 import nightkosh.gravestone_extended.core.GSBlock;
-import nightkosh.gravestone_extended.entity.monster.EntitySkullCrawler;
+import nightkosh.gravestone_extended.entity.monster.crawler.EntitySkullCrawler;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.ai.EntityAIWander;
 import net.minecraft.util.math.BlockPos;

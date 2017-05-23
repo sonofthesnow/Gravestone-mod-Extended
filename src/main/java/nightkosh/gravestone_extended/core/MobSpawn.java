@@ -19,7 +19,7 @@ import nightkosh.gravestone_extended.block.enums.EnumSpawner;
 import nightkosh.gravestone_extended.config.ExtendedConfig;
 import nightkosh.gravestone_extended.core.logger.GSLogger;
 import nightkosh.gravestone_extended.entity.monster.EntityGSSkeleton;
-import nightkosh.gravestone_extended.entity.monster.EntitySkullCrawler;
+import nightkosh.gravestone_extended.entity.monster.crawler.EntitySkullCrawler;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;

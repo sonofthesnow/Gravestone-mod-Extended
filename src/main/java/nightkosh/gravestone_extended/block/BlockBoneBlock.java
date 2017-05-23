@@ -17,7 +17,7 @@ import nightkosh.gravestone_extended.block.enums.EnumBoneBlock;
 import nightkosh.gravestone_extended.config.ExtendedConfig;
 import nightkosh.gravestone_extended.core.GSBlock;
 import nightkosh.gravestone_extended.core.Tabs;
-import nightkosh.gravestone_extended.entity.monster.EntitySkullCrawler;
+import nightkosh.gravestone_extended.entity.monster.crawler.EntitySkullCrawler;
 
 import java.util.List;
 
