@@ -28,27 +28,37 @@ public class DogCorpseHelper extends CorpseHelper {
     }
 
     public static ItemStack getRandomCorpse(Random random) {
-        //TODO sophisticated wolves
-        ItemStack corpse = new ItemStack(GSBlock.corpse, 1, EnumCorpse.DOG.ordinal());
-        NBTTagCompound nbtTag = new NBTTagCompound();
-        nbtTag.setByte("Collar", (byte) random.nextInt(16));
-        corpse.setTagCompound(nbtTag);
-
-        return corpse;
+        boolean sophisticated = Compatibility.sophisticatedWolvesInstalled && random.nextInt(5) == 0;
+        int speciesNum = sophisticated ? CompatibilitySophisticatedWolves.getRandomSpecies(random) : 0;
+        return createCorpse(sophisticated, speciesNum);
     }
 
     public static List<ItemStack> getDefaultCorpses() {
         List<ItemStack> list = new ArrayList<>();
 
+        list.add(createCorpse(false, 0));
+
+        if (Compatibility.sophisticatedWolvesInstalled) {
+            for (int speciesNum = 0; speciesNum < CompatibilitySophisticatedWolves.getSpeciesNum(); speciesNum++) {
+                list.add(createCorpse(true, speciesNum));
+            }
+        }
+        return list;
+    }
+
+    private static ItemStack createCorpse(boolean sophisticated, int speciesNum) {
         ItemStack corpse = new ItemStack(GSBlock.corpse, 1, EnumCorpse.DOG.ordinal());
         NBTTagCompound nbtTag = new NBTTagCompound();
 
-        nbtTag.setByte("Collar", (byte) 14);
+        nbtTag.setByte("Collar", (byte) EnumDyeColor.RED.ordinal());
+
+        if (sophisticated) {
+            nbtTag.setInteger(CompatibilitySophisticatedWolves.NBT_NAME, speciesNum);
+        }
 
         corpse.setTagCompound(nbtTag);
 
-        list.add(corpse);
-        return list;
+        return corpse;
     }
 
     public static void setNbt(EntityWolf dog, NBTTagCompound nbt) {
@@ -56,7 +66,7 @@ public class DogCorpseHelper extends CorpseHelper {
         nbt.setByte("Collar", (byte) dog.getCollarColor().getMetadata());
 
         if (Compatibility.sophisticatedWolvesInstalled && CompatibilitySophisticatedWolves.isSophisticated(dog)) {
-            nbt.setInteger("Species", CompatibilitySophisticatedWolves.getSpecies(dog));
+            nbt.setInteger(CompatibilitySophisticatedWolves.NBT_NAME, CompatibilitySophisticatedWolves.getSpecies(dog));
         }
     }
 
@@ -82,7 +92,7 @@ public class DogCorpseHelper extends CorpseHelper {
             list.add(getCollarStr(nbtTag));
         }
         if (Compatibility.sophisticatedWolvesInstalled && CompatibilitySophisticatedWolves.isSophisticated(nbtTag)) {
-            list.add(getSpeciesStr(nbtTag));
+            list.add(CompatibilitySophisticatedWolves.getSpeciesStr(nbtTag.getInteger(CompatibilitySophisticatedWolves.NBT_NAME)));
         }
     }
 
@@ -93,10 +103,6 @@ public class DogCorpseHelper extends CorpseHelper {
     private static String getCollarStr(NBTTagCompound nbtTag) {
         return ModGravestoneExtended.proxy.getLocalizedString("item.corpse.collar") + " " +
                 ModGravestoneExtended.proxy.getLocalizedString(getCollar(nbtTag.getByte("Collar")));
-    }
-
-    private static String getSpeciesStr(NBTTagCompound nbtTag) {
-        return ModGravestoneExtended.proxy.getLocalizedString("item.corpse.dog_type") + " " + nbtTag.getInteger("Species");
     }
 
     private static String getCollar(int type) {
