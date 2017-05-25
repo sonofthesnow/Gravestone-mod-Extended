@@ -61,24 +61,10 @@ public class TileEntityCorpse extends TileEntity {
         }
     }
 
-    public static class ZombiePigmen extends TileEntityCorpse {
-        @Override
-        public int getBlockMetadata() {
-            return EnumCorpse.ZOMBIE_PIGMEN.ordinal();
-        }
-    }
-
     public static class Skeleton extends TileEntityCorpse {
         @Override
         public int getBlockMetadata() {
             return EnumCorpse.SKELETON.ordinal();
-        }
-    }
-
-    public static class WitherSkeleton extends TileEntityCorpse {
-        @Override
-        public int getBlockMetadata() {
-            return EnumCorpse.WITHER_SKELETON.ordinal();
         }
     }
 

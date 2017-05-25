@@ -30,7 +30,7 @@ public class BlockCorpse extends BlockContainer {
         super(Material.CARPET);
         this.setUnlocalizedName("Corpse");
         this.setHardness(0);
-        this.setCreativeTab(Tabs.otherItemsTab);
+        this.setCreativeTab(Tabs.corpseTab);
     }
 
     @Override

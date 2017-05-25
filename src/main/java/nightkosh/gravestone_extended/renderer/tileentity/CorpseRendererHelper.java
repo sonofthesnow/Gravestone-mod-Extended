@@ -14,10 +14,9 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ResourceLocation;
 import nightkosh.gravestone_extended.block.enums.EnumCorpse;
 import nightkosh.gravestone_extended.core.Resources;
+import nightkosh.gravestone_extended.entity.monster.pet.EnumUndeadMobType;
 import nightkosh.gravestone_extended.helper.GameProfileHelper;
-import nightkosh.gravestone_extended.item.corpse.CatCorpseHelper;
-import nightkosh.gravestone_extended.item.corpse.HorseCorpseHelper;
-import nightkosh.gravestone_extended.item.corpse.VillagerCorpseHelper;
+import nightkosh.gravestone_extended.item.corpse.*;
 import nightkosh.gravestone_extended.models.block.execution.*;
 import org.lwjgl.opengl.GL11;
 
@@ -35,6 +34,7 @@ public class CorpseRendererHelper {
     private static final ModelWolf dogModel = new ModelWolf();
     private static final ModelOcelot catModel = new ModelOcelot();
     private static final ModelHorse horseModel = new ModelHorse();
+
     static {
         dogModel.isChild = false;
         catModel.isChild = false;
@@ -123,7 +123,27 @@ public class CorpseRendererHelper {
                 } else if (!isExecuted) {
                     GL11.glTranslatef(0, -2, -0.85F);
                 }
-                Minecraft.getMinecraft().renderEngine.bindTexture(Resources.WOLF);
+                switch (DogCorpseHelper.getMobType(nbt)) {
+                    case OTHER:
+                    default:
+                        Minecraft.getMinecraft().renderEngine.bindTexture(Resources.WOLF);
+                        break;
+                    case ZOMBIE:
+                        Minecraft.getMinecraft().renderEngine.bindTexture(Resources.ZOMBIE_DOG);
+                        break;
+                    case HUSK:
+                        Minecraft.getMinecraft().renderEngine.bindTexture(Resources.GREEN_ZOMBIE_DOG);
+                        break;
+                    case SKELETON:
+                        Minecraft.getMinecraft().renderEngine.bindTexture(Resources.SKELETON_DOG);
+                        break;
+//                    case WITHER:
+//                        Minecraft.getMinecraft().renderEngine.bindTexture(Resources.);
+//                        break;
+//                    case STRAY:
+//                        Minecraft.getMinecraft().renderEngine.bindTexture(Resources.);
+//                        break;
+                }
                 if (dog == null) {
                     dog = new EntityWolf(Minecraft.getMinecraft().theWorld);
                 }
@@ -136,8 +156,7 @@ public class CorpseRendererHelper {
                 } else if (!isExecuted) {
                     GL11.glTranslatef(0, -2F, -0.85F);
                 }
-                int catType = (nbt == null) ? 0 : CatCorpseHelper.getCatType(nbt);
-                bindCatTexture(catType);
+                bindCatTexture(CatCorpseHelper.getCatType(nbt), CatCorpseHelper.getMobType(nbt));
                 catModel.render(null, xz, xz, xz, xz, xz, xz);
                 break;
             case HORSE:
@@ -163,7 +182,19 @@ public class CorpseRendererHelper {
                 } else if (!isExecuted) {
                     GL11.glTranslatef(0, -1.3F, -0.85F);
                 }
-                Minecraft.getMinecraft().renderEngine.bindTexture(Resources.ZOMBIE);
+
+                switch (ZombieCorpseHelper.getMobType(nbt)) {
+                    case ZOMBIE:
+                    default:
+                        Minecraft.getMinecraft().renderEngine.bindTexture(Resources.ZOMBIE);
+                        break;
+                    case HUSK:
+                        Minecraft.getMinecraft().renderEngine.bindTexture(Resources.HUSK_ZOMBIE);
+                        break;
+                    case WITHER:
+                        Minecraft.getMinecraft().renderEngine.bindTexture(Resources.ZOMBIE_PIGMAN);
+                        break;
+                }
                 zombieModel.renderAll(isInStocks);
                 break;
             case ZOMBIE_VILLAGER:
@@ -179,32 +210,28 @@ public class CorpseRendererHelper {
                     zombieVillagerModel.renderAll();
                 }
                 break;
-            case ZOMBIE_PIGMEN:
-                if (atAltar) {
-                    GL11.glTranslatef(0, -1.2F, 0);
-                } else if (!isExecuted) {
-                    GL11.glTranslatef(0, -1.3F, -0.85F);
-                }
-                Minecraft.getMinecraft().renderEngine.bindTexture(Resources.ZOMBIE_PIGMAN);
-                zombiePigmenModel.renderAll(isInStocks);
-                break;
             case SKELETON:
                 if (atAltar) {
                     GL11.glTranslatef(0, -1.2F, 0);
                 } else if (!isExecuted) {
                     GL11.glTranslatef(0, -1.3F, -0.85F);
                 }
-                Minecraft.getMinecraft().renderEngine.bindTexture(Resources.SKELETON);
-                skeletonModel.renderAll(isInStocks);
-                break;
-            case WITHER_SKELETON:
-                if (atAltar) {
-                    GL11.glTranslatef(0, -1.2F, 0);
-                } else if (!isExecuted) {
-                    GL11.glTranslatef(0, -1.3F, -0.85F);
+
+                switch (SkeletonCorpseHelper.getMobType(nbt)) {
+                    case SKELETON:
+                    default:
+                        Minecraft.getMinecraft().renderEngine.bindTexture(Resources.SKELETON);
+                        skeletonModel.renderAll(isInStocks);
+                        break;
+                    case STRAY:
+                        Minecraft.getMinecraft().renderEngine.bindTexture(Resources.STRAY_SKELETON);
+                        skeletonModel.renderStray(isInStocks);
+                        break;
+                    case WITHER:
+                        Minecraft.getMinecraft().renderEngine.bindTexture(Resources.WITHER_SKELETON);
+                        witherSkeletonModel.renderAll(isInStocks);
+                        break;
                 }
-                Minecraft.getMinecraft().renderEngine.bindTexture(Resources.WITHER_SKELETON);
-                witherSkeletonModel.renderAll(isInStocks);
                 break;
             case WITCH:
                 if (atAltar) {
@@ -246,21 +273,64 @@ public class CorpseRendererHelper {
         }
     }
 
-    private static void bindCatTexture(int catType) {
-        switch (catType) {
-            case 0:
-            default:
-                Minecraft.getMinecraft().renderEngine.bindTexture(Resources.OCELOT);
+    private static void bindCatTexture(int catType, EnumUndeadMobType mobType) {
+        switch (mobType) {
+            case OTHER:
+                switch (catType) {
+                    case 0:
+                    default:
+                        Minecraft.getMinecraft().renderEngine.bindTexture(Resources.OCELOT);
+                        break;
+                    case 1:
+                        Minecraft.getMinecraft().renderEngine.bindTexture(Resources.BLACK_CAT);
+                        break;
+                    case 2:
+                        Minecraft.getMinecraft().renderEngine.bindTexture(Resources.RED_CAT);
+                        break;
+                    case 3:
+                        Minecraft.getMinecraft().renderEngine.bindTexture(Resources.SIAMESE_CAT);
+                        break;
+                }
                 break;
-            case 1:
-                Minecraft.getMinecraft().renderEngine.bindTexture(Resources.BLACK_CAT);
+            case ZOMBIE:
+                switch (catType) {
+                    case 0:
+                    default:
+                        Minecraft.getMinecraft().renderEngine.bindTexture(Resources.ZOMBIE_OZELOT);
+                        break;
+                    case 1:
+                        Minecraft.getMinecraft().renderEngine.bindTexture(Resources.ZOMBIE_CAT_BLACK);
+                        break;
+                    case 2:
+                        Minecraft.getMinecraft().renderEngine.bindTexture(Resources.ZOMBIE_CAT_RED);
+                        break;
+                    case 3:
+                        Minecraft.getMinecraft().renderEngine.bindTexture(Resources.ZOMBIE_CAT_SIAMESE);
+                        break;
+                }
                 break;
-            case 2:
-                Minecraft.getMinecraft().renderEngine.bindTexture(Resources.RED_CAT);
+            case HUSK:
+                switch (catType) {
+                    case 0:
+                    default:
+                        Minecraft.getMinecraft().renderEngine.bindTexture(Resources.GREEN_ZOMBIE_OZELOT);
+                        break;
+                    case 1:
+                        Minecraft.getMinecraft().renderEngine.bindTexture(Resources.GREEN_ZOMBIE_CAT_BLACK);
+                        break;
+                    case 2:
+                        Minecraft.getMinecraft().renderEngine.bindTexture(Resources.GREEN_ZOMBIE_CAT_RED);
+                        break;
+                    case 3:
+                        Minecraft.getMinecraft().renderEngine.bindTexture(Resources.GREEN_ZOMBIE_CAT_SIAMESE);
+                        break;
+                }
                 break;
-            case 3:
-                Minecraft.getMinecraft().renderEngine.bindTexture(Resources.SIAMESE_CAT);
+            case SKELETON:
+                Minecraft.getMinecraft().renderEngine.bindTexture(Resources.SKELETON_CAT);
                 break;
+//            case STRAY:
+//            case WITHER:
         }
     }
 

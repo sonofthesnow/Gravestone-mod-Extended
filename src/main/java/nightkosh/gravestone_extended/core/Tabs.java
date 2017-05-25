@@ -6,6 +6,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import nightkosh.gravestone_extended.block.enums.EnumMemorials;
+import nightkosh.gravestone_extended.item.corpse.ZombieCorpseHelper;
 
 /**
  * GraveStone mod
@@ -16,6 +17,7 @@ import nightkosh.gravestone_extended.block.enums.EnumMemorials;
 public class Tabs extends nightkosh.gravestone.core.Tabs {
 
     public static CreativeTabs memorialsTab;
+    public static CreativeTabs corpseTab;
     public static CreativeTabs otherItemsTab;
 
     public static void registration() {
@@ -29,6 +31,19 @@ public class Tabs extends nightkosh.gravestone.core.Tabs {
             @SideOnly(Side.CLIENT)
             public Item getTabIconItem() {
                 return Item.getItemFromBlock(GSBlock.memorial);
+            }
+        };
+
+        corpseTab = new CreativeTabs("tabGSCorpse") {
+            @Override
+            public ItemStack getIconItemStack() {
+                return ZombieCorpseHelper.getDefaultCorpse();
+            }
+
+            @Override
+            @SideOnly(Side.CLIENT)
+            public Item getTabIconItem() {
+                return Item.getItemFromBlock(GSBlock.corpse);
             }
         };
 

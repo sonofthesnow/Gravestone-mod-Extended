@@ -105,9 +105,7 @@ public class ClientProxy extends CommonProxy {
         ClientRegistry.registerTileEntity(TileEntityCorpse.Horse.class, "GSCorpseHorse", new TileEntityCorpseRenderer.Horse());
         ClientRegistry.registerTileEntity(TileEntityCorpse.Zombie.class, "GSCorpseZombie", new TileEntityCorpseRenderer.Zombie());
         ClientRegistry.registerTileEntity(TileEntityCorpse.ZombieVillager.class, "GSCorpseZombieVillager", new TileEntityCorpseRenderer.ZombieVillager());
-        ClientRegistry.registerTileEntity(TileEntityCorpse.ZombiePigmen.class, "GSCorpseZombiePigmen", new TileEntityCorpseRenderer.ZombiePigmen());
         ClientRegistry.registerTileEntity(TileEntityCorpse.Skeleton.class, "GSCorpseSkeleton", new TileEntityCorpseRenderer.Skeleton());
-        ClientRegistry.registerTileEntity(TileEntityCorpse.WitherSkeleton.class, "GSCorpseWitherSkeleton", new TileEntityCorpseRenderer.WitherSkeleton());
         ClientRegistry.registerTileEntity(TileEntityCorpse.Witch.class, "GSCorpseWitch", new TileEntityCorpseRenderer.Witch());
 
         ClientRegistry.registerTileEntity(TileEntityAltar.class, "GSAltar", new TileEntityRenderAltar());
@@ -241,9 +239,7 @@ public class ClientProxy extends CommonProxy {
         ProxyHelper.registerModelsForTEBlocks(EnumCorpse.HORSE.ordinal(), GSBlock.corpse, ResourcesModels.CORPSE, TileEntityCorpse.Horse.class);
         ProxyHelper.registerModelsForTEBlocks(EnumCorpse.ZOMBIE.ordinal(), GSBlock.corpse, ResourcesModels.CORPSE, TileEntityCorpse.Zombie.class);
         ProxyHelper.registerModelsForTEBlocks(EnumCorpse.ZOMBIE_VILLAGER.ordinal(), GSBlock.corpse, ResourcesModels.CORPSE, TileEntityCorpse.ZombieVillager.class);
-        ProxyHelper.registerModelsForTEBlocks(EnumCorpse.ZOMBIE_PIGMEN.ordinal(), GSBlock.corpse, ResourcesModels.CORPSE, TileEntityCorpse.ZombiePigmen.class);
         ProxyHelper.registerModelsForTEBlocks(EnumCorpse.SKELETON.ordinal(), GSBlock.corpse, ResourcesModels.CORPSE, TileEntityCorpse.Skeleton.class);
-        ProxyHelper.registerModelsForTEBlocks(EnumCorpse.WITHER_SKELETON.ordinal(), GSBlock.corpse, ResourcesModels.CORPSE, TileEntityCorpse.WitherSkeleton.class);
         ProxyHelper.registerModelsForTEBlocks(EnumCorpse.WITCH.ordinal(), GSBlock.corpse, ResourcesModels.CORPSE, TileEntityCorpse.Witch.class);
     }
 

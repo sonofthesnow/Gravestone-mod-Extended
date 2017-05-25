@@ -11,6 +11,7 @@ import nightkosh.gravestone_extended.block.enums.EnumCorpse;
 import nightkosh.gravestone_extended.core.GSBlock;
 import nightkosh.gravestone_extended.core.compatibility.Compatibility;
 import nightkosh.gravestone_extended.core.compatibility.CompatibilitySophisticatedWolves;
+import nightkosh.gravestone_extended.entity.monster.pet.EnumUndeadMobType;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,26 +31,33 @@ public class DogCorpseHelper extends CorpseHelper {
     public static ItemStack getRandomCorpse(Random random) {
         boolean sophisticated = Compatibility.sophisticatedWolvesInstalled && random.nextInt(5) == 0;
         int speciesNum = sophisticated ? CompatibilitySophisticatedWolves.getRandomSpecies(random) : 0;
-        return createCorpse(sophisticated, speciesNum);
+        return createCorpse(sophisticated, EnumUndeadMobType.OTHER, speciesNum);
     }
 
     public static List<ItemStack> getDefaultCorpses() {
         List<ItemStack> list = new ArrayList<>();
 
-        list.add(createCorpse(false, 0));
+        list.add(createCorpse(false, EnumUndeadMobType.OTHER, 0));
 
         if (Compatibility.sophisticatedWolvesInstalled) {
             for (int speciesNum = 0; speciesNum < CompatibilitySophisticatedWolves.getSpeciesNum(); speciesNum++) {
-                list.add(createCorpse(true, speciesNum));
+                list.add(createCorpse(true, EnumUndeadMobType.OTHER, speciesNum));
             }
         }
+
+        list.add(createCorpse(false, EnumUndeadMobType.ZOMBIE, 0));
+        list.add(createCorpse(false, EnumUndeadMobType.HUSK, 0));
+        list.add(createCorpse(false, EnumUndeadMobType.SKELETON, 0));
+//        list.add(createCorpse(false, EnumUndeadMobType.STRAY, 0)); //TODO
+//        list.add(createCorpse(false, EnumUndeadMobType.WITHER, 0));
         return list;
     }
 
-    private static ItemStack createCorpse(boolean sophisticated, int speciesNum) {
+    private static ItemStack createCorpse(boolean sophisticated, EnumUndeadMobType mobType, int speciesNum) {
         ItemStack corpse = new ItemStack(GSBlock.corpse, 1, EnumCorpse.DOG.ordinal());
         NBTTagCompound nbtTag = new NBTTagCompound();
 
+        nbtTag.setByte("MobType", (byte) mobType.ordinal());
         nbtTag.setByte("Collar", (byte) EnumDyeColor.RED.ordinal());
 
         if (sophisticated) {
@@ -64,6 +72,7 @@ public class DogCorpseHelper extends CorpseHelper {
 
     public static void setNbt(EntityWolf dog, NBTTagCompound nbt) {
         setName(dog, nbt);
+        nbt.setByte("MobType", (byte) EnumUndeadMobType.OTHER.ordinal());
         nbt.setByte("Collar", (byte) dog.getCollarColor().getMetadata());
 
         if (Compatibility.sophisticatedWolvesInstalled && CompatibilitySophisticatedWolves.isSophisticated(dog)) {
@@ -96,6 +105,7 @@ public class DogCorpseHelper extends CorpseHelper {
         if (Compatibility.sophisticatedWolvesInstalled && CompatibilitySophisticatedWolves.isSophisticated(nbtTag)) {
             list.add(CompatibilitySophisticatedWolves.getSpeciesStr(nbtTag.getInteger(CompatibilitySophisticatedWolves.NBT_NAME)));
         }
+        addMobTypeInfo(list, nbtTag);
     }
 
     private static boolean hasCollar(NBTTagCompound nbtTag) {

@@ -6,8 +6,6 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.village.MerchantRecipe;
 import net.minecraft.village.MerchantRecipeList;
 import net.minecraft.world.World;
-import net.minecraftforge.fml.common.registry.IForgeRegistry;
-import net.minecraftforge.fml.common.registry.VillagerRegistry;
 import nightkosh.gravestone_extended.ModGravestoneExtended;
 import nightkosh.gravestone_extended.block.enums.EnumCorpse;
 import nightkosh.gravestone_extended.config.ExtendedConfig;
@@ -52,10 +50,10 @@ public class VillagerCorpseHelper extends CorpseHelper {
         list.add(getDefaultVillagerCorpse(4, 1)); // Butcher - butcher
         list.add(getDefaultVillagerCorpse(4, 2)); // Butcher - leather
 
-        IForgeRegistry<VillagerRegistry.VillagerProfession> villagers = VillagerRegistry.instance().getRegistry();
-        for (VillagerRegistry.VillagerProfession villagerProfession : villagers.getValues()) {
+//        IForgeRegistry<VillagerRegistry.VillagerProfession> villagers = VillagerRegistry.instance().getRegistry();
+//        for (VillagerRegistry.VillagerProfession villagerProfession : villagers.getValues()) {
 //            list.add(getDefaultVillagerCorpse(villagerId, 1));//TODO career
-        }
+//        }
 
         return list;
     }

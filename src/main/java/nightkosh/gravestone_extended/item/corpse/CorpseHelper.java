@@ -18,6 +18,7 @@ import net.minecraft.world.World;
 import nightkosh.gravestone_extended.ModGravestoneExtended;
 import nightkosh.gravestone_extended.block.enums.EnumCorpse;
 import nightkosh.gravestone_extended.core.GSBlock;
+import nightkosh.gravestone_extended.entity.monster.pet.EnumUndeadMobType;
 import nightkosh.gravestone_extended.helper.GameProfileHelper;
 
 import java.util.ArrayList;
@@ -31,6 +32,23 @@ import java.util.Random;
  * @license Lesser GNU Public License v3 (http://www.gnu.org/licenses/lgpl.html)
  */
 public abstract class CorpseHelper {
+
+    public static EnumUndeadMobType getMobType(NBTTagCompound nbtTag) {
+        if (nbtTag == null) {
+            return EnumUndeadMobType.OTHER;
+        } else {
+            return EnumUndeadMobType.getById(nbtTag.getByte("MobType"));
+        }
+    }
+
+    public static void addMobTypeInfo(List list, NBTTagCompound nbtTag) {
+        if (nbtTag.hasKey("MobType")) {
+            EnumUndeadMobType mobType = getMobType(nbtTag);
+            if (mobType != EnumUndeadMobType.OTHER) {
+                list.add("Mob type - " + mobType.name().toLowerCase());
+            }
+        }
+    }
 
     protected static void setMobName(EntityLiving entity, NBTTagCompound nbtTag) {
         if (nbtTag.hasKey("Name") && nbtTag.getString("Name").length() != 0) {
@@ -70,6 +88,10 @@ public abstract class CorpseHelper {
             case CAT:
                 CatCorpseHelper.addInfo(list, nbtTag);
                 break;
+            case ZOMBIE:
+            case SKELETON:
+                addMobTypeInfo(list, nbtTag);
+                break;
         }
     }
 
@@ -94,6 +116,10 @@ public abstract class CorpseHelper {
 
     public static List<ItemStack> getDefaultCorpse(int corpseType) {
         switch (EnumCorpse.values()[corpseType]) {
+            case ZOMBIE:
+                return ZombieCorpseHelper.getDefaultCorpses();
+            case SKELETON:
+                return SkeletonCorpseHelper.getDefaultCorpses();
             case VILLAGER:
                 return VillagerCorpseHelper.getDefaultCorpses();
             case DOG:
@@ -154,6 +180,7 @@ public abstract class CorpseHelper {
 
     public static boolean canSpawnMob(EntityPlayer player, ItemStack corpse) {
         return EnumCorpse.getById((byte) corpse.getItemDamage()).canBeResurrected() &&
+                getMobType(corpse.getTagCompound()) == EnumUndeadMobType.OTHER && //TODO
                 player.worldObj.getWorldInfo().getGameType().equals(GameType.CREATIVE) || player.experienceLevel >= getRequiredLevel(corpse.getItemDamage());
     }
 

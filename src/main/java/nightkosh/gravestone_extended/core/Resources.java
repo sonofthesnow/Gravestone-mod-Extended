@@ -42,9 +42,17 @@ public class Resources extends nightkosh.gravestone.core.Resources{
     // entities
     public static final ResourceLocation STEVE = new ResourceLocation("textures/entity/steve.png");
     public static final ResourceLocation ZOMBIE = new ResourceLocation("textures/entity/zombie/zombie.png");
-    public static final ResourceLocation ZOMBIE_VILLAGER = new ResourceLocation("textures/entity/zombie/zombie_villager.png");
+    public static final ResourceLocation HUSK_ZOMBIE = new ResourceLocation("textures/entity/zombie/husk.png");
+    public static final ResourceLocation ZOMBIE_VILLAGER = new ResourceLocation("textures/entity/zombie_villager/zombie_villager.png");
+    public static final ResourceLocation ZOMBIE_BUTCHER = new ResourceLocation("textures/entity/zombie_villager/zombie_butcher.png");
+    public static final ResourceLocation ZOMBIE_FARMER = new ResourceLocation("textures/entity/zombie_villager/zombie_farmer.png");
+    public static final ResourceLocation ZOMBIE_LIBRARIAN = new ResourceLocation("textures/entity/zombie_villager/zombie_librarian.png");
+    public static final ResourceLocation ZOMBIE_PRIEST = new ResourceLocation("textures/entity/zombie_villager/zombie_priest.png");
+    public static final ResourceLocation ZOMBIE_SMITH = new ResourceLocation("textures/entity/zombie_villager/zombie_smith.png");
     public static final ResourceLocation ZOMBIE_PIGMAN = new ResourceLocation("textures/entity/zombie_pigman.png");
     public static final ResourceLocation SKELETON = new ResourceLocation("textures/entity/skeleton/skeleton.png");
+    public static final ResourceLocation STRAY_SKELETON = new ResourceLocation("textures/entity/skeleton/stray.png");
+    public static final ResourceLocation STRAY_SKELETON_OVERLAY = new ResourceLocation("textures/entity/skeleton/stray_overlay.png");
     public static final ResourceLocation WITHER_SKELETON = new ResourceLocation("textures/entity/skeleton/wither_skeleton.png");
     public static final ResourceLocation WITCH = new ResourceLocation("textures/entity/witch.png");
 

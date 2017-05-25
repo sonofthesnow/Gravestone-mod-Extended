@@ -117,26 +117,8 @@ public class TileEntityCorpseRenderer extends TileEntitySpecialRenderer {
         }
     }
 
-    public static class ZombiePigmen extends TileEntityCorpseRenderer {
-        private static final TileEntityCorpse CORPSE_TE = new TileEntityCorpse.ZombiePigmen();
-
-        @Override
-        protected TileEntityCorpse getDefaultTE() {
-            return CORPSE_TE;
-        }
-    }
-
     public static class Skeleton extends TileEntityCorpseRenderer {
         private static final TileEntityCorpse CORPSE_TE = new TileEntityCorpse.Skeleton();
-
-        @Override
-        protected TileEntityCorpse getDefaultTE() {
-            return CORPSE_TE;
-        }
-    }
-
-    public static class WitherSkeleton extends TileEntityCorpseRenderer {
-        private static final TileEntityCorpse CORPSE_TE = new TileEntityCorpse.WitherSkeleton();
 
         @Override
         protected TileEntityCorpse getDefaultTE() {

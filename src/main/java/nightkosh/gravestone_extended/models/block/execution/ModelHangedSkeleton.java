@@ -1,8 +1,11 @@
 package nightkosh.gravestone_extended.models.block.execution;
 
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.ModelRenderer;
+import net.minecraft.client.renderer.GlStateManager;
 import nightkosh.gravestone.models.IModelBaseAdapter;
 import nightkosh.gravestone.models.entity.ModelGSSkeleton;
+import nightkosh.gravestone_extended.core.Resources;
 
 /**
  * GraveStone mod
@@ -60,6 +63,14 @@ public class ModelHangedSkeleton extends ModelGSSkeleton implements IModelBaseAd
 
     public void renderAll() {
         this.renderAll(this.isInStocks);
+    }
+
+    public void renderStray(boolean isInStocks) {
+        this.renderAll(isInStocks);
+
+        Minecraft.getMinecraft().renderEngine.bindTexture(Resources.STRAY_SKELETON_OVERLAY);
+        GlStateManager.scale(1.1F, 1.1F, 1.1F);
+        this.renderAll(isInStocks);
     }
 
     public void renderAll(boolean isInStocks) {
