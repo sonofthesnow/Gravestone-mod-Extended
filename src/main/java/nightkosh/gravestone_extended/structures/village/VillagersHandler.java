@@ -4,6 +4,7 @@ import net.minecraft.entity.passive.EntityVillager;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.common.registry.VillagerRegistry;
+import nightkosh.gravestone_extended.core.ModInfo;
 import nightkosh.gravestone_extended.core.Resources;
 
 /**
@@ -15,7 +16,7 @@ import nightkosh.gravestone_extended.core.Resources;
 public class VillagersHandler {
 
     public static final int UNDERTAKER_ID = 385; //TODO doesn't used !
-    public static final String UNDERTAKER_NAME = "Undertaker";
+    public static final String UNDERTAKER_NAME = ModInfo.ID.toLowerCase() + ":Undertaker";
 
     public static final VillagerRegistry.VillagerProfession UNDERTAKER_PROFESSION = new VillagerRegistry.VillagerProfession(UNDERTAKER_NAME, Resources.UNDERTAKER);
     public static final VillagerRegistry.VillagerCareer UNDERTAKER_CAREER = new VillagerRegistry.VillagerCareer(UNDERTAKER_PROFESSION, UNDERTAKER_NAME);
