@@ -1,7 +1,7 @@
 package nightkosh.gravestone_extended.entity.monster.pet;
 
 import net.minecraft.block.Block;
-import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.IEntityLivingData;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.*;
 import net.minecraft.entity.passive.EntityOcelot;
@@ -11,13 +11,19 @@ import net.minecraft.entity.passive.EntityWolf;
 import net.minecraft.init.Items;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.item.Item;
-import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.EnumDifficulty;
+import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.World;
+import net.minecraft.world.biome.Biome;
+import net.minecraftforge.common.BiomeDictionary;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import nightkosh.gravestone_extended.core.Resources;
 import nightkosh.gravestone_extended.entity.ai.EntityAINearestAttackableHorse;
+
+import javax.annotation.Nullable;
 
 /**
  * GraveStone mod
@@ -27,16 +33,14 @@ import nightkosh.gravestone_extended.entity.ai.EntityAINearestAttackableHorse;
  */
 public class EntityZombieDog extends EntityUndeadDog {
 
-    protected boolean isGreen = false;
-
     public EntityZombieDog(World world) {
-        this(world, world.rand.nextBoolean());
+        this(world, false);
     }
 
-    public EntityZombieDog(World world, boolean isGreen) {
+    public EntityZombieDog(World world, boolean isHusk) {
         super(world);
-        this.isGreen = isGreen;
-        texture = (isGreen) ? Resources.GREEN_ZOMBIE_DOG : Resources.ZOMBIE_DOG;
+
+        this.setMobType(isHusk ? EnumUndeadMobType.HUSK : EnumUndeadMobType.ZOMBIE);
 
         this.tasks.addTask(2, new EntityAIAttackMelee(this, 1, false));
         this.tasks.addTask(4, new EntityAIMoveTowardsRestriction(this, 1));
@@ -52,6 +56,30 @@ public class EntityZombieDog extends EntityUndeadDog {
         this.targetTasks.addTask(2, new EntityAINearestAttackableTarget(this, EntityOcelot.class, false));
         this.targetTasks.addTask(4, new EntityAINearestAttackableHorse(this, false));
         this.targetTasks.addTask(4, new EntityAINearestAttackableTarget(this, EntitySheep.class, false));
+    }
+
+    @Override
+    @Nullable
+    public IEntityLivingData onInitialSpawn(DifficultyInstance difficulty, @Nullable IEntityLivingData livingdata) {
+        livingdata = super.onInitialSpawn(difficulty, livingdata);
+
+        Biome biome = this.worldObj.getBiome(new BlockPos(this));
+        if ((BiomeDictionary.isBiomeOfType(biome, BiomeDictionary.Type.DRY) ||
+                BiomeDictionary.isBiomeOfType(biome, BiomeDictionary.Type.SAVANNA)) &&
+                this.getRNG().nextInt(5) > 0) {
+            this.setMobType(EnumUndeadMobType.HUSK);
+        }
+        return livingdata;
+    }
+
+    @Override
+    @SideOnly(Side.CLIENT)
+    public ResourceLocation getTexture() {
+        if (this.dataManager.get(MOB_TYPE) == EnumUndeadMobType.HUSK.ordinal()) {
+            return Resources.GREEN_ZOMBIE_DOG;
+        } else {
+            return Resources.ZOMBIE_DOG;
+        }
     }
 
     @Override
@@ -108,32 +136,5 @@ public class EntityZombieDog extends EntityUndeadDog {
     @Override
     protected Item getDropItem() {
         return Items.ROTTEN_FLESH;
-    }
-
-    /**
-     * This method gets called when the entity kills another one.
-     */
-    @Override
-    public void onKillEntity(EntityLivingBase entityLiving) {
-        super.onKillEntity(entityLiving);
-
-        if (this.worldObj.getDifficulty() == EnumDifficulty.NORMAL || this.worldObj.getDifficulty() == EnumDifficulty.HARD) {
-            spawnZombieMob(entityLiving);
-        }
-    }
-
-    @Override
-    public void readEntityFromNBT(NBTTagCompound nbt) {
-        super.readEntityFromNBT(nbt);
-
-        if (nbt.hasKey("IsGreen")) {
-            this.isGreen = nbt.getBoolean("IsGreen");
-        }
-    }
-
-    @Override
-    public void writeEntityToNBT(NBTTagCompound nbt) {
-        super.writeEntityToNBT(nbt);
-        nbt.setBoolean("IsGreen", this.isGreen);
     }
 }

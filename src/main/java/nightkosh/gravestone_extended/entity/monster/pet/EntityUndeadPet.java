@@ -1,6 +1,9 @@
 package nightkosh.gravestone_extended.entity.monster.pet;
 
-import net.minecraft.entity.*;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLiving;
+import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.EnumCreatureAttribute;
 import net.minecraft.entity.ai.*;
 import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.monster.EntityZombie;
@@ -9,11 +12,17 @@ import net.minecraft.entity.passive.EntityOcelot;
 import net.minecraft.entity.passive.EntityVillager;
 import net.minecraft.entity.passive.EntityWolf;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.MobEffects;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.network.datasync.DataParameter;
+import net.minecraft.network.datasync.DataSerializers;
+import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.pathfinding.PathNavigateGround;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.DamageSource;
-import net.minecraft.util.math.MathHelper;
+import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.MathHelper;
+import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -27,7 +36,8 @@ import nightkosh.gravestone_extended.entity.monster.horse.EntityZombieHorse;
  */
 public abstract class EntityUndeadPet extends EntityMob {
 
-    protected ResourceLocation texture = null;
+    protected static final DataParameter<Byte> MOB_TYPE = EntityDataManager.createKey(EntityUndeadPet.class, DataSerializers.BYTE);
+    protected EnumUndeadMobType mobType;
 
     public EntityUndeadPet(World world) {
         super(world);
@@ -40,13 +50,17 @@ public abstract class EntityUndeadPet extends EntityMob {
         this.targetTasks.addTask(2, new EntityAINearestAttackableTarget(this, EntityPlayer.class, true));
     }
 
+    @Override
+    protected void entityInit() {
+        super.entityInit();
+        this.dataManager.register(MOB_TYPE, (byte) this.getMobType().ordinal());
+    }
+
     /**
      * Returns the texture's file path as a String.
      */
     @SideOnly(Side.CLIENT)
-    public ResourceLocation getTexture() {
-        return texture;
-    }
+    public abstract ResourceLocation getTexture();
 
     /**
      * Determines if an entity can be despawned, used on idle far away entities
@@ -57,8 +71,15 @@ public abstract class EntityUndeadPet extends EntityMob {
     }
 
     @Override
-    public boolean attackEntityAsMob(Entity entity) {
-        return entity.attackEntityFrom(DamageSource.causeMobDamage(this), 3);
+    public boolean attackEntityAsMob(Entity entityIn) {
+        if (super.attackEntityAsMob(entityIn)) {
+            if (this.getMobType() == EnumUndeadMobType.WITHER && entityIn instanceof EntityLivingBase) {
+                ((EntityLivingBase) entityIn).addPotionEffect(new PotionEffect(MobEffects.WITHER, 100));
+            }
+            return true;
+        } else {
+            return false;
+        }
     }
 
     /**
@@ -78,7 +99,7 @@ public abstract class EntityUndeadPet extends EntityMob {
      */
     @Override
     public void onLivingUpdate() {
-        if (this.worldObj.isDaytime() && !this.worldObj.isRemote) {
+        if (this.worldObj.isDaytime() && !this.worldObj.isRemote && !this.mobType.sunLightProtected()) {
             float f = this.getBrightness(1);
 
             if (f > 0.5F && this.rand.nextFloat() * 30 < (f - 0.4F) * 2 && this.worldObj.canBlockSeeSky(
@@ -98,6 +119,46 @@ public abstract class EntityUndeadPet extends EntityMob {
         return EnumCreatureAttribute.UNDEAD;
     }
 
+    public EnumUndeadMobType getMobType() {
+        return mobType == null ? EnumUndeadMobType.OTHER : mobType;
+    }
+
+    public void setMobType(EnumUndeadMobType mobType) {
+        this.mobType = mobType;
+        this.isImmuneToFire = this.mobType.fireProtected();
+        if (this.isImmuneToFire) {
+            this.fireResistance = 2000000000;
+        }
+
+        this.dataManager.set(MOB_TYPE, Byte.valueOf((byte) this.mobType.ordinal()));
+    }
+
+
+    @Override
+    public void readEntityFromNBT(NBTTagCompound nbt) {
+        super.readEntityFromNBT(nbt);
+        this.setMobType(EnumUndeadMobType.getById(nbt.getByte("Type")));
+    }
+
+    @Override
+    public void writeEntityToNBT(NBTTagCompound nbt) {
+        super.writeEntityToNBT(nbt);
+        nbt.setByte("Type", (byte) this.mobType.ordinal());
+    }
+
+    /**
+     * This method gets called when the entity kills another one.
+     */
+    @Override
+    public void onKillEntity(EntityLivingBase entityLiving) {
+        super.onKillEntity(entityLiving);
+
+        if (this.mobType == EnumUndeadMobType.ZOMBIE &&
+                this.worldObj.getDifficulty() == EnumDifficulty.NORMAL || this.worldObj.getDifficulty() == EnumDifficulty.HARD) {
+            spawnZombieMob(entityLiving);
+        }
+    }
+
     protected void spawnZombieMob(EntityLivingBase entityLivingBase) {
         if (entityLivingBase instanceof EntityLiving) {
             EntityLiving entity = (EntityLiving) entityLivingBase;
@@ -107,7 +168,7 @@ public abstract class EntityUndeadPet extends EntityMob {
                 EntityZombie entityZombie = new EntityZombie(this.worldObj);
                 entityZombie.copyLocationAndAnglesFrom(entity);
                 this.worldObj.removeEntity(entity);
-                entityZombie.onInitialSpawn(this.worldObj.getDifficultyForLocation(new BlockPos(this)), (IEntityLivingData) null);
+                entityZombie.onInitialSpawn(this.worldObj.getDifficultyForLocation(new BlockPos(this)), null);
 
                 entityZombie.setVillagerType(villager.getProfessionForge());
                 entityZombie.setChild(entityLivingBase.isChild());
@@ -119,7 +180,7 @@ public abstract class EntityUndeadPet extends EntityMob {
                 }
 
                 this.worldObj.spawnEntityInWorld(entityZombie);
-                this.worldObj.playEvent((EntityPlayer) null, 1026, new BlockPos(this), 0);
+                this.worldObj.playEvent(null, 1026, new BlockPos(this), 0);
                 zombie = entityZombie;
             } else if (entity instanceof EntityWolf) {
                 EntityZombieDog zombieDog = new EntityZombieDog(this.worldObj, false);
@@ -127,7 +188,7 @@ public abstract class EntityUndeadPet extends EntityMob {
 
                 this.worldObj.removeEntity(entity);
                 this.worldObj.spawnEntityInWorld(zombieDog);
-                this.worldObj.playEvent((EntityPlayer) null, 1026, new BlockPos(this), 0);
+                this.worldObj.playEvent(null, 1026, new BlockPos(this), 0);
 
                 zombie = zombieDog;
             } else if (entity instanceof EntityOcelot) {
@@ -140,9 +201,9 @@ public abstract class EntityUndeadPet extends EntityMob {
                 }
                 this.worldObj.removeEntity(entity);
 
-                zombieCat.onInitialSpawn(this.worldObj.getDifficultyForLocation(new BlockPos(this)), (IEntityLivingData) null);
+                zombieCat.onInitialSpawn(this.worldObj.getDifficultyForLocation(new BlockPos(this)), null);
                 this.worldObj.spawnEntityInWorld(zombieCat);
-                this.worldObj.playEvent((EntityPlayer) null, 1026, new BlockPos(this), 0);
+                this.worldObj.playEvent(null, 1026, new BlockPos(this), 0);
 
                 zombie = zombieCat;
             } else if (entity instanceof EntityHorse) {
@@ -152,7 +213,7 @@ public abstract class EntityUndeadPet extends EntityMob {
 
                 this.worldObj.removeEntity(entity);
                 this.worldObj.spawnEntityInWorld(zombieHorse);
-                this.worldObj.playEvent((EntityPlayer) null, 1026, new BlockPos(this), 0);
+                this.worldObj.playEvent(null, 1026, new BlockPos(this), 0);
 
                 zombie = zombieHorse;
             }

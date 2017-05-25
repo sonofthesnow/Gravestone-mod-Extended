@@ -1,7 +1,6 @@
 package nightkosh.gravestone_extended.entity.monster.pet;
 
 import net.minecraft.block.Block;
-import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.IEntityLivingData;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.*;
@@ -17,13 +16,15 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.DifficultyInstance;
-import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.World;
+import net.minecraft.world.biome.Biome;
+import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import nightkosh.gravestone_extended.core.Resources;
 import nightkosh.gravestone_extended.entity.ai.EntityAINearestAttackableHorse;
 
+import javax.annotation.Nullable;
 import java.util.Random;
 
 /**
@@ -36,17 +37,14 @@ public class EntityZombieCat extends EntityUndeadCat {
 
     private static final byte CAT_TYPES = 4;
 
-    protected boolean isGreen = false;
-
     public EntityZombieCat(World world) {
-        this(world, world.rand.nextBoolean());
+        this(world, false);
     }
 
-    public EntityZombieCat(World world, boolean isGreen) {
+    public EntityZombieCat(World world, boolean isHusk) {
         super(world);
 
-        this.isGreen = isGreen;
-        texture = (isGreen) ? Resources.GREEN_ZOMBIE_OZELOT : Resources.ZOMBIE_OZELOT;
+        this.setMobType(isHusk ? EnumUndeadMobType.HUSK : EnumUndeadMobType.ZOMBIE);
 
         this.tasks.addTask(2, new EntityAIAttackMelee(this, 1, false));
         this.tasks.addTask(4, new EntityAIMoveTowardsRestriction(this, 1));
@@ -64,6 +62,23 @@ public class EntityZombieCat extends EntityUndeadCat {
     }
 
     @Override
+    @Nullable
+    public IEntityLivingData onInitialSpawn(DifficultyInstance difficulty, @Nullable IEntityLivingData livingdata) {
+        livingdata = super.onInitialSpawn(difficulty, livingdata);
+
+        Biome biome = this.worldObj.getBiome(new BlockPos(this));
+        if ((BiomeDictionary.isBiomeOfType(biome, BiomeDictionary.Type.DRY) ||
+                BiomeDictionary.isBiomeOfType(biome, BiomeDictionary.Type.SAVANNA)) &&
+                this.getRNG().nextInt(5) > 0) {
+            this.setMobType(EnumUndeadMobType.HUSK);
+        }
+
+        this.setSkin(new Random().nextInt(CAT_TYPES));
+
+        return livingdata;
+    }
+
+    @Override
     protected void applyEntityAttributes() {
         super.applyEntityAttributes();
         this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(10);
@@ -73,7 +88,7 @@ public class EntityZombieCat extends EntityUndeadCat {
     @Override
     @SideOnly(Side.CLIENT)
     public ResourceLocation getTexture() {
-        if (this.isGreen) {
+        if (this.dataManager.get(MOB_TYPE) == EnumUndeadMobType.HUSK.ordinal()) {
             switch (this.getSkin()) {
                 case 1:
                     return Resources.GREEN_ZOMBIE_CAT_BLACK;
@@ -108,8 +123,6 @@ public class EntityZombieCat extends EntityUndeadCat {
         super.writeEntityToNBT(nbt);
 
         nbt.setInteger("ZombieCatType", this.getSkin());
-
-        nbt.setBoolean("IsGreen", this.isGreen);
     }
 
     /**
@@ -120,10 +133,6 @@ public class EntityZombieCat extends EntityUndeadCat {
         super.readEntityFromNBT(nbt);
 
         this.setSkin(nbt.getInteger("ZombieCatType"));
-
-        if (nbt.hasKey("IsGreen")) {
-            this.isGreen = nbt.getBoolean("IsGreen");
-        }
     }
 
     /**
@@ -179,23 +188,5 @@ public class EntityZombieCat extends EntityUndeadCat {
 
     public void setSkin(int skinId) {
         this.dataManager.set(OCELOT_VARIANT, Integer.valueOf(skinId));
-    }
-
-    /**
-     * This method gets called when the entity kills another one.
-     */
-    @Override
-    public void onKillEntity(EntityLivingBase entityLiving) {
-        super.onKillEntity(entityLiving);
-
-        if (this.worldObj.getDifficulty() == EnumDifficulty.NORMAL || this.worldObj.getDifficulty() == EnumDifficulty.HARD) {
-            spawnZombieMob(entityLiving);
-        }
-    }
-
-    @Override
-    public IEntityLivingData onInitialSpawn(DifficultyInstance difficulty, IEntityLivingData data) {
-        this.setSkin(new Random().nextInt(CAT_TYPES));
-        return super.onInitialSpawn(difficulty, data);
     }
 }

@@ -7,9 +7,12 @@ import net.minecraft.entity.passive.EntityWolf;
 import net.minecraft.init.Items;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.item.Item;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import nightkosh.gravestone_extended.core.Resources;
 
 /**
@@ -22,7 +25,6 @@ public class EntitySkeletonCat extends EntityUndeadCat {
 
     public EntitySkeletonCat(World world) {
         super(world);
-        texture = Resources.SKELETON_CAT;
 
         this.tasks.addTask(1, new EntityAIRestrictSun(this));
         this.tasks.addTask(1, new EntityAIFleeSun(this, 1));
@@ -31,6 +33,12 @@ public class EntitySkeletonCat extends EntityUndeadCat {
         this.tasks.addTask(4, new EntityAIMoveTowardsRestriction(this, 1));
         this.tasks.addTask(6, new EntityAIWander(this, 1));
         this.tasks.addTask(8, new EntityAIOcelotAttack(this));
+    }
+
+    @Override
+    @SideOnly(Side.CLIENT)
+    public ResourceLocation getTexture() {
+        return Resources.SKELETON_CAT;
     }
 
     @Override
