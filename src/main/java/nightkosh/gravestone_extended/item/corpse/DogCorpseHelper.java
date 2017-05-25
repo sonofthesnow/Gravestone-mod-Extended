@@ -53,6 +53,7 @@ public class DogCorpseHelper extends CorpseHelper {
         nbtTag.setByte("Collar", (byte) EnumDyeColor.RED.ordinal());
 
         if (sophisticated) {
+            nbtTag.setBoolean(CompatibilitySophisticatedWolves.NBT_FLAG, true);
             nbtTag.setInteger(CompatibilitySophisticatedWolves.NBT_NAME, speciesNum);
         }
 
@@ -66,6 +67,7 @@ public class DogCorpseHelper extends CorpseHelper {
         nbt.setByte("Collar", (byte) dog.getCollarColor().getMetadata());
 
         if (Compatibility.sophisticatedWolvesInstalled && CompatibilitySophisticatedWolves.isSophisticated(dog)) {
+            nbt.setBoolean(CompatibilitySophisticatedWolves.NBT_FLAG, true);
             nbt.setInteger(CompatibilitySophisticatedWolves.NBT_NAME, CompatibilitySophisticatedWolves.getSpecies(dog));
         }
     }

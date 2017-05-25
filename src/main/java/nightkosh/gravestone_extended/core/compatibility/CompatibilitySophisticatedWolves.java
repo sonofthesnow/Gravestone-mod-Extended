@@ -23,6 +23,8 @@ public class CompatibilitySophisticatedWolves {
     private CompatibilitySophisticatedWolves() {
     }
 
+    public static String NBT_FLAG = "Sophisticated";
+
     public static String NBT_NAME = "Species";
 
     public static boolean isSophisticated(EntityWolf dog) {
@@ -30,7 +32,7 @@ public class CompatibilitySophisticatedWolves {
     }
 
     public static boolean isSophisticated(NBTTagCompound nbtTag) {
-        return nbtTag.hasKey(NBT_NAME);
+        return nbtTag.hasKey(NBT_FLAG);
     }
 
     public static int getSpeciesNum() {
