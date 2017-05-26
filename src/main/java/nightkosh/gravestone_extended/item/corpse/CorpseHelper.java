@@ -79,6 +79,9 @@ public abstract class CorpseHelper {
             case VILLAGER:
                 VillagerCorpseHelper.addInfo(list, nbtTag);
                 break;
+            case ZOMBIE_VILLAGER:
+                VillagerCorpseHelper.addInfo(list, nbtTag);
+                break;
             case HORSE:
                 HorseCorpseHelper.addInfo(list, nbtTag);
                 break;
@@ -122,6 +125,8 @@ public abstract class CorpseHelper {
                 return SkeletonCorpseHelper.getDefaultCorpses();
             case VILLAGER:
                 return VillagerCorpseHelper.getDefaultCorpses();
+            case ZOMBIE_VILLAGER:
+                return ZombieVillagerCorpseHelper.getDefaultCorpses();
             case DOG:
                 return DogCorpseHelper.getDefaultCorpses();
             case CAT:

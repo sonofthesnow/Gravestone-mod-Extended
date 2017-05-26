@@ -203,7 +203,27 @@ public class CorpseRendererHelper {
                 } else if (!isExecuted) {
                     GL11.glTranslatef(0, -1.3F, -0.85F);
                 }
-                Minecraft.getMinecraft().renderEngine.bindTexture(Resources.ZOMBIE_VILLAGER);
+
+                switch (ZombieVillagerCorpseHelper.getProfession(nbt)) {
+                    case -1:
+                        Minecraft.getMinecraft().renderEngine.bindTexture(Resources.ZOMBIE_VILLAGER);
+                        break;
+                    case 0:
+                        Minecraft.getMinecraft().renderEngine.bindTexture(Resources.ZOMBIE_FARMER);
+                        break;
+                    case 1:
+                        Minecraft.getMinecraft().renderEngine.bindTexture(Resources.ZOMBIE_LIBRARIAN);
+                        break;
+                    case 2:
+                        Minecraft.getMinecraft().renderEngine.bindTexture(Resources.ZOMBIE_PRIEST);
+                        break;
+                    case 3:
+                        Minecraft.getMinecraft().renderEngine.bindTexture(Resources.ZOMBIE_SMITH);
+                        break;
+                    case 4:
+                        Minecraft.getMinecraft().renderEngine.bindTexture(Resources.ZOMBIE_BUTCHER);
+                        break;
+                }
                 if (isInStocks) {
                     zombieVillagerInStocksModel.renderAll();
                 } else {
