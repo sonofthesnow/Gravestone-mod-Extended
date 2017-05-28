@@ -13,7 +13,8 @@ public enum EnumUndeadMobType {
     GHOST,
     HUSK,
     STRAY,
-    WITHER;
+    WITHER,
+    PIGMAN;
 
     public static EnumUndeadMobType getById(int id) {
         if (id < EnumUndeadMobType.values().length) {

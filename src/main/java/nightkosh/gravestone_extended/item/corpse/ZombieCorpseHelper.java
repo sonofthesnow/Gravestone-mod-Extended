@@ -25,7 +25,7 @@ public class ZombieCorpseHelper extends CorpseHelper {
         List<ItemStack> list = new ArrayList<>();
         list.add(createCorpse(EnumUndeadMobType.ZOMBIE));
         list.add(createCorpse(EnumUndeadMobType.HUSK));
-        list.add(createCorpse(EnumUndeadMobType.WITHER));
+        list.add(createCorpse(EnumUndeadMobType.PIGMAN));
 
         return list;
     }

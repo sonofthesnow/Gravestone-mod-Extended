@@ -191,7 +191,7 @@ public class CorpseRendererHelper {
                     case HUSK:
                         Minecraft.getMinecraft().renderEngine.bindTexture(Resources.HUSK_ZOMBIE);
                         break;
-                    case WITHER:
+                    case PIGMAN:
                         Minecraft.getMinecraft().renderEngine.bindTexture(Resources.ZOMBIE_PIGMAN);
                         break;
                 }
