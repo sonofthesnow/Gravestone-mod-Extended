@@ -1,5 +1,7 @@
 package nightkosh.gravestone_extended.entity.monster.pet;
 
+import nightkosh.gravestone_extended.ModGravestoneExtended;
+
 /**
  * GraveStone mod
  *
@@ -7,14 +9,19 @@ package nightkosh.gravestone_extended.entity.monster.pet;
  * @license Lesser GNU Public License v3 (http://www.gnu.org/licenses/lgpl.html)
  */
 public enum EnumUndeadMobType {
-    OTHER,
-    ZOMBIE,
-    SKELETON,
-    GHOST,
-    HUSK,
-    STRAY,
-    WITHER,
-    PIGMAN;
+    OTHER(""),
+    ZOMBIE("mobtype.zombie"),
+    SKELETON("mobtype.skeleton"),
+    GHOST("mobtype.ghost"),
+    HUSK("mobtype.husk"),
+    STRAY("mobtype.stray"),
+    WITHER("mobtype.wither"),
+    PIGMAN("mobtype.pigman");
+
+    private String name;
+    private EnumUndeadMobType(String name) {
+        this.name =  name;
+    }
 
     public static EnumUndeadMobType getById(int id) {
         if (id < EnumUndeadMobType.values().length) {
@@ -22,6 +29,14 @@ public enum EnumUndeadMobType {
         } else {
             return OTHER;
         }
+    }
+
+    public String getName() {
+        return this.name;
+    }
+
+    public String getLocalizedName() {
+        return ModGravestoneExtended.proxy.getLocalizedString(this.name);
     }
 
     public boolean sunLightProtected() {

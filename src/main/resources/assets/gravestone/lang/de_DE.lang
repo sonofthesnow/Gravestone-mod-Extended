@@ -76,9 +76,9 @@ item.corpse.dog=Hundeleiche
 item.corpse.cat=Katzenleiche
 item.corpse.zombie=Zombieleiche
 item.corpse.zombie_villager=Zombiebewohnerleicher
-item.corpse.zombie_pigmen=Zombie-Pigmen-Leiche
+##item.corpse.zombie_pigmen=Zombie-Pigmen-Leiche
 item.corpse.skeleton=Skelettleiche
-item.corpse.wither_skeleton=Wither-Skelettleiche
+##item.corpse.wither_skeleton=Wither-Skelettleiche
 item.corpse.witch=Hexenleiche
 item.corpse.entity_name=Name
 item.corpse.villager_type=Beruf
@@ -133,6 +133,15 @@ item.corpse.cat_type.black=Schwarz
 item.corpse.cat_type.red=Rot
 item.corpse.cat_type.siamese=Siam
 item.corpse.cat_type.unknown=Unbekannt
+
+## mobs type
+mobtype.zombie=Zombie
+mobtype.skeleton=Skeleton
+mobtype.ghost=Ghost
+mobtype.husk=Husk Zombie
+mobtype.stray=Stray Skeleton
+mobtype.wither=Wither Skeleton
+mobtype.pigman=Zombie Pigmen
 
 ## Backpacks
 item.backpack.undertaker.t1=Rucksack des Totengräbers

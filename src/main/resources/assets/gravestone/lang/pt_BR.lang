@@ -1,5 +1,7 @@
 # Tabs
 itemGroup.tabGSMemorials=Memoriais
+## TODO !!!!!!
+itemGroup.tabGSCorpse=Corpses
 itemGroup.tabGSOther=Itens do mod Gravestone
 
 
@@ -76,9 +78,9 @@ item.corpse.dog=Cadáver de Cachorro
 item.corpse.cat=Cadáver de Gato
 item.corpse.zombie=Cadáver de Zumbi
 item.corpse.zombie_villager=Cadáver de Aldeão Zumbi
-item.corpse.zombie_pigmen=Cadáver de Homem-Porco Zumbi
+##item.corpse.zombie_pigmen=Cadáver de Homem-Porco Zumbi
 item.corpse.skeleton=Cadáver de Esqueleto
-item.corpse.wither_skeleton=Cadáver de Esqueleto Wither
+##item.corpse.wither_skeleton=Cadáver de Esqueleto Wither
 item.corpse.witch=Cadáver de Bruxa
 item.corpse.entity_name=Nome
 item.corpse.villager_type=Profissão
@@ -133,6 +135,15 @@ item.corpse.cat_type.black=Preto
 item.corpse.cat_type.red=Vermelho
 item.corpse.cat_type.siamese=Siamês
 item.corpse.cat_type.unknown=Desconhecido
+
+## mobs type
+mobtype.zombie=Zombie
+mobtype.skeleton=Skeleton
+mobtype.ghost=Ghost
+mobtype.husk=Husk Zombie
+mobtype.stray=Stray Skeleton
+mobtype.wither=Wither Skeleton
+mobtype.pigman=Zombie Pigmen
 
 ##Backpacks
 item.backpack.undertaker.t1=Mochila do Agente Funerário

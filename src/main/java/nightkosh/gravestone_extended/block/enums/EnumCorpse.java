@@ -18,9 +18,7 @@ public enum EnumCorpse implements IBlockEnum, IStringSerializable {
     HORSE("item.corpse.horse", "corpse_horse", true, false),
     ZOMBIE("item.corpse.zombie", "corpse_zombie", false),
     ZOMBIE_VILLAGER("item.corpse.zombie_villager", "corpse_zombie_villager", false),
-//    ZOMBIE_PIGMEN("item.corpse.zombie_pigmen", "corpse_zombie_pigmen", false),
     SKELETON("item.corpse.skeleton", "corpse_skeleton", false),
-//    WITHER_SKELETON("item.corpse.wither_skeleton", "corpse_wither_skeleton", false),
     WITCH("item.corpse.witch", "corpse_witch", false);
 
     private String name;

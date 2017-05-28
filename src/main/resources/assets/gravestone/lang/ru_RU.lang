@@ -1,5 +1,6 @@
 # Tabs
 itemGroup.tabGSMemorials=Мемориалы
+itemGroup.tabGSCorpse=Трупы
 itemGroup.tabGSOther=Gravestone mod: Предметы
 
 
@@ -74,9 +75,7 @@ item.corpse.dog=Труп собаки
 item.corpse.cat=Труп кошки
 item.corpse.zombie=Труп зомби
 item.corpse.zombie_villager=Труп зомби-жителя
-item.corpse.zombie_pigmen=Труп свинозомби
 item.corpse.skeleton=Труп скелета
-item.corpse.wither_skeleton=Труп скелета-иссушителя
 item.corpse.witch=Труп ведьмы
 item.corpse.entity_name=Имя
 item.corpse.villager_type=Профессия
@@ -131,6 +130,15 @@ item.corpse.cat_type.black=Чёрная
 item.corpse.cat_type.red=Рыжая
 item.corpse.cat_type.siamese=Сиамская
 item.corpse.cat_type.unknown=Неизвестный
+
+## mobs type
+mobtype.zombie=Зомби
+mobtype.skeleton=Скелет
+mobtype.ghost=Призрак
+mobtype.husk=Кадавр
+mobtype.stray=Зимогор
+mobtype.wither=Скелет-иссушитель
+mobtype.pigman=Свинозомби
 
 ##Backpacks
 item.backpack.undertaker.t1=Рюкзак гробовщика

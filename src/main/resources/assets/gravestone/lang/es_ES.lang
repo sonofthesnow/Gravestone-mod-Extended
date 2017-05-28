@@ -1,6 +1,8 @@
 # Tabs
 ##TODO !!!!!!!!!!
 itemGroup.tabGSMemorials=Memorials
+## TODO !!!!!!
+itemGroup.tabGSCorpse=Corpses
 ##TODO !!!!!!!!!!
 itemGroup.tabGSOther=Gravestone mod Items
 
@@ -93,11 +95,7 @@ item.corpse.zombie=Zombie Corpse
 ## TODO !!!!!!!!!!
 item.corpse.zombie_villager=Zombie Villager Corpse
 ## TODO !!!!!!!!!!
-item.corpse.zombie_pigmen=Zombie Pigmen Corpse
-## TODO !!!!!!!!!!
 item.corpse.skeleton=Skeleton Corpse
-## TODO !!!!!!!!!!
-item.corpse.wither_skeleton=Wither Skeleton Corpse
 ## TODO !!!!!!!!!!
 item.corpse.witch=Witch Corpse
 item.corpse.entity_name=Name
@@ -151,6 +149,15 @@ item.corpse.cat_type.black=Black
 item.corpse.cat_type.red=Red
 item.corpse.cat_type.siamese=Siamese
 item.corpse.cat_type.unknown=Unknown
+
+## mobs type
+mobtype.zombie=Zombie
+mobtype.skeleton=Skeleton
+mobtype.ghost=Ghost
+mobtype.husk=Husk Zombie
+mobtype.stray=Stray Skeleton
+mobtype.wither=Wither Skeleton
+mobtype.pigman=Zombie Pigmen
 
 ##Backpacks
 ##TODO !!!!!!!!!!
