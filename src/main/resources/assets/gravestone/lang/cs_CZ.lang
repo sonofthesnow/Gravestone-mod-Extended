@@ -145,6 +145,7 @@ item.corpse.cat_type.unknown=Neznámá
 
 ## mobs type
 ##TODO !!!!!!!!!!!!!
+mobtype.title=Mob type
 mobtype.zombie=Zombie
 mobtype.skeleton=Skeleton
 mobtype.ghost=Ghost

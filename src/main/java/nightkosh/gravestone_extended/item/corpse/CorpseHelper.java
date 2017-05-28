@@ -45,7 +45,7 @@ public abstract class CorpseHelper {
         if (nbtTag.hasKey("MobType")) {
             EnumUndeadMobType mobType = getMobType(nbtTag);
             if (mobType != EnumUndeadMobType.OTHER) {
-                list.add("Mob type - " + mobType.getLocalizedName());
+                list.add(ModGravestoneExtended.proxy.getLocalizedString("mobtype.title") + " - " + mobType.getLocalizedName());
             }
         }
     }

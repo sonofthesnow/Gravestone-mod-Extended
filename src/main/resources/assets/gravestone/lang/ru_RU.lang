@@ -132,6 +132,7 @@ item.corpse.cat_type.siamese=Сиамская
 item.corpse.cat_type.unknown=Неизвестный
 
 ## mobs type
+mobtype.title=Тип моба
 mobtype.zombie=Зомби
 mobtype.skeleton=Скелет
 mobtype.ghost=Призрак

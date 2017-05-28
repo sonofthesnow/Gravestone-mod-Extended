@@ -149,6 +149,7 @@ item.corpse.cat_type.siamese=Siamois
 item.corpse.cat_type.unknown=Inconnu
 
 ## mobs type
+mobtype.title=Mob type
 mobtype.zombie=Zombie
 mobtype.skeleton=Skeleton
 mobtype.ghost=Ghost
