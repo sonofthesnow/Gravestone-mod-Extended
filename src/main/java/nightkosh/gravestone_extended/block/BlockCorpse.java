@@ -11,6 +11,8 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import nightkosh.gravestone_extended.block.enums.EnumCorpse;
 import nightkosh.gravestone_extended.core.Tabs;
 import nightkosh.gravestone_extended.item.corpse.CorpseHelper;
@@ -59,10 +61,13 @@ public class BlockCorpse extends BlockContainer {
     }
 
     @Override
+    @SideOnly(Side.CLIENT)
     public void getSubBlocks(Item item, CreativeTabs tab, List<ItemStack> list) {
-        Minecraft.getMinecraft().theWorld.playerEntities.forEach(player -> {
-            list.add(CorpseHelper.getDefaultPlayerCorpse(player.getGameProfile()));
-        });
+        if (Minecraft.getMinecraft().theWorld != null) {
+            Minecraft.getMinecraft().theWorld.playerEntities.forEach(player -> {
+                list.add(CorpseHelper.getDefaultPlayerCorpse(player.getGameProfile()));
+            });
+        }
         for (int damage = 0; damage < EnumCorpse.values().length; damage++) {
             list.addAll(CorpseHelper.getDefaultCorpse(damage));
         }
