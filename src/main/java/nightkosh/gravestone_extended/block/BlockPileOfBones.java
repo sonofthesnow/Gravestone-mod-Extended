@@ -94,7 +94,7 @@ public class BlockPileOfBones extends BlockContainer {
 
     @Override
     public int damageDropped(IBlockState state) {
-        return ((Enum) state.getValue(VARIANT)).ordinal();
+        return 0;
     }
 
     @Override
