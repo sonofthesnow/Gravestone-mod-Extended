@@ -12,6 +12,7 @@ import net.minecraft.entity.passive.EntityWolf;
 import net.minecraft.entity.passive.HorseType;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ResourceLocation;
+import nightkosh.gravestone.models.ModelRendererSkull;
 import nightkosh.gravestone_extended.block.enums.EnumCorpse;
 import nightkosh.gravestone_extended.core.Resources;
 import nightkosh.gravestone_extended.entity.monster.pet.EnumUndeadMobType;
@@ -44,7 +45,8 @@ public class CorpseRendererHelper {
     private static final ModelHangedBiped zombieModel = new ModelHangedBiped(false, true);
     private static final ModelHangedBiped zombiePigmenModel = new ModelHangedBiped(false, true);
     private static final ModelHangedSkeleton skeletonModel = new ModelHangedSkeleton(false);
-    private static final ModelHangedSkeleton witherSkeletonModel = new ModelHangedSkeleton(false, true);
+    private static final ModelHangedSkeleton witherSkeletonModel = new ModelHangedSkeleton(false, ModelRendererSkull.EnumSkullType.WITHER_SKULL);
+    private static final ModelHangedSkeleton straySkeletonModel = new ModelHangedSkeleton(false, ModelRendererSkull.EnumSkullType.STRAY_SKULL);
     private static final ModelHangedVillager villagerModel = new ModelHangedVillager(false);
     private static final ModelHangedZombieVillager zombieVillagerModel = new ModelHangedZombieVillager(false);
     private static final ModelHangedWitch witchModel = new ModelHangedWitch(false);
@@ -245,7 +247,7 @@ public class CorpseRendererHelper {
                         break;
                     case STRAY:
                         Minecraft.getMinecraft().renderEngine.bindTexture(Resources.STRAY_SKELETON);
-                        skeletonModel.renderStray(isInStocks);
+                        straySkeletonModel.renderStray(isInStocks);
                         break;
                     case WITHER:
                         Minecraft.getMinecraft().renderEngine.bindTexture(Resources.WITHER_SKELETON);

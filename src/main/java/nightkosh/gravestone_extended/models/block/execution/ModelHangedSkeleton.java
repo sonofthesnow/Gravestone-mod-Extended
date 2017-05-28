@@ -4,6 +4,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.client.renderer.GlStateManager;
 import nightkosh.gravestone.models.IModelBaseAdapter;
+import nightkosh.gravestone.models.ModelRendererSkull;
 import nightkosh.gravestone.models.entity.ModelGSSkeleton;
 import nightkosh.gravestone_extended.core.Resources;
 
@@ -19,21 +20,21 @@ public class ModelHangedSkeleton extends ModelGSSkeleton implements IModelBaseAd
     protected ModelRenderer leftArm;
     protected ModelRenderer rightArm2;
     protected ModelRenderer leftArm2;
-    private boolean isWitherSkeleton = false;
+    private ModelRendererSkull.EnumSkullType skullType = ModelRendererSkull.EnumSkullType.SKELETON_SKULL;
 
     private boolean isInStocks = false;
 
     public ModelHangedSkeleton(boolean isInStocks) {
-        this(isInStocks, false);
+        this(isInStocks, ModelRendererSkull.EnumSkullType.SKELETON_SKULL);
     }
 
-    public ModelHangedSkeleton(boolean isInStocks, boolean isWitherSkeleton) {
+    public ModelHangedSkeleton(boolean isInStocks, ModelRendererSkull.EnumSkullType skullType) {
         super(0, false);
 
         setRotation(skull, 0.1745329F, 0, 0);
 
         this.isInStocks = isInStocks;
-        this.isWitherSkeleton = isWitherSkeleton;
+        this.skullType = skullType;
 
         // arms (should render only when creature in stocks)
         rightArm = new ModelRenderer(this, 40, 16);
@@ -89,7 +90,7 @@ public class ModelHangedSkeleton extends ModelGSSkeleton implements IModelBaseAd
             this.bipedLeftArm.render(f5);
         }
 
-        skull.renderWithTexture(f5, isWitherSkeleton);
+        skull.renderWithTexture(f5, skullType);
     }
 
     @Override
