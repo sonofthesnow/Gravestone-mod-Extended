@@ -22,12 +22,12 @@ block.execution.gibbet.name=Käfig
 block.execution.stocks.name=Pranger
 block.execution.burning_stake.name=Scheiterhaufen
 
-## Trap
+## Traps
 block.trap.night.name=Nachtstein
 block.trap.thunder.name=Donnerstein
 block.trap.curse=Die Dunkelheit bricht ein!
 
-## Spawner
+## Spawners
 block.spawner.wither.name=Witherspawner
 block.spawner.skeleton.name=Skelettspawner
 block.spawner.zombie.name=Zombiespawner
@@ -65,7 +65,7 @@ tile.altar.name=Altar
 ## Chisel
 item.gravestone.chisel.name=Grabsteinmeißel
 
-## Corpse
+## Corpses
 item.corpse.steve=Steveleiche
 item.corpse.player=Spielerleiche
 item.corpse.villager=Dorfbewohner-Leiche
@@ -145,7 +145,7 @@ item.backpack.undertaker.t1=Rucksack des Totengräbers
 item.backpack.undertaker.t2=Gewebter Rucksack des Totengräbers
 
 
-# Gui
+# GUI
 gui.edit_grave.title=Grabtext festlegen
 gui.edit_grave.close=Fertig
 gui.edit_grave.randomText=Zufälligen Text auswählen
