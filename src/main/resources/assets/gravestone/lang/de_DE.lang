@@ -14,7 +14,7 @@ block.memorial.angel_statue.name=Engelstatue
 block.memorial.dog_statue.name=Hundestatue
 block.memorial.cat_statue.name=Katzenstatue
 block.memorial.creeper_statue.name=Creeperstatue
-block.memorial.celtic_cross.name=Keltisches Kreuz
+block.memorial.celtic_cross.name=Keltenkreuz
 
 ## Executions
 block.execution.gallows.name=Galgen
