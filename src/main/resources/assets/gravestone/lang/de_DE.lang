@@ -1,18 +1,19 @@
 # Tabs
-itemGroup.tabGSMemorials=Denkmähler
+itemGroup.tabGSMemorials=Gedenkstätten
+itemGroup.tabGSCorpse=Leichen
 itemGroup.tabGSOther=Gravestone Mod-Gegenstände
 
 
 # Blocks
 ## Memorials
-block.memorial.cross.name=Kreuz Denkmal
-block.memorial.obelisk.name=Obelisk Denkmal
-block.memorial.steve_statue.name=Steve Denkmal
-block.memorial.villager_statue.name=Dorfbwohner Denkmal
-block.memorial.angel_statue.name=Engel Denkmal
-block.memorial.dog_statue.name=Hundedenkmal
-block.memorial.cat_statue.name=Katzendenkmal
-block.memorial.creeper_statue.name=Creeperdenkmal
+block.memorial.cross.name=Kreuz
+block.memorial.obelisk.name=Obelisk
+block.memorial.steve_statue.name=Stevestatue
+block.memorial.villager_statue.name=Dorfbewohner-Statue
+block.memorial.angel_statue.name=Engelstatue
+block.memorial.dog_statue.name=Hundestatue
+block.memorial.cat_statue.name=Katzenstatue
+block.memorial.creeper_statue.name=Creeperstatue
 block.memorial.celtic_cross.name=Keltenkreuz
 
 ## Executions
@@ -21,30 +22,29 @@ block.execution.gibbet.name=Käfig
 block.execution.stocks.name=Pranger
 block.execution.burning_stake.name=Scheiterhaufen
 
-## Trap
+## Traps
 block.trap.night.name=Nachtstein
 block.trap.thunder.name=Donnerstein
 block.trap.curse=Die Dunkelheit bricht ein!
 
-## Spawner
+## Spawners
 block.spawner.wither.name=Witherspawner
 block.spawner.skeleton.name=Skelettspawner
 block.spawner.zombie.name=Zombiespawner
-block.spawner.spider.name=Spider Spawner
+block.spawner.spider.name=Spinnenspawner
 
-## Bone blocks
+## Bone Blocks
 block.bone_block.default.name=Knochenblock
-block.bone_block.skull.name=Totenkopfknochenblock
-block.bone_block.crawler.name=Knochenkriechers Knochenblock
-block.bone_block.crawler_skull.name=Knochenkriechers Totenkopfknochenblock
+block.bone_block.skull.name=Knochenblock mit Totenkopf
+block.bone_block.crawler.name=Knochenblock des Skelettkriechers
+block.bone_block.crawler_skull.name=Knochenblock des Skelettkriechers mit Totenkopf
 tile.bone_slab.name=Knochenstufe
 tile.bone_stairs.name=Knochentreppe
 
-## Pile of bones
+## Pile of Bones
 block.pile_of_bones.name=Knochenhaufen
-block.pile_of_bones_with_skull.name=Knochenhaufen mit Schädel
-## TODO !!!!!
-block.pile_of_bones_with_skull_crawler.name=Pile of Bones with Skull Crawler
+block.pile_of_bones_with_skull.name=Knochenhaufen mit Totenkopf
+block.pile_of_bones_with_skull_crawler.name=Knochenhaufen mit Skelettkriecher
 
 ## Chests
 block.haunted_chest.bats_chest.name=Fledermauskiste
@@ -55,30 +55,26 @@ block.haunted_chest.ghost_chest.name=Geisterkiste
 ## Candles
 tile.candle.name=Kerze
 block.skull_candle.skeleton.name=Totenkopfkerze
-block.skull_candle.wither_skeleton.name=Witherkopfkerze
-block.skull_candle.zombie.name=Zombiekopfkerze
+block.skull_candle.wither_skeleton.name=Wither-Totenkopfkerze
+block.skull_candle.zombie.name=Zombie-Totenkopfkerze
 
 ## Altar
 tile.altar.name=Altar
-
 
 # Items
 ## Chisel
 item.gravestone.chisel.name=Grabsteinmeißel
 
-
-## Corpse
-item.corpse.steve=Steves Leiche
+## Corpses
+item.corpse.steve=Steveleiche
 item.corpse.player=Spielerleiche
-item.corpse.villager=Dorfbewohnerleiche
+item.corpse.villager=Dorfbewohner-Leiche
 item.corpse.horse=Pferdeleiche
 item.corpse.dog=Hundeleiche
 item.corpse.cat=Katzenleiche
 item.corpse.zombie=Zombieleiche
-item.corpse.zombie_villager=Zombiebewohnerleicher
-##item.corpse.zombie_pigmen=Zombie-Pigmen-Leiche
+item.corpse.zombie_villager=Dorfbewohnerzombie-Leiche
 item.corpse.skeleton=Skelettleiche
-##item.corpse.wither_skeleton=Wither-Skelettleiche
 item.corpse.witch=Hexenleiche
 item.corpse.entity_name=Name
 item.corpse.villager_type=Beruf
@@ -94,7 +90,7 @@ item.corpse.villager_type.beekeeper=Imker
 item.corpse.villager_type.lumberjack=Holzfäller
 item.corpse.villager_type.Unknown=Unbekannt
 
-item.corpse.villager_career=Beruf
+item.corpse.villager_career=Karriere
 item.corpse.villager_career.Unknown=Unbekannt
 
 item.corpse.horse_type=Pferdeart
@@ -107,14 +103,14 @@ item.corpse.horse_type.unknown=Unbekannt
 item.corpse.horse_variant=Pferdegattung
 item.corpse.health=Max. Gesundheit
 item.corpse.speed=Geschwindigkeit
-item.corpse.jump_strength=Sprunkraft
+item.corpse.jump_strength=Sprungkraft
 item.corpse.collar=Halsband
-item.corpse.collar.white=Weiss
+item.corpse.collar.white=Weiß
 item.corpse.collar.orange=Orange
 item.corpse.collar.purple=Lila
 item.corpse.collar.azure=Himmelblau
 item.corpse.collar.yellow=Gelb
-item.corpse.collar.lime=Lindgrün
+item.corpse.collar.lime=Hellgrün
 item.corpse.collar.pink=Rosa
 item.corpse.collar.grey=Grau
 item.corpse.collar.light_grey=Hellgrau
@@ -126,44 +122,45 @@ item.corpse.collar.green=Grün
 item.corpse.collar.red=Rot
 item.corpse.collar.black=Schwarz
 item.corpse.collar.unknown=Unbekannt
-item.corpse.dog_type=Dog type
+item.corpse.dog_type=Hundeart
 item.corpse.cat_type=Katzenart
-item.corpse.cat_type.ocelot=Ocelot
+item.corpse.cat_type.ocelot=Ozelot
 item.corpse.cat_type.black=Schwarz
 item.corpse.cat_type.red=Rot
-item.corpse.cat_type.siamese=Siam
+item.corpse.cat_type.siamese=Siamkatze
 item.corpse.cat_type.unknown=Unbekannt
 
 ## mobs type
-mobtype.title=Mob type
+mobtype.title=Monstertyp
 mobtype.zombie=Zombie
 mobtype.skeleton=Skeleton
-mobtype.ghost=Ghost
-mobtype.husk=Husk Zombie
-mobtype.stray=Stray Skeleton
-mobtype.wither=Wither Skeleton
-mobtype.pigman=Zombie Pigmen
+mobtype.ghost=Geist
+mobtype.husk=Wüstenzombie
+mobtype.stray=Eiswanderer
+mobtype.wither=Witherskelett
+mobtype.pigman=Schweinezombie
 
 ## Backpacks
 item.backpack.undertaker.t1=Rucksack des Totengräbers
 item.backpack.undertaker.t2=Gewebter Rucksack des Totengräbers
 
 
-# Gui
-gui.edit_grave.title=Grabtext festelegen
+# GUI
+gui.edit_grave.title=Grabtext festlegen
 gui.edit_grave.close=Fertig
-gui.edit_grave.randomText=Zufälliger Text
-gui.altar.resurrect=Wiederauferstehung
+gui.edit_grave.randomText=Zufälligen Text auswählen
+gui.altar.resurrect=Wiederauferstehen
 gui.altar.requirements=%d Level benötigt
+
 
 # Entity
 entity.GSZombieDog.name=Zombiehund
 entity.GSSkeletonDog.name=Skeletthund
 entity.GSZombieCat.name=Zombiekatze
 entity.GSSkeletonCat.name=Skelettkatze
-entity.GSSkullCrawler.name=Totenkopfkriecher
-entity.GSWitherSkullCrawler.name=Witherkopfkriecher
-entity.GSZombieSkullCrawler.name=Zombiekopfkriecher
+entity.GSSkullCrawler.name=Skelettkriecher
+entity.GSWitherSkullCrawler.name=Wither-Skelettkriecher
+entity.GSZombieSkullCrawler.name=Zombie-Skelettkriecher
 entity.GSRaven.name=Rabe
 entity.GSSkeletonRaider.name=Skeletträuber
 entity.GSZombieRaider.name=Zombieräuber
@@ -172,4 +169,4 @@ entity.GSZombieRaider.name=Zombieräuber
 # Console messages
 ## Console commands
 commands.direction_error=Richtungsfehler!
-commands.generate.unknown_structure=Unbekannter Aufbau!
+commands.generate.unknown_structure=Unbekannte Struktur!
