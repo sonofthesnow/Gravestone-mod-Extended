@@ -26,6 +26,7 @@ public class EntitySkeletonDog extends EntityUndeadDog {
     public EntitySkeletonDog(World world) {
         super(world);
         this.setSize(0.6F, 0.8F);
+        this.setMobType(EnumUndeadMobType.SKELETON);
 
         this.tasks.addTask(1, new EntityAIRestrictSun(this));
         this.tasks.addTask(1, new EntityAIFleeSun(this, 1));

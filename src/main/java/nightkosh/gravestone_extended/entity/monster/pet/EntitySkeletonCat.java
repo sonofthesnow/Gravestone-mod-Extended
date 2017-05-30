@@ -25,6 +25,7 @@ public class EntitySkeletonCat extends EntityUndeadCat {
 
     public EntitySkeletonCat(World world) {
         super(world);
+        this.setMobType(EnumUndeadMobType.SKELETON);
 
         this.tasks.addTask(1, new EntityAIRestrictSun(this));
         this.tasks.addTask(1, new EntityAIFleeSun(this, 1));
