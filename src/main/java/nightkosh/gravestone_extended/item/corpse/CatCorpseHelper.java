@@ -63,7 +63,7 @@ public class CatCorpseHelper extends CorpseHelper {
     }
 
     private static ItemStack getDefaultCatCorpse(EnumCatType catType, EnumUndeadMobType mobType) {
-        ItemStack corpse = new ItemStack(GSBlock.corpse, 1, CORPSE_TYPE);
+        ItemStack corpse = new ItemStack(GSBlock.CORPSE, 1, CORPSE_TYPE);
         NBTTagCompound nbtTag = new NBTTagCompound();
 
         nbtTag.setByte("MobType", (byte) mobType.ordinal());

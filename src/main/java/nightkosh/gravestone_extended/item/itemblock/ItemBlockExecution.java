@@ -13,6 +13,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import nightkosh.gravestone_extended.block.enums.EnumExecution;
+import nightkosh.gravestone_extended.core.GSBlock;
 
 /**
  * GraveStone mod
@@ -24,7 +25,8 @@ public class ItemBlockExecution extends ItemBlock {
 
     public ItemBlockExecution(Block block) {
         super(block);
-        setHasSubtypes(true);
+        this.setHasSubtypes(true);
+        this.setRegistryName(GSBlock.EXECUTION.getRegistryName());
     }
 
     @Override
@@ -81,7 +83,7 @@ public class ItemBlockExecution extends ItemBlock {
         byte startX = 0;
         byte startZ = 0;
 
-        EnumFacing rotation = EnumFacing.getHorizontal(MathHelper.floor_double((double) (player.rotationYaw * 4 / 360F) + 0.5D) & 3).getOpposite();
+        EnumFacing rotation = EnumFacing.getHorizontal(MathHelper.floor((double) (player.rotationYaw * 4 / 360F) + 0.5D) & 3).getOpposite();
         switch (execution) {
             case GALLOWS:
             case GIBBET:

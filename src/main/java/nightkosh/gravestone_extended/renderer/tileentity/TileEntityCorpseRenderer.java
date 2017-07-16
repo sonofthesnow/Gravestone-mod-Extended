@@ -22,7 +22,7 @@ public class TileEntityCorpseRenderer extends TileEntitySpecialRenderer {
     public static void renderCorpseOnAltar(ItemStack item, double x, double y, double z, float ticks) {
         if (item != null) {
             GL11.glPushMatrix();
-            float time = Minecraft.getMinecraft().theWorld.getTotalWorldTime() + ticks;
+            float time = Minecraft.getMinecraft().world.getTotalWorldTime() + ticks;
             GL11.glTranslated(x + 0.5F, y + 1.2F, z + 0.5F);
             GL11.glRotatef(time % 360, 0, 1, 0);
 

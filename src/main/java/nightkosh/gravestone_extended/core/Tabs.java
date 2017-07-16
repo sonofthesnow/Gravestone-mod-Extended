@@ -1,7 +1,6 @@
 package nightkosh.gravestone_extended.core;
 
 import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -24,13 +23,13 @@ public class Tabs extends nightkosh.gravestone.core.Tabs {
         memorialsTab = new CreativeTabs("tabGSMemorials") {
             @Override
             public ItemStack getIconItemStack() {
-                return new ItemStack(GSBlock.memorial, 1, EnumMemorials.STONE_CREEPER_STATUE.ordinal());
+                return new ItemStack(GSBlock.MEMORIAL, 1, EnumMemorials.STONE_CREEPER_STATUE.ordinal());
             }
 
             @Override
             @SideOnly(Side.CLIENT)
-            public Item getTabIconItem() {
-                return Item.getItemFromBlock(GSBlock.memorial);
+            public ItemStack getTabIconItem() {
+                return new ItemStack(GSBlock.MEMORIAL, 1, EnumMemorials.STONE_CREEPER_STATUE.ordinal());
             }
         };
 
@@ -42,21 +41,21 @@ public class Tabs extends nightkosh.gravestone.core.Tabs {
 
             @Override
             @SideOnly(Side.CLIENT)
-            public Item getTabIconItem() {
-                return Item.getItemFromBlock(GSBlock.corpse);
+            public ItemStack getTabIconItem() {
+                return ZombieCorpseHelper.getDefaultCorpse();
             }
         };
 
         otherItemsTab = new CreativeTabs("tabGSOther") {
             @Override
             public ItemStack getIconItemStack() {
-                return new ItemStack(GSBlock.skullCandle, 1, 1);
+                return new ItemStack(GSBlock.SKULL_CANDLE, 1, 1);
             }
 
             @Override
             @SideOnly(Side.CLIENT)
-            public Item getTabIconItem() {
-                return Item.getItemFromBlock(GSBlock.skullCandle);
+            public ItemStack getTabIconItem() {
+                return new ItemStack(GSBlock.SKULL_CANDLE, 1, 1);
             }
         };
     }

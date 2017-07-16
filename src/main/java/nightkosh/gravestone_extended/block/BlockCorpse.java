@@ -8,17 +8,18 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import nightkosh.gravestone_extended.block.enums.EnumCorpse;
+import nightkosh.gravestone_extended.core.ModInfo;
 import nightkosh.gravestone_extended.core.Tabs;
 import nightkosh.gravestone_extended.item.corpse.CorpseHelper;
 import nightkosh.gravestone_extended.tileentity.TileEntityCorpse;
-
-import java.util.List;
 
 /**
  * GraveStone mod
@@ -33,10 +34,11 @@ public class BlockCorpse extends BlockContainer {
         this.setUnlocalizedName("Corpse");
         this.setHardness(0);
         this.setCreativeTab(Tabs.corpseTab);
+        this.setRegistryName(ModInfo.ID, "GSCorpse");
     }
 
     @Override
-    public AxisAlignedBB getCollisionBoundingBox(IBlockState state, World world, BlockPos pos) {
+    public AxisAlignedBB getCollisionBoundingBox(IBlockState state, IBlockAccess world, BlockPos pos) {
         return null;
     }
 
@@ -62,9 +64,9 @@ public class BlockCorpse extends BlockContainer {
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void getSubBlocks(Item item, CreativeTabs tab, List<ItemStack> list) {
-        if (Minecraft.getMinecraft().theWorld != null) {
-            Minecraft.getMinecraft().theWorld.playerEntities.forEach(player -> {
+    public void getSubBlocks(Item item, CreativeTabs tab, NonNullList<ItemStack> list) {
+        if (Minecraft.getMinecraft().world != null) {
+            Minecraft.getMinecraft().world.playerEntities.forEach(player -> {
                 list.add(CorpseHelper.getDefaultPlayerCorpse(player.getGameProfile()));
             });
         }

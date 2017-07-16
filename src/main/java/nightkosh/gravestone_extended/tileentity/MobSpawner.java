@@ -35,9 +35,9 @@ public class MobSpawner extends Spawner {
     protected void clientUpdateLogic() {
 //        delay--;
 //        if (delay <= SPAWN_EFFECTS_DELAY) {
-//            double x = tileEntity.xCoord + tileEntity.worldObj.rand.nextFloat();
-//            double y = tileEntity.yCoord + tileEntity.worldObj.rand.nextFloat();
-//            double z = tileEntity.zCoord + tileEntity.worldObj.rand.nextFloat();
+//            double x = tileEntity.xCoord + tileEntity.getEntityWorld().rand.nextFloat();
+//            double y = tileEntity.yCoord + tileEntity.getEntityWorld().rand.nextFloat();
+//            double z = tileEntity.zCoord + tileEntity.getEntityWorld().rand.nextFloat();
 //            tileEntity.worldObj.spawnParticle("largesmoke", x, y, z, 0.0D, 0.0D, 0.0D);
 //            tileEntity.worldObj.spawnParticle("portal", x, y, z, 0.0D, 0.0D, 0.0D);
 //            tileEntity.worldObj.spawnParticle("spell", x, y, z, 0.0D, 0.0D, 0.0D);
@@ -63,9 +63,9 @@ public class MobSpawner extends Spawner {
                     if (isBossSpawner()) {
                         spawnerEntity.getIWorld().removeTileEntity(spawnerEntity.getIPos());
                         spawnerEntity.getIWorld().setBlockToAir(spawnerEntity.getIPos());
-                        spawnerEntity.getIWorld().spawnEntityInWorld(entity);
+                        spawnerEntity.getIWorld().spawnEntity(entity);
                     } else if (spawnerEntity.getIWorld().getLightBrightness(spawnerEntity.getIPos()) <= MAX_LIGHT_VALUE) {
-                        spawnerEntity.getIWorld().spawnEntityInWorld(entity);
+                        spawnerEntity.getIWorld().spawnEntity(entity);
                     }
                 }
             }

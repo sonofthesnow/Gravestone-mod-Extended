@@ -18,7 +18,7 @@ public class VillageHandlerGSUndertaker implements VillagerRegistry.IVillageCrea
 
     @Override
     public StructureVillagePieces.PieceWeight getVillagePieceWeight(Random random, int size) {
-        return new StructureVillagePieces.PieceWeight(ComponentVillageUndertaker.class, 3, MathHelper.getRandomIntegerInRange(random, 0, 1));
+        return new StructureVillagePieces.PieceWeight(ComponentVillageUndertaker.class, 3, MathHelper.getInt(random, 0, 1));
     }
 
     @Override

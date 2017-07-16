@@ -42,11 +42,11 @@ public class TickEventHandler {
     @SideOnly(Side.CLIENT)
     public void playerTick(TickEvent.PlayerTickEvent event) {
         if (event.phase == TickEvent.Phase.END) {
-            if (event.player.equals(Minecraft.getMinecraft().thePlayer)) {
+            if (event.player.equals(Minecraft.getMinecraft().player)) {
                 fogTicCount++;
                 if (fogTicCount > MAX_FOG_TICK_COUNT) {
                     fogTicCount = 0;
-                    RenderEventHandler.resetAmountOfFogSources(event.player.worldObj);
+                    RenderEventHandler.resetAmountOfFogSources(event.player.getEntityWorld());
                 }
             }
         }

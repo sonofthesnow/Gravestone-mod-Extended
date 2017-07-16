@@ -5,8 +5,6 @@ import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.IEntityLivingData;
 import net.minecraft.entity.monster.EntitySkeleton;
 import net.minecraft.entity.monster.EntityZombie;
-import net.minecraft.entity.monster.SkeletonType;
-import net.minecraft.entity.monster.ZombieType;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.inventory.EntityEquipmentSlot;
@@ -328,7 +326,7 @@ public class MobSpawn {
             zPosition = z + world.rand.nextFloat();
             world.spawnParticle(EnumParticleTypes.SMOKE_LARGE, xPosition, yPosition + 2, zPosition, 0.0D, 0.0D, 0.0D);
             world.spawnParticle(EnumParticleTypes.FLAME, xPosition, yPosition + 1, zPosition, 0.0D, 0.0D, 0.0D);
-            world.spawnEntityInWorld(mob);
+            world.spawnEntity(mob);
             world.playEvent(2004, new BlockPos(x, y, z), 0);
             return true;
         } else {
@@ -362,8 +360,8 @@ public class MobSpawn {
     }
 
     public static void spawnCrawler(net.minecraft.entity.Entity entity, EntitySkullCrawler crawler) {
-        if (entity.worldObj.rand.nextInt(10) == 0) {
-            MobSpawn.spawnMob(entity.worldObj, crawler,
+        if (entity.getEntityWorld().rand.nextInt(10) == 0) {
+            MobSpawn.spawnMob(entity.getEntityWorld(), crawler,
                     (int) Math.floor(entity.posX), entity.posY + 1.5, (int) Math.floor(entity.posZ),
                     entity.rotationYaw, false);
         }

@@ -53,7 +53,7 @@ public class AltarMessageToServer implements IMessage, IMessageHandler<AltarMess
 
     public AltarMessageToServer(EntityPlayer player, int x, int y, int z, MOB_TYPE mobType) {
         this.playerID = player.getEntityId();
-        this.dimensionID = player.worldObj.provider.getDimension();
+        this.dimensionID = player.getEntityWorld().provider.getDimension();
         this.x = x;
         this.y = y;
         this.z = z;

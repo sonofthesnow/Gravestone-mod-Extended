@@ -52,7 +52,7 @@ public class TileEntityHauntedChest extends TileEntity implements ITickable {
             openTicks--;
         }
 
-        if (this.worldObj.isRemote) {
+        if (this.getWorld().isRemote) {
             this.prevLidAngle = this.lidAngle;
             f = 0.1F;
             double d0;
@@ -61,7 +61,7 @@ public class TileEntityHauntedChest extends TileEntity implements ITickable {
                 double d1 = (double) this.pos.getX() + 0.5D;
                 d0 = (double) this.pos.getZ() + 0.5D;
 
-                this.worldObj.playSound(null, d1, (double) this.pos.getY() + 0.5D, d0, SoundEvents.BLOCK_CHEST_OPEN, SoundCategory.BLOCKS, 0.5F, this.worldObj.rand.nextFloat() * 0.1F + 0.9F);
+                this.getWorld().playSound(null, d1, (double) this.pos.getY() + 0.5D, d0, SoundEvents.BLOCK_CHEST_OPEN, SoundCategory.BLOCKS, 0.5F, this.getWorld().rand.nextFloat() * 0.1F + 0.9F);
             }
 
             if (this.openTicks == 0 && this.lidAngle > 0 || this.openTicks > 0 && this.lidAngle < 1) {
@@ -82,7 +82,7 @@ public class TileEntityHauntedChest extends TileEntity implements ITickable {
                     d0 = (double) this.pos.getX() + 0.5D;
                     double d2 = (double) this.pos.getZ() + 0.5D;
 
-                    this.worldObj.playSound(null, d0, (double) this.pos.getY() + 0.5D, d2, SoundEvents.BLOCK_CHEST_CLOSE, SoundCategory.BLOCKS, 0.5F, this.worldObj.rand.nextFloat() * 0.1F + 0.9F);
+                    this.getWorld().playSound(null, d0, (double) this.pos.getY() + 0.5D, d2, SoundEvents.BLOCK_CHEST_CLOSE, SoundCategory.BLOCKS, 0.5F, this.getWorld().rand.nextFloat() * 0.1F + 0.9F);
                 }
 
                 if (this.lidAngle < 0) {
@@ -91,14 +91,14 @@ public class TileEntityHauntedChest extends TileEntity implements ITickable {
             }
         } else {
             if (openTicks == 45) {
-                spawnMobs(this.worldObj);
+                spawnMobs(this.getWorld());
             }
         }
 
         if (openTicks == 0) {
             if (this.isOpen && ExtendedConfig.replaceHauntedChest) {
-                this.worldObj.removeTileEntity(this.pos);
-                this.worldObj.setBlockState(this.pos, Blocks.CHEST.getStateFromMeta(GSBlock.hauntedChest.getMetaFromState(worldObj.getBlockState(this.pos))));
+                this.getWorld().removeTileEntity(this.pos);
+                this.getWorld().setBlockState(this.pos, Blocks.CHEST.getStateFromMeta(GSBlock.HAUNTED_CHEST.getMetaFromState(getWorld().getBlockState(this.pos))));
             }
             this.isOpen = false;
         }
@@ -146,7 +146,7 @@ public class TileEntityHauntedChest extends TileEntity implements ITickable {
             case SKELETON_CHEST:
                 EntitySkeleton skeleton = MobSpawn.getSkeleton(world, false);
                 skeleton.setLocationAndAngles(this.pos.getX() + 0.5, this.pos.getY(), this.pos.getZ() + 0.5, 0, 0);
-                world.spawnEntityInWorld(skeleton);
+                world.spawnEntity(skeleton);
                 break;
             case BATS_CHEST:
             default:
@@ -157,7 +157,7 @@ public class TileEntityHauntedChest extends TileEntity implements ITickable {
                     bat = new EntityBat(world);
                     bat.setLocationAndAngles(this.pos.getX() + 0.5, this.pos.getY() + 0.7, this.pos.getZ() + 0.5, 0, 0);
 
-                    world.spawnEntityInWorld(bat);
+                    world.spawnEntity(bat);
                 }
                 break;
         }

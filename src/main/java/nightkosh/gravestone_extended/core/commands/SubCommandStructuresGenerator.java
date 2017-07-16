@@ -51,7 +51,7 @@ public class SubCommandStructuresGenerator implements ISubCommand {
             String structureName = args[1];
             int x = sender.getPosition().getX();
             int z = sender.getPosition().getZ();
-            EnumFacing facing = EnumFacing.getHorizontal(MathHelper.floor_double((double) (((Entity) sender).rotationYaw * 4 / 360F) + 0.5) & 3);
+            EnumFacing facing = EnumFacing.getHorizontal(MathHelper.floor((double) (((Entity) sender).rotationYaw * 4 / 360F) + 0.5) & 3);
             try {
                 if (args.length >= 3) {
                     x = Integer.parseInt(args[2]);
@@ -60,14 +60,14 @@ public class SubCommandStructuresGenerator implements ISubCommand {
                         if (args.length >= 5) {
                             facing = EnumFacing.byName(args[4]);
                             if (facing == null) {
-                                sender.addChatMessage(new TextComponentTranslation("commands.direction_error").setStyle(new Style().setColor(TextFormatting.RED)));
+                                sender.sendMessage(new TextComponentTranslation("commands.direction_error").setStyle(new Style().setColor(TextFormatting.RED)));
                                 return;
                             }
                         }
                     }
                 }
             } catch (NumberFormatException e) {
-                sender.addChatMessage(new TextComponentTranslation("commands.coordinate_error").setStyle(new Style().setColor(TextFormatting.RED)));
+                sender.sendMessage(new TextComponentTranslation("commands.coordinate_error").setStyle(new Style().setColor(TextFormatting.RED)));
                 return;
             }
 
@@ -91,11 +91,11 @@ public class SubCommandStructuresGenerator implements ISubCommand {
                     generateStructure(sender, sender.getEntityWorld(), x, z, facing, VillageUndertakerGenerator.getInstance());
                     break;
                 default:
-                    sender.addChatMessage(new TextComponentTranslation("commands.generate.unknown_structure").setStyle(new Style().setColor(TextFormatting.RED)));
+                    sender.sendMessage(new TextComponentTranslation("commands.generate.unknown_structure").setStyle(new Style().setColor(TextFormatting.RED)));
                     break;
             }
         } else {
-            sender.addChatMessage(new TextComponentTranslation("commands.not_enough_parameters").setStyle(new Style().setColor(TextFormatting.RED)));
+            sender.sendMessage(new TextComponentTranslation("commands.not_enough_parameters").setStyle(new Style().setColor(TextFormatting.RED)));
         }
 
     }

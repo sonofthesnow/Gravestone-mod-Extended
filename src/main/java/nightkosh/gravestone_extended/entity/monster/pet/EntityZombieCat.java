@@ -66,9 +66,9 @@ public class EntityZombieCat extends EntityUndeadCat {
     public IEntityLivingData onInitialSpawn(DifficultyInstance difficulty, @Nullable IEntityLivingData livingdata) {
         livingdata = super.onInitialSpawn(difficulty, livingdata);
 
-        Biome biome = this.worldObj.getBiome(new BlockPos(this));
-        if ((BiomeDictionary.isBiomeOfType(biome, BiomeDictionary.Type.DRY) ||
-                BiomeDictionary.isBiomeOfType(biome, BiomeDictionary.Type.SAVANNA)) &&
+        Biome biome = this.getEntityWorld().getBiome(new BlockPos(this));
+        if ((BiomeDictionary.hasType(biome, BiomeDictionary.Type.DRY) ||
+                BiomeDictionary.hasType(biome, BiomeDictionary.Type.SAVANNA)) &&
                 this.getRNG().nextInt(5) > 0) {
             this.setMobType(EnumUndeadMobType.HUSK);
         }

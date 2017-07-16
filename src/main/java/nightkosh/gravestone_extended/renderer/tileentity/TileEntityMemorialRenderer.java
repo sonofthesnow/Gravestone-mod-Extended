@@ -82,7 +82,7 @@ public class TileEntityMemorialRenderer extends TileEntityRenderer {
 
         GL11.glTranslatef(x, y, 80);
 
-        float time = Minecraft.getMinecraft().theWorld.getTotalWorldTime() + partialTicks;
+        float time = Minecraft.getMinecraft().world.getTotalWorldTime() + partialTicks;
         GL11.glRotatef(time % 360, 0, 1, 0);
 
         float scale = 75 / 4;

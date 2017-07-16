@@ -39,7 +39,7 @@ public class AISummonSkullCrawler extends EntityAIBase {
         --this.summonColdown;
 
         if (this.summonColdown <= 0) {
-            World world = this.crawler.worldObj;
+            World world = this.crawler.getEntityWorld();
             Random random = this.crawler.getRNG();
             BlockPos blockpos = new BlockPos(this.crawler);
 
@@ -49,8 +49,8 @@ public class AISummonSkullCrawler extends EntityAIBase {
                         BlockPos blockPos = blockpos.add(j, i, k);
                         IBlockState state = world.getBlockState(blockPos);
 
-                        if ((state.getBlock().equals(GSBlock.boneBlock) && GSBlock.boneBlock.isSkullCrawlerBlock(state)) ||
-                                (state.getBlock().equals(GSBlock.pileOfBones) && GSBlock.pileOfBones.isSkullCrawlerBlock(state))) {
+                        if ((state.getBlock().equals(GSBlock.BONE_BLOCK) && GSBlock.BONE_BLOCK.isSkullCrawlerBlock(state)) ||
+                                (state.getBlock().equals(GSBlock.PILE_OF_BONES) && GSBlock.PILE_OF_BONES.isSkullCrawlerBlock(state))) {
                             if (world.getGameRules().getBoolean("mobGriefing")) {
                                 world.destroyBlock(blockPos, true);
                             }

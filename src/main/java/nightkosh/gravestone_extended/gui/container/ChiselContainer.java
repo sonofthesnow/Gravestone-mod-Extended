@@ -48,7 +48,7 @@ public class ChiselContainer extends Container {
 
     public ChiselContainer(EntityPlayer player, InventoryPlayer inventoryPlayer) {
         this.player = player;
-        this.world = player.worldObj;
+        this.world = player.getEntityWorld();
         this.addSlotToContainer(new SlotCrafting(inventoryPlayer.player, this.craftMatrix, this.craftResult, 0, 135, 90));
 
         for (int column = 0; column < CRAFTING_SLOTS_COUNT; column++) {
@@ -107,8 +107,8 @@ public class ChiselContainer extends Container {
 
     @Override
     public ItemStack transferStackInSlot(EntityPlayer player, int index) {
-        ItemStack itemstack = null;
-        Slot slot = (Slot) this.inventorySlots.get(index);
+        ItemStack itemstack = ItemStack.EMPTY;
+        Slot slot = this.inventorySlots.get(index);
 
         if (slot != null && slot.getHasStack()) {
             ItemStack itemstack1 = slot.getStack();
@@ -116,33 +116,33 @@ public class ChiselContainer extends Container {
 
             if (index == 0) {
                 if (!this.mergeItemStack(itemstack1, 10, 46, true)) {
-                    return null;
+                    return ItemStack.EMPTY;
                 }
 
                 slot.onSlotChange(itemstack1, itemstack);
             } else if (index >= 9 && index < 36) {
                 if (!this.mergeItemStack(itemstack1, 36, 45, false)) {
-                    return null;
+                    return ItemStack.EMPTY;
                 }
             } else if (index >= 36 && index < 45) {
                 if (!this.mergeItemStack(itemstack1, 9, 36, false)) {
-                    return null;
+                    return ItemStack.EMPTY;
                 }
             } else if (!this.mergeItemStack(itemstack1, 9, 45, false)) {
-                return null;
+                return ItemStack.EMPTY;
             }
 
-            if (itemstack1.stackSize == 0) {
-                slot.putStack((ItemStack) null);
+            if (itemstack1.isEmpty()) {
+                slot.putStack(ItemStack.EMPTY);
             } else {
                 slot.onSlotChanged();
             }
 
-            if (itemstack1.stackSize == itemstack.stackSize) {
-                return null;
+            if (itemstack1.getCount() == itemstack.getCount()) {
+                return ItemStack.EMPTY;
             }
 
-            slot.onPickupFromSlot(player, itemstack1);
+            slot.onTake(player, itemstack1);
         }
 
         return itemstack;

@@ -237,10 +237,10 @@ public abstract class EntityUndeadHorse extends EntityHorse {
 
     @Override
     public void onLivingUpdate() {
-        if (this.worldObj.isDaytime() && !this.worldObj.isRemote) {
+        if (this.getEntityWorld().isDaytime() && !this.getEntityWorld().isRemote) {
             float brightness = this.getBrightness(1);
             BlockPos blockpos = new BlockPos(this.posX, (double) Math.round(this.posY), this.posZ);
-            if (brightness > 0.5 && this.rand.nextFloat() * 30 < (brightness - 0.4) * 2 && this.worldObj.canSeeSky(blockpos) && !this.hasArmor()) {
+            if (brightness > 0.5 && this.rand.nextFloat() * 30 < (brightness - 0.4) * 2 && this.getEntityWorld().canSeeSky(blockpos) && !this.hasArmor()) {
                 this.setFire(8);
             }
         }
@@ -253,7 +253,7 @@ public abstract class EntityUndeadHorse extends EntityHorse {
         player.rotationPitch = this.rotationPitch;
         this.setEatingHaystack(false);
         this.setRearing(false);
-        if (!this.worldObj.isRemote) {
+        if (!this.getEntityWorld().isRemote) {
             player.startRiding(this);
         }
     }
@@ -332,7 +332,7 @@ public abstract class EntityUndeadHorse extends EntityHorse {
 //            this.dataManager.set(HORSE_ARMOR, Integer.valueOf(horsearmortype.getOrdinal()));
 //            this.resetTexturePrefix();
 //
-//            if (!this.worldObj.isRemote) {
+//            if (!this.getEntityWorld().isRemote) {
 //                this.getEntityAttribute(SharedMonsterAttributes.ARMOR).removeModifier(ARMOR_MODIFIER_UUID);
 //                int i = horsearmortype.getProtection();
 //
@@ -349,7 +349,7 @@ public abstract class EntityUndeadHorse extends EntityHorse {
 
     @Override
     public void onUpdate() {
-        if (this.worldObj.isRemote && this.dataManager.isDirty()) {
+        if (this.getEntityWorld().isRemote && this.dataManager.isDirty()) {
             this.resetTexturePrefix();
         }
         super.onUpdate();
@@ -357,23 +357,23 @@ public abstract class EntityUndeadHorse extends EntityHorse {
 
     @Override
     public boolean getCanSpawnHere() {
-        return this.worldObj.getDifficulty() != EnumDifficulty.PEACEFUL && this.isValidLightLevel() &&
+        return this.getEntityWorld().getDifficulty() != EnumDifficulty.PEACEFUL && this.isValidLightLevel() &&
                 this.getBlockPathWeight(new BlockPos(this.posX, this.getEntityBoundingBox().minY, this.posZ)) >= 0.0F;
     }
 
     protected boolean isValidLightLevel() {
         BlockPos blockpos = new BlockPos(this.posX, this.getEntityBoundingBox().minY, this.posZ);
 
-        if (this.worldObj.getLightFor(EnumSkyBlock.SKY, blockpos) > this.rand.nextInt(32)) {
+        if (this.getEntityWorld().getLightFor(EnumSkyBlock.SKY, blockpos) > this.rand.nextInt(32)) {
             return false;
         } else {
-            int i = this.worldObj.getLightFromNeighbors(blockpos);
+            int i = this.getEntityWorld().getLightFromNeighbors(blockpos);
 
-            if (this.worldObj.isThundering()) {
-                int j = this.worldObj.getSkylightSubtracted();
-                this.worldObj.setSkylightSubtracted(10);
-                i = this.worldObj.getLightFromNeighbors(blockpos);
-                this.worldObj.setSkylightSubtracted(j);
+            if (this.getEntityWorld().isThundering()) {
+                int j = this.getEntityWorld().getSkylightSubtracted();
+                this.getEntityWorld().setSkylightSubtracted(10);
+                i = this.getEntityWorld().getLightFromNeighbors(blockpos);
+                this.getEntityWorld().setSkylightSubtracted(j);
             }
 
             return i <= this.rand.nextInt(8);

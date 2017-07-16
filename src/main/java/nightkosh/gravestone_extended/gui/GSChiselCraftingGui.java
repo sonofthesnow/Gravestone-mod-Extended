@@ -96,7 +96,7 @@ public class GSChiselCraftingGui extends GuiContainer {
 
         if (isGravestone) {
             //TODO ???
-//            TileEntityGraveStoneRenderer.instance.renderGraveInGui(350, 0, player.worldObj, EnumGraves.getByTypeAndMaterial(graveType, material), isEnchanted, isMossy, false, null, par1);
+//            TileEntityGraveStoneRenderer.instance.renderGraveInGui(350, 0, player.getEntityWorld(), EnumGraves.getByTypeAndMaterial(graveType, material), isEnchanted, isMossy, false, null, par1);
         } else {
             TileEntityMemorialRenderer.instance.renderMemorialInGui(350, 0, EnumMemorials.getByTypeAndMaterial(memorialType, material), isEnchanted, isMossy, par1);
         }

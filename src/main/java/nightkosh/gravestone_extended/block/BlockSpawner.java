@@ -17,6 +17,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumBlockRenderType;
 import net.minecraft.util.EnumParticleTypes;
+import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
@@ -25,6 +26,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import nightkosh.gravestone_extended.block.enums.EnumSpawner;
 import nightkosh.gravestone_extended.core.GSBlock;
+import nightkosh.gravestone_extended.core.ModInfo;
 import nightkosh.gravestone_extended.core.Tabs;
 import nightkosh.gravestone_extended.particle.EntityGreenFlameFX;
 import nightkosh.gravestone_extended.tileentity.TileEntitySpawner;
@@ -62,6 +64,7 @@ public class BlockSpawner extends BlockMobSpawner {
         this.disableStats();
         this.setCreativeTab(Tabs.otherItemsTab);
         this.setHarvestLevel("pickaxe", 1);
+        this.setRegistryName(ModInfo.ID, "GSSpawner");
     }
 
     /**
@@ -105,7 +108,7 @@ public class BlockSpawner extends BlockMobSpawner {
     }
 
     @Override
-    public AxisAlignedBB getCollisionBoundingBox(IBlockState state, World world, BlockPos pos) {
+    public AxisAlignedBB getCollisionBoundingBox(IBlockState state, IBlockAccess world, BlockPos pos) {
         return null;
     }
 
@@ -162,12 +165,12 @@ public class BlockSpawner extends BlockMobSpawner {
     public ItemStack getCustomItemsDropped(int meta) {
         switch (meta) {
             case 1:
-                return new ItemStack(GSBlock.skullCandle, 1, 0);
+                return new ItemStack(GSBlock.SKULL_CANDLE, 1, 0);
             case 2:
-                return new ItemStack(GSBlock.skullCandle, 1, 2);
+                return new ItemStack(GSBlock.SKULL_CANDLE, 1, 2);
             case 0:
             default:
-                return new ItemStack(GSBlock.skullCandle, 1, 1);
+                return new ItemStack(GSBlock.SKULL_CANDLE, 1, 1);
         }
     }
 
@@ -198,7 +201,7 @@ public class BlockSpawner extends BlockMobSpawner {
      */
     @Override
     @SideOnly(Side.CLIENT)
-    public void getSubBlocks(Item item, CreativeTabs tab, List list) {
+    public void getSubBlocks(Item item, CreativeTabs tab, NonNullList<ItemStack> list) {
         for (EnumSpawner meta : MOB_SPAWNERS) {
             list.add(new ItemStack(item, 1, meta.ordinal()));
         }

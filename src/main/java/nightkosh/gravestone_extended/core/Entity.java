@@ -1,12 +1,18 @@
 package nightkosh.gravestone_extended.core;
 
+import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EnumCreatureType;
+import net.minecraft.util.ResourceLocation;
+import net.minecraft.world.biome.Biome;
 import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.fml.common.registry.EntityRegistry;
 import nightkosh.gravestone_extended.config.ExtendedConfig;
 import nightkosh.gravestone_extended.entity.EntityRaven;
 import nightkosh.gravestone_extended.entity.helper.EntityGroupOfGravesMobSpawnerHelper;
-import nightkosh.gravestone_extended.entity.monster.*;
+import nightkosh.gravestone_extended.entity.monster.EntityDamnedWarrior;
+import nightkosh.gravestone_extended.entity.monster.EntityGSSkeleton;
+import nightkosh.gravestone_extended.entity.monster.EntitySkeletonRaider;
+import nightkosh.gravestone_extended.entity.monster.EntityZombieRaider;
 import nightkosh.gravestone_extended.entity.monster.crawler.EntitySkullCrawler;
 import nightkosh.gravestone_extended.entity.monster.crawler.EntityWitherSkullCrawler;
 import nightkosh.gravestone_extended.entity.monster.crawler.EntityZombieSkullCrawler;
@@ -17,6 +23,8 @@ import nightkosh.gravestone_extended.entity.monster.pet.EntitySkeletonDog;
 import nightkosh.gravestone_extended.entity.monster.pet.EntityZombieCat;
 import nightkosh.gravestone_extended.entity.monster.pet.EntityZombieDog;
 
+import java.util.Set;
+
 /**
  * GraveStone mod
  *
@@ -25,20 +33,9 @@ import nightkosh.gravestone_extended.entity.monster.pet.EntityZombieDog;
  */
 public class Entity {
 
-    private static Entity instance;
     private static int mobId = 0;
 
     private Entity() {
-        instance = this;
-        getEntity();
-    }
-
-    public static Entity getInstance() {
-        if (instance == null) {
-            return new Entity();
-        } else {
-            return instance;
-        }
     }
 
     public static final String SKELETON_NAME = "GSSkeleton";
@@ -82,84 +79,88 @@ public class Entity {
     public static final String DAMNED_WARRIOR_ID = ModInfo.ID + "." + DAMNED_WARRIOR_NAME;
     public static final String RAVEN_ID = ModInfo.ID + "." + RAVEN_NAME;
 
-    public void getEntity() {
+    public static void registration() {
         // zombie dog
-        registerModEntity(EntityZombieDog.class, ZOMBIE_DOG_NAME);
+        registerModEntity(Resources.ZOMBIE_DOG, EntityZombieDog.class, ZOMBIE_DOG_NAME);
         if (ExtendedConfig.spawnZombieDogs) {
-            EntityRegistry.addSpawn(EntityZombieDog.class, 2, 1, 1, EnumCreatureType.MONSTER, BiomeDictionary.getBiomesForType(BiomeDictionary.Type.FOREST));
+            addSpawn(BiomeDictionary.Type.FOREST, EntityZombieDog.class, 2, 1, 1);
         }
 
         // zombie cat
-        registerModEntity(EntityZombieCat.class, ZOMBIE_CAT_NAME);
+        registerModEntity(Resources.ZOMBIE_OZELOT, EntityZombieCat.class, ZOMBIE_CAT_NAME);
         if (ExtendedConfig.spawnZombieCats) {
-            EntityRegistry.addSpawn(EntityZombieCat.class, 2, 1, 1, EnumCreatureType.MONSTER, BiomeDictionary.getBiomesForType(BiomeDictionary.Type.JUNGLE));
+            addSpawn(BiomeDictionary.Type.JUNGLE, EntityZombieCat.class, 2, 1, 1);
         }
 
         // skeleton dog
-        registerModEntity(EntitySkeletonDog.class, SKELETON_DOG_NAME);
+        registerModEntity(Resources.SKELETON_DOG, EntitySkeletonDog.class, SKELETON_DOG_NAME);
         if (ExtendedConfig.spawnSkeletonDogs) {
-            EntityRegistry.addSpawn(EntityZombieDog.class, 2, 1, 1, EnumCreatureType.MONSTER, BiomeDictionary.getBiomesForType(BiomeDictionary.Type.FOREST));
+            addSpawn(BiomeDictionary.Type.FOREST, EntityZombieDog.class, 2, 1, 1);
         }
 
         // skeleton cat
-        registerModEntity(EntitySkeletonCat.class, SKELETON_CAT_NAME);
+        registerModEntity(Resources.SKELETON_CAT, EntitySkeletonCat.class, SKELETON_CAT_NAME);
         if (ExtendedConfig.spawnSkeletonCats) {
-            EntityRegistry.addSpawn(EntityZombieCat.class, 2, 1, 1, EnumCreatureType.MONSTER, BiomeDictionary.getBiomesForType(BiomeDictionary.Type.JUNGLE));
+            addSpawn(BiomeDictionary.Type.JUNGLE, EntityZombieCat.class, 2, 1, 1);
         }
 
         // skull crawlers
-        registerModEntity(EntitySkullCrawler.class, SKULL_CRAWLER_NAME);
+        registerModEntity(Resources.SKELETON_SKULL_CRAWLER, EntitySkullCrawler.class, SKULL_CRAWLER_NAME);
         // wither
-        registerModEntity(EntityWitherSkullCrawler.class, WITHER_SKULL_CRAWLER_NAME);
-        EntityRegistry.addSpawn(EntityWitherSkullCrawler.class, 3, 1, 4, EnumCreatureType.MONSTER, BiomeDictionary.getBiomesForType(BiomeDictionary.Type.NETHER));
+        registerModEntity(Resources.WITHER_SKULL_CRAWLER, EntityWitherSkullCrawler.class, WITHER_SKULL_CRAWLER_NAME);
+        addSpawn(BiomeDictionary.Type.NETHER, EntityWitherSkullCrawler.class, 3, 1, 4);
         // zombie
-        registerModEntity(EntityZombieSkullCrawler.class, ZOMBIE_SKULL_CRAWLER_NAME);
+        registerModEntity(Resources.ZOMBIE_SKULL_CRAWLER, EntityZombieSkullCrawler.class, ZOMBIE_SKULL_CRAWLER_NAME);
 
-        registerModEntity(EntityGSSkeleton.class, SKELETON_NAME);
+        registerModEntity(Resources.SKELETON, EntityGSSkeleton.class, SKELETON_NAME);
         EntityRegistry.addSpawn(EntityGSSkeleton.class, 1, 1, 3, EnumCreatureType.MONSTER);
 
-        registerModEntity(EntityZombieHorse.class, ZOMBIE_HORSE_NAME);
-        registerModEntity(EntitySkeletonHorse.class, SKELETON_HORSE_NAME);
+        registerModEntity(Resources.ZOMBIE_HORSE, EntityZombieHorse.class, ZOMBIE_HORSE_NAME);
+        registerModEntity(Resources.SKELETON_HORSE, EntitySkeletonHorse.class, SKELETON_HORSE_NAME);
         if (ExtendedConfig.spawnUndeadHorses) {
-            EntityRegistry.addSpawn(EntityZombieHorse.class, 2, 1, 3, EnumCreatureType.MONSTER, BiomeDictionary.getBiomesForType(BiomeDictionary.Type.PLAINS));
-            EntityRegistry.addSpawn(EntitySkeletonHorse.class, 2, 1, 3, EnumCreatureType.MONSTER, BiomeDictionary.getBiomesForType(BiomeDictionary.Type.PLAINS));
+            addSpawn(BiomeDictionary.Type.PLAINS, EntityZombieHorse.class, 2, 1, 3);
+            addSpawn(BiomeDictionary.Type.PLAINS, EntitySkeletonHorse.class, 2, 1, 3);
         }
 
-        registerModEntity(EntityZombieRaider.class, ZOMBIE_RAIDER_NAME);
+        registerModEntity(Resources.ZOMBIE, EntityZombieRaider.class, ZOMBIE_RAIDER_NAME);
         if (ExtendedConfig.spawnZombieRaiders) {
-            EntityRegistry.addSpawn(EntityZombieRaider.class, 1, 1, 1, EnumCreatureType.MONSTER, BiomeDictionary.getBiomesForType(BiomeDictionary.Type.PLAINS));
+            addSpawn(BiomeDictionary.Type.PLAINS, EntityZombieRaider.class, 1, 1, 1);
         }
-        registerModEntity(EntitySkeletonRaider.class, SKELETON_RAIDER_NAME);
+        registerModEntity(Resources.SKELETON, EntitySkeletonRaider.class, SKELETON_RAIDER_NAME);
         if (ExtendedConfig.spawnSkeletonRaiders) {
-            EntityRegistry.addSpawn(EntitySkeletonRaider.class, 1, 1, 1, EnumCreatureType.MONSTER, BiomeDictionary.getBiomesForType(BiomeDictionary.Type.PLAINS));
+            addSpawn(BiomeDictionary.Type.PLAINS, EntitySkeletonRaider.class, 1, 1, 1);
         }
 
-        registerModEntity(EntityRaven.class, RAVEN_NAME);
+        registerModEntity(Resources.RAVEN, EntityRaven.class, RAVEN_NAME);
 //        EntityRegistry.addSpawn(EntityRaven.class, 1, 3, 10, EnumCreatureType.AMBIENT);//TODO!!!!
 
         // Damned Warrior
-        registerModEntity(EntityDamnedWarrior.class, DAMNED_WARRIOR_NAME);
-
-        // ghosts
-        // LostSoul
-        //EntityRegistry.registerGlobalEntityID(EntityLostSoul.class, "GSLostSoul", EntityRegistry.findGlobalUniqueEntityId(), 15720061, 4802889);
-        //EntityRegistry.addSpawn(EntityLostSoul.class, 3, 1, 3, EnumCreatureType.MONSTER, BiomeGenBase.jungle, BiomeGenBase.jungleHills);
-
-        // VengefulSpirit
-        //EntityRegistry.registerGlobalEntityID(EntityVengefulSpirit.class, "GSVengefulSpirit", EntityRegistry.findGlobalUniqueEntityId(), 15720061, 4802889);
-        //EntityRegistry.addSpawn(EntityVengefulSpirit.class, 3, 1, 3, EnumCreatureType.MONSTER, BiomeGenBase.jungle, BiomeGenBase.jungleHills);
+        registerModEntity(Resources.DAMNED_WARRIOR, EntityDamnedWarrior.class, DAMNED_WARRIOR_NAME);
 
 
-        registerModEntity(EntityGroupOfGravesMobSpawnerHelper.class, SPAWNER_HELPER_NAME);
+        registerModEntity(Resources.EMPTY, EntityGroupOfGravesMobSpawnerHelper.class, SPAWNER_HELPER_NAME);
     }
 
-    private void registerModEntity(Class<? extends net.minecraft.entity.Entity> entityClass, String entityName) {
-        registerModEntity(entityClass, entityName, mobId, ModInfo.ID, 100, 1, true);
+    private static void addSpawn(BiomeDictionary.Type biomeType, Class<? extends EntityLiving> entityClass,
+                          int spawnProbability, int spawnMinCount, int spawnMaxCount) {
+        addSpawn(biomeType, entityClass, EnumCreatureType.MONSTER, spawnProbability, spawnMinCount, spawnMaxCount);
+    }
+
+    private static void addSpawn(BiomeDictionary.Type biomeType, Class<? extends EntityLiving> entityClass,
+                          EnumCreatureType mobType, int spawnProbability, int spawnMinCount, int spawnMaxCount) {
+        Set<Biome> biomeSet = BiomeDictionary.getBiomes(biomeType);
+        Biome[] biomeArray = new Biome[biomeSet.size()];
+        biomeSet.toArray(biomeArray);
+        EntityRegistry.addSpawn(entityClass, spawnProbability, spawnMinCount, spawnMaxCount, mobType, biomeArray);
+    }
+
+    private static void registerModEntity(ResourceLocation resource, Class<? extends net.minecraft.entity.Entity> entityClass, String entityName) {
+        registerModEntity(resource, entityClass, entityName, mobId, ModInfo.ID, 100, 1, true);
         mobId++;
     }
 
-    private void registerModEntity(Class<? extends net.minecraft.entity.Entity> entityClass, String entityName, int id,
+    private static void registerModEntity(ResourceLocation resource, Class<? extends net.minecraft.entity.Entity> entityClass, String entityName, int id,
                                    Object mod, int trackingRange, int updateFrequency, boolean sendsVelocityUpdates) {
-        EntityRegistry.registerModEntity(entityClass, entityName, id, mod, trackingRange, updateFrequency, sendsVelocityUpdates);
+        EntityRegistry.registerModEntity(resource, entityClass, entityName, id, mod, trackingRange, updateFrequency, sendsVelocityUpdates);
     }
 }

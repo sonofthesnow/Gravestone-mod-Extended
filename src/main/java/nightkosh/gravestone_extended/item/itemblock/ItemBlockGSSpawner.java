@@ -4,6 +4,7 @@ import nightkosh.gravestone_extended.block.enums.EnumSpawner;
 import net.minecraft.block.Block;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
+import nightkosh.gravestone_extended.core.GSBlock;
 
 /**
  * GraveStone mod
@@ -15,7 +16,8 @@ public class ItemBlockGSSpawner extends ItemBlock {
 
     public ItemBlockGSSpawner(Block block) {
         super(block);
-        setHasSubtypes(true);
+        this.setHasSubtypes(true);
+        this.setRegistryName(GSBlock.SPAWNER.getRegistryName());
     }
 
     @Override

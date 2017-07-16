@@ -21,6 +21,7 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.EnumParticleTypes;
+import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
@@ -35,12 +36,12 @@ import nightkosh.gravestone_extended.ModGravestoneExtended;
 import nightkosh.gravestone_extended.block.enums.EnumExecution;
 import nightkosh.gravestone_extended.core.GSBlock;
 import nightkosh.gravestone_extended.core.GuiHandler;
+import nightkosh.gravestone_extended.core.ModInfo;
 import nightkosh.gravestone_extended.core.Tabs;
 import nightkosh.gravestone_extended.particle.EntityBigFlameFX;
 import nightkosh.gravestone_extended.tileentity.TileEntityExecution;
 
 import javax.annotation.Nullable;
-import java.util.List;
 import java.util.Random;
 
 /**
@@ -60,6 +61,7 @@ public class BlockExecution extends BlockContainer {
         this.setHardness(1);
         this.setResistance(5);
         this.setCreativeTab(Tabs.otherItemsTab);
+        this.setRegistryName(ModInfo.ID, "GSExecution");
     }
 
     @Override
@@ -122,7 +124,7 @@ public class BlockExecution extends BlockContainer {
     }
 
     @Override
-    public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, @Nullable ItemStack heldItem, EnumFacing side, float hitX, float hitY, float hitZ) {
+    public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing side, float hitX, float hitY, float hitZ) {
         TileEntityExecution te = (TileEntityExecution) world.getTileEntity(pos);
 
         if (te != null && !player.isSneaking()) {
@@ -135,7 +137,7 @@ public class BlockExecution extends BlockContainer {
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void getSubBlocks(Item item, CreativeTabs tab, List list) {
+    public void getSubBlocks(Item item, CreativeTabs tab, NonNullList<ItemStack> list) {
         for (EnumExecution executionBlock : EnumExecution.values()) {
             list.add(new ItemStack(item, 1, executionBlock.ordinal()));
         }
@@ -159,7 +161,7 @@ public class BlockExecution extends BlockContainer {
     }
 
     private ItemStack getBlockItemStackWithoutInfo(World world, BlockPos pos) {
-        return this.createStackedBlock(world.getBlockState(pos));
+        return new ItemStack(Item.getItemFromBlock(this), 1);
     }
 
     @Override
@@ -168,7 +170,7 @@ public class BlockExecution extends BlockContainer {
 
     @Override
     public ItemStack getPickBlock(IBlockState state, RayTraceResult target, World world, BlockPos pos, EntityPlayer player) {
-        ItemStack itemStack = this.createStackedBlock(world.getBlockState(pos));
+        ItemStack itemStack = new ItemStack(Item.getItemFromBlock(this), 1);
         TileEntityExecution tileEntity = (TileEntityExecution) world.getTileEntity(pos);
 
         if (tileEntity != null && itemStack != null) {
@@ -258,13 +260,13 @@ public class BlockExecution extends BlockContainer {
         TileEntityExecution tileEntity = (TileEntityExecution) world.getTileEntity(pos);
 
         if (tileEntity != null) {
-            tileEntity.setDirection((byte) EnumFacing.getHorizontal(MathHelper.floor_double((double) (player.rotationYaw * 4 / 360F) + 0.5D) & 3).getOpposite().ordinal());
+            tileEntity.setDirection((byte) EnumFacing.getHorizontal(MathHelper.floor((double) (player.rotationYaw * 4 / 360F) + 0.5D) & 3).getOpposite().ordinal());
 
             if (itemStack.hasTagCompound()) {
                 NBTTagCompound nbt = itemStack.getTagCompound();
 
                 if (nbt.hasKey("Corpse")) {
-                    tileEntity.setCorpse(ItemStack.loadItemStackFromNBT(nbt.getCompoundTag("Corpse")));
+                    tileEntity.setCorpse(new ItemStack(nbt.getCompoundTag("Corpse")));
                 }
 
                 placeWalls(world, pos);
@@ -273,7 +275,7 @@ public class BlockExecution extends BlockContainer {
     }
 
     public static void placeWalls(World world, BlockPos pos) {
-        placeAdditionalBlock(world, pos, GSBlock.invisibleWall.getDefaultState(), Blocks.AIR);
+        placeAdditionalBlock(world, pos, GSBlock.INVISIBLE_WALL.getDefaultState(), Blocks.AIR);
     }
 
     private static void dropCorpse(World world, BlockPos pos) {
@@ -306,7 +308,7 @@ public class BlockExecution extends BlockContainer {
 
 
     private static void removeWalls(World world, BlockPos pos) {
-        placeAdditionalBlock(world, pos, Blocks.AIR.getDefaultState(), GSBlock.invisibleWall);
+        placeAdditionalBlock(world, pos, Blocks.AIR.getDefaultState(), GSBlock.INVISIBLE_WALL);
     }
 
     public static void placeAdditionalBlock(World world, BlockPos pos, IBlockState blockState, Block replaceableBlock) {

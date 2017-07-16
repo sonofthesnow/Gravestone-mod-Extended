@@ -40,7 +40,7 @@ public class ZombieVillagerCorpseHelper extends CorpseHelper {
     }
 
     private static ItemStack createCorpse(int profession, int career) {
-        ItemStack corpse = new ItemStack(GSBlock.corpse, 1, EnumCorpse.ZOMBIE_VILLAGER.ordinal());
+        ItemStack corpse = new ItemStack(GSBlock.CORPSE, 1, EnumCorpse.ZOMBIE_VILLAGER.ordinal());
 
         NBTTagCompound nbtTag = new NBTTagCompound();
         nbtTag.setInteger("Profession", profession);

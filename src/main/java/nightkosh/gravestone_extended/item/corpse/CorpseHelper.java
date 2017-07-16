@@ -4,7 +4,7 @@ import com.mojang.authlib.GameProfile;
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
-import net.minecraft.entity.passive.EntityHorse;
+import net.minecraft.entity.passive.AbstractHorse;
 import net.minecraft.entity.passive.EntityOcelot;
 import net.minecraft.entity.passive.EntityVillager;
 import net.minecraft.entity.passive.EntityWolf;
@@ -64,7 +64,7 @@ public abstract class CorpseHelper {
 
     protected static void spawnMob(EntityLiving entity, World world, int x, int y, int z) {
         entity.setPosition(x + 0.5, y + 1, z + 0.5);
-        world.spawnEntityInWorld(entity);
+        world.spawnEntity(entity);
         entity.addPotionEffect(new PotionEffect(MobEffects.REGENERATION, 300));
     }
 
@@ -114,7 +114,7 @@ public abstract class CorpseHelper {
     }
 
     public static ItemStack getDefaultPlayerCorpse(GameProfile profile) {
-        return GameProfileHelper.getBlock(profile, GSBlock.corpse, EnumCorpse.STEVE.ordinal());
+        return GameProfileHelper.getBlock(profile, GSBlock.CORPSE, EnumCorpse.STEVE.ordinal());
     }
 
     public static List<ItemStack> getDefaultCorpse(int corpseType) {
@@ -135,7 +135,7 @@ public abstract class CorpseHelper {
                 return HorseCorpseHelper.getDefaultCorpses();
             default:
                 List<ItemStack> list = new ArrayList<>();
-                list.add(new ItemStack(GSBlock.corpse, 1, corpseType));
+                list.add(new ItemStack(GSBlock.CORPSE, 1, corpseType));
                 return list;
         }
     }
@@ -147,7 +147,7 @@ public abstract class CorpseHelper {
                 VillagerCorpseHelper.setNbt((EntityVillager) entity, nbtTag);
                 break;
             case HORSE:
-                HorseCorpseHelper.setNbt((EntityHorse) entity, nbtTag);
+                HorseCorpseHelper.setNbt((AbstractHorse) entity, nbtTag);
                 break;
             case DOG:
                 DogCorpseHelper.setNbt((EntityWolf) entity, nbtTag);
@@ -158,7 +158,7 @@ public abstract class CorpseHelper {
         }
 
         List<ItemStack> corpse = new ArrayList<>();
-        ItemStack stack = new ItemStack(GSBlock.corpse, 1, type.ordinal());
+        ItemStack stack = new ItemStack(GSBlock.CORPSE, 1, type.ordinal());
         stack.setTagCompound(nbtTag);
         corpse.add(stack);
         return corpse;
@@ -186,7 +186,7 @@ public abstract class CorpseHelper {
     public static boolean canSpawnMob(EntityPlayer player, ItemStack corpse) {
         return EnumCorpse.getById((byte) corpse.getItemDamage()).canBeResurrected() &&
                 getMobType(corpse.getTagCompound()) == EnumUndeadMobType.OTHER && //TODO
-                player.worldObj.getWorldInfo().getGameType().equals(GameType.CREATIVE) || player.experienceLevel >= getRequiredLevel(corpse.getItemDamage());
+                player.getEntityWorld().getWorldInfo().getGameType().equals(GameType.CREATIVE) || player.experienceLevel >= getRequiredLevel(corpse.getItemDamage());
     }
 
     public static void getExperience(EntityPlayer player, int damage) {

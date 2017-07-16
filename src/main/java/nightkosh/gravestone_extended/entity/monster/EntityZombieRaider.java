@@ -29,12 +29,12 @@ public class EntityZombieRaider extends EntityZombie {
         this.setItemStackToSlot(EntityEquipmentSlot.MAINHAND, new ItemStack(Items.IRON_SWORD));
         this.setChild(false);
 
-        EntityUndeadHorse horse = new EntityZombieHorse(this.worldObj);
+        EntityUndeadHorse horse = new EntityZombieHorse(this.getEntityWorld());
         ((PathNavigateGround) horse.getNavigator()).setCanSwim(true);
         horse.copyLocationAndAnglesFrom(this);
-        horse.onInitialSpawn(difficulty, (IEntityLivingData) null);
+        horse.onInitialSpawn(difficulty, null);
 
-        this.worldObj.spawnEntityInWorld(horse);
+        this.getEntityWorld().spawnEntity(horse);
         this.startRiding(horse);
 
         return super.onInitialSpawn(difficulty, data);

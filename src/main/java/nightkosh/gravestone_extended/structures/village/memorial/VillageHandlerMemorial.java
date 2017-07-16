@@ -18,7 +18,7 @@ public class VillageHandlerMemorial implements VillagerRegistry.IVillageCreation
 
     @Override
     public StructureVillagePieces.PieceWeight getVillagePieceWeight(Random random, int size) {
-        return new StructureVillagePieces.PieceWeight(ComponentVillageMemorial.class, 3, MathHelper.getRandomIntegerInRange(random, 0, 1));
+        return new StructureVillagePieces.PieceWeight(ComponentVillageMemorial.class, 3, MathHelper.getInt(random, 0, 1));
     }
 
     @Override

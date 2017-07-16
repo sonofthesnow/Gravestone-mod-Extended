@@ -45,7 +45,7 @@ public class TileEntityHauntedChestRenderer extends TileEntitySpecialRenderer {
         }
 
         GL11.glPushMatrix();
-        if (te.hasWorldObj()) {
+        if (te.hasWorld()) {
             metadata = te.getBlockMetadata();
         } else {
             GL11.glRotatef(45, 0, 1, 0);

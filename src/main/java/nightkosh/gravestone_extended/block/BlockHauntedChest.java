@@ -20,6 +20,7 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumBlockRenderType;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
+import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
@@ -31,6 +32,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import nightkosh.gravestone.inventory.GraveInventory;
 import nightkosh.gravestone_extended.block.enums.EnumHauntedChest;
+import nightkosh.gravestone_extended.core.ModInfo;
 import nightkosh.gravestone_extended.core.Tabs;
 import nightkosh.gravestone_extended.tileentity.TileEntityHauntedChest;
 
@@ -55,6 +57,7 @@ public class BlockHauntedChest extends BlockContainer {
         this.setHardness(2.5F);
         this.setCreativeTab(Tabs.otherItemsTab);
         this.setHarvestLevel("axe", 0);
+        this.setRegistryName(ModInfo.ID, "GSHauntedChest");
     }
 
     /**
@@ -116,7 +119,7 @@ public class BlockHauntedChest extends BlockContainer {
      * Called upon block activation (right click on the block.)
      */
     @Override
-    public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, @Nullable ItemStack heldItem, EnumFacing side, float hitX, float hitY, float hitZ) {
+    public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing side, float hitX, float hitY, float hitZ) {
         if (player instanceof FakePlayer) {
             return false;
         } else {
@@ -138,7 +141,7 @@ public class BlockHauntedChest extends BlockContainer {
      */
     @Override
     public void onBlockPlacedBy(World world, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack) {
-        EnumFacing enumfacing = EnumFacing.getHorizontal(MathHelper.floor_double((double) (placer.rotationYaw * 4 / 360F) + 0.5D) & 3).getOpposite();
+        EnumFacing enumfacing = EnumFacing.getHorizontal(MathHelper.floor((double) (placer.rotationYaw * 4 / 360F) + 0.5D) & 3).getOpposite();
         state = state.withProperty(FACING, enumfacing);
 
         world.setBlockState(pos, state, 3);
@@ -194,7 +197,7 @@ public class BlockHauntedChest extends BlockContainer {
      * Get chest block as item block
      */
     private ItemStack getBlockItemStack(World world, BlockPos pos, IBlockState state) {
-        ItemStack itemStack = this.createStackedBlock(this.getDefaultState());
+        ItemStack itemStack = new ItemStack(Item.getItemFromBlock(this), 1);
         TileEntityHauntedChest tileEntity = (TileEntityHauntedChest) world.getTileEntity(pos);
 
         if (tileEntity != null) {
@@ -217,7 +220,7 @@ public class BlockHauntedChest extends BlockContainer {
      */
     @Override
     @SideOnly(Side.CLIENT)
-    public void getSubBlocks(Item item, CreativeTabs tabs, List list) {
+    public void getSubBlocks(Item item, CreativeTabs tabs, NonNullList<ItemStack> list) {
         for (byte i = 0; i < EnumHauntedChest.values().length; i++) {
             ItemStack stack = new ItemStack(item, 1, 0);
             NBTTagCompound nbt = new NBTTagCompound();

@@ -14,6 +14,7 @@ import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.PotionEffect;
+import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.world.World;
@@ -22,11 +23,11 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import nightkosh.gravestone_extended.ModGravestoneExtended;
 import nightkosh.gravestone_extended.block.enums.EnumTrap;
 import nightkosh.gravestone_extended.config.ExtendedConfig;
+import nightkosh.gravestone_extended.core.ModInfo;
 import nightkosh.gravestone_extended.core.Potion;
 import nightkosh.gravestone_extended.core.Tabs;
 import nightkosh.gravestone_extended.core.TimeHelper;
 
-import java.util.List;
 import java.util.Random;
 
 /**
@@ -47,6 +48,7 @@ public class BlockTrap extends Block {
         this.setResistance(5);
         this.setCreativeTab(Tabs.otherItemsTab);
         this.setHarvestLevel("pickaxe", 1);
+        this.setRegistryName(ModInfo.ID, "GSTrap");
     }
 
     /**
@@ -93,7 +95,7 @@ public class BlockTrap extends Block {
                         time = time - dayTime + TimeHelper.PRE_NIGHT;
                         world.setWorldTime(time);
                         if (ExtendedConfig.showNightStoneMessage) {
-                            ((EntityPlayer) entity).addChatComponentMessage(new TextComponentTranslation(ModGravestoneExtended.proxy.getLocalizedString(NIGHT_STONE_CURSE_TEXT)));
+                            ((EntityPlayer) entity).sendMessage(new TextComponentTranslation(ModGravestoneExtended.proxy.getLocalizedString(NIGHT_STONE_CURSE_TEXT)));
                         }
                     } else if (dayTime > 20000 && dayTime < TimeHelper.PRE_MORNING) {
                         time = time - dayTime + TimeHelper.NIGHT;
@@ -135,7 +137,7 @@ public class BlockTrap extends Block {
      */
     @Override
     @SideOnly(Side.CLIENT)
-    public void getSubBlocks(Item item, CreativeTabs tab, List list) {
+    public void getSubBlocks(Item item, CreativeTabs tab, NonNullList<ItemStack> list) {
         for (byte meta = 0; meta < EnumTrap.values().length; meta++) {
             list.add(new ItemStack(item, 1, meta));
         }

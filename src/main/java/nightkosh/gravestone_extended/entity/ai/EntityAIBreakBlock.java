@@ -24,7 +24,7 @@ public class EntityAIBreakBlock extends EntityAIBlockInteract {
      */
     @Override
     public boolean shouldExecute() {
-        return super.shouldExecute() && this.theEntity.worldObj.getGameRules().getBoolean("mobGriefing");
+        return super.shouldExecute() && this.theEntity.getEntityWorld().getGameRules().getBoolean("mobGriefing");
     }
 
     /**
@@ -50,7 +50,7 @@ public class EntityAIBreakBlock extends EntityAIBlockInteract {
     @Override
     public void resetTask() {
         super.resetTask();
-        //this.theEntity.worldObj.destroyBlockInWorldPartially(this.theEntity.entityId, this.entityPosX, this.entityPosY, this.entityPosZ, -1);
+        //this.theEntity.getEntityWorld().destroyBlockInWorldPartially(this.theEntity.entityId, this.entityPosX, this.entityPosY, this.entityPosZ, -1);
     }
 
     /**
@@ -60,15 +60,15 @@ public class EntityAIBreakBlock extends EntityAIBlockInteract {
     public void updateTask() {
         super.updateTask();
 
-        if (!isBlockBroken && this.theEntity.worldObj.getDifficulty() == EnumDifficulty.NORMAL ||
-                this.theEntity.worldObj.getDifficulty() == EnumDifficulty.HARD) {
+        if (!isBlockBroken && this.theEntity.getEntityWorld().getDifficulty() == EnumDifficulty.NORMAL ||
+                this.theEntity.getEntityWorld().getDifficulty() == EnumDifficulty.HARD) {
             isBlockBroken = true;
             BlockPos pos = new BlockPos(this.theEntity);
             //TODO
-//            this.targetBlock.dropBlockAsItem(this.theEntity.worldObj, pos, 0, 0);
-            this.theEntity.worldObj.setBlockToAir(pos);
-//            this.theEntity.worldObj.playAuxSFX(1012, pos, 0);
-//            this.theEntity.worldObj.playAuxSFX(2001, pos, 0);
+//            this.targetBlock.dropBlockAsItem(this.theEntity.getEntityWorld(), pos, 0, 0);
+            this.theEntity.getEntityWorld().setBlockToAir(pos);
+//            this.theEntity.getEntityWorld().playAuxSFX(1012, pos, 0);
+//            this.theEntity.getEntityWorld().playAuxSFX(2001, pos, 0);
         }
     }
 }

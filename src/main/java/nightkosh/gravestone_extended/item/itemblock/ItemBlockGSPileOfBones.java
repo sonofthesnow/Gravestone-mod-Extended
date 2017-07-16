@@ -4,6 +4,7 @@ import nightkosh.gravestone_extended.block.enums.EnumPileOfBones;
 import net.minecraft.block.Block;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
+import nightkosh.gravestone_extended.core.GSBlock;
 
 /**
  * GraveStone mod
@@ -15,6 +16,7 @@ public class ItemBlockGSPileOfBones extends ItemBlock {
 
     public ItemBlockGSPileOfBones(Block block) {
         super(block);
+        this.setRegistryName(GSBlock.PILE_OF_BONES.getRegistryName());
     }
 
     @Override

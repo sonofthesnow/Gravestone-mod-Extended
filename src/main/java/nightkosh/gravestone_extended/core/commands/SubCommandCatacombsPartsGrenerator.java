@@ -52,12 +52,12 @@ public class SubCommandCatacombsPartsGrenerator implements ISubCommand {
             int y = sender.getPosition().getY();
             int z = sender.getPosition().getZ();
             int level = 0;
-            EnumFacing facing = EnumFacing.getHorizontal(MathHelper.floor_double((double) (((Entity) sender).rotationYaw * 4 / 360F) + 0.5) & 3);
+            EnumFacing facing = EnumFacing.getHorizontal(MathHelper.floor((double) (((Entity) sender).rotationYaw * 4 / 360F) + 0.5) & 3);
             try {
                 if (args.length >= 3) {
                     facing = EnumFacing.byName(args[2]);
                     if (facing == null) {
-                        sender.addChatMessage(new TextComponentTranslation("commands.direction_error").setStyle(new Style().setColor(TextFormatting.RED)));
+                        sender.sendMessage(new TextComponentTranslation("commands.direction_error").setStyle(new Style().setColor(TextFormatting.RED)));
                         return;
                     }
                     if (args.length >= 4) {
@@ -74,7 +74,7 @@ public class SubCommandCatacombsPartsGrenerator implements ISubCommand {
                     }
                 }
             } catch (NumberFormatException e) {
-                sender.addChatMessage(new TextComponentTranslation("commands.coordinate_error").setStyle(new Style().setColor(TextFormatting.RED)));
+                sender.sendMessage(new TextComponentTranslation("commands.coordinate_error").setStyle(new Style().setColor(TextFormatting.RED)));
                 return;
             }
             Random rand = new Random();
@@ -122,11 +122,11 @@ public class SubCommandCatacombsPartsGrenerator implements ISubCommand {
                     generateComponent(sender.getEntityWorld(), WitherHall.class, rand, x, y, z, facing, level);
                     break;
                 default:
-                    sender.addChatMessage(new TextComponentTranslation("commands.generate.unknown_structure").setStyle(new Style().setColor(TextFormatting.RED)));
+                    sender.sendMessage(new TextComponentTranslation("commands.generate.unknown_structure").setStyle(new Style().setColor(TextFormatting.RED)));
                     break;
             }
         } else {
-            sender.addChatMessage(new TextComponentTranslation("commands.not_enough_parameters").setStyle(new Style().setColor(TextFormatting.RED)));
+            sender.sendMessage(new TextComponentTranslation("commands.not_enough_parameters").setStyle(new Style().setColor(TextFormatting.RED)));
         }
 
     }

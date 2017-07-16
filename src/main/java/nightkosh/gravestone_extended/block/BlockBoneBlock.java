@@ -9,6 +9,7 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
@@ -16,10 +17,9 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import nightkosh.gravestone_extended.block.enums.EnumBoneBlock;
 import nightkosh.gravestone_extended.config.ExtendedConfig;
 import nightkosh.gravestone_extended.core.GSBlock;
+import nightkosh.gravestone_extended.core.ModInfo;
 import nightkosh.gravestone_extended.core.Tabs;
 import nightkosh.gravestone_extended.entity.monster.crawler.EntitySkullCrawler;
-
-import java.util.List;
 
 /**
  * GraveStone mod
@@ -38,14 +38,16 @@ public class BlockBoneBlock extends net.minecraft.block.Block {
         this.setResistance(2);
         this.setCreativeTab(Tabs.otherItemsTab);
         this.setHarvestLevel("pickaxe", 0);
+        this.setRegistryName(ModInfo.ID, "GSBoneBlock");
     }
 
     /**
      * Returns a list of blocks with the same ID, but different meta (eg: wood returns 4 blocks)
      */
+
     @Override
     @SideOnly(Side.CLIENT)
-    public void getSubBlocks(Item item, CreativeTabs tab, List list) {
+    public void getSubBlocks(Item item, CreativeTabs tab, NonNullList<ItemStack> list) {
         for (byte meta = 0; meta < EnumBoneBlock.values().length; meta++) {
             list.add(new ItemStack(item, 1, meta));
         }
@@ -84,8 +86,8 @@ public class BlockBoneBlock extends net.minecraft.block.Block {
     }
 
     public static boolean canContainCrawler(IBlockState state) {
-        return state.equals(GSBlock.boneBlock.getDefaultState().withProperty(BlockBoneBlock.VARIANT, EnumBoneBlock.BONE_BLOCK)) ||
-                state.equals(GSBlock.boneBlock.getDefaultState().withProperty(BlockBoneBlock.VARIANT, EnumBoneBlock.SKULL_BONE_BLOCK));
+        return state.equals(GSBlock.BONE_BLOCK.getDefaultState().withProperty(BlockBoneBlock.VARIANT, EnumBoneBlock.BONE_BLOCK)) ||
+                state.equals(GSBlock.BONE_BLOCK.getDefaultState().withProperty(BlockBoneBlock.VARIANT, EnumBoneBlock.SKULL_BONE_BLOCK));
     }
 
     public static IBlockState getCrawlerBlockState(IBlockState state) {
@@ -105,7 +107,7 @@ public class BlockBoneBlock extends net.minecraft.block.Block {
         if (!world.isRemote && isSkullCrawlerBlock(state) && ExtendedConfig.spawnSkullCrawlersAtBoneBlockDestruction) {
             EntitySkullCrawler skullCrawler = new EntitySkullCrawler(world);
             skullCrawler.setLocationAndAngles(pos.getX() + 0.5D, pos.getY(), pos.getZ() + 0.5D, 0, 0);
-            world.spawnEntityInWorld(skullCrawler);
+            world.spawnEntity(skullCrawler);
             skullCrawler.spawnExplosionParticle();
         }
 

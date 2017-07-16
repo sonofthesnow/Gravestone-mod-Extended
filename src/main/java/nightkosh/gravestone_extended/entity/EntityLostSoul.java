@@ -44,7 +44,7 @@ public class EntityLostSoul extends EntityGhost {
 //            f += EnchantmentHelper.getEnchantmentModifierLiving(this, (EntityLivingBase) entity);
 //            i += EnchantmentHelper.getKnockbackModifier(this, (EntityLivingBase) entity);
 //
-//            ((EntityLivingBase) entity).addPotionEffect(new PotionEffect(getPotionId(entity.worldObj.rand), 3));
+//            ((EntityLivingBase) entity).addPotionEffect(new PotionEffect(getPotionId(entity.getEntityWorld().rand), 3));
 //        }
 //        //blindness
 //        //poison

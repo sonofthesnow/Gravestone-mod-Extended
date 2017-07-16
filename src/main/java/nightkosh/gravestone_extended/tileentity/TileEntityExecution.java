@@ -34,7 +34,7 @@ public class TileEntityExecution extends TileEntityBase implements IInventory {
         direction = nbtTag.getByte("Direction");
 
         if (nbtTag.hasKey("Corpse")) {
-            corpse = ItemStack.loadItemStackFromNBT(nbtTag.getCompoundTag("Corpse"));
+            corpse = new ItemStack(nbtTag.getCompoundTag("Corpse"));
 
             updateCorpseInfo();
         }
@@ -119,6 +119,11 @@ public class TileEntityExecution extends TileEntityBase implements IInventory {
     }
 
     @Override
+    public boolean isEmpty() {
+        return corpse == null || corpse == ItemStack.EMPTY;
+    }
+
+    @Override
     public ItemStack getStackInSlot(int index) {
         return corpse;
     }
@@ -127,11 +132,11 @@ public class TileEntityExecution extends TileEntityBase implements IInventory {
     public ItemStack decrStackSize(int index, int count) {
         ItemStack stack = getStackInSlot(index);
         if (stack != null) {
-            if (stack.stackSize <= count) {
+            if (stack.getCount() <= count) {
                 setInventorySlotContents(index, null);
             } else {
                 stack = stack.splitStack(count);
-                if (stack.stackSize == 0) {
+                if (stack.isEmpty()) {
                     setInventorySlotContents(index, null);
                 }
             }
@@ -160,8 +165,8 @@ public class TileEntityExecution extends TileEntityBase implements IInventory {
     }
 
     @Override
-    public boolean isUseableByPlayer(EntityPlayer player) {
-        return worldObj.getTileEntity(this.pos) == this &&
+    public boolean isUsableByPlayer(EntityPlayer player) {
+        return this.getWorld().getTileEntity(this.pos) == this &&
                 player.getDistanceSq(new BlockPos(this.pos.getX() + 0.5, this.pos.getY() + 0.5, this.pos.getZ() + 0.5)) < 64;
     }
 

@@ -26,18 +26,8 @@ public class Structures {
             Blocks.GOLD_BLOCK, Blocks.LAPIS_BLOCK, Blocks.REDSTONE_BLOCK,
             Blocks.DIAMOND_BLOCK, Blocks.EMERALD_BLOCK
     };
-    private static Structures instance;
 
     private Structures() {
-        generateStructures();
-    }
-
-    public static Structures getInstance() {
-        if (instance == null) {
-            return new Structures();
-        } else {
-            return instance;
-        }
     }
 
     public static void preInit() {
@@ -62,7 +52,7 @@ public class Structures {
         }
     }
 
-    private void generateStructures() {
+    public static void registration() {
         // register memorials
         if (ExtendedConfig.generateVillageMemorials) {
             VillageHandlerMemorial villageMemorialHandler = new VillageHandlerMemorial();

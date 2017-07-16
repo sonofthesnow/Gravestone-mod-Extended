@@ -31,7 +31,7 @@ public class ZombieCorpseHelper extends CorpseHelper {
     }
 
     private static ItemStack createCorpse(EnumUndeadMobType mobType) {
-        ItemStack corpse = new ItemStack(GSBlock.corpse, 1, EnumCorpse.ZOMBIE.ordinal());
+        ItemStack corpse = new ItemStack(GSBlock.CORPSE, 1, EnumCorpse.ZOMBIE.ordinal());
         NBTTagCompound nbtTag = new NBTTagCompound();
         nbtTag.setByte("MobType", (byte) mobType.ordinal());
         corpse.setTagCompound(nbtTag);

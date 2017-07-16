@@ -34,7 +34,7 @@ public class GSAltarGui extends GuiContainer {
         this.tileEntity = tileEntity;
         this.player = inventoryPlayer.player;
         this.container = (AltarContainer) this.inventorySlots;
-        isCreative = player.worldObj.getWorldInfo().getGameType().equals(GameType.CREATIVE);
+        isCreative = player.getEntityWorld().getWorldInfo().getGameType().equals(GameType.CREATIVE);
     }
 
     @Override

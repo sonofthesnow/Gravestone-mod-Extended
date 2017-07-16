@@ -29,8 +29,6 @@ public class Resources extends nightkosh.gravestone.core.Resources{
     public static final ResourceLocation PILE_OF_BONES = new ResourceLocation(BLOCK_LOCATION + "pileOfBones.png");
     public static final String ALTAR_TOP = MOD_NAME + ":altar_top";
     public static final String ALTAR_SIDE = MOD_NAME + ":altar_side";
-    // items
-    public static final String CHISEL = MOD_NAME + ":" + GSItem.CHISEL;
 
     // gui
     public static final ResourceLocation ALTAR_GUI = new ResourceLocation(GUI_LOCATION + "altar_gui.png");
@@ -40,6 +38,7 @@ public class Resources extends nightkosh.gravestone.core.Resources{
     public static final ResourceLocation POTIONS = new ResourceLocation(POTIONS_LOCATION + "potions.png");
 
     // entities
+    public static final ResourceLocation EMPTY = new ResourceLocation("textures/entity/empty.png");
     public static final ResourceLocation STEVE = new ResourceLocation("textures/entity/steve.png");
     public static final ResourceLocation ZOMBIE = new ResourceLocation("textures/entity/zombie/zombie.png");
     public static final ResourceLocation HUSK_ZOMBIE = new ResourceLocation("textures/entity/zombie/husk.png");
@@ -69,7 +68,7 @@ public class Resources extends nightkosh.gravestone.core.Resources{
     public static final ResourceLocation GREEN_ZOMBIE_CAT_SIAMESE = new ResourceLocation(ENTITY_LOCATION + "GreenZombieCatSiamese.png");
     public static final ResourceLocation SKELETON_DOG = new ResourceLocation(ENTITY_LOCATION + "SkeletonDog.png");
     public static final ResourceLocation SKELETON_CAT = new ResourceLocation(ENTITY_LOCATION + "SkeletonCat.png");
-    public static final ResourceLocation SKULL_CRAWLER = new ResourceLocation(ENTITY_LOCATION + "SkullCrawler.png");
+    public static final ResourceLocation SKELETON_SKULL_CRAWLER = new ResourceLocation(ENTITY_LOCATION + "SkullCrawler.png");
     public static final ResourceLocation WITHER_SKULL_CRAWLER = new ResourceLocation(ENTITY_LOCATION + "WitherSkullCrawler.png");
     public static final ResourceLocation ZOMBIE_SKULL_CRAWLER = new ResourceLocation(ENTITY_LOCATION + "ZombieSkullCrawler.png");
     public static final ResourceLocation RAVEN = new ResourceLocation(ENTITY_LOCATION + "Raven.png");

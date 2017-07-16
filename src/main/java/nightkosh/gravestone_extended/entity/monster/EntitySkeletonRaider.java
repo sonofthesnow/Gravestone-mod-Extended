@@ -23,11 +23,11 @@ public class EntitySkeletonRaider extends EntityGSSkeleton {
 
     @Override
     public IEntityLivingData onInitialSpawn(DifficultyInstance difficulty, IEntityLivingData data) {
-        EntitySkeletonHorse horse = new EntitySkeletonHorse(this.worldObj);
+        EntitySkeletonHorse horse = new EntitySkeletonHorse(this.getEntityWorld());
         horse.copyLocationAndAnglesFrom(this);
-        horse.onInitialSpawn(difficulty, (IEntityLivingData) null);
+        horse.onInitialSpawn(difficulty, null);
 
-        this.worldObj.spawnEntityInWorld(horse);
+        this.getEntityWorld().spawnEntity(horse);
         this.startRiding(horse);
 
         data = super.onInitialSpawn(difficulty, data);

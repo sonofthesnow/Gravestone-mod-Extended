@@ -39,9 +39,9 @@ public class AIHideInPilesOfBones extends EntityAIWander {
                     this.enumFacing = EnumFacing.random(random);
 
                     BlockPos blockPos = (new BlockPos(crawler.posX, crawler.posY + 0.5, crawler.posZ)).offset(this.enumFacing);
-                    IBlockState blockState = crawler.worldObj.getBlockState(blockPos);
+                    IBlockState blockState = crawler.getEntityWorld().getBlockState(blockPos);
 
-                    if (blockState.getBlock().isAir(blockState, crawler.worldObj, blockPos)) {
+                    if (blockState.getBlock().isAir(blockState, crawler.getEntityWorld(), blockPos)) {
                         this.field_179484_c = true;
                         return true;
                     }
@@ -66,9 +66,9 @@ public class AIHideInPilesOfBones extends EntityAIWander {
             if (!this.field_179484_c) {
                 super.startExecuting();
             } else {
-                World world = crawler.worldObj;
+                World world = crawler.getEntityWorld();
                 BlockPos blockPos = (new BlockPos(crawler.posX, crawler.posY + 0.5D, crawler.posZ)).offset(this.enumFacing);
-                world.setBlockState(blockPos, GSBlock.pileOfBones.getCrawlerBlockState(), 3);
+                world.setBlockState(blockPos, GSBlock.PILE_OF_BONES.getCrawlerBlockState(), 3);
                 crawler.spawnExplosionParticle();
                 crawler.setDead();
             }

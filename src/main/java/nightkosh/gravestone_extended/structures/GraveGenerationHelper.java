@@ -32,7 +32,7 @@ public class GraveGenerationHelper {
 
         Vec3i center = boundingBox.getCenter();
         spawnerHelper.setLocationAndAngles(center.getX(), center.getY(), center.getZ(), 0, 0);
-        world.spawnEntityInWorld(spawnerHelper);
+        world.spawnEntity(spawnerHelper);
 
         return spawnerHelper;
     }

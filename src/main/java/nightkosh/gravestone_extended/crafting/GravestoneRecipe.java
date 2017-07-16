@@ -110,7 +110,7 @@ public class GravestoneRecipe {
         } else {
             for (ItemStack requiredItem : requiredItems) {
                 if (!items.stream().anyMatch((item) -> item != null && requiredItem.getItem().equals(item.getItem()) &&
-                        requiredItem.getMetadata() == item.getMetadata() && requiredItem.stackSize <= item.stackSize)) {
+                        requiredItem.getMetadata() == item.getMetadata() && requiredItem.getCount() <= item.getCount())) {
                     return false;
                 }
             }

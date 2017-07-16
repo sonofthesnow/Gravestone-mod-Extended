@@ -12,7 +12,6 @@ import nightkosh.gravestone_extended.structures.GSStructureGenerator;
 import nightkosh.gravestone_extended.structures.catacombs.CatacombsGenerator;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
@@ -63,7 +62,7 @@ public class MemorialGenerator implements GSStructureGenerator {
     }
 
     protected static boolean isBiomeAllowed(World world, int x, int z) {
-        List<BiomeDictionary.Type> biomeTypesList = new ArrayList<>(Arrays.asList(BiomeDictionary.getTypesForBiome(world.getBiome(new BlockPos(x, 0, z)))));
+        List<BiomeDictionary.Type> biomeTypesList = new ArrayList<>(BiomeDictionary.getTypes(world.getBiome(new BlockPos(x, 0, z))));
         return !biomeTypesList.contains(BiomeDictionary.Type.WATER);
     }
 

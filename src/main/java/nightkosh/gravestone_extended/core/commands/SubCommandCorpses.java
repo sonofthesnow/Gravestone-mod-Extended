@@ -39,9 +39,9 @@ public class SubCommandCorpses implements ISubCommand {
         GSLogger.logInfo("Corpse generation command received");
 
         if (args.length >= 1) {
-            GameProfileHelper.dropItem(minecraftServer, sender, args[1], GSBlock.corpse, EnumCorpse.STEVE.ordinal());
+            GameProfileHelper.dropItem(minecraftServer, sender, args[1], GSBlock.CORPSE, EnumCorpse.STEVE.ordinal());
         } else {
-            sender.addChatMessage(new TextComponentTranslation("commands.not_enough_parameters").setStyle(new Style().setColor(TextFormatting.RED)));
+            sender.sendMessage(new TextComponentTranslation("commands.not_enough_parameters").setStyle(new Style().setColor(TextFormatting.RED)));
         }
 
     }

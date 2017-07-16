@@ -1,13 +1,12 @@
 package nightkosh.gravestone_extended.gui.container;
 
-import nightkosh.gravestone_extended.item.corpse.CorpseHelper;
-import nightkosh.gravestone_extended.tileentity.TileEntityAltar;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
+import nightkosh.gravestone_extended.item.corpse.CorpseHelper;
+import nightkosh.gravestone_extended.tileentity.TileEntityAltar;
 
 /**
  * GraveStone mod
@@ -41,13 +40,13 @@ public class AltarContainer extends Container {
 
     @Override
     public boolean canInteractWith(EntityPlayer player) {
-        return tileEntity.isUseableByPlayer(player);
+        return tileEntity.isUsableByPlayer(player);
     }
 
     @Override
     public ItemStack transferStackInSlot(EntityPlayer player, int slot) {
-        ItemStack stack = null;
-        Slot slotObject = (Slot) inventorySlots.get(slot);
+        ItemStack stack = ItemStack.EMPTY;
+        Slot slotObject = inventorySlots.get(slot);
 
         if (slotObject != null && slotObject.getHasStack()) {
             ItemStack stackInSlot = slotObject.getStack();
@@ -55,36 +54,36 @@ public class AltarContainer extends Container {
 
             if (slot == 0) {
                 if (!this.mergeItemStack(stackInSlot, 0, inventorySlots.size(), true)) {
-                    return null;
+                    return ItemStack.EMPTY;
                 }
             } else {
-                if (((Slot) this.inventorySlots.get(0)).getHasStack() || !((AltarSlot) this.inventorySlots.get(0)).isItemValid(stackInSlot)) {
-                    return null;
+                if (this.inventorySlots.get(0).getHasStack() || !this.inventorySlots.get(0).isItemValid(stackInSlot)) {
+                    return ItemStack.EMPTY;
                 }
 
-                if (stackInSlot.hasTagCompound() && stackInSlot.stackSize == 1) {
-                    ((Slot) this.inventorySlots.get(0)).putStack(stackInSlot.copy());
-                    stackInSlot.stackSize = 0;
-                } else if (stackInSlot.stackSize >= 1) {
+                if (stackInSlot.hasTagCompound() && stackInSlot.getCount() == 1) {
+                    this.inventorySlots.get(0).putStack(stackInSlot.copy());
+                    stackInSlot.setCount(0);
+                } else if (stackInSlot.getCount() >= 1) {
                     ItemStack newStack = new ItemStack(stackInSlot.getItem(), 1, stackInSlot.getItemDamage());
                     if (stackInSlot.hasTagCompound()) {
-                        newStack.setTagCompound((NBTTagCompound) stackInSlot.getTagCompound().copy());
+                        newStack.setTagCompound(stackInSlot.getTagCompound().copy());
                     }
-                    ((Slot) this.inventorySlots.get(0)).putStack(newStack);
-                    stackInSlot.stackSize--;
+                    this.inventorySlots.get(0).putStack(newStack);
+                    stackInSlot.setCount(stackInSlot.getCount() - 1);
                 }
             }
 
-            if (stackInSlot.stackSize == 0) {
-                slotObject.putStack(null);
+            if (stackInSlot.isEmpty()) {
+                slotObject.putStack(ItemStack.EMPTY);
             } else {
                 slotObject.onSlotChanged();
             }
 
-            if (stackInSlot.stackSize == stack.stackSize) {
-                return null;
+            if (stackInSlot.getCount() == stack.getCount()) {
+                return ItemStack.EMPTY;
             }
-            slotObject.onPickupFromSlot(player, stackInSlot);
+            slotObject.onTake(player, stackInSlot);
         }
         return stack;
     }

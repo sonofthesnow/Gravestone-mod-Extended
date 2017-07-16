@@ -52,7 +52,7 @@ public class GravesCraftingManager {
         for (int i = 0; i <= EnumGraveMaterial.ICE.ordinal(); i++) {
             recipes.add(new GravestoneRecipe(true, graveType, EnumGraveMaterial.values()[i],
                     new ArrayList<ItemStack>(Arrays.asList(new ItemStack(EnumGraveMaterial.values()[i].getBlock(), 1))),
-                    getStackWithNTB(GSBlock.graveStone, EnumGraves.getByTypeAndMaterial(graveType, EnumGraveMaterial.values()[i]).ordinal())));
+                    getStackWithNTB(GSBlock.GRAVE_STONE, EnumGraves.getByTypeAndMaterial(graveType, EnumGraveMaterial.values()[i]).ordinal())));
         }
     }
 
@@ -60,7 +60,7 @@ public class GravesCraftingManager {
         for (int i = 0; i <= EnumGraveMaterial.ICE.ordinal(); i++) {
             recipes.add(new GravestoneRecipe(true, memorialType, EnumGraveMaterial.values()[i],
                     new ArrayList<ItemStack>(Arrays.asList(new ItemStack(EnumGraveMaterial.values()[i].getBlock(), amountOfBlocks))),
-                    getStackWithNTB(GSBlock.memorial, EnumMemorials.getByTypeAndMaterial(memorialType, EnumGraveMaterial.values()[i]).ordinal())));
+                    getStackWithNTB(GSBlock.MEMORIAL, EnumMemorials.getByTypeAndMaterial(memorialType, EnumGraveMaterial.values()[i]).ordinal())));
         }
     }
 

@@ -1,6 +1,7 @@
 package nightkosh.gravestone_extended.item.corpse;
 
 import net.minecraft.entity.ai.attributes.AbstractAttributeMap;
+import net.minecraft.entity.passive.AbstractHorse;
 import net.minecraft.entity.passive.EntityHorse;
 import net.minecraft.entity.passive.HorseType;
 import net.minecraft.entity.player.EntityPlayer;
@@ -55,7 +56,7 @@ public class HorseCorpseHelper extends CorpseHelper {
     }
 
     private static ItemStack getDefaultHorseCorpse(EnumHorseType horseType) {
-        ItemStack corpse = new ItemStack(GSBlock.corpse, 1, CORPSE_TYPE);
+        ItemStack corpse = new ItemStack(GSBlock.CORPSE, 1, CORPSE_TYPE);
         NBTTagCompound nbtTag = new NBTTagCompound();
 
         nbtTag.setInteger("HorseType", horseType.ordinal());
@@ -68,7 +69,7 @@ public class HorseCorpseHelper extends CorpseHelper {
         return corpse;
     }
 
-    public static void setNbt(EntityHorse horse, NBTTagCompound nbt) {
+    public static void setNbt(AbstractHorse horse, NBTTagCompound nbt) {
         setName(horse, nbt);
 
         nbt.setInteger("HorseType", horse.getType().getOrdinal());

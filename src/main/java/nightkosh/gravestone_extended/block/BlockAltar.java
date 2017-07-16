@@ -4,7 +4,6 @@ import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumBlockRenderType;
 import net.minecraft.util.EnumFacing;
@@ -15,10 +14,9 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import nightkosh.gravestone_extended.ModGravestoneExtended;
 import nightkosh.gravestone_extended.core.GuiHandler;
+import nightkosh.gravestone_extended.core.ModInfo;
 import nightkosh.gravestone_extended.core.Tabs;
 import nightkosh.gravestone_extended.tileentity.TileEntityAltar;
-
-import javax.annotation.Nullable;
 
 /**
  * GraveStone mod
@@ -34,13 +32,14 @@ public class BlockAltar extends BlockContainer {
         this.setUnlocalizedName("altar");
         this.setCreativeTab(Tabs.otherItemsTab);
         this.setHarvestLevel("pickaxe", 2);
+        this.setRegistryName(ModInfo.ID, "GSAltar");
     }
 
     /**
      * Called upon block activation (right click on the block.)
      */
     @Override
-    public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, @Nullable ItemStack heldItem, EnumFacing side, float hitX, float hitY, float hitZ) {
+    public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing side, float hitX, float hitY, float hitZ) {
 //        ItemStack stack = player.getCurrentEquippedItem();
 
         TileEntityAltar tileEntity = (TileEntityAltar) world.getTileEntity(pos);

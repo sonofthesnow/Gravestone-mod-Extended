@@ -19,11 +19,11 @@ public class EntityRavenMoveHelper extends EntityMoveHelper {
     }
 
     public void onUpdateMoveHelper() {
-        BlockPos groundPos = this.entity.worldObj.getTopSolidOrLiquidBlock(this.entity.getPosition());
+        BlockPos groundPos = this.entity.getEntityWorld().getTopSolidOrLiquidBlock(this.entity.getPosition());
 
         if (((EntityRaven) entity).isFlying()) {
             int height = 20;
-            if (groundPos.getY() > 60 || this.entity.worldObj.getWorldInfo().getTerrainType().equals(WorldType.FLAT)) {
+            if (groundPos.getY() > 60 || this.entity.getEntityWorld().getWorldInfo().getTerrainType().equals(WorldType.FLAT)) {
                 height += groundPos.getY();
             } else {
                 height += 60;

@@ -40,7 +40,7 @@ public class AIHideInBones extends EntityAIWander {
                 if (random.nextInt(10) == 0) {
                     this.enumFacing = EnumFacing.random(random);
                     BlockPos blockPos = (new BlockPos(crawler.posX, crawler.posY + 0.5, crawler.posZ)).offset(this.enumFacing);
-                    IBlockState blockState = crawler.worldObj.getBlockState(blockPos);
+                    IBlockState blockState = crawler.getEntityWorld().getBlockState(blockPos);
 
                     if (BlockBoneBlock.canContainCrawler(blockState)) {
                         this.field_179484_c = true;
@@ -73,11 +73,11 @@ public class AIHideInBones extends EntityAIWander {
                 super.startExecuting();
             } else {
                 isExecuting = true;
-                World world = crawler.worldObj;
+                World world = crawler.getEntityWorld();
                 BlockPos blockPos = (new BlockPos(crawler.posX, crawler.posY + 0.5D, crawler.posZ)).offset(this.enumFacing);
                 IBlockState blockState = world.getBlockState(blockPos);
                 if (BlockBoneBlock.canContainCrawler(blockState)) {
-                    world.setBlockState(blockPos, GSBlock.boneBlock.getCrawlerBlockState(blockState), 3);
+                    world.setBlockState(blockPos, GSBlock.BONE_BLOCK.getCrawlerBlockState(blockState), 3);
                     crawler.spawnExplosionParticle();
                     crawler.setDead();
                 }

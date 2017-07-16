@@ -12,10 +12,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemMonsterPlacer;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.ActionResult;
-import net.minecraft.util.EnumActionResult;
-import net.minecraft.util.EnumFacing;
-import net.minecraft.util.EnumHand;
+import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.RayTraceResult;
@@ -109,6 +106,7 @@ public class ItemGSMonsterPlacer extends ItemMonsterPlacer {
         this.setHasSubtypes(true);
         this.setCreativeTab(Tabs.otherItemsTab);
         this.setUnlocalizedName("monsterPlacer");
+        this.setRegistryName(ModInfo.ID, "GSSpawnEgg");
     }
 
     @Override
@@ -130,7 +128,9 @@ public class ItemGSMonsterPlacer extends ItemMonsterPlacer {
      * True if something happen and false if it don't. This is for ITEMS, not BLOCKS
      */
     @Override
-    public EnumActionResult onItemUse(ItemStack item, EntityPlayer player, World world, BlockPos blockPos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
+    public EnumActionResult onItemUse(EntityPlayer player, World world, BlockPos blockPos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
+        ItemStack item = player.getHeldItem(hand);
+
         if (world.isRemote) {
             return EnumActionResult.SUCCESS;
         } else {
@@ -144,11 +144,11 @@ public class ItemGSMonsterPlacer extends ItemMonsterPlacer {
             net.minecraft.entity.Entity entity = spawnCreature(world, item.getItemDamage(), blockPos.getX() + 0.5, blockPos.getY() + d0, blockPos.getZ() + 0.5);
             if (entity != null) {
                 if (entity instanceof EntityLivingBase && item.hasDisplayName()) {
-                    ((EntityLiving) entity).setCustomNameTag(item.getDisplayName());
+                    entity.setCustomNameTag(item.getDisplayName());
                 }
 
                 if (!player.capabilities.isCreativeMode) {
-                    --item.stackSize;
+                    item.setCount(item.getCount() - 1);
                 }
             }
 
@@ -160,7 +160,8 @@ public class ItemGSMonsterPlacer extends ItemMonsterPlacer {
      * Called whenever this item is equipped and the right mouse button is pressed. Args: itemStack, world, entityPlayer
      */
     @Override
-    public ActionResult<ItemStack> onItemRightClick(ItemStack item, World world, EntityPlayer player, EnumHand hand) {
+    public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, EnumHand hand) {
+        ItemStack item = player.getHeldItem(hand);
         if (world.isRemote) {
             return new ActionResult(EnumActionResult.PASS, item);
         } else {
@@ -188,7 +189,7 @@ public class ItemGSMonsterPlacer extends ItemMonsterPlacer {
                             }
 
                             if (!player.capabilities.isCreativeMode) {
-                                --item.stackSize;
+                                item.setCount(item.getCount() - 1);
                             }
                         }
                     }
@@ -213,7 +214,7 @@ public class ItemGSMonsterPlacer extends ItemMonsterPlacer {
             entityliving.rotationYawHead = entityliving.rotationYaw;
             entityliving.renderYawOffset = entityliving.rotationYaw;
             entityliving.onInitialSpawn(world.getDifficultyForLocation(new BlockPos(entityliving)), (IEntityLivingData) null);
-            world.spawnEntityInWorld(entity);
+            world.spawnEntity(entity);
             entityliving.playLivingSound();
         }
 
@@ -221,7 +222,7 @@ public class ItemGSMonsterPlacer extends ItemMonsterPlacer {
     }
 
     @Override
-    public void getSubItems(Item item, CreativeTabs tabs, List subItems) {
+    public void getSubItems(Item item, CreativeTabs tabs, NonNullList<ItemStack>  subItems) {
         for (int i = 0; i < EnumEggs.values().length; i++) {
             subItems.add(new ItemStack(item, 1, i));
         }

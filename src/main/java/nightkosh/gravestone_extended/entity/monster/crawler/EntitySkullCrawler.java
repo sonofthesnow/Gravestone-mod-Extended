@@ -107,7 +107,7 @@ public class EntitySkullCrawler extends EntityMob {
         if (this.isEntityInvulnerable(source)) {
             return false;
         } else {
-            if ((source instanceof EntityDamageSource || source == DamageSource.magic)) {
+            if ((source instanceof EntityDamageSource || source == DamageSource.MAGIC)) {
                 summonAI.resetSummonColdown();
             }
 
@@ -128,7 +128,7 @@ public class EntitySkullCrawler extends EntityMob {
     public void onUpdate() {
         super.onUpdate();
 
-        if (!this.worldObj.isRemote) {
+        if (!this.getEntityWorld().isRemote) {
             this.setBesideClimbableBlock(this.isCollidedHorizontally);
         }
     }
@@ -141,7 +141,7 @@ public class EntitySkullCrawler extends EntityMob {
     @Override
     public boolean getCanSpawnHere() {
         if (super.getCanSpawnHere()) {
-            EntityPlayer entityplayer = this.worldObj.getClosestPlayerToEntity(this, 5);
+            EntityPlayer entityplayer = this.getEntityWorld().getClosestPlayerToEntity(this, 5);
             return entityplayer == null;
         } else {
             return false;
@@ -154,7 +154,7 @@ public class EntitySkullCrawler extends EntityMob {
      */
     @Override
     public float getBlockPathWeight(BlockPos pos) {
-        return this.worldObj.getBlockState(new BlockPos(pos.down())).getBlock().equals(GSBlock.boneBlock) ? 10 : super.getBlockPathWeight(pos);
+        return this.getEntityWorld().getBlockState(new BlockPos(pos.down())).getBlock().equals(GSBlock.BONE_BLOCK) ? 10 : super.getBlockPathWeight(pos);
     }
 
     /**
@@ -222,36 +222,36 @@ public class EntitySkullCrawler extends EntityMob {
         this.dataManager.set(CLIMBING, Byte.valueOf(b0));
 //        switch (getHorizontalFacing()) {
 //            case WEST:
-//                if (worldObj.isSideSolid(getPosition().south(), EnumFacing.NORTH)) {
+//                if (getEntityWorld().isSideSolid(getPosition().south(), EnumFacing.NORTH)) {
 //                    wallSide = WallSide.LEFT;
-//                } else if (worldObj.isSideSolid(getPosition().north(), EnumFacing.SOUTH)) {
+//                } else if (getEntityWorld().isSideSolid(getPosition().north(), EnumFacing.SOUTH)) {
 //                    wallSide = WallSide.RIGHT;
 //                } else {
 //                    wallSide = WallSide.FORWARD;
 //                }
 //                break;
 //            case NORTH:
-//                if (worldObj.isSideSolid(getPosition().west(), EnumFacing.EAST)) {
+//                if (getEntityWorld().isSideSolid(getPosition().west(), EnumFacing.EAST)) {
 //                    wallSide = WallSide.LEFT;
-//                } else if (worldObj.isSideSolid(getPosition().east(), EnumFacing.WEST)) {
+//                } else if (getEntityWorld().isSideSolid(getPosition().east(), EnumFacing.WEST)) {
 //                    wallSide = WallSide.RIGHT;
 //                } else {
 //                    wallSide = WallSide.FORWARD;
 //                }
 //                break;
 //            case EAST:
-//                if (worldObj.isSideSolid(getPosition().north(), EnumFacing.SOUTH)) {
+//                if (getEntityWorld().isSideSolid(getPosition().north(), EnumFacing.SOUTH)) {
 //                    wallSide = WallSide.LEFT;
-//                } else if (worldObj.isSideSolid(getPosition().south(), EnumFacing.NORTH)) {
+//                } else if (getEntityWorld().isSideSolid(getPosition().south(), EnumFacing.NORTH)) {
 //                    wallSide = WallSide.RIGHT;
 //                } else {
 //                    wallSide = WallSide.FORWARD;
 //                }
 //                break;
 //            case SOUTH:
-//                if (worldObj.isSideSolid(getPosition().east(), EnumFacing.WEST)) {
+//                if (getEntityWorld().isSideSolid(getPosition().east(), EnumFacing.WEST)) {
 //                    wallSide = WallSide.LEFT;
-//                } else if (worldObj.isSideSolid(getPosition().west(), EnumFacing.EAST)) {
+//                } else if (getEntityWorld().isSideSolid(getPosition().west(), EnumFacing.EAST)) {
 //                    wallSide = WallSide.RIGHT;
 //                } else {
 //                    wallSide = WallSide.FORWARD;
@@ -283,11 +283,11 @@ public class EntitySkullCrawler extends EntityMob {
      */
     @Override
     public void onLivingUpdate() {
-        if (this.worldObj.isDaytime() && !this.worldObj.isRemote) {
+        if (this.getEntityWorld().isDaytime() && !this.getEntityWorld().isRemote) {
             float f = this.getBrightness(1);
 
             if (!this.isImmuneToFire && f > 0 && this.rand.nextFloat() * 30 < (f - 0.4F) * 2
-                    && this.worldObj.canBlockSeeSky(new BlockPos(MathHelper.floor_double(this.posX), MathHelper.floor_double(this.posY), MathHelper.floor_double(this.posZ)))) {
+                    && this.getEntityWorld().canBlockSeeSky(new BlockPos(MathHelper.floor(this.posX), MathHelper.floor(this.posY), MathHelper.floor(this.posZ)))) {
                 this.setFire(8);
             }
         }

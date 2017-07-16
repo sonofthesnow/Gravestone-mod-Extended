@@ -15,6 +15,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
@@ -25,11 +26,11 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import nightkosh.gravestone_extended.block.enums.EnumPileOfBones;
 import nightkosh.gravestone_extended.config.ExtendedConfig;
 import nightkosh.gravestone_extended.core.GSBlock;
+import nightkosh.gravestone_extended.core.ModInfo;
 import nightkosh.gravestone_extended.core.Tabs;
 import nightkosh.gravestone_extended.entity.monster.crawler.EntitySkullCrawler;
 import nightkosh.gravestone_extended.tileentity.TileEntityPileOfBones;
 
-import java.util.List;
 import java.util.Random;
 
 /**
@@ -48,6 +49,7 @@ public class BlockPileOfBones extends BlockContainer {
         this.setHardness(0.1F);
         this.setResistance(0);
         this.setCreativeTab(Tabs.otherItemsTab);
+        this.setRegistryName(ModInfo.ID, "GSPileOfBones");
     }
 
     @Override
@@ -56,7 +58,7 @@ public class BlockPileOfBones extends BlockContainer {
     }
 
     @Override
-    public AxisAlignedBB getCollisionBoundingBox(IBlockState state, World world, BlockPos pos) {
+    public AxisAlignedBB getCollisionBoundingBox(IBlockState state, IBlockAccess world, BlockPos pos) {
         return null;
     }
 
@@ -117,7 +119,7 @@ public class BlockPileOfBones extends BlockContainer {
     }
 
     public static IBlockState getCrawlerBlockState() {
-        return GSBlock.pileOfBones.getDefaultState().withProperty(BlockPileOfBones.VARIANT, EnumPileOfBones.PILE_OF_BONES_WITH_SKULL_CRAWLER);
+        return GSBlock.PILE_OF_BONES.getDefaultState().withProperty(BlockPileOfBones.VARIANT, EnumPileOfBones.PILE_OF_BONES_WITH_SKULL_CRAWLER);
     }
 
     /**
@@ -128,7 +130,7 @@ public class BlockPileOfBones extends BlockContainer {
         if (!world.isRemote && isSkullCrawlerBlock(state) && ExtendedConfig.spawnSkullCrawlersAtPileBonesDestruction) {
             EntitySkullCrawler skullCrawler = new EntitySkullCrawler(world);
             skullCrawler.setLocationAndAngles(pos.getX() + 0.5D, pos.getY(), pos.getZ() + 0.5D, 0, 0);
-            world.spawnEntityInWorld(skullCrawler);
+            world.spawnEntity(skullCrawler);
             skullCrawler.spawnExplosionParticle();
         }
 
@@ -136,7 +138,7 @@ public class BlockPileOfBones extends BlockContainer {
     }
 
     protected ItemStack createStackedBlock(int meta) {
-        return new ItemStack(GSBlock.pileOfBones, 1, meta);
+        return new ItemStack(GSBlock.PILE_OF_BONES, 1, meta);
     }
 
     @Override
@@ -145,13 +147,13 @@ public class BlockPileOfBones extends BlockContainer {
 
         TileEntityPileOfBones te = (TileEntityPileOfBones) world.getTileEntity(pos);
         if (te != null) {
-            te.setDirection((byte) (MathHelper.floor_double((double) (entity.rotationYaw * 4 / 360F) + 0.5D) & 3));
+            te.setDirection((byte) (MathHelper.floor((double) (entity.rotationYaw * 4 / 360F) + 0.5D) & 3));
         }
     }
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void getSubBlocks(Item item, CreativeTabs tab, List list) {
+    public void getSubBlocks(Item item, CreativeTabs tab, NonNullList<ItemStack> list) {
         for (byte i = 0; i < EnumPileOfBones.values().length; i++) {
             list.add(new ItemStack(item, 1, i));
         }
@@ -164,7 +166,7 @@ public class BlockPileOfBones extends BlockContainer {
     }
 
     @Override
-    public void neighborChanged(IBlockState state, World world, BlockPos pos, Block block) {
+    public void neighborChanged(IBlockState state, World world, BlockPos pos, Block block,  BlockPos fromPos) {
         if (!canPlaceBlockAt(world, pos)) {
             this.dropBlockAsItem(world, pos, state, 0);
             world.setBlockToAir(pos);

@@ -48,6 +48,14 @@ public class ModGravestoneExtended {
         Structures.preInit();
 
         MessageHandler.init();
+
+        Tabs.registration();
+
+        GSBlock.registration();
+
+        GSItem.registration();
+
+        TileEntity.registration();
     }
 
     @Mod.EventHandler
@@ -57,26 +65,14 @@ public class ModGravestoneExtended {
         FMLCommonHandler.instance().bus().register(new TickEventHandler());
         proxy.registerHandlers();
 
-        // tabs
-        Tabs.registration();
-
-        // blocks registration
-        GSBlock.registration();
-
-        // items registration
-        GSItem.registration();
-
         // reciepes registration
         Recipes.registration();
 
-        // tileEntities registration
-        TileEntity.registration();
-
         // register structures
-        Structures.getInstance();
+        Structures.registration();
 
         // register entities
-        Entity.getInstance();
+        Entity.registration();
 
         Potion.init();
 
@@ -85,6 +81,9 @@ public class ModGravestoneExtended {
         proxy.registerRenderers();
 
         VillagersHandler.registerVillagers();
+
+        proxy.registerBlocksModels();
+        proxy.registerItemsModels();
     }
 
     @Mod.EventHandler

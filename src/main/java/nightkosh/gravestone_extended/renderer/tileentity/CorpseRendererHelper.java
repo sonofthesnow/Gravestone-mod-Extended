@@ -147,7 +147,7 @@ public class CorpseRendererHelper {
 //                        break;
                 }
                 if (dog == null) {
-                    dog = new EntityWolf(Minecraft.getMinecraft().theWorld);
+                    dog = new EntityWolf(Minecraft.getMinecraft().world);
                 }
                 dogModel.setLivingAnimations(dog, 0, 0, 0);
                 dogModel.render(null, xz, xz, xz, xz, xz, xz);
@@ -168,7 +168,7 @@ public class CorpseRendererHelper {
                     GL11.glTranslatef(0, -1.5F, -0.85F);
                 }
                 if (horse == null) {
-                    horse = new EntityHorse(Minecraft.getMinecraft().theWorld);
+                    horse = new EntityHorse(Minecraft.getMinecraft().world);
                 }
                 horse.setType(HorseType.getArmorType((nbt == null) ? 0 : HorseCorpseHelper.getHorseType(nbt)));
                 horse.setHorseVariant((nbt == null) ? 0 : HorseCorpseHelper.getHorseVariant(nbt));

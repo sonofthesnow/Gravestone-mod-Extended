@@ -2,6 +2,7 @@ package nightkosh.gravestone_extended.item.itemblock;
 
 import net.minecraft.block.Block;
 import net.minecraft.item.ItemBlock;
+import nightkosh.gravestone_extended.core.GSBlock;
 
 /**
  * GraveStone mod
@@ -13,6 +14,7 @@ public class ItemBlockGSCandle extends ItemBlock {
 
     public ItemBlockGSCandle(Block block) {
         super(block);
-        setUnlocalizedName("Candle");
+        this.setUnlocalizedName("Candle");
+        this.setRegistryName(GSBlock.CANDLE.getRegistryName());
     }
 }

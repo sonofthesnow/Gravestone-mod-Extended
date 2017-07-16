@@ -57,9 +57,9 @@ public class EntityAIBlockInteract extends EntityAIBase {
 //                }
 //            }
 //
-//            this.entityPosX = MathHelper.floor_double(this.theEntity.posX);
-//            this.entityPosY = MathHelper.floor_double(this.theEntity.posY);
-//            this.entityPosZ = MathHelper.floor_double(this.theEntity.posZ);
+//            this.entityPosX = MathHelper.floor(this.theEntity.posX);
+//            this.entityPosY = MathHelper.floor(this.theEntity.posY);
+//            this.entityPosZ = MathHelper.floor(this.theEntity.posZ);
 //            this.targetBlock = this.findBlock(this.entityPosX, this.entityPosY, this.entityPosZ);
 //            return this.targetBlock != null;
 //        } else {
@@ -103,6 +103,6 @@ public class EntityAIBlockInteract extends EntityAIBase {
      * Determines if a Block can be broken with AI.
      */
     private Block findBlock(int x, int y, int z) {
-        return this.theEntity.worldObj.getBlockState(new BlockPos(x, y, z)).getBlock();
+        return this.theEntity.getEntityWorld().getBlockState(new BlockPos(x, y, z)).getBlock();
     }
 }

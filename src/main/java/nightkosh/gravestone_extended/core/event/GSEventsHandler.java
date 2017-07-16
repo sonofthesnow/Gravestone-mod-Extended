@@ -31,18 +31,18 @@ public class GSEventsHandler {
                 if (event.getEntity() instanceof EntitySkeleton) {
                     EntitySkullCrawler crawler;
                     if (MobSpawn.isWitherSkeleton((EntitySkeleton) event.getEntity())) {
-                        crawler = new EntityWitherSkullCrawler(event.getEntity().worldObj);
+                        crawler = new EntityWitherSkullCrawler(event.getEntity().getEntityWorld());
                     } else {
-                        crawler = new EntitySkullCrawler(event.getEntity().worldObj);
+                        crawler = new EntitySkullCrawler(event.getEntity().getEntityWorld());
                     }
                     MobSpawn.spawnCrawler(event.getEntity(), crawler);
                 } else if (event.getEntity() instanceof EntityZombie) {
-                    MobSpawn.spawnCrawler(event.getEntity(), new EntityZombieSkullCrawler(event.getEntity().worldObj));
+                    MobSpawn.spawnCrawler(event.getEntity(), new EntityZombieSkullCrawler(event.getEntity().getEntityWorld()));
                 }
             }
             if (event.getEntity() instanceof EntityCreeper && ((EntityCreeper) event.getEntity()).getPowered()) {
                 // drop creeper statue if entity is a charged creeper
-                GSBlock.memorial.dropCreeperMemorial(event.getEntity().worldObj, new BlockPos(event.getEntity()));
+                GSBlock.MEMORIAL.dropCreeperMemorial(event.getEntity().getEntityWorld(), new BlockPos(event.getEntity()));
             }
         }
     }

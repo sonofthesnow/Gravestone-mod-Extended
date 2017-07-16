@@ -15,6 +15,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumParticleTypes;
+import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
@@ -23,12 +24,12 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import nightkosh.gravestone_extended.block.enums.EnumSkullCandle;
+import nightkosh.gravestone_extended.core.ModInfo;
 import nightkosh.gravestone_extended.core.Tabs;
 import nightkosh.gravestone_extended.core.TimeHelper;
 import nightkosh.gravestone_extended.particle.EntityGreenFlameFX;
 import nightkosh.gravestone_extended.tileentity.TileEntitySkullCandle;
 
-import java.util.List;
 import java.util.Random;
 
 /**
@@ -48,6 +49,7 @@ public class BlockSkullCandle extends BlockContainer {
         this.setResistance(5);
         this.setLightLevel(1);
         this.setCreativeTab(Tabs.otherItemsTab);
+        this.setRegistryName(ModInfo.ID, "GSSkullCandle");
     }
 
     /**
@@ -114,7 +116,7 @@ public class BlockSkullCandle extends BlockContainer {
             if (skullRotation < 0) {
                 skullRotation = 360 + skullRotation;
             }
-            tileEntity.setRotation((byte) MathHelper.ceiling_double_int(skullRotation * 8 / 360F));
+            tileEntity.setRotation((byte) MathHelper.ceil(skullRotation * 8 / 360F));
         }
     }
 
@@ -124,7 +126,7 @@ public class BlockSkullCandle extends BlockContainer {
      */
     @Override
     @SideOnly(Side.CLIENT)
-    public void getSubBlocks(Item item, CreativeTabs tab, List list) {
+    public void getSubBlocks(Item item, CreativeTabs tab, NonNullList<ItemStack> list) {
         for (byte i = 0; i < EnumSkullCandle.values().length; i++) {
             list.add(new ItemStack(item, 1, i));
         }

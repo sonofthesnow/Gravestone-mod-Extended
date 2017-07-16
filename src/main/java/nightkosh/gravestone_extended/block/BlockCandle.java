@@ -16,6 +16,7 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import nightkosh.gravestone_extended.core.ModInfo;
 import nightkosh.gravestone_extended.core.Tabs;
 import nightkosh.gravestone_extended.core.TimeHelper;
 import nightkosh.gravestone_extended.particle.EntityGreenFlameFX;
@@ -39,6 +40,7 @@ public class BlockCandle extends BlockContainer {
         this.setLightLevel(1);
         this.setResistance(0);
         this.setCreativeTab(Tabs.otherItemsTab);
+        this.setRegistryName(ModInfo.ID, "GSCandle");
     }
 
     /**
@@ -67,7 +69,7 @@ public class BlockCandle extends BlockContainer {
      * box can change after the pool has been cleared to be reused)
      */
     @Override
-    public AxisAlignedBB getCollisionBoundingBox(IBlockState state, World world, BlockPos pos) {
+    public AxisAlignedBB getCollisionBoundingBox(IBlockState state, IBlockAccess world, BlockPos pos) {
         return null;
     }
 
@@ -108,7 +110,7 @@ public class BlockCandle extends BlockContainer {
      * neighbor blockID
      */
     @Override
-    public void neighborChanged(IBlockState state, World world, BlockPos pos, Block block) {
+    public void neighborChanged(IBlockState state, World world, BlockPos pos, Block block,  BlockPos fromPos) {
         if (!this.canPlaceCandleOn(world, pos.down())) {
             this.dropBlockAsItem(world, pos, state, 0);
             world.setBlockToAir(pos);

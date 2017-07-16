@@ -24,32 +24,32 @@ public class Recipes {
 
     public static void registration() {
         // chisel recipe
-        GameRegistry.addRecipe(new ItemStack(GSItem.chisel), "   ", "s  ", " i ", 's', Items.STICK, 'i', Items.IRON_INGOT);
+        GameRegistry.addRecipe(new ItemStack(GSItem.CHISEL), "   ", "s  ", " i ", 's', Items.STICK, 'i', Items.IRON_INGOT);
         // pile of bones
-        GameRegistry.addRecipe(new ItemStack(GSBlock.pileOfBones, 1, 0), "   ", " b ", "bbb", 'b', Items.BONE);
-        GameRegistry.addRecipe(new ItemStack(GSBlock.pileOfBones, 9, 1), "bbb", "bsb", "bbb", 'b', new ItemStack(GSBlock.pileOfBones, 1, 0), 's', new ItemStack(Items.SKULL, 1, 0));
+        GameRegistry.addRecipe(new ItemStack(GSBlock.PILE_OF_BONES, 1, 0), "   ", " b ", "bbb", 'b', Items.BONE);
+        GameRegistry.addRecipe(new ItemStack(GSBlock.PILE_OF_BONES, 9, 1), "bbb", "bsb", "bbb", 'b', new ItemStack(GSBlock.PILE_OF_BONES, 1, 0), 's', new ItemStack(Items.SKULL, 1, 0));
         // piles to bones
-        GameRegistry.addRecipe(new ItemStack(Items.BONE, 4), "p", 'p', new ItemStack(GSBlock.pileOfBones, 1, 0));
-        GameRegistry.addRecipe(new ItemStack(Items.SKULL, 1, 0), "ppp", "ppp", "ppp", 'p', new ItemStack(GSBlock.pileOfBones, 1, 1));
+        GameRegistry.addRecipe(new ItemStack(Items.BONE, 4), "p", 'p', new ItemStack(GSBlock.PILE_OF_BONES, 1, 0));
+        GameRegistry.addRecipe(new ItemStack(Items.SKULL, 1, 0), "ppp", "ppp", "ppp", 'p', new ItemStack(GSBlock.PILE_OF_BONES, 1, 1));
         // bone blocks
-        GameRegistry.addRecipe(new ItemStack(GSBlock.boneBlock, 1, 0), "ppp", "ppp", "ppp", 'p', new ItemStack(GSBlock.pileOfBones, 1, 0));
-        GameRegistry.addRecipe(new ItemStack(GSBlock.boneBlock, 9, 1), "bbb", "bsb", "bbb", 'b', new ItemStack(GSBlock.boneBlock, 1, 0), 's', new ItemStack(Items.SKULL, 1, 0));
+        GameRegistry.addRecipe(new ItemStack(GSBlock.BONE_BLOCK, 1, 0), "ppp", "ppp", "ppp", 'p', new ItemStack(GSBlock.PILE_OF_BONES, 1, 0));
+        GameRegistry.addRecipe(new ItemStack(GSBlock.BONE_BLOCK, 9, 1), "bbb", "bsb", "bbb", 'b', new ItemStack(GSBlock.BONE_BLOCK, 1, 0), 's', new ItemStack(Items.SKULL, 1, 0));
 
-        GameRegistry.addRecipe(new ItemStack(GSBlock.boneBlock), "x", "x", 'x', GSBlock.boneSlab);
-        GameRegistry.addRecipe(new ItemStack(GSBlock.boneSlab, 6), "xxx", 'x', GSBlock.boneBlock);
-        GameRegistry.addRecipe(new ItemStack(GSBlock.boneStairs, 4), "x  ", "xx ", "xxx", 'x', GSBlock.boneBlock);
+        GameRegistry.addRecipe(new ItemStack(GSBlock.BONE_BLOCK), "x", "x", 'x', GSBlock.BONE_SLAB);
+        GameRegistry.addRecipe(new ItemStack(GSBlock.BONE_SLAB, 6), "xxx", 'x', GSBlock.BONE_BLOCK);
+        GameRegistry.addRecipe(new ItemStack(GSBlock.BONE_STAIRS, 4), "x  ", "xx ", "xxx", 'x', GSBlock.BONE_BLOCK);
         // Bone block to piles
-        GameRegistry.addRecipe(new ItemStack(GSBlock.pileOfBones, 9, 0), "x", 'x', GSBlock.boneBlock);
+        GameRegistry.addRecipe(new ItemStack(GSBlock.PILE_OF_BONES, 9, 0), "x", 'x', GSBlock.BONE_BLOCK);
 
 
         // gallows
-        GameRegistry.addRecipe(getStackWithNTB(GSBlock.execution, EnumExecution.GIBBET.ordinal(), "Type"), "ww ", "wr ", "ww ", 'w', Blocks.PLANKS, 'r', Items.LEAD);
+        GameRegistry.addRecipe(getStackWithNTB(GSBlock.EXECUTION, EnumExecution.GIBBET.ordinal(), "Type"), "ww ", "wr ", "ww ", 'w', Blocks.PLANKS, 'r', Items.LEAD);
         // gibbets
-        GameRegistry.addRecipe(getStackWithNTB(GSBlock.execution, EnumExecution.GIBBET.ordinal(), "Type"), "ww ", "wr ", "wi ", 'w', Blocks.PLANKS, 'r', Items.LEAD, 'i', Blocks.IRON_BLOCK);
+        GameRegistry.addRecipe(getStackWithNTB(GSBlock.EXECUTION, EnumExecution.GIBBET.ordinal(), "Type"), "ww ", "wr ", "wi ", 'w', Blocks.PLANKS, 'r', Items.LEAD, 'i', Blocks.IRON_BLOCK);
         // stocks
-        GameRegistry.addRecipe(getStackWithNTB(GSBlock.execution, EnumExecution.STOCKS.ordinal(), "Type"), "wsw", "w w", 'w', Blocks.PLANKS, 's', Blocks.WOODEN_SLAB);
+        GameRegistry.addRecipe(getStackWithNTB(GSBlock.EXECUTION, EnumExecution.STOCKS.ordinal(), "Type"), "wsw", "w w", 'w', Blocks.PLANKS, 's', Blocks.WOODEN_SLAB);
         // burning stake
-        GameRegistry.addRecipe(getStackWithNTB(GSBlock.execution, EnumExecution.BURNING_STAKE.ordinal(), "Type"), " w ", "www", "hwh", 'w', Blocks.PLANKS, 'h', Blocks.HAY_BLOCK);
+        GameRegistry.addRecipe(getStackWithNTB(GSBlock.EXECUTION, EnumExecution.BURNING_STAKE.ordinal(), "Type"), " w ", "www", "hwh", 'w', Blocks.PLANKS, 'h', Blocks.HAY_BLOCK);
 
     //TODO ????
         // sword graves TODO remove
@@ -59,43 +59,43 @@ public class Recipes {
 
         // spawners
         if (ExtendedConfig.craftableWitherSpawner) {
-            GameRegistry.addRecipe(new ItemStack(GSBlock.spawner, 1, EnumSpawner.WITHER_SPAWNER.ordinal()), "bcb", "cec", "cbc",
-                    'c', new ItemStack(GSBlock.skullCandle, 1, EnumSkullCandle.WITHER_SKULL.ordinal()),
+            GameRegistry.addRecipe(new ItemStack(GSBlock.SPAWNER, 1, EnumSpawner.WITHER_SPAWNER.ordinal()), "bcb", "cec", "cbc",
+                    'c', new ItemStack(GSBlock.SKULL_CANDLE, 1, EnumSkullCandle.WITHER_SKULL.ordinal()),
                     'b', new ItemStack(Items.DYE, 1, EnumDyeColor.WHITE.getDyeDamage()), 'e', Items.ENDER_EYE);
         }
         if (ExtendedConfig.craftableSpawners) {
-            GameRegistry.addRecipe(new ItemStack(GSBlock.spawner, 1, EnumSpawner.SKELETON_SPAWNER.ordinal()), "bcb", "cec", "cbc",
-                    'c', new ItemStack(GSBlock.skullCandle, 1, EnumSkullCandle.SKELETON_SKULL.ordinal()),
+            GameRegistry.addRecipe(new ItemStack(GSBlock.SPAWNER, 1, EnumSpawner.SKELETON_SPAWNER.ordinal()), "bcb", "cec", "cbc",
+                    'c', new ItemStack(GSBlock.SKULL_CANDLE, 1, EnumSkullCandle.SKELETON_SKULL.ordinal()),
                     'b', new ItemStack(Items.DYE, 1, EnumDyeColor.WHITE.getDyeDamage()), 'e', Items.ENDER_EYE);
-            GameRegistry.addRecipe(new ItemStack(GSBlock.spawner, 1, EnumSpawner.ZOMBIE_SPAWNER.ordinal()), "bcb", "cec", "cbc",
-                    'c', new ItemStack(GSBlock.skullCandle, 1, EnumSkullCandle.ZOMBIE_SKULL.ordinal()),
+            GameRegistry.addRecipe(new ItemStack(GSBlock.SPAWNER, 1, EnumSpawner.ZOMBIE_SPAWNER.ordinal()), "bcb", "cec", "cbc",
+                    'c', new ItemStack(GSBlock.SKULL_CANDLE, 1, EnumSkullCandle.ZOMBIE_SKULL.ordinal()),
                     'b', new ItemStack(Items.DYE, 1, EnumDyeColor.WHITE.getDyeDamage()), 'e', Items.ENDER_EYE);
-            GameRegistry.addRecipe(new ItemStack(GSBlock.spawner, 1, EnumSpawner.SPIDER_SPAWNER.ordinal()), "www", "ses", "www",
+            GameRegistry.addRecipe(new ItemStack(GSBlock.SPAWNER, 1, EnumSpawner.SPIDER_SPAWNER.ordinal()), "www", "ses", "www",
                     'w', Blocks.WEB, 's', Items.SPIDER_EYE, 'e', Items.ENDER_EYE);
         }
 
         // candles
-        GameRegistry.addRecipe(new ItemStack(GSBlock.candle, 1, 0), "t", "m", "s", 't', Items.STRING, 'm', new ItemStack(Items.DYE, 1, EnumDyeColor.WHITE.getDyeDamage()), 's', Items.SLIME_BALL);
-        addSkullCandleReciepes(new ItemStack(GSBlock.candle, 1, 0));
+        GameRegistry.addRecipe(new ItemStack(GSBlock.CANDLE, 1, 0), "t", "m", "s", 't', Items.STRING, 'm', new ItemStack(Items.DYE, 1, EnumDyeColor.WHITE.getDyeDamage()), 's', Items.SLIME_BALL);
+        addSkullCandleReciepes(new ItemStack(GSBlock.CANDLE, 1, 0));
 
-        GameRegistry.addRecipe(new ItemStack(Items.SKULL, 1, 0), "c", 'c', new ItemStack(GSBlock.skullCandle, 1, EnumSkullCandle.SKELETON_SKULL.ordinal()));
-        GameRegistry.addRecipe(new ItemStack(Items.SKULL, 1, 1), "c", 'c', new ItemStack(GSBlock.skullCandle, 1, EnumSkullCandle.WITHER_SKULL.ordinal()));
-        GameRegistry.addRecipe(new ItemStack(Items.SKULL, 1, 2), "c", 'c', new ItemStack(GSBlock.skullCandle, 1, EnumSkullCandle.ZOMBIE_SKULL.ordinal()));
+        GameRegistry.addRecipe(new ItemStack(Items.SKULL, 1, 0), "c", 'c', new ItemStack(GSBlock.SKULL_CANDLE, 1, EnumSkullCandle.SKELETON_SKULL.ordinal()));
+        GameRegistry.addRecipe(new ItemStack(Items.SKULL, 1, 1), "c", 'c', new ItemStack(GSBlock.SKULL_CANDLE, 1, EnumSkullCandle.WITHER_SKULL.ordinal()));
+        GameRegistry.addRecipe(new ItemStack(Items.SKULL, 1, 2), "c", 'c', new ItemStack(GSBlock.SKULL_CANDLE, 1, EnumSkullCandle.ZOMBIE_SKULL.ordinal()));
 
         if (ExtendedConfig.craftableNightStone) {
-            GameRegistry.addRecipe(new ItemStack(GSBlock.trap, 1, 0), " p ", "rnr", " s ", 'n', Blocks.NETHER_BRICK, 'p', Blocks.STONE_PRESSURE_PLATE, 'r', Items.REDSTONE, 's', Blocks.SOUL_SAND);
+            GameRegistry.addRecipe(new ItemStack(GSBlock.TRAP, 1, 0), " p ", "rnr", " s ", 'n', Blocks.NETHER_BRICK, 'p', Blocks.STONE_PRESSURE_PLATE, 'r', Items.REDSTONE, 's', Blocks.SOUL_SAND);
         }
         if (ExtendedConfig.craftableThunderStone) {
-            GameRegistry.addRecipe(new ItemStack(GSBlock.trap, 1, 1), " p ", "rnr", " s ", 'n', Blocks.STONEBRICK, 'p', Blocks.STONE_PRESSURE_PLATE, 'r', Items.REDSTONE, 's', Blocks.SOUL_SAND);
+            GameRegistry.addRecipe(new ItemStack(GSBlock.TRAP, 1, 1), " p ", "rnr", " s ", 'n', Blocks.STONEBRICK, 'p', Blocks.STONE_PRESSURE_PLATE, 'r', Items.REDSTONE, 's', Blocks.SOUL_SAND);
         }
 
         // altar
         net.minecraft.item.Item altarCrystal = (ExtendedConfig.hardAltarRecipe) ? Items.NETHER_STAR : Items.DIAMOND;
-        GameRegistry.addRecipe(new ItemStack(GSBlock.altar), " h ", "sns", "bbb",
+        GameRegistry.addRecipe(new ItemStack(GSBlock.ALTAR), " h ", "sns", "bbb",
                 'h', altarCrystal,
                 's', new ItemStack(Items.SKULL, 1, 0),
-                'n', new ItemStack(GSBlock.trap, 1, 0),
-                'b', new ItemStack(GSBlock.boneBlock, 1, 0));
+                'n', new ItemStack(GSBlock.TRAP, 1, 0),
+                'b', new ItemStack(GSBlock.BONE_BLOCK, 1, 0));
     }
 
     private static ItemStack getStackWithNTB(net.minecraft.block.Block block, int graveType, String ntbName) {
@@ -107,9 +107,9 @@ public class Recipes {
     }
 
     public static void addSkullCandleReciepes(ItemStack candle) {
-        GameRegistry.addRecipe(new ItemStack(GSBlock.skullCandle, 1, EnumSkullCandle.SKELETON_SKULL.ordinal()), "c", "s", 's', new ItemStack(Items.SKULL, 1, 0), 'c', candle);
-        GameRegistry.addRecipe(new ItemStack(GSBlock.skullCandle, 1, EnumSkullCandle.WITHER_SKULL.ordinal()), "c", "s", 's', new ItemStack(Items.SKULL, 1, 1), 'c', candle);
-        GameRegistry.addRecipe(new ItemStack(GSBlock.skullCandle, 1, EnumSkullCandle.ZOMBIE_SKULL.ordinal()), "c", "s", 's', new ItemStack(Items.SKULL, 1, 2), 'c', candle);
+        GameRegistry.addRecipe(new ItemStack(GSBlock.SKULL_CANDLE, 1, EnumSkullCandle.SKELETON_SKULL.ordinal()), "c", "s", 's', new ItemStack(Items.SKULL, 1, 0), 'c', candle);
+        GameRegistry.addRecipe(new ItemStack(GSBlock.SKULL_CANDLE, 1, EnumSkullCandle.WITHER_SKULL.ordinal()), "c", "s", 's', new ItemStack(Items.SKULL, 1, 1), 'c', candle);
+        GameRegistry.addRecipe(new ItemStack(GSBlock.SKULL_CANDLE, 1, EnumSkullCandle.ZOMBIE_SKULL.ordinal()), "c", "s", 's', new ItemStack(Items.SKULL, 1, 2), 'c', candle);
     }
 
     public static void addForestryBackpack(ItemStack backpack, net.minecraft.item.Item item) {

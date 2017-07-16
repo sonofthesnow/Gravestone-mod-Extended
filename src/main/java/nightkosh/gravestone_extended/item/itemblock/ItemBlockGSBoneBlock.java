@@ -8,6 +8,7 @@ import nightkosh.gravestone_extended.block.enums.EnumBoneBlock;
 import net.minecraft.block.Block;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
+import nightkosh.gravestone_extended.core.GSBlock;
 
 /**
  * GraveStone mod
@@ -19,7 +20,8 @@ public class ItemBlockGSBoneBlock extends ItemBlock {
 
     public ItemBlockGSBoneBlock(Block block) {
         super(block);
-        setHasSubtypes(true);
+        this.setHasSubtypes(true);
+        this.setRegistryName(GSBlock.BONE_BLOCK.getRegistryName());
     }
 
     @Override

@@ -27,7 +27,7 @@ public class TileEntityMemorial extends TileEntityGrave {
 
     public TileEntityMemorial(World world) {
         this();
-        this.worldObj = world;
+        this.setWorld(world);
     }
 
     /**

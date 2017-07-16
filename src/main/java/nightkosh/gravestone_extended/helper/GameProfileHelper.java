@@ -45,7 +45,7 @@ public class GameProfileHelper {
 
                     @Override
                     public void onProfileLookupFailed(GameProfile gameProfile, Exception e) {
-                        sender.addChatMessage(new TextComponentTranslation("commands.corpse_search_failed").setStyle(new Style().setColor(TextFormatting.RED)));
+                        sender.sendMessage(new TextComponentTranslation("commands.corpse_search_failed").setStyle(new Style().setColor(TextFormatting.RED)));
                     }
                 });
             } else {

@@ -22,6 +22,7 @@ import net.minecraft.nbt.NBTUtil;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
+import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
@@ -36,12 +37,12 @@ import nightkosh.gravestone.inventory.GraveInventory;
 import nightkosh.gravestone_extended.ModGravestoneExtended;
 import nightkosh.gravestone_extended.block.enums.EnumMemorials;
 import nightkosh.gravestone_extended.core.GSBlock;
+import nightkosh.gravestone_extended.core.ModInfo;
 import nightkosh.gravestone_extended.core.Tabs;
 import nightkosh.gravestone_extended.structures.MemorialGenerationHelper;
 import nightkosh.gravestone_extended.tileentity.TileEntityMemorial;
 
 import javax.annotation.Nullable;
-import java.util.List;
 
 /**
  * GraveStone mod
@@ -224,11 +225,12 @@ public class BlockMemorial extends BlockContainer {
         this.setHardness(1);
         this.setResistance(5);
         this.setCreativeTab(Tabs.memorialsTab);
+        this.setRegistryName(ModInfo.ID, "GSMemorial");
     }
 
     @Override
     public void onBlockPlacedBy(World world, BlockPos pos, IBlockState state, EntityLivingBase player, ItemStack itemStack) {
-        EnumFacing enumfacing = EnumFacing.getHorizontal(MathHelper.floor_double((double) (player.rotationYaw * 4 / 360F) + 0.5D) & 3).getOpposite();
+        EnumFacing enumfacing = EnumFacing.getHorizontal(MathHelper.floor((double) (player.rotationYaw * 4 / 360F) + 0.5D) & 3).getOpposite();
         state = state.withProperty(FACING, enumfacing);
         world.setBlockState(pos, state, 2);
 
@@ -298,7 +300,7 @@ public class BlockMemorial extends BlockContainer {
                     for (byte shiftX = startX; shiftX < maxX; shiftX++) {
                         BlockPos newPos = new BlockPos(pos.getX() + shiftX, pos.getY() + shiftY, pos.getZ() + shiftZ);
                         if (world.getBlockState(newPos).getBlock() == Blocks.AIR) {
-                            world.setBlockState(newPos, GSBlock.invisibleWall.getDefaultState());
+                            world.setBlockState(newPos, GSBlock.INVISIBLE_WALL.getDefaultState());
                         }
                     }
                 }
@@ -355,7 +357,7 @@ public class BlockMemorial extends BlockContainer {
                 for (byte shiftZ = startZ; shiftZ < maxZ; shiftZ++) {
                     for (byte shiftX = startX; shiftX < maxX; shiftX++) {
                         BlockPos newPos = new BlockPos(pos.getX() + shiftX, pos.getY() + shiftY, pos.getZ() + shiftZ);
-                        if (world.getBlockState(newPos).getBlock() == GSBlock.invisibleWall) {
+                        if (world.getBlockState(newPos).getBlock() == GSBlock.INVISIBLE_WALL) {
                             world.setBlockState(new BlockPos(pos.getX() + shiftX, pos.getY() + shiftY, pos.getZ() + shiftZ), Blocks.AIR.getDefaultState());
                         }
                     }
@@ -416,7 +418,7 @@ public class BlockMemorial extends BlockContainer {
     }
 
     @Override
-    public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, @Nullable ItemStack heldItem, EnumFacing side, float hitX, float hitY, float hitZ) {
+    public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing side, float hitX, float hitY, float hitZ) {
         TileEntityMemorial te = (TileEntityMemorial) world.getTileEntity(pos);
 
         if (te != null) {
@@ -433,7 +435,7 @@ public class BlockMemorial extends BlockContainer {
                 } else {
                     if (net.minecraft.block.Block.getBlockFromItem(item.getItem()) instanceof BlockVine) {
                         te.setMossy(true);
-                        player.inventory.getCurrentItem().stackSize--;
+                        player.inventory.getCurrentItem().setCount(player.inventory.getCurrentItem().getCount() - 1);
                         return true;
                     }
                 }
@@ -451,14 +453,14 @@ public class BlockMemorial extends BlockContainer {
                             killerName = ModGravestoneExtended.proxy.getLocalizedEntityName(te.getDeathTextComponent().getKillerName());
 
                             if (killerName.length() == 0) {
-                                player.addChatComponentMessage(new TextComponentTranslation(deathText, new Object[]{name}));
+                                player.sendMessage(new TextComponentTranslation(deathText, new Object[]{name}));
                             } else {
-                                player.addChatComponentMessage(new TextComponentTranslation(deathText, new Object[]{name, killerName}));
+                                player.sendMessage(new TextComponentTranslation(deathText, new Object[]{name, killerName}));
                             }
                             return false;
                         }
                     }
-                    player.addChatComponentMessage(new TextComponentTranslation(deathText));
+                    player.sendMessage(new TextComponentTranslation(deathText));
                 }
             }
         }
@@ -473,7 +475,7 @@ public class BlockMemorial extends BlockContainer {
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void getSubBlocks(Item item, CreativeTabs tab, List list) {
+    public void getSubBlocks(Item item, CreativeTabs tab, NonNullList<ItemStack> list) {
         for (int index : TAB_MEMORIALS) {
             list.add(getMemorialItemForCreativeInventory(item, index));
         }
@@ -502,7 +504,7 @@ public class BlockMemorial extends BlockContainer {
     }
 
     private ItemStack getBlockItemStack(World world, BlockPos pos) {
-        ItemStack itemStack = this.createStackedBlock(this.getDefaultState());
+        ItemStack itemStack = new ItemStack(Item.getItemFromBlock(this), 1);
         TileEntityMemorial tileEntity = (TileEntityMemorial) world.getTileEntity(pos);
 
         if (tileEntity != null) {
@@ -530,7 +532,7 @@ public class BlockMemorial extends BlockContainer {
     }
 
     private ItemStack getBlockItemStackWithoutInfo(World world, BlockPos pos) {
-        ItemStack itemStack = this.createStackedBlock(this.getDefaultState());
+        ItemStack itemStack = new ItemStack(Item.getItemFromBlock(this), 1);
         TileEntityMemorial tileEntity = (TileEntityMemorial) world.getTileEntity(pos);
 
         if (tileEntity != null) {
@@ -564,7 +566,7 @@ public class BlockMemorial extends BlockContainer {
 
     @Override
     public ItemStack getPickBlock(IBlockState state, RayTraceResult target, World world, BlockPos pos, EntityPlayer player) {
-        ItemStack itemStack = this.createStackedBlock(this.getDefaultState());
+        ItemStack itemStack = new ItemStack(Item.getItemFromBlock(this), 1);
         TileEntityMemorial tileEntity = (TileEntityMemorial) world.getTileEntity(pos);
 
         if (tileEntity != null) {
@@ -595,7 +597,7 @@ public class BlockMemorial extends BlockContainer {
 
     @Override
     public int getMetaFromState(IBlockState state) {
-        return ((EnumFacing) state.getValue(FACING)).getIndex();
+        return (state.getValue(FACING)).getIndex();
     }
 
     @Override

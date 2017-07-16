@@ -99,11 +99,11 @@ public abstract class EntityUndeadPet extends EntityMob {
      */
     @Override
     public void onLivingUpdate() {
-        if (this.worldObj.isDaytime() && !this.worldObj.isRemote && !this.mobType.sunLightProtected()) {
+        if (this.getEntityWorld().isDaytime() && !this.getEntityWorld().isRemote && !this.mobType.sunLightProtected()) {
             float f = this.getBrightness(1);
 
-            if (f > 0.5F && this.rand.nextFloat() * 30 < (f - 0.4F) * 2 && this.worldObj.canBlockSeeSky(
-                    new BlockPos(MathHelper.floor_double(this.posX), MathHelper.floor_double(this.posY), MathHelper.floor_double(this.posZ)))) {
+            if (f > 0.5F && this.rand.nextFloat() * 30 < (f - 0.4F) * 2 && this.getEntityWorld().canBlockSeeSky(
+                    new BlockPos(MathHelper.floor(this.posX), MathHelper.floor(this.posY), MathHelper.floor(this.posZ)))) {
                 this.setFire(8);
             }
         }
@@ -154,7 +154,7 @@ public abstract class EntityUndeadPet extends EntityMob {
         super.onKillEntity(entityLiving);
 
         if (this.mobType == EnumUndeadMobType.ZOMBIE &&
-                this.worldObj.getDifficulty() == EnumDifficulty.NORMAL || this.worldObj.getDifficulty() == EnumDifficulty.HARD) {
+                this.getEntityWorld().getDifficulty() == EnumDifficulty.NORMAL || this.getEntityWorld().getDifficulty() == EnumDifficulty.HARD) {
             spawnZombieMob(entityLiving);
         }
     }
@@ -165,10 +165,10 @@ public abstract class EntityUndeadPet extends EntityMob {
             EntityLiving zombie = null;
             if (entity instanceof EntityVillager) {
                 EntityVillager villager = (EntityVillager) entityLivingBase;
-                EntityZombie entityZombie = new EntityZombie(this.worldObj);
+                EntityZombie entityZombie = new EntityZombie(this.getEntityWorld());
                 entityZombie.copyLocationAndAnglesFrom(entity);
-                this.worldObj.removeEntity(entity);
-                entityZombie.onInitialSpawn(this.worldObj.getDifficultyForLocation(new BlockPos(this)), null);
+                this.getEntityWorld().removeEntity(entity);
+                entityZombie.onInitialSpawn(this.getEntityWorld().getDifficultyForLocation(new BlockPos(this)), null);
 
                 entityZombie.setVillagerType(villager.getProfessionForge());
                 entityZombie.setChild(entityLivingBase.isChild());
@@ -179,41 +179,41 @@ public abstract class EntityUndeadPet extends EntityMob {
                     entityZombie.setAlwaysRenderNameTag(villager.getAlwaysRenderNameTag());
                 }
 
-                this.worldObj.spawnEntityInWorld(entityZombie);
-                this.worldObj.playEvent(null, 1026, new BlockPos(this), 0);
+                this.getEntityWorld().spawnEntity(entityZombie);
+                this.getEntityWorld().playEvent(null, 1026, new BlockPos(this), 0);
                 zombie = entityZombie;
             } else if (entity instanceof EntityWolf) {
-                EntityZombieDog zombieDog = new EntityZombieDog(this.worldObj, false);
+                EntityZombieDog zombieDog = new EntityZombieDog(this.getEntityWorld(), false);
                 zombieDog.copyLocationAndAnglesFrom(entity);
 
-                this.worldObj.removeEntity(entity);
-                this.worldObj.spawnEntityInWorld(zombieDog);
-                this.worldObj.playEvent(null, 1026, new BlockPos(this), 0);
+                this.getEntityWorld().removeEntity(entity);
+                this.getEntityWorld().spawnEntity(zombieDog);
+                this.getEntityWorld().playEvent(null, 1026, new BlockPos(this), 0);
 
                 zombie = zombieDog;
             } else if (entity instanceof EntityOcelot) {
-                EntityZombieCat zombieCat = new EntityZombieCat(this.worldObj, false);
+                EntityZombieCat zombieCat = new EntityZombieCat(this.getEntityWorld(), false);
                 zombieCat.copyLocationAndAnglesFrom(entity);
                 if (((EntityOcelot) entity).isTamed()) {
                     zombieCat.setSkin(((EntityOcelot) entity).getTameSkin());
                 } else {
                     zombieCat.setSkin(0);
                 }
-                this.worldObj.removeEntity(entity);
+                this.getEntityWorld().removeEntity(entity);
 
-                zombieCat.onInitialSpawn(this.worldObj.getDifficultyForLocation(new BlockPos(this)), null);
-                this.worldObj.spawnEntityInWorld(zombieCat);
-                this.worldObj.playEvent(null, 1026, new BlockPos(this), 0);
+                zombieCat.onInitialSpawn(this.getEntityWorld().getDifficultyForLocation(new BlockPos(this)), null);
+                this.getEntityWorld().spawnEntity(zombieCat);
+                this.getEntityWorld().playEvent(null, 1026, new BlockPos(this), 0);
 
                 zombie = zombieCat;
             } else if (entity instanceof EntityHorse) {
-                EntityZombieHorse zombieHorse = new EntityZombieHorse(this.worldObj);
+                EntityZombieHorse zombieHorse = new EntityZombieHorse(this.getEntityWorld());
                 zombieHorse.copyLocationAndAnglesFrom(entity);
                 zombieHorse.setGrowingAge(((EntityHorse) entity).getGrowingAge());
 
-                this.worldObj.removeEntity(entity);
-                this.worldObj.spawnEntityInWorld(zombieHorse);
-                this.worldObj.playEvent(null, 1026, new BlockPos(this), 0);
+                this.getEntityWorld().removeEntity(entity);
+                this.getEntityWorld().spawnEntity(zombieHorse);
+                this.getEntityWorld().playEvent(null, 1026, new BlockPos(this), 0);
 
                 zombie = zombieHorse;
             }

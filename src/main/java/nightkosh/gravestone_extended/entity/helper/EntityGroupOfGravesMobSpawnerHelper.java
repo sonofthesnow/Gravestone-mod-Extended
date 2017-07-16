@@ -61,12 +61,12 @@ public class EntityGroupOfGravesMobSpawnerHelper extends GroupOfGravesSpawnerHel
     protected void readEntityFromNBT(NBTTagCompound tagCompund) {
         NBTTagList tagList = tagCompund.getTagList("gravesList", 10);
         if (tagList != null && !tagList.hasNoTags()) {
-            gravesTEList = new ArrayList<TileEntityGraveStone>(tagList.tagCount());
+            gravesTEList = new ArrayList<>(tagList.tagCount());
             for (int i = 0; i < tagList.tagCount(); i++) {
                 NBTTagCompound posTag = (NBTTagCompound) tagList.get(i);
                 if (posTag != null && posTag.hasKey("x") && posTag.hasKey("y") && posTag.hasKey("z")) {
                     BlockPos pos = new BlockPos(posTag.getInteger("x"), posTag.getInteger("y"), posTag.getInteger("z"));
-                    TileEntity te = worldObj.getTileEntity(pos);
+                    TileEntity te = this.getEntityWorld().getTileEntity(pos);
                     if (te != null && te instanceof TileEntityGraveStone) {
                         gravesTEList.add((TileEntityGraveStone) te);
                     }

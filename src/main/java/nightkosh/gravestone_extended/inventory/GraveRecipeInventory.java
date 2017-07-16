@@ -27,6 +27,11 @@ public class GraveRecipeInventory implements IInventory {
     }
 
     @Override
+    public boolean isEmpty() {
+        return stackList.length == 0;
+    }
+
+    @Override
     public ItemStack getStackInSlot(int index) {
         return index >= this.getSizeInventory() ? null : this.stackList[index];
     }
@@ -57,7 +62,7 @@ public class GraveRecipeInventory implements IInventory {
     }
 
     @Override
-    public boolean isUseableByPlayer(EntityPlayer player) {
+    public boolean isUsableByPlayer(EntityPlayer player) {
         return false;
     }
 

@@ -54,7 +54,7 @@ public class DogCorpseHelper extends CorpseHelper {
     }
 
     private static ItemStack createCorpse(boolean sophisticated, EnumUndeadMobType mobType, int speciesNum) {
-        ItemStack corpse = new ItemStack(GSBlock.corpse, 1, EnumCorpse.DOG.ordinal());
+        ItemStack corpse = new ItemStack(GSBlock.CORPSE, 1, EnumCorpse.DOG.ordinal());
         NBTTagCompound nbtTag = new NBTTagCompound();
 
         nbtTag.setByte("MobType", (byte) mobType.ordinal());

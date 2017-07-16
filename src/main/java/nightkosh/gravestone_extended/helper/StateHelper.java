@@ -87,33 +87,33 @@ public class StateHelper {
     public static final IBlockState WOODEN_SLAB_DARK_OAK = WOODEN_SLAB.withProperty(BlockWoodSlab.VARIANT, BlockPlanks.EnumType.DARK_OAK);
 
 
-    public static final IBlockState NIGHTSTONE = GSBlock.trap.getDefaultState();
-    public static final IBlockState CANDLE = GSBlock.candle.getDefaultState();
-    public static final IBlockState SKULL_CANDLE = GSBlock.skullCandle.getDefaultState();
+    public static final IBlockState NIGHTSTONE = GSBlock.TRAP.getDefaultState();
+    public static final IBlockState CANDLE = GSBlock.CANDLE.getDefaultState();
+    public static final IBlockState SKULL_CANDLE = GSBlock.SKULL_CANDLE.getDefaultState();
     public static final IBlockState SKELETON_SKULL_CANDLE = SKULL_CANDLE.withProperty(BlockSkullCandle.VARIANT, EnumSkullCandle.SKELETON_SKULL);
-    public static final IBlockState BONE_BLOCK = GSBlock.boneBlock.getDefaultState();
+    public static final IBlockState BONE_BLOCK = GSBlock.BONE_BLOCK.getDefaultState();
     public static final IBlockState BONE_BLOCK_SKULL = BONE_BLOCK.withProperty(BlockBoneBlock.VARIANT, EnumBoneBlock.SKULL_BONE_BLOCK);
     public static final IBlockState BONE_BLOCK_CRAWLER = BONE_BLOCK.withProperty(BlockBoneBlock.VARIANT, EnumBoneBlock.CRAWLER_BONE_BLOCK);
     public static final IBlockState BONE_BLOCK_SKULL_CRAWLER = BONE_BLOCK.withProperty(BlockBoneBlock.VARIANT, EnumBoneBlock.CRAWLER_SKULL_BONE_BLOCK);
-    public static final IBlockState PILE_OF_BONES = GSBlock.pileOfBones.getDefaultState();
+    public static final IBlockState PILE_OF_BONES = GSBlock.PILE_OF_BONES.getDefaultState();
     public static final IBlockState PILE_OF_BONES_WITH_SKULL = PILE_OF_BONES.withProperty(BlockPileOfBones.VARIANT, EnumPileOfBones.PILE_OF_BONES_WITH_SKULL);
     public static final IBlockState PILE_OF_BONES_WITH_SKULL_CRAWLER = PILE_OF_BONES.withProperty(BlockPileOfBones.VARIANT, EnumPileOfBones.PILE_OF_BONES_WITH_SKULL_CRAWLER);
-    public static final IBlockState GRAVESTONE = GSBlock.graveStone.getDefaultState();
+    public static final IBlockState GRAVESTONE = GSBlock.GRAVE_STONE.getDefaultState();
     public static final IBlockState GRAVESTONE_NORTH = GRAVESTONE.withProperty(BlockGraveStone.FACING, EnumFacing.NORTH);
     public static final IBlockState GRAVESTONE_EAST = GRAVESTONE.withProperty(BlockGraveStone.FACING, EnumFacing.EAST);
     public static final IBlockState GRAVESTONE_SOUTH = GRAVESTONE.withProperty(BlockGraveStone.FACING, EnumFacing.SOUTH);
     public static final IBlockState GRAVESTONE_WEST = GRAVESTONE.withProperty(BlockGraveStone.FACING, EnumFacing.WEST);
-    public static final IBlockState MEMORIAL = GSBlock.memorial.getDefaultState();
+    public static final IBlockState MEMORIAL = GSBlock.MEMORIAL.getDefaultState();
     public static final IBlockState MEMORIAL_NORTH = MEMORIAL.withProperty(BlockMemorial.FACING, EnumFacing.NORTH);
     public static final IBlockState MEMORIAL_EAST = MEMORIAL.withProperty(BlockMemorial.FACING, EnumFacing.EAST);
     public static final IBlockState MEMORIAL_SOUTH = MEMORIAL.withProperty(BlockMemorial.FACING, EnumFacing.SOUTH);
     public static final IBlockState MEMORIAL_WEST = MEMORIAL.withProperty(BlockMemorial.FACING, EnumFacing.WEST);
-    public static final IBlockState SPAWNER = GSBlock.spawner.getDefaultState();
+    public static final IBlockState SPAWNER = GSBlock.SPAWNER.getDefaultState();
     public static final IBlockState SPAWNER_SKELETON = SPAWNER.withProperty(BlockSpawner.VARIANT, EnumSpawner.SKELETON_SPAWNER);
     public static final IBlockState SPAWNER_ZOMBIE = SPAWNER.withProperty(BlockSpawner.VARIANT, EnumSpawner.ZOMBIE_SPAWNER);
     public static final IBlockState SPAWNER_SPIDER = SPAWNER.withProperty(BlockSpawner.VARIANT, EnumSpawner.SPIDER_SPAWNER);
-    public static final IBlockState HAUNTED_CHEST = GSBlock.hauntedChest.getDefaultState();
-    public static final IBlockState BONE_STAIRS = GSBlock.boneStairs.getDefaultState();
+    public static final IBlockState HAUNTED_CHEST = GSBlock.HAUNTED_CHEST.getDefaultState();
+    public static final IBlockState BONE_STAIRS = GSBlock.BONE_STAIRS.getDefaultState();
     public static final IBlockState BONE_STAIRS_TOP = BONE_STAIRS.withProperty(BlockStairs.HALF, BlockStairs.EnumHalf.TOP);
 
     public static IBlockState getNetherBrickStairs(EnumFacing direction) {

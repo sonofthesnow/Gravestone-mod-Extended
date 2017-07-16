@@ -46,7 +46,7 @@ public class RenderSkullCrawler extends RenderLiving {
                 return Resources.ZOMBIE_SKULL_CRAWLER;
             case skeleton:
             default:
-                return Resources.SKULL_CRAWLER;
+                return Resources.SKELETON_SKULL_CRAWLER;
         }
     }
 }

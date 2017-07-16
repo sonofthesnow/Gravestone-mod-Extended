@@ -14,11 +14,11 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 public class ResourcesModels extends Resources {
 
     // MODEL RESOURCES
-    public static final ModelResourceLocation chiselModel = new ModelResourceLocation(CHISEL, "inventory");
+    public static final ModelResourceLocation chiselModel = new ModelResourceLocation(GSItem.CHISEL.getRegistryName(), "inventory");
 
     public static final ModelResourceLocation CORPSE = new ModelResourceLocation(MOD_NAME + ":GSCorpse", "inventory");
 
-    public static final ModelResourceLocation spawnEggModel = new ModelResourceLocation(MOD_NAME + ":" + GSItem.SPAWN_EGG , "inventory");
+    public static final ModelResourceLocation spawnEggModel = new ModelResourceLocation(GSItem.SPAWN_EGG.getRegistryName(), "inventory");
 
     public static final ModelResourceLocation memorialModel = new ModelResourceLocation(MOD_NAME + ":GSMemorial", "inventory");
     public static final ModelResourceLocation executionModel = new ModelResourceLocation(MOD_NAME + ":GSExecution", "inventory");

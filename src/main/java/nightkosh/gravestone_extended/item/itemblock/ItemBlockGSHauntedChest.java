@@ -12,6 +12,7 @@ import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
+import nightkosh.gravestone_extended.core.GSBlock;
 
 /**
  * GraveStone mod
@@ -23,7 +24,8 @@ public class ItemBlockGSHauntedChest extends ItemBlock {
 
     public ItemBlockGSHauntedChest(Block block) {
         super(block);
-        setHasSubtypes(true);
+        this.setHasSubtypes(true);
+        this.setRegistryName(GSBlock.HAUNTED_CHEST.getRegistryName());
     }
 
     @Override

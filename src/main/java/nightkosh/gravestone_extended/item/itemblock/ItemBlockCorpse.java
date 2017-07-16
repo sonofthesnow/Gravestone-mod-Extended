@@ -9,6 +9,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTUtil;
 import net.minecraft.world.World;
 import nightkosh.gravestone_extended.block.enums.EnumCorpse;
+import nightkosh.gravestone_extended.core.GSBlock;
 import nightkosh.gravestone_extended.item.corpse.CorpseHelper;
 
 import java.util.List;
@@ -23,7 +24,8 @@ public class ItemBlockCorpse extends ItemBlock {
 
     public ItemBlockCorpse(Block block) {
         super(block);
-        setUnlocalizedName("Corpse");
+        this.setUnlocalizedName("Corpse");
+        this.setRegistryName(GSBlock.CORPSE.getRegistryName());
     }
 
     @Override

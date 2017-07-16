@@ -36,7 +36,7 @@ public class MobSpawnHelper {
                     center.getZ() - 1.5 + random.nextInt(5), 0, 0);
 
             if (bat.getCanSpawnHere()) {
-                world.spawnEntityInWorld(bat);
+                world.spawnEntity(bat);
             }
         }
     }

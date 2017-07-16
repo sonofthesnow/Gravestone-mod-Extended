@@ -13,6 +13,7 @@ import nightkosh.gravestone.tileentity.TileEntityGrave;
 import nightkosh.gravestone_extended.ModGravestoneExtended;
 import nightkosh.gravestone_extended.core.GSBlock;
 import nightkosh.gravestone_extended.core.GuiHandler;
+import nightkosh.gravestone_extended.core.ModInfo;
 import nightkosh.gravestone_extended.core.Tabs;
 
 /**
@@ -25,10 +26,11 @@ public class ItemChisel extends ItemTool {
 
     public ItemChisel() {
         super(1, 5, ToolMaterial.IRON, null);
-        setMaxStackSize(1);
-        setCreativeTab(Tabs.otherItemsTab);
-        setUnlocalizedName("gravestone.chisel");
-        setMaxDamage(50);
+        this.setMaxStackSize(1);
+        this.setCreativeTab(Tabs.otherItemsTab);
+        this.setUnlocalizedName("gravestone.chisel");
+        this.setMaxDamage(50);
+        this.setRegistryName(ModInfo.ID, "GSChisel");
     }
 
     /**
@@ -36,8 +38,8 @@ public class ItemChisel extends ItemTool {
      * pressed. Args: itemStack, world, entityPlayer
      */
     @Override
-    public ActionResult<ItemStack> onItemRightClick(ItemStack itemStack, World world, EntityPlayer player, EnumHand hand) {
-//        player.setItemInUse(itemStack, this.getMaxItemUseDuration(itemStack));
+    public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, EnumHand hand) {
+        ItemStack itemStack = player.getHeldItem(hand);
         player.setActiveHand(EnumHand.MAIN_HAND);
         return new ActionResult(EnumActionResult.PASS, itemStack);
     }
@@ -48,10 +50,11 @@ public class ItemChisel extends ItemTool {
      * false if it don't. This is for ITEMS, not BLOCKS
      */
     @Override
-    public EnumActionResult onItemUse(ItemStack stack, EntityPlayer player, World world, BlockPos pos, EnumHand hand, EnumFacing side, float hitX, float hitY, float hitZ) {
-        if (world.getBlockState(pos).getBlock().equals(GSBlock.graveStone)) {
+    public EnumActionResult onItemUse(EntityPlayer player, World world, BlockPos pos, EnumHand hand, EnumFacing side, float hitX, float hitY, float hitZ) {
+        ItemStack stack = player.getHeldItem(hand);
+        if (world.getBlockState(pos).getBlock().equals(GSBlock.GRAVE_STONE)) {
             return setGraveText(stack, player, world, pos, false);
-        } else if (world.getBlockState(pos).getBlock().equals(GSBlock.memorial)) {
+        } else if (world.getBlockState(pos).getBlock().equals(GSBlock.MEMORIAL)) {
             return setGraveText(stack, player, world, pos, true);
         } else {
             player.openGui(ModGravestoneExtended.instance, GuiHandler.CHISEL_CRAFTING_GUI_ID, world, pos.getX(), pos.getY(), pos.getZ());

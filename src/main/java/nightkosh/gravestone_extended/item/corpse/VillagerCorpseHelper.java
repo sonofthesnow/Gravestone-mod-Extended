@@ -59,7 +59,7 @@ public class VillagerCorpseHelper extends CorpseHelper {
     }
 
     private static ItemStack getDefaultVillagerCorpse(int profession, int career) {
-        ItemStack corpse = new ItemStack(GSBlock.corpse, 1, CORPSE_TYPE);
+        ItemStack corpse = new ItemStack(GSBlock.CORPSE, 1, CORPSE_TYPE);
 
         NBTTagCompound nbtTag = new NBTTagCompound();
         nbtTag.setInteger("Profession", profession);
@@ -265,11 +265,11 @@ public class VillagerCorpseHelper extends CorpseHelper {
         for (Object trade : new MerchantRecipeList(nbtTag.getCompoundTag("Offers"))) {
             MerchantRecipe recipe = (MerchantRecipe) trade;
             StringBuilder str = new StringBuilder();
-            str.append(recipe.getItemToBuy().stackSize).append(" ").append(recipe.getItemToBuy().getDisplayName());
+            str.append(recipe.getItemToBuy().getCount()).append(" ").append(recipe.getItemToBuy().getDisplayName());
             if (recipe.getSecondItemToBuy() != null) {
-                str.append(" + ").append(recipe.getSecondItemToBuy().stackSize).append(" ").append(recipe.getItemToBuy().getDisplayName());
+                str.append(" + ").append(recipe.getSecondItemToBuy().getCount()).append(" ").append(recipe.getItemToBuy().getDisplayName());
             }
-            str.append(" -> ").append(recipe.getItemToSell().stackSize).append(" ").append(recipe.getItemToSell().getDisplayName());
+            str.append(" -> ").append(recipe.getItemToSell().getCount()).append(" ").append(recipe.getItemToSell().getDisplayName());
             list.add(str.toString());
         }
     }

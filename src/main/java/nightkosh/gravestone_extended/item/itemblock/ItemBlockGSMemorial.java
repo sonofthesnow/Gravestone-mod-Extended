@@ -18,6 +18,7 @@ import nightkosh.gravestone.ModGraveStone;
 import nightkosh.gravestone.api.grave.EnumGraveMaterial;
 import nightkosh.gravestone_extended.ModGravestoneExtended;
 import nightkosh.gravestone_extended.block.enums.EnumMemorials;
+import nightkosh.gravestone_extended.core.GSBlock;
 
 import java.util.List;
 
@@ -31,7 +32,8 @@ public class ItemBlockGSMemorial extends ItemBlock {
 
     public ItemBlockGSMemorial(Block block) {
         super(block);
-        setHasSubtypes(true);
+        this.setHasSubtypes(true);
+        this.setRegistryName(GSBlock.MEMORIAL.getRegistryName());
     }
 
     @Override

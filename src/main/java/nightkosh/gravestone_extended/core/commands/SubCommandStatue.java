@@ -48,12 +48,12 @@ public class SubCommandStatue implements ISubCommand {
                 try {
                     memorialType = EnumMemorials.getByTypeAndMaterial(EnumMemorialType.STEVE_STATUE, EnumGraveMaterial.valueOf(args[2].toUpperCase()));
                 } catch (Exception e) {
-                    sender.addChatMessage(new TextComponentTranslation("commands.unknown_material").setStyle(new Style().setColor(TextFormatting.RED)));
+                    sender.sendMessage(new TextComponentTranslation("commands.unknown_material").setStyle(new Style().setColor(TextFormatting.RED)));
                 }
             }
-            GameProfileHelper.dropItem(minecraftServer, sender, args[1], GSBlock.memorial, memorialType.ordinal());
+            GameProfileHelper.dropItem(minecraftServer, sender, args[1], GSBlock.MEMORIAL, memorialType.ordinal());
         } else {
-            sender.addChatMessage(new TextComponentTranslation("commands.not_enough_parameters").setStyle(new Style().setColor(TextFormatting.RED)));
+            sender.sendMessage(new TextComponentTranslation("commands.not_enough_parameters").setStyle(new Style().setColor(TextFormatting.RED)));
         }
     }
 }

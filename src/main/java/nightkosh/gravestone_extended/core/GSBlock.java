@@ -1,9 +1,7 @@
 package nightkosh.gravestone_extended.core;
 
 import net.minecraftforge.fml.common.registry.GameRegistry;
-import nightkosh.gravestone_extended.ModGravestoneExtended;
 import nightkosh.gravestone_extended.block.*;
-import nightkosh.gravestone_extended.item.itemblock.*;
 
 /**
  * GraveStone mod
@@ -11,82 +9,44 @@ import nightkosh.gravestone_extended.item.itemblock.*;
  * @author NightKosh
  * @license Lesser GNU Public License v3 (http://www.gnu.org/licenses/lgpl.html)
  */
-public class GSBlock extends nightkosh.gravestone.core.GSBlock{
+public class GSBlock extends nightkosh.gravestone.core.GSBlock {
 
-    public static BlockSpawner spawner;
-    public static BlockTrap trap;
-    public static BlockMemorial memorial;
-    public static BlockExecution execution;
-    public static BlockPileOfBones pileOfBones;
+    public static final BlockMemorial MEMORIAL = new BlockMemorial();
+    public static final BlockExecution EXECUTION = new BlockExecution();
 
-    public static BlockBoneBlock boneBlock;
-    public static BlockBoneSlab boneSlab;
-    public static BlockBoneStairs boneStairs;
+    public static final BlockSpawner SPAWNER = new BlockSpawner();
+    public static final BlockTrap TRAP = new BlockTrap();
+    public static final BlockPileOfBones PILE_OF_BONES = new BlockPileOfBones();
 
-    public static BlockHauntedChest hauntedChest;
+    public static final BlockBoneBlock BONE_BLOCK = new BlockBoneBlock();
+    public static final BlockBoneSlab BONE_SLAB = new BlockBoneSlab();
+    public static final BlockBoneStairs BONE_STAIRS = new BlockBoneStairs();
 
-    public static BlockCandle candle;
-    public static BlockSkullCandle skullCandle;
+    public static final BlockHauntedChest HAUNTED_CHEST = new BlockHauntedChest();
 
-    public static BlockAltar altar;
+    public static final BlockCandle CANDLE = new BlockCandle();
+    public static final BlockSkullCandle SKULL_CANDLE = new BlockSkullCandle();
 
-    public static BlockInvisibleWall invisibleWall;
+    public static final BlockAltar ALTAR = new BlockAltar();
 
-    public static BlockCorpse corpse;
+    public static final BlockInvisibleWall INVISIBLE_WALL = new BlockInvisibleWall();
+
+    public static final BlockCorpse CORPSE = new BlockCorpse();
 
     public static void registration() {
-        // memorials
-        memorial = new BlockMemorial();
-        GameRegistry.registerBlock(memorial, ItemBlockGSMemorial.class, "GSMemorial");
-
-        // executions
-        execution = new BlockExecution();
-        GameRegistry.registerBlock(execution, ItemBlockExecution.class, "GSExecution");
-
-        // wither spawner
-        spawner = new BlockSpawner();
-        GameRegistry.registerBlock(spawner, ItemBlockGSSpawner.class, "GSSpawner");
-
-        // trap
-        trap = new BlockTrap();
-        GameRegistry.registerBlock(trap, ItemBlockGSTrap.class, "GSTrap");
-
-        //pile of bones
-        pileOfBones = new BlockPileOfBones();
-        GameRegistry.registerBlock(pileOfBones, ItemBlockGSPileOfBones.class, "GSPileOfBones");
-
-        // bone block
-        boneBlock = new BlockBoneBlock();
-        GameRegistry.registerBlock(boneBlock, ItemBlockGSBoneBlock.class, "GSBoneBlock");
-
-        // bone slab
-        boneSlab = new BlockBoneSlab();
-        GameRegistry.registerBlock(boneSlab, "GSBoneSlab");
-
-        // bone stairs
-        boneStairs = new BlockBoneStairs();
-        GameRegistry.registerBlock(boneStairs, "GSBoneStairs");
-
-        // hauntedChest
-        hauntedChest = new BlockHauntedChest();
-        GameRegistry.registerBlock(hauntedChest, ItemBlockGSHauntedChest.class, "GSHauntedChest");
-
-        // skull candle
-        candle = new BlockCandle();
-        GameRegistry.registerBlock(candle, ItemBlockGSCandle.class, "GSCandle");
-        skullCandle = new BlockSkullCandle();
-        GameRegistry.registerBlock(skullCandle, ItemBlockGSSkullCandle.class, "GSSkullCandle");
-
-        // altar
-        altar = new BlockAltar();
-        GameRegistry.registerBlock(altar, "GSAltar");
-
-        invisibleWall = new BlockInvisibleWall();
-        GameRegistry.registerBlock(invisibleWall, "GSInvisibleWall");
-
-        corpse = new BlockCorpse();
-        GameRegistry.registerBlock(corpse, ItemBlockCorpse.class, "GSCorpse");
-
-        ModGravestoneExtended.proxy.registerBlocksModels();
+        GameRegistry.register(MEMORIAL);
+        GameRegistry.register(EXECUTION);
+        GameRegistry.register(SPAWNER);
+        GameRegistry.register(TRAP);
+        GameRegistry.register(PILE_OF_BONES);
+        GameRegistry.register(BONE_BLOCK);
+        GameRegistry.register(BONE_SLAB);
+        GameRegistry.register(BONE_STAIRS);
+        GameRegistry.register(HAUNTED_CHEST);
+        GameRegistry.register(CANDLE);
+        GameRegistry.register(SKULL_CANDLE);
+        GameRegistry.register(ALTAR);
+        GameRegistry.register(INVISIBLE_WALL);
+        GameRegistry.register(CORPSE);
     }
 }

@@ -41,22 +41,22 @@ public class TileEntityAltar extends TileEntity implements IInventory {
             float y = random.nextFloat() * 0.8F + 1.1F;
             EntityItem entityItem;
 
-            for (float z = random.nextFloat() * 0.8F + 0.1F; corpse.stackSize > 0; this.worldObj.spawnEntityInWorld(entityItem)) {
+            for (float z = random.nextFloat() * 0.8F + 0.1F; corpse.getCount() > 0; this.getWorld().spawnEntity(entityItem)) {
                 int stackSize = random.nextInt(21) + 10;
 
-                if (stackSize > corpse.stackSize) {
-                    stackSize = corpse.stackSize;
+                if (stackSize > corpse.getCount()) {
+                    stackSize = corpse.getCount();
                 }
 
-                corpse.stackSize -= stackSize;
-                entityItem = new EntityItem(this.worldObj, this.pos.getX() + x, this.pos.getY() + y, this.pos.getZ() + z,
+                corpse.setCount(corpse.getCount() - stackSize);
+                entityItem = new EntityItem(this.getWorld(), this.pos.getX() + x, this.pos.getY() + y, this.pos.getZ() + z,
                         new ItemStack(corpse.getItem(), stackSize, corpse.getItemDamage()));
                 entityItem.motionX = random.nextGaussian() * 0.05;
                 entityItem.motionY = random.nextGaussian() * 0.15;
                 entityItem.motionZ = random.nextGaussian() * 0.05;
 
                 if (corpse.hasTagCompound()) {
-                    entityItem.getEntityItem().setTagCompound((NBTTagCompound) corpse.getTagCompound().copy());
+                    entityItem.getEntityItem().setTagCompound(corpse.getTagCompound().copy());
                 }
             }
             corpse = null;
@@ -68,7 +68,7 @@ public class TileEntityAltar extends TileEntity implements IInventory {
         super.readFromNBT(nbtTag);
 
         if (nbtTag.hasKey("Corpse")) {
-            corpse = ItemStack.loadItemStackFromNBT(nbtTag.getCompoundTag("Corpse"));
+            corpse = new ItemStack(nbtTag.getCompoundTag("Corpse"));
         }
     }
 
@@ -163,6 +163,11 @@ public class TileEntityAltar extends TileEntity implements IInventory {
     }
 
     @Override
+    public boolean isEmpty() {
+        return corpse == null || corpse == ItemStack.EMPTY;
+    }
+
+    @Override
     public ItemStack getStackInSlot(int slot) {
         return corpse;
     }
@@ -176,11 +181,11 @@ public class TileEntityAltar extends TileEntity implements IInventory {
     public ItemStack decrStackSize(int slot, int amt) {
         ItemStack stack = getStackInSlot(slot);
         if (stack != null) {
-            if (stack.stackSize <= amt) {
+            if (stack.getCount() <= amt) {
                 setInventorySlotContents(slot, null);
             } else {
                 stack = stack.splitStack(amt);
-                if (stack.stackSize == 0) {
+                if (stack.isEmpty()) {
                     setInventorySlotContents(slot, null);
                 }
             }
@@ -203,8 +208,8 @@ public class TileEntityAltar extends TileEntity implements IInventory {
     }
 
     @Override
-    public boolean isUseableByPlayer(EntityPlayer player) {
-        return worldObj.getTileEntity(this.pos) == this &&
+    public boolean isUsableByPlayer(EntityPlayer player) {
+        return this.getWorld().getTileEntity(this.pos) == this &&
                 player.getDistanceSq(new BlockPos(this.pos.getX() + 0.5, this.pos.getY() + 0.5, this.pos.getZ() + 0.5)) < 64;
     }
 }

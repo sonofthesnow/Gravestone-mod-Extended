@@ -307,7 +307,7 @@ public class ComponentVillageUndertaker extends StructureVillagePieces.Village i
 
     protected void generateSkullCandle(World world, StructureBoundingBox boundingBox, int x, int y, int z, EnumFacing direction) {
         BlockPos pos = new BlockPos(this.getXWithOffset(x, z), this.getYWithOffset(y), this.getZWithOffset(x, z));
-        if (world.getBlockState(pos).getBlock() != GSBlock.skullCandle) {
+        if (world.getBlockState(pos).getBlock() != GSBlock.SKULL_CANDLE) {
             this.setBlockState(world, StateHelper.SKELETON_SKULL_CANDLE, x, y, z, boundingBox);
             TileEntitySkullCandle tileEntity = (TileEntitySkullCandle) world.getTileEntity(pos);
             if (tileEntity != null) {
@@ -331,7 +331,7 @@ public class ComponentVillageUndertaker extends StructureVillagePieces.Village i
         if (checkPainting(world, xCoord, yCoord, zCoord)) {
             EntityPainting painting = new EntityPainting(world, new BlockPos(xCoord, yCoord, zCoord), getPaintingDirection(direction));
             painting.art = paintings[world.rand.nextInt(paintings.length)];
-            world.spawnEntityInWorld(painting);
+            world.spawnEntity(painting);
         }
     }
 

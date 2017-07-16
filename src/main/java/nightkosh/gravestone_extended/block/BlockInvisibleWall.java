@@ -10,6 +10,7 @@ import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import nightkosh.gravestone_extended.core.ModInfo;
 
 /**
  * GraveStone mod
@@ -22,10 +23,11 @@ public class BlockInvisibleWall extends Block {
         super(Material.ROCK);
         this.setResistance(100500);
         this.setSoundType(SoundType.STONE);
+        this.setRegistryName(ModInfo.ID, "GSInvisibleWall");
     }
 
     @Override
-    public AxisAlignedBB getCollisionBoundingBox(IBlockState state, World world, BlockPos pos) {
+    public AxisAlignedBB getCollisionBoundingBox(IBlockState state, IBlockAccess world, BlockPos pos) {
         return new AxisAlignedBB(pos.getX(), pos.getY(), pos.getZ(), pos.getX() + 1, pos.getY() + 1, pos.getZ() + 1);
     }
 

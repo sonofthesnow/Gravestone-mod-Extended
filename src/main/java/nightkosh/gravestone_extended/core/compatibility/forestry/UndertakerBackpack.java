@@ -14,7 +14,7 @@ public class UndertakerBackpack{}
 //            Block.graveStone,
 //            Block.memorial,
 //            Block.candle,
-//            Block.skullCandle
+//            Block.SKULL_CANDLE
 //    );
 //    protected static final List allowedItems = Arrays.asList(
 //            ExtendedItem.chisel,

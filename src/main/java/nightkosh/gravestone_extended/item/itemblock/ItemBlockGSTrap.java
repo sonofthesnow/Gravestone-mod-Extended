@@ -9,6 +9,7 @@ import nightkosh.gravestone_extended.block.enums.EnumTrap;
 import net.minecraft.block.Block;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
+import nightkosh.gravestone_extended.core.GSBlock;
 
 /**
  * GraveStone mod
@@ -20,7 +21,8 @@ public class ItemBlockGSTrap extends ItemBlock {
 
     public ItemBlockGSTrap(Block block) {
         super(block);
-        setHasSubtypes(true);
+        this.setHasSubtypes(true);
+        this.setRegistryName(GSBlock.TRAP.getRegistryName());
     }
 
     @Override
