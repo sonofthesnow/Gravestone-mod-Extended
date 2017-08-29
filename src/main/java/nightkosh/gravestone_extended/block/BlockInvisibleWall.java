@@ -23,7 +23,7 @@ public class BlockInvisibleWall extends Block {
         super(Material.ROCK);
         this.setResistance(100500);
         this.setSoundType(SoundType.STONE);
-        this.setRegistryName(ModInfo.ID, "GSInvisibleWall");
+        this.setRegistryName(ModInfo.ID, "gsinvisiblewall");
     }
 
     @Override

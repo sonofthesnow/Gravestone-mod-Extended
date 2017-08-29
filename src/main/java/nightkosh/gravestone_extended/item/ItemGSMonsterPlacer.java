@@ -110,7 +110,7 @@ public class ItemGSMonsterPlacer extends ItemMonsterPlacer {
         this.setHasSubtypes(true);
         this.setCreativeTab(Tabs.otherItemsTab);
         this.setUnlocalizedName("monsterPlacer");
-        this.setRegistryName(ModInfo.ID, "GSSpawnEgg");
+        this.setRegistryName(ModInfo.ID, "gsspawnegg");
     }
 
     @Override

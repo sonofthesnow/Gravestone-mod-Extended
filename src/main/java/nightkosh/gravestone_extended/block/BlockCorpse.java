@@ -34,7 +34,7 @@ public class BlockCorpse extends BlockContainer {
         this.setUnlocalizedName("Corpse");
         this.setHardness(0);
         this.setCreativeTab(Tabs.corpseTab);
-        this.setRegistryName(ModInfo.ID, "GSCorpse");
+        this.setRegistryName(ModInfo.ID, "gscorpse");
     }
 
     @Override

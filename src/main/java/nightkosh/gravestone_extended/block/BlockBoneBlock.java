@@ -38,7 +38,7 @@ public class BlockBoneBlock extends net.minecraft.block.Block {
         this.setResistance(2);
         this.setCreativeTab(Tabs.otherItemsTab);
         this.setHarvestLevel("pickaxe", 0);
-        this.setRegistryName(ModInfo.ID, "GSBoneBlock");
+        this.setRegistryName(ModInfo.ID, "gsboneblock");
     }
 
     /**

@@ -1,0 +1,8 @@
+{
+     "variants": {
+         "variant=gallows": { "model": "gravestone-extended:gsexecution" },
+         "variant=gibbet": { "model": "gravestone-extended:gsexecution" },
+         "variant=stocks": { "model": "gravestone-extended:gsexecution" },
+         "variant=burning_stake": { "model": "gravestone-extended:gsexecution" }
+     }
+}

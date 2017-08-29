@@ -13,6 +13,8 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 @SideOnly(Side.CLIENT)
 public class ResourcesModels extends Resources {
 
+    public static final String MOD_NAME = ModInfo.ID.toLowerCase();
+
     // MODEL RESOURCES
     public static final ModelResourceLocation chiselModel = new ModelResourceLocation(GSItem.CHISEL.getRegistryName(), "inventory");
 

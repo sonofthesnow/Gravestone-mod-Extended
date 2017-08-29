@@ -225,7 +225,7 @@ public class BlockMemorial extends BlockContainer {
         this.setHardness(1);
         this.setResistance(5);
         this.setCreativeTab(Tabs.memorialsTab);
-        this.setRegistryName(ModInfo.ID, "GSMemorial");
+        this.setRegistryName(ModInfo.ID, "gsmemorial");
     }
 
     @Override

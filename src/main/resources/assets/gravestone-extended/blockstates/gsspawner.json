@@ -1,0 +1,8 @@
+{
+    "variants": {
+        "variant=wither_spawner": { "model": "gravestone-extended:gspileofbones" },
+        "variant=skeleton_spawner": { "model": "gravestone-extended:gspileofbones" },
+        "variant=zombie_spawner": { "model": "gravestone-extended:gspileofbones" },
+        "variant=spider_spawner": { "model": "gravestone-extended:gspileofbones" }
+    }
+}

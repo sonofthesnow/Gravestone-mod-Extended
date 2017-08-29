@@ -40,7 +40,7 @@ public class BlockCandle extends BlockContainer {
         this.setLightLevel(1);
         this.setResistance(0);
         this.setCreativeTab(Tabs.otherItemsTab);
-        this.setRegistryName(ModInfo.ID, "GSCandle");
+        this.setRegistryName(ModInfo.ID, "gscandle");
     }
 
     /**

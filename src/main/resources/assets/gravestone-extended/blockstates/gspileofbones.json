@@ -1,0 +1,7 @@
+{
+     "variants": {
+         "variant=pile_of_bones": { "model": "gravestone-extended:gspileofbones" },
+         "variant=pile_of_bones_with_skull": { "model": "gravestone-extended:gspileofbones" },
+         "variant=pile_of_bones_with_skull_crawler": { "model": "gravestone-extended:gspileofbones" }
+     }
+}

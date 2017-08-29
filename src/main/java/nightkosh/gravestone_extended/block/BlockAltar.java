@@ -32,7 +32,7 @@ public class BlockAltar extends BlockContainer {
         this.setUnlocalizedName("altar");
         this.setCreativeTab(Tabs.otherItemsTab);
         this.setHarvestLevel("pickaxe", 2);
-        this.setRegistryName(ModInfo.ID, "GSAltar");
+        this.setRegistryName(ModInfo.ID, "gsaltar");
     }
 
     /**

@@ -61,7 +61,7 @@ public class BlockExecution extends BlockContainer {
         this.setHardness(1);
         this.setResistance(5);
         this.setCreativeTab(Tabs.otherItemsTab);
-        this.setRegistryName(ModInfo.ID, "GSExecution");
+        this.setRegistryName(ModInfo.ID, "gsexecution");
     }
 
     @Override

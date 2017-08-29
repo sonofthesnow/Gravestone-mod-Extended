@@ -30,7 +30,7 @@ public class ItemChisel extends ItemTool {
         this.setCreativeTab(Tabs.otherItemsTab);
         this.setUnlocalizedName("gravestone.chisel");
         this.setMaxDamage(50);
-        this.setRegistryName(ModInfo.ID, "GSChisel");
+        this.setRegistryName(ModInfo.ID, "gschisel");
     }
 
     /**

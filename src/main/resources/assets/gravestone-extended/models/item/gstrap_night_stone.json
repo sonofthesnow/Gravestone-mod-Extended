@@ -1,5 +1,5 @@
 {
-    "parent": "gravestone:block/GSBoneBlock",
+    "parent": "gravestone-extended:block/gstrap_night_stone",
     "display": {
         "thirdperson": {
             "rotation": [ 10, -45, 170 ],

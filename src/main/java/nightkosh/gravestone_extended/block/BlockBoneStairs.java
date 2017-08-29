@@ -19,6 +19,6 @@ public class BlockBoneStairs extends BlockStairs {
         this.setUnlocalizedName("bone_stairs");
         this.setCreativeTab(Tabs.otherItemsTab);
         this.setHarvestLevel("pickaxe", 0);
-        this.setRegistryName(ModInfo.ID, "GSBoneStairs");
+        this.setRegistryName(ModInfo.ID, "gsbonestairs");
     }
 }

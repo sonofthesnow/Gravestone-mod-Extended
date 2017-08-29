@@ -26,7 +26,7 @@ public class BlockBoneSlab extends BlockSlab {
         this.setResistance(2);
         this.setCreativeTab(Tabs.otherItemsTab);
         this.setHarvestLevel("pickaxe", 0);
-        this.setRegistryName(ModInfo.ID, "GSBoneSlab");
+        this.setRegistryName(ModInfo.ID, "gsboneslab");
     }
 
     @Override

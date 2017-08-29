@@ -48,7 +48,7 @@ public class BlockTrap extends Block {
         this.setResistance(5);
         this.setCreativeTab(Tabs.otherItemsTab);
         this.setHarvestLevel("pickaxe", 1);
-        this.setRegistryName(ModInfo.ID, "GSTrap");
+        this.setRegistryName(ModInfo.ID, "gstrap");
     }
 
     /**

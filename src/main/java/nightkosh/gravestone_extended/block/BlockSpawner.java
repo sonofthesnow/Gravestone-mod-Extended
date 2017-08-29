@@ -64,7 +64,7 @@ public class BlockSpawner extends BlockMobSpawner {
         this.disableStats();
         this.setCreativeTab(Tabs.otherItemsTab);
         this.setHarvestLevel("pickaxe", 1);
-        this.setRegistryName(ModInfo.ID, "GSSpawner");
+        this.setRegistryName(ModInfo.ID, "gsspawner");
     }
 
     /**

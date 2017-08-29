@@ -1,0 +1,8 @@
+{
+    "variants": {
+        "facing=east": { "model": "gravestone-extended:gshauntedchest" },
+        "facing=west": { "model": "gravestone-extended:gshauntedchest" },
+        "facing=south": { "model": "gravestone-extended:gshauntedchest" },
+        "facing=north": { "model": "gravestone-extended:gshauntedchest" }
+    }
+}

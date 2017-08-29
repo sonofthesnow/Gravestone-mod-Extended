@@ -49,7 +49,7 @@ public class BlockPileOfBones extends BlockContainer {
         this.setHardness(0.1F);
         this.setResistance(0);
         this.setCreativeTab(Tabs.otherItemsTab);
-        this.setRegistryName(ModInfo.ID, "GSPileOfBones");
+        this.setRegistryName(ModInfo.ID, "gspileofbones");
     }
 
     @Override

@@ -49,7 +49,7 @@ public class BlockSkullCandle extends BlockContainer {
         this.setResistance(5);
         this.setLightLevel(1);
         this.setCreativeTab(Tabs.otherItemsTab);
-        this.setRegistryName(ModInfo.ID, "GSSkullCandle");
+        this.setRegistryName(ModInfo.ID, "gsskullcandle");
     }
 
     /**

@@ -57,7 +57,7 @@ public class BlockHauntedChest extends BlockContainer {
         this.setHardness(2.5F);
         this.setCreativeTab(Tabs.otherItemsTab);
         this.setHarvestLevel("axe", 0);
-        this.setRegistryName(ModInfo.ID, "GSHauntedChest");
+        this.setRegistryName(ModInfo.ID, "gshauntedchest");
     }
 
     /**
