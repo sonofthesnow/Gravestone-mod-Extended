@@ -93,6 +93,15 @@ public class TileEntityExecution extends TileEntityBase implements IInventory {
     }
 
     @Override
+    public int getBlockMetadata() {
+        if (this.hasWorld()) {
+            return super.getBlockMetadata();
+        } else {
+            return EnumExecution.GALLOWS.ordinal();
+        }
+    }
+
+    @Override
     public boolean receiveClientEvent(int par1, int par2) {
         return true;
     }

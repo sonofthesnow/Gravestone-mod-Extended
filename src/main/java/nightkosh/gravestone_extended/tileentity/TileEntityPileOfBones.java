@@ -55,6 +55,15 @@ public class TileEntityPileOfBones extends TileEntityBase {
         return this.writeToNBT(new NBTTagCompound());
     }
 
+    @Override
+    public int getBlockMetadata() {
+        if (this.hasWorld()) {
+            return super.getBlockMetadata();
+        } else {
+            return EnumPileOfBones.PILE_OF_BONES.ordinal();
+        }
+    }
+
     public static class Skull extends TileEntityPileOfBones {
         @Override
         public int getBlockMetadata() {

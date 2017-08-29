@@ -63,6 +63,15 @@ public class TileEntitySkullCandle extends TileEntityBase {
         this.rotation = rotation;
     }
 
+    @Override
+    public int getBlockMetadata() {
+        if (this.hasWorld()) {
+            return super.getBlockMetadata();
+        } else {
+            return EnumSkullCandle.SKELETON_SKULL.ordinal();
+        }
+    }
+
     public static class Zombie extends TileEntitySkullCandle {
         @Override
         public int getBlockMetadata() {

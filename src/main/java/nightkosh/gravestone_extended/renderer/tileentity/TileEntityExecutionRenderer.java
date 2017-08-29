@@ -44,8 +44,7 @@ public class TileEntityExecutionRenderer extends TileEntityRenderer {
             tileEntity = getDefaultTE();
         }
         EnumExecution execution = EnumExecution.getById(tileEntity.getBlockMetadata());
-        int direction = tileEntity.getDirection();
-        renderExecution(x, y, z, tileEntity.getWorld(), execution, tileEntity.getCorpse(), tileEntity.getCorpseType(), tileEntity.getHangedVillagerProfession(), EnumFacing.values()[direction]);
+        renderExecution(x, y, z, tileEntity.getWorld(), execution, tileEntity.getCorpse(), tileEntity.getCorpseType(), tileEntity.getHangedVillagerProfession(), EnumFacing.values()[tileEntity.getDirection()]);
     }
 
     private void renderExecution(double x, double y, double z, World world, EnumExecution execution,
