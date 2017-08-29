@@ -198,7 +198,7 @@ public class ObjectsGenerationHelper {
      * @param zCoord    Z coord
      * @param mobNmae   Spawned mob name
      */
-    public static void generateMinecraftSpawner(ComponentGraveStone component, World world, int xCoord, int yCoord, int zCoord, String mobNmae) {
+    public static void generateMinecraftSpawner(ComponentGraveStone component, World world, int xCoord, int yCoord, int zCoord, ResourceLocation mobNmae) {
         int y = component.getYWithOffset(yCoord);
         int x = component.getXWithOffset(xCoord, zCoord);
         int z = component.getZWithOffset(xCoord, zCoord);
@@ -208,7 +208,7 @@ public class ObjectsGenerationHelper {
         TileEntityMobSpawner tileEntity = (TileEntityMobSpawner) world.getTileEntity(pos);
 
         if (tileEntity != null) {
-            tileEntity.getSpawnerBaseLogic().setEntityName(mobNmae);
+            tileEntity.getSpawnerBaseLogic().setEntityId(mobNmae);
         }
     }
 

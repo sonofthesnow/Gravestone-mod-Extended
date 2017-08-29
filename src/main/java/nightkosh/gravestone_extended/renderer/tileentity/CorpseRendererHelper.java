@@ -9,7 +9,6 @@ import net.minecraft.client.renderer.texture.LayeredTexture;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.passive.EntityHorse;
 import net.minecraft.entity.passive.EntityWolf;
-import net.minecraft.entity.passive.HorseType;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ResourceLocation;
 import nightkosh.gravestone.models.ModelRendererSkull;
@@ -170,7 +169,8 @@ public class CorpseRendererHelper {
                 if (horse == null) {
                     horse = new EntityHorse(Minecraft.getMinecraft().world);
                 }
-                horse.setType(HorseType.getArmorType((nbt == null) ? 0 : HorseCorpseHelper.getHorseType(nbt)));
+                //TODO !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+//                horse.setType(HorseType.getArmorType((nbt == null) ? 0 : HorseCorpseHelper.getHorseType(nbt)));
                 horse.setHorseVariant((nbt == null) ? 0 : HorseCorpseHelper.getHorseVariant(nbt));
 
                 bindHorseTexture((nbt == null) ? 0 : HorseCorpseHelper.getHorseType(nbt));

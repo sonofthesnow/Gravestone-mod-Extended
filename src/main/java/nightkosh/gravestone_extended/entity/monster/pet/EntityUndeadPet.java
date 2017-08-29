@@ -6,7 +6,7 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.EnumCreatureAttribute;
 import net.minecraft.entity.ai.*;
 import net.minecraft.entity.monster.EntityMob;
-import net.minecraft.entity.monster.EntityZombie;
+import net.minecraft.entity.monster.EntityZombieVillager;
 import net.minecraft.entity.passive.EntityHorse;
 import net.minecraft.entity.passive.EntityOcelot;
 import net.minecraft.entity.passive.EntityVillager;
@@ -126,9 +126,10 @@ public abstract class EntityUndeadPet extends EntityMob {
     public void setMobType(EnumUndeadMobType mobType) {
         this.mobType = mobType;
         this.isImmuneToFire = this.mobType.fireProtected();
-        if (this.isImmuneToFire) {
-            this.fireResistance = 2000000000;
-        }
+        //TODO ?????????????????
+//        if (this.isImmuneToFire) {
+//            this.fireResistance = 2000000000;
+//        }
 
         this.dataManager.set(MOB_TYPE, Byte.valueOf((byte) this.mobType.ordinal()));
     }
@@ -165,12 +166,12 @@ public abstract class EntityUndeadPet extends EntityMob {
             EntityLiving zombie = null;
             if (entity instanceof EntityVillager) {
                 EntityVillager villager = (EntityVillager) entityLivingBase;
-                EntityZombie entityZombie = new EntityZombie(this.getEntityWorld());
+                EntityZombieVillager entityZombie = new EntityZombieVillager(this.getEntityWorld());
                 entityZombie.copyLocationAndAnglesFrom(entity);
                 this.getEntityWorld().removeEntity(entity);
                 entityZombie.onInitialSpawn(this.getEntityWorld().getDifficultyForLocation(new BlockPos(this)), null);
 
-                entityZombie.setVillagerType(villager.getProfessionForge());
+                entityZombie.setProfession(villager.getProfession());
                 entityZombie.setChild(entityLivingBase.isChild());
                 entityZombie.setNoAI(villager.isAIDisabled());
 

@@ -1,5 +1,6 @@
 package nightkosh.gravestone_extended.core.compatibility;
 
+import net.minecraft.util.ResourceLocation;
 import nightkosh.gravestone_extended.config.ExtendedConfig;
 import nightkosh.gravestone_extended.core.MobSpawn;
 import nightkosh.gravestone_extended.core.logger.GSLogger;
@@ -32,12 +33,13 @@ public class CompatibilityMoCreatures {
         if (ExtendedConfig.spawnMoCreaturesMobs) {
             GSLogger.logInfo("start Mo'Creatures mobs loading");
 
-            addMobToList(MobSpawn.MOB_ID, "SilverSkeleton", getForeinMobConstructor(CompatibilityMoCreatures.MO_CREATURES_S_SKELETON));
-            addMobToList(MobSpawn.MOB_ID, "Wraith", getForeinMobConstructor(CompatibilityMoCreatures.MO_CREATURES_WRAITH));
-            addMobToList(MobSpawn.HELL_MOB_ID, "FlameWraith", getForeinMobConstructor(CompatibilityMoCreatures.MO_CREATURES_F_WRAITH));
-
-
-            addMobToList(MobSpawn.skeletonSpawnerMobs, "SilverSkeleton", getForeinMobConstructor(CompatibilityMoCreatures.MO_CREATURES_S_SKELETON));
+            //TODO !!!!!!!!!!!!!!!!!!!!!!!!!!!!
+//            addMobToList(MobSpawn.MOB_ID, "SilverSkeleton", getForeinMobConstructor(CompatibilityMoCreatures.MO_CREATURES_S_SKELETON));
+//            addMobToList(MobSpawn.MOB_ID, "Wraith", getForeinMobConstructor(CompatibilityMoCreatures.MO_CREATURES_WRAITH));
+//            addMobToList(MobSpawn.HELL_MOB_ID, "FlameWraith", getForeinMobConstructor(CompatibilityMoCreatures.MO_CREATURES_F_WRAITH));
+//
+//
+//            addMobToList(MobSpawn.skeletonSpawnerMobs, "SilverSkeleton", getForeinMobConstructor(CompatibilityMoCreatures.MO_CREATURES_S_SKELETON));
 
             GSLogger.logInfo("end Mo'Creatures mobs loading");
         }
@@ -65,7 +67,7 @@ public class CompatibilityMoCreatures {
         return constructor;
     }
 
-    private static void addMobToList(List<String> MOB_ID, String mobName, Constructor<EntityLiving> constructor) {
+    private static void addMobToList(List<ResourceLocation> MOB_ID, ResourceLocation mobName, Constructor<EntityLiving> constructor) {
         if (constructor != null) {
             MOB_ID.add(mobName);
             MobSpawn.mobNameToClassMapping.put(mobName, constructor);

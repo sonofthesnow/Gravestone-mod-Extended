@@ -50,11 +50,8 @@ public class ModGravestoneExtended {
         MessageHandler.init();
 
         Tabs.registration();
-
         GSBlock.registration();
-
         GSItem.registration();
-
         TileEntity.registration();
     }
 
@@ -78,7 +75,7 @@ public class ModGravestoneExtended {
 
         NetworkRegistry.INSTANCE.registerGuiHandler(this, new GuiHandler());
 
-        proxy.registerRenderers();
+        proxy.registerMobsRenderers();
 
         VillagersHandler.registerVillagers();
 

@@ -25,9 +25,9 @@ public class EntityAINearestAttackableHorse extends EntityAINearestAttackableTar
         EntityLivingBase entity = this.attacker.getAttackTarget();
         if (entity != null && entity instanceof EntityHorse && !(entity instanceof EntityUndeadHorse)) {
             EntityHorse horse = (EntityHorse) entity;
-            if (!horse.getType().isUndead()) {
+//            if (!horse.getType().isUndead()) {// TODO!!!!
                 return super.shouldExecute();
-            }
+//            }
         }
         return false;
     }

@@ -31,7 +31,7 @@ public class MobSpawnHelper {
 
         for (byte i = 0; i < batsCount; i++) {
             bat = new EntityBat(world);
-            Vec3i center = boundingBox.getCenter();
+            Vec3i center = boundingBox.getLength();
             bat.setLocationAndAngles(center.getX() - 1.5 + random.nextInt(5), center.getY(),
                     center.getZ() - 1.5 + random.nextInt(5), 0, 0);
 

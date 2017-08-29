@@ -3,7 +3,6 @@ package nightkosh.gravestone_extended.item.corpse;
 import net.minecraft.entity.ai.attributes.AbstractAttributeMap;
 import net.minecraft.entity.passive.AbstractHorse;
 import net.minecraft.entity.passive.EntityHorse;
-import net.minecraft.entity.passive.HorseType;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -72,8 +71,8 @@ public class HorseCorpseHelper extends CorpseHelper {
     public static void setNbt(AbstractHorse horse, NBTTagCompound nbt) {
         setName(horse, nbt);
 
-        nbt.setInteger("HorseType", horse.getType().getOrdinal());
-        nbt.setInteger("Variant", horse.getHorseVariant());
+//        nbt.setInteger("HorseType", horse.getType().getOrdinal());//TODO !!!!!!!!!!!!!!!!!!
+//        nbt.setInteger("Variant", horse.getHorseVariant());//TODO !!!!!!!!!!!!!!!!!!
 
         AbstractAttributeMap attrMap = horse.getAttributeMap();
         nbt.setDouble("Max Health", attrMap.getAttributeInstanceByName("Max Health").getAttributeValue());
@@ -85,7 +84,7 @@ public class HorseCorpseHelper extends CorpseHelper {
         EntityHorse horse = new EntityHorse(world);
         setMobName(horse, nbtTag);
 
-        horse.setType(HorseType.getArmorType(getHorseType(nbtTag)));
+//        horse.setType(HorseType.getArmorType(getHorseType(nbtTag)));//TODO !!!!!!!!!!!!!!!!!!
         horse.setHorseVariant(getHorseVariant(nbtTag));
 
         AbstractAttributeMap attrMap = horse.getAttributeMap();

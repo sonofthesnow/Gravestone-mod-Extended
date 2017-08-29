@@ -39,7 +39,7 @@ public class WitherHall extends CatacombsBaseComponent {
      */
     @Override
     public boolean addComponentParts(World world, Random random) {
-        Vec3i center = boundingBox.getCenter();
+        Vec3i center = boundingBox.getLength();
         GSLogger.logInfo("Generate Wither hall at " + center.getX() + "x" + center.getY() + "x" + center.getZ());
 
         netherBrickStairsTopState = StateHelper.NETHER_BRICK_STAIRS_SOUTH;

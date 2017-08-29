@@ -47,16 +47,7 @@ import nightkosh.gravestone_extended.tileentity.*;
  */
 public class ClientProxy extends CommonProxy {
 
-    @Override
-    public void registerRenderers() {
-        // blocks renderers
-        registerBlocksRenderers();
-
-        // Mobs renderers
-        registerMobsRenderers();
-    }
-
-    private void registerBlocksRenderers() {
+    public void registerTERenderers() {
         // register Memorials renderers
         ClientRegistry.registerTileEntity(TileEntityMemorial.class, "GSMemorial", new TileEntityMemorialRenderer());
         ClientRegistry.registerTileEntity(TileEntityMemorial.Obelisk.class, "GSMemorialObelisk", new TileEntityMemorialRenderer.Obelisk());
@@ -111,7 +102,7 @@ public class ClientProxy extends CommonProxy {
         ClientRegistry.registerTileEntity(TileEntityAltar.class, "GSAltar", new TileEntityRenderAltar());
     }
 
-    private void registerMobsRenderers() {
+    public void registerMobsRenderers() {
         // zombie dog
         RenderingRegistry.registerEntityRenderingHandler(EntityZombieDog.class, new RenderUndeadDog(Minecraft.getMinecraft().getRenderManager(), new ModelUndeadDog(), new ModelUndeadDog()));
 

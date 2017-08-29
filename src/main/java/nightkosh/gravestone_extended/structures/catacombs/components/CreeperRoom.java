@@ -3,6 +3,7 @@ package nightkosh.gravestone_extended.structures.catacombs.components;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.world.World;
 import nightkosh.gravestone.helper.GraveGenerationHelper;
+import nightkosh.gravestone_extended.core.Entity;
 import nightkosh.gravestone_extended.helper.StateHelper;
 import nightkosh.gravestone_extended.structures.BoundingBoxHelper;
 import nightkosh.gravestone_extended.structures.MemorialGenerationHelper;
@@ -107,7 +108,7 @@ public class CreeperRoom extends CatacombsBaseComponent {
         this.fillWithRandomizedBlocks(world, boundingBox, 9, yStart, 7, 9, yStart, 8, false, random, stoneBricks);
 
         // spawner
-        ObjectsGenerationHelper.generateMinecraftSpawner(this, world, 5, yStart, 5, "Creeper");
+        ObjectsGenerationHelper.generateMinecraftSpawner(this, world, 5, yStart, 5, Entity.MINECRAFT_CREEPER_ID);
 
         // nether ceiling
         int ceilingLevel = yStart + 5;

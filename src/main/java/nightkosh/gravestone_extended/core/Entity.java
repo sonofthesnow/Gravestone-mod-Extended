@@ -55,29 +55,36 @@ public class Entity {
     public static final String SPAWNER_HELPER_NAME = "GSSpawnerHelper";
 
     // EntityList
-    public static final String MINECRAFT_ZOMBIE_ID = "Zombie";
-    public static final String MINECRAFT_PIGZOMBIE_ID = "PigZombie";
-    public static final String MINECRAFT_SKELETON_ID = "Skeleton";
-    public static final String MINECRAFT_SPIDER_ID = "Spider";
-    public static final String MINECRAFT_CAVE_SPIDER_ID = "CaveSpider";
-    public static final String MINECRAFT_WITHER_ID = "WitherBoss";
+    public static final ResourceLocation MINECRAFT_ZOMBIE_ID = new ResourceLocation("zombie");
+    public static final ResourceLocation MINECRAFT_HUSK_ID = new ResourceLocation("husk");
+    public static final ResourceLocation MINECRAFT_PIGZOMBIE_ID = new ResourceLocation("zombie_pigman");
+    public static final ResourceLocation MINECRAFT_SKELETON_ID = new ResourceLocation("skeleton");
+    public static final ResourceLocation MINECRAFT_WITHER_SKELETON_ID = new ResourceLocation("wither_skeleton");
+    public static final ResourceLocation MINECRAFT_STRAY_ID = new ResourceLocation("stray");
+    public static final ResourceLocation MINECRAFT_SPIDER_ID = new ResourceLocation("spider");
+    public static final ResourceLocation MINECRAFT_CAVE_SPIDER_ID = new ResourceLocation("cave_spider");
+    public static final ResourceLocation MINECRAFT_ENDERMAN_ID = new ResourceLocation("enderman");
+    public static final ResourceLocation MINECRAFT_CREEPER_ID = new ResourceLocation("creeper");
+    public static final ResourceLocation MINECRAFT_WITHER_ID = new ResourceLocation("wither");
+
+    public static final ResourceLocation SKELETON_ID =  new ResourceLocation(ModInfo.ID + ":" + SKELETON_NAME);
+    public static final ResourceLocation ZOMBIE_DOG_ID = new ResourceLocation(ModInfo.ID + ":" + ZOMBIE_DOG_NAME);
+    public static final ResourceLocation ZOMBIE_CAT_ID = new ResourceLocation(ModInfo.ID + ":" + ZOMBIE_CAT_NAME);
+    public static final ResourceLocation SKELETON_DOG_ID = new ResourceLocation(ModInfo.ID + ":" + SKELETON_DOG_NAME);
+    public static final ResourceLocation SKELETON_CAT_ID = new ResourceLocation(ModInfo.ID + ":" + SKELETON_CAT_NAME);
+    public static final ResourceLocation SKULL_CRAWLER_ID = new ResourceLocation(ModInfo.ID + ":" + SKULL_CRAWLER_NAME);
+    public static final ResourceLocation WITHER_SKULL_CRAWLER_ID = new ResourceLocation(ModInfo.ID + ":" + WITHER_SKULL_CRAWLER_NAME);
+    public static final ResourceLocation ZOMBIE_SKULL_CRAWLER_ID = new ResourceLocation(ModInfo.ID + ":" + ZOMBIE_SKULL_CRAWLER_NAME);
+    public static final ResourceLocation ZOMBIE_HORSE_ID = new ResourceLocation(ModInfo.ID + ":" + ZOMBIE_HORSE_NAME);
+    public static final ResourceLocation SKELETON_HORSE_ID = new ResourceLocation(ModInfo.ID + ":" + SKELETON_HORSE_NAME);
+    public static final ResourceLocation SKELETON_RAIDER_ID = new ResourceLocation(ModInfo.ID + ":" + SKELETON_RAIDER_NAME);
+    public static final ResourceLocation ZOMBIE_RAIDER_ID = new ResourceLocation(ModInfo.ID + ":" + ZOMBIE_RAIDER_NAME);
+    public static final ResourceLocation DAMNED_WARRIOR_ID = new ResourceLocation(ModInfo.ID + ":" + DAMNED_WARRIOR_NAME);
+    public static final ResourceLocation RAVEN_ID = new ResourceLocation(ModInfo.ID + ":" + RAVEN_NAME);
+
+    public static final String MINECRAFT_SKELETON_NAME = "Skeleton";
     public static final String MINECRAFT_ZOMBIE_HORSE_NAME = "zombiehorse";
     public static final String MINECRAFT_SKELETON_HORSE_NAME = "skeletonhorse";
-
-    public static final String SKELETON_ID = ModInfo.ID + "." + SKELETON_NAME;
-    public static final String ZOMBIE_DOG_ID = ModInfo.ID + "." + ZOMBIE_DOG_NAME;
-    public static final String ZOMBIE_CAT_ID = ModInfo.ID + "." + ZOMBIE_CAT_NAME;
-    public static final String SKELETON_DOG_ID = ModInfo.ID + "." + SKELETON_DOG_NAME;
-    public static final String SKELETON_CAT_ID = ModInfo.ID + "." + SKELETON_CAT_NAME;
-    public static final String SKULL_CRAWLER_ID = ModInfo.ID + "." + SKULL_CRAWLER_NAME;
-    public static final String WITHER_SKULL_CRAWLER_ID = ModInfo.ID + "." + WITHER_SKULL_CRAWLER_NAME;
-    public static final String ZOMBIE_SKULL_CRAWLER_ID = ModInfo.ID + "." + ZOMBIE_SKULL_CRAWLER_NAME;
-    public static final String ZOMBIE_HORSE_ID = ModInfo.ID + "." + ZOMBIE_HORSE_NAME;
-    public static final String SKELETON_HORSE_ID = ModInfo.ID + "." + SKELETON_HORSE_NAME;
-    public static final String SKELETON_RAIDER_ID = ModInfo.ID + "." + SKELETON_RAIDER_NAME;
-    public static final String ZOMBIE_RAIDER_ID = ModInfo.ID + "." + ZOMBIE_RAIDER_NAME;
-    public static final String DAMNED_WARRIOR_ID = ModInfo.ID + "." + DAMNED_WARRIOR_NAME;
-    public static final String RAVEN_ID = ModInfo.ID + "." + RAVEN_NAME;
 
     public static void registration() {
         // zombie dog

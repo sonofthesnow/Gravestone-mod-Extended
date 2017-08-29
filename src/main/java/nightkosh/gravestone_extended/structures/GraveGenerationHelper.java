@@ -30,7 +30,7 @@ public class GraveGenerationHelper {
     public static EntityGroupOfGravesMobSpawnerHelper createSpawnerHelper(World world, StructureBoundingBox boundingBox) {
         EntityGroupOfGravesMobSpawnerHelper spawnerHelper = new EntityGroupOfGravesMobSpawnerHelper(world);
 
-        Vec3i center = boundingBox.getCenter();
+        Vec3i center = boundingBox.getLength();
         spawnerHelper.setLocationAndAngles(center.getX(), center.getY(), center.getZ(), 0, 0);
         world.spawnEntity(spawnerHelper);
 

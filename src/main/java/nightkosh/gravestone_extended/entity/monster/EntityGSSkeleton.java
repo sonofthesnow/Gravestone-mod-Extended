@@ -17,6 +17,15 @@ import nightkosh.gravestone_extended.core.Entity;
  * @license Lesser GNU Public License v3 (http://www.gnu.org/licenses/lgpl.html)
  */
 public class EntityGSSkeleton extends EntitySkeleton {
+
+    public enum SkeletonType {
+        SKELETON,
+        WITHER,
+        STRAY
+    }
+
+    public SkeletonType skeletonType = SkeletonType.SKELETON;
+
     public EntityGSSkeleton(World worldIn) {
         super(worldIn);
     }
@@ -39,8 +48,16 @@ public class EntityGSSkeleton extends EntitySkeleton {
         if (this.hasCustomName()) {
             return this.getCustomNameTag();
         } else {
-            return I18n.translateToLocal("entity." + Entity.MINECRAFT_SKELETON_ID + ".name");
+            return I18n.translateToLocal("entity." + Entity.MINECRAFT_SKELETON_NAME + ".name");
         }
+    }
+
+    public void setSkeletonType(SkeletonType type) {
+        this.skeletonType = type;
+    }
+
+    public SkeletonType getSkeletonType() {
+        return this.skeletonType;
     }
 
     @Override

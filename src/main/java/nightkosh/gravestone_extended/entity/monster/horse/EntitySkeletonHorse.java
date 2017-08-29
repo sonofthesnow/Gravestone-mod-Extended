@@ -3,7 +3,6 @@ package nightkosh.gravestone_extended.entity.monster.horse;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityAIAvoidEntity;
 import net.minecraft.entity.passive.EntityWolf;
-import net.minecraft.entity.passive.HorseType;
 import net.minecraft.util.text.translation.I18n;
 import net.minecraft.world.World;
 import nightkosh.gravestone_extended.core.Entity;

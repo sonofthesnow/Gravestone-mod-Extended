@@ -3,20 +3,23 @@ package nightkosh.gravestone_extended.core;
 import net.minecraft.entity.EntityList;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.IEntityLivingData;
-import net.minecraft.entity.monster.EntitySkeleton;
+import net.minecraft.entity.monster.AbstractSkeleton;
+import net.minecraft.entity.monster.EntityWitherSkeleton;
 import net.minecraft.entity.monster.EntityZombie;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.EnumParticleTypes;
+import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import nightkosh.gravestone.block.enums.EnumGraves;
 import nightkosh.gravestone_extended.block.enums.EnumSpawner;
 import nightkosh.gravestone_extended.config.ExtendedConfig;
 import nightkosh.gravestone_extended.core.logger.GSLogger;
 import nightkosh.gravestone_extended.entity.monster.EntityGSSkeleton;
+import nightkosh.gravestone_extended.entity.monster.EntityGSSkeleton.SkeletonType;
 import nightkosh.gravestone_extended.entity.monster.crawler.EntitySkullCrawler;
 
 import java.lang.reflect.Constructor;
@@ -36,29 +39,30 @@ public class MobSpawn {
     /**
      * Provides a mapping between entity classes and a string
      */
-    public static Map<String, Constructor<EntityLiving>> mobNameToClassMapping = new HashMap<>();
-    public static List<String> MOB_ID = new ArrayList<>(Arrays.asList(Entity.MINECRAFT_ZOMBIE_ID, Entity.SKELETON_ID));
-    public static List<String> DOG_ID = new ArrayList<>(Arrays.asList(Entity.ZOMBIE_DOG_ID, Entity.SKELETON_DOG_ID));
-    public static List<String> CAT_ID = new ArrayList<>(Arrays.asList(Entity.ZOMBIE_CAT_ID, Entity.SKELETON_CAT_ID));
-    public static List<String> HORSE_ID = new ArrayList<>(Arrays.asList(Entity.ZOMBIE_HORSE_ID, Entity.SKELETON_HORSE_ID));
-    public static List<String> HELL_MOB_ID = new ArrayList<>(Arrays.asList(Entity.MINECRAFT_PIGZOMBIE_ID, Entity.SKELETON_ID));
+    public static Map<ResourceLocation, Constructor<EntityLiving>> mobNameToClassMapping = new HashMap<>();
+    public static List<ResourceLocation> MOB_ID = new ArrayList<>(Arrays.asList(Entity.MINECRAFT_ZOMBIE_ID, Entity.SKELETON_ID));
+    public static List<ResourceLocation> DOG_ID = new ArrayList<>(Arrays.asList(Entity.ZOMBIE_DOG_ID, Entity.SKELETON_DOG_ID));
+    public static List<ResourceLocation> CAT_ID = new ArrayList<>(Arrays.asList(Entity.ZOMBIE_CAT_ID, Entity.SKELETON_CAT_ID));
+    public static List<ResourceLocation> HORSE_ID = new ArrayList<>(Arrays.asList(Entity.ZOMBIE_HORSE_ID, Entity.SKELETON_HORSE_ID));
+    public static List<ResourceLocation> HELL_MOB_ID = new ArrayList<>(Arrays.asList(Entity.MINECRAFT_PIGZOMBIE_ID, Entity.SKELETON_ID));
     // spawner mobs
-    public static List<String> skeletonSpawnerMobs = new ArrayList<>(Arrays.asList(
+    public static List<ResourceLocation> skeletonSpawnerMobs = new ArrayList<>(Arrays.asList(
             Entity.SKELETON_ID, Entity.SKELETON_ID, Entity.SKELETON_ID, Entity.SKELETON_ID,
             Entity.SKELETON_DOG_ID,
             Entity.SKELETON_CAT_ID,
             Entity.SKELETON_HORSE_ID,
             Entity.SKELETON_RAIDER_ID));
-    public static List<String> zombieSpawnerMobs = new ArrayList<>(Arrays.asList(
-            Entity.MINECRAFT_ZOMBIE_ID, Entity.MINECRAFT_ZOMBIE_ID, Entity.MINECRAFT_ZOMBIE_ID, Entity.MINECRAFT_ZOMBIE_ID,
+    public static List<ResourceLocation> zombieSpawnerMobs = new ArrayList<>(Arrays.asList(
+            Entity.MINECRAFT_ZOMBIE_ID, Entity.MINECRAFT_ZOMBIE_ID, Entity.MINECRAFT_ZOMBIE_ID, Entity.MINECRAFT_ZOMBIE_ID, Entity.MINECRAFT_ZOMBIE_ID,
+            Entity.MINECRAFT_HUSK_ID,
             Entity.ZOMBIE_DOG_ID,
             Entity.ZOMBIE_CAT_ID,
             Entity.ZOMBIE_HORSE_ID,
             Entity.ZOMBIE_RAIDER_ID));
-    public static List<String> spiderSpawnerMobs = new ArrayList<>(Arrays.asList(
+    public static List<ResourceLocation> spiderSpawnerMobs = new ArrayList<>(Arrays.asList(
             Entity.MINECRAFT_SPIDER_ID, Entity.MINECRAFT_CAVE_SPIDER_ID, Entity.MINECRAFT_SPIDER_ID));
     // catacombs statues mobs
-    public static List<String> catacombsStatuesMobs = new ArrayList<>(Arrays.asList(
+    public static List<ResourceLocation> catacombsStatuesMobs = new ArrayList<>(Arrays.asList(
             Entity.SKELETON_ID, Entity.MINECRAFT_ZOMBIE_ID));
 
 
@@ -82,7 +86,7 @@ public class MobSpawn {
      * will create the entity from the internalID the first time it is accessed
      */
     public static net.minecraft.entity.Entity getMobEntity(World world, EnumGraves graveType, int x, int y, int z) {
-        String id;
+        ResourceLocation id;
 
         switch (graveType.getGraveType()) {
             case DOG_STATUE:
@@ -115,15 +119,13 @@ public class MobSpawn {
                     }
 
                     if (id.equals(Entity.MINECRAFT_ZOMBIE_ID) && world.rand.nextInt(5) == 0) {
-                        EntityZombie zombie = (EntityZombie) EntityList.createEntityByName(Entity.MINECRAFT_ZOMBIE_ID, world);
-                        zombie.setZombieType(ZombieType.HUSK);
-                        return zombie;
+                        return EntityList.createEntityByIDFromName(Entity.MINECRAFT_HUSK_ID, world);
                     }
                 }
                 break;
         }
 
-        EntityLiving entity = (EntityLiving) EntityList.createEntityByName(id, world);
+        EntityLiving entity = (EntityLiving) EntityList.createEntityByIDFromName(id, world);
 
         if (entity == null) {
             entity = getForeinMob(world, id);
@@ -143,7 +145,7 @@ public class MobSpawn {
      * will create the entity from the internalID the first time it is accessed
      */
     public static net.minecraft.entity.Entity getMobEntityForSpawner(World world, EnumSpawner spawnerType, int x, int y, int z) {
-        String mobId;
+        ResourceLocation mobId;
 
         switch (spawnerType) {
             case WITHER_SPAWNER:
@@ -153,7 +155,7 @@ public class MobSpawn {
                 mobId = skeletonSpawnerMobs.get(world.rand.nextInt(skeletonSpawnerMobs.size()));
 
                 if (mobId.equals(Entity.SKELETON_ID)) {
-                    EntityGSSkeleton skeleton = (EntityGSSkeleton) EntityList.createEntityByName(Entity.SKELETON_ID, world);
+                    EntityGSSkeleton skeleton = (EntityGSSkeleton) EntityList.createEntityByIDFromName(Entity.SKELETON_ID, world);
                     if (world.rand.nextInt(5) == 0) {
                         skeleton.setSkeletonType(SkeletonType.STRAY);
                     } else if (world.rand.nextInt(10) == 0) {
@@ -168,16 +170,9 @@ public class MobSpawn {
             case ZOMBIE_SPAWNER:
             default:
                 mobId = zombieSpawnerMobs.get(world.rand.nextInt(zombieSpawnerMobs.size()));
-
-                if (mobId.equals(Entity.MINECRAFT_ZOMBIE_ID) && world.rand.nextInt(5) == 0) {
-                    EntityZombie zombie = (EntityZombie) EntityList.createEntityByName(Entity.MINECRAFT_ZOMBIE_ID, world);
-                    zombie.setZombieType(ZombieType.HUSK);
-                    return zombie;
-                }
-                break;
         }
 
-        EntityLiving entity = (EntityLiving) EntityList.createEntityByName(mobId, world);
+        EntityLiving entity = (EntityLiving) EntityList.createEntityByIDFromName(mobId, world);
 
         if (entity == null) {
             entity = getForeinMob(world, mobId);
@@ -197,19 +192,21 @@ public class MobSpawn {
      * Return Skeleton with bow/sword
      */
     public static EntityGSSkeleton getSkeleton(World world, boolean withBow) {
-        EntityGSSkeleton skeleton = (EntityGSSkeleton) EntityList.createEntityByName(Entity.SKELETON_ID, world);
-
-        if (withBow) {
-            skeleton.setItemStackToSlot(EntityEquipmentSlot.MAINHAND, new ItemStack(Items.BOW, 1));
-        } else {
-            skeleton.setItemStackToSlot(EntityEquipmentSlot.MAINHAND, new ItemStack(Items.STONE_SWORD, 1));
+        EntityGSSkeleton skeleton = (EntityGSSkeleton) EntityList.createEntityByIDFromName(Entity.SKELETON_ID, world);
+        if (skeleton != null) {
+            if (withBow) {
+                skeleton.setItemStackToSlot(EntityEquipmentSlot.MAINHAND, new ItemStack(Items.BOW, 1));
+            } else {
+                skeleton.setItemStackToSlot(EntityEquipmentSlot.MAINHAND, new ItemStack(Items.STONE_SWORD, 1));
+            }
         }
 
         return skeleton;
     }
 
-    public static boolean isWitherSkeleton(EntitySkeleton skeleton) {
-        return skeleton.getSkeletonType() == SkeletonType.WITHER;
+    public static boolean isWitherSkeleton(AbstractSkeleton skeleton) {
+        return skeleton instanceof EntityGSSkeleton && ((EntityGSSkeleton) skeleton).getSkeletonType() == SkeletonType.WITHER ||
+                skeleton instanceof EntityWitherSkeleton;
     }
 
     /**
@@ -218,22 +215,22 @@ public class MobSpawn {
      * @param world
      * @param mobName
      */
-    private static EntityLiving getForeinMob(World world, String mobName) {
+    private static EntityLiving getForeinMob(World world, ResourceLocation mobName) {
         EntityLiving mob = null;
-
+        String name = mobName.getResourcePath();
         try {
-            mob = mobNameToClassMapping.get(mobName).newInstance(new Object[]{world});
+            mob = mobNameToClassMapping.get(name).newInstance(new Object[]{world});
         } catch (InstantiationException e) {
-            GSLogger.logError("getForeinMob InstantiationException. mob name " + mobName);
+            GSLogger.logError("getForeinMob InstantiationException. mob name " + name);
             e.printStackTrace();
         } catch (IllegalAccessException e) {
-            GSLogger.logError("getForeinMob IllegalAccessException. mob name " + mobName);
+            GSLogger.logError("getForeinMob IllegalAccessException. mob name " + name);
             e.printStackTrace();
         } catch (InvocationTargetException e) {
-            GSLogger.logError("getForeinMob InvocationTargetException. mob name " + mobName);
+            GSLogger.logError("getForeinMob InvocationTargetException. mob name " + name);
             e.getCause().printStackTrace();
         } catch (NullPointerException e) {
-            GSLogger.logError("getForeinMob NullPointerException. mob name " + mobName);
+            GSLogger.logError("getForeinMob NullPointerException. mob name " + name);
             e.getCause().printStackTrace();
         }
 
@@ -246,7 +243,7 @@ public class MobSpawn {
      * @param random
      * @param mobType
      */
-    public static String getMobID(Random random, EnumMobType mobType) {
+    public static ResourceLocation getMobID(Random random, EnumMobType mobType) {
         switch (mobType) {
             case HELL_MOBS:
                 return HELL_MOB_ID.get(random.nextInt(HELL_MOB_ID.size()));
@@ -344,18 +341,18 @@ public class MobSpawn {
     /**
      * Return random mob for spawner
      */
-    public static String getMobForSkeletonSpawner(Random random) {
+    public static ResourceLocation getMobForSkeletonSpawner(Random random) {
         return skeletonSpawnerMobs.get(random.nextInt(skeletonSpawnerMobs.size()));
     }
 
-    public static String getMobForZombieSpawner(Random random) {
+    public static ResourceLocation getMobForZombieSpawner(Random random) {
         return zombieSpawnerMobs.get(random.nextInt(zombieSpawnerMobs.size()));
     }
 
     /**
      * Return random mob for spawner
      */
-    public static String getMobForStatueSpawner(Random random) {
+    public static ResourceLocation getMobForStatueSpawner(Random random) {
         return catacombsStatuesMobs.get(random.nextInt(catacombsStatuesMobs.size()));
     }
 

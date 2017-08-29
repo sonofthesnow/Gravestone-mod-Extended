@@ -1,6 +1,8 @@
 package nightkosh.gravestone_extended.core.proxy;
 
+import net.minecraftforge.fml.common.registry.GameRegistry;
 import nightkosh.gravestone.tileentity.TileEntityGrave;
+import nightkosh.gravestone_extended.tileentity.*;
 
 /**
  * GraveStone mod
@@ -10,7 +12,7 @@ import nightkosh.gravestone.tileentity.TileEntityGrave;
  */
 public class CommonProxy {
 
-    public void registerRenderers() {
+    public void registerMobsRenderers() {
     }
 
     public String getLocalizedString(String str) {
@@ -31,5 +33,17 @@ public class CommonProxy {
     }
 
     public void registerItemsModels() {
+    }
+
+    public void registerTERenderers() {
+        GameRegistry.registerTileEntity(TileEntityMemorial.class, "Memorial");
+        GameRegistry.registerTileEntity(TileEntityExecution.class, "Execution");
+        GameRegistry.registerTileEntity(TileEntitySpawner.class, "GS Spawner");
+        GameRegistry.registerTileEntity(TileEntityHauntedChest.class, "GSHaunted Chest");
+        GameRegistry.registerTileEntity(TileEntityCandle.class, "GSTECandle");
+        GameRegistry.registerTileEntity(TileEntitySkullCandle.class, "GSSkull Candle");
+        GameRegistry.registerTileEntity(TileEntityPileOfBones.class, "GSTEPileOfBones");
+        GameRegistry.registerTileEntity(TileEntityAltar.class, "GSAltarTE");
+        GameRegistry.registerTileEntity(TileEntityCorpse.class, "GSTECorpse");
     }
 }

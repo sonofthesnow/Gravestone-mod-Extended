@@ -3,6 +3,7 @@ package nightkosh.gravestone_extended.structures.catacombs.components;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.world.World;
 import nightkosh.gravestone_extended.config.ExtendedConfig;
+import nightkosh.gravestone_extended.core.Entity;
 import nightkosh.gravestone_extended.helper.StateHelper;
 import nightkosh.gravestone_extended.structures.BoundingBoxHelper;
 import nightkosh.gravestone_extended.structures.MobSpawnHelper;
@@ -107,11 +108,11 @@ public class EnderHall extends CatacombsBaseComponent {
         this.fillWithBlocks(world, boundingBox, 4, 0, 15, 8, 0, 15, StateHelper.NIGHTSTONE);
 
         // spawner
-        ObjectsGenerationHelper.generateMinecraftSpawner(this, world, 3, 0, 3, "Enderman");
-        ObjectsGenerationHelper.generateMinecraftSpawner(this, world, 9, 0, 3, "Enderman");
-        ObjectsGenerationHelper.generateMinecraftSpawner(this, world, 6, 0, 9, "Enderman");
-        ObjectsGenerationHelper.generateMinecraftSpawner(this, world, 3, 0, 15, "Enderman");
-        ObjectsGenerationHelper.generateMinecraftSpawner(this, world, 9, 0, 15, "Enderman");
+        ObjectsGenerationHelper.generateMinecraftSpawner(this, world, 3, 0, 3, Entity.MINECRAFT_ENDERMAN_ID);
+        ObjectsGenerationHelper.generateMinecraftSpawner(this, world, 9, 0, 3, Entity.MINECRAFT_ENDERMAN_ID);
+        ObjectsGenerationHelper.generateMinecraftSpawner(this, world, 6, 0, 9, Entity.MINECRAFT_ENDERMAN_ID);
+        ObjectsGenerationHelper.generateMinecraftSpawner(this, world, 3, 0, 15, Entity.MINECRAFT_ENDERMAN_ID);
+        ObjectsGenerationHelper.generateMinecraftSpawner(this, world, 9, 0, 15, Entity.MINECRAFT_ENDERMAN_ID);
 
         // fill exit
         this.fillWithRandomizedBlocks(world, boundingBox, 5, 1, 18, 7, 3, 18, false, random, stoneBricks);

@@ -7,6 +7,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.structure.StructureBoundingBox;
 import net.minecraft.world.gen.structure.StructureComponent;
+import net.minecraft.world.gen.structure.template.TemplateManager;
 
 import java.util.Random;
 
@@ -67,10 +68,9 @@ public class ComponentGraveStone extends StructureComponent implements IComponen
         fillWithBlocks(world, boundingBox, startX, startY, startZ, endX, endY, endZ, state, state, false);
     }
 
-//    @Override
     protected void fillWithBlocksRandomly(World world, StructureBoundingBox boundingBox, Random random, float chance, int startX, int startY, int startZ, int endX, int endY, int endZ, IBlockState state1, IBlockState state2, boolean replace) {
 //        super.fillWithBlocksRandomly(world, boundingBox, random, chance, startX, startY, startZ, endX, endY, endZ, state1, state2, replace);
-        super.func_189914_a(world, boundingBox, random, chance, startX, startY, startZ, endX, endY, endZ, state1, state2, replace, 0);
+        super.generateMaybeBox(world, boundingBox, random, chance, startX, startY, startZ, endX, endY, endZ, state1, state2, replace, 0);
     }
 
     // TODO Temporal fix
@@ -123,6 +123,7 @@ public class ComponentGraveStone extends StructureComponent implements IComponen
     public int getZWithOffset(int x, int z) {
         return super.getZWithOffset(x, z);
     }
+
     @Override
     public int getIZWithOffset(int x, int z) {
         return getZWithOffset(x, z);
@@ -138,11 +139,12 @@ public class ComponentGraveStone extends StructureComponent implements IComponen
     }
 
     @Override
-    protected void readStructureFromNBT(NBTTagCompound nbttagcompound) {
+    protected void writeStructureToNBT(NBTTagCompound nbttagcompound) {
     }
 
     @Override
-    protected void writeStructureToNBT(NBTTagCompound nbttagcompound) {
+    protected void readStructureFromNBT(NBTTagCompound tagCompound, TemplateManager p_143011_2_) {
+
     }
 
     @Override

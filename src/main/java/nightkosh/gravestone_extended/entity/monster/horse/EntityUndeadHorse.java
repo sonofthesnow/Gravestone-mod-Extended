@@ -2,28 +2,17 @@ package nightkosh.gravestone_extended.entity.monster.horse;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EnumCreatureAttribute;
-import net.minecraft.entity.IEntityLivingData;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.*;
-import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.passive.EntityHorse;
-import net.minecraft.entity.passive.HorseArmorType;
-import net.minecraft.entity.passive.HorseType;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Items;
-import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.DamageSource;
-import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.EnumSkyBlock;
 import net.minecraft.world.World;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 
-import javax.annotation.Nullable;
 import java.util.Iterator;
 
 /**
@@ -33,6 +22,11 @@ import java.util.Iterator;
  * @license Lesser GNU Public License v3 (http://www.gnu.org/licenses/lgpl.html)
  */
 public abstract class EntityUndeadHorse extends EntityHorse {
+
+    public enum HorseType {
+        ZOMBIE,
+        SKELETON
+    }
 
 //    protected static final UUID ARMOR_MODIFIER_UUID = UUID.randomUUID();
 //    protected static final DataParameter<Integer> HORSE_TYPE = EntityDataManager.createKey(EntityUndeadHorse.class, DataSerializers.VARINT);
@@ -139,179 +133,187 @@ public abstract class EntityUndeadHorse extends EntityHorse {
         return EnumCreatureAttribute.UNDEAD;
     }
 
-    @Override
-    public IEntityLivingData onInitialSpawn(DifficultyInstance difficulty, IEntityLivingData livingData) {
-        Object entityLivingData = super.onInitialSpawn(difficulty, livingData);
-        HorseType horseType = getUndeadHorseType();
-
-        if (livingData != null && entityLivingData instanceof EntityHorse.GroupData) {
-            horseType = ((EntityHorse.GroupData) livingData).horseType;
-        } else {
-            entityLivingData = new EntityHorse.GroupData(horseType, 0);
-        }
-
-        this.setType(horseType);
-        return (IEntityLivingData) entityLivingData;
-    }
-
-    @Override
-    public boolean processInteract(EntityPlayer player, EnumHand hand, @Nullable ItemStack stack) {
-        if (stack != null && stack.getItem() == Items.SPAWN_EGG) {
-            return super.processInteract(player, hand, stack);
-        } else if (this.isTame() && this.isAdultHorse() && player.isSneaking()) {
-            this.openGUI(player);
-            return true;
-        } else if (this.isRidable() && this.isBeingRidden()) {
-            return super.processInteract(player, hand, stack);
-        } else {
-            if (stack != null) {
-                boolean flag = false;
-                HorseArmorType horsearmortype = HorseArmorType.getByItemStack(stack);
-
-                if (horsearmortype != HorseArmorType.NONE) {
-                    if (!this.isTame()) {
-                        this.makeHorseRearWithSound();
-                        return true;
-                    }
-
-                    this.openGUI(player);
-                    return true;
-                }
-
-                float healedHealth = 0;
-                short growth = 0;
-                if (stack.getItem() == Items.BONE) {
-                    healedHealth = 2;
-                    growth = 20;
-                } else if (stack.getItem() == Items.ROTTEN_FLESH) {
-                    healedHealth = 4;
-                    growth = 60;
-                }
-
-                if (this.getHealth() < this.getMaxHealth() && healedHealth > 0) {
-                    this.heal(healedHealth);
-                    flag = true;
-                }
-
-                if (!this.isAdultHorse() && growth > 0) {
-                    this.addGrowth(growth);
-                    flag = true;
-                }
-
-                if (flag) {
-                    if (!player.capabilities.isCreativeMode && --stack.stackSize == 0) {
-                        player.inventory.setInventorySlotContents(player.inventory.currentItem, (ItemStack) null);
-                    }
-
-                    return true;
-                } else {
-                    if (!this.isTame()) {
-                        if (stack.interactWithEntity(player, this, hand)) {
-                            return true;
-                        }
-
-                        this.makeHorseRearWithSound();
-                        return true;
-                    }
-
-                    if (this.isRidable() && !this.isHorseSaddled() && stack.getItem() == Items.SADDLE) {
-                        this.openGUI(player);
-                        return true;
-                    }
-                }
-            }
-
-            if (this.isRidable() && this.isBeingRidden()) {
-                if (stack != null && stack.interactWithEntity(player, this, hand)) {
-                    return true;
-                } else if (this.isTame()) {
-                    this.mountHorse(player);
-                    return true;
-                }
-            } else {
-                return super.processInteract(player, hand, stack);
-            }
-        }
-        return false;
-    }
-
-    @Override
-    public void onLivingUpdate() {
-        if (this.getEntityWorld().isDaytime() && !this.getEntityWorld().isRemote) {
-            float brightness = this.getBrightness(1);
-            BlockPos blockpos = new BlockPos(this.posX, (double) Math.round(this.posY), this.posZ);
-            if (brightness > 0.5 && this.rand.nextFloat() * 30 < (brightness - 0.4) * 2 && this.getEntityWorld().canSeeSky(blockpos) && !this.hasArmor()) {
-                this.setFire(8);
-            }
-        }
-
-        super.onLivingUpdate();
-    }
-
-    protected void mountHorse(EntityPlayer player) {
-        player.rotationYaw = this.rotationYaw;
-        player.rotationPitch = this.rotationPitch;
-        this.setEatingHaystack(false);
-        this.setRearing(false);
-        if (!this.getEntityWorld().isRemote) {
-            player.startRiding(this);
-        }
-    }
-
-    @Override
-    protected boolean isMovementBlocked() {
-        return this.isBeingRidden() && (this.isHorseSaddled() || this.getRidingEntity() != null && this.getRidingEntity().getControllingPassenger() instanceof EntityMob) ||
-                this.isEatingHaystack() || this.isRearing();
-    }
-
-    @Override
-    @SideOnly(Side.CLIENT)
-    public boolean hasTexture() {
-        return this.field_175508_bO;
-    }
-
-    @SideOnly(Side.CLIENT)
-    private void setHorseTexturePaths() {
-        this.texturePrefix = "horse/";
-        HorseType horseType = this.getType();
-
-        this.texturePrefix = this.texturePrefix + horseType.ordinal() + "_";
-        HorseArmorType horsearmortype = this.getHorseArmorType();
-
-
-//        this.horseTexturesArray[2] = horsearmortype.getTextureName();
-//        this.texturePrefix = this.texturePrefix + horsearmortype.getHash();
+//    @Override
+//    public IEntityLivingData onInitialSpawn(DifficultyInstance difficulty, IEntityLivingData livingData) {
+//        Object entityLivingData = super.onInitialSpawn(difficulty, livingData);
+//        HorseType horseType = getUndeadHorseType();
 //
-//        int horseArmorTextureNum = this.getHorseArmorIndexSynced();
-        int horseArmorTextureNum = horsearmortype.ordinal();
+//        if (livingData != null && entityLivingData instanceof EntityHorse.GroupData) {
+////            horseType = ((EntityHorse.GroupData) livingData).horseType;
+//            horseType = ((EntityHorse.GroupData) livingData).variant;
+//        } else {
+////            entityLivingData = new EntityHorse.GroupData(horseType, 0);
+//            entityLivingData = new EntityHorse.GroupData(this.rand.nextInt(7));
+//        }
+//
+//        this.setType(horseType);
+//        return (IEntityLivingData) entityLivingData;
+//    }
+//
+//    @Override
+//    public boolean processInteract(EntityPlayer player, EnumHand hand, @Nullable ItemStack stack) {
+//        if (stack != null && stack.getItem() == Items.SPAWN_EGG) {
+//            return super.processInteract(player, hand, stack);
+//        } else if (this.isTame() && this.isAdultHorse() && player.isSneaking()) {
+//            this.openGUI(player);
+//            return true;
+//        } else if (this.isRidable() && this.isBeingRidden()) {
+//            return super.processInteract(player, hand, stack);
+//        } else {
+//            if (stack != null) {
+//                boolean flag = false;
+//                HorseArmorType horsearmortype = HorseArmorType.getByItemStack(stack);
+//
+//                if (horsearmortype != HorseArmorType.NONE) {
+//                    if (!this.isTame()) {
+//                        this.makeHorseRearWithSound();
+//                        return true;
+//                    }
+//
+//                    this.openGUI(player);
+//                    return true;
+//                }
+//
+//                float healedHealth = 0;
+//                short growth = 0;
+//                if (stack.getItem() == Items.BONE) {
+//                    healedHealth = 2;
+//                    growth = 20;
+//                } else if (stack.getItem() == Items.ROTTEN_FLESH) {
+//                    healedHealth = 4;
+//                    growth = 60;
+//                }
+//
+//                if (this.getHealth() < this.getMaxHealth() && healedHealth > 0) {
+//                    this.heal(healedHealth);
+//                    flag = true;
+//                }
+//
+//                if (!this.isAdultHorse() && growth > 0) {
+//                    this.addGrowth(growth);
+//                    flag = true;
+//                }
+//
+//                if (flag) {
+//                    if (!player.capabilities.isCreativeMode && --stack.stackSize == 0) {
+//                        player.inventory.setInventorySlotContents(player.inventory.currentItem, (ItemStack) null);
+//                    }
+//
+//                    return true;
+//                } else {
+//                    if (!this.isTame()) {
+//                        if (stack.interactWithEntity(player, this, hand)) {
+//                            return true;
+//                        }
+//
+//                        this.makeHorseRearWithSound();
+//                        return true;
+//                    }
+//
+//                    if (this.isRidable() && !this.isHorseSaddled() && stack.getItem() == Items.SADDLE) {
+//                        this.openGUI(player);
+//                        return true;
+//                    }
+//                }
+//            }
+//
+//            if (this.isRidable() && this.isBeingRidden()) {
+//                if (stack != null && stack.interactWithEntity(player, this, hand)) {
+//                    return true;
+//                } else if (this.isTame()) {
+//                    this.mountHorse(player);
+//                    return true;
+//                }
+//            } else {
+//                return super.processInteract(player, hand, stack);
+//            }
+//        }
+//        return false;
+//    }
+//
+//    @Override
+//    public void onLivingUpdate() {
+//        if (this.getEntityWorld().isDaytime() && !this.getEntityWorld().isRemote) {
+//            float brightness = this.getBrightness(1);
+//            BlockPos blockpos = new BlockPos(this.posX, (double) Math.round(this.posY), this.posZ);
+//            if (brightness > 0.5 && this.rand.nextFloat() * 30 < (brightness - 0.4) * 2 && this.getEntityWorld().canSeeSky(blockpos) && !this.hasArmor()) {
+//                this.setFire(8);
+//            }
+//        }
+//
+//        super.onLivingUpdate();
+//    }
+//
+//    protected void mountHorse(EntityPlayer player) {
+//        player.rotationYaw = this.rotationYaw;
+//        player.rotationPitch = this.rotationPitch;
+//        this.setEatingHaystack(false);
+//        this.setRearing(false);
+//        if (!this.getEntityWorld().isRemote) {
+//            player.startRiding(this);
+//        }
+//    }
+//
+//    @Override
+//    protected boolean isMovementBlocked() {
+//        return this.isBeingRidden() && (this.isHorseSaddled() || this.getRidingEntity() != null && this.getRidingEntity().getControllingPassenger() instanceof EntityMob) ||
+//                this.isEatingHaystack() || this.isRearing();
+//    }
+//
+//    @Override
+//    @SideOnly(Side.CLIENT)
+//    public boolean hasTexture() {
+//        return this.field_175508_bO;
+//    }
+//
+//    @SideOnly(Side.CLIENT)
+//    private void setHorseTexturePaths() {
+//        this.texturePrefix = "horse/";
+//        HorseType horseType = this.getType();
+//
+//        this.texturePrefix = this.texturePrefix + horseType.ordinal() + "_";
+//        HorseArmorType horsearmortype = this.getHorseArmorType();
+//
+//
+////        this.horseTexturesArray[2] = horsearmortype.getTextureName();
+////        this.texturePrefix = this.texturePrefix + horsearmortype.getHash();
+////
+////        int horseArmorTextureNum = this.getHorseArmorIndexSynced();
+//        int horseArmorTextureNum = horsearmortype.ordinal();
+//
+//        if (horseArmorTextureNum >= horseArmorTextures.length) {
+//            this.field_175508_bO = false;
+//        } else {
+//            this.variantTexturePaths = horseArmorTextures[horseArmorTextureNum];
+//            this.texturePrefix = this.texturePrefix + horseArmorPrefix[horseArmorTextureNum];
+//            this.field_175508_bO = true;
+//        }
+//    }
+//
+//    @Override
+//    @SideOnly(Side.CLIENT)
+//    public String getHorseTexture() {
+//        if (this.texturePrefix == null) {
+//            this.setHorseTexturePaths();
+//        }
+//
+//        return this.texturePrefix;
+//    }
+//
+//    @SideOnly(Side.CLIENT)
+//    public String getArmorTexturePaths() {
+//        if (this.texturePrefix == null) {
+//            this.setHorseTexturePaths();
+//        }
+//
+//        return this.variantTexturePaths;
+//    }
 
-        if (horseArmorTextureNum >= horseArmorTextures.length) {
-            this.field_175508_bO = false;
-        } else {
-            this.variantTexturePaths = horseArmorTextures[horseArmorTextureNum];
-            this.texturePrefix = this.texturePrefix + horseArmorPrefix[horseArmorTextureNum];
-            this.field_175508_bO = true;
-        }
-    }
 
-    @Override
-    @SideOnly(Side.CLIENT)
-    public String getHorseTexture() {
-        if (this.texturePrefix == null) {
-            this.setHorseTexturePaths();
-        }
 
-        return this.texturePrefix;
-    }
+//    ------------------------------
 
-    @SideOnly(Side.CLIENT)
-    public String getArmorTexturePaths() {
-        if (this.texturePrefix == null) {
-            this.setHorseTexturePaths();
-        }
 
-        return this.variantTexturePaths;
-    }
 
 //    @Override
 //    public void setType(HorseType horseType) {

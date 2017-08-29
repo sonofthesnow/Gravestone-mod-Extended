@@ -2,15 +2,16 @@ package nightkosh.gravestone_extended.entity.monster.horse;
 
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.IEntityLivingData;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityAIAttackMelee;
 import net.minecraft.entity.ai.EntityAIMoveThroughVillage;
 import net.minecraft.entity.ai.EntityAIMoveTowardsRestriction;
 import net.minecraft.entity.ai.EntityAINearestAttackableTarget;
-import net.minecraft.entity.monster.EntityZombie;
-import net.minecraft.entity.passive.*;
-import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.monster.EntityZombieVillager;
+import net.minecraft.entity.passive.EntityHorse;
+import net.minecraft.entity.passive.EntityOcelot;
+import net.minecraft.entity.passive.EntityVillager;
+import net.minecraft.entity.passive.EntityWolf;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.translation.I18n;
 import net.minecraft.world.EnumDifficulty;
@@ -63,12 +64,12 @@ public class EntityZombieHorse extends EntityUndeadHorse {
             EntityLiving zombie = null;
             if (entity instanceof EntityVillager) {
                 EntityVillager villager = (EntityVillager) entityLivingBase;
-                EntityZombie entityZombie = new EntityZombie(this.getEntityWorld());
+                EntityZombieVillager entityZombie = new EntityZombieVillager(this.getEntityWorld());
                 entityZombie.copyLocationAndAnglesFrom(entity);
                 this.getEntityWorld().removeEntity(entity);
                 entityZombie.onInitialSpawn(this.getEntityWorld().getDifficultyForLocation(new BlockPos(this)), null);
 
-                entityZombie.setVillagerType(villager.getProfessionForge());
+                entityZombie.setProfession(villager.getProfession());
                 entityZombie.setChild(entityLivingBase.isChild());
                 entityZombie.setNoAI(villager.isAIDisabled());
 

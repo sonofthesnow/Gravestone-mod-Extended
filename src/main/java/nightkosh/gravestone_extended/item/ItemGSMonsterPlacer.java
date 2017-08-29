@@ -23,8 +23,6 @@ import nightkosh.gravestone_extended.core.ModInfo;
 import nightkosh.gravestone_extended.core.Tabs;
 import org.apache.commons.lang3.StringUtils;
 
-import java.util.List;
-
 /**
  * GraveStone mod
  *
@@ -47,34 +45,36 @@ public class ItemGSMonsterPlacer extends ItemMonsterPlacer {
     public static final int ZOMBIE_PET_FOREGROUND_COLOR = 0x799c65;
 
     public static enum EnumEggs {
-        ZOMBIE_DOG(Entity.ZOMBIE_DOG_NAME, DOG_BACKGROUND_COLOR, ZOMBIE_PET_FOREGROUND_COLOR),
-        ZOMBIE_CAT(Entity.ZOMBIE_CAT_NAME, CAT_BACKGROUND_COLOR, ZOMBIE_PET_FOREGROUND_COLOR),
-        SKELETON_DOG(Entity.SKELETON_DOG_NAME, DOG_BACKGROUND_COLOR, SKELETON_PET_FOREGROUND_COLOR),
-        SKELETON_CAT(Entity.SKELETON_CAT_NAME, CAT_BACKGROUND_COLOR, SKELETON_PET_FOREGROUND_COLOR),
-        SKULL_CRAWLER(Entity.SKULL_CRAWLER_NAME, SKELETON_BACKGROUND_COLOR, CRAWLER_FOREGROUND_COLOR),
-        WITHER_SKULL_CRAWLER(Entity.WITHER_SKULL_CRAWLER_NAME, WITHER_BACKGROUND_COLOR, CRAWLER_FOREGROUND_COLOR),
-        ZOMBIE_SKULL_CRAWLER(Entity.ZOMBIE_SKULL_CRAWLER_NAME, ZOMBIE_BACKGROUND_COLOR, CRAWLER_FOREGROUND_COLOR),
-        SKELETON(Entity.SKELETON_NAME, SKELETON_BACKGROUND_COLOR, SKELETON_FOREGROUND_COLOR, Entity.MINECRAFT_SKELETON_ID),
-        ZOMBIE_HORSE(Entity.ZOMBIE_HORSE_NAME, ZOMBIE_BACKGROUND_COLOR, HORSE_FOREGROUND_COLOR, Entity.MINECRAFT_ZOMBIE_HORSE_NAME),
-        SKELETON_HORSE(Entity.SKELETON_HORSE_NAME, SKELETON_BACKGROUND_COLOR, HORSE_FOREGROUND_COLOR, Entity.MINECRAFT_SKELETON_HORSE_NAME),
-        ZOMBIE_RAIDER(Entity.ZOMBIE_RAIDER_NAME, ZOMBIE_BACKGROUND_COLOR, HORSE_FOREGROUND_COLOR),
-        SKELETON_RAIDER(Entity.SKELETON_RAIDER_NAME, SKELETON_BACKGROUND_COLOR, HORSE_FOREGROUND_COLOR);//,
+        ZOMBIE_DOG(Entity.ZOMBIE_DOG_NAME, Entity.ZOMBIE_DOG_ID, DOG_BACKGROUND_COLOR, ZOMBIE_PET_FOREGROUND_COLOR),
+        ZOMBIE_CAT(Entity.ZOMBIE_CAT_NAME, Entity.ZOMBIE_CAT_ID, CAT_BACKGROUND_COLOR, ZOMBIE_PET_FOREGROUND_COLOR),
+        SKELETON_DOG(Entity.SKELETON_DOG_NAME, Entity.SKELETON_DOG_ID, DOG_BACKGROUND_COLOR, SKELETON_PET_FOREGROUND_COLOR),
+        SKELETON_CAT(Entity.SKELETON_CAT_NAME, Entity.SKELETON_CAT_ID, CAT_BACKGROUND_COLOR, SKELETON_PET_FOREGROUND_COLOR),
+        SKULL_CRAWLER(Entity.SKULL_CRAWLER_NAME, Entity.SKULL_CRAWLER_ID, SKELETON_BACKGROUND_COLOR, CRAWLER_FOREGROUND_COLOR),
+        WITHER_SKULL_CRAWLER(Entity.WITHER_SKULL_CRAWLER_NAME, Entity.WITHER_SKULL_CRAWLER_ID, WITHER_BACKGROUND_COLOR, CRAWLER_FOREGROUND_COLOR),
+        ZOMBIE_SKULL_CRAWLER(Entity.ZOMBIE_SKULL_CRAWLER_NAME, Entity.ZOMBIE_SKULL_CRAWLER_ID, ZOMBIE_BACKGROUND_COLOR, CRAWLER_FOREGROUND_COLOR),
+        SKELETON(Entity.SKELETON_NAME, Entity.SKELETON_ID, SKELETON_BACKGROUND_COLOR, SKELETON_FOREGROUND_COLOR, Entity.MINECRAFT_SKELETON_NAME),
+        ZOMBIE_HORSE(Entity.ZOMBIE_HORSE_NAME, Entity.ZOMBIE_HORSE_ID, ZOMBIE_BACKGROUND_COLOR, HORSE_FOREGROUND_COLOR, Entity.MINECRAFT_ZOMBIE_HORSE_NAME),
+        SKELETON_HORSE(Entity.SKELETON_HORSE_NAME, Entity.SKELETON_HORSE_ID, SKELETON_BACKGROUND_COLOR, HORSE_FOREGROUND_COLOR, Entity.MINECRAFT_SKELETON_HORSE_NAME),
+        ZOMBIE_RAIDER(Entity.ZOMBIE_RAIDER_NAME, Entity.ZOMBIE_RAIDER_ID, ZOMBIE_BACKGROUND_COLOR, HORSE_FOREGROUND_COLOR),
+        SKELETON_RAIDER(Entity.SKELETON_RAIDER_NAME, Entity.SKELETON_RAIDER_ID, SKELETON_BACKGROUND_COLOR, HORSE_FOREGROUND_COLOR);//,
 //        DAMNED_WARRIOR(Entity.DAMNED_WARRIOR_NAME, SKELETON_BACKGROUND_COLOR, SKELETON_FOREGROUND_COLOR),
 //        RAVEN(nightkosh.gravestone_extended.core.Entity.RAVEN_NAME, RAVEN_BACKGROUND_COLOR, RAVEN_FOREGROUND_COLOR);
 
         private String name;
         private String customName;
+        private ResourceLocation entityId;
         private int backgroundColor;
         private int foregroundColor;
 
-        private EnumEggs(String name, int backgroundColor, int foregroundColor) {
+        private EnumEggs(String name, ResourceLocation entityId, int backgroundColor, int foregroundColor) {
             this.name = name;
+            this.entityId = entityId;
             this.backgroundColor = backgroundColor;
             this.foregroundColor = foregroundColor;
         }
 
-        private EnumEggs(String name, int backgroundColor, int foregroundColor, String customName) {
-            this(name, backgroundColor, foregroundColor);
+        private EnumEggs(String name, ResourceLocation entityId, int backgroundColor, int foregroundColor, String customName) {
+            this(name, entityId, backgroundColor, foregroundColor);
             this.customName = customName;
         }
 
@@ -91,6 +91,10 @@ public class ItemGSMonsterPlacer extends ItemMonsterPlacer {
 
         public String getCustomName() {
             return customName;
+        }
+
+        public ResourceLocation getEntityId() {
+            return entityId;
         }
 
         public int getBackgroundColor() {
@@ -205,8 +209,8 @@ public class ItemGSMonsterPlacer extends ItemMonsterPlacer {
             return null;
         }
 
-        String fullEntityName = String.format("%s.%s", ModInfo.ID, EnumEggs.getById(damageValue).getName());
-        net.minecraft.entity.Entity entity = EntityList.createEntityByName(fullEntityName, world);
+        ResourceLocation entityID = EnumEggs.getById(damageValue).getEntityId();
+        net.minecraft.entity.Entity entity = EntityList.createEntityByIDFromName(entityID, world);
 
         if (entity != null && entity instanceof EntityLivingBase) {
             EntityLiving entityliving = (EntityLiving) entity;
