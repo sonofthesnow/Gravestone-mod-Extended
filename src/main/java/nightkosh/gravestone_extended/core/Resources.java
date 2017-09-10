@@ -10,9 +10,11 @@ import net.minecraft.util.ResourceLocation;
  */
 public class Resources extends nightkosh.gravestone.core.Resources{
 
+    public static final String EXT_MOD_NAME = ModInfo.ID.toLowerCase();
+
     protected static final String GUI_LOCATION = MOD_NAME + ":textures/gui/";
     protected static final String POTIONS_LOCATION = MOD_NAME + ":textures/potions/";
-    protected static final String ENTITY_LOCATION = MOD_NAME + ":textures/entities/";
+    protected static final String ENTITY_LOCATION = EXT_MOD_NAME + ":textures/entities/";
     protected static final String MEMORIALS_LOCATION = MOD_NAME + ":textures/memorials/";
     protected static final String EXECUTIONS_LOCATION = MOD_NAME + ":textures/execution/";
     protected static final String ARMOR_LOCATION = MOD_NAME + ":textures/memorials/armor/";
