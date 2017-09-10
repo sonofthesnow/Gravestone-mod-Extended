@@ -43,7 +43,7 @@ public class TileEntitySpawnerRenderer extends TileEntityRenderer {
         if (tileEntity == null) {
             tileEntity = getDefaultTE();
         }
-        byte type = (byte) ((tileEntity.getWorld() == null) ? 0 : tileEntity.getBlockMetadata());
+        byte type = (byte) tileEntity.getBlockMetadata();
         EnumSpawner spawnerType = EnumSpawner.getById(type);
 
         GL11.glPushMatrix();

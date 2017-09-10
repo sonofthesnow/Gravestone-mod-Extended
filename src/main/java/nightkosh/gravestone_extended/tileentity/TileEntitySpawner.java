@@ -52,6 +52,15 @@ public class TileEntitySpawner extends TileEntityBase implements ITickable, ISpa
         return null;
     }
 
+    @Override
+    public int getBlockMetadata() {
+        if (this.hasWorld()) {
+            return super.getBlockMetadata();
+        } else {
+            return EnumSpawner.WITHER_SPAWNER.ordinal();
+        }
+    }
+
     public static class Skeleton extends TileEntitySpawner {
         @Override
         public int getBlockMetadata() {
