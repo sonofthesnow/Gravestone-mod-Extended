@@ -81,6 +81,7 @@ public class Entity {
     public static final ResourceLocation ZOMBIE_RAIDER_ID = new ResourceLocation(ModInfo.ID + ":" + ZOMBIE_RAIDER_NAME);
     public static final ResourceLocation DAMNED_WARRIOR_ID = new ResourceLocation(ModInfo.ID + ":" + DAMNED_WARRIOR_NAME);
     public static final ResourceLocation RAVEN_ID = new ResourceLocation(ModInfo.ID + ":" + RAVEN_NAME);
+    public static final ResourceLocation SPAWNER_HELPER_ID = new ResourceLocation(ModInfo.ID + ":spawner_helper");
 
     public static final String MINECRAFT_SKELETON_NAME = "Skeleton";
     public static final String MINECRAFT_ZOMBIE_HORSE_NAME = "zombiehorse";
@@ -88,64 +89,63 @@ public class Entity {
 
     public static void registration() {
         // zombie dog
-        registerModEntity(Resources.ZOMBIE_DOG, EntityZombieDog.class, ZOMBIE_DOG_NAME);
+        registerModEntity(ZOMBIE_DOG_ID, EntityZombieDog.class, ZOMBIE_DOG_NAME);
         if (ExtendedConfig.spawnZombieDogs) {
             addSpawn(BiomeDictionary.Type.FOREST, EntityZombieDog.class, 2, 1, 1);
         }
 
         // zombie cat
-        registerModEntity(Resources.ZOMBIE_OZELOT, EntityZombieCat.class, ZOMBIE_CAT_NAME);
+        registerModEntity(ZOMBIE_CAT_ID, EntityZombieCat.class, ZOMBIE_CAT_NAME);
         if (ExtendedConfig.spawnZombieCats) {
             addSpawn(BiomeDictionary.Type.JUNGLE, EntityZombieCat.class, 2, 1, 1);
         }
 
         // skeleton dog
-        registerModEntity(Resources.SKELETON_DOG, EntitySkeletonDog.class, SKELETON_DOG_NAME);
+        registerModEntity(SKELETON_DOG_ID, EntitySkeletonDog.class, SKELETON_DOG_NAME);
         if (ExtendedConfig.spawnSkeletonDogs) {
             addSpawn(BiomeDictionary.Type.FOREST, EntityZombieDog.class, 2, 1, 1);
         }
 
         // skeleton cat
-        registerModEntity(Resources.SKELETON_CAT, EntitySkeletonCat.class, SKELETON_CAT_NAME);
+        registerModEntity(SKELETON_CAT_ID, EntitySkeletonCat.class, SKELETON_CAT_NAME);
         if (ExtendedConfig.spawnSkeletonCats) {
             addSpawn(BiomeDictionary.Type.JUNGLE, EntityZombieCat.class, 2, 1, 1);
         }
 
         // skull crawlers
-        registerModEntity(Resources.SKELETON_SKULL_CRAWLER, EntitySkullCrawler.class, SKULL_CRAWLER_NAME);
+        registerModEntity(SKULL_CRAWLER_ID, EntitySkullCrawler.class, SKULL_CRAWLER_NAME);
         // wither
-        registerModEntity(Resources.WITHER_SKULL_CRAWLER, EntityWitherSkullCrawler.class, WITHER_SKULL_CRAWLER_NAME);
+        registerModEntity(WITHER_SKULL_CRAWLER_ID, EntityWitherSkullCrawler.class, WITHER_SKULL_CRAWLER_NAME);
         addSpawn(BiomeDictionary.Type.NETHER, EntityWitherSkullCrawler.class, 3, 1, 4);
         // zombie
-        registerModEntity(Resources.ZOMBIE_SKULL_CRAWLER, EntityZombieSkullCrawler.class, ZOMBIE_SKULL_CRAWLER_NAME);
+        registerModEntity(ZOMBIE_SKULL_CRAWLER_ID, EntityZombieSkullCrawler.class, ZOMBIE_SKULL_CRAWLER_NAME);
 
-        registerModEntity(Resources.SKELETON, EntityGSSkeleton.class, SKELETON_NAME);
+        registerModEntity(SKELETON_ID, EntityGSSkeleton.class, SKELETON_NAME);
         EntityRegistry.addSpawn(EntityGSSkeleton.class, 1, 1, 3, EnumCreatureType.MONSTER);
 
-        registerModEntity(Resources.ZOMBIE_HORSE, EntityZombieHorse.class, ZOMBIE_HORSE_NAME);
-        registerModEntity(Resources.SKELETON_HORSE, EntitySkeletonHorse.class, SKELETON_HORSE_NAME);
+        registerModEntity(ZOMBIE_HORSE_ID, EntityZombieHorse.class, ZOMBIE_HORSE_NAME);
+        registerModEntity(SKELETON_HORSE_ID, EntitySkeletonHorse.class, SKELETON_HORSE_NAME);
         if (ExtendedConfig.spawnUndeadHorses) {
             addSpawn(BiomeDictionary.Type.PLAINS, EntityZombieHorse.class, 2, 1, 3);
             addSpawn(BiomeDictionary.Type.PLAINS, EntitySkeletonHorse.class, 2, 1, 3);
         }
 
-        registerModEntity(Resources.ZOMBIE, EntityZombieRaider.class, ZOMBIE_RAIDER_NAME);
+        registerModEntity(ZOMBIE_RAIDER_ID, EntityZombieRaider.class, ZOMBIE_RAIDER_NAME);
         if (ExtendedConfig.spawnZombieRaiders) {
             addSpawn(BiomeDictionary.Type.PLAINS, EntityZombieRaider.class, 1, 1, 1);
         }
-        registerModEntity(Resources.SKELETON, EntitySkeletonRaider.class, SKELETON_RAIDER_NAME);
+        registerModEntity(SKELETON_RAIDER_ID, EntitySkeletonRaider.class, SKELETON_RAIDER_NAME);
         if (ExtendedConfig.spawnSkeletonRaiders) {
             addSpawn(BiomeDictionary.Type.PLAINS, EntitySkeletonRaider.class, 1, 1, 1);
         }
 
-        registerModEntity(Resources.RAVEN, EntityRaven.class, RAVEN_NAME);
+        registerModEntity(RAVEN_ID, EntityRaven.class, RAVEN_NAME);
 //        EntityRegistry.addSpawn(EntityRaven.class, 1, 3, 10, EnumCreatureType.AMBIENT);//TODO!!!!
 
         // Damned Warrior
-        registerModEntity(Resources.DAMNED_WARRIOR, EntityDamnedWarrior.class, DAMNED_WARRIOR_NAME);
+        registerModEntity(DAMNED_WARRIOR_ID, EntityDamnedWarrior.class, DAMNED_WARRIOR_NAME);
 
-
-        registerModEntity(Resources.EMPTY, EntityGroupOfGravesMobSpawnerHelper.class, SPAWNER_HELPER_NAME);
+        registerModEntity(SPAWNER_HELPER_ID, EntityGroupOfGravesMobSpawnerHelper.class, SPAWNER_HELPER_NAME);
     }
 
     private static void addSpawn(BiomeDictionary.Type biomeType, Class<? extends EntityLiving> entityClass,
