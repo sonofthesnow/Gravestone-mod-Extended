@@ -43,7 +43,6 @@ import java.util.UUID;
 public abstract class EntityUndeadHorse extends AbstractHorse {
 
     protected static final UUID ARMOR_MODIFIER_UUID = UUID.randomUUID();
-    protected static final DataParameter<Integer> HORSE_VARIANT = EntityDataManager.createKey(EntityUndeadHorse.class, DataSerializers.VARINT);
     protected static final DataParameter<Integer> HORSE_ARMOR = EntityDataManager.createKey(EntityUndeadHorse.class, DataSerializers.VARINT);
 
     protected final String[] horseTexturesArray = new String[2];
@@ -77,9 +76,9 @@ public abstract class EntityUndeadHorse extends AbstractHorse {
         this.targetTasks.addTask(2, new EntityUndeadHorseAINearestAttackableTarget(this, EntityPlayer.class, true));
     }
 
+    @Override
     protected void entityInit() {
         super.entityInit();
-        this.dataManager.register(HORSE_VARIANT, 0);
         this.dataManager.register(HORSE_ARMOR, HorseArmorType.NONE.getOrdinal());
     }
 
@@ -88,6 +87,28 @@ public abstract class EntityUndeadHorse extends AbstractHorse {
         super.applyEntityAttributes();
 
         this.getAttributeMap().registerAttribute(SharedMonsterAttributes.ATTACK_DAMAGE);
+    }
+
+    public void writeEntityToNBT(NBTTagCompound compound) {
+        super.writeEntityToNBT(compound);
+
+        if (!this.horseChest.getStackInSlot(1).isEmpty()) {
+            compound.setTag("ArmorItem", this.horseChest.getStackInSlot(1).writeToNBT(new NBTTagCompound()));
+        }
+    }
+
+    public void readEntityFromNBT(NBTTagCompound compound) {
+        super.readEntityFromNBT(compound);
+
+        if (compound.hasKey("ArmorItem", 10)) {
+            ItemStack itemstack = new ItemStack(compound.getCompoundTag("ArmorItem"));
+
+            if (!itemstack.isEmpty() && HorseArmorType.isHorseArmor(itemstack.getItem())) {
+                this.horseChest.setInventorySlotContents(1, itemstack);
+            }
+        }
+
+        this.updateHorseSlots();
     }
 
     @Override
@@ -107,6 +128,7 @@ public abstract class EntityUndeadHorse extends AbstractHorse {
         return HorseArmorType.getByOrdinal(this.dataManager.get(HORSE_ARMOR));
     }
 
+    @Override
     public void onInventoryChanged(IInventory invBasic) {
         HorseArmorType horsearmortype = this.getHorseArmorType();
         super.onInventoryChanged(invBasic);
@@ -115,6 +137,12 @@ public abstract class EntityUndeadHorse extends AbstractHorse {
         if (this.ticksExisted > 20 && horsearmortype != horsearmortype1 && horsearmortype1 != HorseArmorType.NONE) {
             this.playSound(SoundEvents.ENTITY_HORSE_ARMOR, 0.5F, 1.0F);
         }
+    }
+
+    @Override
+    protected void updateHorseSlots() {
+        super.updateHorseSlots();
+        this.setHorseArmorStack(this.horseChest.getStackInSlot(1));
     }
 
     public void setHorseArmorStack(ItemStack itemStackIn) {
@@ -141,10 +169,6 @@ public abstract class EntityUndeadHorse extends AbstractHorse {
         this.horseTexturesArray[0] = getUndeadHorseTexture();
         this.horseTexturesArray[1] = horsearmortype.getTextureName();
         this.texturePrefix = ModInfo.ID + ":undead_horse/" + getUndeadHorseTexture() + horsearmortype.getHash();
-    }
-
-    public int getHorseVariant() {
-        return this.dataManager.get(HORSE_VARIANT);
     }
 
     @SideOnly(Side.CLIENT)
@@ -187,23 +211,19 @@ public abstract class EntityUndeadHorse extends AbstractHorse {
         return EnumCreatureAttribute.UNDEAD;
     }
 
-    public void setHorseVariant(int variant)
-    {
-        this.dataManager.set(HORSE_VARIANT, variant);
+    public void setHorseVariant(int variant) {
         this.resetTexturePrefix();
     }
+
     @Override
     public IEntityLivingData onInitialSpawn(DifficultyInstance difficulty, IEntityLivingData livingdata) {
 
         livingdata = super.onInitialSpawn(difficulty, livingdata);
         int i;
 
-        if (livingdata instanceof EntityHorse.GroupData)
-        {
-            i = ((EntityHorse.GroupData)livingdata).variant;
-        }
-        else
-        {
+        if (livingdata instanceof EntityHorse.GroupData) {
+            i = ((EntityHorse.GroupData) livingdata).variant;
+        } else {
             i = this.rand.nextInt(7);
             livingdata = new EntityHorse.GroupData(i);
         }
@@ -212,6 +232,7 @@ public abstract class EntityUndeadHorse extends AbstractHorse {
         return livingdata;
     }
 
+    @Override
     public boolean processInteract(EntityPlayer player, EnumHand hand) {
         ItemStack itemstack = player.getHeldItem(hand);
         boolean stackNotEmpty = !itemstack.isEmpty();
@@ -263,7 +284,7 @@ public abstract class EntityUndeadHorse extends AbstractHorse {
                 }
             }
 
-            if (!this.isHorseSaddled() && itemstack.getItem() == Items.SADDLE) {
+            if (HorseArmorType.getByItemStack(itemstack) != HorseArmorType.NONE || !this.isHorseSaddled() && itemstack.getItem() == Items.SADDLE) {
                 this.openGUI(player);
                 return true;
             }
@@ -277,38 +298,15 @@ public abstract class EntityUndeadHorse extends AbstractHorse {
         return true;
     }
 
-//    @Override
-//    public boolean processInteract(EntityPlayer player, EnumHand hand) {
-//            boolean flag = false;
-//            HorseArmorType horsearmortype = HorseArmorType.getByItemStack(stack);
-//
-//            if (horsearmortype != HorseArmorType.NONE) {
-//                if (!this.isTame()) {
-//                    this.setRearing(true);
-//                    return true;
-//                }
-//
-//                this.openGUI(player);
-//                return true;
-//            }
-//
-//
-//        }
-//
-//        if (this.isRidable() && this.isBeingRidden()) {
-//            if (stack != null && stack.interactWithEntity(player, this, hand)) {
-//                return true;
-//            } else if (this.isTame()) {
-//                this.mountHorse(player);
-//                return true;
-//            }
-//        } else {
-//            return super.processInteract(player, hand, stack);
-//        }
-//    }
-//
-//    return false;
-//}
+    @Override
+    public boolean isArmor(ItemStack stack) {
+        return HorseArmorType.isHorseArmor(stack.getItem());
+    }
+
+    @Override
+    public boolean wearsArmor() {
+        return true;
+    }
 
     @Override
     public void onLivingUpdate() {
@@ -328,77 +326,6 @@ public abstract class EntityUndeadHorse extends AbstractHorse {
         return this.isBeingRidden() && (this.isHorseSaddled() || this.getRidingEntity() != null && this.getRidingEntity().getControllingPassenger() instanceof EntityMob) ||
                 this.isEatingHaystack() || this.isRearing();
     }
-
-//    @SideOnly(Side.CLIENT)
-//    private void setHorseTexturePaths() {
-//        this.texturePrefix = "horse/";
-//        HorseType horseType = this.getType();
-//
-//        this.texturePrefix = this.texturePrefix + horseType.ordinal() + "_";
-//        HorseArmorType horsearmortype = this.getHorseArmorType();
-//
-//
-////        this.horseTexturesArray[2] = horsearmortype.getTextureName();
-////        this.texturePrefix = this.texturePrefix + horsearmortype.getHash();
-////
-////        int horseArmorTextureNum = this.getHorseArmorIndexSynced();
-//        int horseArmorTextureNum = horsearmortype.ordinal();
-//
-//        if (horseArmorTextureNum >= horseArmorTextures.length) {
-//            this.field_175508_bO = false;
-//        } else {
-//            this.variantTexturePaths = horseArmorTextures[horseArmorTextureNum];
-//            this.texturePrefix = this.texturePrefix + horseArmorPrefix[horseArmorTextureNum];
-//            this.field_175508_bO = true;
-//        }
-//    }
-//
-//    @Override
-//    @SideOnly(Side.CLIENT)
-//    public String getHorseTexture() {
-//        if (this.texturePrefix == null) {
-//            this.setHorseTexturePaths();
-//        }
-//
-//        return this.texturePrefix;
-//    }
-
-//    @SideOnly(Side.CLIENT)
-//    public String getArmorTexturePaths() {
-//        if (this.texturePrefix == null) {
-//            this.setHorseTexturePaths();
-//        }
-//
-//        return this.variantTexturePaths;
-//    }
-
-
-//    ------------------------------
-
-
-//    @Override
-//    public void setHorseVariant(int horseVariant) {
-//        this.dataManager.set(HORSE_VARIANT, Integer.valueOf(horseVariant));
-//        this.resetTexturePrefix();
-//    }
-
-//    @Override
-//    public void setHorseArmorStack(ItemStack itemStack) {
-//        HorseArmorType horsearmortype = HorseArmorType.getByItemStack(itemStack);
-//        if (horsearmortype != null) {
-//            this.dataManager.set(HORSE_ARMOR, Integer.valueOf(horsearmortype.getOrdinal()));
-//            this.resetTexturePrefix();
-//
-//            if (!this.getEntityWorld().isRemote) {
-//                this.getEntityAttribute(SharedMonsterAttributes.ARMOR).removeModifier(ARMOR_MODIFIER_UUID);
-//                int i = horsearmortype.getProtection();
-//
-//                if (i != 0) {
-//                    this.getEntityAttribute(SharedMonsterAttributes.ARMOR).applyModifier((new AttributeModifier(ARMOR_MODIFIER_UUID, "Horse armor bonus", (double) i, 0)).setSaved(false));
-//                }
-//            }
-//        }
-//    }
 
     protected void resetTexturePrefix() {
         this.texturePrefix = null;
