@@ -19,7 +19,7 @@ public class TileEntityRenderAltar extends TileEntitySpecialRenderer {
     @Override
     public void renderTileEntityAt(TileEntity te, double x, double y, double z, float partialTicks, int destroyStage) {
         ItemStack corpse = ((TileEntityAltar) te).getCorpse();
-        if (corpse != null) {
+        if (!corpse.isEmpty()) {
             TileEntityCorpseRenderer.renderCorpseOnAltar(corpse, x, y, z, partialTicks);
         }
     }

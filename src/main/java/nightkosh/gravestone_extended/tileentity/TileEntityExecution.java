@@ -23,7 +23,7 @@ import nightkosh.gravestone_extended.item.corpse.VillagerCorpseHelper;
 public class TileEntityExecution extends TileEntityBase implements IInventory {
 
     private byte direction = 0;
-    private ItemStack corpse;
+    private ItemStack corpse = ItemStack.EMPTY;
     private EnumCorpse corpseType = null;
     private int hangedVillagerProfession = 0;
 
@@ -83,7 +83,7 @@ public class TileEntityExecution extends TileEntityBase implements IInventory {
     }
 
     private void updateCorpseInfo() {
-        if (corpse == null) {
+        if (corpse == null || corpse.isEmpty()) {
             this.corpseType = null;
             this.hangedVillagerProfession = 0;
         } else {
@@ -140,13 +140,13 @@ public class TileEntityExecution extends TileEntityBase implements IInventory {
     @Override
     public ItemStack decrStackSize(int index, int count) {
         ItemStack stack = getStackInSlot(index);
-        if (stack != null) {
+        if (stack != null && !stack.isEmpty()) {
             if (stack.getCount() <= count) {
-                setInventorySlotContents(index, null);
+                setInventorySlotContents(index, ItemStack.EMPTY);
             } else {
                 stack = stack.splitStack(count);
                 if (stack.isEmpty()) {
-                    setInventorySlotContents(index, null);
+                    setInventorySlotContents(index, ItemStack.EMPTY);
                 }
             }
         }
@@ -156,8 +156,8 @@ public class TileEntityExecution extends TileEntityBase implements IInventory {
     @Override
     public ItemStack removeStackFromSlot(int index) {
         ItemStack stack = getStackInSlot(index);
-        if (stack != null) {
-            setInventorySlotContents(index, null);
+        if (stack != null && !stack.isEmpty()) {
+            setInventorySlotContents(index, ItemStack.EMPTY);
         }
         return stack;
     }

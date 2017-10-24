@@ -20,10 +20,10 @@ import java.util.Random;
  * @license Lesser GNU Public License v3 (http://www.gnu.org/licenses/lgpl.html)
  */
 public class TileEntityAltar extends TileEntity implements IInventory {
-    private ItemStack corpse = null;
+    private ItemStack corpse = ItemStack.EMPTY;
 
     public boolean hasCorpse() {
-        return corpse != null;
+        return !corpse.isEmpty();
     }
 
     public ItemStack getCorpse() {
@@ -35,7 +35,7 @@ public class TileEntityAltar extends TileEntity implements IInventory {
     }
 
     public void dropCorpse() {
-        if (corpse != null) {
+        if (!corpse.isEmpty()) {
             Random random = new Random();
             float x = random.nextFloat() * 0.8F + 0.1F;
             float y = random.nextFloat() * 0.8F + 1.1F;
@@ -59,7 +59,7 @@ public class TileEntityAltar extends TileEntity implements IInventory {
                     entityItem.getEntityItem().setTagCompound(corpse.getTagCompound().copy());
                 }
             }
-            corpse = null;
+            corpse = ItemStack.EMPTY;
         }
     }
 
@@ -76,7 +76,7 @@ public class TileEntityAltar extends TileEntity implements IInventory {
     public NBTTagCompound writeToNBT(NBTTagCompound nbtTag) {
         nbtTag = super.writeToNBT(nbtTag);
 
-        if (corpse != null) {
+        if (!corpse.isEmpty()) {
             nbtTag.setTag("Corpse", corpse.writeToNBT(new NBTTagCompound()));
         }
 
@@ -180,13 +180,13 @@ public class TileEntityAltar extends TileEntity implements IInventory {
     @Override
     public ItemStack decrStackSize(int slot, int amt) {
         ItemStack stack = getStackInSlot(slot);
-        if (stack != null) {
+        if (stack != null && !stack.isEmpty()) {
             if (stack.getCount() <= amt) {
-                setInventorySlotContents(slot, null);
+                setInventorySlotContents(slot, ItemStack.EMPTY);
             } else {
                 stack = stack.splitStack(amt);
                 if (stack.isEmpty()) {
-                    setInventorySlotContents(slot, null);
+                    setInventorySlotContents(slot, ItemStack.EMPTY);
                 }
             }
         }
@@ -196,8 +196,8 @@ public class TileEntityAltar extends TileEntity implements IInventory {
     @Override
     public ItemStack removeStackFromSlot(int index) {
         ItemStack stack = getStackInSlot(index);
-        if (stack != null) {
-            setInventorySlotContents(index, null);
+        if (stack != null && !stack.isEmpty()) {
+            setInventorySlotContents(index, ItemStack.EMPTY);
         }
         return stack;
     }
