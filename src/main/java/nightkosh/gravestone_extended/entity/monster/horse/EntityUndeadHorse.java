@@ -29,6 +29,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import nightkosh.gravestone_extended.core.ModInfo;
+import nightkosh.gravestone_extended.entity.ai.EntityUndeadHorseAINearestAttackableTarget;
 
 import java.util.Iterator;
 import java.util.UUID;
@@ -73,7 +74,7 @@ public abstract class EntityUndeadHorse extends AbstractHorse {
         this.tasks.addTask(2, new EntityAIAttackMelee(this, 1, false));
 
         this.targetTasks.addTask(1, new EntityAIHurtByTarget(this, true));
-        this.targetTasks.addTask(2, new EntityAINearestAttackableTarget(this, EntityPlayer.class, true));
+        this.targetTasks.addTask(2, new EntityUndeadHorseAINearestAttackableTarget(this, EntityPlayer.class, true));
     }
 
     protected void entityInit() {
@@ -322,16 +323,6 @@ public abstract class EntityUndeadHorse extends AbstractHorse {
         super.onLivingUpdate();
     }
 
-    protected void mountHorse(EntityPlayer player) {
-        player.rotationYaw = this.rotationYaw;
-        player.rotationPitch = this.rotationPitch;
-        this.setEatingHaystack(false);
-        this.setRearing(false);
-        if (!this.getEntityWorld().isRemote) {
-            player.startRiding(this);
-        }
-    }
-
     @Override
     protected boolean isMovementBlocked() {
         return this.isBeingRidden() && (this.isHorseSaddled() || this.getRidingEntity() != null && this.getRidingEntity().getControllingPassenger() instanceof EntityMob) ||
@@ -384,12 +375,6 @@ public abstract class EntityUndeadHorse extends AbstractHorse {
 
 //    ------------------------------
 
-
-//    @Override
-//    public void setType(HorseType horseType) {
-//        this.dataManager.set(HORSE_TYPE, Integer.valueOf(horseType.ordinal()));
-//        this.resetTexturePrefix();
-//    }
 
 //    @Override
 //    public void setHorseVariant(int horseVariant) {

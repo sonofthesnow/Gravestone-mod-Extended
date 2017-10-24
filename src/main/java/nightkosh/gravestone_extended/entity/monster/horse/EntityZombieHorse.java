@@ -6,7 +6,6 @@ import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityAIAttackMelee;
 import net.minecraft.entity.ai.EntityAIMoveThroughVillage;
 import net.minecraft.entity.ai.EntityAIMoveTowardsRestriction;
-import net.minecraft.entity.ai.EntityAINearestAttackableTarget;
 import net.minecraft.entity.monster.EntityZombieVillager;
 import net.minecraft.entity.passive.EntityHorse;
 import net.minecraft.entity.passive.EntityOcelot;
@@ -22,6 +21,7 @@ import net.minecraft.world.World;
 import net.minecraft.world.storage.loot.LootTableList;
 import nightkosh.gravestone_extended.core.Entity;
 import nightkosh.gravestone_extended.entity.ai.EntityAINearestAttackableHorse;
+import nightkosh.gravestone_extended.entity.ai.EntityUndeadHorseAINearestAttackableTarget;
 import nightkosh.gravestone_extended.entity.monster.pet.EntityZombieCat;
 import nightkosh.gravestone_extended.entity.monster.pet.EntityZombieDog;
 
@@ -41,9 +41,9 @@ public class EntityZombieHorse extends EntityUndeadHorse {
         this.tasks.addTask(3, new EntityAIAttackMelee(this, 1, true));
         this.tasks.addTask(5, new EntityAIMoveThroughVillage(this, 1, false));
 
-        this.targetTasks.addTask(2, new EntityAINearestAttackableTarget(this, EntityVillager.class, false));
-        this.targetTasks.addTask(2, new EntityAINearestAttackableTarget(this, EntityWolf.class, false));
-        this.targetTasks.addTask(2, new EntityAINearestAttackableTarget(this, EntityOcelot.class, false));
+        this.targetTasks.addTask(2, new EntityUndeadHorseAINearestAttackableTarget(this, EntityVillager.class, false));
+        this.targetTasks.addTask(2, new EntityUndeadHorseAINearestAttackableTarget(this, EntityWolf.class, false));
+        this.targetTasks.addTask(2, new EntityUndeadHorseAINearestAttackableTarget(this, EntityOcelot.class, false));
         this.targetTasks.addTask(4, new EntityAINearestAttackableHorse(this, false));
     }
 

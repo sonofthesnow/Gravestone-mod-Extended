@@ -4,6 +4,8 @@ import net.minecraft.entity.EntityCreature;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.ai.EntityAINearestAttackableTarget;
 import net.minecraft.entity.passive.EntityHorse;
+import net.minecraft.entity.passive.EntitySkeletonHorse;
+import net.minecraft.entity.passive.EntityZombieHorse;
 import nightkosh.gravestone_extended.entity.monster.horse.EntityUndeadHorse;
 
 /**
@@ -23,11 +25,8 @@ public class EntityAINearestAttackableHorse extends EntityAINearestAttackableTar
 
     public boolean shouldExecute() {
         EntityLivingBase entity = this.attacker.getAttackTarget();
-        if (entity != null && entity instanceof EntityHorse && !(entity instanceof EntityUndeadHorse)) {
-            EntityHorse horse = (EntityHorse) entity;
-//            if (!horse.getType().isUndead()) {// TODO!!!!
-                return super.shouldExecute();
-//            }
+        if (entity != null && !(entity instanceof EntityUndeadHorse) && !(entity instanceof EntityZombieHorse) && !(entity instanceof EntitySkeletonHorse)) {
+            return super.shouldExecute();
         }
         return false;
     }
