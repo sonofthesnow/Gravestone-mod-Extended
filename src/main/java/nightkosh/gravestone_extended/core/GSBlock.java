@@ -45,6 +45,7 @@ public class GSBlock extends nightkosh.gravestone.core.GSBlock {
     public static final ItemBlock SKULL_CANDLE_IB = new ItemBlockGSSkullCandle(SKULL_CANDLE);
 
     public static final BlockAltar ALTAR = new BlockAltar();
+    public static final ItemBlock ALTAR_IB = new ItemBlockAltar(ALTAR);
 
     public static final BlockInvisibleWall INVISIBLE_WALL = new BlockInvisibleWall();
 
@@ -83,6 +84,7 @@ public class GSBlock extends nightkosh.gravestone.core.GSBlock {
         GameRegistry.register(SKULL_CANDLE_IB);
 
         GameRegistry.register(ALTAR);
+        GameRegistry.register(ALTAR_IB);
 
         GameRegistry.register(INVISIBLE_WALL);
 

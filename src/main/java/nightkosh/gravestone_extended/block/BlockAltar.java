@@ -40,38 +40,12 @@ public class BlockAltar extends BlockContainer {
      */
     @Override
     public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing side, float hitX, float hitY, float hitZ) {
-//        ItemStack stack = player.getCurrentEquippedItem();
-
-        TileEntityAltar tileEntity = (TileEntityAltar) world.getTileEntity(pos);
-        if (tileEntity != null && !player.isSneaking()) {
-//            if (tileEntity.hasCorpse()) {
-//                if (!world.isRemote) {
-//                    tileEntity.dropCorpse();
-//                }
-//            } else {
-//                if (stack != null && stack.getItem() instanceof ItemGSCorpse) {
-//                    ItemStack corpse = stack.copy();
-//                    corpse.stackSize = 1;
-//                    tileEntity.setCorpse(corpse);
-//                    if (!player.capabilities.isCreativeMode) {
-//                        stack.stackSize--;
-//                    }
-//                }
-//            }
+        if (world.getTileEntity(pos) != null && !player.isSneaking()) {
             player.openGui(ModGravestoneExtended.instance, GuiHandler.ALTAR_GUI_ID, world, pos.getX(), pos.getY(), pos.getZ());
             return true;
         }
         return false;
     }
-//
-//    /**
-//     * If this block doesn't render as an ordinary block it will return False
-//     * (examples: signs, buttons, stairs, etc)
-//     */
-//    @Override
-//    public boolean renderAsNormalBlock() {
-//        return false;
-//    }
 
     /**
      * Is this block (a) opaque and (b) a full 1m cube? This determines whether

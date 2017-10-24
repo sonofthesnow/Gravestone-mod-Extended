@@ -19,7 +19,6 @@ public class RenderGSSkeleton extends RenderSkeleton {
 
         ModelGSSkeleton skeletonModel = new ModelGSSkeleton();
         this.mainModel = skeletonModel;
-//        this.modelBipedMain = skeletonModel;//TODO ??????
         Iterator it = this.layerRenderers.iterator();
         while (it.hasNext()) {
             Object layer = it.next();
