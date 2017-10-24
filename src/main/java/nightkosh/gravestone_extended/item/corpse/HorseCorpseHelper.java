@@ -2,7 +2,9 @@ package nightkosh.gravestone_extended.item.corpse;
 
 import net.minecraft.entity.ai.attributes.AbstractAttributeMap;
 import net.minecraft.entity.passive.AbstractHorse;
+import net.minecraft.entity.passive.EntityDonkey;
 import net.minecraft.entity.passive.EntityHorse;
+import net.minecraft.entity.passive.EntityMule;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -10,6 +12,8 @@ import net.minecraft.world.World;
 import nightkosh.gravestone_extended.ModGravestoneExtended;
 import nightkosh.gravestone_extended.block.enums.EnumCorpse;
 import nightkosh.gravestone_extended.core.GSBlock;
+import nightkosh.gravestone_extended.entity.monster.horse.EntitySkeletonHorse;
+import nightkosh.gravestone_extended.entity.monster.horse.EntityZombieHorse;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,7 +37,15 @@ public class HorseCorpseHelper extends CorpseHelper {
         DONKEY,
         MULE,
         ZOMBIE,
-        SKELETON
+        SKELETON;
+
+        public static EnumHorseType getById(int id) {
+            if (id >= 0 && id < values().length) {
+                return values()[id];
+            } else {
+                return HORSE;
+            }
+        }
     }
 
     public static ItemStack getRandomCorpse(Random random) {
@@ -44,7 +56,6 @@ public class HorseCorpseHelper extends CorpseHelper {
     public static List<ItemStack> getDefaultCorpses() {
         List<ItemStack> list = new ArrayList<>();
 
-        int corpseType = EnumCorpse.HORSE.ordinal();
         list.add(getDefaultHorseCorpse(EnumHorseType.HORSE));
         list.add(getDefaultHorseCorpse(EnumHorseType.DONKEY));
         list.add(getDefaultHorseCorpse(EnumHorseType.MULE));
@@ -71,8 +82,14 @@ public class HorseCorpseHelper extends CorpseHelper {
     public static void setNbt(AbstractHorse horse, NBTTagCompound nbt) {
         setName(horse, nbt);
 
-//        nbt.setInteger("HorseType", horse.getType().getOrdinal());//TODO !!!!!!!!!!!!!!!!!!
-//        nbt.setInteger("Variant", horse.getHorseVariant());//TODO !!!!!!!!!!!!!!!!!!
+        EnumHorseType horseType = getHorseType(horse);
+        nbt.setInteger("HorseType", horseType.ordinal());
+
+        int variant = 0;
+        if (horseType == EnumHorseType.HORSE) {
+            variant = ((EntityHorse) horse).getHorseVariant();
+        }
+        nbt.setInteger("Variant", variant);
 
         AbstractAttributeMap attrMap = horse.getAttributeMap();
         nbt.setDouble("Max Health", attrMap.getAttributeInstanceByName("Max Health").getAttributeValue());
@@ -81,11 +98,28 @@ public class HorseCorpseHelper extends CorpseHelper {
     }
 
     public static void spawnHorse(World world, int x, int y, int z, NBTTagCompound nbtTag, EntityPlayer player) {
-        EntityHorse horse = new EntityHorse(world);
+        AbstractHorse horse;
+        EnumHorseType horseType = EnumHorseType.getById(getHorseType(nbtTag));
+        switch (horseType) {
+            case DONKEY:
+                horse = new EntityDonkey(world);
+                break;
+            case MULE:
+                horse = new EntityMule(world);
+                break;
+            case ZOMBIE:
+                horse = new EntityZombieHorse(world);
+                break;
+            case SKELETON:
+                horse = new EntitySkeletonHorse(world);
+                break;
+            case HORSE:
+            default:
+                horse = new EntityHorse(world);
+                ((EntityHorse) horse).setHorseVariant(getHorseVariant(nbtTag));
+                break;
+        }
         setMobName(horse, nbtTag);
-
-//        horse.setType(HorseType.getArmorType(getHorseType(nbtTag)));//TODO !!!!!!!!!!!!!!!!!!
-        horse.setHorseVariant(getHorseVariant(nbtTag));
 
         AbstractAttributeMap attrMap = horse.getAttributeMap();
         attrMap.getAttributeInstanceByName("Max Health").setBaseValue(nbtTag.getDouble("Max Health"));
@@ -116,10 +150,6 @@ public class HorseCorpseHelper extends CorpseHelper {
         }
     }
 
-    public static int getHorseType(NBTTagCompound nbtTag) {
-        return nbtTag.getInteger("HorseType");
-    }
-
     public static int getHorseVariant(NBTTagCompound nbtTag) {
         return nbtTag.getInteger("Variant");
     }
@@ -131,6 +161,25 @@ public class HorseCorpseHelper extends CorpseHelper {
     private static String getType(NBTTagCompound nbtTag) {
         return ModGravestoneExtended.proxy.getLocalizedString("item.corpse.horse_type") + " " +
                 ModGravestoneExtended.proxy.getLocalizedString(getHorseType(nbtTag.getInteger("HorseType")));
+    }
+
+    public static int getHorseType(NBTTagCompound nbtTag) {
+        return nbtTag.getInteger("HorseType");
+    }
+
+    public static EnumHorseType getHorseType(AbstractHorse horse) {
+        if (horse instanceof EntityHorse) {
+            return EnumHorseType.HORSE;
+        } else if (horse instanceof EntityDonkey) {
+            return EnumHorseType.DONKEY;
+        } else if (horse instanceof EntityMule) {
+            return EnumHorseType.MULE;
+        } else if (horse instanceof EntityZombieHorse || horse instanceof net.minecraft.entity.passive.EntityZombieHorse) {
+            return EnumHorseType.ZOMBIE;
+        } else if (horse instanceof EntitySkeletonHorse || horse instanceof net.minecraft.entity.passive.EntitySkeletonHorse) {
+            return EnumHorseType.SKELETON;
+        }
+        return EnumHorseType.HORSE;
     }
 
     private static String getHorseType(int type) {

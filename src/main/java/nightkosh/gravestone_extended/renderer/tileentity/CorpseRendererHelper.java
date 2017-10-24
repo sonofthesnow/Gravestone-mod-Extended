@@ -7,13 +7,17 @@ import net.minecraft.client.model.ModelOcelot;
 import net.minecraft.client.model.ModelWolf;
 import net.minecraft.client.renderer.texture.LayeredTexture;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.passive.EntityDonkey;
 import net.minecraft.entity.passive.EntityHorse;
+import net.minecraft.entity.passive.EntityMule;
 import net.minecraft.entity.passive.EntityWolf;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ResourceLocation;
 import nightkosh.gravestone.models.ModelRendererSkull;
 import nightkosh.gravestone_extended.block.enums.EnumCorpse;
 import nightkosh.gravestone_extended.core.Resources;
+import nightkosh.gravestone_extended.entity.monster.horse.EntitySkeletonHorse;
+import nightkosh.gravestone_extended.entity.monster.horse.EntityZombieHorse;
 import nightkosh.gravestone_extended.entity.monster.pet.EnumUndeadMobType;
 import nightkosh.gravestone_extended.helper.GameProfileHelper;
 import nightkosh.gravestone_extended.item.corpse.*;
@@ -78,6 +82,10 @@ public class CorpseRendererHelper {
 
     private static EntityWolf dog;
     private static EntityHorse horse;
+    private static EntityDonkey donkey;
+    private static EntityMule mule;
+    private static EntityZombieHorse zombieHorse;
+    private static EntitySkeletonHorse skeletonHorse;
 
     public static void renderCorpse(EnumCorpse corpseType, NBTTagCompound nbt, boolean atAltar) {
         renderCorpse(corpseType, nbt, atAltar, false);
@@ -166,14 +174,41 @@ public class CorpseRendererHelper {
                 } else if (!isExecuted) {
                     GL11.glTranslatef(0, -1.5F, -0.85F);
                 }
-                if (horse == null) {
-                    horse = new EntityHorse(Minecraft.getMinecraft().world);
+                HorseCorpseHelper.EnumHorseType horseType = HorseCorpseHelper.EnumHorseType.HORSE;
+                if (nbt != null) {
+                    horseType = HorseCorpseHelper.EnumHorseType.getById(HorseCorpseHelper.getHorseType(nbt));
                 }
-                //TODO !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-//                horse.setType(HorseType.getArmorType((nbt == null) ? 0 : HorseCorpseHelper.getHorseType(nbt)));
-                horse.setHorseVariant((nbt == null) ? 0 : HorseCorpseHelper.getHorseVariant(nbt));
+                switch (horseType) {
+                    case DONKEY:
+                        if (donkey == null) {
+                            donkey = new EntityDonkey(Minecraft.getMinecraft().world);
+                        }
+                        break;
+                    case MULE:
+                        if (mule == null) {
+                            mule = new EntityMule(Minecraft.getMinecraft().world);
+                        }
+                        break;
+                    case ZOMBIE:
+                        if (zombieHorse == null) {
+                            zombieHorse = new EntityZombieHorse(Minecraft.getMinecraft().world);
+                        }
+                        break;
+                    case SKELETON:
+                        if (skeletonHorse == null) {
+                            skeletonHorse = new EntitySkeletonHorse(Minecraft.getMinecraft().world);
+                        }
+                        break;
+                    case HORSE:
+                    default:
+                        if (horse == null){
+                            horse = new EntityHorse(Minecraft.getMinecraft().world);
+                        }
+                        horse.setHorseVariant((nbt == null) ? 0 : HorseCorpseHelper.getHorseVariant(nbt));
+                        break;
+                }
 
-                bindHorseTexture((nbt == null) ? 0 : HorseCorpseHelper.getHorseType(nbt));
+                bindHorseTexture(horseType.ordinal());
 
                 horseModel.setLivingAnimations(horse, 0, 0, 0);
                 horseModel.render(horse, xz, xz, xz, xz, xz, xz);
