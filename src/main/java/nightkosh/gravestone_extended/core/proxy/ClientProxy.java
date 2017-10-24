@@ -1,7 +1,6 @@
 package nightkosh.gravestone_extended.core.proxy;
 
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.model.ModelHorse;
 import net.minecraft.client.renderer.block.model.ModelBakery;
 import net.minecraft.item.Item;
 import net.minecraft.util.text.translation.I18n;
@@ -20,7 +19,8 @@ import nightkosh.gravestone_extended.core.ResourcesModels;
 import nightkosh.gravestone_extended.core.event.RenderEventHandler;
 import nightkosh.gravestone_extended.entity.EntityRaven;
 import nightkosh.gravestone_extended.entity.helper.EntityGroupOfGravesMobSpawnerHelper;
-import nightkosh.gravestone_extended.entity.monster.*;
+import nightkosh.gravestone_extended.entity.monster.EntityDamnedWarrior;
+import nightkosh.gravestone_extended.entity.monster.EntityGSSkeleton;
 import nightkosh.gravestone_extended.entity.monster.crawler.EntitySkullCrawler;
 import nightkosh.gravestone_extended.entity.monster.crawler.EntitySkullCrawler.SkullCrawlerType;
 import nightkosh.gravestone_extended.entity.monster.crawler.EntityWitherSkullCrawler;
@@ -123,7 +123,7 @@ public class ClientProxy extends CommonProxy {
         // Skeleton
         RenderingRegistry.registerEntityRenderingHandler(EntityGSSkeleton.class, new RenderGSSkeleton(Minecraft.getMinecraft().getRenderManager()));
         // Horses
-        RenderingRegistry.registerEntityRenderingHandler(EntityUndeadHorse.class, new RenderUndeadHorse(Minecraft.getMinecraft().getRenderManager(), new ModelHorse(), 0));
+        RenderingRegistry.registerEntityRenderingHandler(EntityUndeadHorse.class, new RenderUndeadHorse(Minecraft.getMinecraft().getRenderManager()));
 
         // raven
         RenderingRegistry.registerEntityRenderingHandler(EntityRaven.class, new RenderRaven(Minecraft.getMinecraft().getRenderManager()));

@@ -51,14 +51,16 @@ public class MobSpawn {
             Entity.SKELETON_DOG_ID,
             Entity.SKELETON_CAT_ID,
             Entity.SKELETON_HORSE_ID,
-            Entity.SKELETON_RAIDER_ID));
+            Entity.SKELETON_RAIDER_ID
+    ));
     public static List<ResourceLocation> zombieSpawnerMobs = new ArrayList<>(Arrays.asList(
             Entity.MINECRAFT_ZOMBIE_ID, Entity.MINECRAFT_ZOMBIE_ID, Entity.MINECRAFT_ZOMBIE_ID, Entity.MINECRAFT_ZOMBIE_ID, Entity.MINECRAFT_ZOMBIE_ID,
             Entity.MINECRAFT_HUSK_ID,
             Entity.ZOMBIE_DOG_ID,
             Entity.ZOMBIE_CAT_ID,
             Entity.ZOMBIE_HORSE_ID,
-            Entity.ZOMBIE_RAIDER_ID));
+            Entity.ZOMBIE_RAIDER_ID
+    ));
     public static List<ResourceLocation> spiderSpawnerMobs = new ArrayList<>(Arrays.asList(
             Entity.MINECRAFT_SPIDER_ID, Entity.MINECRAFT_CAVE_SPIDER_ID, Entity.MINECRAFT_SPIDER_ID));
     // catacombs statues mobs
@@ -75,11 +77,7 @@ public class MobSpawn {
      * @param z     Z coordinate
      */
     private static boolean canSpawnHellCreatures(World world, int x, int y, int z) {
-        if (world != null) {
-            return y < HELL_HEIGHT && world.getBlockState(new BlockPos(x, y - 1, z)).getBlock().equals(Blocks.NETHER_BRICK);
-        } else {
-            return false;
-        }
+        return world != null && y < HELL_HEIGHT && world.getBlockState(new BlockPos(x, y - 1, z)).getBlock().equals(Blocks.NETHER_BRICK);
     }
 
     /**
@@ -132,7 +130,7 @@ public class MobSpawn {
         }
 
         try {
-            entity.onInitialSpawn(world.getDifficultyForLocation(new BlockPos(x, y, z)), (IEntityLivingData) null);
+            entity.onInitialSpawn(world.getDifficultyForLocation(new BlockPos(x, y, z)), null);
         } catch (Exception e) {
             GSLogger.logError("getMobEntity exception with onSpawnWithEgg");
             e.printStackTrace();
@@ -155,7 +153,7 @@ public class MobSpawn {
                 mobId = skeletonSpawnerMobs.get(world.rand.nextInt(skeletonSpawnerMobs.size()));
 
                 if (mobId.equals(Entity.SKELETON_ID)) {
-                    EntityGSSkeleton skeleton = (EntityGSSkeleton) EntityList.createEntityByIDFromName(Entity.SKELETON_ID, world);
+                    EntityGSSkeleton skeleton = getSkeleton(world, RANDOM.nextBoolean());
                     if (world.rand.nextInt(5) == 0) {
                         skeleton.setSkeletonType(SkeletonType.STRAY);
                     } else if (world.rand.nextInt(10) == 0) {

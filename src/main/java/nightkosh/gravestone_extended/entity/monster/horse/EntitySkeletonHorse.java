@@ -3,9 +3,15 @@ package nightkosh.gravestone_extended.entity.monster.horse;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityAIAvoidEntity;
 import net.minecraft.entity.passive.EntityWolf;
+import net.minecraft.init.SoundEvents;
+import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.SoundEvent;
 import net.minecraft.util.text.translation.I18n;
 import net.minecraft.world.World;
+import net.minecraft.world.storage.loot.LootTableList;
 import nightkosh.gravestone_extended.core.Entity;
+
+import javax.annotation.Nullable;
 
 /**
  * GraveStone mod
@@ -22,14 +28,42 @@ public class EntitySkeletonHorse extends EntityUndeadHorse {
     }
 
     @Override
-    public HorseType getUndeadHorseType() {
-        return HorseType.SKELETON;
+    public double getMountedYOffset() {
+        return super.getMountedYOffset() - 0.1875D;
+    }
+
+    @Override
+    protected SoundEvent getAmbientSound() {
+        super.getAmbientSound();
+        return SoundEvents.ENTITY_SKELETON_HORSE_AMBIENT;
+    }
+
+    @Override
+    protected SoundEvent getDeathSound() {
+        super.getDeathSound();
+        return SoundEvents.ENTITY_SKELETON_HORSE_DEATH;
+    }
+
+    @Override
+    protected SoundEvent getHurtSound() {
+        super.getHurtSound();
+        return SoundEvents.ENTITY_SKELETON_HORSE_HURT;
+    }
+
+    @Nullable
+    protected ResourceLocation getLootTable() {
+        return LootTableList.ENTITIES_SKELETON_HORSE;
     }
 
     @Override
     protected void applyEntityAttributes() {
         super.applyEntityAttributes();
         this.getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(3);
+    }
+
+    @Override
+    protected String getUndeadHorseTexture() {
+        return "textures/entity/horse/horse_skeleton.png";
     }
 
     @Override

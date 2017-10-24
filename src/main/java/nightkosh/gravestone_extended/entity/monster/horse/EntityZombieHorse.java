@@ -12,14 +12,20 @@ import net.minecraft.entity.passive.EntityHorse;
 import net.minecraft.entity.passive.EntityOcelot;
 import net.minecraft.entity.passive.EntityVillager;
 import net.minecraft.entity.passive.EntityWolf;
+import net.minecraft.init.SoundEvents;
+import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.translation.I18n;
 import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.World;
+import net.minecraft.world.storage.loot.LootTableList;
 import nightkosh.gravestone_extended.core.Entity;
 import nightkosh.gravestone_extended.entity.ai.EntityAINearestAttackableHorse;
 import nightkosh.gravestone_extended.entity.monster.pet.EntityZombieCat;
 import nightkosh.gravestone_extended.entity.monster.pet.EntityZombieDog;
+
+import javax.annotation.Nullable;
 
 /**
  * GraveStone mod
@@ -33,9 +39,6 @@ public class EntityZombieHorse extends EntityUndeadHorse {
 
         this.tasks.addTask(4, new EntityAIMoveTowardsRestriction(this, 1));
         this.tasks.addTask(3, new EntityAIAttackMelee(this, 1, true));
-//        this.tasks.addTask(3, new EntityAIAttackOnCollide(this, EntityWolf.class, 1, true));
-//        this.tasks.addTask(3, new EntityAIAttackOnCollide(this, EntityOcelot.class, 1, true));
-//        this.tasks.addTask(4, new EntityAIAttackLivingHorse(this, 1, false));
         this.tasks.addTask(5, new EntityAIMoveThroughVillage(this, 1, false));
 
         this.targetTasks.addTask(2, new EntityAINearestAttackableTarget(this, EntityVillager.class, false));
@@ -44,9 +47,24 @@ public class EntityZombieHorse extends EntityUndeadHorse {
         this.targetTasks.addTask(4, new EntityAINearestAttackableHorse(this, false));
     }
 
-    @Override
-    public HorseType getUndeadHorseType() {
-        return HorseType.ZOMBIE;
+    protected SoundEvent getAmbientSound() {
+        super.getAmbientSound();
+        return SoundEvents.ENTITY_ZOMBIE_HORSE_AMBIENT;
+    }
+
+    protected SoundEvent getDeathSound() {
+        super.getDeathSound();
+        return SoundEvents.ENTITY_ZOMBIE_HORSE_DEATH;
+    }
+
+    protected SoundEvent getHurtSound() {
+        super.getHurtSound();
+        return SoundEvents.ENTITY_ZOMBIE_HORSE_HURT;
+    }
+
+    @Nullable
+    protected ResourceLocation getLootTable() {
+        return LootTableList.ENTITIES_ZOMBIE_HORSE;
     }
 
     @Override
@@ -126,6 +144,11 @@ public class EntityZombieHorse extends EntityUndeadHorse {
     protected void applyEntityAttributes() {
         super.applyEntityAttributes();
         this.getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(5);
+    }
+
+    @Override
+    protected String getUndeadHorseTexture() {
+        return "textures/entity/horse/horse_zombie.png";
     }
 
     @Override
