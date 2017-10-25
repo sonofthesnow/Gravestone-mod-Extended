@@ -89,6 +89,7 @@ public abstract class EntityUndeadHorse extends AbstractHorse {
         this.getAttributeMap().registerAttribute(SharedMonsterAttributes.ATTACK_DAMAGE);
     }
 
+    @Override
     public void writeEntityToNBT(NBTTagCompound compound) {
         super.writeEntityToNBT(compound);
 
@@ -97,6 +98,7 @@ public abstract class EntityUndeadHorse extends AbstractHorse {
         }
     }
 
+    @Override
     public void readEntityFromNBT(NBTTagCompound compound) {
         super.readEntityFromNBT(compound);
 
