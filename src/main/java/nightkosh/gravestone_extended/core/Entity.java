@@ -84,8 +84,8 @@ public class Entity {
     public static final ResourceLocation SPAWNER_HELPER_ID = new ResourceLocation(ModInfo.ID + ":spawner_helper");
 
     public static final String MINECRAFT_SKELETON_NAME = "Skeleton";
-    public static final String MINECRAFT_ZOMBIE_HORSE_NAME = "zombiehorse";
-    public static final String MINECRAFT_SKELETON_HORSE_NAME = "skeletonhorse";
+    public static final String MINECRAFT_ZOMBIE_HORSE_NAME = "ZombieHorse";
+    public static final String MINECRAFT_SKELETON_HORSE_NAME = "SkeletonHorse";
 
     public static void registration() {
         // zombie dog
