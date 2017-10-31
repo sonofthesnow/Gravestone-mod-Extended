@@ -31,9 +31,10 @@ public class GSBlock extends nightkosh.gravestone.core.GSBlock {
     public static final BlockBoneBlock BONE_BLOCK = new BlockBoneBlock();
     public static final ItemBlock BONE_BLOCK_IB = new ItemBlockGSBoneBlock(BONE_BLOCK);
     public static final BlockBoneSlab BONE_SLAB = new BlockBoneSlab();
-
+    public static final ItemBlockBoneSlab BONE_SLAB_IB = new ItemBlockBoneSlab(BONE_SLAB);
 
     public static final BlockBoneStairs BONE_STAIRS = new BlockBoneStairs();
+    public static final ItemBlockBoneStairs BONE_STAIRS_IB = new ItemBlockBoneStairs(BONE_STAIRS);
 
     public static final BlockHauntedChest HAUNTED_CHEST = new BlockHauntedChest();
     public static final ItemBlock HAUNTED_CHEST_IB = new ItemBlockGSHauntedChest(HAUNTED_CHEST);
@@ -72,7 +73,9 @@ public class GSBlock extends nightkosh.gravestone.core.GSBlock {
         GameRegistry.register(BONE_BLOCK_IB);
 
         GameRegistry.register(BONE_SLAB);
+        GameRegistry.register(BONE_SLAB_IB);
         GameRegistry.register(BONE_STAIRS);
+        GameRegistry.register(BONE_STAIRS_IB);
 
         GameRegistry.register(HAUNTED_CHEST);
         GameRegistry.register(HAUNTED_CHEST_IB);
