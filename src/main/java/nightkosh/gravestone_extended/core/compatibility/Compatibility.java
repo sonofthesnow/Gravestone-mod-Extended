@@ -23,12 +23,12 @@ public class Compatibility {
     public static boolean sophisticatedWolvesInstalled;
 
     public void checkMods() {
-        if (Loader.isModLoaded("MoCreatures")) {
+        if (Loader.isModLoaded("mocreatures")) {
             CompatibilityMoCreatures.isInstalled = true;
             CompatibilityMoCreatures.addMobs();
         }
 
-        if (Loader.isModLoaded("Thaumcraft")) {
+        if (Loader.isModLoaded("thaumcraft")) {
             CompatibilityThaumcraft.addReciepes();
             CompatibilityThaumcraft.addAspects();
             CompatibilityThaumcraft.addSwords();
@@ -39,7 +39,7 @@ public class Compatibility {
 //            CompatibilityForestry.addBackpack();
 //        }
 
-        if (Loader.isModLoaded("SophisticatedWolves")) {
+        if (Loader.isModLoaded("sophisticatedwolves")) {
             sophisticatedWolvesInstalled = true;//TODO
             CompatibilitySophisticatedWolves.isInstalled = true;
         }
