@@ -1,5 +1,6 @@
 package nightkosh.gravestone_extended.potion;
 
+import nightkosh.gravestone_extended.core.ModInfo;
 import nightkosh.gravestone_extended.core.Resources;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.EntityLivingBase;
@@ -16,19 +17,16 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 public class CursePotion extends Potion {
 
     public CursePotion() {
-//        super(id, Resources.POTIONS, true, 0);
         super(true, 0);
-        setIconIndex(0, 0);
+        this.setIconIndex(0, 0);
+        this.setRegistryName(ModInfo.ID, "Curse");
+        this.setPotionName("Curse");
+//        this.setPotionName("effect." + this.getRegistryName().toString());
     }
 
     @Override
     public void performEffect(EntityLivingBase entity, int p_76394_2_) {
 
-    }
-
-    @Override
-    public String getName() {
-        return "Curse";
     }
 
     @SideOnly(Side.CLIENT)

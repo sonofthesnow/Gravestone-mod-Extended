@@ -23,8 +23,8 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import nightkosh.gravestone_extended.ModGravestoneExtended;
 import nightkosh.gravestone_extended.block.enums.EnumTrap;
 import nightkosh.gravestone_extended.config.ExtendedConfig;
+import nightkosh.gravestone_extended.core.GSPotion;
 import nightkosh.gravestone_extended.core.ModInfo;
-import nightkosh.gravestone_extended.core.Potion;
 import nightkosh.gravestone_extended.core.Tabs;
 import nightkosh.gravestone_extended.core.TimeHelper;
 
@@ -101,7 +101,7 @@ public class BlockTrap extends Block {
                         time = time - dayTime + TimeHelper.NIGHT;
                         world.setWorldTime(time);
                     }
-                    ((EntityPlayer) entity).addPotionEffect(new PotionEffect(Potion.curse, 1200));
+                    ((EntityPlayer) entity).addPotionEffect(new PotionEffect(GSPotion.CURSE, 1200));
                 }
             } else {
                 if (ExtendedConfig.enableThunderStone) {

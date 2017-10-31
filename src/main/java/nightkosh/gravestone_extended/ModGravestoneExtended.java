@@ -71,8 +71,6 @@ public class ModGravestoneExtended {
         // register entities
         Entity.registration();
 
-        Potion.init();
-
         NetworkRegistry.INSTANCE.registerGuiHandler(this, new GuiHandler());
 
         proxy.registerMobsRenderers();
