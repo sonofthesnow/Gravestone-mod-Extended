@@ -164,6 +164,7 @@ entity.GSZombieSkullCrawler.name=Zombie-Skelettkriecher
 entity.GSRaven.name=Rabe
 entity.GSSkeletonRaider.name=Skeletträuber
 entity.GSZombieRaider.name=Zombieräuber
+entity.Villager.gravestone-extended:undertaker=Totengräber
 
 
 # Console messages

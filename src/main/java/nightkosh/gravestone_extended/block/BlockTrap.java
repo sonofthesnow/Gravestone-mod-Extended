@@ -131,13 +131,10 @@ public class BlockTrap extends Block {
         return new BlockStateContainer(this, new IProperty[]{VARIANT});
     }
 
-    /**
-     * Returns a list of blocks with the same ID, but different meta (eg: wood
-     * returns 4 blocks)
-     */
     @Override
     @SideOnly(Side.CLIENT)
-    public void getSubBlocks(Item item, CreativeTabs tab, NonNullList<ItemStack> list) {
+    public void getSubBlocks(CreativeTabs tab, NonNullList<ItemStack> list) {
+        Item item = Item.getItemFromBlock(this);
         for (byte meta = 0; meta < EnumTrap.values().length; meta++) {
             list.add(new ItemStack(item, 1, meta));
         }

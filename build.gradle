@@ -1,13 +1,10 @@
 buildscript {
     repositories {
         jcenter()
-        maven {
-            name = "forge"
-            url = "http://files.minecraftforge.net/maven"
-        }
+        maven { url = "http://files.minecraftforge.net/maven" }
     }
     dependencies {
-        classpath 'net.minecraftforge.gradle:ForgeGradle:2.2-SNAPSHOT'
+        classpath 'net.minecraftforge.gradle:ForgeGradle:2.3-SNAPSHOT'
     }
 }
 apply plugin: 'net.minecraftforge.gradle.forge'
@@ -17,15 +14,15 @@ tasks.withType(JavaCompile) {
     targetCompatibility = "1.8"
 }
 
-version = "1.0.10"
+version = "1.1.0"
 group = "nightkosh.gravestone_extended"
 archivesBaseName = "GraveStone-1.11.2-Extended"
 
 minecraft {
-    version = "1.11.2-13.20.0.2282"
+    version = "1.12.2-14.23.0.2529"
     runDir = "idea"
 
-    mappings = "snapshot_20161220"
+    mappings = "snapshot_20171003"
 }
 
 ext.apiSophisticatedWolves = "./api/sophisticated_wolves"
@@ -43,7 +40,7 @@ sourceSets {
 
 dependencies {
 //    compile fileTree(include: ['*.jar'], dir: 'external_libs')
-    compile files("external_libs/GraveStone-1.11.2-Graves-1.0.10.jar")
+    compile files("external_libs/GraveStone-1.12-Graves-1.0.12.jar")
 }
 
 jar {

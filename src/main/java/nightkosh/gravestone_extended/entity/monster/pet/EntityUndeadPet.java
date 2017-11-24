@@ -100,7 +100,7 @@ public abstract class EntityUndeadPet extends EntityMob {
     @Override
     public void onLivingUpdate() {
         if (this.getEntityWorld().isDaytime() && !this.getEntityWorld().isRemote && !this.mobType.sunLightProtected()) {
-            float f = this.getBrightness(1);
+            float f = this.getBrightness();
 
             if (f > 0.5F && this.rand.nextFloat() * 30 < (f - 0.4F) * 2 && this.getEntityWorld().canBlockSeeSky(
                     new BlockPos(MathHelper.floor(this.posX), MathHelper.floor(this.posY), MathHelper.floor(this.posZ)))) {

@@ -169,6 +169,7 @@ entity.GSZombieSkullCrawler.name=Rastejador Caveira Zumbi
 entity.GSRaven.name=Corvo
 entity.GSSkeletonRaider.name=Incursor Esqueleto
 entity.GSZombieRaider.name=Incursor Zumbi
+entity.Villager.gravestone-extended:undertaker=Agente Funerário
 
 
 # Console messages

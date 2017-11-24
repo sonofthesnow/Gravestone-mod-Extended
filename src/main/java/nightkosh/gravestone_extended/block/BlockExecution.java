@@ -56,7 +56,7 @@ public class BlockExecution extends BlockContainer {
 
     public BlockExecution() {
         super(Material.ROCK);
-        this.isBlockContainer = true;
+//        this.isBlockContainer = true;//TODO ????
         this.setSoundType(SoundType.WOOD);
         this.setHardness(1);
         this.setResistance(5);
@@ -137,7 +137,8 @@ public class BlockExecution extends BlockContainer {
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void getSubBlocks(Item item, CreativeTabs tab, NonNullList<ItemStack> list) {
+    public void getSubBlocks(CreativeTabs tab, NonNullList<ItemStack> list) {
+        Item item = Item.getItemFromBlock(this);
         for (EnumExecution executionBlock : EnumExecution.values()) {
             list.add(new ItemStack(item, 1, executionBlock.ordinal()));
         }

@@ -39,7 +39,7 @@ public class GSGraveTextGui extends GuiScreen {
         Keyboard.enableRepeatEvents(true);
         this.buttonList.add(randomTextButton = new GuiButton(1, this.width / 2 - 100, this.height / 4 + 95, randomTextStr));
         this.buttonList.add(closeButton = new GuiButton(0, this.width / 2 - 100, this.height / 4 + 120, closeStr));
-        this.textField = new GuiTextField(0, this.fontRendererObj, this.width / 2 - 100, 100, 200, 20);
+        this.textField = new GuiTextField(0, this.fontRenderer, this.width / 2 - 100, 100, 200, 20);
         this.textField.setText("");
         this.textField.setEnabled(true);
         this.textField.setFocused(true);
@@ -64,7 +64,7 @@ public class GSGraveTextGui extends GuiScreen {
     @Override
     public void drawScreen(int x, int y, float f) {
         drawDefaultBackground();
-        this.drawString(this.fontRendererObj, titleStr, this.width / 2 - 40, 60, 16777215);
+        this.drawString(this.fontRenderer, titleStr, this.width / 2 - 40, 60, 16777215);
         this.textField.drawTextBox();
         super.drawScreen(x, y, f);
     }

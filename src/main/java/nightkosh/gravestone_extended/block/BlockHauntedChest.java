@@ -215,12 +215,10 @@ public class BlockHauntedChest extends BlockContainer {
         return getBlockItemStack(world, pos, world.getBlockState(pos));
     }
 
-    /**
-     * returns a list of blocks with the same ID, but different meta (eg: wood returns 4 blocks)
-     */
     @Override
     @SideOnly(Side.CLIENT)
-    public void getSubBlocks(Item item, CreativeTabs tabs, NonNullList<ItemStack> list) {
+    public void getSubBlocks(CreativeTabs tab, NonNullList<ItemStack> list) {
+        Item item = Item.getItemFromBlock(this);
         for (byte i = 0; i < EnumHauntedChest.values().length; i++) {
             ItemStack stack = new ItemStack(item, 1, 0);
             NBTTagCompound nbt = new NBTTagCompound();

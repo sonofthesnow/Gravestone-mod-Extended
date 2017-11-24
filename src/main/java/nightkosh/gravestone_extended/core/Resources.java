@@ -58,6 +58,7 @@ public class Resources extends nightkosh.gravestone.core.Resources{
     public static final ResourceLocation WITCH = new ResourceLocation("textures/entity/witch.png");
 
     public static final String UNDERTAKER = ENTITY_LOCATION + "undertaker.png";
+    public static final String UNDERTAKER_ZOMBIE = ENTITY_LOCATION + "zombie_undertaker.png";
     public static final ResourceLocation ZOMBIE_DOG = new ResourceLocation(ENTITY_LOCATION + "zombiedog.png");
     public static final ResourceLocation GREEN_ZOMBIE_DOG = new ResourceLocation(ENTITY_LOCATION + "greenzombiedog.png");
     public static final ResourceLocation ZOMBIE_OZELOT = new ResourceLocation(ENTITY_LOCATION + "zombieozelot.png");

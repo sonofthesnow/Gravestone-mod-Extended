@@ -39,7 +39,7 @@ public class EntityAIBreakBlock extends EntityAIBlockInteract {
      * Returns whether an in-progress EntityAIBase should continue executing
      */
     @Override
-    public boolean continueExecuting() {
+    public boolean shouldContinueExecuting() {
         double d0 = this.theEntity.getDistanceSq((double) this.entityPosX, (double) this.entityPosY, (double) this.entityPosZ);
         return d0 < 4.0D;
     }

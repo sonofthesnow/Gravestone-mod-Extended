@@ -12,6 +12,7 @@ import net.minecraft.entity.passive.EntityOcelot;
 import net.minecraft.entity.passive.EntityVillager;
 import net.minecraft.entity.passive.EntityWolf;
 import net.minecraft.init.SoundEvents;
+import net.minecraft.util.DamageSource;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.BlockPos;
@@ -57,8 +58,8 @@ public class EntityZombieHorse extends EntityUndeadHorse {
         return SoundEvents.ENTITY_ZOMBIE_HORSE_DEATH;
     }
 
-    protected SoundEvent getHurtSound() {
-        super.getHurtSound();
+    protected SoundEvent getHurtSound(DamageSource damageSource) {
+        super.getHurtSound(damageSource);
         return SoundEvents.ENTITY_ZOMBIE_HORSE_HURT;
     }
 

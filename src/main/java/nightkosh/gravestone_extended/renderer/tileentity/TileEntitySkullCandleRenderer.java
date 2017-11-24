@@ -51,8 +51,8 @@ public class TileEntitySkullCandleRenderer extends TileEntitySpecialRenderer {
     }
 
     @Override
-    public void renderTileEntityAt(TileEntity tileEntity, double x, double y, double z, float par8, int par9) {
-        this.renderTileEntitySkullAt((TileEntitySkullCandle) tileEntity, (float) x, (float) y, (float) z, par8);
+    public void render(TileEntity te, double x, double y, double z, float partialTicks, int destroyStage, float alpha) {
+        this.renderTileEntitySkullAt((TileEntitySkullCandle) te, (float) x, (float) y, (float) z, alpha);
     }
 
     private ModelRendererSkull.EnumSkullType getSkullType(EnumSkullCandle skullType) {

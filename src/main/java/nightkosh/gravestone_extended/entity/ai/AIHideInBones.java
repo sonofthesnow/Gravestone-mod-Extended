@@ -57,8 +57,8 @@ public class AIHideInBones extends EntityAIWander {
     }
 
     @Override
-    public boolean continueExecuting() {
-        boolean continueExecuting = !this.field_179484_c && super.continueExecuting();
+    public boolean shouldContinueExecuting() {
+        boolean continueExecuting = !this.field_179484_c && super.shouldContinueExecuting();
         if (!continueExecuting) {
             isExecuting = false;
         }

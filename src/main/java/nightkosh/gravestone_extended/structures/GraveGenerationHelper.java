@@ -9,6 +9,7 @@ import net.minecraft.world.World;
 import net.minecraft.world.gen.structure.StructureBoundingBox;
 import nightkosh.gravestone.helper.GraveGenerationHelper.EnumGraveTypeByEntity;
 import nightkosh.gravestone.tileentity.TileEntityGraveStone;
+import nightkosh.gravestone_extended.core.GSBlock;
 import nightkosh.gravestone_extended.entity.helper.EntityGroupOfGravesMobSpawnerHelper;
 import nightkosh.gravestone_extended.helper.GraveInventoryHelper;
 import nightkosh.gravestone_extended.helper.GraveStoneHelper;
@@ -35,6 +36,10 @@ public class GraveGenerationHelper {
         world.spawnEntity(spawnerHelper);
 
         return spawnerHelper;
+    }
+
+    public static boolean isGraveAlreadyPlaced(World world, int x, int y, int z) {
+        return world.getBlockState(new BlockPos(x, y, z)).getBlock() == GSBlock.GRAVE_STONE;
     }
 
     public static void placeGrave(IComponentGraveStone component, World world, Random random, int x, int y, int z,

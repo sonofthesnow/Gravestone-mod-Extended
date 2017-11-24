@@ -64,8 +64,8 @@ public class TileEntityPileOfBonesRenderer extends TileEntitySpecialRenderer {
     }
 
     @Override
-    public void renderTileEntityAt(TileEntity tileEntity, double x, double y, double z, float par8, int par9) {
-        this.renderTileEntityCandleAt((TileEntityPileOfBones) tileEntity, (float) x, (float) y, (float) z, par8);
+    public void render(TileEntity te, double x, double y, double z, float partialTicks, int destroyStage, float alpha) {
+        this.renderTileEntityCandleAt((TileEntityPileOfBones) te, (float) x, (float) y, (float) z, alpha);
     }
 
     protected TileEntityPileOfBones getDefaultTE() {

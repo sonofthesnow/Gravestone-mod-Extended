@@ -59,7 +59,7 @@ public class TileEntityMemorialRenderer extends TileEntityRenderer {
     }
 
     @Override
-    public void renderTileEntityAt(TileEntity te, double x, double y, double z, float f, int par9) {
+    public void render(TileEntity te, double x, double y, double z, float partialTicks, int destroyStage, float alpha) {
         TileEntityMemorial tileEntity = (TileEntityMemorial) te;
 
         if (tileEntity == null) {

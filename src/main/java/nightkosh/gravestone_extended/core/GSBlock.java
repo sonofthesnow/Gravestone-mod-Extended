@@ -1,7 +1,13 @@
 package nightkosh.gravestone_extended.core;
 
+import net.minecraft.block.Block;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
+import net.minecraftforge.event.RegistryEvent;
+import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
+import net.minecraftforge.registries.IForgeRegistry;
 import nightkosh.gravestone_extended.block.*;
 import nightkosh.gravestone_extended.item.itemblock.*;
 
@@ -11,6 +17,7 @@ import nightkosh.gravestone_extended.item.itemblock.*;
  * @author NightKosh
  * @license Lesser GNU Public License v3 (http://www.gnu.org/licenses/lgpl.html)
  */
+@GameRegistry.ObjectHolder(ModInfo.ID)
 public class GSBlock extends nightkosh.gravestone.core.GSBlock {
 
     public static final BlockMemorial MEMORIAL = new BlockMemorial();
@@ -53,45 +60,22 @@ public class GSBlock extends nightkosh.gravestone.core.GSBlock {
     public static final BlockCorpse CORPSE = new BlockCorpse();
     public static final ItemBlock CORPSE_IB = new ItemBlockCorpse(CORPSE);
 
-    public static void registration() {
-        GameRegistry.register(MEMORIAL);
-        GameRegistry.register(MEMORIAL_IB);
+    @Mod.EventBusSubscriber(modid = ModInfo.ID)
+    public static class RegistrationHandler {
 
-        GameRegistry.register(EXECUTION);
-        GameRegistry.register(EXECUTION_IB);
-
-        GameRegistry.register(SPAWNER);
-        GameRegistry.register(SPAWNER_IB);
-
-        GameRegistry.register(TRAP);
-        GameRegistry.register(TRAP_IB);
-
-        GameRegistry.register(PILE_OF_BONES);
-        GameRegistry.register(PILE_OF_BONES_IB);
-
-        GameRegistry.register(BONE_BLOCK);
-        GameRegistry.register(BONE_BLOCK_IB);
-
-        GameRegistry.register(BONE_SLAB);
-        GameRegistry.register(BONE_SLAB_IB);
-        GameRegistry.register(BONE_STAIRS);
-        GameRegistry.register(BONE_STAIRS_IB);
-
-        GameRegistry.register(HAUNTED_CHEST);
-        GameRegistry.register(HAUNTED_CHEST_IB);
-
-        GameRegistry.register(CANDLE);
-        GameRegistry.register(CANDLE_IB);
-
-        GameRegistry.register(SKULL_CANDLE);
-        GameRegistry.register(SKULL_CANDLE_IB);
-
-        GameRegistry.register(ALTAR);
-        GameRegistry.register(ALTAR_IB);
-
-        GameRegistry.register(INVISIBLE_WALL);
-
-        GameRegistry.register(CORPSE);
-        GameRegistry.register(CORPSE_IB);
+        @SubscribeEvent
+        public static void registerBlocks(final RegistryEvent.Register<Block> event) {
+            final IForgeRegistry<Block> registry = event.getRegistry();
+            registry.registerAll(MEMORIAL, EXECUTION, SPAWNER, TRAP, PILE_OF_BONES, BONE_BLOCK,
+                    BONE_SLAB, BONE_STAIRS, HAUNTED_CHEST, CANDLE, SKULL_CANDLE, ALTAR,
+                    INVISIBLE_WALL, CORPSE);
+        }
+            @SubscribeEvent
+            public static void registerItemBlocks(final RegistryEvent.Register<Item> event) {
+                final IForgeRegistry<Item> registry = event.getRegistry();
+                registry.registerAll(MEMORIAL_IB, EXECUTION_IB, SPAWNER_IB, TRAP_IB, PILE_OF_BONES_IB,
+                        BONE_BLOCK_IB, BONE_SLAB_IB, BONE_STAIRS_IB, HAUNTED_CHEST_IB, CANDLE_IB, SKULL_CANDLE_IB,
+                        ALTAR_IB, CORPSE_IB);
+            }
     }
 }

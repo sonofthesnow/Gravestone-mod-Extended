@@ -86,13 +86,13 @@ public class CatacombsGenerator implements GSStructureGenerator {
     protected static boolean noAnyInRange(int x, int z, World world) {
         GSLogger.logInfo("Catacombs generation - Begin Checking area for another catacombs or villages");
         for (ChunkPos position : structuresList) {
-            if (checkStructuresInRange(position.chunkXPos, position.chunkZPos, x, z, CATACOMBS_DISTANCE)) {
+            if (checkStructuresInRange(position.x, position.z, x, z, CATACOMBS_DISTANCE)) {
                 return false;
             }
         }
 
-        if (world.villageCollectionObj != null && world.villageCollectionObj.getVillageList() != null) {
-            for (Object villageObj : world.villageCollectionObj.getVillageList()) {
+        if (world.getVillageCollection() != null && world.getVillageCollection().getVillageList() != null) {
+            for (Object villageObj : world.getVillageCollection().getVillageList()) {
                 BlockPos villageCenter = ((Village) villageObj).getCenter();
 
                 if (checkStructuresInRange(villageCenter.getX(), villageCenter.getZ(), x, z, VILLAGE_RANGE)) {

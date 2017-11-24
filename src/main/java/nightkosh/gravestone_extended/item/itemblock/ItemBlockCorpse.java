@@ -2,6 +2,7 @@ package nightkosh.gravestone_extended.item.itemblock;
 
 import com.mojang.authlib.GameProfile;
 import net.minecraft.block.Block;
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
@@ -12,6 +13,7 @@ import nightkosh.gravestone_extended.block.enums.EnumCorpse;
 import nightkosh.gravestone_extended.core.GSBlock;
 import nightkosh.gravestone_extended.item.corpse.CorpseHelper;
 
+import javax.annotation.Nullable;
 import java.util.List;
 
 /**
@@ -36,11 +38,11 @@ public class ItemBlockCorpse extends ItemBlock {
     }
 
     @Override
-    public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean par4) {
+    public void addInformation(ItemStack stack, @Nullable World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
         if (stack.getTagCompound() == null) {
             stack.setTagCompound(new NBTTagCompound());
         } else {
-            CorpseHelper.addInfo(stack.getItemDamage(), list, stack.getTagCompound());
+            CorpseHelper.addInfo(stack.getItemDamage(), tooltip, stack.getTagCompound());
         }
     }
 

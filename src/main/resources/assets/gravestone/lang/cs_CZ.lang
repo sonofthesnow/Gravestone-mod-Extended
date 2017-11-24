@@ -178,6 +178,7 @@ entity.GSZombieSkullCrawler.name=Zombie lebkokrab
 entity.GSRaven.name=Havran
 entity.GSSkeletonRaider.name=Kostlivý nájezdník
 entity.GSZombieRaider.name=Zombie nájezdník
+entity.Villager.gravestone-extended:undertaker=Hrobař
 
 
 # Console messages

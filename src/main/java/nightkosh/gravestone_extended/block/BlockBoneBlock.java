@@ -47,7 +47,8 @@ public class BlockBoneBlock extends net.minecraft.block.Block {
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void getSubBlocks(Item item, CreativeTabs tab, NonNullList<ItemStack> list) {
+    public void getSubBlocks(CreativeTabs tab, NonNullList<ItemStack> list) {
+        Item item = Item.getItemFromBlock(this);
         for (byte meta = 0; meta < EnumBoneBlock.values().length; meta++) {
             list.add(new ItemStack(item, 1, meta));
         }

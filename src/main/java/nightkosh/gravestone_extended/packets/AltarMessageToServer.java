@@ -84,7 +84,7 @@ public class AltarMessageToServer implements IMessage, IMessageHandler<AltarMess
     public IMessage onMessage(AltarMessageToServer message, MessageContext ctx) {
         if (ctx.side.isServer()) {
             World world = DimensionManager.getWorld(message.dimensionID);
-            if (world == null || ((ctx.getServerHandler().playerEntity != null) && (ctx.getServerHandler().playerEntity.getEntityId() != message.playerID))) {
+            if (world == null || ((ctx.getServerHandler().player != null) && (ctx.getServerHandler().player.getEntityId() != message.playerID))) {
                 return null;
             }
             EntityPlayer player = (EntityPlayer) world.getEntityByID(message.playerID);

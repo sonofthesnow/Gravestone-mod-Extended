@@ -1,7 +1,7 @@
 package nightkosh.gravestone_extended.particle;
 
 import net.minecraft.client.particle.ParticleFlame;
-import net.minecraft.client.renderer.VertexBuffer;
+import net.minecraft.client.renderer.BufferBuilder;
 import net.minecraft.entity.Entity;
 import net.minecraft.world.World;
 
@@ -30,7 +30,7 @@ public class EntityBigFlameFX extends ParticleFlame {
     }
 
     @Override
-    public void renderParticle(VertexBuffer worldRenderer, Entity entity, float partialTicks, float x, float y, float z, float p_180434_7_, float p_180434_8_) {
+    public void renderParticle(BufferBuilder buffer, Entity entity, float partialTicks, float x, float y, float z, float p_180434_7_, float p_180434_8_) {
         float xz = (this.particleAge + partialTicks) / (float) this.particleMaxAge;
         this.particleScale = this.scale * (1 - xz * xz * 0.5F);
 
@@ -55,9 +55,9 @@ public class EntityBigFlameFX extends ParticleFlame {
         int j = brightness >> 16 & 65535;
         int k = brightness & 65535;
 
-        worldRenderer.pos((double)(xPos - x * scale - p_180434_7_ * scale), (double)(yPos - y * scale), (double)(zPos - z * scale - p_180434_8_ * scale)).tex((double) f1, (double) f3).color(this.particleRed, this.particleGreen, this.particleBlue, this.particleAlpha).lightmap(j, k).endVertex();
-        worldRenderer.pos((double)(xPos - x * scale + p_180434_7_ * scale), (double)(yPos + y * scale), (double)(zPos - z * scale + p_180434_8_ * scale)).tex((double)f1, (double)f2).color(this.particleRed, this.particleGreen, this.particleBlue, this.particleAlpha).lightmap(j, k).endVertex();
-        worldRenderer.pos((double)(xPos + x * scale + p_180434_7_ * scale), (double)(yPos + y * scale), (double)(zPos + z * scale + p_180434_8_ * scale)).tex((double) f, (double) f2).color(this.particleRed, this.particleGreen, this.particleBlue, this.particleAlpha).lightmap(j, k).endVertex();
-        worldRenderer.pos((double)(xPos + x * scale - p_180434_7_ * scale), (double)(yPos - y * scale), (double)(zPos + z * scale - p_180434_8_ * scale)).tex((double) f, (double) f3).color(this.particleRed, this.particleGreen, this.particleBlue, this.particleAlpha).lightmap(j, k).endVertex();
+        buffer.pos((double)(xPos - x * scale - p_180434_7_ * scale), (double)(yPos - y * scale), (double)(zPos - z * scale - p_180434_8_ * scale)).tex((double) f1, (double) f3).color(this.particleRed, this.particleGreen, this.particleBlue, this.particleAlpha).lightmap(j, k).endVertex();
+        buffer.pos((double)(xPos - x * scale + p_180434_7_ * scale), (double)(yPos + y * scale), (double)(zPos - z * scale + p_180434_8_ * scale)).tex((double)f1, (double)f2).color(this.particleRed, this.particleGreen, this.particleBlue, this.particleAlpha).lightmap(j, k).endVertex();
+        buffer.pos((double)(xPos + x * scale + p_180434_7_ * scale), (double)(yPos + y * scale), (double)(zPos + z * scale + p_180434_8_ * scale)).tex((double) f, (double) f2).color(this.particleRed, this.particleGreen, this.particleBlue, this.particleAlpha).lightmap(j, k).endVertex();
+        buffer.pos((double)(xPos + x * scale - p_180434_7_ * scale), (double)(yPos - y * scale), (double)(zPos + z * scale - p_180434_8_ * scale)).tex((double) f, (double) f3).color(this.particleRed, this.particleGreen, this.particleBlue, this.particleAlpha).lightmap(j, k).endVertex();
     }
 }

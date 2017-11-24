@@ -98,7 +98,7 @@ public class TileEntityHauntedChestRenderer extends TileEntitySpecialRenderer {
     }
 
     @Override
-    public void renderTileEntityAt(TileEntity te, double x, double y, double z, float par8, int par9) {
-        this.renderTileEntityChestAt((TileEntityHauntedChest) te, x, y, z, par8);
+    public void render(TileEntity te, double x, double y, double z, float partialTicks, int destroyStage, float alpha) {
+        this.renderTileEntityChestAt((TileEntityHauntedChest) te, x, y, z, alpha);
     }
 }

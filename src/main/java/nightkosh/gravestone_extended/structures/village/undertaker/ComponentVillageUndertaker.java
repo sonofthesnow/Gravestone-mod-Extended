@@ -239,7 +239,9 @@ public class ComponentVillageUndertaker extends StructureVillagePieces.Village i
 
         for (int x = startX + 3; x < startX + 11; x += 2) {
             for (int z = 3 + startZ; z < 9 + startZ; z += 2) {
-                GraveGenerationHelper.placeGrave(this, world, random, x, 1, z, graveState, spawnerHelper, EnumGraveTypeByEntity.HUMAN_GRAVES);
+                if (!GraveGenerationHelper.isGraveAlreadyPlaced(world, x, 1, z)) {
+                    GraveGenerationHelper.placeGrave(this, world, random, x, 1, z, graveState, spawnerHelper, EnumGraveTypeByEntity.HUMAN_GRAVES);
+                }
             }
         }
 
@@ -271,7 +273,7 @@ public class ComponentVillageUndertaker extends StructureVillagePieces.Village i
 
     @Override
     protected net.minecraftforge.fml.common.registry.VillagerRegistry.VillagerProfession chooseForgeProfession(int count, net.minecraftforge.fml.common.registry.VillagerRegistry.VillagerProfession prof) {
-        return VillagersHandler.UNDERTAKER_PROFESSION;
+        return VillagersHandler.undertakerProfession;
     }
 
     protected void generateBed(World world, int x, int y, int z, StructureBoundingBox boundingBox) {

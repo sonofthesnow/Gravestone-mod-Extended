@@ -220,7 +220,7 @@ public class BlockMemorial extends BlockContainer {
 
     public BlockMemorial() {
         super(Material.ROCK);
-        this.isBlockContainer = true;
+//        this.isBlockContainer = true; //TODO ?????
         this.setSoundType(SoundType.STONE);
         this.setHardness(1);
         this.setResistance(5);
@@ -475,7 +475,8 @@ public class BlockMemorial extends BlockContainer {
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void getSubBlocks(Item item, CreativeTabs tab, NonNullList<ItemStack> list) {
+    public void getSubBlocks(CreativeTabs tab, NonNullList<ItemStack> list) {
+        Item item = Item.getItemFromBlock(this);
         for (int index : TAB_MEMORIALS) {
             list.add(getMemorialItemForCreativeInventory(item, index));
         }

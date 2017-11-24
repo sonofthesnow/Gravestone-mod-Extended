@@ -50,7 +50,7 @@ public class TileEntityCorpseRenderer extends TileEntitySpecialRenderer {
     }
 
     @Override
-    public void renderTileEntityAt(TileEntity te, double x, double y, double z, float partialTicks, int destroyStage) {
+    public void render(TileEntity te, double x, double y, double z, float partialTicks, int destroyStage, float alpha) {
         renderCorpse((TileEntityCorpse) te, x, y, z, partialTicks);
     }
 

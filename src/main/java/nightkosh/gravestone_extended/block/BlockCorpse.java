@@ -64,7 +64,8 @@ public class BlockCorpse extends BlockContainer {
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void getSubBlocks(Item item, CreativeTabs tab, NonNullList<ItemStack> list) {
+    public void getSubBlocks(CreativeTabs tab, NonNullList<ItemStack> list) {
+        Item item = Item.getItemFromBlock(this);
         if (Minecraft.getMinecraft().world != null) {
             Minecraft.getMinecraft().world.playerEntities.forEach(player -> {
                 list.add(CorpseHelper.getDefaultPlayerCorpse(player.getGameProfile()));

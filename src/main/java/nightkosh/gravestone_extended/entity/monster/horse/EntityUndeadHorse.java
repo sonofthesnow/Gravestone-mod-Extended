@@ -313,7 +313,7 @@ public abstract class EntityUndeadHorse extends AbstractHorse {
     @Override
     public void onLivingUpdate() {
         if (this.getEntityWorld().isDaytime() && !this.getEntityWorld().isRemote) {
-            float brightness = this.getBrightness(1);
+            float brightness = this.getBrightness();
             BlockPos blockpos = new BlockPos(this.posX, (double) Math.round(this.posY), this.posZ);
             if (brightness > 0.5 && this.rand.nextFloat() * 30 < (brightness - 0.4) * 2 && this.getEntityWorld().canSeeSky(blockpos) && !this.hasArmor()) {
                 this.setFire(8);

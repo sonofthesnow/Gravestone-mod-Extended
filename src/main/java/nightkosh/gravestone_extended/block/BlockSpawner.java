@@ -201,7 +201,8 @@ public class BlockSpawner extends BlockMobSpawner {
      */
     @Override
     @SideOnly(Side.CLIENT)
-    public void getSubBlocks(Item item, CreativeTabs tab, NonNullList<ItemStack> list) {
+    public void getSubBlocks(CreativeTabs tab, NonNullList<ItemStack> list) {
+        Item item = Item.getItemFromBlock(this);
         for (EnumSpawner meta : MOB_SPAWNERS) {
             list.add(new ItemStack(item, 1, meta.ordinal()));
         }

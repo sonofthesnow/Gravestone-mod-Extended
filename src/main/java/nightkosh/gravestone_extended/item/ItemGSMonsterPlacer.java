@@ -9,7 +9,6 @@ import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.IEntityLivingData;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemMonsterPlacer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.*;
@@ -226,9 +225,11 @@ public class ItemGSMonsterPlacer extends ItemMonsterPlacer {
     }
 
     @Override
-    public void getSubItems(Item item, CreativeTabs tabs, NonNullList<ItemStack>  subItems) {
-        for (int i = 0; i < EnumEggs.values().length; i++) {
-            subItems.add(new ItemStack(item, 1, i));
+    public void getSubItems(CreativeTabs tab, NonNullList<ItemStack> items) {
+        if (this.isInCreativeTab(tab)) {
+            for (int i = 0; i < EnumEggs.values().length; i++) {
+                items.add(new ItemStack(this, 1, i));
+            }
         }
     }
 }

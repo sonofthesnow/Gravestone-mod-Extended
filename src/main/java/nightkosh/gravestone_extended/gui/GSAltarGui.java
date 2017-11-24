@@ -62,7 +62,7 @@ public class GSAltarGui extends GuiContainer {
         this.drawTexturedModalRect(x, y, 0, 0, xSize, ySize);
 
 
-        this.drawString(this.fontRendererObj, String.format(requirementsStr, container.getResurrectionLevel()), this.width / 2 - 40, (height - ySize) / 2 + 55, 16777215);
+        this.drawString(this.fontRenderer, String.format(requirementsStr, container.getResurrectionLevel()), this.width / 2 - 40, (height - ySize) / 2 + 55, 16777215);
         if (player != null) {
             resurrectionButton.enabled = isCreative || player.experienceLevel >= container.getResurrectionLevel();
         }

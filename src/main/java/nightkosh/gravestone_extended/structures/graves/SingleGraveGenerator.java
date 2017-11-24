@@ -64,15 +64,15 @@ public class SingleGraveGenerator implements GSStructureGenerator {
 
     protected static boolean noAnyInRange(int x, int z) {
         for (ChunkPos position : structuresList) {
-            if (position.chunkXPos > x - RANGE && position.chunkXPos < x + RANGE
-                    && position.chunkZPos > z - RANGE && position.chunkZPos < z + RANGE) {
+            if (position.x > x - RANGE && position.x < x + RANGE
+                    && position.z > z - RANGE && position.z < z + RANGE) {
                 return false;
             }
         }
 
         for (ChunkPos position : CatacombsGenerator.getStructuresList()) {
-            if (position.chunkXPos > x - CatacombsGenerator.CATACOMBS_RANGE && position.chunkXPos < x + CatacombsGenerator.CATACOMBS_RANGE
-                    && position.chunkZPos > z - CatacombsGenerator.CATACOMBS_RANGE && position.chunkZPos < z + CatacombsGenerator.CATACOMBS_RANGE) {
+            if (position.x > x - CatacombsGenerator.CATACOMBS_RANGE && position.x < x + CatacombsGenerator.CATACOMBS_RANGE
+                    && position.z > z - CatacombsGenerator.CATACOMBS_RANGE && position.z < z + CatacombsGenerator.CATACOMBS_RANGE) {
                 return false;
             }
         }

@@ -85,7 +85,7 @@ public class EntitySkullCrawler extends EntityMob {
     }
 
     @Override
-    protected SoundEvent getHurtSound() {
+    protected SoundEvent getHurtSound(DamageSource damageSource) {
         return SoundEvents.ENTITY_SKELETON_HURT;
     }
 
@@ -129,7 +129,7 @@ public class EntitySkullCrawler extends EntityMob {
         super.onUpdate();
 
         if (!this.getEntityWorld().isRemote) {
-            this.setBesideClimbableBlock(this.isCollidedHorizontally);
+            this.setBesideClimbableBlock(this.collidedHorizontally);
         }
     }
 
@@ -284,7 +284,7 @@ public class EntitySkullCrawler extends EntityMob {
     @Override
     public void onLivingUpdate() {
         if (this.getEntityWorld().isDaytime() && !this.getEntityWorld().isRemote) {
-            float f = this.getBrightness(1);
+            float f = this.getBrightness();
 
             if (!this.isImmuneToFire && f > 0 && this.rand.nextFloat() * 30 < (f - 0.4F) * 2
                     && this.getEntityWorld().canBlockSeeSky(new BlockPos(MathHelper.floor(this.posX), MathHelper.floor(this.posY), MathHelper.floor(this.posZ)))) {

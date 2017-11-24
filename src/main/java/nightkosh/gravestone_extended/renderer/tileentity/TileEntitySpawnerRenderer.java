@@ -77,8 +77,8 @@ public class TileEntitySpawnerRenderer extends TileEntityRenderer {
     }
 
     @Override
-    public void renderTileEntityAt(TileEntity tileEntity, double x, double y, double z, float par8, int par9) {
-        this.renderSpawnerPentagramAt((TileEntitySpawner) tileEntity, (float) x, (float) y, (float) z, par8);
+    public void render(TileEntity te, double x, double y, double z, float partialTicks, int destroyStage, float alpha) {
+        this.renderSpawnerPentagramAt((TileEntitySpawner) te, (float) x, (float) y, (float) z, alpha);
     }
 
     private static ModelSpawnerBase getSpawnerModel(EnumSpawner spawnerType) {

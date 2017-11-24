@@ -3,8 +3,10 @@ package nightkosh.gravestone_extended.core;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.EnumDyeColor;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import nightkosh.gravestone_extended.block.enums.EnumExecution;
 import nightkosh.gravestone_extended.block.enums.EnumSkullCandle;
@@ -19,79 +21,161 @@ import nightkosh.gravestone_extended.config.ExtendedConfig;
  */
 public class Recipes {
 
-    private Recipes() {
-    }
+    private static final ResourceLocation GROUP = new ResourceLocation(ModInfo.ID);
 
     public static void registration() {
-        // chisel recipe
-        GameRegistry.addRecipe(new ItemStack(GSItem.CHISEL), "   ", "s  ", " i ", 's', Items.STICK, 'i', Items.IRON_INGOT);
-        // pile of bones
-        GameRegistry.addRecipe(new ItemStack(GSBlock.PILE_OF_BONES, 1, 0), "   ", " b ", "bbb", 'b', Items.BONE);
-        GameRegistry.addRecipe(new ItemStack(GSBlock.PILE_OF_BONES, 9, 1), "bbb", "bsb", "bbb", 'b', new ItemStack(GSBlock.PILE_OF_BONES, 1, 0), 's', new ItemStack(Items.SKULL, 1, 0));
-        // piles to bones
-        GameRegistry.addRecipe(new ItemStack(Items.BONE, 4), "p", 'p', new ItemStack(GSBlock.PILE_OF_BONES, 1, 0));
-        GameRegistry.addRecipe(new ItemStack(Items.SKULL, 1, 0), "ppp", "ppp", "ppp", 'p', new ItemStack(GSBlock.PILE_OF_BONES, 1, 1));
-        // bone blocks
-        GameRegistry.addRecipe(new ItemStack(GSBlock.BONE_BLOCK, 1, 0), "ppp", "ppp", "ppp", 'p', new ItemStack(GSBlock.PILE_OF_BONES, 1, 0));
-        GameRegistry.addRecipe(new ItemStack(GSBlock.BONE_BLOCK, 9, 1), "bbb", "bsb", "bbb", 'b', new ItemStack(GSBlock.BONE_BLOCK, 1, 0), 's', new ItemStack(Items.SKULL, 1, 0));
+        GameRegistry.addShapedRecipe(new ResourceLocation(ModInfo.ID, "chisel"), GROUP, new ItemStack(GSItem.CHISEL),
+                "   ", "s  ", " i ",
+                's', Items.STICK,
+                'i', Items.IRON_INGOT);
 
-        GameRegistry.addRecipe(new ItemStack(GSBlock.BONE_BLOCK), "x", "x", 'x', GSBlock.BONE_SLAB);
-        GameRegistry.addRecipe(new ItemStack(GSBlock.BONE_SLAB, 6), "xxx", 'x', GSBlock.BONE_BLOCK);
-        GameRegistry.addRecipe(new ItemStack(GSBlock.BONE_STAIRS, 4), "x  ", "xx ", "xxx", 'x', GSBlock.BONE_BLOCK);
-        // Bone block to piles
-        GameRegistry.addRecipe(new ItemStack(GSBlock.PILE_OF_BONES, 9, 0), "x", 'x', GSBlock.BONE_BLOCK);
+        GameRegistry.addShapedRecipe(new ResourceLocation(ModInfo.ID, "pile_of_bones"), GROUP, new ItemStack(GSBlock.PILE_OF_BONES, 1, 0),
+                "bb", "bb",
+                'b', Items.BONE);
 
+        GameRegistry.addShapedRecipe(new ResourceLocation(ModInfo.ID, "pile_of_bones_with_skull"), GROUP, new ItemStack(GSBlock.PILE_OF_BONES, 9, 1),
+                "bbb", "bsb", "bbb",
+                'b', new ItemStack(GSBlock.PILE_OF_BONES, 1, 0),
+                's', new ItemStack(Items.SKULL, 1, 0));
 
-        // gallows
-        GameRegistry.addRecipe(getStackWithNTB(GSBlock.EXECUTION, EnumExecution.GIBBET.ordinal(), "Type"), "ww ", "wr ", "ww ", 'w', Blocks.PLANKS, 'r', Items.LEAD);
-        // gibbets
-        GameRegistry.addRecipe(getStackWithNTB(GSBlock.EXECUTION, EnumExecution.GIBBET.ordinal(), "Type"), "ww ", "wr ", "wi ", 'w', Blocks.PLANKS, 'r', Items.LEAD, 'i', Blocks.IRON_BLOCK);
-        // stocks
-        GameRegistry.addRecipe(getStackWithNTB(GSBlock.EXECUTION, EnumExecution.STOCKS.ordinal(), "Type"), "wsw", "w w", 'w', Blocks.PLANKS, 's', Blocks.WOODEN_SLAB);
-        // burning stake
-        GameRegistry.addRecipe(getStackWithNTB(GSBlock.EXECUTION, EnumExecution.BURNING_STAKE.ordinal(), "Type"), " w ", "www", "hwh", 'w', Blocks.PLANKS, 'h', Blocks.HAY_BLOCK);
+        GameRegistry.addShapedRecipe(new ResourceLocation(ModInfo.ID, "piles_to_bones"), GROUP, new ItemStack(Items.BONE, 4),
+                "p",
+                'p', new ItemStack(GSBlock.PILE_OF_BONES, 1, 0));
 
-    //TODO ????
+        GameRegistry.addShapedRecipe(new ResourceLocation(ModInfo.ID, "skull_from_piles"), GROUP, new ItemStack(Items.SKULL, 1, 0),
+                "ppp", "ppp", "ppp",
+                'p', new ItemStack(GSBlock.PILE_OF_BONES, 1, 1));
+
+        GameRegistry.addShapedRecipe(new ResourceLocation(ModInfo.ID, "bone_block"), GROUP, new ItemStack(GSBlock.BONE_BLOCK, 1, 0),
+                "ppp", "ppp", "ppp",
+                'p', new ItemStack(GSBlock.PILE_OF_BONES, 1, 0));
+
+        GameRegistry.addShapedRecipe(new ResourceLocation(ModInfo.ID, "bone_block_with_skull"), GROUP, new ItemStack(GSBlock.BONE_BLOCK, 9, 1),
+                "bbb", "bsb", "bbb",
+                'b', new ItemStack(GSBlock.BONE_BLOCK, 1, 0), 's', new ItemStack(Items.SKULL, 1, 0));
+
+        GameRegistry.addShapedRecipe(new ResourceLocation(ModInfo.ID, "bone_block_from_slabs"), GROUP, new ItemStack(GSBlock.BONE_BLOCK),
+                "x", "x",
+                'x', GSBlock.BONE_SLAB);
+
+        GameRegistry.addShapedRecipe(new ResourceLocation(ModInfo.ID, "bone_slabs"), GROUP, new ItemStack(GSBlock.BONE_SLAB, 6),
+                "xxx",
+                'x', GSBlock.BONE_BLOCK);
+
+        GameRegistry.addShapedRecipe(new ResourceLocation(ModInfo.ID, "bone_stairs"), GROUP, new ItemStack(GSBlock.BONE_STAIRS, 4),
+                "x  ", "xx ", "xxx",
+                'x', GSBlock.BONE_BLOCK);
+
+        GameRegistry.addShapedRecipe(new ResourceLocation(ModInfo.ID, "pile_of_bones_from_block"), GROUP, new ItemStack(GSBlock.PILE_OF_BONES, 9, 0),
+                "x",
+                'x', GSBlock.BONE_BLOCK);
+
+        GameRegistry.addShapedRecipe(new ResourceLocation(ModInfo.ID, "gallows"), GROUP, getStackWithNTB(GSBlock.EXECUTION, EnumExecution.GIBBET.ordinal(), "Type"),
+                "ww ", "wr ", "ww ",
+                'w', Blocks.PLANKS,
+                'r', Items.LEAD);
+
+        GameRegistry.addShapedRecipe(new ResourceLocation(ModInfo.ID, "gibbets"), GROUP, getStackWithNTB(GSBlock.EXECUTION, EnumExecution.GIBBET.ordinal(), "Type"),
+                "ww ", "wr ", "wi ",
+                'w', Blocks.PLANKS,
+                'r', Items.LEAD,
+                'i', Blocks.IRON_BLOCK);
+
+        GameRegistry.addShapedRecipe(new ResourceLocation(ModInfo.ID, "stocks"), GROUP, getStackWithNTB(GSBlock.EXECUTION, EnumExecution.STOCKS.ordinal(), "Type"),
+                "wsw", "w w",
+                'w', Blocks.PLANKS,
+                's', Blocks.WOODEN_SLAB);
+
+        GameRegistry.addShapedRecipe(new ResourceLocation(ModInfo.ID, "burning_stake"), GROUP, getStackWithNTB(GSBlock.EXECUTION, EnumExecution.BURNING_STAKE.ordinal(), "Type"),
+                " w ", "www", "hwh",
+                'w', Blocks.PLANKS,
+                'h', Blocks.HAY_BLOCK);
+
+        //TODO ????
         // sword graves TODO remove
 //        for (net.minecraft.item.Item sword : GraveStoneHelper.swordsList) {
-//            GameRegistry.addRecipe(GraveStoneHelper.getSwordAsGrave(net.minecraft.item.Item.getItemFromBlock(Block.graveStone), new ItemStack(sword, 1)), "sc", 's', sword, 'c', ExtendedItem.chisel);
+//            GameRegistry.addShapedRecipe(new ResourceLocation(ModInfo.ID, ""), GROUP, GraveStoneHelper.getSwordAsGrave(net.minecraft.item.Item.getItemFromBlock(Block.graveStone), new ItemStack(sword, 1)),
+//                    "sc",
+//                    's', sword,
+//                    'c', ExtendedItem.chisel);
 //        }
 
-        // spawners
         if (ExtendedConfig.craftableWitherSpawner) {
-            GameRegistry.addRecipe(new ItemStack(GSBlock.SPAWNER, 1, EnumSpawner.WITHER_SPAWNER.ordinal()), "bcb", "cec", "cbc",
+            GameRegistry.addShapedRecipe(new ResourceLocation(ModInfo.ID, "wither_spawner"), GROUP, new ItemStack(GSBlock.SPAWNER, 1, EnumSpawner.WITHER_SPAWNER.ordinal()),
+                    "bcb", "cec", "cbc",
                     'c', new ItemStack(GSBlock.SKULL_CANDLE, 1, EnumSkullCandle.WITHER_SKULL.ordinal()),
                     'b', new ItemStack(Items.DYE, 1, EnumDyeColor.WHITE.getDyeDamage()), 'e', Items.ENDER_EYE);
         }
         if (ExtendedConfig.craftableSpawners) {
-            GameRegistry.addRecipe(new ItemStack(GSBlock.SPAWNER, 1, EnumSpawner.SKELETON_SPAWNER.ordinal()), "bcb", "cec", "cbc",
+            GameRegistry.addShapedRecipe(new ResourceLocation(ModInfo.ID, "skeleton_spawner"), GROUP, new ItemStack(GSBlock.SPAWNER, 1, EnumSpawner.SKELETON_SPAWNER.ordinal()),
+                    "bcb", "cec", "cbc",
                     'c', new ItemStack(GSBlock.SKULL_CANDLE, 1, EnumSkullCandle.SKELETON_SKULL.ordinal()),
                     'b', new ItemStack(Items.DYE, 1, EnumDyeColor.WHITE.getDyeDamage()), 'e', Items.ENDER_EYE);
-            GameRegistry.addRecipe(new ItemStack(GSBlock.SPAWNER, 1, EnumSpawner.ZOMBIE_SPAWNER.ordinal()), "bcb", "cec", "cbc",
+
+            GameRegistry.addShapedRecipe(new ResourceLocation(ModInfo.ID, "zombie_spawner"), GROUP, new ItemStack(GSBlock.SPAWNER, 1, EnumSpawner.ZOMBIE_SPAWNER.ordinal()),
+                    "bcb", "cec", "cbc",
                     'c', new ItemStack(GSBlock.SKULL_CANDLE, 1, EnumSkullCandle.ZOMBIE_SKULL.ordinal()),
                     'b', new ItemStack(Items.DYE, 1, EnumDyeColor.WHITE.getDyeDamage()), 'e', Items.ENDER_EYE);
-            GameRegistry.addRecipe(new ItemStack(GSBlock.SPAWNER, 1, EnumSpawner.SPIDER_SPAWNER.ordinal()), "www", "ses", "www",
+
+            GameRegistry.addShapedRecipe(new ResourceLocation(ModInfo.ID, "spider_spawner"), GROUP, new ItemStack(GSBlock.SPAWNER, 1, EnumSpawner.SPIDER_SPAWNER.ordinal()),
+                    "www", "ses", "www",
                     'w', Blocks.WEB, 's', Items.SPIDER_EYE, 'e', Items.ENDER_EYE);
         }
 
-        // candles
-        GameRegistry.addRecipe(new ItemStack(GSBlock.CANDLE, 1, 0), "t", "m", "s", 't', Items.STRING, 'm', new ItemStack(Items.DYE, 1, EnumDyeColor.WHITE.getDyeDamage()), 's', Items.SLIME_BALL);
-        addSkullCandleReciepes(new ItemStack(GSBlock.CANDLE, 1, 0));
+        GameRegistry.addShapedRecipe(new ResourceLocation(ModInfo.ID, "candle"), GROUP, new ItemStack(GSBlock.CANDLE, 1, 0),
+                "t", "m", "s",
+                't', Items.STRING,
+                'm', new ItemStack(Items.DYE, 1, EnumDyeColor.WHITE.getDyeDamage()),
+                's', Items.SLIME_BALL);
 
-        GameRegistry.addRecipe(new ItemStack(Items.SKULL, 1, 0), "c", 'c', new ItemStack(GSBlock.SKULL_CANDLE, 1, EnumSkullCandle.SKELETON_SKULL.ordinal()));
-        GameRegistry.addRecipe(new ItemStack(Items.SKULL, 1, 1), "c", 'c', new ItemStack(GSBlock.SKULL_CANDLE, 1, EnumSkullCandle.WITHER_SKULL.ordinal()));
-        GameRegistry.addRecipe(new ItemStack(Items.SKULL, 1, 2), "c", 'c', new ItemStack(GSBlock.SKULL_CANDLE, 1, EnumSkullCandle.ZOMBIE_SKULL.ordinal()));
+        GameRegistry.addShapedRecipe(new ResourceLocation(ModInfo.ID, "skeleton_candle"), GROUP, new ItemStack(GSBlock.SKULL_CANDLE, 1, EnumSkullCandle.SKELETON_SKULL.ordinal()),
+                "c", "s",
+                's', new ItemStack(Items.SKULL, 1, 0),
+                'c', new ItemStack(GSBlock.CANDLE, 1, 0));
+
+        GameRegistry.addShapedRecipe(new ResourceLocation(ModInfo.ID, "wither_candle"), GROUP, new ItemStack(GSBlock.SKULL_CANDLE, 1, EnumSkullCandle.WITHER_SKULL.ordinal()),
+                "c", "s",
+                's', new ItemStack(Items.SKULL, 1, 1),
+                'c', new ItemStack(GSBlock.CANDLE, 1, 0));
+
+        GameRegistry.addShapedRecipe(new ResourceLocation(ModInfo.ID, "zombie_candle"), GROUP, new ItemStack(GSBlock.SKULL_CANDLE, 1, EnumSkullCandle.ZOMBIE_SKULL.ordinal()),
+                "c", "s",
+                's', new ItemStack(Items.SKULL, 1, 2),
+                'c', new ItemStack(GSBlock.CANDLE, 1, 0));
+
+        GameRegistry.addShapedRecipe(new ResourceLocation(ModInfo.ID, "skeleton_skull"), GROUP, new ItemStack(Items.SKULL, 1, 0),
+                "c",
+                'c', new ItemStack(GSBlock.SKULL_CANDLE, 1, EnumSkullCandle.SKELETON_SKULL.ordinal()));
+
+        GameRegistry.addShapedRecipe(new ResourceLocation(ModInfo.ID, "wither_skull"), GROUP, new ItemStack(Items.SKULL, 1, 1),
+                "c",
+                'c', new ItemStack(GSBlock.SKULL_CANDLE, 1, EnumSkullCandle.WITHER_SKULL.ordinal()));
+
+        GameRegistry.addShapedRecipe(new ResourceLocation(ModInfo.ID, "zombie_skull"), GROUP, new ItemStack(Items.SKULL, 1, 2),
+                "c",
+                'c', new ItemStack(GSBlock.SKULL_CANDLE, 1, EnumSkullCandle.ZOMBIE_SKULL.ordinal()));
 
         if (ExtendedConfig.craftableNightStone) {
-            GameRegistry.addRecipe(new ItemStack(GSBlock.TRAP, 1, 0), " p ", "rnr", " s ", 'n', Blocks.NETHER_BRICK, 'p', Blocks.STONE_PRESSURE_PLATE, 'r', Items.REDSTONE, 's', Blocks.SOUL_SAND);
+            GameRegistry.addShapedRecipe(new ResourceLocation(ModInfo.ID, "nightstone"), GROUP, new ItemStack(GSBlock.TRAP, 1, 0),
+                    " p ", "rnr", " s ",
+                    'n', Blocks.NETHER_BRICK,
+                    'p', Blocks.STONE_PRESSURE_PLATE,
+                    'r', Items.REDSTONE,
+                    's', Blocks.SOUL_SAND);
         }
         if (ExtendedConfig.craftableThunderStone) {
-            GameRegistry.addRecipe(new ItemStack(GSBlock.TRAP, 1, 1), " p ", "rnr", " s ", 'n', Blocks.STONEBRICK, 'p', Blocks.STONE_PRESSURE_PLATE, 'r', Items.REDSTONE, 's', Blocks.SOUL_SAND);
+            GameRegistry.addShapedRecipe(new ResourceLocation(ModInfo.ID, "thunderstone"), GROUP, new ItemStack(GSBlock.TRAP, 1, 1),
+                    " p ", "rnr", " s ",
+                    'n', Blocks.STONEBRICK,
+                    'p', Blocks.STONE_PRESSURE_PLATE,
+                    'r', Items.REDSTONE,
+                    's', Blocks.SOUL_SAND);
         }
 
         // altar
-        net.minecraft.item.Item altarCrystal = (ExtendedConfig.hardAltarRecipe) ? Items.NETHER_STAR : Items.DIAMOND;
-        GameRegistry.addRecipe(new ItemStack(GSBlock.ALTAR), " h ", "sns", "bbb",
+        Item altarCrystal = (ExtendedConfig.hardAltarRecipe) ? Items.NETHER_STAR : Items.DIAMOND;
+        GameRegistry.addShapedRecipe(new ResourceLocation(ModInfo.ID, "altar"), GROUP, new ItemStack(GSBlock.ALTAR),
+                " h ", "sns", "bbb",
                 'h', altarCrystal,
                 's', new ItemStack(Items.SKULL, 1, 0),
                 'n', new ItemStack(GSBlock.TRAP, 1, 0),
@@ -106,13 +190,12 @@ public class Recipes {
         return stack;
     }
 
-    public static void addSkullCandleReciepes(ItemStack candle) {
-        GameRegistry.addRecipe(new ItemStack(GSBlock.SKULL_CANDLE, 1, EnumSkullCandle.SKELETON_SKULL.ordinal()), "c", "s", 's', new ItemStack(Items.SKULL, 1, 0), 'c', candle);
-        GameRegistry.addRecipe(new ItemStack(GSBlock.SKULL_CANDLE, 1, EnumSkullCandle.WITHER_SKULL.ordinal()), "c", "s", 's', new ItemStack(Items.SKULL, 1, 1), 'c', candle);
-        GameRegistry.addRecipe(new ItemStack(GSBlock.SKULL_CANDLE, 1, EnumSkullCandle.ZOMBIE_SKULL.ordinal()), "c", "s", 's', new ItemStack(Items.SKULL, 1, 2), 'c', candle);
-    }
-
-    public static void addForestryBackpack(ItemStack backpack, net.minecraft.item.Item item) {
-        GameRegistry.addRecipe(backpack, "sws", "ici", "sws", 'w', Blocks.WOOL, 'i', item, 's', Items.STRING, 'c', Blocks.CHEST);
+    public static void addForestryBackpack(ItemStack backpack, Item item) {
+        GameRegistry.addShapedRecipe(new ResourceLocation(ModInfo.ID, "backpack"), GROUP, backpack,
+                "sws", "ici", "sws",
+                'w', Blocks.WOOL,
+                'i', item,
+                's', Items.STRING,
+                'c', Blocks.CHEST);
     }
 }

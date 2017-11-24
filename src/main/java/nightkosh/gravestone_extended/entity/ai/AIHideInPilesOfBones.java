@@ -56,8 +56,8 @@ public class AIHideInPilesOfBones extends EntityAIWander {
     }
 
     @Override
-    public boolean continueExecuting() {
-        return !this.field_179484_c && super.continueExecuting();
+    public boolean shouldContinueExecuting() {
+        return !this.field_179484_c && super.shouldContinueExecuting();
     }
 
     @Override

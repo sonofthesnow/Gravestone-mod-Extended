@@ -4,6 +4,7 @@ import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityAIAvoidEntity;
 import net.minecraft.entity.passive.EntityWolf;
 import net.minecraft.init.SoundEvents;
+import net.minecraft.util.DamageSource;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.text.translation.I18n;
@@ -45,8 +46,8 @@ public class EntitySkeletonHorse extends EntityUndeadHorse {
     }
 
     @Override
-    protected SoundEvent getHurtSound() {
-        super.getHurtSound();
+    protected SoundEvent getHurtSound(DamageSource damageSource) {
+        super.getHurtSound(damageSource);
         return SoundEvents.ENTITY_SKELETON_HORSE_HURT;
     }
 

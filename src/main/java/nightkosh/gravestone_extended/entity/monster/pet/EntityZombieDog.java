@@ -11,6 +11,7 @@ import net.minecraft.entity.passive.EntityWolf;
 import net.minecraft.init.Items;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.item.Item;
+import net.minecraft.util.DamageSource;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.BlockPos;
@@ -98,17 +99,11 @@ public class EntityZombieDog extends EntityUndeadDog {
         return (this.rand.nextInt(3) == 0) ? SoundEvents.ENTITY_WOLF_AMBIENT : SoundEvents.ENTITY_WOLF_GROWL;
     }
 
-    /**
-     * Returns the sound this mob makes when it is hurt.
-     */
     @Override
-    protected SoundEvent getHurtSound() {
+    protected SoundEvent getHurtSound(DamageSource damageSource) {
         return SoundEvents.ENTITY_WOLF_HURT;
     }
 
-    /**
-     * Returns the sound this mob makes on death.
-     */
     @Override
     protected SoundEvent getDeathSound() {
         return SoundEvents.ENTITY_WOLF_DEATH;

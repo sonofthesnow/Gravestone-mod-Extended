@@ -56,7 +56,7 @@ public class TileEntityAltar extends TileEntity implements IInventory {
                 entityItem.motionZ = random.nextGaussian() * 0.05;
 
                 if (corpse.hasTagCompound()) {
-                    entityItem.getEntityItem().setTagCompound(corpse.getTagCompound().copy());
+                    entityItem.getItem().setTagCompound(corpse.getTagCompound().copy());
                 }
             }
             corpse = ItemStack.EMPTY;

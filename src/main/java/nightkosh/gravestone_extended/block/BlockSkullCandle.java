@@ -126,7 +126,8 @@ public class BlockSkullCandle extends BlockContainer {
      */
     @Override
     @SideOnly(Side.CLIENT)
-    public void getSubBlocks(Item item, CreativeTabs tab, NonNullList<ItemStack> list) {
+    public void getSubBlocks(CreativeTabs tab, NonNullList<ItemStack> list) {
+        Item item = Item.getItemFromBlock(this);
         for (byte i = 0; i < EnumSkullCandle.values().length; i++) {
             list.add(new ItemStack(item, 1, i));
         }

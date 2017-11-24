@@ -184,6 +184,7 @@ entity.GSRaven.name=Corbeau
 entity.GSSkeletonRaider.name=Skeleton Raider
 ##TODO !!!!!!!!!!
 entity.GSZombieRaider.name=Zombie Raider
+entity.Villager.gravestone-extended:undertaker=Croque-mort
 
 
 # Console messages

@@ -35,7 +35,7 @@ public class AIRavenFly extends EntityAIBase {
         }
     }
 
-    public boolean continueExecuting() {
+    public boolean shouldContinueExecuting() {
         return false;
     }
 

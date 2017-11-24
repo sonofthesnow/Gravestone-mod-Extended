@@ -2,6 +2,7 @@ package nightkosh.gravestone_extended.item.itemblock;
 
 import com.mojang.authlib.GameProfile;
 import net.minecraft.block.Block;
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemBlock;
@@ -20,6 +21,7 @@ import nightkosh.gravestone_extended.ModGravestoneExtended;
 import nightkosh.gravestone_extended.block.enums.EnumMemorials;
 import nightkosh.gravestone_extended.core.GSBlock;
 
+import javax.annotation.Nullable;
 import java.util.List;
 
 /**
@@ -54,7 +56,7 @@ public class ItemBlockGSMemorial extends ItemBlock {
     }
 
     @Override
-    public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean par4) {
+    public void addInformation(ItemStack stack, @Nullable World worldIn, List<String> list, ITooltipFlag flagIn) {
         if (!stack.hasTagCompound()) {
             stack.setTagCompound(new NBTTagCompound());
         } else {

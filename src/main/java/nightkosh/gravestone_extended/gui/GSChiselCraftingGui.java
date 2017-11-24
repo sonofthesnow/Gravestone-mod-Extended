@@ -92,7 +92,7 @@ public class GSChiselCraftingGui extends GuiContainer {
 
         this.drawTexturedModalRect(x, y, 0, 0, 256, ySize);
 
-        this.drawString(this.fontRendererObj, this.REQUIRED_ITEMS_STR, 310, 170, 16777215);
+        this.drawString(this.fontRenderer, this.REQUIRED_ITEMS_STR, 310, 170, 16777215);
 
         if (isGravestone) {
             //TODO ???

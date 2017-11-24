@@ -12,6 +12,9 @@ import nightkosh.gravestone_extended.tileentity.*;
  */
 public class CommonProxy {
 
+    public void registerEggs() {
+    }
+
     public void registerMobsRenderers() {
     }
 
@@ -27,12 +30,6 @@ public class CommonProxy {
     }
 
     public void registerHandlers() {
-    }
-
-    public void registerBlocksModels() {
-    }
-
-    public void registerItemsModels() {
     }
 
     public void registerTERenderers() {

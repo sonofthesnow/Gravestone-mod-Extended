@@ -38,7 +38,7 @@ public class TileEntityCandleRenderer extends TileEntitySpecialRenderer {
     }
 
     @Override
-    public void renderTileEntityAt(TileEntity tileEntity, double x, double y, double z, float par8, int par9) {
-        this.renderTileEntityCandleAt((TileEntityCandle) tileEntity, (float) x, (float) y, (float) z, par8);
+    public void render(TileEntity te, double x, double y, double z, float partialTicks, int destroyStage, float alpha) {
+        this.renderTileEntityCandleAt((TileEntityCandle) te, (float) x, (float) y, (float) z, alpha);
     }
 }

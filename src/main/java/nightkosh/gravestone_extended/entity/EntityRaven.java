@@ -1,6 +1,7 @@
 package nightkosh.gravestone_extended.entity;
 
 import net.minecraft.init.SoundEvents;
+import net.minecraft.util.DamageSource;
 import net.minecraft.util.SoundEvent;
 import nightkosh.gravestone_extended.entity.ai.EntityRavenMoveHelper;
 import net.minecraft.entity.EntityAgeable;
@@ -69,7 +70,7 @@ public class EntityRaven extends EntityAnimal {
     }
 
     @Override
-    protected SoundEvent getHurtSound() {
+    protected SoundEvent getHurtSound(DamageSource damageSource) {
         return SoundEvents.AMBIENT_CAVE; //TODO !!!!!!!!!!!!
     }
 
