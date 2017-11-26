@@ -5,14 +5,13 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemTool;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.EnumActionResult;
+import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.EnumFacing;
 import net.minecraft.world.World;
 import nightkosh.gravestone.tileentity.TileEntityGrave;
 import nightkosh.gravestone_extended.ModGravestoneExtended;
 import nightkosh.gravestone_extended.core.GSBlock;
-import nightkosh.gravestone_extended.core.GuiHandler;
 import nightkosh.gravestone_extended.core.ModInfo;
 import nightkosh.gravestone_extended.core.Tabs;
 
@@ -57,7 +56,7 @@ public class ItemChisel extends ItemTool {
         } else if (world.getBlockState(pos).getBlock().equals(GSBlock.MEMORIAL)) {
             return setGraveText(stack, player, world, pos, true);
         } else {
-            player.openGui(ModGravestoneExtended.instance, GuiHandler.CHISEL_CRAFTING_GUI_ID, world, pos.getX(), pos.getY(), pos.getZ());
+//            player.openGui(ModGravestoneExtended.instance, GuiHandler.CHISEL_CRAFTING_GUI_ID, world, pos.getX(), pos.getY(), pos.getZ());
         }
 
         return EnumActionResult.SUCCESS;
