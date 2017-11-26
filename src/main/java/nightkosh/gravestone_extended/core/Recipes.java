@@ -5,7 +5,6 @@ import net.minecraft.init.Items;
 import net.minecraft.item.EnumDyeColor;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import nightkosh.gravestone_extended.block.enums.EnumExecution;
@@ -70,23 +69,23 @@ public class Recipes {
                 "x",
                 'x', GSBlock.BONE_BLOCK);
 
-        GameRegistry.addShapedRecipe(new ResourceLocation(ModInfo.ID, "gallows"), GROUP, getStackWithNTB(GSBlock.EXECUTION, EnumExecution.GIBBET.ordinal(), "Type"),
+        GameRegistry.addShapedRecipe(new ResourceLocation(ModInfo.ID, "gallows"), GROUP, new ItemStack(GSBlock.EXECUTION, 1, EnumExecution.GALLOWS.ordinal()),
                 "ww ", "wr ", "ww ",
                 'w', Blocks.PLANKS,
                 'r', Items.LEAD);
 
-        GameRegistry.addShapedRecipe(new ResourceLocation(ModInfo.ID, "gibbets"), GROUP, getStackWithNTB(GSBlock.EXECUTION, EnumExecution.GIBBET.ordinal(), "Type"),
+        GameRegistry.addShapedRecipe(new ResourceLocation(ModInfo.ID, "gibbets"), GROUP, new ItemStack(GSBlock.EXECUTION, 1, EnumExecution.GIBBET.ordinal()),
                 "ww ", "wr ", "wi ",
                 'w', Blocks.PLANKS,
                 'r', Items.LEAD,
                 'i', Blocks.IRON_BLOCK);
 
-        GameRegistry.addShapedRecipe(new ResourceLocation(ModInfo.ID, "stocks"), GROUP, getStackWithNTB(GSBlock.EXECUTION, EnumExecution.STOCKS.ordinal(), "Type"),
+        GameRegistry.addShapedRecipe(new ResourceLocation(ModInfo.ID, "stocks"), GROUP, new ItemStack(GSBlock.EXECUTION, 1, EnumExecution.STOCKS.ordinal()),
                 "wsw", "w w",
                 'w', Blocks.PLANKS,
                 's', Blocks.WOODEN_SLAB);
 
-        GameRegistry.addShapedRecipe(new ResourceLocation(ModInfo.ID, "burning_stake"), GROUP, getStackWithNTB(GSBlock.EXECUTION, EnumExecution.BURNING_STAKE.ordinal(), "Type"),
+        GameRegistry.addShapedRecipe(new ResourceLocation(ModInfo.ID, "burning_stake"), GROUP, new ItemStack(GSBlock.EXECUTION, 1, EnumExecution.BURNING_STAKE.ordinal()),
                 " w ", "www", "hwh",
                 'w', Blocks.PLANKS,
                 'h', Blocks.HAY_BLOCK);
@@ -180,14 +179,6 @@ public class Recipes {
                 's', new ItemStack(Items.SKULL, 1, 0),
                 'n', new ItemStack(GSBlock.TRAP, 1, 0),
                 'b', new ItemStack(GSBlock.BONE_BLOCK, 1, 0));
-    }
-
-    private static ItemStack getStackWithNTB(net.minecraft.block.Block block, int graveType, String ntbName) {
-        ItemStack stack = new ItemStack(block, 1, 0);
-        NBTTagCompound nbt = new NBTTagCompound();
-        nbt.setInteger(ntbName, graveType);
-        stack.setTagCompound(nbt);
-        return stack;
     }
 
     public static void addForestryBackpack(ItemStack backpack, Item item) {

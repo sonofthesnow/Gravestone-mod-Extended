@@ -174,7 +174,8 @@ public class BlockExecution extends BlockContainer {
         ItemStack itemStack = new ItemStack(Item.getItemFromBlock(this), 1);
         TileEntityExecution tileEntity = (TileEntityExecution) world.getTileEntity(pos);
 
-        if (tileEntity != null && itemStack != null) {
+        if (tileEntity != null && !itemStack.isEmpty()) {
+            itemStack.setItemDamage(tileEntity.getBlockMetadata());
             NBTTagCompound nbt = new NBTTagCompound();
 
             if (tileEntity.getCorpse() != null) {
