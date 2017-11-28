@@ -162,7 +162,7 @@ public class BlockExecution extends BlockContainer {
     }
 
     private ItemStack getBlockItemStackWithoutInfo(World world, BlockPos pos) {
-        return new ItemStack(Item.getItemFromBlock(this), 1);
+        return new ItemStack(Item.getItemFromBlock(this), 1, this.getMetaFromState(world.getBlockState(pos)));
     }
 
     @Override
@@ -171,11 +171,10 @@ public class BlockExecution extends BlockContainer {
 
     @Override
     public ItemStack getPickBlock(IBlockState state, RayTraceResult target, World world, BlockPos pos, EntityPlayer player) {
-        ItemStack itemStack = new ItemStack(Item.getItemFromBlock(this), 1);
+        ItemStack itemStack = new ItemStack(Item.getItemFromBlock(this), 1, this.getMetaFromState(world.getBlockState(pos)));
         TileEntityExecution tileEntity = (TileEntityExecution) world.getTileEntity(pos);
 
         if (tileEntity != null && !itemStack.isEmpty()) {
-            itemStack.setItemDamage(tileEntity.getBlockMetadata());
             NBTTagCompound nbt = new NBTTagCompound();
 
             if (tileEntity.getCorpse() != null) {
