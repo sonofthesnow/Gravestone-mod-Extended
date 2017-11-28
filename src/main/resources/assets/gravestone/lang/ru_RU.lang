@@ -165,6 +165,7 @@ entity.GSZombieSkullCrawler.name=Ползучий череп зомби
 entity.GSRaven.name=Ворон
 entity.GSSkeletonRaider.name=Скелет наездник
 entity.GSZombieRaider.name=Зомби наездник
+entity.GSSkeleton.name=Скелет
 entity.Villager.gravestone-extended:undertaker=Гробовщик
 
 
