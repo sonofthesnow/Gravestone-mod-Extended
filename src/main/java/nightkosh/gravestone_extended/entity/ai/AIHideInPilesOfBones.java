@@ -20,6 +20,7 @@ public class AIHideInPilesOfBones extends EntityAIWander {
     private EntitySkullCrawler crawler;
     private EnumFacing enumFacing;
     private boolean field_179484_c;
+    private int ticks;
 
     public AIHideInPilesOfBones(EntitySkullCrawler crawler) {
         super(crawler, 1, 10);
@@ -29,7 +30,8 @@ public class AIHideInPilesOfBones extends EntityAIWander {
 
     @Override
     public boolean shouldExecute() {
-        if (crawler.canHideInBones() && !crawler.getHideInBonesAI().isExecuting()) {
+        ticks++;
+        if (ticks >= 100 && crawler.canHideInBones() && !crawler.getHideInBonesAI().isExecuting()) {
             if (crawler.getAttackTarget() != null || !crawler.getNavigator().noPath()) {
                 return false;
             } else {
