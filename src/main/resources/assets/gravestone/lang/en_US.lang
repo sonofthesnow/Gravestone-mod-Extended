@@ -61,6 +61,13 @@ block.skull_candle.zombie.name=Zombie Skull Candle
 ## Altar
 tile.altar.name=Altar
 
+# Enchantments
+enchantment.shadow_of_death=Shadow of Death
+enchantment.poisoned_blade=Poisoned Blade
+enchantment.withered_blade=Withered Blade
+enchantment.vampiric_touch=Vampiric Touch
+enchantment.necrotic_corrosion=Necrotic Corrosion
+
 # Items
 ## Chisel
 item.gravestone.chisel.name=Gravestone Chisel

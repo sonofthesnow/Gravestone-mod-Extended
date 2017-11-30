@@ -73,6 +73,14 @@ block.skull_candle.zombie.name=Vela en Cabeza de Zombi
 ##TODO !!!!!!!!!!
 tile.altar.name=Altar
 
+# Enchantments
+## TODO !!!!!!!!!!
+enchantment.shadow_of_death=Shadow of Death
+enchantment.poisoned_blade=Poisoned Blade
+enchantment.withered_blade=Withered Blade
+enchantment.vampiric_touch=Vampiric Touch
+enchantment.necrotic_corrosion=Necrotic Corrosion
+
 
 # Items
 ## Chisel

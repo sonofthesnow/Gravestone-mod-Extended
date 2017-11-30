@@ -61,6 +61,13 @@ block.skull_candle.zombie.name=Череп зомби со свечой
 ## Altar
 tile.altar.name=Алтарь
 
+# Enchantments
+enchantment.shadow_of_death=Тень Смерти
+enchantment.poisoned_blade=Отравленное Лезвие
+enchantment.withered_blade=Иссушающее Лезвие
+enchantment.vampiric_touch=Прикосновение Вампира
+enchantment.necrotic_corrosion=Некротическая Коррозия
+
 
 # Items
 ## Chisel
