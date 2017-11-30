@@ -365,6 +365,7 @@ public class GraveInventoryHelper {
                 break;
             case QUARTZ:
                 itemList.add(PotionHelper.getGravesPotion(random));
+                itemList.add(new ItemStack(Items.DRAGON_BREATH, 5 + random.nextInt(10)));
                 break;
             case LAPIS:
                 itemList.add(new ItemStack(Items.BOOK, 3 + random.nextInt(8), 0));

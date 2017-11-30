@@ -38,15 +38,23 @@ public class PotionHelper {
     }
 
     public static ItemStack getCatacombsDispenserPotion(Random random) {
-        return PotionHelper.getSplashPotion(CATACOMBS_DISPENSER_POTIONS[random.nextInt(CATACOMBS_DISPENSER_POTIONS.length)], 1 + random.nextInt(5));
+        return getSplashPotion(CATACOMBS_DISPENSER_POTIONS[random.nextInt(CATACOMBS_DISPENSER_POTIONS.length)], 1 + random.nextInt(5));
     }
 
     public static ItemStack getPotion(PotionType potionType, int count) {
         return getPotion(Items.POTIONITEM, potionType, count);
     }
 
+    public static ItemStack getSplashOrLingeringPotion(Random random, PotionType potionType, int count) {
+        return random.nextBoolean() ? getSplashPotion(potionType, count) : getLingeringPotion(potionType, count);
+    }
+
     public static ItemStack getSplashPotion(PotionType potionType, int count) {
         return getPotion(Items.SPLASH_POTION, potionType, count);
+    }
+
+    public static ItemStack getLingeringPotion(PotionType potionType, int count) {
+        return getPotion(Items.LINGERING_POTION, potionType, count);
     }
 
     private static ItemStack getPotion(Item item, PotionType potionType, int count) {
