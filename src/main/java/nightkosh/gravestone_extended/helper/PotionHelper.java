@@ -38,7 +38,7 @@ public class PotionHelper {
     }
 
     public static ItemStack getCatacombsDispenserPotion(Random random) {
-        return getSplashPotion(CATACOMBS_DISPENSER_POTIONS[random.nextInt(CATACOMBS_DISPENSER_POTIONS.length)], 1 + random.nextInt(5));
+        return getSplashOrLingeringPotion(random, CATACOMBS_DISPENSER_POTIONS[random.nextInt(CATACOMBS_DISPENSER_POTIONS.length)], 1 + random.nextInt(5));
     }
 
     public static ItemStack getPotion(PotionType potionType, int count) {
