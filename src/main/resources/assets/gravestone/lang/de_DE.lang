@@ -65,6 +65,13 @@ tile.altar.name=Altar
 ## Chisel
 item.gravestone.chisel.name=Grabsteinmeißel
 
+## Swords
+## TODO !!!!!!!!!!
+item.gravestone.bone_sword.name=Bone Sword
+item.gravestone.bone_sword_iron.name=Iron Bone Sword
+item.gravestone.bone_sword_golden.name=Golden Bone Sword
+item.gravestone.bone_sword_diamond.name=Diamond Bone Sword
+
 ## Corpses
 item.corpse.steve=Steveleiche
 item.corpse.player=Spielerleiche

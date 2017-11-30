@@ -79,6 +79,13 @@ tile.altar.name=Altar
 ##TODO !!!!!!!!!!
 item.gravestone.chisel.name=Gravestone Chisel
 
+## Swords
+## TODO !!!!!!!!!!
+item.gravestone.bone_sword.name=Bone Sword
+item.gravestone.bone_sword_iron.name=Iron Bone Sword
+item.gravestone.bone_sword_golden.name=Golden Bone Sword
+item.gravestone.bone_sword_diamond.name=Diamond Bone Sword
+
 
 ## Corpses
 ## TODO !!!!!!!!!!

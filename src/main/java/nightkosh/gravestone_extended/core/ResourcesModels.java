@@ -18,6 +18,11 @@ public class ResourcesModels extends Resources {
     // MODEL RESOURCES
     public static final ModelResourceLocation chiselModel = new ModelResourceLocation(GSItem.CHISEL.getRegistryName(), "inventory");
 
+    public static final ModelResourceLocation BONE_SWORD = new ModelResourceLocation(GSItem.BONE_SWORD.getRegistryName(), "inventory");
+    public static final ModelResourceLocation BONE_SWORD_IRON = new ModelResourceLocation(GSItem.BONE_SWORD_IRON.getRegistryName(), "inventory");
+    public static final ModelResourceLocation BONE_SWORD_GOLDEN = new ModelResourceLocation(GSItem.BONE_SWORD_GOLDEN.getRegistryName(), "inventory");
+    public static final ModelResourceLocation BONE_SWORD_DIAMOND = new ModelResourceLocation(GSItem.BONE_SWORD_DIAMOND.getRegistryName(), "inventory");
+
     public static final ModelResourceLocation CORPSE = new ModelResourceLocation(MOD_NAME + ":gscorpse", "inventory");
 
     public static final ModelResourceLocation spawnEggModel = new ModelResourceLocation(GSItem.SPAWN_EGG.getRegistryName(), "inventory");

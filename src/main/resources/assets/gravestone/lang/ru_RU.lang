@@ -66,6 +66,12 @@ tile.altar.name=Алтарь
 ## Chisel
 item.gravestone.chisel.name=Резец для надгробий
 
+## Swords
+item.gravestone.bone_sword.name=Костяной мечь
+item.gravestone.bone_sword_iron.name=Железный Костяной мечь
+item.gravestone.bone_sword_golden.name=Золотой Костяной мечь
+item.gravestone.bone_sword_diamond.name=Алмазный Костяной мечь
+
 ## Corpses
 item.corpse.steve=Труп Стива
 item.corpse.player=Труп игрока
