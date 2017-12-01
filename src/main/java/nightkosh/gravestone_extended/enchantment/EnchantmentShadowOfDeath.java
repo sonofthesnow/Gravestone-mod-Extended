@@ -25,7 +25,7 @@ public class EnchantmentShadowOfDeath extends EnchantmentDamage {
     @Override
     public float calcDamageByCreature(int level, EnumCreatureAttribute creatureType) {
         if (creatureType == EnumCreatureAttribute.ILLAGER || creatureType == EnumCreatureAttribute.UNDEFINED) {
-            return level * 3F;
+            return level * 2.5F;
         } else {
             return 0;
         }
