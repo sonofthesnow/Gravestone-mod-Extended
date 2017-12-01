@@ -53,7 +53,7 @@ public class EnchantmentPoisonedBlade extends Enchantment {
     @Override
     public void onEntityDamaged(EntityLivingBase user, Entity target, int level) {
         if (target instanceof EntityLivingBase) {
-            ((EntityLivingBase) target).addPotionEffect(new PotionEffect(MobEffects.POISON, 100 * level));
+            ((EntityLivingBase) target).addPotionEffect(new PotionEffect(MobEffects.POISON, 200 * level));
         }
     }
 
