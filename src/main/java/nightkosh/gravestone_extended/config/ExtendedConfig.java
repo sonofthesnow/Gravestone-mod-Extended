@@ -3,6 +3,7 @@ package nightkosh.gravestone_extended.config;
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.common.config.Property;
 import nightkosh.gravestone.config.Config;
+import nightkosh.gravestone_extended.core.logger.GSLogger;
 import nightkosh.gravestone_extended.structures.GraveStoneWorldGenerator;
 import nightkosh.gravestone_extended.structures.catacombs.CatacombsGenerator;
 import nightkosh.gravestone_extended.structures.catacombs.CatacombsLevel;
@@ -11,6 +12,8 @@ import nightkosh.gravestone_extended.structures.memorials.MemorialGenerator;
 import nightkosh.gravestone_extended.structures.village.VillagersHandler;
 
 import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * GraveStone mod
@@ -57,7 +60,7 @@ public class ExtendedConfig {
     }
 
     // catacombs
-    public static int structuresDimensionId;
+    public static List<Integer> structuresDimensionIds;
     public static boolean generateCatacombs;
     public static int maxCatacombsHeight;
     public static double catacombsGenerationChance;
@@ -85,7 +88,22 @@ public class ExtendedConfig {
 
     private static void structures() {
         // catacombs
-        structuresDimensionId = config.get(CATEGORY_STRUCTURES_CATACOMBS, "StructuresDimensionId", GraveStoneWorldGenerator.DEFAULT_DIMENSION_ID).getInt();
+        Property structuresDimensionIdProperty = config.get(CATEGORY_STRUCTURES_CATACOMBS, "StructuresDimensionIds", GraveStoneWorldGenerator.DEFAULT_DIMENSION_ID);
+        structuresDimensionIdProperty.setComment("List of dimension id in which structures generation is allowed. \"dimension_id_1;dimension_id_2;.....\".");
+        String ar = structuresDimensionIdProperty.getString();
+        String[] ids = ar.split(";");
+        structuresDimensionIds = new ArrayList<>(ids.length);
+        for (String id : ids) {
+            try {
+                structuresDimensionIds.add(Integer.parseInt(id));
+            } catch (NumberFormatException e) {
+                structuresDimensionIds = new ArrayList<>();
+                structuresDimensionIds.add(GraveStoneWorldGenerator.DEFAULT_DIMENSION_ID);
+                GSLogger.logError("Can't parse StructuresDimensionIds!!!");
+                e.printStackTrace();
+            }
+        }
+
         generateCatacombs = config.get(CATEGORY_STRUCTURES_CATACOMBS, "GenerateCatacombs", true).getBoolean(true);
         maxCatacombsHeight = config.get(CATEGORY_STRUCTURES_CATACOMBS, "MaximumCatacombsGenerationHeight", 75).getInt();
         catacombsGenerationChance = config.get(CATEGORY_STRUCTURES_CATACOMBS, "CatacombsGenerationChance", CatacombsGenerator.DEFAULT_GENERATION_CHANCE).getDouble();

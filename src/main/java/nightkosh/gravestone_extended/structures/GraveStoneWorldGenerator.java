@@ -27,7 +27,7 @@ public class GraveStoneWorldGenerator implements IWorldGenerator {
 
     @Override
     public void generate(Random random, int chunkX, int chunkZ, World world, IChunkGenerator chunkGenerator, IChunkProvider chunkProvider) {
-        if (world.provider.getDimension() == ExtendedConfig.structuresDimensionId) {
+        if (ExtendedConfig.structuresDimensionIds.contains(world.provider.getDimension())) {
             generateSurface(world, random, chunkX * 16, chunkZ * 16);
         }
     }
