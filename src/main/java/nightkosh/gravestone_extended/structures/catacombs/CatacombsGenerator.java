@@ -21,19 +21,7 @@ import java.util.Random;
  * @license Lesser GNU Public License v3 (http://www.gnu.org/licenses/lgpl.html)
  */
 public class CatacombsGenerator implements GSStructureGenerator {
-    private static CatacombsGenerator instance;
-
-    private CatacombsGenerator() {
-        instance = this;
-    }
-
-    public static CatacombsGenerator getInstance() {
-        if (instance == null) {
-            return new CatacombsGenerator();
-        } else {
-            return instance;
-        }
-    }
+    public static final CatacombsGenerator INSTANCE = new CatacombsGenerator();
 
     private static final int VILLAGE_RANGE = 200;
     public static final byte CATACOMBS_RANGE = 100;
@@ -47,17 +35,15 @@ public class CatacombsGenerator implements GSStructureGenerator {
     @Override
     public boolean generate(World world, Random rand, int x, int z, EnumFacing direction, double chance, boolean isCommand) {
         if (isCommand || (ExtendedConfig.generateCatacombs && canSpawnStructureAtCoords(world, x, z, chance) && isHeightAcceptable(world, x, z))) {
-//            new Thread(() -> { // TODO ConcurrentModificationException !!
-                CatacombsSurface surface = new CatacombsSurface(world, rand, x, z, direction);
-                GSLogger.logInfo("Generate catacombs at " + x + "x" + z);
+            structuresList.add(new ChunkPos(x, z));
+            GSLogger.logInfo("Generate catacombs at " + x + "x" + z);
+            CatacombsSurface surface = new CatacombsSurface(world, rand, x, z, direction);
 
-                if (isCommand || surface.getMausoleumY() > MINIMAL_SURFACE_HEIGHT) {//TODO !!!!!!!!!!!!!!!!!!!!!!!!!!
-                    CatacombsUnderground.build(world, rand, direction, surface.getMausoleumX(), surface.getMausoleumY(), surface.getMausoleumZ());
-                }
+            if (isCommand || surface.getMausoleumY() > MINIMAL_SURFACE_HEIGHT) {//TODO !!!!!!!!!!!!!!!!!!!!!!!!!!
+                CatacombsUnderground.build(world, rand, direction, surface.getMausoleumX(), surface.getMausoleumY(), surface.getMausoleumZ());
+            }
 
-                structuresList.add(new ChunkPos(x, z));
-                GSLogger.logInfo("Catacombs was successfully generated!");
-//            }).start();
+            GSLogger.logInfo("Catacombs was successfully generated!");
 
             return true;
         }

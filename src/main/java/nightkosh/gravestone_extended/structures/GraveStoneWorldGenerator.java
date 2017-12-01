@@ -36,9 +36,9 @@ public class GraveStoneWorldGenerator implements IWorldGenerator {
         double chance = rand.nextDouble();
         EnumFacing direction = EnumFacing.Plane.HORIZONTAL.facings()[rand.nextInt(EnumFacing.Plane.HORIZONTAL.facings().length)];
 
-        if (!CatacombsGenerator.getInstance().generate(world, rand, x, z, direction, chance, false)) {
-            if (!MemorialGenerator.getInstance().generate(world, rand, x, z, direction, chance, false)) {
-                SingleGraveGenerator.getInstance().generate(world, rand, x, z, direction, chance, false);
+        if (!CatacombsGenerator.INSTANCE.generate(world, rand, x, z, direction, chance, false)) {
+            if (!MemorialGenerator.INSTANCE.generate(world, rand, x, z, direction, chance, false)) {
+                SingleGraveGenerator.INSTANCE.generate(world, rand, x, z, direction, chance, false);
             }
         }
     }

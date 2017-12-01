@@ -23,19 +23,7 @@ import java.util.Random;
  */
 public class MemorialGenerator implements GSStructureGenerator {
 
-    private static MemorialGenerator instance;
-
-    private MemorialGenerator() {
-        instance = this;
-    }
-
-    public static MemorialGenerator getInstance() {
-        if (instance == null) {
-            return new MemorialGenerator();
-        } else {
-            return instance;
-        }
-    }
+    public static final MemorialGenerator INSTANCE = new MemorialGenerator();
 
     public static final double DEFAULT_GENERATION_CHANCE = 0.05;
     public static final short RANGE = 400;

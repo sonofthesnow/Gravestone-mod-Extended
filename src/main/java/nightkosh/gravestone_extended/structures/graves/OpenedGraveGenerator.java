@@ -14,14 +14,8 @@ import java.util.Random;
  * @license Lesser GNU Public License v3 (http://www.gnu.org/licenses/lgpl.html)
  */
 public class OpenedGraveGenerator extends SingleGraveGenerator {
-    private static OpenedGraveGenerator instance = new OpenedGraveGenerator();
+    public static final OpenedGraveGenerator INSTANCE = new OpenedGraveGenerator();
 
-    private OpenedGraveGenerator() {
-    }
-
-    public static OpenedGraveGenerator getInstance() {
-        return instance;
-    }
 
     @Override
     public boolean generate(World world, Random rand, int x, int z, EnumFacing direction, double chance, boolean isCommand) {

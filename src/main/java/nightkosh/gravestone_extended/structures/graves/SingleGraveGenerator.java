@@ -18,15 +18,7 @@ import java.util.*;
  * @license Lesser GNU Public License v3 (http://www.gnu.org/licenses/lgpl.html)
  */
 public class SingleGraveGenerator implements GSStructureGenerator {
-    private static SingleGraveGenerator instance = new SingleGraveGenerator();
-
-    protected SingleGraveGenerator() {
-
-    }
-
-    public static SingleGraveGenerator getInstance() {
-        return instance;
-    }
+    public static final SingleGraveGenerator INSTANCE = new SingleGraveGenerator();
 
     // chance to generate a structure
     public static final double DEFAULT_GENERATION_CHANCE = 0.1D;

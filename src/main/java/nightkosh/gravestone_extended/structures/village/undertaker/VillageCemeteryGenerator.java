@@ -15,19 +15,7 @@ import java.util.Random;
  * @license Lesser GNU Public License v3 (http://www.gnu.org/licenses/lgpl.html)
  */
 public class VillageCemeteryGenerator implements GSStructureGenerator {
-    private static VillageCemeteryGenerator instance;
-
-    private VillageCemeteryGenerator() {
-        instance = this;
-    }
-
-    public static VillageCemeteryGenerator getInstance() {
-        if (instance == null) {
-            return new VillageCemeteryGenerator();
-        } else {
-            return instance;
-        }
-    }
+    public static final VillageCemeteryGenerator INSTANCE = new VillageCemeteryGenerator();
 
     @Override
     public boolean generate(World world, Random rand, int x, int z, EnumFacing facing, double chance, boolean isCommand) {

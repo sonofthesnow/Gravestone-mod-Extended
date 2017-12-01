@@ -73,22 +73,22 @@ public class SubCommandStructuresGenerator implements ISubCommand {
 
             switch (structureName) {
                 case "catacombs":
-                    generateStructure(sender, sender.getEntityWorld(), x, z, facing, CatacombsGenerator.getInstance());
+                    generateStructure(sender, sender.getEntityWorld(), x, z, facing, CatacombsGenerator.INSTANCE);
                     break;
                 case "memorial":
-                    generateStructure(sender, sender.getEntityWorld(), x, z, facing, MemorialGenerator.getInstance());
+                    generateStructure(sender, sender.getEntityWorld(), x, z, facing, MemorialGenerator.INSTANCE);
                     break;
                 case "grave":
-                    generateStructure(sender, sender.getEntityWorld(), x, z, facing, SingleGraveGenerator.getInstance());
+                    generateStructure(sender, sender.getEntityWorld(), x, z, facing, SingleGraveGenerator.INSTANCE);
                     break;
                 case "opened_grave":
-                    generateStructure(sender, sender.getEntityWorld(), x, z, facing, OpenedGraveGenerator.getInstance());
+                    generateStructure(sender, sender.getEntityWorld(), x, z, facing, OpenedGraveGenerator.INSTANCE);
                     break;
                 case "cemetery":
-                    generateStructure(sender, sender.getEntityWorld(), x, z, facing, VillageCemeteryGenerator.getInstance());
+                    generateStructure(sender, sender.getEntityWorld(), x, z, facing, VillageCemeteryGenerator.INSTANCE);
                     break;
                 case "undertaker":
-                    generateStructure(sender, sender.getEntityWorld(), x, z, facing, VillageUndertakerGenerator.getInstance());
+                    generateStructure(sender, sender.getEntityWorld(), x, z, facing, VillageUndertakerGenerator.INSTANCE);
                     break;
                 default:
                     sender.sendMessage(new TextComponentTranslation("commands.generate.unknown_structure").setStyle(new Style().setColor(TextFormatting.RED)));
