@@ -68,6 +68,12 @@ enchantment.withered_blade=Иссушающее Лезвие
 enchantment.vampiric_touch=Прикосновение Вампира
 enchantment.necrotic_corrosion=Некротическая Коррозия
 
+# Potions
+potion.purification.title=Снимает все негативные эффекты
+potion.effect.gs_purification_type=Зелье очищения
+splash_potion.effect.gs_purification_type=Взрывное зелье очищения
+lingering_potion.effect.gs_purification_type=Туманное зелье очищения
+
 
 # Items
 ## Chisel

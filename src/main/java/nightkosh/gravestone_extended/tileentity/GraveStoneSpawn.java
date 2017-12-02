@@ -19,6 +19,7 @@ import nightkosh.gravestone_extended.entity.helper.EntityGroupOfGravesMobSpawner
  */
 public class GraveStoneSpawn extends Spawner {
 
+    private TileEntityGraveStone tileEntity;
     private static final int BASE_DELAY = 600;
     private static final int PLAYER_RANGE = 35;
     private static final int MIN_DELAY = 500;
@@ -28,9 +29,14 @@ public class GraveStoneSpawn extends Spawner {
      */
     private static final int MAX_NEARBY_ENTITIES = 3;
     /**
-     * Range for spawning new entities with nightkosh.gravestone
+     * Range for spawning new entities with gravestone
      */
     private static final int SPAWN_RANGE = 1;
+
+    public GraveStoneSpawn(TileEntityGraveStone tileEntity) {
+        super(tileEntity, BASE_DELAY);
+        this.tileEntity = tileEntity;
+    }
 
     public GraveStoneSpawn(ISpawnerEntity tileEntity) {
         super(tileEntity, BASE_DELAY);
@@ -43,16 +49,17 @@ public class GraveStoneSpawn extends Spawner {
 
     @Override
     protected void serverUpdateLogic() {
-        if (spawnerEntity.haveSpawnerHelper()) {
-            if (((EntityGroupOfGravesMobSpawnerHelper) spawnerEntity.getSpawnerHelper()).canMobsBeSpawned()) {
+        if (this.tileEntity == null || !this.tileEntity.isPurified()) {
+            if (spawnerEntity.haveSpawnerHelper()) {
+                if (((EntityGroupOfGravesMobSpawnerHelper) spawnerEntity.getSpawnerHelper()).canMobsBeSpawned()) {
+                    getAndSpawnMob();
+                }
+            } else if (isMobSpawnAllowed()) {
                 getAndSpawnMob();
+
+                this.updateDelay();
             }
-        } else if (isMobSpawnAllowed()) {
-            getAndSpawnMob();
-
-            this.updateDelay();
         }
-
     }
 
     public boolean isMobSpawnAllowed() {
