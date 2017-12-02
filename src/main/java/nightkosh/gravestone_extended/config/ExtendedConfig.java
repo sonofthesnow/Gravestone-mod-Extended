@@ -97,11 +97,12 @@ public class ExtendedConfig {
             try {
                 structuresDimensionIds.add(Integer.parseInt(id));
             } catch (NumberFormatException e) {
-                structuresDimensionIds = new ArrayList<>();
-                structuresDimensionIds.add(GraveStoneWorldGenerator.DEFAULT_DIMENSION_ID);
                 GSLogger.logError("Can't parse StructuresDimensionIds!!!");
                 e.printStackTrace();
             }
+        }
+        if (structuresDimensionIds.isEmpty()) {
+            structuresDimensionIds.add(GraveStoneWorldGenerator.DEFAULT_DIMENSION_ID);
         }
 
         generateCatacombs = config.get(CATEGORY_STRUCTURES_CATACOMBS, "GenerateCatacombs", true).getBoolean(true);
