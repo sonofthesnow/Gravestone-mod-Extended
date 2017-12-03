@@ -70,10 +70,10 @@ enchantment.necrotic_corrosion=Necrotic Corrosion
 
 #WAWLA Enchantment Descriptions
 enchantment.gravestone-extended.gs_vampiric_touch.desc=Converts 20% of damage done by this weapon to health
-enchantment.gravestone-extended.gs_withered_blade.desc=Applies wither to a target
-enchantment.gravestone-extended.gs_shadow_of_death.desc=Deals extra damage to passive mobs
-enchantment.gravestone-extended.gs_necrotic_corrosion.desc=10% of damage dealt by this weapon ignores armor
-enchantment.gravestone-extended.gs_poisoned_blade.desc=Applies poison to a target
+enchantment.gravestone-extended.gs_withered_blade.desc=Applies wither to a target for 5 seconds per level
+enchantment.gravestone-extended.gs_shadow_of_death.desc=Deals extra 2.5 damage per level to non spider and non undead mobs
+enchantment.gravestone-extended.gs_necrotic_corrosion.desc=10%(per level) of damage dealt by this weapon ignores armor
+enchantment.gravestone-extended.gs_poisoned_blade.desc=Applies poison to a target for 10 seconds per level
 
 
 # Potions
