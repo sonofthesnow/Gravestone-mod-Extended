@@ -69,7 +69,6 @@ enchantment.vampiric_touch=Прикосновение Вампира
 enchantment.necrotic_corrosion=Некротическая Коррозия
 
 #WAWLA Enchantment Descriptions
-## TODO !!!!!!!!!!
 enchantment.gravestone-extended.gs_vampiric_touch.desc=Восстанавливает здоровье в размере 20% от нанесённого урона
 enchantment.gravestone-extended.gs_withered_blade.desc=Накладывает иссушение на цель на 5 секунд за уровень
 enchantment.gravestone-extended.gs_shadow_of_death.desc=Наносит дополнительные 2.5 урона за уровень существам, не являющимся пауками или нежитью
