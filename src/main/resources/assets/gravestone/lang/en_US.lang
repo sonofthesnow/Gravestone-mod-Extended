@@ -68,6 +68,14 @@ enchantment.withered_blade=Withered Blade
 enchantment.vampiric_touch=Vampiric Touch
 enchantment.necrotic_corrosion=Necrotic Corrosion
 
+#WAWLA Enchantment Descriptions
+enchantment.gravestone-extended.gs_vampiric_touch.desc=Converts 20% of damage done by this weapon to health
+enchantment.gravestone-extended.gs_withered_blade.desc=Applies wither to a target
+enchantment.gravestone-extended.gs_shadow_of_death.desc=Deals extra damage to passive mobs
+enchantment.gravestone-extended.gs_necrotic_corrosion.desc=10% of damage dealt by this weapon ignores armor
+enchantment.gravestone-extended.gs_poisoned_blade.desc=Applies poison to a target
+
+
 # Potions
 potion.purification.title=Remove all negative effects
 potion.effect.gs_purification_type=Potion of Purification
