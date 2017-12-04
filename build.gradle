@@ -14,7 +14,7 @@ tasks.withType(JavaCompile) {
     targetCompatibility = "1.8"
 }
 
-version = "1.1.0"
+version = "1.2.3"
 group = "nightkosh.gravestone_extended"
 archivesBaseName = "GraveStone-1.12.2-Extended"
 
@@ -41,6 +41,7 @@ sourceSets {
 dependencies {
 //    compile fileTree(include: ['*.jar'], dir: 'external_libs')
     compile files("external_libs/GraveStone-1.12-Graves-1.0.12.jar")
+    compile files("external_libs/forestry_1.12.2-5.7.0.213.jar")
 }
 
 jar {
