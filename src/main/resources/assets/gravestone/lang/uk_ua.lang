@@ -1,0 +1,201 @@
+# Tabs
+itemGroup.tabGSMemorials=Меморіали
+itemGroup.tabGSCorpse=Трупи
+itemGroup.tabGSOther=Gravestone mod: Предмети
+
+
+# Blocks
+## Memorials
+block.memorial.cross.name=Меморіальний хрест
+block.memorial.obelisk.name=Обеліск
+block.memorial.steve_statue.name=Статуя Стіва
+block.memorial.villager_statue.name=Cтатуя жителя
+block.memorial.angel_statue.name=Cтатуя ангела
+block.memorial.dog_statue.name=Статуя собаки
+block.memorial.cat_statue.name=Cтатуя кішки
+block.memorial.creeper_statue.name=Cтатуя кріпера
+block.memorial.celtic_cross.name=Кельтський хрест
+
+## Executions
+block.execution.gallows.name=Шибениця
+block.execution.gibbet.name=Шибениця
+block.execution.stocks.name=Колодки
+block.execution.burning_stake.name=Багаття інквізиції
+
+## Traps
+block.trap.night.name=Камінь темряви
+block.trap.thunder.name=Грозовий камінь
+block.trap.curse=Темрява наближається!
+
+## Spawners
+block.spawner.wither.name=Спавнер висушувачів
+block.spawner.skeleton.name=Спавнер скелетів
+block.spawner.zombie.name=Спавнер зомбі
+block.spawner.spider.name=Спавнер павуків
+
+## Bone Blocks
+block.bone_block.default.name=Кістяний блок
+block.bone_block.skull.name=Кістяний блок з черепом
+block.bone_block.crawler.name=Кістяний блок повзучого черепа
+block.bone_block.crawler_skull.name=Кістяний блок повзучого черепа з черепом
+tile.bone_slab.name=Кістяна плита
+tile.bone_stairs.name=Кістяна драбина
+
+## Pile of Bones
+block.pile_of_bones.name=Купка кісток
+block.pile_of_bones_with_skull.name=Купка кісток з черепом
+block.pile_of_bones_with_skull_crawler.name=Купка кісток з повзучим черепом
+
+## Chests
+block.haunted_chest.bats_chest.name=Скриня з кажанами
+block.haunted_chest.skeleton_chest.name=Скриня зі скелетом
+block.haunted_chest.raven_chest.name=Скриня з воронами
+block.haunted_chest.ghost_chest.name=Скриня з привидами
+
+## candles
+tile.candle.name=Свічка
+block.skull_candle.skeleton.name=Череп скелета зі свічкою
+block.skull_candle.wither_skeleton.name=Череп висушувача зі свічкою
+block.skull_candle.zombie.name=Череп зомбі зі свічкою
+
+## Altar
+tile.altar.name=Вівтар
+
+# Enchantments
+enchantment.shadow_of_death=Тінь смерті
+enchantment.poisoned_blade=Отруєне Лезо
+enchantment.withered_blade=Висушуюче Лезо
+enchantment.vampiric_touch=Дотик Вампіра
+enchantment.necrotic_corrosion=Некротична Корозія
+
+#WAWLA Enchantment Descriptions
+enchantment.gravestone-extended.gs_vampiric_touch.desc=Відновлює здоров'я в розмірі 20% від нанесеної шкоди
+enchantment.gravestone-extended.gs_withered_blade.desc=Накладає висушування на ціль на 5 секунд за рівень
+enchantment.gravestone-extended.gs_shadow_of_death.desc=Завдає додаткових 2.5 шкоди за рівень істотам, які не є павуками або нежиттю
+enchantment.gravestone-extended.gs_necrotic_corrosion.desc=Завдає 10% додаткової шкоди за рівень, що ігнорує броню
+enchantment.gravestone-extended.gs_poisoned_blade.desc=Накладає отруєння на ціль на 10 секунд за рівень
+
+# Potions
+potion.purification.title=Знімає всі негативні ефекти
+potion.effect.gs_purification_type=Зілля очищення
+splash_potion.effect.gs_purification_type=Вибухове зілля очищення
+lingering_potion.effect.gs_purification_type=Туманне зілля очищення
+
+
+# Items
+## Chisel
+item.gravestone.chisel.name=Різець для надгробків
+
+## Swords
+item.gravestone.bone_sword.name=Кістяний меч
+item.gravestone.bone_sword_iron.name=Залізний Кістяний меч
+item.gravestone.bone_sword_golden.name=Золотой Кістяний мечь
+item.gravestone.bone_sword_diamond.name=Алмазний Кістяний меч
+
+## Corpses
+item.corpse.steve=Труп Стіва
+item.corpse.player=Труп гравця
+item.corpse.villager=Труп жителя
+item.corpse.horse=Труп коня
+item.corpse.dog=Труп собаки
+item.corpse.cat=Труп кішки
+item.corpse.zombie=Труп зомбі
+item.corpse.zombie_villager=Труп зомбі-жителя
+item.corpse.skeleton=Труп скелета
+item.corpse.witch=Труп відьми
+item.corpse.entity_name=Ім'я
+item.corpse.villager_type=Професія
+item.corpse.villager_type.farmer=Фермер
+item.corpse.villager_type.librarian=Бібліотекар
+item.corpse.villager_type.priest=Священик
+item.corpse.villager_type.smith=Коваль
+item.corpse.villager_type.butcher=М'ясник
+item.corpse.villager_type.undertaker=Трунар
+item.corpse.villager_type.brewer=Пивовар
+item.corpse.villager_type.thaumaturge=Тауматург
+item.corpse.villager_type.beekeeper=Бджоляр
+item.corpse.villager_type.lumberjack=Дроворуб
+item.corpse.villager_type.unknown=Невідома
+
+item.corpse.villager_career=Кар'єра
+item.corpse.villager_career.Unknown=Невідома
+
+item.corpse.horse_type=Тип коня
+item.corpse.horse_type.horse=Кінь
+item.corpse.horse_type.donkey=Віслюк
+item.corpse.horse_type.mule=Мул
+item.corpse.horse_type.zombie=Кінь-зомбі
+item.corpse.horse_type.skeleton=Кінь-скелет
+item.corpse.horse_type.unknown=Невідомий
+item.corpse.horse_variant=Різновид
+item.corpse.health=Максимальне здоров'я
+item.corpse.speed=Швидкість
+item.corpse.jump_strength=Стрибучість
+item.corpse.collar=Колір нашийника
+item.corpse.collar.white=Білий
+item.corpse.collar.orange=Помаранчевий
+item.corpse.collar.purple=Пурпурний
+item.corpse.collar.azure=Лазурний
+item.corpse.collar.yellow=Жовтий
+item.corpse.collar.lime=Лаймовий
+item.corpse.collar.pink=Рожевий
+item.corpse.collar.grey=Сірий
+item.corpse.collar.light_grey=Світло сірий
+item.corpse.collar.turquoise=Бірюзовий
+item.corpse.collar.violet=Фіолетовий
+item.corpse.collar.blue=Синій
+item.corpse.collar.brown=Коричневий
+item.corpse.collar.green=Зелений
+item.corpse.collar.red=Червоний
+item.corpse.collar.black=Чорний
+item.corpse.collar.unknown=Невідомий
+item.corpse.dog_type=Тип собаки
+item.corpse.cat_type=Тип кішки
+item.corpse.cat_type.ocelot=Оцелот
+item.corpse.cat_type.black=Чорна
+item.corpse.cat_type.red=Руда
+item.corpse.cat_type.siamese=Сіамська
+item.corpse.cat_type.unknown=Невідомий
+
+## mobs type
+mobtype.title=Тип моба
+mobtype.zombie=Зомбі
+mobtype.skeleton=Скелет
+mobtype.ghost=Привид
+mobtype.husk=Кадавр
+mobtype.stray=Зимогор
+mobtype.wither=Скелет-висушувач
+mobtype.pigman=Свинозомбі
+
+##Backpacks
+item.backpack.undertaker.t1=Рюкзак трунаря
+item.backpack.undertaker.t2=Тканий рюкзак трунаря
+
+
+# GUI
+gui.edit_grave.title=Введіть напис
+gui.edit_grave.close=Готово
+gui.edit_grave.randomText=Ввести випадковий текст
+gui.altar.resurrect=Воскресити
+gui.altar.requirements=Потрібно %d рівнів
+
+
+# Entity
+entity.GSZombieDog.name=Пес-зомбі
+entity.GSSkeletonDog.name=Пес-скелет
+entity.GSZombieCat.name=Кіт-зомбі
+entity.GSSkeletonCat.name=Кіт-скелет
+entity.GSSkullCrawler.name=Повзучий череп
+entity.GSWitherSkullCrawler.name=Повзучий череп висушувача
+entity.GSZombieSkullCrawler.name=Повзучий череп зомбі
+entity.GSRaven.name=Ворон
+entity.GSSkeletonRaider.name=Скелет наїзник
+entity.GSZombieRaider.name=Зомбі наїзник
+entity.GSSkeleton.name=Скелет
+entity.Villager.gravestone-extended:undertaker=Трунар
+
+
+# Console messages
+## Console commands
+commands.direction_error=Напрямок введено не коректно!
+commands.generate.unknown_structure=Введено невідомий тип будови!

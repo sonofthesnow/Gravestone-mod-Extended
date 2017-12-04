@@ -1,0 +1,227 @@
+# Tabs
+##TODO !!!!!!!!!!
+itemGroup.tabGSMemorials=Memorials
+## TODO !!!!!!
+itemGroup.tabGSCorpse=Corpses
+##TODO !!!!!!!!!!
+itemGroup.tabGSOther=Gravestone mod Items
+
+
+# Blocks
+## Memorials
+block.memorial.cross.name=Croix mémoriale
+block.memorial.obelisk.name=Obélisque
+block.memorial.steve_statue.name=Statue de Steve
+block.memorial.villager_statue.name=Statue de villageois
+block.memorial.angel_statue.name=Statue d'ange
+block.memorial.dog_statue.name=Statue de chien
+block.memorial.cat_statue.name=Statue de chat
+block.memorial.creeper_statue.name=Statue de creeper
+block.memorial.celtic_cross.name=Croix celtique
+
+## Executions
+##TODO !!!!!!!!!!
+block.execution.gallows.name=Gallows
+block.execution.gibbet.name=Gibbet
+block.execution.stocks.name=Stocks
+block.execution.burning_stake.name=Burning Stake
+
+## Traps
+block.trap.night.name=Pierre nocturne
+block.trap.thunder.name=Pierre de tonnerre
+block.trap.curse=Les ténèbres approchent !
+
+## Spawners
+block.spawner.wither.name=Spawner à sorcière
+block.spawner.skeleton.name=Spawner à squelette
+block.spawner.zombie.name=Spawner à zombie
+## TODO !!!!!
+block.spawner.spider.name=Spider Spawner
+
+## Bone Blocks
+block.bone_block.default.name=Block d'os
+block.bone_block.skull.name=Block d'os avec crâne
+block.bone_block.crawler.name=Block d'os de crâne rampant
+block.bone_block.crawler_skull.name=Block d'os de  crâne rampant avec crâne
+tile.bone_slab.name=Dalle d'os
+tile.bone_stairs.name=Escalier d'os
+
+## Pile of Bones
+##TODO !!!!!!!!!!
+block.pile_of_bones.name=Pile of Bones
+##TODO !!!!!!!!!!
+block.pile_of_bones_with_skull.name=Pile of Bones with Skull
+## TODO !!!!!
+block.pile_of_bones_with_skull_crawler.name=Pile of Bones with Skull Crawler
+
+## Chests
+block.haunted_chest.bats_chest.name=Coffre à chauve-souris
+block.haunted_chest.skeleton_chest.name=Coffre à squelette
+block.haunted_chest.raven_chest.name=Coffre à corbeau
+block.haunted_chest.ghost_chest.name=Coffre à fantômes
+
+## Candles
+tile.candle.name=Bougie
+block.skull_candle.skeleton.name=Bougie à tête de squelette
+block.skull_candle.wither_skeleton.name=Bougie à tête de wither
+block.skull_candle.zombie.name=Bougie à tête de zombie
+
+## Altar
+##TODO !!!!!!!!!!
+tile.altar.name=Altar
+
+# Enchantments
+## TODO !!!!!!!!!!
+enchantment.shadow_of_death=Shadow of Death
+enchantment.poisoned_blade=Poisoned Blade
+enchantment.withered_blade=Withered Blade
+enchantment.vampiric_touch=Vampiric Touch
+enchantment.necrotic_corrosion=Necrotic Corrosion
+
+#WAWLA Enchantment Descriptions
+## TODO !!!!!!!!!!
+enchantment.gravestone-extended.gs_vampiric_touch.desc=Converts 20% of damage done by this weapon to health
+enchantment.gravestone-extended.gs_withered_blade.desc=Applies wither to a target for 5 seconds per level
+enchantment.gravestone-extended.gs_shadow_of_death.desc=Deals extra 2.5 damage per level to non spider and non undead mobs
+enchantment.gravestone-extended.gs_necrotic_corrosion.desc=10%(per level) of damage dealt by this weapon ignores armor
+enchantment.gravestone-extended.gs_poisoned_blade.desc=Applies poison to a target for 10 seconds per level
+
+# Potions
+## TODO !!!!!!!!!!!!
+potion.purification.title=Remove all negative effects
+potion.effect.gs_purification_type=Potion of Purification
+splash_potion.effect.gs_purification_type=Splash Potion of Purification
+lingering_potion.effect.gs_purification_type=Lingering Potion of Purification
+
+
+# Items
+## Chisel
+##TODO !!!!!!!!!!
+item.gravestone.chisel.name=Gravestone Chisel
+
+## Swords
+## TODO !!!!!!!!!!
+item.gravestone.bone_sword.name=Bone Sword
+item.gravestone.bone_sword_iron.name=Iron Bone Sword
+item.gravestone.bone_sword_golden.name=Golden Bone Sword
+item.gravestone.bone_sword_diamond.name=Diamond Bone Sword
+
+## Corpses
+## TODO !!!!!!!!!!
+item.corpse.steve=Steve Corpse
+## TODO !!!!!!!!!!
+item.corpse.player=Player Corpse
+item.corpse.villager=Carcasse de villageois
+item.corpse.horse=Carcasse de cheval
+item.corpse.dog=Carcasse de chien
+item.corpse.cat=Carcasse de chat
+## TODO !!!!!!!!!!
+item.corpse.zombie=Zombie Corpse
+## TODO !!!!!!!!!!
+item.corpse.zombie_villager=Zombie Villager Corpse
+## TODO !!!!!!!!!!
+item.corpse.skeleton=Skeleton Corpse
+## TODO !!!!!!!!!!
+item.corpse.witch=Witch Corpse
+item.corpse.entity_name=Nom
+item.corpse.villager_type=Profession
+item.corpse.villager_type.farmer=Fermier
+item.corpse.villager_type.librarian=Bibliothécaire
+item.corpse.villager_type.priest=Prêtre
+item.corpse.villager_type.smith=Forgeron
+item.corpse.villager_type.butcher=Boucher
+item.corpse.villager_type.undertaker=Croque-mort
+item.corpse.villager_type.brewer=Brasseur
+item.corpse.villager_type.thaumaturge=Thaumaturge
+item.corpse.villager_type.beekeeper=Apiculteur
+item.corpse.villager_type.lumberjack=Bucheron
+item.corpse.villager_type.Unknown=Inconnu
+
+##TODO !!!!!!!!!!
+item.corpse.villager_career=Career
+item.corpse.villager_career.Unknown=Inconnu
+
+item.corpse.horse_type=Type de cheval
+item.corpse.horse_type.horse=Cheval
+item.corpse.horse_type.donkey=Âne
+item.corpse.horse_type.mule=Mûle
+item.corpse.horse_type.zombie=Cheval zombie
+item.corpse.horse_type.skeleton=Cheval squelette
+item.corpse.horse_type.unknown=Inconu
+item.corpse.horse_variant=Variante de cheval
+item.corpse.health=Vie max
+item.corpse.speed=Vitesse
+item.corpse.jump_strength=Force de saut
+item.corpse.collar=Collier
+item.corpse.collar.white=Blanc
+item.corpse.collar.orange=Orange
+item.corpse.collar.purple=Violet
+item.corpse.collar.azure=Azure
+item.corpse.collar.yellow=Jaune
+item.corpse.collar.lime=Citron
+item.corpse.collar.pink=Rose
+item.corpse.collar.grey=Gris
+item.corpse.collar.light_grey=Gris clair
+item.corpse.collar.turquoise=Turquoise
+item.corpse.collar.violet=Pourpre
+item.corpse.collar.blue=Bleu
+item.corpse.collar.brown=Marron
+item.corpse.collar.green=Vert
+item.corpse.collar.red=Rouge
+item.corpse.collar.black=Noir
+item.corpse.collar.unknown=Inconnu
+item.corpse.dog_type=Type de chien
+item.corpse.cat_type=Type de chat
+item.corpse.cat_type.ocelot=Ocelot
+item.corpse.cat_type.black=Noir
+item.corpse.cat_type.red=Rouge
+item.corpse.cat_type.siamese=Siamois
+item.corpse.cat_type.unknown=Inconnu
+
+## mobs type
+mobtype.title=Mob type
+mobtype.zombie=Zombie
+mobtype.skeleton=Skeleton
+mobtype.ghost=Ghost
+mobtype.husk=Husk Zombie
+mobtype.stray=Stray Skeleton
+mobtype.wither=Wither Skeleton
+mobtype.pigman=Zombie Pigmen
+
+##Backpacks
+item.backpack.undertaker.t1=Sac à dos du croque-mort
+item.backpack.undertaker.t2=Sac à dos tissé du croque-mort
+
+
+# GUI
+gui.edit_grave.title=Changer l'épitaphe
+gui.edit_grave.close=Fait
+gui.edit_grave.randomText=texte aléatoire
+gui.altar.resurrect=Ressusciter
+gui.altar.requirements=%d niveau demandé
+
+
+# Entity
+entity.GSZombieDog.name=Chien zombie
+entity.GSSkeletonDog.name=Squelette de chien
+entity.GSZombieCat.name=Chat zombie
+entity.GSSkeletonCat.name=Squelette de chat
+entity.GSSkullCrawler.name=Crâne rampant
+entity.GSWitherSkullCrawler.name=Crâne de wither rampant
+entity.GSZombieSkullCrawler.name=Crâne de zombie rampant
+entity.GSRaven.name=Corbeau
+##TODO !!!!!!!!!!
+entity.GSSkeletonRaider.name=Skeleton Raider
+##TODO !!!!!!!!!!
+entity.GSZombieRaider.name=Zombie Raider
+##TODO !!!!!!!!!!
+entity.GSSkeleton.name=Skeleton
+entity.Villager.gravestone-extended:undertaker=Croque-mort
+
+
+# Console messages
+## Console commands
+##TODO !!!!!!!!!!
+commands.direction_error=Direction error!
+##TODO !!!!!!!!!!
+commands.generate.unknown_structure=Unknown structure!

@@ -1,0 +1,210 @@
+# Tabs
+itemGroup.tabGSMemorials=Memoriais
+## TODO !!!!!!
+itemGroup.tabGSCorpse=Corpses
+itemGroup.tabGSOther=Itens do mod Gravestone
+
+
+# Blocks
+## Memorials
+block.memorial.cross.name=Memorial em Cruz
+block.memorial.obelisk.name=Obelisco
+block.memorial.steve_statue.name=Estátua do Steve
+block.memorial.villager_statue.name=Estátua de Aldeão
+block.memorial.angel_statue.name=Estátua de Anjo
+block.memorial.dog_statue.name=Estátua de Cachorro
+block.memorial.cat_statue.name=Estátua de Gato
+block.memorial.creeper_statue.name=Estátua de Creeper
+block.memorial.celtic_cross.name=Cruz Celta
+
+## Executions
+block.execution.gallows.name=Forca
+block.execution.gibbet.name=Candafalso
+block.execution.stocks.name=Berlinda
+block.execution.burning_stake.name=Fogueira
+
+## Traps
+block.trap.night.name=Pedra da Noite
+block.trap.thunder.name=Pedra do Trovão
+block.trap.curse=A escuridão está vindo!
+
+## Spawners
+block.spawner.wither.name=Spawner de Wither
+block.spawner.skeleton.name=Spawner de Esqueleto
+block.spawner.zombie.name=Spawner de Zumbi
+block.spawner.spider.name=Spawner de Aranha
+
+## Bone Blocks
+block.bone_block.default.name=Bloco de Ossos
+block.bone_block.skull.name=Bloco de Ossos com Cabeça
+block.bone_block.crawler.name=Bloco de Ossos do Rastejador Caveira
+block.bone_block.crawler_skull.name=Bloco de Ossos com Cabeça do Rastejador Caveira
+tile.bone_slab.name=Laje de Ossos
+tile.bone_stairs.name=Escada de Ossos
+
+## Pile of Bones
+block.pile_of_bones.name=Pilha de Ossos
+block.pile_of_bones_with_skull.name=Pilha de Ossos com Cabeça
+## TODO !!!!!
+block.pile_of_bones_with_skull_crawler.name=Pile of Bones with Skull Crawler
+
+## Chests
+block.haunted_chest.bats_chest.name=Baú com Morcegos
+block.haunted_chest.skeleton_chest.name=Baú com Esqueleto
+block.haunted_chest.raven_chest.name=Baú com Corvos
+block.haunted_chest.ghost_chest.name=Baú com Fantasma
+
+## Candles
+tile.candle.name=Vela
+block.skull_candle.skeleton.name=Vela de Cabeça
+block.skull_candle.wither_skeleton.name=Vela de Cabeça Wither
+block.skull_candle.zombie.name=Vela de Cabeça de Zumbi
+
+## Altar
+tile.altar.name=Altar
+
+# Enchantments
+## TODO !!!!!!!!!!
+enchantment.shadow_of_death=Shadow of Death
+enchantment.poisoned_blade=Poisoned Blade
+enchantment.withered_blade=Withered Blade
+enchantment.vampiric_touch=Vampiric Touch
+enchantment.necrotic_corrosion=Necrotic Corrosion
+
+#WAWLA Enchantment Descriptions
+## TODO !!!!!!!!!!
+enchantment.gravestone-extended.gs_vampiric_touch.desc=Converts 20% of damage done by this weapon to health
+enchantment.gravestone-extended.gs_withered_blade.desc=Applies wither to a target for 5 seconds per level
+enchantment.gravestone-extended.gs_shadow_of_death.desc=Deals extra 2.5 damage per level to non spider and non undead mobs
+enchantment.gravestone-extended.gs_necrotic_corrosion.desc=10%(per level) of damage dealt by this weapon ignores armor
+enchantment.gravestone-extended.gs_poisoned_blade.desc=Applies poison to a target for 10 seconds per level
+
+# Potions
+## TODO !!!!!!!!!!!!
+potion.purification.title=Remove all negative effects
+potion.effect.gs_purification_type=Potion of Purification
+splash_potion.effect.gs_purification_type=Splash Potion of Purification
+lingering_potion.effect.gs_purification_type=Lingering Potion of Purification
+
+
+# Items
+## Chisel
+item.gravestone.chisel.name=Formão de Lápide
+
+## Swords
+## TODO !!!!!!!!!!
+item.gravestone.bone_sword.name=Bone Sword
+item.gravestone.bone_sword_iron.name=Iron Bone Sword
+item.gravestone.bone_sword_golden.name=Golden Bone Sword
+item.gravestone.bone_sword_diamond.name=Diamond Bone Sword
+
+
+## Corpses
+item.corpse.steve=Cadáver de Steve
+item.corpse.player=Cadáver de Jogador
+item.corpse.villager=Cadáver de Aldeão
+item.corpse.horse=Cadáver de Cavalo
+item.corpse.dog=Cadáver de Cachorro
+item.corpse.cat=Cadáver de Gato
+item.corpse.zombie=Cadáver de Zumbi
+item.corpse.zombie_villager=Cadáver de Aldeão Zumbi
+##item.corpse.zombie_pigmen=Cadáver de Homem-Porco Zumbi
+item.corpse.skeleton=Cadáver de Esqueleto
+##item.corpse.wither_skeleton=Cadáver de Esqueleto Wither
+item.corpse.witch=Cadáver de Bruxa
+item.corpse.entity_name=Nome
+item.corpse.villager_type=Profissão
+item.corpse.villager_type.farmer=Fazendeiro
+item.corpse.villager_type.librarian=Bibliotecário
+item.corpse.villager_type.priest=Padre
+item.corpse.villager_type.smith=Ferreiro
+item.corpse.villager_type.butcher=Açougueiro
+item.corpse.villager_type.undertaker=Agente Funerário
+item.corpse.villager_type.brewer=Cervejeiro
+item.corpse.villager_type.thaumaturge=Taumaturgo
+item.corpse.villager_type.beekeeper=Apicultor
+item.corpse.villager_type.lumberjack=Lenhador
+item.corpse.villager_type.Unknown=Desconhecido
+
+item.corpse.villager_career=Carreira
+item.corpse.villager_career.Unknown=Desconhecida
+
+item.corpse.horse_type=Tipo de Cavalo
+item.corpse.horse_type.horse=Cavalo
+item.corpse.horse_type.donkey=Jumento
+item.corpse.horse_type.mule=Mula
+item.corpse.horse_type.zombie=Cavalo Zumbi
+item.corpse.horse_type.skeleton=Cavalo Esqueleto
+item.corpse.horse_type.unknown=Desconhecido
+item.corpse.horse_variant=Variante de Cavalo
+item.corpse.health=Saúde Máxima
+item.corpse.speed=Velocidade
+item.corpse.jump_strength=Força do Pulo
+item.corpse.collar=Colarinho
+item.corpse.collar.white=Branco
+item.corpse.collar.orange=Laranja
+item.corpse.collar.purple=Roxo
+item.corpse.collar.azure=Índigo
+item.corpse.collar.yellow=Amarelo
+item.corpse.collar.lime=Lima
+item.corpse.collar.pink=Rosa
+item.corpse.collar.grey=Cinza
+item.corpse.collar.light_grey=Cinza Fraco
+item.corpse.collar.turquoise=Turquesa
+item.corpse.collar.violet=Violeta
+item.corpse.collar.blue=Azul
+item.corpse.collar.brown=Marrom
+item.corpse.collar.green=Verde
+item.corpse.collar.red=Vermelho
+item.corpse.collar.black=Preto
+item.corpse.collar.unknown=Desconhecido
+item.corpse.dog_type=Tipo de Cachorro
+item.corpse.cat_type=Tipo de Gato
+item.corpse.cat_type.ocelot=Ocelot
+item.corpse.cat_type.black=Preto
+item.corpse.cat_type.red=Vermelho
+item.corpse.cat_type.siamese=Siamês
+item.corpse.cat_type.unknown=Desconhecido
+
+## mobs type
+mobtype.title=Mob type
+mobtype.zombie=Zombie
+mobtype.skeleton=Skeleton
+mobtype.ghost=Ghost
+mobtype.husk=Husk Zombie
+mobtype.stray=Stray Skeleton
+mobtype.wither=Wither Skeleton
+mobtype.pigman=Zombie Pigmen
+
+##Backpacks
+item.backpack.undertaker.t1=Mochila do Agente Funerário
+item.backpack.undertaker.t2=Mochila Tecida do Agente Funerário
+
+# GUI
+gui.edit_grave.title=Defina o texto do túmulo
+gui.edit_grave.close=Concluído
+gui.edit_grave.randomText=Por texto aleatório
+gui.altar.resurrect=Ressuscitar
+gui.altar.requirements=Níveis requeridos %d
+
+
+# Entity
+entity.GSZombieDog.name=Cachorro Zumbi
+entity.GSSkeletonDog.name=Cachorro Esqueleto
+entity.GSZombieCat.name=Gato Zumbi
+entity.GSSkeletonCat.name=Gato Esqueleto
+entity.GSSkullCrawler.name=Rastejador Caveira
+entity.GSWitherSkullCrawler.name=Rastejador Caveira Wither
+entity.GSZombieSkullCrawler.name=Rastejador Caveira Zumbi
+entity.GSRaven.name=Corvo
+entity.GSSkeletonRaider.name=Incursor Esqueleto
+entity.GSZombieRaider.name=Incursor Zumbi
+##TODO !!!!!!!!!!
+entity.GSSkeleton.name=Skeleton
+entity.Villager.gravestone-extended:undertaker=Agente Funerário
+
+
+# Console messages
+## Console commands
+commands.direction_error=Erro de direção!
+commands.generate.unknown_structure=Estrutura desconhecida!
