@@ -68,6 +68,21 @@ public class BlockInvisibleWall extends Block {
         return false;
     }
 
+    @Override
+    public boolean isTranslucent(IBlockState state) {
+        return true;
+    }
+
+    @Override
+    public boolean isFullBlock(IBlockState state) {
+        return true;
+    }
+
+    @Override
+    public boolean causesSuffocation(IBlockState state) {
+        return false;
+    }
+
     public EnumBlockRenderType getRenderType(IBlockState state) {
         return EnumBlockRenderType.INVISIBLE;
     }

@@ -469,6 +469,15 @@ public class BlockMemorial extends BlockContainer {
     }
 
     @Override
+    public boolean isTranslucent(IBlockState state) {
+        return true;
+    }
+    @Override
+    public boolean isFullBlock(IBlockState state) {
+        return true;
+    }
+
+    @Override
     public TileEntity createNewTileEntity(World world, int var2) {
         return new TileEntityMemorial(world);
     }
