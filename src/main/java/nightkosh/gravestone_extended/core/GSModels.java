@@ -122,7 +122,14 @@ public class GSModels {
 
             if (Loader.isModLoaded(Compatibility.FORESTRY_ID) && ExtendedConfig.enableForestryBackpacks) {
                 ModelLoader.setCustomModelResourceLocation(CompatibilityForestry.backpackItemT1, 0, new ModelResourceLocation(Compatibility.FORESTRY_ID + ":backpacks/normal_neutral", "inventory"));
+                ModelLoader.setCustomModelResourceLocation(CompatibilityForestry.backpackItemT1, 1, new ModelResourceLocation(Compatibility.FORESTRY_ID + ":backpacks/normal_locked", "inventory"));
+                ModelLoader.setCustomModelResourceLocation(CompatibilityForestry.backpackItemT1, 2, new ModelResourceLocation(Compatibility.FORESTRY_ID + ":backpacks/normal_receive", "inventory"));
+                ModelLoader.setCustomModelResourceLocation(CompatibilityForestry.backpackItemT1, 3, new ModelResourceLocation(Compatibility.FORESTRY_ID + ":backpacks/normal_resupply", "inventory"));
+
                 ModelLoader.setCustomModelResourceLocation(CompatibilityForestry.backpackItemT2, 0, new ModelResourceLocation(Compatibility.FORESTRY_ID + ":backpacks/woven_neutral", "inventory"));
+                ModelLoader.setCustomModelResourceLocation(CompatibilityForestry.backpackItemT2, 1, new ModelResourceLocation(Compatibility.FORESTRY_ID + ":backpacks/woven_locked", "inventory"));
+                ModelLoader.setCustomModelResourceLocation(CompatibilityForestry.backpackItemT2, 2, new ModelResourceLocation(Compatibility.FORESTRY_ID + ":backpacks/woven_receive", "inventory"));
+                ModelLoader.setCustomModelResourceLocation(CompatibilityForestry.backpackItemT2, 3, new ModelResourceLocation(Compatibility.FORESTRY_ID + ":backpacks/woven_resupply", "inventory"));
             }
         }
 
