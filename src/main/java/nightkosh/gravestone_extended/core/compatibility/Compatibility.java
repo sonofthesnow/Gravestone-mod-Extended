@@ -13,6 +13,8 @@ public class Compatibility {
 
     public static final Compatibility INSTANCE = new Compatibility();
 
+    public static final String FORESTRY_ID = "forestry";
+
     public static boolean sophisticatedWolvesInstalled;
     public static boolean forestryInstalled;
 
@@ -28,7 +30,7 @@ public class Compatibility {
             CompatibilityThaumcraft.addSwords();
         }
 
-        if (Loader.isModLoaded("forestry")) {
+        if (Loader.isModLoaded(FORESTRY_ID)) {
             forestryInstalled = true;//TODO
             CompatibilityForestry.isInstalled = true;
         }

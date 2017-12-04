@@ -9,6 +9,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fml.common.registry.GameRegistry;
+import net.minecraftforge.registries.IForgeRegistry;
 import nightkosh.gravestone_extended.config.ExtendedConfig;
 import nightkosh.gravestone_extended.core.GSItem;
 import nightkosh.gravestone_extended.core.ModInfo;
@@ -46,7 +47,7 @@ public class CompatibilityForestry {
         }
     }
 
-    public static void addBackpack() {
+    public static void addBackpack(final IForgeRegistry<Item> registry) {
         if (ExtendedConfig.enableForestryBackpacks) {
             BackpackManager.backpackInterface.registerBackpackDefinition(BACKPACK_UID, new UndertakerBackpack());
             backpackItemT1 = BackpackManager.backpackInterface.createBackpack(BACKPACK_UID, EnumBackpackType.NORMAL);
@@ -72,6 +73,9 @@ public class CompatibilityForestry {
                         }
                 );
             }
+
+
+            registry.registerAll(CompatibilityForestry.backpackItemT1, CompatibilityForestry.backpackItemT2);
         }
     }
 }
