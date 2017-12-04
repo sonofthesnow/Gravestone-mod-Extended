@@ -1,6 +1,7 @@
 package nightkosh.gravestone_extended.core.compatibility;
 
 import net.minecraftforge.fml.common.Loader;
+import nightkosh.gravestone_extended.core.compatibility.forestry.CompatibilityForestry;
 
 /**
  * GraveStone mod
@@ -10,17 +11,10 @@ import net.minecraftforge.fml.common.Loader;
  */
 public class Compatibility {
 
-    private static Compatibility instance;
-
-    private Compatibility() {
-        instance = this;
-    }
-
-    public static Compatibility getInstance() {
-        return (instance == null) ? new Compatibility() : instance;
-    }
+    public static final Compatibility INSTANCE = new Compatibility();
 
     public static boolean sophisticatedWolvesInstalled;
+    public static boolean forestryInstalled;
 
     public void checkMods() {
         if (Loader.isModLoaded("mocreatures")) {
@@ -34,10 +28,10 @@ public class Compatibility {
             CompatibilityThaumcraft.addSwords();
         }
 
-//        if (Loader.isModLoaded("Forestry")) {
-//            CompatibilityForestry.isInstalled = true;
-//            CompatibilityForestry.addBackpack();
-//        }
+        if (Loader.isModLoaded("forestry")) {
+            forestryInstalled = true;//TODO
+            CompatibilityForestry.isInstalled = true;
+        }
 
         if (Loader.isModLoaded("sophisticatedwolves")) {
             sophisticatedWolvesInstalled = true;//TODO

@@ -29,7 +29,7 @@ import nightkosh.gravestone_extended.structures.village.VillagersHandler;
  * @author NightKosh
  * @license Lesser GNU Public License v3 (http://www.gnu.org/licenses/lgpl.html)
  */
-@Mod(modid = ModInfo.ID, name = ModInfo.NAME, version = ModInfo.VERSION, dependencies = "required-after:" + nightkosh.gravestone.api.ModInfo.ID + "@[1.0.5,);")
+@Mod(modid = ModInfo.ID, name = ModInfo.NAME, version = ModInfo.VERSION, dependencies = "required-after:" + nightkosh.gravestone.api.ModInfo.ID + "@[1.0.5,);after:forestry")
 public class ModGravestoneExtended {
 
     @Instance(ModInfo.ID)
@@ -80,7 +80,7 @@ public class ModGravestoneExtended {
 
     @Mod.EventHandler
     public void postInit(FMLPostInitializationEvent event) {
-        Compatibility.getInstance().checkMods();
+        Compatibility.INSTANCE.checkMods();
 
         GraveGenerationHelper.addMobsItemsHandlers();
 

@@ -2,10 +2,12 @@ package nightkosh.gravestone_extended.core;
 
 import net.minecraft.item.Item;
 import net.minecraftforge.event.RegistryEvent;
+import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.registries.IForgeRegistry;
+import nightkosh.gravestone_extended.core.compatibility.forestry.CompatibilityForestry;
 import nightkosh.gravestone_extended.item.ItemChisel;
 import nightkosh.gravestone_extended.item.ItemGSMonsterPlacer;
 import nightkosh.gravestone_extended.item.tools.ItemBoneSword;
@@ -37,9 +39,10 @@ public class GSItem {
             final IForgeRegistry<Item> registry = event.getRegistry();
             registry.registerAll(CHISEL, SPAWN_EGG);
             registry.registerAll(BONE_SWORD, BONE_SWORD_IRON, BONE_SWORD_GOLDEN, BONE_SWORD_DIAMOND);
-//            if (Loader.isModLoaded("forestry")) {
-//                registry.registerAll(CompatibilityForestry.backpackItemT1, CompatibilityForestry.backpackItemT2);
-//            }
+            if (Loader.isModLoaded("forestry")) {
+                CompatibilityForestry.addBackpack();
+                registry.registerAll(CompatibilityForestry.backpackItemT1, CompatibilityForestry.backpackItemT2);
+            }
         }
     }
 }
