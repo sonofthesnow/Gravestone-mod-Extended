@@ -118,7 +118,7 @@ item.corpse.villager_type.lumberjack=Дровосек
 item.corpse.villager_type.unknown=Неизвестная
 
 item.corpse.villager_career=Карьера
-item.corpse.villager_career.Unknown=Неизвестная
+item.corpse.villager_career.unknown=Неизвестная
 
 item.corpse.horse_type=Тип лошади
 item.corpse.horse_type.horse=Лошадь

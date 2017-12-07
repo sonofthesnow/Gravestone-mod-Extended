@@ -118,7 +118,7 @@ item.corpse.villager_type.lumberjack=Дроворуб
 item.corpse.villager_type.unknown=Невідома
 
 item.corpse.villager_career=Кар'єра
-item.corpse.villager_career.Unknown=Невідома
+item.corpse.villager_career.unknown=Невідома
 
 item.corpse.horse_type=Тип коня
 item.corpse.horse_type.horse=Кінь

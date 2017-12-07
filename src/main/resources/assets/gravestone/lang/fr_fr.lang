@@ -135,11 +135,11 @@ item.corpse.villager_type.brewer=Brasseur
 item.corpse.villager_type.thaumaturge=Thaumaturge
 item.corpse.villager_type.beekeeper=Apiculteur
 item.corpse.villager_type.lumberjack=Bucheron
-item.corpse.villager_type.Unknown=Inconnu
+item.corpse.villager_type.unknown=Inconnu
 
 ##TODO !!!!!!!!!!
 item.corpse.villager_career=Career
-item.corpse.villager_career.Unknown=Inconnu
+item.corpse.villager_career.unknown=Inconnu
 
 item.corpse.horse_type=Type de cheval
 item.corpse.horse_type.horse=Cheval

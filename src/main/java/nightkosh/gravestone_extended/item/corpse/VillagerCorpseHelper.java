@@ -10,9 +10,11 @@ import net.minecraftforge.fml.common.registry.ForgeRegistries;
 import net.minecraftforge.fml.common.registry.VillagerRegistry;
 import nightkosh.gravestone_extended.ModGravestoneExtended;
 import nightkosh.gravestone_extended.block.enums.EnumCorpse;
-import nightkosh.gravestone_extended.config.ExtendedConfig;
 import nightkosh.gravestone_extended.core.GSBlock;
+import nightkosh.gravestone_extended.core.compatibility.Compatibility;
+import nightkosh.gravestone_extended.core.compatibility.forestry.CompatibilityForestry;
 import nightkosh.gravestone_extended.core.logger.GSLogger;
+import nightkosh.gravestone_extended.structures.village.VillagersHandler;
 import org.apache.commons.lang3.StringUtils;
 
 import java.util.ArrayList;
@@ -26,6 +28,7 @@ import java.util.Random;
  * @license Lesser GNU Public License v3 (http://www.gnu.org/licenses/lgpl.html)
  */
 public class VillagerCorpseHelper extends CorpseHelper {
+    private static final Random RANDOM = new Random();
 
     private VillagerCorpseHelper() {
     }
@@ -54,9 +57,7 @@ public class VillagerCorpseHelper extends CorpseHelper {
 
         List<VillagerRegistry.VillagerProfession> villagers = ForgeRegistries.VILLAGER_PROFESSIONS.getValues();
         for (VillagerRegistry.VillagerProfession villagerProfession : villagers) {
-//            villagerProfession;
-//            list.add(getDefaultVillagerCorpse(0, 1));//TODO career
-//            list.add(getDefaultVillagerCorpse(villagerId, 1));//TODO career
+            list.add(getDefaultVillagerCorpse(VillagerRegistry.getId(villagerProfession), villagerProfession.getRandomCareer(RANDOM)));
         }
 
         return list;
@@ -247,14 +248,17 @@ public class VillagerCorpseHelper extends CorpseHelper {
     }
 
     private static String getNotVanillaVillagerProfession(int type) {
-        //TODO
-//        if (type == ExtendedConfig.undertakerId) {
-//            return "item.corpse.villager_type.undertaker";
-//        } else if (type == CompatibilityForestry.getApicultureVillagerID()) {
-//            return "item.corpse.villager_type.beekeeper";
-//        } else if (type == CompatibilityForestry.getArboricultureVillagerID()) {
-//            return "item.corpse.villager_type.lumberjack";
-//        } else if (type == 10) {
+        VillagerRegistry.VillagerProfession profession = VillagerRegistry.getById(type);
+        String professionName = profession.getRegistryName().getResourceDomain() + ":" + profession.getRegistryName().getResourcePath();
+
+        if (professionName.equals(VillagersHandler.UNDERTAKER_NAME)) {
+            return "item.corpse.villager_type.undertaker";
+        } else if (Compatibility.forestryInstalled && professionName.equals(CompatibilityForestry.getApicultureVillagerID())) {
+            return "item.corpse.villager_type.beekeeper";
+        } else if (Compatibility.forestryInstalled && professionName.equals(CompatibilityForestry.getArboricultureVillagerID())) {
+            return "item.corpse.villager_type.lumberjack";
+        }
+//        else if (type == 10) {
 //            return "item.corpse.villager_type.brewer";
 //        } else if (type == 206) {
 //            return "item.corpse.villager_type.thaumaturge";
@@ -263,10 +267,12 @@ public class VillagerCorpseHelper extends CorpseHelper {
     }
 
     private static String getNotVanillaVillagerCareer(int type, int career) {
-        if (type == ExtendedConfig.undertakerId) {
+//        VillagerRegistry.VillagerProfession profession = VillagerRegistry.getById(type);
+//        String professionName = profession.getRegistryName().getResourceDomain() + ":" + profession.getRegistryName().getResourcePath();
+//        if (professionName.equals(VillagersHandler.UNDERTAKER_NAME)) {
             return "";
-        }
-        return "item.corpse.villager_career.unknown";
+//        }
+//        return "item.corpse.villager_career.unknown";
     }
 
     private static boolean hasTrades(NBTTagCompound nbtTag) {

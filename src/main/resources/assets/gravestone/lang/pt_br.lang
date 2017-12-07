@@ -124,10 +124,10 @@ item.corpse.villager_type.brewer=Cervejeiro
 item.corpse.villager_type.thaumaturge=Taumaturgo
 item.corpse.villager_type.beekeeper=Apicultor
 item.corpse.villager_type.lumberjack=Lenhador
-item.corpse.villager_type.Unknown=Desconhecido
+item.corpse.villager_type.unknown=Desconhecido
 
 item.corpse.villager_career=Carreira
-item.corpse.villager_career.Unknown=Desconhecida
+item.corpse.villager_career.unknown=Desconhecida
 
 item.corpse.horse_type=Tipo de Cavalo
 item.corpse.horse_type.horse=Cavalo

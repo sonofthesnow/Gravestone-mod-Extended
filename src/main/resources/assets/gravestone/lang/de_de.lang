@@ -118,10 +118,10 @@ item.corpse.villager_type.brewer=Brauer
 item.corpse.villager_type.thaumaturge=Wunderheiler
 item.corpse.villager_type.beekeeper=Imker
 item.corpse.villager_type.lumberjack=Holzfäller
-item.corpse.villager_type.Unknown=Unbekannt
+item.corpse.villager_type.unknown=Unbekannt
 
 item.corpse.villager_career=Karriere
-item.corpse.villager_career.Unknown=Unbekannt
+item.corpse.villager_career.unknown=Unbekannt
 
 item.corpse.horse_type=Pferdeart
 item.corpse.horse_type.horse=Pferd

@@ -84,7 +84,6 @@ public class ExtendedConfig {
     public static boolean generateCemeteries;
     public static boolean generateVillageMemorials;
     public static boolean generateUndertaker;
-    public static int undertakerId;
 
     private static void structures() {
         // catacombs
@@ -134,7 +133,6 @@ public class ExtendedConfig {
         generateCemeteries = config.get(CATEGORY_STRUCTURES_VILLAGE, "GenerateCemeteries", false).getBoolean(false);
         generateVillageMemorials = config.get(CATEGORY_STRUCTURES_VILLAGE, "GenerateVillageMemorials", true).getBoolean(true);
         generateUndertaker = config.get(CATEGORY_STRUCTURES_VILLAGE, "GenerateUndertaker", true).getBoolean(true);
-        undertakerId = config.get(CATEGORY_STRUCTURES_VILLAGE, "undertakerId", VillagersHandler.UNDERTAKER_ID).getInt();
     }
 
     // graves for entities

@@ -129,11 +129,11 @@ item.corpse.villager_type.brewer=酿造师
 item.corpse.villager_type.thaumaturge=魔术师
 item.corpse.villager_type.beekeeper=养蜂人
 item.corpse.villager_type.lumberjack=伐木工
-item.corpse.villager_type.Unknown=不明
+item.corpse.villager_type.unknown=不明
 
 ##TODO !!!!!!!!!!
 item.corpse.villager_career=Career
-item.corpse.villager_career.Unknown=不明
+item.corpse.villager_career.unknown=不明
 
 item.corpse.horse_type=马种
 item.corpse.horse_type.horse=普通马

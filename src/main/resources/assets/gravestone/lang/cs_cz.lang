@@ -129,11 +129,11 @@ item.corpse.villager_type.brewer=Sládek
 item.corpse.villager_type.thaumaturge=Divotvůrce
 item.corpse.villager_type.beekeeper=Včelař
 item.corpse.villager_type.lumberjack=Dřevorubec
-item.corpse.villager_type.Unknown=neznámý
+item.corpse.villager_type.unknown=neznámý
 
 ##TODO !!!!!!!!!!
 item.corpse.villager_career=Career
-item.corpse.villager_career.Unknown=neznámý
+item.corpse.villager_career.unknown=neznámý
 
 item.corpse.horse_type=Typ koně
 item.corpse.horse_type.horse=Kůň
