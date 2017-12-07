@@ -278,7 +278,7 @@ public class VillagerCorpseHelper extends CorpseHelper {
             MerchantRecipe recipe = (MerchantRecipe) trade;
             StringBuilder str = new StringBuilder();
             str.append(recipe.getItemToBuy().getCount()).append(" ").append(recipe.getItemToBuy().getDisplayName());
-            if (recipe.getSecondItemToBuy() != null) {
+            if (recipe.getSecondItemToBuy() != null && !recipe.getSecondItemToBuy().isEmpty()) {
                 str.append(" + ").append(recipe.getSecondItemToBuy().getCount()).append(" ").append(recipe.getItemToBuy().getDisplayName());
             }
             str.append(" -> ").append(recipe.getItemToSell().getCount()).append(" ").append(recipe.getItemToSell().getDisplayName());
