@@ -13,6 +13,7 @@ import net.minecraft.entity.passive.EntityMule;
 import net.minecraft.entity.passive.EntityWolf;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.fml.common.registry.VillagerRegistry;
 import nightkosh.gravestone.models.ModelRendererSkull;
 import nightkosh.gravestone_extended.block.enums.EnumCorpse;
 import nightkosh.gravestone_extended.core.Resources;
@@ -24,6 +25,7 @@ import nightkosh.gravestone_extended.item.corpse.*;
 import nightkosh.gravestone_extended.models.block.execution.*;
 import org.lwjgl.opengl.GL11;
 
+import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -57,6 +59,8 @@ public class CorpseRendererHelper {
     private static final ModelHangedVillager villagerInStocksModel = new ModelHangedVillager(true);
     private static final ModelHangedZombieVillager zombieVillagerInStocksModel = new ModelHangedZombieVillager(true);
     private static final ModelHangedWitch witchInStocksModel = new ModelHangedWitch(true);
+
+    private static final Map<Integer, ResourceLocation> MODDED_VILLAGERS = new HashMap<>();
 
     private static final Entity modelEntity = new Entity(null) {
         @Override
@@ -201,7 +205,7 @@ public class CorpseRendererHelper {
                         break;
                     case HORSE:
                     default:
-                        if (horse == null){
+                        if (horse == null) {
                             horse = new EntityHorse(Minecraft.getMinecraft().world);
                         }
                         horse.setHorseVariant((nbt == null) ? 0 : HorseCorpseHelper.getHorseVariant(nbt));
@@ -324,8 +328,18 @@ public class CorpseRendererHelper {
                 Minecraft.getMinecraft().renderEngine.bindTexture(Resources.VILLAGER_BUTCHER);
                 break;
             default:
-//                Minecraft.getMinecraft().renderEngine.bindTexture(VillagerRegistry.getVillagerSkin(profession, Resources.VILLAGER));
-//                Minecraft.getMinecraft().renderEngine.bindTexture(VillagerRegistry.instance().getRegistry().getKey(profession));//.getSkin()//TODO
+                ResourceLocation skin = Resources.VILLAGER;
+                if (MODDED_VILLAGERS.containsKey(profession)) {
+                    skin = MODDED_VILLAGERS.get(profession);
+                } else {
+                    VillagerRegistry.VillagerProfession villager = VillagerRegistry.getById(profession);
+                    if (villager != null) {
+                        skin = villager.getSkin();
+                    }
+                    MODDED_VILLAGERS.put(profession, skin);
+                }
+
+                Minecraft.getMinecraft().renderEngine.bindTexture(skin);
                 break;
         }
     }
