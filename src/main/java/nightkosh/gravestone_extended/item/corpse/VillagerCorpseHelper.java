@@ -6,11 +6,13 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.village.MerchantRecipe;
 import net.minecraft.village.MerchantRecipeList;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.common.registry.ForgeRegistries;
+import net.minecraftforge.fml.common.registry.VillagerRegistry;
 import nightkosh.gravestone_extended.ModGravestoneExtended;
 import nightkosh.gravestone_extended.block.enums.EnumCorpse;
 import nightkosh.gravestone_extended.config.ExtendedConfig;
 import nightkosh.gravestone_extended.core.GSBlock;
-import nightkosh.gravestone_extended.core.compatibility.forestry.CompatibilityForestry;
+import nightkosh.gravestone_extended.core.logger.GSLogger;
 import org.apache.commons.lang3.StringUtils;
 
 import java.util.ArrayList;
@@ -50,10 +52,12 @@ public class VillagerCorpseHelper extends CorpseHelper {
         list.add(getDefaultVillagerCorpse(4, 1)); // Butcher - butcher
         list.add(getDefaultVillagerCorpse(4, 2)); // Butcher - leather
 
-//        IForgeRegistry<VillagerRegistry.VillagerProfession> villagers = VillagerRegistry.instance().getRegistry();
-//        for (VillagerRegistry.VillagerProfession villagerProfession : villagers.getValues()) {
+        List<VillagerRegistry.VillagerProfession> villagers = ForgeRegistries.VILLAGER_PROFESSIONS.getValues();
+        for (VillagerRegistry.VillagerProfession villagerProfession : villagers) {
+//            villagerProfession;
+//            list.add(getDefaultVillagerCorpse(0, 1));//TODO career
 //            list.add(getDefaultVillagerCorpse(villagerId, 1));//TODO career
-//        }
+        }
 
         return list;
     }
@@ -83,12 +87,19 @@ public class VillagerCorpseHelper extends CorpseHelper {
             MerchantRecipe recipe;
             NBTTagCompound recipeTag;
             for (Object recipe1 : recipes) {
-                recipe = (MerchantRecipe) recipe1;
-                if (recipe != null && recipe.getItemToBuy() != null && recipe.getItemToSell() != null) {
-                    recipeTag = recipe.writeToTags();
-                    recipeTag.setInteger("uses", 0);
-                    recipeTag.setInteger("maxUses", 7);
-                    recipe.readFromTags(recipeTag);
+                try {
+                    recipe = (MerchantRecipe) recipe1;
+                    if (recipe != null &&
+                            recipe.getItemToSell() != null && !recipe.getItemToSell().isEmpty() &&
+                            recipe.getItemToBuy() != null && !recipe.getItemToBuy().isEmpty() &&
+                            recipe.getSecondItemToBuy() != null) {
+                        recipeTag = recipe.writeToTags();
+                        recipeTag.setInteger("uses", 0);
+                        recipeTag.setInteger("maxUses", 7);
+                        recipe.readFromTags(recipeTag);
+                    }
+                } catch (Exception e) {
+                    GSLogger.logError("Can't read villager trades!");
                 }
             }
             nbt.setTag("Offers", recipes.getRecipiesAsTags());
@@ -236,17 +247,18 @@ public class VillagerCorpseHelper extends CorpseHelper {
     }
 
     private static String getNotVanillaVillagerProfession(int type) {
-        if (type == ExtendedConfig.undertakerId) {
-            return "item.corpse.villager_type.undertaker";
-        } else if (type == CompatibilityForestry.getApicultureVillagerID()) {
-            return "item.corpse.villager_type.beekeeper";
-        } else if (type == CompatibilityForestry.getArboricultureVillagerID()) {
-            return "item.corpse.villager_type.lumberjack";
-        } else if (type == 10) {
-            return "item.corpse.villager_type.brewer";
-        } else if (type == 206) {
-            return "item.corpse.villager_type.thaumaturge";
-        }
+        //TODO
+//        if (type == ExtendedConfig.undertakerId) {
+//            return "item.corpse.villager_type.undertaker";
+//        } else if (type == CompatibilityForestry.getApicultureVillagerID()) {
+//            return "item.corpse.villager_type.beekeeper";
+//        } else if (type == CompatibilityForestry.getArboricultureVillagerID()) {
+//            return "item.corpse.villager_type.lumberjack";
+//        } else if (type == 10) {
+//            return "item.corpse.villager_type.brewer";
+//        } else if (type == 206) {
+//            return "item.corpse.villager_type.thaumaturge";
+//        }
         return "item.corpse.villager_type.unknown";
     }
 
