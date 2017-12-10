@@ -1,6 +1,7 @@
 package nightkosh.gravestone_extended.structures.memorials;
 
 import net.minecraft.block.material.Material;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.ChunkPos;
@@ -78,6 +79,7 @@ public class MemorialGenerator implements GSStructureGenerator {
 
     private static boolean isNoWarterUnder(World world, int x, int z) {
         BlockPos pos = world.getTopSolidOrLiquidBlock(new BlockPos(x, 0, z));
-        return !world.getBlockState(pos).getBlock().getMaterial(null).equals(Material.WATER);
+        IBlockState state = world.getBlockState(pos);
+        return !state.getBlock().getMaterial(state).equals(Material.WATER);
     }
 }

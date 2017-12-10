@@ -139,11 +139,17 @@ public abstract class CatacombsBaseComponent extends ComponentGraveStone {
         int y = this.getYWithOffset(yCoord);
         int z = this.getZWithOffset(xCoord, zCoord);
 
-        while ((world.isAirBlock(new BlockPos(x, y, z)) || world.getBlockState(new BlockPos(x, y, z)).getBlock().getMaterial(null).isLiquid() ||
-                world.getBlockState(new BlockPos(x, y, z)).getBlock().getMaterial(null).isReplaceable()) && y > 1) {
+        while (canFillDownwards(world, x, y, z)) {
             world.setBlockState(new BlockPos(x, y, z), blockState, 2);
             --y;
         }
+    }
+
+    private boolean canFillDownwards(World world, int x, int y, int z) {
+        BlockPos pos = new BlockPos(x, y, z);
+        IBlockState state = world.getBlockState(pos);
+
+        return (world.isAirBlock(pos) || state.getBlock().getMaterial(state).isLiquid() || state.getBlock().getMaterial(state).isReplaceable()) && y > 1;
     }
 
     protected void fillWithRandomizedPilesOfBones(World world, StructureBoundingBox box, int startX, int startY, int startZ, int endX, int endY, int endZ, boolean p_74882_9_, Random random) {
@@ -151,10 +157,13 @@ public abstract class CatacombsBaseComponent extends ComponentGraveStone {
         for (int y = startY; y <= endY; ++y) {
             for (int x = startX; x <= endX; ++x) {
                 for (int z = startZ; z <= endZ; ++z) {
-                    if (!p_74882_9_ || this.getBlockStateFromPos(world, x, y, z, box).getBlock().getMaterial(null) != Material.AIR) {
-                        //TODO wtf ??? y == startY || y == endY || x == startX || x == endX || z == startZ || z == endZ
-                        getPileOfBonesSelector().selectBlocks(random, x, y, z, y == startY || y == endY || x == startX || x == endX || z == startZ || z == endZ);
-                        ObjectsGenerationHelper.generatePileOfBones(this, world, x, y, z, getPileOfBonesSelector().getBlockState());
+                    if (!p_74882_9_) {
+                        IBlockState state = this.getBlockStateFromPos(world, x, y, z, box);
+                        if (state.getBlock().getMaterial(state) != Material.AIR) {
+                            //TODO wtf ??? y == startY || y == endY || x == startX || x == endX || z == startZ || z == endZ
+                            getPileOfBonesSelector().selectBlocks(random, x, y, z, y == startY || y == endY || x == startX || x == endX || z == startZ || z == endZ);
+                            ObjectsGenerationHelper.generatePileOfBones(this, world, x, y, z, getPileOfBonesSelector().getBlockState());
+                        }
                     }
                 }
             }

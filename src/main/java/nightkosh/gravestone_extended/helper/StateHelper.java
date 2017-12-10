@@ -207,10 +207,12 @@ public class StateHelper {
     }
 
     public static boolean isWoodMaterial(World world, BlockPos pos) {
-        return world.getBlockState(pos).getBlock().getMaterial(null).equals(Material.WOOD);
+        IBlockState state = world.getBlockState(pos);
+        return state.getBlock().getMaterial(state).equals(Material.WOOD);
     }
 
     public static boolean isLeavesMaterial(World world, BlockPos pos) {
-        return world.getBlockState(pos).getBlock().getMaterial(null).equals(Material.LEAVES);
+        IBlockState state = world.getBlockState(pos);
+        return state.getBlock().getMaterial(state).equals(Material.LEAVES);
     }
 }
