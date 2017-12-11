@@ -81,12 +81,12 @@ public class ChiselContainer extends Container {
 
     @Override
     public void onCraftMatrixChanged(IInventory inventory) {
-        List<ItemStack> items = new ArrayList<ItemStack>(inventory.getSizeInventory());
+        List<ItemStack> items = new ArrayList<>(inventory.getSizeInventory());
         for (int i = 0; i < inventory.getSizeInventory(); i++) {
             items.add(inventory.getStackInSlot(i));
         }
 
-        this.craftResult.setInventorySlotContents(0, GravesCraftingManager.getInstance().findMatchingRecipe(items, isGravestone, graveType, material, isEnchanted, isMossy));
+//        this.craftResult.setInventorySlotContents(0, GravesCraftingManager.INSTANCE.findMatchingRecipe(items, isGravestone, graveType, material, isEnchanted, isMossy));
     }
 
     @Override
@@ -97,7 +97,7 @@ public class ChiselContainer extends Container {
             for (int i = 0; i < CRAFTING_SLOTS_COUNT; i++) {
                 ItemStack itemstack = this.craftMatrix.getStackInSlot(i);
 
-                if (itemstack != null) {
+                if (itemstack != null && itemstack != ItemStack.EMPTY) {
 //                    player.dropPlayerItemWithRandomChoice(itemstack, false); //TODO
                     player.dropItem(itemstack, false);
                 }
@@ -155,12 +155,12 @@ public class ChiselContainer extends Container {
 
     @Override
     public void detectAndSendChanges() {
-        List<ItemStack> items = GravesCraftingManager.getInstance().findMatchingRecipe(isGravestone, graveType, material, isEnchanted, isMossy);
+        List<ItemStack> items = GravesCraftingManager.INSTANCE.findMatchingRecipe(isGravestone, graveType, material, isEnchanted, isMossy);
         this.recipeMatrix.clear();
         if (items != null) {
             int slot = 0;
             for (ItemStack stack : items) {
-                if (stack != null) {
+                if (stack != null && stack != ItemStack.EMPTY) {
                     this.recipeMatrix.setInventorySlotContents(slot, stack.copy());
                 }
                 slot++;

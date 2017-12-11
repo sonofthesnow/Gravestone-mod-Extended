@@ -33,17 +33,17 @@ public class GraveRecipeInventory implements IInventory {
 
     @Override
     public ItemStack getStackInSlot(int index) {
-        return index >= this.getSizeInventory() ? null : this.stackList[index];
+        return index >= this.getSizeInventory() ? ItemStack.EMPTY : this.stackList[index];
     }
 
     @Override
     public ItemStack decrStackSize(int index, int count) {
-        return null;
+        return ItemStack.EMPTY;
     }
 
     @Override
     public ItemStack removeStackFromSlot(int index) {
-        return null;
+        return ItemStack.EMPTY;
     }
 
     @Override
