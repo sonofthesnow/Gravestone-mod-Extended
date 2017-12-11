@@ -49,6 +49,13 @@ public class Recipes {
                 'b', GSItem.BONE_SWORD,
                 's', Items.DIAMOND_SWORD);
 
+        GameRegistry.addShapedRecipe(new ResourceLocation(ModInfo.ID, "bone_shield"), GROUP, new ItemStack(GSItem.BONE_SHIELD),
+                "sss", "pbp", "pcp",
+                's', new ItemStack(Items.SKULL, 1, 0),
+                'p', GSBlock.PILE_OF_BONES,
+                'b', GSBlock.BONE_BLOCK,
+                'c', Items.SHIELD);
+
         GameRegistry.addShapedRecipe(new ResourceLocation(ModInfo.ID, "pile_of_bones"), GROUP, new ItemStack(GSBlock.PILE_OF_BONES, 1, 0),
                 "bb", "bb",
                 'b', Items.BONE);

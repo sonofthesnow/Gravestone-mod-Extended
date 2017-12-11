@@ -11,10 +11,7 @@ import nightkosh.gravestone_extended.core.compatibility.Compatibility;
 import nightkosh.gravestone_extended.core.compatibility.forestry.CompatibilityForestry;
 import nightkosh.gravestone_extended.item.ItemChisel;
 import nightkosh.gravestone_extended.item.ItemGSMonsterPlacer;
-import nightkosh.gravestone_extended.item.tools.ItemBoneSword;
-import nightkosh.gravestone_extended.item.tools.ItemDiamondBoneSword;
-import nightkosh.gravestone_extended.item.tools.ItemGoldenBoneSword;
-import nightkosh.gravestone_extended.item.tools.ItemIronBoneSword;
+import nightkosh.gravestone_extended.item.tools.*;
 
 /**
  * GraveStone mod
@@ -31,6 +28,7 @@ public class GSItem {
     public static final Item BONE_SWORD_IRON = new ItemIronBoneSword();
     public static final Item BONE_SWORD_GOLDEN = new ItemGoldenBoneSword();
     public static final Item BONE_SWORD_DIAMOND = new ItemDiamondBoneSword();
+    public static final Item BONE_SHIELD = new ItemBoneShield();
 
     @Mod.EventBusSubscriber(modid = ModInfo.ID)
     public static class RegistrationHandler {
@@ -39,7 +37,7 @@ public class GSItem {
         public static void registerItems(final RegistryEvent.Register<Item> event) {
             final IForgeRegistry<Item> registry = event.getRegistry();
             registry.registerAll(CHISEL, SPAWN_EGG);
-            registry.registerAll(BONE_SWORD, BONE_SWORD_IRON, BONE_SWORD_GOLDEN, BONE_SWORD_DIAMOND);
+            registry.registerAll(BONE_SWORD, BONE_SWORD_IRON, BONE_SWORD_GOLDEN, BONE_SWORD_DIAMOND, BONE_SHIELD);
             if (Loader.isModLoaded(Compatibility.FORESTRY_ID)) {
                 CompatibilityForestry.addBackpack(registry);
             }

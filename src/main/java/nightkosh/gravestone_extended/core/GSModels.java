@@ -119,6 +119,8 @@ public class GSModels {
             ModelLoader.setCustomModelResourceLocation(GSItem.BONE_SWORD_IRON, 0, ResourcesModels.BONE_SWORD_IRON);
             ModelLoader.setCustomModelResourceLocation(GSItem.BONE_SWORD_GOLDEN, 0, ResourcesModels.BONE_SWORD_GOLDEN);
             ModelLoader.setCustomModelResourceLocation(GSItem.BONE_SWORD_DIAMOND, 0, ResourcesModels.BONE_SWORD_DIAMOND);
+            ModelLoader.setCustomModelResourceLocation(GSItem.BONE_SHIELD, 0, ResourcesModels.BONE_SHIELD);
+            ModelLoader.setCustomModelResourceLocation(GSItem.BONE_SHIELD, 1, ResourcesModels.BONE_SHIELD_BLOCKING);
 
             if (Loader.isModLoaded(Compatibility.FORESTRY_ID) && ExtendedConfig.enableForestryBackpacks) {
                 ModelLoader.setCustomModelResourceLocation(CompatibilityForestry.backpackItemT1, 0, new ModelResourceLocation(Compatibility.FORESTRY_ID + ":backpacks/normal_neutral", "inventory"));

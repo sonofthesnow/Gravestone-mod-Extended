@@ -92,6 +92,9 @@ item.gravestone.bone_sword_iron.name=Iron Bone Sword
 item.gravestone.bone_sword_golden.name=Golden Bone Sword
 item.gravestone.bone_sword_diamond.name=Diamond Bone Sword
 
+## Shield
+item.gravestone.bone_shield.name=Bone Shield
+
 ## Corpses
 item.corpse.steve=Steve Corpse
 item.corpse.player=Player Corpse

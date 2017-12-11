@@ -92,6 +92,10 @@ item.gravestone.bone_sword_iron.name=Залізний Кістяний меч
 item.gravestone.bone_sword_golden.name=Золотой Кістяний мечь
 item.gravestone.bone_sword_diamond.name=Алмазний Кістяний меч
 
+## Shield
+## TODO !!!!!!!!!!
+item.gravestone.bone_shield.name=Bone Shield
+
 ## Corpses
 item.corpse.steve=Труп Стіва
 item.corpse.player=Труп гравця

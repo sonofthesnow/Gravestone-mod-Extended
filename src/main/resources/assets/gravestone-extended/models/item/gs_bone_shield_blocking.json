@@ -1,0 +1,21 @@
+{
+    "parent": "gravestone-extended:item/gs_bone_shield",
+	"display": {
+		"thirdperson_righthand": {
+			"rotation": [0, 0, 0],
+			"translation": [2, -8.5, 0]
+		},
+		"thirdperson_lefthand": {
+			"translation": [2, -8.5, 0],
+			"rotation": [0, 0, 0]
+		},
+		"firstperson_righthand": {
+			"translation": [-5, -4, 0],
+			"rotation": [0, 4, 7]
+		},
+		"firstperson_lefthand": {
+			"rotation": [0, 4, 7],
+			"translation": [-5, -4, 0]
+		}
+	}
+}

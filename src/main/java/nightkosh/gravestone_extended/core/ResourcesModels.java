@@ -22,6 +22,8 @@ public class ResourcesModels extends Resources {
     public static final ModelResourceLocation BONE_SWORD_IRON = new ModelResourceLocation(GSItem.BONE_SWORD_IRON.getRegistryName(), "inventory");
     public static final ModelResourceLocation BONE_SWORD_GOLDEN = new ModelResourceLocation(GSItem.BONE_SWORD_GOLDEN.getRegistryName(), "inventory");
     public static final ModelResourceLocation BONE_SWORD_DIAMOND = new ModelResourceLocation(GSItem.BONE_SWORD_DIAMOND.getRegistryName(), "inventory");
+    public static final ModelResourceLocation BONE_SHIELD = new ModelResourceLocation(GSItem.BONE_SHIELD.getRegistryName(), "inventory");
+    public static final ModelResourceLocation BONE_SHIELD_BLOCKING = new ModelResourceLocation(GSItem.BONE_SHIELD.getRegistryName() + "_blocking", "inventory");
 
     public static final ModelResourceLocation CORPSE = new ModelResourceLocation(MOD_NAME + ":gscorpse", "inventory");
 
