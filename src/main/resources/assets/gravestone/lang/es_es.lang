@@ -2,7 +2,7 @@
 ##TODO !!!!!!!!!!
 itemGroup.tabGSMemorials=Memorials
 ## TODO !!!!!!
-itemGroup.tabGSCorpse=Corpses
+itemGroup.tabGSCorpse=Cadáveres
 ##TODO !!!!!!!!!!
 itemGroup.tabGSOther=Gravestone mod Items
 
@@ -186,8 +186,8 @@ item.corpse.cat_type.unknown=Unknown
 
 ## mobs type
 mobtype.title=Mob type
-mobtype.zombie=Zombie
-mobtype.skeleton=Skeleton
+mobtype.zombie=Zombi
+mobtype.skeleton=Esqueleto
 mobtype.ghost=Ghost
 mobtype.husk=Husk Zombie
 mobtype.stray=Stray Skeleton
@@ -227,7 +227,7 @@ entity.GSSkeletonRaider.name=Skeleton Raider
 ##TODO !!!!!!!!!!
 entity.GSZombieRaider.name=Zombie Raider
 ##TODO !!!!!!!!!!
-entity.GSSkeleton.name=Skeleton
+entity.GSSkeleton.name=Esqueleto
 entity.Villager.gravestone-extended:undertaker=Undertaker
 
 
