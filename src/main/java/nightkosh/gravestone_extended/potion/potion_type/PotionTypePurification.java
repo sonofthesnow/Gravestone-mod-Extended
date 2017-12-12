@@ -23,7 +23,7 @@ public class PotionTypePurification extends PotionType {
 
     @Override
     public List<PotionEffect> getEffects() {
-        List effectList = new ArrayList<>(1);
+        List<PotionEffect> effectList = new ArrayList<>(1);
         effectList.add(new PotionEffect(GSPotion.PURIFICATION));
         return effectList;
     }
