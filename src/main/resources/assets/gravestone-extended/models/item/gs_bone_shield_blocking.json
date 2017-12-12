@@ -2,12 +2,12 @@
     "parent": "gravestone-extended:item/gs_bone_shield",
 	"display": {
 		"thirdperson_righthand": {
-			"rotation": [0, 0, 0],
-			"translation": [2, -8.5, 0]
+			"rotation": [45, -25, 0],
+			"translation": [1.5, -2, -2]
 		},
 		"thirdperson_lefthand": {
-			"translation": [2, -8.5, 0],
-			"rotation": [0, 0, 0]
+			"translation": [1.5, -2, -2],
+			"rotation": [45, -25, 0]
 		},
 		"firstperson_righthand": {
 			"translation": [-5, -4, 0],

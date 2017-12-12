@@ -522,5 +522,13 @@
 			"translation": [0, -3.5, 0],
 			"scale": [0.875, 0.875, 0.875]
 		}
-	}
+	},
+    "overrides": [
+        {
+             "predicate": {
+                 "blocking": 1
+             },
+             "model": "gravestone-extended:item/gs_bone_shield_blocking"
+        }
+    ]
 }
