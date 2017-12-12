@@ -111,12 +111,12 @@ item.gravestone.bone_sword_diamond.name=Diamond Bone Sword
 
 ## Shield
 ## TODO !!!!!!!!!!
-item.gravestone.bone_shield.name=Escudo óseo
+item.gravestone.bone_shield.name=Escudo Hueso
 
 
 ## Corpses
 ## TODO !!!!!!!!!!
-item.corpse.steve=Steve Corpse
+item.corpse.steve=Cadáver Steve
 ## TODO !!!!!!!!!!
 item.corpse.player=Player Corpse
 ##TODO !!!!!!!!!!
@@ -191,8 +191,8 @@ mobtype.skeleton=Esqueleto
 mobtype.ghost=Ghost
 mobtype.husk=Husk Zombie
 mobtype.stray=Stray Skeleton
-mobtype.wither=Wither Skeleton
-mobtype.pigman=Zombie Pigmen
+mobtype.wither=Esqueleto Wither
+mobtype.pigman=Hombrecerdo zombi
 
 ##Backpacks
 ##TODO !!!!!!!!!!
