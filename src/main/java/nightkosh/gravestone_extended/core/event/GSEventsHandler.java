@@ -6,6 +6,7 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.monster.EntityCreeper;
 import net.minecraft.entity.monster.EntitySkeleton;
 import net.minecraft.entity.monster.EntityZombie;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.projectile.EntityPotion;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTBase;
@@ -16,6 +17,7 @@ import net.minecraft.potion.PotionUtils;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.event.entity.ProjectileImpactEvent;
+import net.minecraftforge.event.entity.living.LivingAttackEvent;
 import net.minecraftforge.event.entity.living.LivingDamageEvent;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.fml.common.FMLCommonHandler;
@@ -30,7 +32,9 @@ import nightkosh.gravestone_extended.core.MobSpawn;
 import nightkosh.gravestone_extended.entity.monster.crawler.EntitySkullCrawler;
 import nightkosh.gravestone_extended.entity.monster.crawler.EntityWitherSkullCrawler;
 import nightkosh.gravestone_extended.entity.monster.crawler.EntityZombieSkullCrawler;
+import nightkosh.gravestone_extended.item.tools.IBoneShiled;
 import nightkosh.gravestone_extended.item.tools.IBoneSword;
+import nightkosh.gravestone_extended.item.tools.ItemBoneShield;
 
 import java.util.Map;
 
@@ -62,6 +66,20 @@ public class GSEventsHandler {
             if (event.getEntity() instanceof EntityCreeper && ((EntityCreeper) event.getEntity()).getPowered()) {
                 // drop creeper statue if entity is a charged creeper
                 GSBlock.MEMORIAL.dropCreeperMemorial(event.getEntity().getEntityWorld(), new BlockPos(event.getEntity()));
+            }
+        }
+    }
+
+    @SubscribeEvent
+    public void livingAttackEvent(LivingAttackEvent event) {
+        if (event.getEntityLiving() instanceof EntityPlayer) {
+            EntityPlayer player = (EntityPlayer) event.getEntityLiving();
+            ItemStack activeStack = player.getActiveItemStack();
+            if (!activeStack.isEmpty() && activeStack.getItem() instanceof IBoneShiled) {
+                if (event.getAmount() >= 3) {
+                    float amount = event.getAmount();
+                    ((ItemBoneShield) activeStack.getItem()).damageShield(activeStack, player, amount);
+                }
             }
         }
     }
@@ -131,8 +149,8 @@ public class GSEventsHandler {
                     for (Map.Entry<BlockPos, TileEntity> teEntry : teMap.entrySet()) {
                         if (teEntry != null && teEntry.getValue() instanceof TileEntityGraveStone &&
                                 (teEntry.getKey().getX() >= entityPotion.posX - range && teEntry.getKey().getX() <= entityPotion.posX + range &&
-                                teEntry.getKey().getZ() >= entityPotion.posZ - range && teEntry.getKey().getZ() <= entityPotion.posZ + range &&
-                                teEntry.getKey().getY() >= entityPotion.posY - range && teEntry.getKey().getY() <= entityPotion.posY + range)) {
+                                        teEntry.getKey().getZ() >= entityPotion.posZ - range && teEntry.getKey().getZ() <= entityPotion.posZ + range &&
+                                        teEntry.getKey().getY() >= entityPotion.posY - range && teEntry.getKey().getY() <= entityPotion.posY + range)) {
                             ((TileEntityGraveStone) teEntry.getValue()).setPurified(true);
                         }
                     }
