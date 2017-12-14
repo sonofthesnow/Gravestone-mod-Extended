@@ -14,22 +14,17 @@ import java.util.List;
  * @author NightKosh
  * @license Lesser GNU Public License v3 (http://www.gnu.org/licenses/lgpl.html)
  */
-public class PotionTypePurification extends PotionType {
+public class PotionTypeBoneSkin extends PotionType {
 
-    public PotionTypePurification(PotionEffect... effects) {
+    public PotionTypeBoneSkin(PotionEffect... effects) {
         super(effects);
-        this.setRegistryName(ModInfo.ID, "gs_purification_type");
+        this.setRegistryName(ModInfo.ID, "gs_bone_skin_type");
     }
 
     @Override
     public List<PotionEffect> getEffects() {
         List<PotionEffect> effectList = new ArrayList<>(1);
-        effectList.add(new PotionEffect(GSPotion.PURIFICATION));
+        effectList.add(new PotionEffect(GSPotion.BONE_SKIN, 12000));
         return effectList;
-    }
-
-    @Override
-    public boolean hasInstantEffect() {
-        return true;
     }
 }

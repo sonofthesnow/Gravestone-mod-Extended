@@ -80,6 +80,14 @@ potion.purification.title=Снимает все негативные эффек�
 potion.effect.gs_purification_type=Зелье очищения
 splash_potion.effect.gs_purification_type=Взрывное зелье очищения
 lingering_potion.effect.gs_purification_type=Туманное зелье очищения
+potion.bone_skin.title=Костяная кожа
+potion.effect.gs_bone_skin_type=Зелье костяной кожи
+splash_potion.effect.gs_bone_skin_type=Взрывное зелье костяной кожи
+lingering_potion.effect.gs_bone_skin_type=Туманное зелье костяной кожи
+potion.rust.title=Ржавчина
+potion.effect.gs_rust_type=Зелье ржавчины
+splash_potion.effect.gs_rust_type=Взрывное зелье ржавчины
+lingering_potion.effect.gs_rust_type=Туманное зелье ржавчины
 
 
 # Items

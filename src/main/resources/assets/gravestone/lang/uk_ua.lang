@@ -80,6 +80,14 @@ potion.purification.title=Знімає всі негативні ефекти
 potion.effect.gs_purification_type=Зілля очищення
 splash_potion.effect.gs_purification_type=Вибухове зілля очищення
 lingering_potion.effect.gs_purification_type=Туманне зілля очищення
+potion.bone_skin.title=Bone Skin
+potion.effect.gs_bone_skin_type=Potion of Bone Skin
+splash_potion.effect.gs_bone_skin_type=Splash Potion of Bone Skin
+lingering_potion.effect.gs_bone_skin_type=Lingering Potion of Bone Skin
+potion.rust.title=Rust
+potion.effect.gs_rust_type=Potion of Rust
+splash_potion.effect.gs_rust_type=Splash Potion of Rust
+lingering_potion.effect.gs_rust_type=Lingering Potion of Rust
 
 
 # Items

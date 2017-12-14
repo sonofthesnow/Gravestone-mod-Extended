@@ -17,7 +17,7 @@ import java.util.List;
  * @author NightKosh
  * @license Lesser GNU Public License v3 (http://www.gnu.org/licenses/lgpl.html)
  */
-public class PotionPurification extends Potion {
+public class PotionPurification extends PotionBase {
 
     public PotionPurification() {
         super(false, 0xffffff);
@@ -43,12 +43,9 @@ public class PotionPurification extends Potion {
         }
     }
 
+    @Override
     public boolean isInstant() {
         return true;
-    }
-
-    public boolean isReady(int duration, int amplifier) {
-        return duration >= 1;
     }
 
     @Override
