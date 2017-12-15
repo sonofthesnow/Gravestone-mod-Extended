@@ -209,6 +209,8 @@ entity.GSSkeletonRaider.name=Скелет наїзник
 entity.GSZombieRaider.name=Зомбі наїзник
 entity.GSSkeleton.name=Скелет
 entity.Villager.gravestone-extended:undertaker=Трунар
+## TODO !!!!!!!!!!
+entity.GSToxicSludge.name=Toxic Sludge
 
 
 # Console messages

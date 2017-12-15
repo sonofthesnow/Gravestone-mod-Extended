@@ -207,6 +207,7 @@ entity.GSSkeletonRaider.name=Skeleton Raider
 entity.GSZombieRaider.name=Zombie Raider
 entity.GSSkeleton.name=Skeleton
 entity.Villager.gravestone-extended:undertaker=Undertaker
+entity.GSToxicSludge.name=Toxic Sludge
 
 
 # Console messages

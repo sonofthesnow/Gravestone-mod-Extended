@@ -213,6 +213,8 @@ entity.GSZombieRaider.name=Zombieräuber
 ##TODO !!!!!!!!!!
 entity.GSSkeleton.name=Skeleton
 entity.Villager.gravestone-extended:undertaker=Totengräber
+## TODO !!!!!!!!!!
+entity.GSToxicSludge.name=Toxic Sludge
 
 
 # Console messages

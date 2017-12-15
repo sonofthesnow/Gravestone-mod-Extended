@@ -225,6 +225,8 @@ entity.GSZombieRaider.name=僵尸掠夺者
 ##TODO !!!!!!!!!!
 entity.GSSkeleton.name=Skeleton
 entity.Villager.gravestone-extended:undertaker=送葬者
+## TODO !!!!!!!!!!
+entity.GSToxicSludge.name=Toxic Sludge
 
 
 # Console messages
