@@ -42,8 +42,8 @@ public class ItemGSMonsterPlacer extends ItemMonsterPlacer {
     public static final int CRAWLER_FOREGROUND_COLOR = 0xA80E0E;
     public static final int SKELETON_PET_FOREGROUND_COLOR = 0x494949;
     public static final int ZOMBIE_PET_FOREGROUND_COLOR = 0x799c65;
-    public static final int TOXIC_SLUDGE_BACKGROUND_COLOR = 5349438;
-    public static final int TOXIC_SLUDGE_FOREGROUND_COLOR = 8306542;
+    public static final int TOXIC_SLUDGE_BACKGROUND_COLOR = 0x29BF05;
+    public static final int TOXIC_SLUDGE_FOREGROUND_COLOR = 0x5DD93F;
 
     public static enum EnumEggs {
         ZOMBIE_DOG(Entity.ZOMBIE_DOG_NAME, Entity.ZOMBIE_DOG_ID, DOG_BACKGROUND_COLOR, ZOMBIE_PET_FOREGROUND_COLOR),

@@ -9,10 +9,7 @@ import net.minecraftforge.fml.common.registry.EntityRegistry;
 import nightkosh.gravestone_extended.config.ExtendedConfig;
 import nightkosh.gravestone_extended.entity.EntityRaven;
 import nightkosh.gravestone_extended.entity.helper.EntityGroupOfGravesMobSpawnerHelper;
-import nightkosh.gravestone_extended.entity.monster.EntityDamnedWarrior;
-import nightkosh.gravestone_extended.entity.monster.EntityGSSkeleton;
-import nightkosh.gravestone_extended.entity.monster.EntitySkeletonRaider;
-import nightkosh.gravestone_extended.entity.monster.EntityZombieRaider;
+import nightkosh.gravestone_extended.entity.monster.*;
 import nightkosh.gravestone_extended.entity.monster.crawler.EntitySkullCrawler;
 import nightkosh.gravestone_extended.entity.monster.crawler.EntityWitherSkullCrawler;
 import nightkosh.gravestone_extended.entity.monster.crawler.EntityZombieSkullCrawler;
@@ -23,7 +20,7 @@ import nightkosh.gravestone_extended.entity.monster.pet.EntitySkeletonDog;
 import nightkosh.gravestone_extended.entity.monster.pet.EntityZombieCat;
 import nightkosh.gravestone_extended.entity.monster.pet.EntityZombieDog;
 
-import java.util.Set;
+import java.util.*;
 
 /**
  * GraveStone mod
@@ -50,6 +47,7 @@ public class Entity {
     public static final String SKELETON_HORSE_NAME = "GSSkeletonHorse";
     public static final String SKELETON_RAIDER_NAME = "GSSkeletonRaider";
     public static final String ZOMBIE_RAIDER_NAME = "GSZombieRaider";
+    public static final String TOXIC_SLUDGE_NAME = "GSToxicSludge";
     public static final String RAVEN_NAME = "GSRaven";
     public static final String DAMNED_WARRIOR_NAME = "GSDamnedWarrior";
     public static final String SPAWNER_HELPER_NAME = "GSSpawnerHelper";
@@ -67,7 +65,7 @@ public class Entity {
     public static final ResourceLocation MINECRAFT_CREEPER_ID = new ResourceLocation("creeper");
     public static final ResourceLocation MINECRAFT_WITHER_ID = new ResourceLocation("wither");
 
-    public static final ResourceLocation SKELETON_ID =  new ResourceLocation(ModInfo.ID + ":" + SKELETON_NAME);
+    public static final ResourceLocation SKELETON_ID = new ResourceLocation(ModInfo.ID + ":" + SKELETON_NAME);
     public static final ResourceLocation ZOMBIE_DOG_ID = new ResourceLocation(ModInfo.ID + ":" + ZOMBIE_DOG_NAME);
     public static final ResourceLocation ZOMBIE_CAT_ID = new ResourceLocation(ModInfo.ID + ":" + ZOMBIE_CAT_NAME);
     public static final ResourceLocation SKELETON_DOG_ID = new ResourceLocation(ModInfo.ID + ":" + SKELETON_DOG_NAME);
@@ -79,6 +77,7 @@ public class Entity {
     public static final ResourceLocation SKELETON_HORSE_ID = new ResourceLocation(ModInfo.ID + ":" + SKELETON_HORSE_NAME);
     public static final ResourceLocation SKELETON_RAIDER_ID = new ResourceLocation(ModInfo.ID + ":" + SKELETON_RAIDER_NAME);
     public static final ResourceLocation ZOMBIE_RAIDER_ID = new ResourceLocation(ModInfo.ID + ":" + ZOMBIE_RAIDER_NAME);
+    public static final ResourceLocation TOXIC_SLUDGE_ID = new ResourceLocation(ModInfo.ID + ":" + TOXIC_SLUDGE_NAME);
     public static final ResourceLocation DAMNED_WARRIOR_ID = new ResourceLocation(ModInfo.ID + ":" + DAMNED_WARRIOR_NAME);
     public static final ResourceLocation RAVEN_ID = new ResourceLocation(ModInfo.ID + ":" + RAVEN_NAME);
     public static final ResourceLocation SPAWNER_HELPER_ID = new ResourceLocation(ModInfo.ID + ":spawner_helper");
@@ -139,6 +138,24 @@ public class Entity {
             addSpawn(BiomeDictionary.Type.PLAINS, EntitySkeletonRaider.class, 1, 1, 1);
         }
 
+
+        registerModEntity(TOXIC_SLUDGE_ID, EntityToxicSludge.class, TOXIC_SLUDGE_NAME);
+        List<BiomeDictionary.Type> toxicSludgeBiomes = new ArrayList<>(Arrays.asList(
+                BiomeDictionary.Type.MESA,
+                BiomeDictionary.Type.FOREST,
+                BiomeDictionary.Type.JUNGLE,
+                BiomeDictionary.Type.PLAINS,
+                BiomeDictionary.Type.MOUNTAIN,
+                BiomeDictionary.Type.HILLS,
+                BiomeDictionary.Type.SWAMP,
+                BiomeDictionary.Type.SANDY,
+                BiomeDictionary.Type.SNOWY,
+                BiomeDictionary.Type.WASTELAND,
+                BiomeDictionary.Type.BEACH,
+                BiomeDictionary.Type.WATER
+        ));
+        addSpawn(toxicSludgeBiomes, EntityToxicSludge.class, 1, 1, 1);
+
         registerModEntity(RAVEN_ID, EntityRaven.class, RAVEN_NAME);
 //        EntityRegistry.addSpawn(EntityRaven.class, 1, 3, 10, EnumCreatureType.AMBIENT);//TODO!!!!
 
@@ -149,15 +166,23 @@ public class Entity {
     }
 
     private static void addSpawn(BiomeDictionary.Type biomeType, Class<? extends EntityLiving> entityClass,
-                          int spawnProbability, int spawnMinCount, int spawnMaxCount) {
-        addSpawn(biomeType, entityClass, EnumCreatureType.MONSTER, spawnProbability, spawnMinCount, spawnMaxCount);
+                                 int spawnProbability, int spawnMinCount, int spawnMaxCount) {
+        addSpawn(Arrays.asList(biomeType), entityClass, EnumCreatureType.MONSTER, spawnProbability, spawnMinCount, spawnMaxCount);
     }
 
-    private static void addSpawn(BiomeDictionary.Type biomeType, Class<? extends EntityLiving> entityClass,
-                          EnumCreatureType mobType, int spawnProbability, int spawnMinCount, int spawnMaxCount) {
-        Set<Biome> biomeSet = BiomeDictionary.getBiomes(biomeType);
-        Biome[] biomeArray = new Biome[biomeSet.size()];
-        biomeSet.toArray(biomeArray);
+    private static void addSpawn(List<BiomeDictionary.Type> biomeTypes, Class<? extends EntityLiving> entityClass,
+                                 int spawnProbability, int spawnMinCount, int spawnMaxCount) {
+        addSpawn(biomeTypes, entityClass, EnumCreatureType.MONSTER, spawnProbability, spawnMinCount, spawnMaxCount);
+    }
+
+    private static void addSpawn(List<BiomeDictionary.Type> biomeTypes, Class<? extends EntityLiving> entityClass,
+                                 EnumCreatureType mobType, int spawnProbability, int spawnMinCount, int spawnMaxCount) {
+        List<Biome> biomes = new ArrayList<>();
+        for (BiomeDictionary.Type biomeType : biomeTypes) {
+            biomes.addAll(BiomeDictionary.getBiomes(biomeType));
+        }
+        Biome[] biomeArray = new Biome[biomes.size()];
+        biomes.toArray(biomeArray);
         EntityRegistry.addSpawn(entityClass, spawnProbability, spawnMinCount, spawnMaxCount, mobType, biomeArray);
     }
 
@@ -167,7 +192,7 @@ public class Entity {
     }
 
     private static void registerModEntity(ResourceLocation resource, Class<? extends net.minecraft.entity.Entity> entityClass, String entityName, int id,
-                                   Object mod, int trackingRange, int updateFrequency, boolean sendsVelocityUpdates) {
+                                          Object mod, int trackingRange, int updateFrequency, boolean sendsVelocityUpdates) {
         EntityRegistry.registerModEntity(resource, entityClass, entityName, id, mod, trackingRange, updateFrequency, sendsVelocityUpdates);
     }
 }

@@ -40,6 +40,7 @@ public class StateHelper {
     public static final IBlockState SAND = Blocks.SAND.getDefaultState();
     public static final IBlockState GRASS = Blocks.GRASS.getDefaultState();
     public static final IBlockState DIRT = Blocks.DIRT.getDefaultState();
+    public static final IBlockState PODZOL = Blocks.DIRT.getStateFromMeta(BlockDirt.DirtType.PODZOL.getMetadata());
     public static final IBlockState BOOKSHELF = Blocks.BOOKSHELF.getDefaultState();
     public static final IBlockState DISPENSER = Blocks.DISPENSER.getDefaultState();
     public static final IBlockState DISPENSER_TRIGGERED = DISPENSER.withProperty(BlockDispenser.TRIGGERED, Boolean.valueOf(false));
@@ -48,6 +49,7 @@ public class StateHelper {
     public static final IBlockState TRIPWIRE_HOOK = Blocks.TRIPWIRE_HOOK.getDefaultState();
     public static final IBlockState PLANKS = Blocks.PLANKS.getDefaultState();
     public static final IBlockState PLANKS_DARK_OAK = PLANKS.withProperty(BlockPlanks.VARIANT, BlockPlanks.EnumType.DARK_OAK);
+    public static final IBlockState STONE = Blocks.STONE.getDefaultState();
     public static final IBlockState COBBLESTONE = Blocks.COBBLESTONE.getDefaultState();
     public static final IBlockState STONEBRICK = Blocks.STONEBRICK.getDefaultState();
     public static final IBlockState STONEBRICK_CRACKED = Blocks.STONEBRICK.getStateFromMeta(BlockStoneBrick.CRACKED_META);
