@@ -9,14 +9,18 @@ import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.EnumSkyBlock;
 import net.minecraft.world.World;
+import nightkosh.gravestone_extended.config.ExtendedConfig;
 import nightkosh.gravestone_extended.core.GSItem;
 import nightkosh.gravestone_extended.core.GSPotion;
 import nightkosh.gravestone_extended.helper.StateHelper;
+
+import javax.annotation.Nullable;
 
 /**
  * GraveStone mod
@@ -44,7 +48,7 @@ public class EntityToxicSludge extends EntitySlime {
 
     @Override
     protected void doBlockCollisions() {
-//        if (this.world.getGameRules().getBoolean("mobGriefing")) {
+        if (ExtendedConfig.toxicSludgeAndWaterChangeBlocks) {
             AxisAlignedBB axisalignedbb = this.getEntityBoundingBox();
             BlockPos.PooledMutableBlockPos posPoolBottom = BlockPos.PooledMutableBlockPos.retain(axisalignedbb.minX - 0.001, axisalignedbb.minY - 0.001, axisalignedbb.minZ - 0.001);
             BlockPos.PooledMutableBlockPos posPoolTop = BlockPos.PooledMutableBlockPos.retain(axisalignedbb.maxX + 0.001, axisalignedbb.maxY + 0.001, axisalignedbb.maxZ + 0.001);
@@ -64,7 +68,7 @@ public class EntityToxicSludge extends EntitySlime {
             posPoolBottom.release();
             posPoolTop.release();
             pool.release();
-//        }
+        }
 
         super.doBlockCollisions();
     }
@@ -113,6 +117,11 @@ public class EntityToxicSludge extends EntitySlime {
     @Override
     protected Item getDropItem() {
         return this.getSlimeSize() == 1 ? GSItem.TOXIC_SLIME : null;
+    }
+
+    @Nullable
+    protected ResourceLocation getLootTable() {
+        return null;
     }
 
     @Override

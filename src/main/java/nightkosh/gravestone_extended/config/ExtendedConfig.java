@@ -9,7 +9,6 @@ import nightkosh.gravestone_extended.structures.catacombs.CatacombsGenerator;
 import nightkosh.gravestone_extended.structures.catacombs.CatacombsLevel;
 import nightkosh.gravestone_extended.structures.graves.SingleGraveGenerator;
 import nightkosh.gravestone_extended.structures.memorials.MemorialGenerator;
-import nightkosh.gravestone_extended.structures.village.VillagersHandler;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -213,6 +212,7 @@ public class ExtendedConfig {
     public static boolean spawnUndeadHorses;
     public static boolean spawnSkeletonRaiders;
     public static boolean spawnZombieRaiders;
+    public static boolean toxicSludgeAndWaterChangeBlocks;
 
     private static void entityConfig() {
         spawnZombieDogs = config.get(CATEGORY_MOBS, "SpawnZombieDogsInTheWorld", true).getBoolean(true);
@@ -227,6 +227,9 @@ public class ExtendedConfig {
         spawnSkullCrawlersAtMobsDeath = config.get(CATEGORY_MOBS, "SpawnSkullCrawlersAtMobsDeath", true).getBoolean(true);
         spawnSkullCrawlersAtBoneBlockDestruction = config.get(CATEGORY_MOBS, "SpawnSkullCrawlersAnBoneBlockDestruction", true).getBoolean(true);
         spawnSkullCrawlersAtPileBonesDestruction = config.get(CATEGORY_MOBS, "SpawnSkullCrawlersAtPileBonesDestruction", true).getBoolean(true);
+
+        // toxic sludge and water
+        toxicSludgeAndWaterChangeBlocks = config.get(CATEGORY_MOBS, "ToxicSludgeAndWaterChangeBlocks", true).getBoolean(true);
     }
 
     // COMPATIBILITY
