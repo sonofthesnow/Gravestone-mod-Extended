@@ -28,6 +28,8 @@ public class ResourcesModels extends Resources {
 
     public static final ModelResourceLocation spawnEggModel = new ModelResourceLocation(GSItem.SPAWN_EGG.getRegistryName(), "inventory");
 
+    public static final ModelResourceLocation TOXIC_SLIME = new ModelResourceLocation(GSItem.TOXIC_SLIME.getRegistryName(), "inventory");
+
     public static final ModelResourceLocation memorialModel = new ModelResourceLocation(MOD_NAME + ":gsmemorial", "inventory");
     public static final ModelResourceLocation executionModel = new ModelResourceLocation(MOD_NAME + ":gsexecution", "inventory");
     public static final ModelResourceLocation spawnerModel = new ModelResourceLocation(MOD_NAME + ":gsspawner", "inventory");

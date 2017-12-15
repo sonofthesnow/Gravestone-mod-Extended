@@ -103,6 +103,9 @@ item.gravestone.bone_sword_diamond.name=Diamond Bone Sword
 ## Shield
 item.gravestone.bone_shield.name=Bone Shield
 
+## Other Items
+item.gravestone.toxic_slime.name=Toxic Slime
+
 ## Corpses
 item.corpse.steve=Steve Corpse
 item.corpse.player=Player Corpse

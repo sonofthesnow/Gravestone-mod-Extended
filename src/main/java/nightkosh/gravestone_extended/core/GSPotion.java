@@ -47,6 +47,7 @@ public class GSPotion {
     public static void registerPotionTypes(final RegistryEvent.Register<PotionType> event) {
         event.getRegistry().registerAll(PURIFICATION_TYPE, RUST_TYPE, BONE_SKIN_TYPE);
         PotionHelper.addMix(PotionTypes.AWKWARD, Items.ENDER_PEARL, PURIFICATION_TYPE);
+        PotionHelper.addMix(PotionTypes.AWKWARD, GSItem.TOXIC_SLIME, RUST_TYPE);
         PotionHelper.addMix(PotionTypes.MUNDANE, Items.BONE, BONE_SKIN_TYPE);
 
         PotionHelper.addMix(PotionTypes.AWKWARD, Ingredient.fromStacks(new ItemStack(Items.FISH, 1, 2)), PotionType.getPotionTypeForName("luck"));

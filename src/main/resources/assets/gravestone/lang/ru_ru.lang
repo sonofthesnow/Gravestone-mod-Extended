@@ -103,6 +103,9 @@ item.gravestone.bone_sword_diamond.name=Алмазный Костяной меч
 ## Shield
 item.gravestone.bone_shield.name=Костяной щит
 
+## Other Items
+item.gravestone.toxic_slime.name=Токсичная слизь
+
 ## Corpses
 item.corpse.steve=Труп Стива
 item.corpse.player=Труп игрока

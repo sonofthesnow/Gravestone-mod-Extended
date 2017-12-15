@@ -114,6 +114,7 @@ public class GSModels {
             }
             ModelBakery.registerItemVariants(GSItem.SPAWN_EGG, ResourcesModels.spawnEggModel);
 
+            ModelLoader.setCustomModelResourceLocation(GSItem.TOXIC_SLIME, 0, ResourcesModels.TOXIC_SLIME);
 
             ModelLoader.setCustomModelResourceLocation(GSItem.BONE_SWORD, 0, ResourcesModels.BONE_SWORD);
             ModelLoader.setCustomModelResourceLocation(GSItem.BONE_SWORD_IRON, 0, ResourcesModels.BONE_SWORD_IRON);
