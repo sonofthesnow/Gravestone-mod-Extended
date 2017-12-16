@@ -68,6 +68,7 @@ enchantment.withered_blade=Висушуюче Лезо
 enchantment.vampiric_touch=Дотик Вампіра
 enchantment.necrotic_corrosion=Некротична Корозія
 ## TODO !!
+enchantment.pain_mirror=Pain Mirror
 enchantment.bone_rain=Bone Rain
 
 #WAWLA Enchantment Descriptions
@@ -77,6 +78,7 @@ enchantment.gravestone-extended.gs_shadow_of_death.desc=Завдає додат�
 enchantment.gravestone-extended.gs_necrotic_corrosion.desc=Завдає 10% додаткової шкоди за рівень, що ігнорує броню
 enchantment.gravestone-extended.gs_poisoned_blade.desc=Накладає отруєння на ціль на 10 секунд за рівень
 ## TODO !!
+enchantment.gravestone-extended.gs_pain_mirror.desc=Reflects all blocked damage with 10% chance per level
 enchantment.gravestone-extended.gs_bone_rain.desc=Uses bone meal on a block
 
 # Potions

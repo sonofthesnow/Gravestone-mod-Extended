@@ -77,6 +77,7 @@ enchantment.poisoned_blade=Poisoned Blade
 enchantment.withered_blade=Withered Blade
 enchantment.vampiric_touch=Vampiric Touch
 enchantment.necrotic_corrosion=Necrotic Corrosion
+enchantment.pain_mirror=Pain Mirror
 enchantment.bone_rain=Bone Rain
 
 #WAWLA Enchantment Descriptions
@@ -86,6 +87,7 @@ enchantment.gravestone-extended.gs_withered_blade.desc=Applies wither to a targe
 enchantment.gravestone-extended.gs_shadow_of_death.desc=Deals extra 2.5 damage per level to non spider and non undead mobs
 enchantment.gravestone-extended.gs_necrotic_corrosion.desc=10%(per level) of damage dealt by this weapon ignores armor
 enchantment.gravestone-extended.gs_poisoned_blade.desc=Applies poison to a target for 10 seconds per level
+enchantment.gravestone-extended.gs_pain_mirror.desc=Reflects all blocked damage with 10% chance per level
 enchantment.gravestone-extended.gs_bone_rain.desc=Uses bone meal on a block
 
 # Potions

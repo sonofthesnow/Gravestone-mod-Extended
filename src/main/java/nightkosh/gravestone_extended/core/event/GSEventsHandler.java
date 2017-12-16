@@ -15,6 +15,7 @@ import net.minecraft.nbt.NBTTagList;
 import net.minecraft.potion.PotionType;
 import net.minecraft.potion.PotionUtils;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.DamageSource;
 import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.event.entity.ProjectileImpactEvent;
 import net.minecraftforge.event.entity.living.LivingAttackEvent;
@@ -75,9 +76,20 @@ public class GSEventsHandler {
         if (event.getEntityLiving() instanceof EntityPlayer) {
             EntityPlayer player = (EntityPlayer) event.getEntityLiving();
             ItemStack activeStack = player.getActiveItemStack();
-            if (!activeStack.isEmpty() && activeStack.getItem() instanceof IBoneShiled) {
-                if (event.getAmount() >= 3) {
-                    float amount = event.getAmount();
+            if (!activeStack.isEmpty() && activeStack.getItem() instanceof IBoneShiled) {{
+                float amount = event.getAmount();
+                NBTTagList nbtList = activeStack.getEnchantmentTagList();
+                for (NBTBase nbt : nbtList) {
+                    if (((NBTTagCompound) nbt).getInteger("id") == Enchantment.getEnchantmentID(GSEnchantment.PAIN_MIRROR)) {
+                        if (player.world.rand.nextInt(100) <= 10 * ((NBTTagCompound) nbt).getShort("lvl")) {
+                            Entity attacker = event.getSource().getTrueSource();
+                            if (attacker instanceof EntityLivingBase) {
+                                attacker.attackEntityFrom(DamageSource.MAGIC, amount);
+                            }
+                        }
+                    }
+                }
+                if (event.getAmount() >= 3)
                     ((ItemBoneShield) activeStack.getItem()).damageShield(activeStack, player, amount);
                 }
             }

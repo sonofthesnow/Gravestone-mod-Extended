@@ -67,6 +67,7 @@ enchantment.poisoned_blade=Отравленное Лезвие
 enchantment.withered_blade=Иссушающее Лезвие
 enchantment.vampiric_touch=Прикосновение Вампира
 enchantment.necrotic_corrosion=Некротическая Коррозия
+enchantment.pain_mirror=Зеркало боли
 enchantment.bone_rain=Костяной дождь
 
 #WAWLA Enchantment Descriptions
@@ -75,6 +76,7 @@ enchantment.gravestone-extended.gs_withered_blade.desc=Накладывает и
 enchantment.gravestone-extended.gs_shadow_of_death.desc=Наносит дополнительные 2.5 урона за уровень существам, не являющимся пауками или нежитью
 enchantment.gravestone-extended.gs_necrotic_corrosion.desc=Наносит 10% дополнительного урона за уровень, игнорирующего броню
 enchantment.gravestone-extended.gs_poisoned_blade.desc=Накладывает отравление на цель на 10 секунд за уровень
+enchantment.gravestone-extended.gs_pain_mirror.desc=Отражает весь заблокированный урон с вероятностью 10% за уровень
 enchantment.gravestone-extended.gs_bone_rain.desc=Использует костную муку на блоке
 
 # Potions
