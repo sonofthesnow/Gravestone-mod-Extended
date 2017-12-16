@@ -129,7 +129,6 @@ item.gravestone.bone_sword_golden.name=Golden Bone Sword
 item.gravestone.bone_sword_diamond.name=Diamond Bone Sword
 
 ## Shield
-## TODO !!!!!!!!!!
 item.gravestone.bone_shield.name=Escudo Hueso
 
 ## Other Items
@@ -138,20 +137,15 @@ item.gravestone.toxic_slime.name=Toxic Slime
 
 
 ## Corpses
-## TODO !!!!!!!!!!
 item.corpse.steve=Cadáver Steve
 ## TODO !!!!!!!!!!
 item.corpse.player=Player Corpse
-##TODO !!!!!!!!!!
 item.corpse.villager=Cadáver Aldeano
 item.corpse.horse=Cadáver Caballo
 item.corpse.dog=Cadáver Perro
 item.corpse.cat=Cadáver Gato
-## TODO !!!!!!!!!!
 item.corpse.zombie=Cadáver Zombi
-## TODO !!!!!!!!!!
 item.corpse.zombie_villager=Cadáver Aldeano Zombi
-## TODO !!!!!!!!!!
 item.corpse.skeleton=Cadáver Esqueleto
 ## TODO !!!!!!!!!!
 item.corpse.witch=Witch Corpse
@@ -249,8 +243,8 @@ entity.GSRaven.name=Cuervo
 entity.GSSkeletonRaider.name=Skeleton Raider
 ##TODO !!!!!!!!!!
 entity.GSZombieRaider.name=Zombie Raider
-##TODO !!!!!!!!!!
 entity.GSSkeleton.name=Esqueleto
+##TODO !!!!!!!!!!
 entity.Villager.gravestone-extended:undertaker=Undertaker
 ## TODO !!!!!!!!!!
 entity.GSToxicSludge.name=Toxic Sludge
