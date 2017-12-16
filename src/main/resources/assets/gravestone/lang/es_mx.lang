@@ -110,6 +110,13 @@ lingering_potion.effect.gs_rust_type=Lingering Potion of Rust
 ##TODO !!!!!!!!!!
 item.gravestone.chisel.name=Gravestone Chisel
 
+## Hoe
+## TODO !!!!!!!!!!
+item.gravestone.bone_hoe.name=Bone Hoe
+item.gravestone.bone_hoe_iron.name=Iron Bone Hoe
+item.gravestone.bone_hoe_golden.name=Golden Bone Hoe
+item.gravestone.bone_hoe_diamond.name=Diamond Bone Hoe
+
 ## Swords
 ## TODO !!!!!!!!!!
 item.gravestone.bone_sword.name=Bone Sword

@@ -94,6 +94,12 @@ lingering_potion.effect.gs_rust_type=Туманное зелье ржавчин�
 ## Chisel
 item.gravestone.chisel.name=Резец для надгробий
 
+## Hoe
+item.gravestone.bone_hoe.name=Костяная мотыга
+item.gravestone.bone_hoe_iron.name=Костяная железная мотыга
+item.gravestone.bone_hoe_golden.name=Костяная золотая мотыга
+item.gravestone.bone_hoe_diamond.name=Костяная алмазная мотыга
+
 ## Swords
 item.gravestone.bone_sword.name=Костяной мечь
 item.gravestone.bone_sword_iron.name=Железный Костяной мечь
