@@ -164,8 +164,7 @@ public class ExtendedConfig {
     public static boolean showNightStoneMessage;
     // haunted chest
     public static boolean replaceHauntedChest;
-    // potions id
-//    public static int cursePotionEffectId;
+    public static boolean createCorpsesForModdedNotVanillaVillagers;
 
     private static void otherConfigs() {
         // trap blocks
@@ -178,6 +177,7 @@ public class ExtendedConfig {
 
         // potions
 //        cursePotionEffectId = config.get(CATEGORY_POTIONS, "CursePotionEffectId", Potion.CURSE_DEFAULT_ID).getInt();
+        createCorpsesForModdedNotVanillaVillagers = config.get(Configuration.CATEGORY_GENERAL, "CreateCorpsesForModdedNotVanillaVillagers", false).getBoolean(false);
     }
 
     // recipes

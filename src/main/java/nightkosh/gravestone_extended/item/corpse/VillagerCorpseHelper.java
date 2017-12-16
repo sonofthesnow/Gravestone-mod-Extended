@@ -85,25 +85,29 @@ public class VillagerCorpseHelper extends CorpseHelper {
 
         MerchantRecipeList recipes = villager.getRecipes(null);
         if (recipes != null) {
-            MerchantRecipe recipe;
-            NBTTagCompound recipeTag;
-            for (Object recipe1 : recipes) {
-                try {
-                    recipe = (MerchantRecipe) recipe1;
-                    if (recipe != null &&
-                            recipe.getItemToSell() != null && !recipe.getItemToSell().isEmpty() &&
-                            recipe.getItemToBuy() != null && !recipe.getItemToBuy().isEmpty() &&
-                            recipe.getSecondItemToBuy() != null) {
-                        recipeTag = recipe.writeToTags();
-                        recipeTag.setInteger("uses", 0);
-                        recipeTag.setInteger("maxUses", 7);
-                        recipe.readFromTags(recipeTag);
+            try {
+                MerchantRecipe recipe;
+                NBTTagCompound recipeTag;
+                for (Object recipe1 : recipes) {
+                    try {
+                        recipe = (MerchantRecipe) recipe1;
+                        if (recipe != null &&
+                                recipe.getItemToSell() != null && !recipe.getItemToSell().isEmpty() &&
+                                recipe.getItemToBuy() != null && !recipe.getItemToBuy().isEmpty() &&
+                                recipe.getSecondItemToBuy() != null) {
+                            recipeTag = recipe.writeToTags();
+                            recipeTag.setInteger("uses", 0);
+                            recipeTag.setInteger("maxUses", 7);
+                            recipe.readFromTags(recipeTag);
+                        }
+                    } catch (Exception e) {
+                        GSLogger.logError("Can't read villager trades!");
                     }
-                } catch (Exception e) {
-                    GSLogger.logError("Can't read villager trades!");
                 }
+                nbt.setTag("Offers", recipes.getRecipiesAsTags());
+            } catch (Exception e) {
+                GSLogger.logError("Can't store villager trades!");
             }
-            nbt.setTag("Offers", recipes.getRecipiesAsTags());
         }
     }
 

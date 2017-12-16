@@ -1,9 +1,12 @@
 package nightkosh.gravestone_extended.helper;
 
+import net.minecraft.entity.passive.EntityVillager;
 import nightkosh.gravestone.api.GraveStoneAPI;
-import nightkosh.gravestone_extended.item.corpse.CorpseHelper;
 import nightkosh.gravestone_extended.block.enums.EnumCorpse;
+import nightkosh.gravestone_extended.config.ExtendedConfig;
+import nightkosh.gravestone_extended.item.corpse.CorpseHelper;
 
+import java.util.ArrayList;
 import java.util.Random;
 
 /**
@@ -39,7 +42,13 @@ public class GraveGenerationHelper extends nightkosh.gravestone.helper.GraveGene
     }
 
     public static void addMobsItemsHandlers() {
-        GraveStoneAPI.graveGenerationAtDeath.addVillagerItemsHandler((villager, source) -> CorpseHelper.getCorpse(villager, EnumCorpse.VILLAGER));
+        GraveStoneAPI.graveGenerationAtDeath.addVillagerItemsHandler((villager, source) -> {
+            if (ExtendedConfig.createCorpsesForModdedNotVanillaVillagers || villager.getClass().equals(EntityVillager.class)) {
+                return CorpseHelper.getCorpse(villager, EnumCorpse.VILLAGER);
+            } else {
+                return new ArrayList<>(0);
+            }
+        });
         GraveStoneAPI.graveGenerationAtDeath.addDogItemsHandler((dog, source) -> CorpseHelper.getCorpse(dog, EnumCorpse.DOG));
         GraveStoneAPI.graveGenerationAtDeath.addCatItemsHandler((cat, source) -> CorpseHelper.getCorpse(cat, EnumCorpse.CAT));
         GraveStoneAPI.graveGenerationAtDeath.addHorseItemsHandler((horse, source) -> CorpseHelper.getCorpse(horse, EnumCorpse.HORSE));
