@@ -17,6 +17,7 @@ import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fluids.BlockFluidClassic;
+import nightkosh.gravestone_extended.config.ExtendedConfig;
 import nightkosh.gravestone_extended.core.GSPotion;
 import nightkosh.gravestone_extended.core.ModInfo;
 import nightkosh.gravestone_extended.core.Tabs;
@@ -116,15 +117,18 @@ public class BlockFluidToxicWater extends BlockFluidClassic {
     @Override
     public void onBlockAdded(World world, BlockPos pos, IBlockState state) {
         super.onBlockAdded(world, pos, state);
-        melt(world, pos, pos.down());
-        melt(world, pos, pos.east());
-        melt(world, pos, pos.west());
-        melt(world, pos, pos.south());
-        melt(world, pos, pos.north());
 
-        //TODO particles !!!!!!!!!!!!
-        world.spawnParticle(EnumParticleTypes.SMOKE_LARGE, pos.getX(), pos.getY() + 1, pos.getZ(), 0, 0, 0);
-        world.playSound(pos.getX(), pos.getY() + 1, pos.getZ(), SoundEvents.BLOCK_LAVA_EXTINGUISH, SoundCategory.BLOCKS, 0.2F + world.rand.nextFloat() * 0.2F, 0.9F + world.rand.nextFloat() * 0.15F, false);
+        if (ExtendedConfig.toxicSludgeAndWaterChangeBlocks) {
+            melt(world, pos, pos.down());
+            melt(world, pos, pos.east());
+            melt(world, pos, pos.west());
+            melt(world, pos, pos.south());
+            melt(world, pos, pos.north());
+
+            //TODO particles !!!!!!!!!!!!
+            world.spawnParticle(EnumParticleTypes.SMOKE_LARGE, pos.getX(), pos.getY() + 1, pos.getZ(), 0, 0, 0);
+            world.playSound(pos.getX(), pos.getY() + 1, pos.getZ(), SoundEvents.BLOCK_LAVA_EXTINGUISH, SoundCategory.BLOCKS, 0.2F + world.rand.nextFloat() * 0.2F, 0.9F + world.rand.nextFloat() * 0.15F, false);
+        }
     }
 
     @Override
