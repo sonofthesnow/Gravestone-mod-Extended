@@ -6,16 +6,20 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.monster.EntitySlime;
 import net.minecraft.init.Blocks;
+import net.minecraft.init.SoundEvents;
 import net.minecraft.item.Item;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.EnumSkyBlock;
 import net.minecraft.world.World;
 import nightkosh.gravestone_extended.config.ExtendedConfig;
+import nightkosh.gravestone_extended.core.GSBlock;
 import nightkosh.gravestone_extended.core.GSItem;
 import nightkosh.gravestone_extended.core.GSPotion;
 import nightkosh.gravestone_extended.helper.StateHelper;
@@ -34,16 +38,21 @@ public class EntityToxicSludge extends EntitySlime {
         super(world);
     }
 
-    public static void replaceBlock(World world, BlockPos pos, IBlockState state) {
+    public static boolean replaceBlock(World world, BlockPos pos) {
+        IBlockState state = world.getBlockState(pos);
         Block block = state.getBlock();
         if (block == Blocks.GRASS || block == Blocks.GRASS_PATH || block == Blocks.FARMLAND || block == Blocks.MYCELIUM ||
                 block == Blocks.DIRT && state.equals(StateHelper.PODZOL)) {
             world.setBlockState(pos, StateHelper.DIRT);
+            return true;
         } else if (block == Blocks.STONE && state.equals(StateHelper.STONE) || block == Blocks.MOSSY_COBBLESTONE) {
             world.setBlockState(pos, StateHelper.COBBLESTONE);
+            return true;
         } else if (block == Blocks.STONEBRICK && (state.equals(StateHelper.STONEBRICK) || state.equals(StateHelper.STONEBRICK_MOSSY))) {
             world.setBlockState(pos, StateHelper.STONEBRICK_CRACKED);
+            return true;
         }
+        return false;
     }
 
     @Override
@@ -59,7 +68,7 @@ public class EntityToxicSludge extends EntitySlime {
                     for (int y = posPoolBottom.getY(); y <= posPoolTop.getY(); ++y) {
                         for (int z = posPoolBottom.getZ(); z <= posPoolTop.getZ(); ++z) {
                             pool.setPos(x, y, z);
-                            replaceBlock(this.world, pool, this.world.getBlockState(pool));
+                            replaceBlock(this.world, pool);
                         }
                     }
                 }
@@ -74,6 +83,24 @@ public class EntityToxicSludge extends EntitySlime {
     }
 
     @Override
+    protected boolean spawnCustomParticles() {
+        int size = this.getSlimeSize();
+        for (int j = 0; j < size * 8; ++j) {
+            float f = this.rand.nextFloat() * ((float) Math.PI * 2F);
+            float f1 = this.rand.nextFloat() * 0.5F + 0.5F;
+            float f2 = MathHelper.sin(f) * size * 0.5F * f1;
+            float f3 = MathHelper.cos(f) * size * 0.5F * f1;
+            World world = this.world;
+            double d0 = this.posX + (double) f2;
+            double d1 = this.posZ + (double) f3;
+            world.spawnParticle(EnumParticleTypes.SMOKE_LARGE, d0, this.getEntityBoundingBox().minY, d1, 0, 0, 0);
+        }
+
+        this.playSound(SoundEvents.BLOCK_LAVA_EXTINGUISH, this.getSoundVolume(), ((this.rand.nextFloat() - this.rand.nextFloat()) * 0.2F + 1) / 0.8F);
+        return true;
+    }
+
+    @Override
     protected EntityToxicSludge createInstance() {
         return new EntityToxicSludge(this.world);
     }
@@ -81,7 +108,10 @@ public class EntityToxicSludge extends EntitySlime {
     @Override
     public void onDeath(DamageSource source) {
         if (!this.world.isRemote && this.getSlimeSize() > 1) {
-            world.setBlockState(this.getPosition(), Blocks.FLOWING_WATER.getDefaultState());//TODO replace by Toxic Water
+            IBlockState state = world.getBlockState(this.getPosition());
+            if (state.getBlock().isReplaceable(this.world, this.getPosition())) {
+                world.setBlockState(this.getPosition(), GSBlock.TOXIC_WATER.getDefaultState());
+            }
         }
         super.onDeath(source);
     }
@@ -126,6 +156,6 @@ public class EntityToxicSludge extends EntitySlime {
 
     @Override
     public boolean getCanSpawnHere() {
-        return this.world.getDifficulty() != EnumDifficulty.PEACEFUL && this.isValidLightLevel() && super.getCanSpawnHere();
+        return this.world.getDifficulty() != EnumDifficulty.PEACEFUL && this.posY <= 30 && this.isValidLightLevel() && this.world.getBlockState((new BlockPos(this)).down()).canEntitySpawn(this);
     }
 }
