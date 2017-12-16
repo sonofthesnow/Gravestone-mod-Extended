@@ -1,8 +1,10 @@
 package nightkosh.gravestone_extended.core;
 
 import net.minecraft.block.Block;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.block.model.ModelBakery;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
+import net.minecraft.client.renderer.block.statemap.StateMapperBase;
 import net.minecraft.item.Item;
 import net.minecraftforge.client.ForgeHooksClient;
 import net.minecraftforge.client.event.ModelRegistryEvent;
@@ -121,6 +123,18 @@ public class GSModels {
             ModelLoader.setCustomModelResourceLocation(GSItem.BONE_SWORD_GOLDEN, 0, ResourcesModels.BONE_SWORD_GOLDEN);
             ModelLoader.setCustomModelResourceLocation(GSItem.BONE_SWORD_DIAMOND, 0, ResourcesModels.BONE_SWORD_DIAMOND);
             ModelLoader.setCustomModelResourceLocation(GSItem.BONE_SHIELD, 0, ResourcesModels.BONE_SHIELD);
+
+            Item item = Item.getItemFromBlock(GSBlock.TOXIC_WATER);
+            ModelResourceLocation modelResourceLocation = new ModelResourceLocation(ModInfo.ID + ":" + "fluid", GSBlock.TOXIC_WATER.getFluid().getName());
+            ModelBakery.registerItemVariants(item);
+            ModelLoader.setCustomMeshDefinition(item, stack -> modelResourceLocation);
+            ModelLoader.setCustomStateMapper(GSBlock.TOXIC_WATER, new StateMapperBase() {
+                protected ModelResourceLocation getModelResourceLocation(IBlockState state) {
+                    return modelResourceLocation;
+                }
+            });
+
+//            ModelLoader.setCustomModelResourceLocation(item, 0, new ModelResourceLocation(item.getRegistryName(), "inventory"));
 
             if (Loader.isModLoaded(Compatibility.FORESTRY_ID) && ExtendedConfig.enableForestryBackpacks) {
                 ModelLoader.setCustomModelResourceLocation(CompatibilityForestry.backpackItemT1, 0, new ModelResourceLocation(Compatibility.FORESTRY_ID + ":backpacks/normal_neutral", "inventory"));

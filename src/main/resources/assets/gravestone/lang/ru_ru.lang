@@ -209,6 +209,9 @@ entity.GSSkeleton.name=Скелет
 entity.Villager.gravestone-extended:undertaker=Гробовщик
 entity.GSToxicSludge.name=Токсичный слизнюк
 
+# Fluids
+fluid.gs_toxic_water=Токсичная вода
+
 
 # Console messages
 ## Console commands

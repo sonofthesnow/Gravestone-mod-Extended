@@ -244,6 +244,10 @@ entity.Villager.gravestone-extended:undertaker=Undertaker
 ## TODO !!!!!!!!!!
 entity.GSToxicSludge.name=Toxic Sludge
 
+# Fluids
+## TODO !!!!!!!!!!
+fluid.gs_toxic_water=Toxic Water
+
 
 # Console messages
 ## Console commands

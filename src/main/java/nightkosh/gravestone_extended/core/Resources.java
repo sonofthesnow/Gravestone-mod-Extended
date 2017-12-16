@@ -12,6 +12,7 @@ public class Resources extends nightkosh.gravestone.core.Resources{
 
     public static final String EXT_MOD_NAME = ModInfo.ID.toLowerCase();
 
+    protected static final String FLUID_LOCATION = "blocks/fluids/";
     protected static final String GUI_LOCATION = MOD_NAME + ":textures/gui/";
     protected static final String POTIONS_LOCATION = MOD_NAME + ":textures/potions/";
     protected static final String ENTITY_LOCATION = EXT_MOD_NAME + ":textures/entities/";
@@ -211,4 +212,8 @@ public class Resources extends nightkosh.gravestone.core.Resources{
     public static final ResourceLocation SKELETON_SKULL_CANDLE = new ResourceLocation(BLOCK_LOCATION + "skeletonskullcandle.png");
     public static final ResourceLocation WITHER_SKULL_CANDLE = new ResourceLocation(BLOCK_LOCATION + "witherskullcandle.png");
     public static final ResourceLocation ZOMBIE_SKULL_CANDLE = new ResourceLocation(BLOCK_LOCATION + "zombieskullcandle.png");
+
+    // TOXIC WATER
+    public static final ResourceLocation TOXIC_WATER_STILL =  new ResourceLocation(MOD_NAME, FLUID_LOCATION + "toxic_water_still");
+    public static final ResourceLocation TOXIC_WATER_FLOW = new ResourceLocation(MOD_NAME, FLUID_LOCATION + "toxic_water_flow");
 }

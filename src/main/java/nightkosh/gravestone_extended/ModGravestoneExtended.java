@@ -1,6 +1,7 @@
 package nightkosh.gravestone_extended;
 
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.Instance;
@@ -18,6 +19,7 @@ import nightkosh.gravestone_extended.core.compatibility.Compatibility;
 import nightkosh.gravestone_extended.core.event.GSEventsHandler;
 import nightkosh.gravestone_extended.core.event.TickEventHandler;
 import nightkosh.gravestone_extended.core.proxy.CommonProxy;
+import nightkosh.gravestone_extended.fluid.FluidToxicWater;
 import nightkosh.gravestone_extended.helper.FogHandler;
 import nightkosh.gravestone_extended.helper.GraveGenerationHelper;
 import nightkosh.gravestone_extended.helper.GraveSpawnerHelper;
@@ -37,6 +39,9 @@ public class ModGravestoneExtended {
     @SidedProxy(clientSide = "nightkosh.gravestone_extended.core.proxy.ClientProxy", serverSide = "nightkosh.gravestone_extended.core.proxy.CommonProxy")
     public static CommonProxy proxy;
 
+    static {
+        FluidRegistry.enableUniversalBucket();
+    }
 
     public ModGravestoneExtended() {
         instance = this;
@@ -45,6 +50,10 @@ public class ModGravestoneExtended {
     @Mod.EventHandler
     public void preInit(FMLPreInitializationEvent event) {
         ExtendedConfig.getInstance(event.getModConfigurationDirectory().getAbsolutePath() + "/GraveStoneMod/", "GraveStone.cfg");
+
+        FluidRegistry.registerFluid(FluidToxicWater.INSTANCE);
+        FluidRegistry.addBucketForFluid(FluidToxicWater.INSTANCE);
+
         Structures.preInit();
 
         MessageHandler.init();
