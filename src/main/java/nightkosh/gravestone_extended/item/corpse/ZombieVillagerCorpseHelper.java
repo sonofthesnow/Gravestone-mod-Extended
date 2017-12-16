@@ -2,12 +2,15 @@ package nightkosh.gravestone_extended.item.corpse;
 
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraftforge.fml.common.registry.ForgeRegistries;
+import net.minecraftforge.fml.common.registry.VillagerRegistry;
 import nightkosh.gravestone_extended.block.enums.EnumCorpse;
 import nightkosh.gravestone_extended.core.GSBlock;
 import nightkosh.gravestone_extended.entity.monster.pet.EnumUndeadMobType;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 /**
  * GraveStone mod
@@ -16,6 +19,7 @@ import java.util.List;
  * @license Lesser GNU Public License v3 (http://www.gnu.org/licenses/lgpl.html)
  */
 public class ZombieVillagerCorpseHelper extends CorpseHelper {
+    private static final Random RANDOM = new Random();
 
     public static ItemStack getDefaultCorpse() {
         return createCorpse(0, 1);
@@ -35,6 +39,11 @@ public class ZombieVillagerCorpseHelper extends CorpseHelper {
         list.add(createCorpse(3, 3)); // Smith - tool
         list.add(createCorpse(4, 1)); // Butcher - butcher
         list.add(createCorpse(4, 2)); // Butcher - leather
+
+        List<VillagerRegistry.VillagerProfession> villagers = ForgeRegistries.VILLAGER_PROFESSIONS.getValues();
+        for (VillagerRegistry.VillagerProfession villagerProfession : villagers) {
+            list.add(createCorpse(VillagerRegistry.getId(villagerProfession), villagerProfession.getRandomCareer(RANDOM)));
+        }
 
         return list;
     }
