@@ -1,8 +1,8 @@
 {
 	"credit": "Made with Blockbench, a free, modern block model editor by JannisX11",
 	"textures": {
-		"0": "gravestone:items/bone_shield",
-		"particle": "gravestone:items/bone_shield"
+		"0": "gravestone:items/weapon/bone_shield",
+		"particle": "gravestone:items/weapon/bone_shield"
 	},
 	"elements": [
 		{
@@ -528,7 +528,7 @@
              "predicate": {
                  "blocking": 1
              },
-             "model": "gravestone-extended:item/gs_bone_shield_blocking"
+             "model": "gravestone-extended:item/weapon/gs_bone_shield_blocking"
         }
     ]
 }
