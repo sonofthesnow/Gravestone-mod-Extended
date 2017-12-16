@@ -7,6 +7,7 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.EnumCreatureAttribute;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.monster.EntitySlime;
+import net.minecraft.entity.projectile.EntityFishHook;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
@@ -68,13 +69,24 @@ public class BlockFluidToxicWater extends BlockFluidClassic {
             }
         } else if (!(entity instanceof EntityItem)) {
             dealDamage = true;
+            if (entity.getClass().equals(EntityFishHook.class)) {
+                meltEffect(world, pos);
+                if (entity.ticksExisted > 20) {
+                    entity.setDead();
+                }
+                return;
+            }
         }
         if (dealDamage) {
             entity.attackEntityFrom(DamageSource.MAGIC, 1);
             //TODO no particles for mobs!!??
-            world.spawnParticle(EnumParticleTypes.SMOKE_LARGE, pos.getX(), pos.getY() + 1, pos.getZ(), 0, 0, 0);
-            entity.playSound(SoundEvents.BLOCK_LAVA_EXTINGUISH, 0.4F, ((world.rand.nextFloat() - world.rand.nextFloat()) * 0.2F + 1) / 0.8F);
+            meltEffect(world, pos);
         }
+    }
+
+    public void meltEffect(World world, BlockPos pos) {
+        world.spawnParticle(EnumParticleTypes.SMOKE_LARGE, pos.getX(), pos.getY() + 1, pos.getZ(), 0, 0, 0);
+        world.playSound(null, pos.getX(), pos.getY() + 1, pos.getZ(), SoundEvents.BLOCK_LAVA_EXTINGUISH, SoundCategory.BLOCKS, 0.4F, ((world.rand.nextFloat() - world.rand.nextFloat()) * 0.2F + 1) / 0.8F);
     }
 
     public void melt(World world, BlockPos liquidPos, BlockPos replacedPos) {
@@ -95,8 +107,9 @@ public class BlockFluidToxicWater extends BlockFluidClassic {
 //            world.playSound(replacedPos.getX(), replacedPos.getY() + 1, replacedPos.getZ(), SoundEvents.BLOCK_LAVA_EXTINGUISH, SoundCategory.BLOCKS, 0.2F + world.rand.nextFloat() * 0.2F, 0.9F + world.rand.nextFloat() * 0.15F, false);
 //
 //
-            world.spawnParticle(EnumParticleTypes.SMOKE_LARGE, replacedPos.getX(), replacedPos.getY() + 2, replacedPos.getZ(), 0, 0, 0);
-            world.playSound(null, replacedPos.getX(), replacedPos.getY() + 1, replacedPos.getZ(), SoundEvents.BLOCK_LAVA_EXTINGUISH, SoundCategory.BLOCKS, 0.4F, ((world.rand.nextFloat() - world.rand.nextFloat()) * 0.2F + 1) / 0.8F);
+            meltEffect(world, replacedPos.up());
+//            world.spawnParticle(EnumParticleTypes.SMOKE_LARGE, replacedPos.getX(), replacedPos.getY() + 2, replacedPos.getZ(), 0, 0, 0);
+//            world.playSound(null, replacedPos.getX(), replacedPos.getY() + 1, replacedPos.getZ(), SoundEvents.BLOCK_LAVA_EXTINGUISH, SoundCategory.BLOCKS, 0.4F, ((world.rand.nextFloat() - world.rand.nextFloat()) * 0.2F + 1) / 0.8F);
         }
     }
 
