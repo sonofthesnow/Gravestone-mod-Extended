@@ -37,6 +37,7 @@ public class ComponentVillageUndertaker extends StructureVillagePieces.Village i
 
     private int averageGroundLevel = -1;
     private static final int HEIGHT = 7;
+    private static final int CEMETERY_HEIGHT = 2;
     private static final int X_LENGTH = 12;
     private static final int Z_LENGTH = 14;
     private static final int HOUSE_WIDTH = 6;
@@ -245,9 +246,9 @@ public class ComponentVillageUndertaker extends StructureVillagePieces.Village i
             }
         }
 
-        for (int x = startX; x < startX + 11; x++) {
-            for (int z = startZGroundCoord; z < startZ + 9; z++) {
-                this.clearCurrentPositionBlocksUpwards(world, x, HEIGHT, z, structureBoundingBox);
+        for (int x = startX; x <= startX + 11; x++) {
+            for (int z = startZGroundCoord; z <= startZ + 9; z++) {
+                this.clearCurrentPositionBlocksUpwards(world, x, CEMETERY_HEIGHT, z, structureBoundingBox);
                 this.setBlockState(world, groundState, x, -1, z, structureBoundingBox);
             }
         }
