@@ -1,10 +1,10 @@
 [
   {
-    "modid": "gravestone",
-    "name": "Gravestone",
-    "description": "Adds a gravestone to the game, which spawns after player's death.",
+    "modid": "gravestone-extended",
+    "name": "Gravestone mod - Extended",
+    "description": "",
     "version": "${version}",
-    "url": "http://www.minecraftforum.net/forums/mapping-and-modding/minecraft-mods/1288082",
+    "url": "http://gravestone.nightkosh.com/",
     "updateUrl": "",
     "authorList": ["NightKosh"],
     "credits": "",
