@@ -240,7 +240,7 @@ public class ComponentVillageUndertaker extends StructureVillagePieces.Village i
 
         for (int x = startX + 3; x < startX + 11; x += 2) {
             for (int z = 3 + startZ; z < 9 + startZ; z += 2) {
-                if (!GraveGenerationHelper.isGraveAlreadyPlaced(world, x, 1, z)) {
+                if (!GraveGenerationHelper.isGraveAlreadyPlaced(world, this.getIXWithOffset(x, z), this.getIYWithOffset(1), this.getIZWithOffset(x, z))) {
                     GraveGenerationHelper.placeGrave(this, world, random, x, 1, z, graveState, spawnerHelper, EnumGraveTypeByEntity.HUMAN_GRAVES);
                 }
             }
