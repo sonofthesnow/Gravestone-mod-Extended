@@ -234,6 +234,8 @@ entity.GSSkeletonDog.name=Squelette de chien
 entity.GSZombieCat.name=Chat zombie
 entity.GSSkeletonCat.name=Squelette de chat
 entity.GSSkullCrawler.name=Crâne rampant
+##TODO !!!!!!!!!!
+entity.GSStraySkullCrawler.name=Stray Skull Crawler
 entity.GSWitherSkullCrawler.name=Crâne de wither rampant
 entity.GSZombieSkullCrawler.name=Crâne de zombie rampant
 entity.GSRaven.name=Corbeau

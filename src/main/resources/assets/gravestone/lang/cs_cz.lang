@@ -228,6 +228,8 @@ entity.GSSkeletonDog.name=Kostlivý pes
 entity.GSZombieCat.name=Zombie kočka
 entity.GSSkeletonCat.name=Kostlivá kočka
 entity.GSSkullCrawler.name=Lebkokrab
+##TODO !!!!!!!!!!
+entity.GSStraySkullCrawler.name=Stray Skull Crawler
 entity.GSWitherSkullCrawler.name=Witherský lebkokrab
 entity.GSZombieSkullCrawler.name=Zombie lebkokrab
 entity.GSRaven.name=Havran

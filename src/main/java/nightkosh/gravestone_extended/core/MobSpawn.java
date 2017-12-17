@@ -4,6 +4,7 @@ import net.minecraft.entity.EntityList;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.IEntityLivingData;
 import net.minecraft.entity.monster.AbstractSkeleton;
+import net.minecraft.entity.monster.EntityStray;
 import net.minecraft.entity.monster.EntityWitherSkeleton;
 import net.minecraft.entity.monster.EntityZombie;
 import net.minecraft.init.Blocks;
@@ -205,6 +206,11 @@ public class MobSpawn {
     public static boolean isWitherSkeleton(AbstractSkeleton skeleton) {
         return skeleton instanceof EntityGSSkeleton && ((EntityGSSkeleton) skeleton).getSkeletonType() == SkeletonType.WITHER ||
                 skeleton instanceof EntityWitherSkeleton;
+    }
+
+    public static boolean isStraySkeleton(AbstractSkeleton skeleton) {
+        return skeleton instanceof EntityGSSkeleton && ((EntityGSSkeleton) skeleton).getSkeletonType() == SkeletonType.STRAY ||
+                skeleton instanceof EntityStray;
     }
 
     /**

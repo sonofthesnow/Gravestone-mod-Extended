@@ -216,6 +216,8 @@ entity.GSSkeletonDog.name=Skeletthund
 entity.GSZombieCat.name=Zombiekatze
 entity.GSSkeletonCat.name=Skelettkatze
 entity.GSSkullCrawler.name=Skelettkriecher
+##TODO !!!!!!!!!!
+entity.GSStraySkullCrawler.name=Stray Skull Crawler
 entity.GSWitherSkullCrawler.name=Wither-Skelettkriecher
 entity.GSZombieSkullCrawler.name=Zombie-Skelettkriecher
 entity.GSRaven.name=Rabe

@@ -11,7 +11,6 @@ import net.minecraft.entity.ai.EntityAISwimming;
 import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
-import net.minecraft.init.MobEffects;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -273,7 +272,7 @@ public class EntitySkullCrawler extends EntityMob {
     }
 
     protected PotionEffect getPotionEffect() {
-        return new PotionEffect(MobEffects.SLOWNESS, 200);
+        return null;
     }
 
     /**
@@ -315,7 +314,8 @@ public class EntitySkullCrawler extends EntityMob {
     public enum SkullCrawlerType {
         skeleton,
         wither,
-        zombie
+        zombie,
+        stray
     }
 
     public enum WallSide {

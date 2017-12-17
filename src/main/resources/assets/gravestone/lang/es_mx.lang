@@ -242,6 +242,8 @@ entity.GSSkeletonDog.name=Perro Esqueleto
 entity.GSZombieCat.name=Gato Zombi
 entity.GSSkeletonCat.name=Gato Esqueleto
 entity.GSSkullCrawler.name=Arranca cráneos
+##TODO !!!!!!!!!!
+entity.GSStraySkullCrawler.name=Stray Skull Crawler
 entity.GSWitherSkullCrawler.name=Arranca Cráneos Wither
 entity.GSZombieSkullCrawler.name=Arranca Cráneos Zombi
 entity.GSRaven.name=Cuervo

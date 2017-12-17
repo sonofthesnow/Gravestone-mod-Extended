@@ -11,6 +11,7 @@ import nightkosh.gravestone_extended.entity.EntityRaven;
 import nightkosh.gravestone_extended.entity.helper.EntityGroupOfGravesMobSpawnerHelper;
 import nightkosh.gravestone_extended.entity.monster.*;
 import nightkosh.gravestone_extended.entity.monster.crawler.EntitySkullCrawler;
+import nightkosh.gravestone_extended.entity.monster.crawler.EntityStraySkullCrawler;
 import nightkosh.gravestone_extended.entity.monster.crawler.EntityWitherSkullCrawler;
 import nightkosh.gravestone_extended.entity.monster.crawler.EntityZombieSkullCrawler;
 import nightkosh.gravestone_extended.entity.monster.horse.EntitySkeletonHorse;
@@ -41,6 +42,7 @@ public class Entity {
     public static final String SKELETON_DOG_NAME = "GSSkeletonDog";
     public static final String SKELETON_CAT_NAME = "GSSkeletonCat";
     public static final String SKULL_CRAWLER_NAME = "GSSkullCrawler";
+    public static final String STRAY_SKULL_CRAWLER_NAME = "GSStraySkullCrawler";
     public static final String WITHER_SKULL_CRAWLER_NAME = "GSWitherSkullCrawler";
     public static final String ZOMBIE_SKULL_CRAWLER_NAME = "GSZombieSkullCrawler";
     public static final String ZOMBIE_HORSE_NAME = "GSZombieHorse";
@@ -71,6 +73,7 @@ public class Entity {
     public static final ResourceLocation SKELETON_DOG_ID = new ResourceLocation(ModInfo.ID + ":" + SKELETON_DOG_NAME);
     public static final ResourceLocation SKELETON_CAT_ID = new ResourceLocation(ModInfo.ID + ":" + SKELETON_CAT_NAME);
     public static final ResourceLocation SKULL_CRAWLER_ID = new ResourceLocation(ModInfo.ID + ":" + SKULL_CRAWLER_NAME);
+    public static final ResourceLocation STRAY_SKULL_CRAWLER_ID = new ResourceLocation(ModInfo.ID + ":" + STRAY_SKULL_CRAWLER_NAME);
     public static final ResourceLocation WITHER_SKULL_CRAWLER_ID = new ResourceLocation(ModInfo.ID + ":" + WITHER_SKULL_CRAWLER_NAME);
     public static final ResourceLocation ZOMBIE_SKULL_CRAWLER_ID = new ResourceLocation(ModInfo.ID + ":" + ZOMBIE_SKULL_CRAWLER_NAME);
     public static final ResourceLocation ZOMBIE_HORSE_ID = new ResourceLocation(ModInfo.ID + ":" + ZOMBIE_HORSE_NAME);
@@ -113,6 +116,7 @@ public class Entity {
 
         // skull crawlers
         registerModEntity(SKULL_CRAWLER_ID, EntitySkullCrawler.class, SKULL_CRAWLER_NAME);
+        registerModEntity(STRAY_SKULL_CRAWLER_ID, EntityStraySkullCrawler.class, STRAY_SKULL_CRAWLER_NAME);
         // wither
         registerModEntity(WITHER_SKULL_CRAWLER_ID, EntityWitherSkullCrawler.class, WITHER_SKULL_CRAWLER_NAME);
         addSpawn(BiomeDictionary.Type.NETHER, EntityWitherSkullCrawler.class, 3, 1, 4);

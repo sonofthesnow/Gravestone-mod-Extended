@@ -221,6 +221,8 @@ entity.GSSkeletonDog.name=Cachorro Esqueleto
 entity.GSZombieCat.name=Gato Zumbi
 entity.GSSkeletonCat.name=Gato Esqueleto
 entity.GSSkullCrawler.name=Rastejador Caveira
+##TODO !!!!!!!!!!
+entity.GSStraySkullCrawler.name=Stray Skull Crawler
 entity.GSWitherSkullCrawler.name=Rastejador Caveira Wither
 entity.GSZombieSkullCrawler.name=Rastejador Caveira Zumbi
 entity.GSRaven.name=Corvo

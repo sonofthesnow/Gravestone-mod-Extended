@@ -21,6 +21,7 @@ import nightkosh.gravestone_extended.entity.monster.EntityGSSkeleton;
 import nightkosh.gravestone_extended.entity.monster.EntityToxicSludge;
 import nightkosh.gravestone_extended.entity.monster.crawler.EntitySkullCrawler;
 import nightkosh.gravestone_extended.entity.monster.crawler.EntitySkullCrawler.SkullCrawlerType;
+import nightkosh.gravestone_extended.entity.monster.crawler.EntityStraySkullCrawler;
 import nightkosh.gravestone_extended.entity.monster.crawler.EntityWitherSkullCrawler;
 import nightkosh.gravestone_extended.entity.monster.crawler.EntityZombieSkullCrawler;
 import nightkosh.gravestone_extended.entity.monster.horse.EntityUndeadHorse;
@@ -154,6 +155,7 @@ public class ClientProxy extends CommonProxy {
         RenderingRegistry.registerEntityRenderingHandler(EntitySkullCrawler.class, new RenderSkullCrawler(SkullCrawlerType.skeleton, renderManager));
         RenderingRegistry.registerEntityRenderingHandler(EntityWitherSkullCrawler.class, new RenderSkullCrawler(SkullCrawlerType.wither, renderManager));
         RenderingRegistry.registerEntityRenderingHandler(EntityZombieSkullCrawler.class, new RenderSkullCrawler(SkullCrawlerType.zombie, renderManager));
+        RenderingRegistry.registerEntityRenderingHandler(EntityStraySkullCrawler.class, new RenderSkullCrawler(SkullCrawlerType.stray, renderManager));
 
         // Skeleton
         RenderingRegistry.registerEntityRenderingHandler(EntityGSSkeleton.class, new RenderGSSkeleton(renderManager));

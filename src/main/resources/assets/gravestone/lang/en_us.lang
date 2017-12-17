@@ -210,6 +210,7 @@ entity.GSSkeletonDog.name=Skeleton Dog
 entity.GSZombieCat.name=Zombie Cat
 entity.GSSkeletonCat.name=Skeleton Cat
 entity.GSSkullCrawler.name=Skull Crawler
+entity.GSStraySkullCrawler.name=Stray Skull Crawler
 entity.GSWitherSkullCrawler.name=Wither Skull Crawler
 entity.GSZombieSkullCrawler.name=Zombie Skull Crawler
 entity.GSRaven.name=Raven

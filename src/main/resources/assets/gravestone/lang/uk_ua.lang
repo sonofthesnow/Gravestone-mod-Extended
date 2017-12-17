@@ -215,6 +215,8 @@ entity.GSSkeletonDog.name=Пес-скелет
 entity.GSZombieCat.name=Кіт-зомбі
 entity.GSSkeletonCat.name=Кіт-скелет
 entity.GSSkullCrawler.name=Повзучий череп
+##TODO !!!!!!!!!!
+entity.GSStraySkullCrawler.name=Stray Skull Crawler
 entity.GSWitherSkullCrawler.name=Повзучий череп висушувача
 entity.GSZombieSkullCrawler.name=Повзучий череп зомбі
 entity.GSRaven.name=Ворон

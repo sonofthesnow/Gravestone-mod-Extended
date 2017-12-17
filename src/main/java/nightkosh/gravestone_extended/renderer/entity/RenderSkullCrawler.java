@@ -44,6 +44,8 @@ public class RenderSkullCrawler extends RenderLiving {
                 return Resources.WITHER_SKULL_CRAWLER;
             case zombie:
                 return Resources.ZOMBIE_SKULL_CRAWLER;
+            case stray:
+                return Resources.STRAY_SKULL;
             case skeleton:
             default:
                 return Resources.SKELETON_SKULL_CRAWLER;

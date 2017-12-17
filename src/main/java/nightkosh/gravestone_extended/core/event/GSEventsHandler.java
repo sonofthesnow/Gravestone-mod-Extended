@@ -3,8 +3,8 @@ package nightkosh.gravestone_extended.core.event;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.monster.AbstractSkeleton;
 import net.minecraft.entity.monster.EntityCreeper;
-import net.minecraft.entity.monster.EntitySkeleton;
 import net.minecraft.entity.monster.EntityZombie;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.projectile.EntityPotion;
@@ -31,6 +31,7 @@ import nightkosh.gravestone_extended.core.GSEnchantment;
 import nightkosh.gravestone_extended.core.GSPotion;
 import nightkosh.gravestone_extended.core.MobSpawn;
 import nightkosh.gravestone_extended.entity.monster.crawler.EntitySkullCrawler;
+import nightkosh.gravestone_extended.entity.monster.crawler.EntityStraySkullCrawler;
 import nightkosh.gravestone_extended.entity.monster.crawler.EntityWitherSkullCrawler;
 import nightkosh.gravestone_extended.entity.monster.crawler.EntityZombieSkullCrawler;
 import nightkosh.gravestone_extended.item.tools.IBoneShiled;
@@ -52,10 +53,12 @@ public class GSEventsHandler {
     public void onEntityLivingDeath(LivingDeathEvent event) {
         if (FMLCommonHandler.instance().getEffectiveSide().isServer()) {
             if (ExtendedConfig.spawnSkullCrawlersAtMobsDeath) {
-                if (event.getEntity() instanceof EntitySkeleton) {
+                if (event.getEntity() instanceof AbstractSkeleton) {
                     EntitySkullCrawler crawler;
-                    if (MobSpawn.isWitherSkeleton((EntitySkeleton) event.getEntity())) {
+                    if (MobSpawn.isWitherSkeleton((AbstractSkeleton) event.getEntity())) {
                         crawler = new EntityWitherSkullCrawler(event.getEntity().getEntityWorld());
+                    } else if (MobSpawn.isStraySkeleton((AbstractSkeleton) event.getEntity())) {
+                        crawler = new EntityStraySkullCrawler(event.getEntity().getEntityWorld());
                     } else {
                         crawler = new EntitySkullCrawler(event.getEntity().getEntityWorld());
                     }
