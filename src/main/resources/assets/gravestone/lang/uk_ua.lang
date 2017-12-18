@@ -63,23 +63,29 @@ tile.altar.name=Вівтар
 
 # Enchantments
 enchantment.shadow_of_death=Тінь смерті
+enchantment.gravestone-extended.gs_shadow_of_death.desc=Завдає додаткових 2.5 шкоди за рівень істотам, які не є павуками або нежиттю
 enchantment.poisoned_blade=Отруєне Лезо
+enchantment.gravestone-extended.gs_poisoned_blade.desc=Накладає отруєння на ціль на 10 секунд за рівень
 enchantment.withered_blade=Висушуюче Лезо
+enchantment.gravestone-extended.gs_withered_blade.desc=Накладає висушування на ціль на 5 секунд за рівень
 enchantment.vampiric_touch=Дотик Вампіра
+enchantment.gravestone-extended.gs_vampiric_touch.desc=Відновлює здоров'я в розмірі 20% від нанесеної шкоди
 enchantment.necrotic_corrosion=Некротична Корозія
+enchantment.gravestone-extended.gs_necrotic_corrosion.desc=Завдає 10% додаткової шкоди за рівень, що ігнорує броню
 ## TODO !!
 enchantment.pain_mirror=Pain Mirror
-enchantment.bone_rain=Bone Rain
-
-#WAWLA Enchantment Descriptions
-enchantment.gravestone-extended.gs_vampiric_touch.desc=Відновлює здоров'я в розмірі 20% від нанесеної шкоди
-enchantment.gravestone-extended.gs_withered_blade.desc=Накладає висушування на ціль на 5 секунд за рівень
-enchantment.gravestone-extended.gs_shadow_of_death.desc=Завдає додаткових 2.5 шкоди за рівень істотам, які не є павуками або нежиттю
-enchantment.gravestone-extended.gs_necrotic_corrosion.desc=Завдає 10% додаткової шкоди за рівень, що ігнорує броню
-enchantment.gravestone-extended.gs_poisoned_blade.desc=Накладає отруєння на ціль на 10 секунд за рівень
-## TODO !!
 enchantment.gravestone-extended.gs_pain_mirror.desc=Reflects all blocked damage with 10% chance per level
+enchantment.bone_rain=Bone Rain
 enchantment.gravestone-extended.gs_bone_rain.desc=Uses bone meal on a block
+
+## Enchantments - Curses
+## TODO !!!!!!!!!!
+enchantment.starvation_curse=Curse of Starvation
+enchantment.gravestone-extended.gs_starvation_curse.desc=Applies hunger for 10 seconds per item
+enchantment.awkward_curse=Curse of Awkward
+enchantment.gravestone-extended.gs_awkward_curse.desc=Deals damage to yourself instead of enemy with 10% chance
+enchantment.fragility_curse=Curse of Fragility
+enchantment.gravestone-extended.gs_fragility_curse.desc=Item get additional damage at usage
 
 # Potions
 potion.purification.title=Знімає всі негативні ефекти

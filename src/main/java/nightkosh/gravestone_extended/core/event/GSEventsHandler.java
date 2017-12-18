@@ -18,9 +18,7 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.event.entity.ProjectileImpactEvent;
-import net.minecraftforge.event.entity.living.LivingAttackEvent;
-import net.minecraftforge.event.entity.living.LivingDamageEvent;
-import net.minecraftforge.event.entity.living.LivingDeathEvent;
+import net.minecraftforge.event.entity.living.*;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
@@ -30,6 +28,8 @@ import nightkosh.gravestone_extended.core.GSBlock;
 import nightkosh.gravestone_extended.core.GSEnchantment;
 import nightkosh.gravestone_extended.core.GSPotion;
 import nightkosh.gravestone_extended.core.MobSpawn;
+import nightkosh.gravestone_extended.enchantment.curse.EnchantmentAwkwardCurse;
+import nightkosh.gravestone_extended.enchantment.curse.EnchantmentStarvationCurse;
 import nightkosh.gravestone_extended.entity.monster.crawler.EntitySkullCrawler;
 import nightkosh.gravestone_extended.entity.monster.crawler.EntityStraySkullCrawler;
 import nightkosh.gravestone_extended.entity.monster.crawler.EntityWitherSkullCrawler;
@@ -74,12 +74,19 @@ public class GSEventsHandler {
         }
     }
 
+    @SubscribeEvent(priority = EventPriority.HIGHEST)
+    public void livingDamageEvent(LivingDamageEvent event) {
+        if (EnchantmentAwkwardCurse.applyCurseEffect(event.getSource(), event.getEntityLiving(), event.getAmount())) {
+            event.setCanceled(true);
+        }
+    }
+
     @SubscribeEvent
     public void livingAttackEvent(LivingAttackEvent event) {
         if (event.getEntityLiving() instanceof EntityPlayer) {
             EntityPlayer player = (EntityPlayer) event.getEntityLiving();
             ItemStack activeStack = player.getActiveItemStack();
-            if (!activeStack.isEmpty() && activeStack.getItem() instanceof IBoneShiled) {{
+            if (!activeStack.isEmpty() && activeStack.getItem() instanceof IBoneShiled) {
                 float amount = event.getAmount();
                 NBTTagList nbtList = activeStack.getEnchantmentTagList();
                 for (NBTBase nbt : nbtList) {
@@ -94,10 +101,28 @@ public class GSEventsHandler {
                 }
                 if (event.getAmount() >= 3)
                     ((ItemBoneShield) activeStack.getItem()).damageShield(activeStack, player, amount);
-                }
             }
         }
     }
+
+    @SubscribeEvent
+    public void livingUpdateEvent(LivingEvent.LivingUpdateEvent event) {
+        if (event.getEntityLiving() != null && event.getEntityLiving() instanceof EntityPlayer) {
+            EnchantmentStarvationCurse.applyCurseEffect((EntityPlayer) event.getEntityLiving());
+        }
+    }
+
+//    @SubscribeEvent
+//    public void livingUseItemEvent(LivingEntityUseItemEvent event) {
+//        if (!event.getItem().isEmpty()) {
+//            NBTTagList nbtList = event.getItem().getEnchantmentTagList();
+//            for (NBTBase nbt : nbtList) {
+//                if (((NBTTagCompound) nbt).getInteger("id") == Enchantment.getEnchantmentID(GSEnchantment.CURSE_FRAGILITY)) {
+//                    event.getItem().damageItem(2, event.getEntityLiving());
+//                }
+//            }
+//        }
+//    }
 
     @SubscribeEvent(priority = EventPriority.HIGH)
     public void onEntityLivingDamage(LivingDamageEvent event) {
