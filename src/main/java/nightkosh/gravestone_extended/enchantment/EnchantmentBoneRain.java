@@ -15,9 +15,19 @@ import nightkosh.gravestone_extended.item.tools.IBoneHoe;
  */
 public class EnchantmentBoneRain extends EnchantmentBase {
     public EnchantmentBoneRain() {
-        super(Rarity.VERY_RARE, EnumEnchantmentType.ALL, new EntityEquipmentSlot[] {EntityEquipmentSlot.MAINHAND});
+        super(Rarity.VERY_RARE, EnumEnchantmentType.ALL, new EntityEquipmentSlot[]{EntityEquipmentSlot.MAINHAND});
         this.setName("bone_rain");
         this.setRegistryName(ModInfo.ID, "gs_bone_rain");
+    }
+
+    @Override
+    public int getMinEnchantability(int enchantmentLevel) {
+        return 15;
+    }
+
+    @Override
+    public int getMaxEnchantability(int enchantmentLevel) {
+        return super.getMinEnchantability(enchantmentLevel) + 50;
     }
 
     @Override

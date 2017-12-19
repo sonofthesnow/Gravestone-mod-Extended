@@ -24,6 +24,16 @@ public class EnchantmentVampiricTouch extends EnchantmentBase {
     }
 
     @Override
+    public int getMinEnchantability(int enchantmentLevel) {
+        return 15;
+    }
+
+    @Override
+    public int getMaxEnchantability(int enchantmentLevel) {
+        return super.getMinEnchantability(enchantmentLevel) + 50;
+    }
+
+    @Override
     public boolean canApply(ItemStack stack) {
         return super.canApply(stack) && stack.getItem() instanceof IBoneSword;
     }
