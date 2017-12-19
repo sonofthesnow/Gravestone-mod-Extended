@@ -1,7 +1,6 @@
 package nightkosh.gravestone_extended.core;
 
 import net.minecraft.enchantment.Enchantment;
-import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
@@ -9,6 +8,7 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.registries.IForgeRegistry;
 import nightkosh.gravestone_extended.enchantment.*;
 import nightkosh.gravestone_extended.enchantment.curse.EnchantmentAwkwardCurse;
+import nightkosh.gravestone_extended.enchantment.curse.EnchantmentBrokenHookCurse;
 import nightkosh.gravestone_extended.enchantment.curse.EnchantmentFragilityCurse;
 import nightkosh.gravestone_extended.enchantment.curse.EnchantmentStarvationCurse;
 
@@ -33,6 +33,7 @@ public class GSEnchantment {
     public static final Enchantment CURSE_STARVATION = new EnchantmentStarvationCurse();
     public static final Enchantment CURSE_AWKWARD = new EnchantmentAwkwardCurse();
     public static final Enchantment CURSE_FRAGILITY = new EnchantmentFragilityCurse();
+    public static final Enchantment CURSE_BROKEN_HOOK = new EnchantmentBrokenHookCurse();
 
     @Mod.EventBusSubscriber(modid = ModInfo.ID)
     public static class RegistrationHandler {
@@ -43,7 +44,7 @@ public class GSEnchantment {
             registry.registerAll(VAMPIRIC_TOUCH, POISONED_BLADE, WITHERED_BLADE, SHADOW_OF_DEATH, NECROTIC_CORROSION);
             registry.registerAll(PAIN_MIRROR);
             registry.registerAll(BONE_RAIN);
-            registry.registerAll(CURSE_STARVATION, CURSE_AWKWARD, CURSE_FRAGILITY);
+            registry.registerAll(CURSE_STARVATION, CURSE_AWKWARD, CURSE_BROKEN_HOOK);
         }
     }
 }

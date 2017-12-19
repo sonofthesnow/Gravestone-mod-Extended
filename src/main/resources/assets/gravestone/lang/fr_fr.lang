@@ -79,11 +79,11 @@ enchantment.gravestone-extended.gs_poisoned_blade.desc=Applies poison to a targe
 enchantment.withered_blade=Withered Blade
 enchantment.gravestone-extended.gs_withered_blade.desc=Applies wither to a target for 5 seconds per level
 enchantment.vampiric_touch=Vampiric Touch
-enchantment.gravestone-extended.gs_vampiric_touch.desc=Converts 20% of damage done by this weapon to health
+enchantment.gravestone-extended.gs_vampiric_touch.desc=Converts 20 percent of damage done by this weapon to health
 enchantment.necrotic_corrosion=Necrotic Corrosion
-enchantment.gravestone-extended.gs_necrotic_corrosion.desc=10%(per level) of damage dealt by this weapon ignores armor
+enchantment.gravestone-extended.gs_necrotic_corrosion.desc=10 percent(per level) of damage dealt by this weapon ignores armor
 enchantment.pain_mirror=Pain Mirror
-enchantment.gravestone-extended.gs_pain_mirror.desc=Reflects all blocked damage with 10% chance per level
+enchantment.gravestone-extended.gs_pain_mirror.desc=Reflects all blocked damage with 10 percent chance per level
 enchantment.bone_rain=Bone Rain
 enchantment.gravestone-extended.gs_bone_rain.desc=Uses bone meal on a block
 
@@ -92,9 +92,11 @@ enchantment.gravestone-extended.gs_bone_rain.desc=Uses bone meal on a block
 enchantment.starvation_curse=Curse of Starvation
 enchantment.gravestone-extended.gs_starvation_curse.desc=Applies hunger for 10 seconds per item
 enchantment.awkward_curse=Curse of Awkward
-enchantment.gravestone-extended.gs_awkward_curse.desc=Deals damage to yourself instead of enemy with 10% chance
+enchantment.gravestone-extended.gs_awkward_curse.desc=Deals damage to yourself instead of enemy with 10 percent chance
 enchantment.fragility_curse=Curse of Fragility
 enchantment.gravestone-extended.gs_fragility_curse.desc=Item get additional damage at usage
+enchantment.broken_hook_curse=Curse of Broken Hook
+enchantment.gravestone-extended.gs_broken_hook_curse.desc=Adds 30 percent chance to lose your catch
 
 # Potions
 ## TODO !!!!!!!!!!!!

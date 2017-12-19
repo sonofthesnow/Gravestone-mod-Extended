@@ -20,6 +20,7 @@ import net.minecraftforge.event.entity.living.LivingAttackEvent;
 import net.minecraftforge.event.entity.living.LivingDamageEvent;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.living.LivingEvent;
+import net.minecraftforge.event.entity.player.ItemFishedEvent;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
@@ -32,6 +33,7 @@ import nightkosh.gravestone_extended.enchantment.EnchantmentNecroticCorrosion;
 import nightkosh.gravestone_extended.enchantment.EnchantmentPainMirror;
 import nightkosh.gravestone_extended.enchantment.EnchantmentVampiricTouch;
 import nightkosh.gravestone_extended.enchantment.curse.EnchantmentAwkwardCurse;
+import nightkosh.gravestone_extended.enchantment.curse.EnchantmentBrokenHookCurse;
 import nightkosh.gravestone_extended.enchantment.curse.EnchantmentStarvationCurse;
 import nightkosh.gravestone_extended.entity.monster.crawler.EntitySkullCrawler;
 import nightkosh.gravestone_extended.entity.monster.crawler.EntityStraySkullCrawler;
@@ -117,6 +119,13 @@ public class GSEventsHandler {
 //            }
 //        }
 //    }
+
+    @SubscribeEvent(priority = EventPriority.HIGH)
+    public void itemFishedEvent(ItemFishedEvent event) {
+        if (EnchantmentBrokenHookCurse.cancelFishing()) {
+            event.setCanceled(true);
+        }
+    }
 
     @SubscribeEvent(priority = EventPriority.HIGH)
     public void onEntityLivingDamage(LivingDamageEvent event) {

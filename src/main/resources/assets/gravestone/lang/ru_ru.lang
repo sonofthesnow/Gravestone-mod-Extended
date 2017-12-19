@@ -69,11 +69,11 @@ enchantment.gravestone-extended.gs_poisoned_blade.desc=Накладывает о
 enchantment.withered_blade=Иссушающее Лезвие
 enchantment.gravestone-extended.gs_withered_blade.desc=Накладывает иссушение на цель на 5 секунд за уровень
 enchantment.vampiric_touch=Прикосновение Вампира
-enchantment.gravestone-extended.gs_vampiric_touch.desc=Восстанавливает здоровье в размере 20% от нанесённого урона
+enchantment.gravestone-extended.gs_vampiric_touch.desc=Восстанавливает здоровье в размере 20 процентов от нанесённого урона
 enchantment.necrotic_corrosion=Некротическая Коррозия
-enchantment.gravestone-extended.gs_necrotic_corrosion.desc=Наносит 10% дополнительного урона за уровень, игнорирующего броню
+enchantment.gravestone-extended.gs_necrotic_corrosion.desc=Наносит 10 процентов дополнительного урона за уровень, игнорирующего броню
 enchantment.pain_mirror=Зеркало боли
-enchantment.gravestone-extended.gs_pain_mirror.desc=Отражает весь заблокированный урон с вероятностью 10% за уровень
+enchantment.gravestone-extended.gs_pain_mirror.desc=Отражает весь заблокированный урон с вероятностью 10 процентов за уровень
 enchantment.bone_rain=Костяной дождь
 enchantment.gravestone-extended.gs_bone_rain.desc=Использует костную муку на блоке
 
@@ -81,9 +81,11 @@ enchantment.gravestone-extended.gs_bone_rain.desc=Использует кост�
 enchantment.starvation_curse=Проклятье истощения
 enchantment.gravestone-extended.gs_starvation_curse.desc=Накладывает голод на 10 секунд за каждый предмет
 enchantment.awkward_curse=Проклятье неловкости
-enchantment.gravestone-extended.gs_awkward_curse.desc=С шансом в 10% вы атакуете самого себя вместо противника
+enchantment.gravestone-extended.gs_awkward_curse.desc=С шансом в 10 процентов вы атакуете самого себя вместо противника
 enchantment.fragility_curse=Проклятье хрупкости
 enchantment.gravestone-extended.gs_fragility_curse.desc=Предмет получает дополнительный урон при использовании
+enchantment.broken_hook_curse=Проклятье сломанного крючка
+enchantment.gravestone-extended.gs_broken_hook_curse.desc=С шансом в 30 процентов ваш улов будет утерян
 
 # Potions
 potion.purification.title=Снимает все негативные эффекты
