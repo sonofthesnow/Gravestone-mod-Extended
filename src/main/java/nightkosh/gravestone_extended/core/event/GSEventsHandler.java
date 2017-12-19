@@ -14,7 +14,6 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.potion.PotionType;
 import net.minecraft.potion.PotionUtils;
-import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.event.entity.ProjectileImpactEvent;
 import net.minecraftforge.event.entity.living.LivingAttackEvent;
@@ -24,7 +23,6 @@ import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-import nightkosh.gravestone.tileentity.TileEntityGraveStone;
 import nightkosh.gravestone_extended.config.ExtendedConfig;
 import nightkosh.gravestone_extended.core.GSBlock;
 import nightkosh.gravestone_extended.core.GSEnchantment;
@@ -42,8 +40,7 @@ import nightkosh.gravestone_extended.entity.monster.crawler.EntityZombieSkullCra
 import nightkosh.gravestone_extended.item.tools.IBoneShiled;
 import nightkosh.gravestone_extended.item.tools.IBoneSword;
 import nightkosh.gravestone_extended.item.tools.ItemBoneShield;
-
-import java.util.Map;
+import nightkosh.gravestone_extended.potion.PotionPurification;
 
 /**
  * GraveStone mod
@@ -154,29 +151,10 @@ public class GSEventsHandler {
         if (FMLCommonHandler.instance().getEffectiveSide().isServer()) {
             if (event.getThrowable() instanceof EntityPotion) {
                 EntityPotion entityPotion = (EntityPotion) event.getThrowable();
-                ItemStack potionStack = entityPotion.getPotion();
-                PotionType potionType = PotionUtils.getPotionFromItem(potionStack);
+                PotionType potionType = PotionUtils.getPotionFromItem(entityPotion.getPotion());
 
                 if (potionType == GSPotion.PURIFICATION_TYPE) {
-                    int range = 5;
-                    Map<BlockPos, TileEntity> teMap = entityPotion.world.getChunkFromBlockCoords(entityPotion.getPosition()).getTileEntityMap();
-                    teMap.putAll(entityPotion.world.getChunkFromBlockCoords(new BlockPos(entityPotion.posX + range, entityPotion.posY, entityPotion.posZ)).getTileEntityMap());
-                    teMap.putAll(entityPotion.world.getChunkFromBlockCoords(new BlockPos(entityPotion.posX - range, entityPotion.posY, entityPotion.posZ)).getTileEntityMap());
-                    teMap.putAll(entityPotion.world.getChunkFromBlockCoords(new BlockPos(entityPotion.posX, entityPotion.posY, entityPotion.posZ + range)).getTileEntityMap());
-                    teMap.putAll(entityPotion.world.getChunkFromBlockCoords(new BlockPos(entityPotion.posX, entityPotion.posY, entityPotion.posZ - range)).getTileEntityMap());
-                    teMap.putAll(entityPotion.world.getChunkFromBlockCoords(new BlockPos(entityPotion.posX + range, entityPotion.posY, entityPotion.posZ + range)).getTileEntityMap());
-                    teMap.putAll(entityPotion.world.getChunkFromBlockCoords(new BlockPos(entityPotion.posX + range, entityPotion.posY, entityPotion.posZ - range)).getTileEntityMap());
-                    teMap.putAll(entityPotion.world.getChunkFromBlockCoords(new BlockPos(entityPotion.posX - range, entityPotion.posY, entityPotion.posZ + range)).getTileEntityMap());
-                    teMap.putAll(entityPotion.world.getChunkFromBlockCoords(new BlockPos(entityPotion.posX - range, entityPotion.posY, entityPotion.posZ - range)).getTileEntityMap());
-
-                    for (Map.Entry<BlockPos, TileEntity> teEntry : teMap.entrySet()) {
-                        if (teEntry != null && teEntry.getValue() instanceof TileEntityGraveStone &&
-                                (teEntry.getKey().getX() >= entityPotion.posX - range && teEntry.getKey().getX() <= entityPotion.posX + range &&
-                                        teEntry.getKey().getZ() >= entityPotion.posZ - range && teEntry.getKey().getZ() <= entityPotion.posZ + range &&
-                                        teEntry.getKey().getY() >= entityPotion.posY - range && teEntry.getKey().getY() <= entityPotion.posY + range)) {
-                            ((TileEntityGraveStone) teEntry.getValue()).setPurified(true);
-                        }
-                    }
+                    PotionPurification.applyPotionOnBlocks(entityPotion);
                 }
             }
         }
