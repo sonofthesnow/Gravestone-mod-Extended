@@ -1,4 +1,4 @@
-package nightkosh.gravestone_extended.enchantment.curse;
+package nightkosh.gravestone_extended.enchantment;
 
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnumEnchantmentType;

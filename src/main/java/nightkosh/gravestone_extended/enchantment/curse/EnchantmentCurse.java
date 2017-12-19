@@ -2,6 +2,7 @@ package nightkosh.gravestone_extended.enchantment.curse;
 
 import net.minecraft.enchantment.EnumEnchantmentType;
 import net.minecraft.inventory.EntityEquipmentSlot;
+import nightkosh.gravestone_extended.enchantment.EnchantmentBase;
 
 /**
  * GraveStone mod
