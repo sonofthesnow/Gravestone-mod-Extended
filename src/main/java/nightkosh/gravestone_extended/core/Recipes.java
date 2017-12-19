@@ -6,11 +6,14 @@ import net.minecraft.item.EnumDyeColor;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.fluids.FluidRegistry;
+import net.minecraftforge.fluids.FluidUtil;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import nightkosh.gravestone_extended.block.enums.EnumExecution;
 import nightkosh.gravestone_extended.block.enums.EnumSkullCandle;
 import nightkosh.gravestone_extended.block.enums.EnumSpawner;
 import nightkosh.gravestone_extended.config.ExtendedConfig;
+import nightkosh.gravestone_extended.fluid.FluidToxicWater;
 
 /**
  * GraveStone mod
@@ -23,6 +26,11 @@ public class Recipes {
     private static final ResourceLocation GROUP = new ResourceLocation(ModInfo.ID);
 
     public static void registration() {
+        GameRegistry.addShapedRecipe(new ResourceLocation(ModInfo.ID, "toxic_water_bucket"), GROUP, FluidUtil.getFilledBucket(FluidRegistry.getFluidStack(FluidToxicWater.INSTANCE.getName(), 1)),
+                "ws", "ss",
+                'w', Items.WATER_BUCKET,
+                's', GSItem.TOXIC_SLIME);
+
         GameRegistry.addShapedRecipe(new ResourceLocation(ModInfo.ID, "chisel"), GROUP, new ItemStack(GSItem.CHISEL),
                 "   ", "s  ", " i ",
                 's', Items.STICK,
