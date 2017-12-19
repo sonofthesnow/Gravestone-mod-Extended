@@ -2,6 +2,7 @@ package nightkosh.gravestone_extended.enchantment;
 
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnumEnchantmentType;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.ItemStack;
 import nightkosh.gravestone_extended.core.ModInfo;
@@ -24,5 +25,13 @@ public class EnchantmentVampiricTouch extends Enchantment {
     @Override
     public boolean canApply(ItemStack stack) {
         return super.canApply(stack) && stack.getItem() instanceof IBoneSword;
+    }
+
+    public static void applyEnchantmentEffect(EntityLivingBase attacker, float damage) {
+        float healed = damage * 0.2F;
+        if (healed < 0.5) {
+            healed = 0.5F;
+        }
+        attacker.heal(healed);
     }
 }

@@ -15,10 +15,12 @@ import net.minecraft.nbt.NBTTagList;
 import net.minecraft.potion.PotionType;
 import net.minecraft.potion.PotionUtils;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.DamageSource;
 import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.event.entity.ProjectileImpactEvent;
-import net.minecraftforge.event.entity.living.*;
+import net.minecraftforge.event.entity.living.LivingAttackEvent;
+import net.minecraftforge.event.entity.living.LivingDamageEvent;
+import net.minecraftforge.event.entity.living.LivingDeathEvent;
+import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
@@ -28,6 +30,9 @@ import nightkosh.gravestone_extended.core.GSBlock;
 import nightkosh.gravestone_extended.core.GSEnchantment;
 import nightkosh.gravestone_extended.core.GSPotion;
 import nightkosh.gravestone_extended.core.MobSpawn;
+import nightkosh.gravestone_extended.enchantment.EnchantmentNecroticCorrosion;
+import nightkosh.gravestone_extended.enchantment.EnchantmentPainMirror;
+import nightkosh.gravestone_extended.enchantment.EnchantmentVampiricTouch;
 import nightkosh.gravestone_extended.enchantment.curse.EnchantmentAwkwardCurse;
 import nightkosh.gravestone_extended.enchantment.curse.EnchantmentStarvationCurse;
 import nightkosh.gravestone_extended.entity.monster.crawler.EntitySkullCrawler;
@@ -85,22 +90,14 @@ public class GSEventsHandler {
     public void livingAttackEvent(LivingAttackEvent event) {
         if (event.getEntityLiving() instanceof EntityPlayer) {
             EntityPlayer player = (EntityPlayer) event.getEntityLiving();
-            ItemStack activeStack = player.getActiveItemStack();
-            if (!activeStack.isEmpty() && activeStack.getItem() instanceof IBoneShiled) {
+            ItemStack stack = player.getActiveItemStack();
+            if (!stack.isEmpty() && stack.getItem() instanceof IBoneShiled) {
                 float amount = event.getAmount();
-                NBTTagList nbtList = activeStack.getEnchantmentTagList();
-                for (NBTBase nbt : nbtList) {
-                    if (((NBTTagCompound) nbt).getInteger("id") == Enchantment.getEnchantmentID(GSEnchantment.PAIN_MIRROR)) {
-                        if (player.world.rand.nextInt(100) <= 10 * ((NBTTagCompound) nbt).getShort("lvl")) {
-                            Entity attacker = event.getSource().getTrueSource();
-                            if (attacker instanceof EntityLivingBase) {
-                                attacker.attackEntityFrom(DamageSource.MAGIC, amount);
-                            }
-                        }
-                    }
-                }
+
+                EnchantmentPainMirror.applyEnchantmentEffect(player, event.getSource().getTrueSource(), stack, amount);
+
                 if (event.getAmount() >= 3)
-                    ((ItemBoneShield) activeStack.getItem()).damageShield(activeStack, player, amount);
+                    ((ItemBoneShield) stack.getItem()).damageShield(stack, player, amount);
             }
         }
     }
@@ -133,35 +130,21 @@ public class GSEventsHandler {
                 ItemStack itemMainHand = attacker.getHeldItemMainhand();
                 ItemStack itemOffHand = attacker.getHeldItemOffhand();
                 if (itemMainHand.getItem() instanceof IBoneSword) {
-                    applyEnchantments(attacker, (EntityLivingBase) event.getEntity(), itemMainHand, event.getAmount());
+                    applyEntityLivingDamageEnchantments(attacker, (EntityLivingBase) event.getEntity(), itemMainHand, event.getAmount());
                 } else if (itemOffHand.getItem() instanceof IBoneSword) {
-                    applyEnchantments(attacker, (EntityLivingBase) event.getEntity(), itemOffHand, event.getAmount());
+                    applyEntityLivingDamageEnchantments(attacker, (EntityLivingBase) event.getEntity(), itemOffHand, event.getAmount());
                 }
             }
         }
     }
 
-    private static void applyEnchantments(EntityLivingBase attacker, EntityLivingBase target, ItemStack weapon, float damage) {
+    private static void applyEntityLivingDamageEnchantments(EntityLivingBase attacker, EntityLivingBase target, ItemStack weapon, float damage) {
         NBTTagList nbtList = weapon.getEnchantmentTagList();
         for (NBTBase nbt : nbtList) {
             if (((NBTTagCompound) nbt).getInteger("id") == Enchantment.getEnchantmentID(GSEnchantment.VAMPIRIC_TOUCH)) {
-                float healed = damage * 0.2F;
-                if (healed < 0.5) {
-                    healed = 0.5F;
-                }
-                attacker.heal(healed);
+                EnchantmentVampiricTouch.applyEnchantmentEffect(attacker, damage);
             } else if (((NBTTagCompound) nbt).getInteger("id") == Enchantment.getEnchantmentID(GSEnchantment.NECROTIC_CORROSION)) {
-                short level = ((NBTTagCompound) nbt).getShort("lvl");
-                float additionalDamage = damage * 0.1F * level;
-                if (additionalDamage < 0.5) {
-                    additionalDamage = 0.5F;
-                }
-                float health = target.getHealth();
-                if (health > additionalDamage + 0.5) {
-                    target.setHealth(health - additionalDamage);
-                } else if (health > 0.5) {
-                    target.setHealth(0.5F);
-                }
+                EnchantmentNecroticCorrosion.applyEnchantmentEffect(target, damage, ((NBTTagCompound) nbt).getShort("lvl"));
             }
         }
     }

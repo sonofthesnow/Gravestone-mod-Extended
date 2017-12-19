@@ -2,8 +2,15 @@ package nightkosh.gravestone_extended.enchantment;
 
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnumEnchantmentType;
-import net.minecraft.inventory.EntityEquipmentSlot;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTBase;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.nbt.NBTTagList;
+import net.minecraft.util.DamageSource;
+import nightkosh.gravestone_extended.core.GSEnchantment;
 import nightkosh.gravestone_extended.core.ModInfo;
 import nightkosh.gravestone_extended.item.tools.IBoneShiled;
 
@@ -16,7 +23,7 @@ import nightkosh.gravestone_extended.item.tools.IBoneShiled;
 public class EnchantmentPainMirror extends Enchantment {
 
     public EnchantmentPainMirror() {
-        super(Rarity.VERY_RARE, EnumEnchantmentType.ALL, new EntityEquipmentSlot[]{EntityEquipmentSlot.MAINHAND, EntityEquipmentSlot.OFFHAND});
+        super(Rarity.VERY_RARE, EnumEnchantmentType.ALL, GSEnchantment.HAND_SLOTS);
         this.setName("pain_mirror");
         this.setRegistryName(ModInfo.ID, "gs_pain_mirror");
     }
@@ -39,5 +46,18 @@ public class EnchantmentPainMirror extends Enchantment {
     @Override
     public boolean canApply(ItemStack stack) {
         return super.canApply(stack) && stack.getItem() instanceof IBoneShiled;
+    }
+
+    public static void applyEnchantmentEffect(EntityPlayer player, Entity attacker, ItemStack stack, float amount) {
+        NBTTagList nbtList = stack.getEnchantmentTagList();
+        for (NBTBase nbt : nbtList) {
+            if (((NBTTagCompound) nbt).getInteger("id") == Enchantment.getEnchantmentID(GSEnchantment.PAIN_MIRROR)) {
+                if (player.world.rand.nextInt(100) <= 10 * ((NBTTagCompound) nbt).getShort("lvl")) {
+                    if (attacker instanceof EntityLivingBase) {
+                        attacker.attackEntityFrom(DamageSource.MAGIC, amount);
+                    }
+                }
+            }
+        }
     }
 }

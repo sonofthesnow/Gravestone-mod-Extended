@@ -3,7 +3,6 @@ package nightkosh.gravestone_extended.enchantment.curse;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnumEnchantmentType;
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTBase;
 import net.minecraft.nbt.NBTTagCompound;
@@ -19,13 +18,9 @@ import nightkosh.gravestone_extended.core.ModInfo;
  * @license Lesser GNU Public License v3 (http://www.gnu.org/licenses/lgpl.html)
  */
 public class EnchantmentAwkwardCurse extends EnchantmentCurse {
-    private static final EntityEquipmentSlot[] SLOTS = {
-            EntityEquipmentSlot.MAINHAND,
-            EntityEquipmentSlot.OFFHAND
-    };
 
     public EnchantmentAwkwardCurse() {
-        super(EnumEnchantmentType.WEAPON, SLOTS);
+        super(EnumEnchantmentType.WEAPON, GSEnchantment.HAND_SLOTS);
         this.setName("awkward_curse");
         this.setRegistryName(ModInfo.ID, "gs_awkward_curse");
     }

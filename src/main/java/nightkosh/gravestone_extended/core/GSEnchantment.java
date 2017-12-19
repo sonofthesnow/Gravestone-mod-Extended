@@ -1,6 +1,7 @@
 package nightkosh.gravestone_extended.core;
 
 import net.minecraft.enchantment.Enchantment;
+import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
@@ -19,6 +20,10 @@ import nightkosh.gravestone_extended.enchantment.curse.EnchantmentStarvationCurs
  */
 @GameRegistry.ObjectHolder(ModInfo.ID)
 public class GSEnchantment {
+    public static final EntityEquipmentSlot[] HAND_SLOTS = {
+            EntityEquipmentSlot.MAINHAND,
+            EntityEquipmentSlot.OFFHAND
+    };
 
     public static final Enchantment VAMPIRIC_TOUCH = new EnchantmentVampiricTouch();
     public static final Enchantment POISONED_BLADE = new EnchantmentPoisonedBlade();

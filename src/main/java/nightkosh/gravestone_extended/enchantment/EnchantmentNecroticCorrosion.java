@@ -2,6 +2,7 @@ package nightkosh.gravestone_extended.enchantment;
 
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnumEnchantmentType;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.ItemStack;
 import nightkosh.gravestone_extended.core.ModInfo;
@@ -39,5 +40,17 @@ public class EnchantmentNecroticCorrosion extends Enchantment {
     @Override
     public boolean canApply(ItemStack stack) {
         return super.canApply(stack) && stack.getItem() instanceof IBoneSword;
+    }
+    public static void applyEnchantmentEffect(EntityLivingBase target, float damage, short level) {
+        float additionalDamage = damage * 0.1F * level;
+        if (additionalDamage < 0.5) {
+            additionalDamage = 0.5F;
+        }
+        float health = target.getHealth();
+        if (health > additionalDamage + 0.5) {
+            target.setHealth(health - additionalDamage);
+        } else if (health > 0.5) {
+            target.setHealth(0.5F);
+        }
     }
 }
