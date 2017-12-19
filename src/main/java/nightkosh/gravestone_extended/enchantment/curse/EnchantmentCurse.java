@@ -1,6 +1,5 @@
 package nightkosh.gravestone_extended.enchantment.curse;
 
-import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnumEnchantmentType;
 import net.minecraft.inventory.EntityEquipmentSlot;
 
@@ -10,7 +9,7 @@ import net.minecraft.inventory.EntityEquipmentSlot;
  * @author NightKosh
  * @license Lesser GNU Public License v3 (http://www.gnu.org/licenses/lgpl.html)
  */
-public abstract class EnchantmentCurse extends Enchantment {
+public abstract class EnchantmentCurse extends EnchantmentBase {
 
     protected EnchantmentCurse() {
         this(EnumEnchantmentType.ALL, EntityEquipmentSlot.values());

@@ -1,10 +1,10 @@
 package nightkosh.gravestone_extended.enchantment;
 
-import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnumEnchantmentType;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.ItemStack;
 import nightkosh.gravestone_extended.core.ModInfo;
+import nightkosh.gravestone_extended.enchantment.curse.EnchantmentBase;
 import nightkosh.gravestone_extended.item.tools.IBoneHoe;
 
 /**
@@ -13,7 +13,7 @@ import nightkosh.gravestone_extended.item.tools.IBoneHoe;
  * @author NightKosh
  * @license Lesser GNU Public License v3 (http://www.gnu.org/licenses/lgpl.html)
  */
-public class EnchantmentBoneRain extends Enchantment {
+public class EnchantmentBoneRain extends EnchantmentBase {
     public EnchantmentBoneRain() {
         super(Rarity.VERY_RARE, EnumEnchantmentType.ALL, new EntityEquipmentSlot[] {EntityEquipmentSlot.MAINHAND});
         this.setName("bone_rain");

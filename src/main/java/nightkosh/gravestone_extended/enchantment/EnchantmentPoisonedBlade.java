@@ -10,6 +10,7 @@ import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.PotionEffect;
 import nightkosh.gravestone_extended.core.ModInfo;
+import nightkosh.gravestone_extended.enchantment.curse.EnchantmentBase;
 import nightkosh.gravestone_extended.item.tools.IBoneSword;
 
 /**
@@ -18,7 +19,7 @@ import nightkosh.gravestone_extended.item.tools.IBoneSword;
  * @author NightKosh
  * @license Lesser GNU Public License v3 (http://www.gnu.org/licenses/lgpl.html)
  */
-public class EnchantmentPoisonedBlade extends Enchantment {
+public class EnchantmentPoisonedBlade extends EnchantmentBase {
 
     public EnchantmentPoisonedBlade() {
         super(Enchantment.Rarity.RARE, EnumEnchantmentType.WEAPON, new EntityEquipmentSlot[] {EntityEquipmentSlot.MAINHAND});

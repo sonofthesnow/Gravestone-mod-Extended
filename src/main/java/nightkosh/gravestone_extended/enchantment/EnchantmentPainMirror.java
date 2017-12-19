@@ -12,6 +12,7 @@ import net.minecraft.nbt.NBTTagList;
 import net.minecraft.util.DamageSource;
 import nightkosh.gravestone_extended.core.GSEnchantment;
 import nightkosh.gravestone_extended.core.ModInfo;
+import nightkosh.gravestone_extended.enchantment.curse.EnchantmentBase;
 import nightkosh.gravestone_extended.item.tools.IBoneShiled;
 
 /**
@@ -20,10 +21,10 @@ import nightkosh.gravestone_extended.item.tools.IBoneShiled;
  * @author NightKosh
  * @license Lesser GNU Public License v3 (http://www.gnu.org/licenses/lgpl.html)
  */
-public class EnchantmentPainMirror extends Enchantment {
+public class EnchantmentPainMirror extends EnchantmentBase {
 
     public EnchantmentPainMirror() {
-        super(Rarity.VERY_RARE, EnumEnchantmentType.ALL, GSEnchantment.HAND_SLOTS);
+        super(Rarity.VERY_RARE, EnumEnchantmentType.ALL, HAND_SLOTS);
         this.setName("pain_mirror");
         this.setRegistryName(ModInfo.ID, "gs_pain_mirror");
     }

@@ -6,6 +6,7 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.ItemStack;
 import nightkosh.gravestone_extended.core.ModInfo;
+import nightkosh.gravestone_extended.enchantment.curse.EnchantmentBase;
 import nightkosh.gravestone_extended.item.tools.IBoneSword;
 
 /**
@@ -14,7 +15,7 @@ import nightkosh.gravestone_extended.item.tools.IBoneSword;
  * @author NightKosh
  * @license Lesser GNU Public License v3 (http://www.gnu.org/licenses/lgpl.html)
  */
-public class EnchantmentVampiricTouch extends Enchantment {
+public class EnchantmentVampiricTouch extends EnchantmentBase {
 
     public EnchantmentVampiricTouch() {
         super(Enchantment.Rarity.VERY_RARE, EnumEnchantmentType.WEAPON, new EntityEquipmentSlot[] {EntityEquipmentSlot.MAINHAND});

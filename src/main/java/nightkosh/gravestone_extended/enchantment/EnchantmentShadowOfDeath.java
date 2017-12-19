@@ -17,7 +17,7 @@ import nightkosh.gravestone_extended.item.tools.IBoneSword;
 public class EnchantmentShadowOfDeath extends EnchantmentDamage {
 
     public EnchantmentShadowOfDeath() {
-        super(Enchantment.Rarity.UNCOMMON, 0, new EntityEquipmentSlot[]{EntityEquipmentSlot.MAINHAND});
+        super(Enchantment.Rarity.UNCOMMON, 0, EntityEquipmentSlot.MAINHAND);
         this.setName("shadow_of_death");
         this.setRegistryName(ModInfo.ID, "gs_shadow_of_death");
     }

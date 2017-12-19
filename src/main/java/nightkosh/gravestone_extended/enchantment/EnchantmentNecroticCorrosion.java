@@ -1,11 +1,11 @@
 package nightkosh.gravestone_extended.enchantment;
 
-import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnumEnchantmentType;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.ItemStack;
 import nightkosh.gravestone_extended.core.ModInfo;
+import nightkosh.gravestone_extended.enchantment.curse.EnchantmentBase;
 import nightkosh.gravestone_extended.item.tools.IBoneSword;
 
 /**
@@ -14,7 +14,7 @@ import nightkosh.gravestone_extended.item.tools.IBoneSword;
  * @author NightKosh
  * @license Lesser GNU Public License v3 (http://www.gnu.org/licenses/lgpl.html)
  */
-public class EnchantmentNecroticCorrosion extends Enchantment {
+public class EnchantmentNecroticCorrosion extends EnchantmentBase {
 
     public EnchantmentNecroticCorrosion() {
         super(Rarity.VERY_RARE, EnumEnchantmentType.WEAPON, new EntityEquipmentSlot[] {EntityEquipmentSlot.MAINHAND});

@@ -20,7 +20,7 @@ import nightkosh.gravestone_extended.core.ModInfo;
 public class EnchantmentAwkwardCurse extends EnchantmentCurse {
 
     public EnchantmentAwkwardCurse() {
-        super(EnumEnchantmentType.WEAPON, GSEnchantment.HAND_SLOTS);
+        super(EnumEnchantmentType.WEAPON, HAND_SLOTS);
         this.setName("awkward_curse");
         this.setRegistryName(ModInfo.ID, "gs_awkward_curse");
     }
