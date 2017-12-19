@@ -15,7 +15,6 @@ public class FluidToxicWater extends Fluid {
 
     public FluidToxicWater() {
         super(name, Resources.TOXIC_WATER_STILL, Resources.TOXIC_WATER_FLOW);
-        this.getFlowing();
     }
 
     @Override

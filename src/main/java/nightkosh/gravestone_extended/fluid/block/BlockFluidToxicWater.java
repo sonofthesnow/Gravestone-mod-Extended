@@ -19,12 +19,12 @@ import net.minecraft.world.World;
 import net.minecraftforge.fluids.BlockFluidClassic;
 import nightkosh.gravestone_extended.config.ExtendedConfig;
 import nightkosh.gravestone_extended.core.GSPotion;
+import nightkosh.gravestone_extended.core.GSSound;
 import nightkosh.gravestone_extended.core.ModInfo;
 import nightkosh.gravestone_extended.core.Tabs;
 import nightkosh.gravestone_extended.entity.monster.EntityToxicSludge;
 import nightkosh.gravestone_extended.fluid.FluidToxicWater;
 
-import javax.annotation.Nonnull;
 import java.util.Random;
 
 /**
@@ -45,7 +45,7 @@ public class BlockFluidToxicWater extends BlockFluidClassic {
     @Override
     public void onEntityCollidedWithBlock(World world, BlockPos pos, IBlockState state, Entity entity) {
         super.onEntityCollidedWithBlock(world, pos, state, entity);
-        boolean dealDamage =  false;
+        boolean dealDamage = false;
         if (entity instanceof EntityLivingBase && !(entity instanceof EntitySlime)) {
             EntityLivingBase baseEntity = (EntityLivingBase) entity;
             baseEntity.addPotionEffect(new PotionEffect(GSPotion.RUST, 100));
@@ -109,8 +109,6 @@ public class BlockFluidToxicWater extends BlockFluidClassic {
 //
 //
             meltEffect(world, replacedPos.up());
-//            world.spawnParticle(EnumParticleTypes.SMOKE_LARGE, replacedPos.getX(), replacedPos.getY() + 2, replacedPos.getZ(), 0, 0, 0);
-//            world.playSound(null, replacedPos.getX(), replacedPos.getY() + 1, replacedPos.getZ(), SoundEvents.BLOCK_LAVA_EXTINGUISH, SoundCategory.BLOCKS, 0.4F, ((world.rand.nextFloat() - world.rand.nextFloat()) * 0.2F + 1) / 0.8F);
         }
     }
 
@@ -132,7 +130,25 @@ public class BlockFluidToxicWater extends BlockFluidClassic {
     }
 
     @Override
-    public void updateTick(@Nonnull World world, @Nonnull BlockPos pos, @Nonnull IBlockState state, @Nonnull Random rand) {
-        super.updateTick(world, pos, state, rand);
+    public void randomDisplayTick(IBlockState state, World world, BlockPos pos, Random rand) {
+        super.randomDisplayTick(state, world, pos, rand);
+
+        if (world.getBlockState(pos.up()).getMaterial() == Material.AIR && !world.getBlockState(pos.up()).isOpaqueCube()) {
+            double x = (double) pos.getX();
+            double y = (double) pos.getY();
+            double z = (double) pos.getZ();
+
+            if (rand.nextInt(300) == 0) {
+                double d8 = x + (double) rand.nextFloat();
+                double d4 = y + state.getBoundingBox(world, pos).maxY;
+                double d6 = z + (double) rand.nextFloat();
+                world.spawnParticle(EnumParticleTypes.SMOKE_LARGE, d8, d4, d6, 0.0D, 0.0D, 0.0D);
+                world.playSound(d8, d4, d6, SoundEvents.BLOCK_LAVA_EXTINGUISH, SoundCategory.BLOCKS, 0.2F + rand.nextFloat() * 0.2F, 0.9F + rand.nextFloat() * 0.15F, false);
+            }
+
+            if (rand.nextInt(100) == 0) {
+                world.playSound(x, y, z, GSSound.BUBBLING, SoundCategory.BLOCKS, 0.2F + rand.nextFloat() * 0.2F, 0.9F + rand.nextFloat() * 0.15F, false);
+            }
+        }
     }
 }
