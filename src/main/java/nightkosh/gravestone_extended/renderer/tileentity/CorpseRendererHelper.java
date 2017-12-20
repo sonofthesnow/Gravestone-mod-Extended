@@ -310,6 +310,122 @@ public class CorpseRendererHelper {
         }
     }
 
+    public static void renderCorpseInsideSlime(EnumCorpse corpseType, NBTTagCompound nbt, double x, double y, double z) {
+        GL11.glPushMatrix();
+        GL11.glTranslated(x - 0.25, y + 1.2, z - 0.25);
+        GL11.glRotatef(45, 0, 0, 1);
+        GL11.glRotatef(-25 + 180, 1, 0, 0);
+
+        float xz = 0.0625F;
+        switch (corpseType) {
+            case STEVE:
+                GameProfileHelper.bindPlayerTexture(nbt);
+                zombieModel.renderAll(false);
+                break;
+            case VILLAGER:
+                int profession = (nbt == null) ? 0 : VillagerCorpseHelper.getVillagerType(nbt);
+                bindVillagerTexture(profession);
+                villagerModel.renderAll();
+                break;
+            case DOG:
+                GL11.glTranslated(-0.1, -0.5, 0);
+                switch (DogCorpseHelper.getMobType(nbt)) {
+                    case OTHER:
+                    default:
+                        Minecraft.getMinecraft().renderEngine.bindTexture(Resources.WOLF);
+                        break;
+                    case ZOMBIE:
+                        Minecraft.getMinecraft().renderEngine.bindTexture(Resources.ZOMBIE_DOG);
+                        break;
+                    case HUSK:
+                        Minecraft.getMinecraft().renderEngine.bindTexture(Resources.GREEN_ZOMBIE_DOG);
+                        break;
+                    case SKELETON:
+                        Minecraft.getMinecraft().renderEngine.bindTexture(Resources.SKELETON_DOG);
+                        break;
+//                    case WITHER:
+//                        Minecraft.getMinecraft().renderEngine.bindTexture(Resources.);
+//                        break;
+//                    case STRAY:
+//                        Minecraft.getMinecraft().renderEngine.bindTexture(Resources.);
+//                        break;
+                }
+                if (dog == null) {
+                    dog = new EntityWolf(Minecraft.getMinecraft().world);
+                }
+                dogModel.setLivingAnimations(dog, 0, 0, 0);
+                dogModel.render(null, xz, xz, xz, xz, xz, xz);
+                break;
+            case CAT:
+                GL11.glTranslated(-0.1, -0.5, 0);
+                GL11.glScaled(0.8, 0.8, 0.8);
+                bindCatTexture(CatCorpseHelper.getCatType(nbt), CatCorpseHelper.getMobType(nbt));
+                catModel.render(null, xz, xz, xz, xz, xz, xz);
+                break;
+            case ZOMBIE:
+                switch (ZombieCorpseHelper.getMobType(nbt)) {
+                    case ZOMBIE:
+                    default:
+                        Minecraft.getMinecraft().renderEngine.bindTexture(Resources.ZOMBIE);
+                        break;
+                    case HUSK:
+                        Minecraft.getMinecraft().renderEngine.bindTexture(Resources.HUSK_ZOMBIE);
+                        break;
+                    case PIGMAN:
+                        Minecraft.getMinecraft().renderEngine.bindTexture(Resources.ZOMBIE_PIGMAN);
+                        break;
+                }
+                zombieModel.renderAll(false);
+                break;
+            case ZOMBIE_VILLAGER:
+                switch (ZombieVillagerCorpseHelper.getProfession(nbt)) {
+                    case -1:
+                        Minecraft.getMinecraft().renderEngine.bindTexture(Resources.ZOMBIE_VILLAGER);
+                        break;
+                    case 0:
+                        Minecraft.getMinecraft().renderEngine.bindTexture(Resources.ZOMBIE_FARMER);
+                        break;
+                    case 1:
+                        Minecraft.getMinecraft().renderEngine.bindTexture(Resources.ZOMBIE_LIBRARIAN);
+                        break;
+                    case 2:
+                        Minecraft.getMinecraft().renderEngine.bindTexture(Resources.ZOMBIE_PRIEST);
+                        break;
+                    case 3:
+                        Minecraft.getMinecraft().renderEngine.bindTexture(Resources.ZOMBIE_SMITH);
+                        break;
+                    case 4:
+                        Minecraft.getMinecraft().renderEngine.bindTexture(Resources.ZOMBIE_BUTCHER);
+                        break;
+                }
+                zombieVillagerModel.renderAll();
+                break;
+            case SKELETON:
+                switch (SkeletonCorpseHelper.getMobType(nbt)) {
+                    case SKELETON:
+                    default:
+                        Minecraft.getMinecraft().renderEngine.bindTexture(Resources.SKELETON);
+                        skeletonModel.renderAll(false);
+                        break;
+                    case STRAY:
+                        Minecraft.getMinecraft().renderEngine.bindTexture(Resources.STRAY_SKELETON);
+                        straySkeletonModel.renderStray(false);
+                        break;
+                    case WITHER:
+                        Minecraft.getMinecraft().renderEngine.bindTexture(Resources.WITHER_SKELETON);
+                        witherSkeletonModel.renderAll(false);
+                        break;
+                }
+                break;
+            case WITCH:
+                GL11.glScaled(0.7, 0.7, 0.7);
+                Minecraft.getMinecraft().renderEngine.bindTexture(Resources.WITCH);
+                witchModel.renderAll();
+                break;
+        }
+        GL11.glPopMatrix();
+    }
+
     private static void bindVillagerTexture(int profession) {
         switch (profession) {
             case 0:

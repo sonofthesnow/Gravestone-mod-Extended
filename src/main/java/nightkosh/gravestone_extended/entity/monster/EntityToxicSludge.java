@@ -4,10 +4,14 @@ import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.IEntityLivingData;
 import net.minecraft.entity.monster.EntitySlime;
 import net.minecraft.init.Blocks;
+import net.minecraft.init.Items;
 import net.minecraft.init.SoundEvents;
+import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumParticleTypes;
@@ -15,16 +19,22 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
+import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.EnumSkyBlock;
 import net.minecraft.world.World;
+import nightkosh.gravestone_extended.block.enums.EnumCorpse;
 import nightkosh.gravestone_extended.config.ExtendedConfig;
 import nightkosh.gravestone_extended.core.GSBlock;
 import nightkosh.gravestone_extended.core.GSItem;
 import nightkosh.gravestone_extended.core.GSPotion;
 import nightkosh.gravestone_extended.helper.StateHelper;
+import nightkosh.gravestone_extended.item.corpse.CorpseHelper;
 
 import javax.annotation.Nullable;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
 
 /**
  * GraveStone mod
@@ -34,8 +44,49 @@ import javax.annotation.Nullable;
  */
 public class EntityToxicSludge extends EntitySlime {
 
+    protected static final Random RAND = new Random();
+
+    protected static final Item[] MIDDLE_ITEMS = {
+            Items.BONE,
+            Items.BONE,
+            Items.ROTTEN_FLESH,
+            Items.ROTTEN_FLESH,
+            Items.ARROW,
+            Items.SPIDER_EYE,
+            Item.getItemFromBlock(Blocks.AIR)
+    };
+    private static final List<ItemStack> CORPSE_LIST = new ArrayList<>();
+    static {
+        for (int meta = 1; meta < EnumCorpse.values().length; meta++) {
+            if (EnumCorpse.values()[meta] != EnumCorpse.HORSE) {
+                CORPSE_LIST.addAll(CorpseHelper.getDefaultCorpse(meta));
+            }
+        }
+    }
+
     public EntityToxicSludge(World world) {
         super(world);
+    }
+
+    @Nullable
+    @Override
+    public IEntityLivingData onInitialSpawn(DifficultyInstance difficulty, @Nullable IEntityLivingData livingdata) {
+        livingdata = super.onInitialSpawn(difficulty, livingdata);
+
+        if (getSlimeSize() > 1) {
+            this.setItemStackToSlot(EntityEquipmentSlot.HEAD, new ItemStack(MIDDLE_ITEMS[RAND.nextInt(MIDDLE_ITEMS.length)], 1 + RAND.nextInt(5)));
+            this.setItemStackToSlot(EntityEquipmentSlot.CHEST, new ItemStack(MIDDLE_ITEMS[RAND.nextInt(MIDDLE_ITEMS.length)], 1 + RAND.nextInt(5)));
+            this.setItemStackToSlot(EntityEquipmentSlot.LEGS, new ItemStack(MIDDLE_ITEMS[RAND.nextInt(MIDDLE_ITEMS.length)], 1 + RAND.nextInt(5)));
+            this.setItemStackToSlot(EntityEquipmentSlot.FEET, new ItemStack(MIDDLE_ITEMS[RAND.nextInt(MIDDLE_ITEMS.length)], 1 + RAND.nextInt(5)));
+            if (getSlimeSize() > 2) {
+                if (RAND.nextBoolean()) {
+                    this.setItemStackToSlot(EntityEquipmentSlot.MAINHAND, CORPSE_LIST.get(RAND.nextInt(CORPSE_LIST.size())));
+                }
+            } else {
+                this.setItemStackToSlot(EntityEquipmentSlot.MAINHAND, new ItemStack(MIDDLE_ITEMS[RAND.nextInt(MIDDLE_ITEMS.length)], 1 + RAND.nextInt(5)));
+            }
+        }
+        return livingdata;
     }
 
     public static boolean replaceBlock(World world, BlockPos pos) {
@@ -119,7 +170,6 @@ public class EntityToxicSludge extends EntitySlime {
     @Override
     public void applyEntityCollision(Entity entity) {
         super.applyEntityCollision(entity);
-
         if (entity instanceof EntityLivingBase && !(entity instanceof EntitySlime)) {
             ((EntityLivingBase) entity).addPotionEffect(new PotionEffect(GSPotion.RUST, 100));
         }
@@ -142,6 +192,18 @@ public class EntityToxicSludge extends EntitySlime {
 
             return i <= this.rand.nextInt(8);
         }
+    }
+
+
+    @Override
+    protected void dropFewItems(boolean wasRecentlyHit, int lootingModifier) {
+        super.dropFewItems(wasRecentlyHit, lootingModifier);
+
+        this.entityDropItem(this.getItemStackFromSlot(EntityEquipmentSlot.MAINHAND), 0);
+        this.entityDropItem(this.getItemStackFromSlot(EntityEquipmentSlot.HEAD), 0);
+        this.entityDropItem(this.getItemStackFromSlot(EntityEquipmentSlot.CHEST), 0);
+        this.entityDropItem(this.getItemStackFromSlot(EntityEquipmentSlot.LEGS), 0);
+        this.entityDropItem(this.getItemStackFromSlot(EntityEquipmentSlot.FEET), 0);
     }
 
     @Override
