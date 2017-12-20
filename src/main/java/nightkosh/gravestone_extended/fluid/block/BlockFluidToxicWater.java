@@ -46,15 +46,16 @@ public class BlockFluidToxicWater extends BlockFluidClassic {
     public void onEntityCollidedWithBlock(World world, BlockPos pos, IBlockState state, Entity entity) {
         super.onEntityCollidedWithBlock(world, pos, state, entity);
         boolean dealDamage = false;
-        if (entity instanceof EntityLivingBase && !(entity instanceof EntitySlime)) {
-            EntityLivingBase baseEntity = (EntityLivingBase) entity;
-            baseEntity.addPotionEffect(new PotionEffect(GSPotion.RUST, 100));
-            if (baseEntity.getCreatureAttribute() != EnumCreatureAttribute.UNDEAD) {
-                for (PotionEffect potion : baseEntity.getActivePotionEffects()) {
-                    if (Potion.getIdFromPotion(potion.getPotion()) == Potion.getIdFromPotion(GSPotion.BONE_SKIN)) {
-                        return;
+        if (entity instanceof EntityLivingBase) {
+            if (!(entity instanceof EntitySlime)) {
+                EntityLivingBase baseEntity = (EntityLivingBase) entity;
+                baseEntity.addPotionEffect(new PotionEffect(GSPotion.RUST, 100));
+                if (baseEntity.getCreatureAttribute() != EnumCreatureAttribute.UNDEAD) {
+                    for (PotionEffect potion : baseEntity.getActivePotionEffects()) {
+                        if (Potion.getIdFromPotion(potion.getPotion()) == Potion.getIdFromPotion(GSPotion.BONE_SKIN)) {
+                            return;
+                        }
                     }
-                }
 
 //                // TODO check for Bone armor set
 //                Iterable<ItemStack> equipment = entity.getArmorInventoryList();
@@ -66,7 +67,8 @@ public class BlockFluidToxicWater extends BlockFluidClassic {
 //                        }
 //                    }
 //                }
-                dealDamage = true;
+                    dealDamage = true;
+                }
             }
         } else if (!(entity instanceof EntityItem)) {
             dealDamage = true;
@@ -150,5 +152,17 @@ public class BlockFluidToxicWater extends BlockFluidClassic {
                 world.playSound(x, y, z, GSSound.BUBBLING, SoundCategory.BLOCKS, 0.2F + rand.nextFloat() * 0.2F, 0.9F + rand.nextFloat() * 0.15F, false);
             }
         }
+
+//        if (rand.nextInt(10) == 0 && world.getBlockState(pos.down()).isTopSolid()) {
+//            Material material = world.getBlockState(pos.down(2)).getMaterial();
+//
+//            if (!material.blocksMovement() && !material.isLiquid()) {
+//                double d3 = x + (double) rand.nextFloat();
+//                double d5 = y - 1.05D;
+//                double d7 = z + (double) rand.nextFloat();
+//
+//                world.spawnParticle(EnumParticleTypes.DRIP_WATER, d3, d5, d7, 0.0D, 0.0D, 0.0D);
+//            }
+//        }
     }
 }
