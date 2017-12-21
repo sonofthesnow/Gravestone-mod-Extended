@@ -47,7 +47,8 @@ dependencies {
 jar {
 //    exclude('forestry/**')
     exclude('**/*.db')
-    exclude('assets/gravestone/techne_models/**')
+    exclude('assets/gravestone-extended/techne_models/**')
+    exclude('assets/gravestone-extended/obj_models/**')
 }
 
 processResources {
