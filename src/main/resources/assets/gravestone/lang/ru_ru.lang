@@ -76,6 +76,8 @@ enchantment.pain_mirror=Зеркало боли
 enchantment.gravestone-extended.gs_pain_mirror.desc=Отражает весь заблокированный урон с вероятностью 10 процентов за уровень
 enchantment.bone_rain=Костяной дождь
 enchantment.gravestone-extended.gs_bone_rain.desc=Использует костную муку на блоке
+enchantment.hellish_angling=Адская рыбалка
+enchantment.gravestone-extended.gs_hellish_angling.desc=Позволяет рыбачить в лаве
 
 ## Enchantments - Curses
 enchantment.starvation_curse=Проклятье истощения

@@ -66,8 +66,6 @@ public class EntityBoneFishHook extends EntityFishHook {
 
     public EntityBoneFishHook(World world, EntityPlayer player) {
         super(world, player);
-//        player.getHeldItemMainhand()
-        this.isImmuneToFire = true;// TODO !!!!!!!!
     }
 
 
@@ -97,11 +95,6 @@ public class EntityBoneFishHook extends EntityFishHook {
     }
 
     @Override
-    public boolean isInWater() {
-        return super.isInWater() || this.isInLava(); // TODO lava
-    }
-
-    @Override
     public void onUpdate() {
 //        super.onUpdate(); // TODO thread position !!!!!
 
@@ -117,27 +110,31 @@ public class EntityBoneFishHook extends EntityFishHook {
                 }
             }
 
-            float f = 0.0F;
-            BlockPos blockpos = new BlockPos(this);
-            IBlockState iblockstate = this.world.getBlockState(blockpos);
+            float f = 0;
+            BlockPos pos = new BlockPos(this);
+            IBlockState state = this.world.getBlockState(pos);
+            boolean isInLava = state.getMaterial() == Material.LAVA;
 
-            if (iblockstate.getMaterial() == Material.WATER || iblockstate.getMaterial() == Material.LAVA) { //TODO lava
-                f = BlockLiquid.getBlockLiquidHeight(iblockstate, this.world, blockpos);
+            if (isInLava && !this.isImmuneToFire) {
+                this.setDead();
+            }
+            if (state.getMaterial() == Material.WATER || isInLava) { //TODO lava
+                f = BlockLiquid.getBlockLiquidHeight(state, this.world, pos);
             }
 
             if (this.currentState == State.FLYING) {
                 if (this.caughtEntity != null) {
-                    this.motionX = 0.0D;
-                    this.motionY = 0.0D;
-                    this.motionZ = 0.0D;
+                    this.motionX = 0;
+                    this.motionY = 0;
+                    this.motionZ = 0;
                     this.currentState = State.HOOKED_IN_ENTITY;
                     return;
                 }
 
-                if (f > 0.0F) {
-                    this.motionX *= 0.3D;
-                    this.motionY *= 0.2D;
-                    this.motionZ *= 0.3D;
+                if (f > 0) {
+                    this.motionX *= 0.3;
+                    this.motionY *= 0.2;
+                    this.motionZ *= 0.3;
                     this.currentState = State.BOBBING;
                     return;
                 }
@@ -150,9 +147,9 @@ public class EntityBoneFishHook extends EntityFishHook {
                     ++this.ticksInAir;
                 } else {
                     this.ticksInAir = 0;
-                    this.motionX = 0.0D;
-                    this.motionY = 0.0D;
-                    this.motionZ = 0.0D;
+                    this.motionX = 0;
+                    this.motionY = 0;
+                    this.motionZ = 0;
                 }
             } else {
                 if (this.currentState == State.HOOKED_IN_ENTITY) {
@@ -163,7 +160,7 @@ public class EntityBoneFishHook extends EntityFishHook {
                         } else {
                             this.posX = this.caughtEntity.posX;
                             double d2 = (double) this.caughtEntity.height;
-                            this.posY = this.caughtEntity.getEntityBoundingBox().minY + d2 * 0.8D;
+                            this.posY = this.caughtEntity.getEntityBoundingBox().minY + d2 * 0.8;
                             this.posZ = this.caughtEntity.posZ;
                             this.setPosition(this.posX, this.posY, this.posZ);
                         }
@@ -173,32 +170,32 @@ public class EntityBoneFishHook extends EntityFishHook {
                 }
 
                 if (this.currentState == State.BOBBING) {
-                    this.motionX *= 0.9D;
-                    this.motionZ *= 0.9D;
-                    double d0 = this.posY + this.motionY - (double) blockpos.getY() - (double) f;
+                    this.motionX *= 0.9;
+                    this.motionZ *= 0.9;
+                    double d0 = this.posY + this.motionY - (double) pos.getY() - (double) f;
 
-                    if (Math.abs(d0) < 0.01D) {
-                        d0 += Math.signum(d0) * 0.1D;
+                    if (Math.abs(d0) < 0.01) {
+                        d0 += Math.signum(d0) * 0.1;
                     }
 
-                    this.motionY -= d0 * (double) this.rand.nextFloat() * 0.2D;
+                    this.motionY -= d0 * (double) this.rand.nextFloat() * 0.2;
 
-                    if (!this.world.isRemote && f > 0.0F) {
-                        this.catchingFish(blockpos);
+                    if (!this.world.isRemote && f > 0) {
+                        this.catchingFish(pos);
                     }
                 }
             }
 
-            if (iblockstate.getMaterial() != Material.WATER || iblockstate.getMaterial() != Material.LAVA) {
-                this.motionY -= 0.03D;
+            if (state.getMaterial() != Material.WATER || !isInLava) {
+                this.motionY -= 0.03;
             }
 
             this.move(MoverType.SELF, this.motionX, this.motionY, this.motionZ);
             this.updateRotation();
 
-            this.motionX *= 0.92D;
-            this.motionY *= 0.92D;
-            this.motionZ *= 0.92D;
+            this.motionX *= 0.92;
+            this.motionY *= 0.92;
+            this.motionZ *= 0.92;
             this.setPosition(this.posX, this.posY, this.posZ);
         }
     }
@@ -253,12 +250,12 @@ public class EntityBoneFishHook extends EntityFishHook {
         }
 
         Entity entity = null;
-        List<Entity> list = this.world.getEntitiesWithinAABBExcludingEntity(this, this.getEntityBoundingBox().expand(this.motionX, this.motionY, this.motionZ).grow(1.0D));
+        List<Entity> list = this.world.getEntitiesWithinAABBExcludingEntity(this, this.getEntityBoundingBox().expand(this.motionX, this.motionY, this.motionZ).grow(1));
         double d0 = 0;
 
         for (Entity entity1 : list) {
             if (this.canBeHooked(entity1) && (entity1 != this.getAngler() || this.ticksInAir >= 5)) {
-                AxisAlignedBB axisalignedbb = entity1.getEntityBoundingBox().grow(0.30000001192092896D);
+                AxisAlignedBB axisalignedbb = entity1.getEntityBoundingBox().grow(0.3);
                 RayTraceResult raytraceresult1 = axisalignedbb.calculateIntercept(vec3d, vec3d1);
 
                 if (raytraceresult1 != null) {
@@ -290,10 +287,10 @@ public class EntityBoneFishHook extends EntityFishHook {
         this.getDataManager().set(DATA_HOOKED_ENTITY, Integer.valueOf(this.caughtEntity.getEntityId() + 1));
     }
 
-    protected void catchingFish(BlockPos p_190621_1_) {
+    protected void catchingFish(BlockPos pos) {
         WorldServer worldserver = (WorldServer) this.world;
         int i = 1;
-        BlockPos blockpos = p_190621_1_.up();
+        BlockPos blockpos = pos.up();
 
         if (this.rand.nextFloat() < 0.25F && this.world.isRainingAt(blockpos)) {
             ++i;
@@ -310,41 +307,41 @@ public class EntityBoneFishHook extends EntityFishHook {
                 this.ticksCaughtDelay = 0;
                 this.ticksCatchableDelay = 0;
             } else {
-                this.motionY -= 0.2 * (double) this.rand.nextFloat() * (double) this.rand.nextFloat();
+                this.motionY -= 0.2 * this.rand.nextFloat() * this.rand.nextFloat();
             }
         } else if (this.ticksCatchableDelay > 0) {
             this.ticksCatchableDelay -= i;
 
             if (this.ticksCatchableDelay > 0) {
-                this.fishApproachAngle = (float) ((double) this.fishApproachAngle + this.rand.nextGaussian() * 4);
+                this.fishApproachAngle = (float) (this.fishApproachAngle + this.rand.nextGaussian() * 4);
                 float f = this.fishApproachAngle * 0.017453292F;
                 float f1 = MathHelper.sin(f);
                 float f2 = MathHelper.cos(f);
-                double d0 = this.posX + (double) (f1 * (float) this.ticksCatchableDelay * 0.1F);
-                double d1 = (double) ((float) MathHelper.floor(this.getEntityBoundingBox().minY) + 1.0F);
-                double d2 = this.posZ + (double) (f2 * (float) this.ticksCatchableDelay * 0.1F);
-                Block block = worldserver.getBlockState(new BlockPos(d0, d1 - 1.0D, d2)).getBlock();
+                double d0 = this.posX + f1 * (float) this.ticksCatchableDelay * 0.1F;
+                double d1 = (float) MathHelper.floor(this.getEntityBoundingBox().minY) + 1;
+                double d2 = this.posZ + f2 * (float) this.ticksCatchableDelay * 0.1F;
+                Block block = worldserver.getBlockState(new BlockPos(d0, d1 - 1, d2)).getBlock();
 
                 //TODO toxic water
                 //TODO lava
                 if (block == Blocks.WATER || block == Blocks.FLOWING_WATER || block == Blocks.LAVA || block == Blocks.FLOWING_LAVA || block == GSBlock.TOXIC_WATER) {
                     if (this.rand.nextFloat() < 0.15F) {
-                        worldserver.spawnParticle(EnumParticleTypes.WATER_BUBBLE, d0, d1 - 0.10000000149011612D, d2, 1, (double) f1, 0.1D, (double) f2, 0);
+                        worldserver.spawnParticle(EnumParticleTypes.WATER_BUBBLE, d0, d1 - 0.1, d2, 1, f1, 0.1, f2, 0);
                     }
 
                     float f3 = f1 * 0.04F;
                     float f4 = f2 * 0.04F;
-                    worldserver.spawnParticle(EnumParticleTypes.WATER_WAKE, d0, d1, d2, 0, (double) f4, 0.01D, (double) (-f3), 1.0D);
-                    worldserver.spawnParticle(EnumParticleTypes.WATER_WAKE, d0, d1, d2, 0, (double) (-f4), 0.01D, (double) f3, 1.0D);
+                    worldserver.spawnParticle(EnumParticleTypes.WATER_WAKE, d0, d1, d2, 0, f4, 0.01, -f3, 1);
+                    worldserver.spawnParticle(EnumParticleTypes.WATER_WAKE, d0, d1, d2, 0, -f4, 0.01, f3, 1);
                 }
             } else {
-                this.motionY = (double) (-0.4F * MathHelper.nextFloat(this.rand, 0.6F, 1.0F));
-                this.playSound(SoundEvents.ENTITY_BOBBER_SPLASH, 0.25F, 1.0F + (this.rand.nextFloat() - this.rand.nextFloat()) * 0.4F);
-                double d3 = this.getEntityBoundingBox().minY + 0.5D;
+                this.motionY = -0.4F * MathHelper.nextFloat(this.rand, 0.6F, 1F);
+                this.playSound(SoundEvents.ENTITY_BOBBER_SPLASH, 0.25F, 1 + (this.rand.nextFloat() - this.rand.nextFloat()) * 0.4F);
+                double d3 = this.getEntityBoundingBox().minY + 0.5;
                 //TODO toxic water
                 //TODO lava
-                worldserver.spawnParticle(EnumParticleTypes.WATER_BUBBLE, this.posX, d3, this.posZ, (int) (1.0F + this.width * 20.0F), (double) this.width, 0.0D, (double) this.width, 0.20000000298023224D);
-                worldserver.spawnParticle(EnumParticleTypes.WATER_WAKE, this.posX, d3, this.posZ, (int) (1.0F + this.width * 20.0F), (double) this.width, 0.0D, (double) this.width, 0.20000000298023224D);
+                worldserver.spawnParticle(EnumParticleTypes.WATER_BUBBLE, this.posX, d3, this.posZ, (int) (1 + this.width * 20), this.width, 0, this.width, 0.2);
+                worldserver.spawnParticle(EnumParticleTypes.WATER_WAKE, this.posX, d3, this.posZ, (int) (1 + this.width * 20), this.width, 0, this.width, 0.2);
                 this.ticksCatchable = MathHelper.getInt(this.rand, 20, 40);
             }
         } else if (this.ticksCaughtDelay > 0) {
@@ -352,35 +349,35 @@ public class EntityBoneFishHook extends EntityFishHook {
             float f5 = 0.15F;
 
             if (this.ticksCaughtDelay < 20) {
-                f5 = (float) ((double) f5 + (double) (20 - this.ticksCaughtDelay) * 0.05D);
+                f5 = (float) (f5 + (20 - this.ticksCaughtDelay) * 0.05);
             } else if (this.ticksCaughtDelay < 40) {
-                f5 = (float) ((double) f5 + (double) (40 - this.ticksCaughtDelay) * 0.02D);
+                f5 = (float) (f5 + (40 - this.ticksCaughtDelay) * 0.02);
             } else if (this.ticksCaughtDelay < 60) {
-                f5 = (float) ((double) f5 + (double) (60 - this.ticksCaughtDelay) * 0.01D);
+                f5 = (float) (f5 + (60 - this.ticksCaughtDelay) * 0.01);
             }
 
             if (this.rand.nextFloat() < f5) {
-                float f6 = MathHelper.nextFloat(this.rand, 0.0F, 360.0F) * 0.017453292F;
-                float f7 = MathHelper.nextFloat(this.rand, 25.0F, 60.0F);
-                double d4 = this.posX + (double) (MathHelper.sin(f6) * f7 * 0.1F);
-                double d5 = (double) ((float) MathHelper.floor(this.getEntityBoundingBox().minY) + 1.0F);
-                double d6 = this.posZ + (double) (MathHelper.cos(f6) * f7 * 0.1F);
+                float f6 = MathHelper.nextFloat(this.rand, 0, 360) * 0.017453292F;
+                float f7 = MathHelper.nextFloat(this.rand, 25, 60);
+                double d4 = this.posX + MathHelper.sin(f6) * f7 * 0.1F;
+                double d5 = MathHelper.floor(this.getEntityBoundingBox().minY) + 1F;
+                double d6 = this.posZ + MathHelper.cos(f6) * f7 * 0.1F;
                 Block block1 = worldserver.getBlockState(new BlockPos((int) d4, (int) d5 - 1, (int) d6)).getBlock();
 
 
                 if (block1 == Blocks.WATER || block1 == Blocks.FLOWING_WATER) {
-                    worldserver.spawnParticle(EnumParticleTypes.WATER_SPLASH, d4, d5, d6, 2 + this.rand.nextInt(2), 0.10000000149011612D, 0.0D, 0.10000000149011612D, 0.0D);
+                    worldserver.spawnParticle(EnumParticleTypes.WATER_SPLASH, d4, d5, d6, 2 + this.rand.nextInt(2), 0.10000000149011612, 0, 0.10000000149011612, 0);
                 }
                 if (block1 == GSBlock.TOXIC_WATER) {//TODO toxic water
-                    worldserver.spawnParticle(EnumParticleTypes.WATER_SPLASH, d4, d5, d6, 2 + this.rand.nextInt(2), 0.10000000149011612D, 0.0D, 0.10000000149011612D, 0.0D);
+                    worldserver.spawnParticle(EnumParticleTypes.WATER_SPLASH, d4, d5, d6, 2 + this.rand.nextInt(2), 0.10000000149011612, 0, 0.10000000149011612, 0);
                 }
                 if (block1 == Blocks.LAVA || block1 == Blocks.FLOWING_LAVA) { //TODO lava
-                    worldserver.spawnParticle(EnumParticleTypes.WATER_SPLASH, d4, d5, d6, 2 + this.rand.nextInt(2), 0.10000000149011612D, 0.0D, 0.10000000149011612D, 0.0D);
+                    worldserver.spawnParticle(EnumParticleTypes.WATER_SPLASH, d4, d5, d6, 2 + this.rand.nextInt(2), 0.10000000149011612, 0, 0.10000000149011612, 0);
                 }
             }
 
             if (this.ticksCaughtDelay <= 0) {
-                this.fishApproachAngle = MathHelper.nextFloat(this.rand, 0.0F, 360.0F);
+                this.fishApproachAngle = MathHelper.nextFloat(this.rand, 0, 360);
                 this.ticksCatchableDelay = MathHelper.getInt(this.rand, 20, 80);
             }
         } else {
@@ -415,13 +412,13 @@ public class EntityBoneFishHook extends EntityFishHook {
                     double d0 = this.getAngler().posX - this.posX;
                     double d1 = this.getAngler().posY - this.posY;
                     double d2 = this.getAngler().posZ - this.posZ;
-                    double d3 = (double) MathHelper.sqrt(d0 * d0 + d1 * d1 + d2 * d2);
+                    double d3 = MathHelper.sqrt(d0 * d0 + d1 * d1 + d2 * d2);
 
-                    entityitem.motionX = d0 * 0.1D;
-                    entityitem.motionY = d1 * 0.1D + (double) MathHelper.sqrt(d3) * 0.08D;
-                    entityitem.motionZ = d2 * 0.1D;
+                    entityitem.motionX = d0 * 0.1;
+                    entityitem.motionY = d1 * 0.1 + MathHelper.sqrt(d3) * 0.08;
+                    entityitem.motionZ = d2 * 0.1;
                     this.world.spawnEntity(entityitem);
-                    this.getAngler().world.spawnEntity(new EntityXPOrb(this.getAngler().world, this.getAngler().posX, this.getAngler().posY + 0.5D, this.getAngler().posZ + 0.5D, this.rand.nextInt(6) + 1));
+                    this.getAngler().world.spawnEntity(new EntityXPOrb(this.getAngler().world, this.getAngler().posX, this.getAngler().posY + 0.5, this.getAngler().posZ + 0.5, this.rand.nextInt(6) + 1));
                     Item item = itemstack.getItem();
 
                     if (item == Items.FISH || item == Items.COOKED_FISH) {
