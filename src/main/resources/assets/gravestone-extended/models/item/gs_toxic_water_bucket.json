@@ -1,6 +1,6 @@
 {
     "parent": "item/generated",
     "textures": {
-        "layer0": "gravestone:items/toxic_water_bucket"
+        "layer0": "gravestone-extended:items/toxic_water_bucket"
     }
 }

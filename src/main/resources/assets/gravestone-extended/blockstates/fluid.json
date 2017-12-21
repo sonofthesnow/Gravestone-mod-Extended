@@ -13,7 +13,7 @@
         "model": "forge:forge_bucket",
         "textures": {
             "base": "forge:items/bucket_base",
-            "fluid": "gravestone:items/toxic_water_bucket",
+            "fluid": "gravestone-extended:items/toxic_water_bucket",
             "cover": "forge:items/bucket_cover"
         },
         "transform": "forge:default-item",

@@ -12,26 +12,20 @@ public class Resources extends nightkosh.gravestone.core.Resources{
 
     public static final String EXT_MOD_NAME = ModInfo.ID.toLowerCase();
 
-    protected static final String FLUID_LOCATION = "blocks/fluids/";
-    protected static final String GUI_LOCATION = MOD_NAME + ":textures/gui/";
-    protected static final String POTIONS_LOCATION = MOD_NAME + ":textures/potions/";
+    protected static final String BLOCK_LOCATION = EXT_MOD_NAME + ":textures/blocks/";
+    protected static final String FLUID_LOCATION = EXT_MOD_NAME + ":blocks/fluids/";
+    protected static final String GUI_LOCATION = EXT_MOD_NAME + ":textures/gui/";
+    protected static final String POTIONS_LOCATION = EXT_MOD_NAME + ":textures/potions/";
     protected static final String ENTITY_LOCATION = EXT_MOD_NAME + ":textures/entities/";
-    protected static final String MEMORIALS_LOCATION = MOD_NAME + ":textures/memorials/";
-    protected static final String EXECUTIONS_LOCATION = MOD_NAME + ":textures/execution/";
-    protected static final String ARMOR_LOCATION = MOD_NAME + ":textures/memorials/armor/";
-    protected static final String PEDESTALS_LOCATION = MOD_NAME + ":textures/memorials/pedestal/";
+    protected static final String MEMORIALS_LOCATION = EXT_MOD_NAME + ":textures/blocks/memorials/";
+    protected static final String EXECUTIONS_LOCATION = EXT_MOD_NAME + ":textures/blocks/execution/";
+    protected static final String ARMOR_LOCATION = EXT_MOD_NAME + ":textures/blocks/memorials/armor/";
+    protected static final String PEDESTALS_LOCATION = EXT_MOD_NAME + ":textures/blocks/memorials/pedestal/";
     // blocks
-    public static final String NIGHT_STONE = "nether_brick";
-    public static final String THUNDER_STONE = "stonebrick";
-    public static final String BONE_BLOCK = MOD_NAME + ":bone_block";
-    public static final String SKULL_BONE_BLOCK = MOD_NAME + ":skull_bone_block";
-    public static final String PENTAGRAM_ICO = MOD_NAME + ":pentagram";
     public static final ResourceLocation PENTAGRAM = new ResourceLocation(BLOCK_LOCATION + "pentagram.png");
     public static final ResourceLocation SPIDER_SPAWNER = new ResourceLocation(BLOCK_LOCATION + "spiderspawner.png");
     public static final ResourceLocation CANDLE = new ResourceLocation(BLOCK_LOCATION + "candle.png");
     public static final ResourceLocation PILE_OF_BONES = new ResourceLocation(BLOCK_LOCATION + "pileofbones.png");
-    public static final String ALTAR_TOP = MOD_NAME + ":altar_top";
-    public static final String ALTAR_SIDE = MOD_NAME + ":altar_side";
 
     // gui
     public static final ResourceLocation ALTAR_GUI = new ResourceLocation(GUI_LOCATION + "altar_gui.png");
@@ -214,6 +208,6 @@ public class Resources extends nightkosh.gravestone.core.Resources{
     public static final ResourceLocation ZOMBIE_SKULL_CANDLE = new ResourceLocation(BLOCK_LOCATION + "zombieskullcandle.png");
 
     // TOXIC WATER
-    public static final ResourceLocation TOXIC_WATER_STILL =  new ResourceLocation(MOD_NAME, FLUID_LOCATION + "toxic_water_still");
-    public static final ResourceLocation TOXIC_WATER_FLOW = new ResourceLocation(MOD_NAME, FLUID_LOCATION + "toxic_water_flow");
+    public static final ResourceLocation TOXIC_WATER_STILL =  new ResourceLocation(FLUID_LOCATION + "toxic_water_still");
+    public static final ResourceLocation TOXIC_WATER_FLOW = new ResourceLocation(FLUID_LOCATION + "toxic_water_flow");
 }

@@ -1,7 +1,7 @@
 {
     "parent": "builtin/generated",
     "textures": {
-        "layer0": "gravestone:items/tools/chisel"
+        "layer0": "gravestone-extended:items/tools/chisel"
     },
     "display": {
         "thirdperson": {

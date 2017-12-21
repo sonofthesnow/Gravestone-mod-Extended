@@ -1,7 +1,7 @@
 {
     "parent": "gravestone-extended:item/tools/gs_bone_hoe",
 	"textures": {
-		"0": "gravestone:items/tools/hoe/bone_hoe_golden",
-		"particle": "gravestone:items/tools/hoe/bone_hoe_golden"
+		"0": "gravestone-extended:items/tools/hoe/bone_hoe_golden",
+		"particle": "gravestone-extended:items/tools/hoe/bone_hoe_golden"
 	}
 }
