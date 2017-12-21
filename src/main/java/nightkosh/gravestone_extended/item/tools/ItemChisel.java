@@ -1,4 +1,4 @@
-package nightkosh.gravestone_extended.item;
+package nightkosh.gravestone_extended.item.tools;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;

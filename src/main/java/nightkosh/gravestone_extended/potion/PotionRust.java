@@ -6,7 +6,7 @@ import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import nightkosh.gravestone_extended.core.GSPotion;
 import nightkosh.gravestone_extended.core.ModInfo;
-import nightkosh.gravestone_extended.item.tools.IBoneItem;
+import nightkosh.gravestone_extended.item.IBoneItem;
 
 /**
  * GraveStone mod

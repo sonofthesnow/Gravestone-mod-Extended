@@ -6,7 +6,7 @@ import net.minecraft.entity.EnumCreatureAttribute;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.ItemStack;
 import nightkosh.gravestone_extended.core.ModInfo;
-import nightkosh.gravestone_extended.item.tools.IBoneSword;
+import nightkosh.gravestone_extended.item.weapon.IBoneSword;
 
 /**
  * GraveStone mod

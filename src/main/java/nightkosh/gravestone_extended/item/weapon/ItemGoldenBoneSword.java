@@ -1,4 +1,4 @@
-package nightkosh.gravestone_extended.item.tools;
+package nightkosh.gravestone_extended.item.weapon;
 
 import nightkosh.gravestone_extended.core.ModInfo;
 

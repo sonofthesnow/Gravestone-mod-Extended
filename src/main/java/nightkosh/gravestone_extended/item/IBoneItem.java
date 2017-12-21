@@ -1,4 +1,4 @@
-package nightkosh.gravestone_extended.item.tools;
+package nightkosh.gravestone_extended.item;
 
 /**
  * GraveStone mod
@@ -6,5 +6,5 @@ package nightkosh.gravestone_extended.item.tools;
  * @author NightKosh
  * @license Lesser GNU Public License v3 (http://www.gnu.org/licenses/lgpl.html)
  */
-public interface IBoneShiled extends IBoneItem {
+public interface IBoneItem {
 }

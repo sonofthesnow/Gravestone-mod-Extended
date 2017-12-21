@@ -9,10 +9,11 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.registries.IForgeRegistry;
 import nightkosh.gravestone_extended.core.compatibility.Compatibility;
 import nightkosh.gravestone_extended.core.compatibility.forestry.CompatibilityForestry;
-import nightkosh.gravestone_extended.item.ItemChisel;
+import nightkosh.gravestone_extended.item.tools.ItemChisel;
 import nightkosh.gravestone_extended.item.ItemGSMonsterPlacer;
 import nightkosh.gravestone_extended.item.ItemToxicSlime;
 import nightkosh.gravestone_extended.item.tools.*;
+import nightkosh.gravestone_extended.item.weapon.*;
 
 /**
  * GraveStone mod

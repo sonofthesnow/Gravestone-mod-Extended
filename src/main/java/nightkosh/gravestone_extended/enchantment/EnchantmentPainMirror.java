@@ -12,7 +12,7 @@ import net.minecraft.nbt.NBTTagList;
 import net.minecraft.util.DamageSource;
 import nightkosh.gravestone_extended.core.GSEnchantment;
 import nightkosh.gravestone_extended.core.ModInfo;
-import nightkosh.gravestone_extended.item.tools.IBoneShiled;
+import nightkosh.gravestone_extended.item.weapon.IBoneShiled;
 
 /**
  * GraveStone mod

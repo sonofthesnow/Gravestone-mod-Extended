@@ -1,4 +1,4 @@
-package nightkosh.gravestone_extended.item.tools;
+package nightkosh.gravestone_extended.item.weapon;
 
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;

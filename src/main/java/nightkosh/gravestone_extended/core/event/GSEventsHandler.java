@@ -39,9 +39,9 @@ import nightkosh.gravestone_extended.entity.monster.crawler.EntitySkullCrawler;
 import nightkosh.gravestone_extended.entity.monster.crawler.EntityStraySkullCrawler;
 import nightkosh.gravestone_extended.entity.monster.crawler.EntityWitherSkullCrawler;
 import nightkosh.gravestone_extended.entity.monster.crawler.EntityZombieSkullCrawler;
-import nightkosh.gravestone_extended.item.tools.IBoneShiled;
-import nightkosh.gravestone_extended.item.tools.IBoneSword;
-import nightkosh.gravestone_extended.item.tools.ItemBoneShield;
+import nightkosh.gravestone_extended.item.weapon.IBoneShiled;
+import nightkosh.gravestone_extended.item.weapon.IBoneSword;
+import nightkosh.gravestone_extended.item.weapon.ItemBoneShield;
 import nightkosh.gravestone_extended.potion.PotionPurification;
 
 /**
