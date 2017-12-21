@@ -122,8 +122,18 @@ public class GSEventsHandler {
 
     @SubscribeEvent(priority = EventPriority.HIGH)
     public void itemFishedEvent(ItemFishedEvent event) {
-        if (EnchantmentBrokenHookCurse.cancelFishing()) {
-            event.setCanceled(true);
+        ItemStack stack = event.getEntityPlayer().getHeldItemMainhand();
+
+        if (!stack.isEmpty()) {
+            NBTTagList nbtList = stack.getEnchantmentTagList();
+            for (NBTBase nbt : nbtList) {
+                if (((NBTTagCompound) nbt).getInteger("id") == Enchantment.getEnchantmentID(GSEnchantment.CURSE_BROKEN_HOOK)) {
+                    if (EnchantmentBrokenHookCurse.cancelFishing()) {
+                        event.setCanceled(true);
+                    }
+                    break;
+                }
+            }
         }
     }
 
