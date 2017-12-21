@@ -106,6 +106,9 @@ lingering_potion.effect.gs_rust_type=Туманное зелье ржавчин�
 ## Chisel
 item.gravestone.chisel.name=Резец для надгробий
 
+## Fishing Pole
+item.gravestone.bone_fishing_pole.name=Костяная удочка
+
 ## Hoe
 item.gravestone.bone_hoe.name=Костяная мотыга
 item.gravestone.bone_hoe_iron.name=Костяная железная мотыга

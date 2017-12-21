@@ -20,8 +20,11 @@ import nightkosh.gravestone_extended.entity.monster.pet.EntitySkeletonCat;
 import nightkosh.gravestone_extended.entity.monster.pet.EntitySkeletonDog;
 import nightkosh.gravestone_extended.entity.monster.pet.EntityZombieCat;
 import nightkosh.gravestone_extended.entity.monster.pet.EntityZombieDog;
+import nightkosh.gravestone_extended.entity.projectile.EntityBoneFishHook;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 /**
  * GraveStone mod
@@ -53,6 +56,7 @@ public class Entity {
     public static final String RAVEN_NAME = "GSRaven";
     public static final String DAMNED_WARRIOR_NAME = "GSDamnedWarrior";
     public static final String SPAWNER_HELPER_NAME = "GSSpawnerHelper";
+    public static final String BONE_FISH_HOOK_NAME = "GSBoneFishHook";
 
     // EntityList
     public static final ResourceLocation MINECRAFT_ZOMBIE_ID = new ResourceLocation("zombie");
@@ -84,6 +88,7 @@ public class Entity {
     public static final ResourceLocation DAMNED_WARRIOR_ID = new ResourceLocation(ModInfo.ID + ":" + DAMNED_WARRIOR_NAME);
     public static final ResourceLocation RAVEN_ID = new ResourceLocation(ModInfo.ID + ":" + RAVEN_NAME);
     public static final ResourceLocation SPAWNER_HELPER_ID = new ResourceLocation(ModInfo.ID + ":spawner_helper");
+    public static final ResourceLocation BONE_FISH_HOOK_ID = new ResourceLocation(ModInfo.ID + ":bone_fish_hook");
 
     public static final String MINECRAFT_SKELETON_NAME = "Skeleton";
     public static final String MINECRAFT_ZOMBIE_HORSE_NAME = "ZombieHorse";
@@ -167,6 +172,8 @@ public class Entity {
         registerModEntity(DAMNED_WARRIOR_ID, EntityDamnedWarrior.class, DAMNED_WARRIOR_NAME);
 
         registerModEntity(SPAWNER_HELPER_ID, EntityGroupOfGravesMobSpawnerHelper.class, SPAWNER_HELPER_NAME);
+
+        registerModEntity(BONE_FISH_HOOK_ID, EntityBoneFishHook.class, BONE_FISH_HOOK_NAME);
     }
 
     private static void addSpawn(BiomeDictionary.Type biomeType, Class<? extends EntityLiving> entityClass,

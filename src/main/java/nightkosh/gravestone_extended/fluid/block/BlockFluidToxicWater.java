@@ -23,6 +23,7 @@ import nightkosh.gravestone_extended.core.GSSound;
 import nightkosh.gravestone_extended.core.ModInfo;
 import nightkosh.gravestone_extended.core.Tabs;
 import nightkosh.gravestone_extended.entity.monster.EntityToxicSludge;
+import nightkosh.gravestone_extended.entity.projectile.EntityBoneFishHook;
 import nightkosh.gravestone_extended.fluid.FluidToxicWater;
 
 import java.util.Random;
@@ -70,7 +71,7 @@ public class BlockFluidToxicWater extends BlockFluidClassic {
                     dealDamage = true;
                 }
             }
-        } else if (!(entity instanceof EntityItem)) {
+        } else if (!(entity instanceof EntityItem) && !(entity instanceof EntityBoneFishHook)) {
             dealDamage = true;
             if (entity.getClass().equals(EntityFishHook.class)) {
                 meltEffect(world, pos);

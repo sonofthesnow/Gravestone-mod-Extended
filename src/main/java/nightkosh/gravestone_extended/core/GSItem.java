@@ -31,6 +31,7 @@ public class GSItem {
     public static final Item BONE_SWORD_DIAMOND = new ItemDiamondBoneSword();
     public static final Item BONE_SHIELD = new ItemBoneShield();
 
+    public static final Item BONE_FISHING_POLE = new ItemBoneFishingPole();
     public static final Item BONE_HOE = new ItemBoneHoe();
     public static final Item BONE_HOE_IRON = new ItemIronBoneHoe();
     public static final Item BONE_HOE_GOLDEN = new ItemGoldenBoneHoe();
@@ -44,9 +45,10 @@ public class GSItem {
         @SubscribeEvent
         public static void registerItems(final RegistryEvent.Register<Item> event) {
             final IForgeRegistry<Item> registry = event.getRegistry();
-            registry.registerAll(CHISEL, TOXIC_SLIME, SPAWN_EGG);
+            registry.registerAll(TOXIC_SLIME, SPAWN_EGG);
             registry.registerAll(BONE_SWORD, BONE_SWORD_IRON, BONE_SWORD_GOLDEN, BONE_SWORD_DIAMOND, BONE_SHIELD);
-            registry.registerAll(BONE_HOE, BONE_HOE_IRON, BONE_HOE_GOLDEN, BONE_HOE_DIAMOND);
+            registry.registerAll(CHISEL, BONE_FISHING_POLE,
+                    BONE_HOE, BONE_HOE_IRON, BONE_HOE_GOLDEN, BONE_HOE_DIAMOND);
             if (Loader.isModLoaded(Compatibility.FORESTRY_ID)) {
                 CompatibilityForestry.addBackpack(registry);
             }

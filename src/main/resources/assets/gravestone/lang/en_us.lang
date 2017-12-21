@@ -106,6 +106,10 @@ lingering_potion.effect.gs_rust_type=Lingering Potion of Rust
 ## Chisel
 item.gravestone.chisel.name=Gravestone Chisel
 
+## Fishing Pole
+## TODO !!!!!!!!!!
+item.gravestone.bone_fishing_pole.name=Bone Fishing Pole
+
 ## Hoe
 item.gravestone.bone_hoe.name=Bone Hoe
 item.gravestone.bone_hoe_iron.name=Iron Bone Hoe
