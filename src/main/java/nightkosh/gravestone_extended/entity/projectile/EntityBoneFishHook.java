@@ -96,13 +96,17 @@ public class EntityBoneFishHook extends EntityFishHook {
 
     @Override
     public void onUpdate() {
-//        super.onUpdate(); // TODO thread position !!!!!
+        if (!this.world.isRemote) {
+            this.setFlag(6, this.isGlowing());
+        }
+
+        this.onEntityUpdate();
 
         if (this.getAngler() == null) {
             this.setDead();
         } else if (this.world.isRemote || !this.shouldStopFishing()) {
             if (this.inGround) {
-                ++this.ticksInGround;
+                this.ticksInGround++;
 
                 if (this.ticksInGround >= 1200) {
                     this.setDead();
@@ -114,11 +118,12 @@ public class EntityBoneFishHook extends EntityFishHook {
             BlockPos pos = new BlockPos(this);
             IBlockState state = this.world.getBlockState(pos);
             boolean isInLava = state.getMaterial() == Material.LAVA;
+            boolean isInWater = state.getMaterial() == Material.WATER;
 
             if (isInLava && !this.isImmuneToFire) {
                 this.setDead();
             }
-            if (state.getMaterial() == Material.WATER || isInLava) { //TODO lava
+            if (isInWater || isInLava) {
                 f = BlockLiquid.getBlockLiquidHeight(state, this.world, pos);
             }
 
@@ -144,7 +149,7 @@ public class EntityBoneFishHook extends EntityFishHook {
                 }
 
                 if (!this.inGround && !this.onGround && !this.collidedHorizontally) {
-                    ++this.ticksInAir;
+                    this.ticksInAir++;
                 } else {
                     this.ticksInAir = 0;
                     this.motionX = 0;
@@ -159,7 +164,7 @@ public class EntityBoneFishHook extends EntityFishHook {
                             this.currentState = State.FLYING;
                         } else {
                             this.posX = this.caughtEntity.posX;
-                            double d2 = (double) this.caughtEntity.height;
+                            double d2 = this.caughtEntity.height;
                             this.posY = this.caughtEntity.getEntityBoundingBox().minY + d2 * 0.8;
                             this.posZ = this.caughtEntity.posZ;
                             this.setPosition(this.posX, this.posY, this.posZ);
@@ -172,13 +177,13 @@ public class EntityBoneFishHook extends EntityFishHook {
                 if (this.currentState == State.BOBBING) {
                     this.motionX *= 0.9;
                     this.motionZ *= 0.9;
-                    double d0 = this.posY + this.motionY - (double) pos.getY() - (double) f;
+                    double d0 = this.posY + this.motionY - pos.getY() - f;
 
                     if (Math.abs(d0) < 0.01) {
                         d0 += Math.signum(d0) * 0.1;
                     }
 
-                    this.motionY -= d0 * (double) this.rand.nextFloat() * 0.2;
+                    this.motionY -= d0 * this.rand.nextFloat() * 0.2;
 
                     if (!this.world.isRemote && f > 0) {
                         this.catchingFish(pos);
@@ -186,7 +191,7 @@ public class EntityBoneFishHook extends EntityFishHook {
                 }
             }
 
-            if (state.getMaterial() != Material.WATER || !isInLava) {
+            if (!isInWater && !isInLava) {
                 this.motionY -= 0.03;
             }
 
@@ -239,14 +244,14 @@ public class EntityBoneFishHook extends EntityFishHook {
     }
 
     protected void checkCollision() {
-        Vec3d vec3d = new Vec3d(this.posX, this.posY, this.posZ);
-        Vec3d vec3d1 = new Vec3d(this.posX + this.motionX, this.posY + this.motionY, this.posZ + this.motionZ);
-        RayTraceResult raytraceresult = this.world.rayTraceBlocks(vec3d, vec3d1, false, true, false);
-        vec3d = new Vec3d(this.posX, this.posY, this.posZ);
-        vec3d1 = new Vec3d(this.posX + this.motionX, this.posY + this.motionY, this.posZ + this.motionZ);
+        Vec3d vec = new Vec3d(this.posX, this.posY, this.posZ);
+        Vec3d vec2 = new Vec3d(this.posX + this.motionX, this.posY + this.motionY, this.posZ + this.motionZ);
+        RayTraceResult raytraceresult = this.world.rayTraceBlocks(vec, vec2, false, true, false);
+        vec = new Vec3d(this.posX, this.posY, this.posZ);
+        vec2 = new Vec3d(this.posX + this.motionX, this.posY + this.motionY, this.posZ + this.motionZ);
 
         if (raytraceresult != null) {
-            vec3d1 = new Vec3d(raytraceresult.hitVec.x, raytraceresult.hitVec.y, raytraceresult.hitVec.z);
+            vec2 = new Vec3d(raytraceresult.hitVec.x, raytraceresult.hitVec.y, raytraceresult.hitVec.z);
         }
 
         Entity entity = null;
@@ -256,14 +261,14 @@ public class EntityBoneFishHook extends EntityFishHook {
         for (Entity entity1 : list) {
             if (this.canBeHooked(entity1) && (entity1 != this.getAngler() || this.ticksInAir >= 5)) {
                 AxisAlignedBB axisalignedbb = entity1.getEntityBoundingBox().grow(0.3);
-                RayTraceResult raytraceresult1 = axisalignedbb.calculateIntercept(vec3d, vec3d1);
+                RayTraceResult result = axisalignedbb.calculateIntercept(vec, vec2);
 
-                if (raytraceresult1 != null) {
-                    double d1 = vec3d.squareDistanceTo(raytraceresult1.hitVec);
+                if (result != null) {
+                    double distance = vec.squareDistanceTo(result.hitVec);
 
-                    if (d1 < d0 || d0 == 0) {
+                    if (distance < d0 || d0 == 0) {
                         entity = entity1;
-                        d0 = d1;
+                        d0 = distance;
                     }
                 }
             }
@@ -284,7 +289,7 @@ public class EntityBoneFishHook extends EntityFishHook {
     }
 
     protected void setHookedEntity() {
-        this.getDataManager().set(DATA_HOOKED_ENTITY, Integer.valueOf(this.caughtEntity.getEntityId() + 1));
+        this.getDataManager().set(DATA_HOOKED_ENTITY, this.caughtEntity.getEntityId() + 1);
     }
 
     protected void catchingFish(BlockPos pos) {
@@ -292,16 +297,16 @@ public class EntityBoneFishHook extends EntityFishHook {
         int i = 1;
         BlockPos blockpos = pos.up();
 
-        if (this.rand.nextFloat() < 0.25F && this.world.isRainingAt(blockpos)) {
-            ++i;
+        if (this.rand.nextFloat() < 0.25 && this.world.isRainingAt(blockpos)) {
+            i++;
         }
 
-        if (this.rand.nextFloat() < 0.5F && !this.world.canSeeSky(blockpos)) {
-            --i;
+        if (this.rand.nextFloat() < 0.5 && !this.world.canSeeSky(blockpos)) {
+            i--;
         }
 
         if (this.ticksCatchable > 0) {
-            --this.ticksCatchable;
+            this.ticksCatchable--;
 
             if (this.ticksCatchable <= 0) {
                 this.ticksCaughtDelay = 0;
@@ -317,15 +322,15 @@ public class EntityBoneFishHook extends EntityFishHook {
                 float f = this.fishApproachAngle * 0.017453292F;
                 float f1 = MathHelper.sin(f);
                 float f2 = MathHelper.cos(f);
-                double d0 = this.posX + f1 * (float) this.ticksCatchableDelay * 0.1F;
-                double d1 = (float) MathHelper.floor(this.getEntityBoundingBox().minY) + 1;
-                double d2 = this.posZ + f2 * (float) this.ticksCatchableDelay * 0.1F;
+                double d0 = this.posX + f1 * this.ticksCatchableDelay * 0.1;
+                double d1 = MathHelper.floor(this.getEntityBoundingBox().minY) + 1;
+                double d2 = this.posZ + f2 * this.ticksCatchableDelay * 0.1;
                 Block block = worldserver.getBlockState(new BlockPos(d0, d1 - 1, d2)).getBlock();
 
                 //TODO toxic water
                 //TODO lava
                 if (block == Blocks.WATER || block == Blocks.FLOWING_WATER || block == Blocks.LAVA || block == Blocks.FLOWING_LAVA || block == GSBlock.TOXIC_WATER) {
-                    if (this.rand.nextFloat() < 0.15F) {
+                    if (this.rand.nextFloat() < 0.15) {
                         worldserver.spawnParticle(EnumParticleTypes.WATER_BUBBLE, d0, d1 - 0.1, d2, 1, f1, 0.1, f2, 0);
                     }
 
@@ -335,7 +340,7 @@ public class EntityBoneFishHook extends EntityFishHook {
                     worldserver.spawnParticle(EnumParticleTypes.WATER_WAKE, d0, d1, d2, 0, -f4, 0.01, f3, 1);
                 }
             } else {
-                this.motionY = -0.4F * MathHelper.nextFloat(this.rand, 0.6F, 1F);
+                this.motionY = -0.4 * MathHelper.nextFloat(this.rand, 0.6F, 1);
                 this.playSound(SoundEvents.ENTITY_BOBBER_SPLASH, 0.25F, 1 + (this.rand.nextFloat() - this.rand.nextFloat()) * 0.4F);
                 double d3 = this.getEntityBoundingBox().minY + 0.5;
                 //TODO toxic water
@@ -349,30 +354,30 @@ public class EntityBoneFishHook extends EntityFishHook {
             float f5 = 0.15F;
 
             if (this.ticksCaughtDelay < 20) {
-                f5 = (float) (f5 + (20 - this.ticksCaughtDelay) * 0.05);
+                f5 = f5 + (20 - this.ticksCaughtDelay) * 0.05F;
             } else if (this.ticksCaughtDelay < 40) {
-                f5 = (float) (f5 + (40 - this.ticksCaughtDelay) * 0.02);
+                f5 = f5 + (40 - this.ticksCaughtDelay) * 0.02F;
             } else if (this.ticksCaughtDelay < 60) {
-                f5 = (float) (f5 + (60 - this.ticksCaughtDelay) * 0.01);
+                f5 = f5 + (60 - this.ticksCaughtDelay) * 0.01F;
             }
 
             if (this.rand.nextFloat() < f5) {
                 float f6 = MathHelper.nextFloat(this.rand, 0, 360) * 0.017453292F;
                 float f7 = MathHelper.nextFloat(this.rand, 25, 60);
-                double d4 = this.posX + MathHelper.sin(f6) * f7 * 0.1F;
-                double d5 = MathHelper.floor(this.getEntityBoundingBox().minY) + 1F;
-                double d6 = this.posZ + MathHelper.cos(f6) * f7 * 0.1F;
+                double d4 = this.posX + MathHelper.sin(f6) * f7 * 0.1;
+                double d5 = MathHelper.floor(this.getEntityBoundingBox().minY) + 1;
+                double d6 = this.posZ + MathHelper.cos(f6) * f7 * 0.1;
                 Block block1 = worldserver.getBlockState(new BlockPos((int) d4, (int) d5 - 1, (int) d6)).getBlock();
 
 
                 if (block1 == Blocks.WATER || block1 == Blocks.FLOWING_WATER) {
-                    worldserver.spawnParticle(EnumParticleTypes.WATER_SPLASH, d4, d5, d6, 2 + this.rand.nextInt(2), 0.10000000149011612, 0, 0.10000000149011612, 0);
+                    worldserver.spawnParticle(EnumParticleTypes.WATER_SPLASH, d4, d5, d6, 2 + this.rand.nextInt(2), 0.1, 0, 0.1, 0);
                 }
                 if (block1 == GSBlock.TOXIC_WATER) {//TODO toxic water
-                    worldserver.spawnParticle(EnumParticleTypes.WATER_SPLASH, d4, d5, d6, 2 + this.rand.nextInt(2), 0.10000000149011612, 0, 0.10000000149011612, 0);
+                    worldserver.spawnParticle(EnumParticleTypes.WATER_SPLASH, d4, d5, d6, 2 + this.rand.nextInt(2), 0.1, 0, 0.1, 0);
                 }
                 if (block1 == Blocks.LAVA || block1 == Blocks.FLOWING_LAVA) { //TODO lava
-                    worldserver.spawnParticle(EnumParticleTypes.WATER_SPLASH, d4, d5, d6, 2 + this.rand.nextInt(2), 0.10000000149011612, 0, 0.10000000149011612, 0);
+                    worldserver.spawnParticle(EnumParticleTypes.WATER_SPLASH, d4, d5, d6, 2 + this.rand.nextInt(2), 0.1, 0, 0.1, 0);
                 }
             }
 
@@ -397,18 +402,19 @@ public class EntityBoneFishHook extends EntityFishHook {
                 this.world.setEntityState(this, (byte) 31);
                 i = this.caughtEntity instanceof EntityItem ? 3 : 5;
             } else if (this.ticksCatchable > 0) {
-                LootContext.Builder lootcontextBuilder = new LootContext.Builder((WorldServer) this.world);
-                lootcontextBuilder.withLuck((float) this.luck + this.getAngler().getLuck());
-                List<ItemStack> result = this.world.getLootTableManager().getLootTableFromLocation(LootTableList.GAMEPLAY_FISHING).generateLootForPools(this.rand, lootcontextBuilder.build());
+                LootContext.Builder lootContextBuilder = new LootContext.Builder((WorldServer) this.world);
+                lootContextBuilder.withLuck(this.luck + this.getAngler().getLuck());
+                List<ItemStack> result = this.world.getLootTableManager().getLootTableFromLocation(LootTableList.GAMEPLAY_FISHING).generateLootForPools(this.rand, lootContextBuilder.build());
                 event = new net.minecraftforge.event.entity.player.ItemFishedEvent(result, this.inGround ? 2 : 1, this);
                 net.minecraftforge.common.MinecraftForge.EVENT_BUS.post(event);
+
                 if (event.isCanceled()) {
                     this.setDead();
                     return event.getRodDamage();
                 }
 
-                for (ItemStack itemstack : result) {
-                    EntityItem entityitem = new EntityItem(this.world, this.posX, this.posY + 1.5, this.posZ, itemstack);// TODO + 1.5
+                for (ItemStack stack : result) {
+                    EntityItem entityitem = new EntityItem(this.world, this.posX, this.posY + 1.5, this.posZ, stack);// TODO + 1.5
                     double d0 = this.getAngler().posX - this.posX;
                     double d1 = this.getAngler().posY - this.posY;
                     double d2 = this.getAngler().posZ - this.posZ;
@@ -419,7 +425,7 @@ public class EntityBoneFishHook extends EntityFishHook {
                     entityitem.motionZ = d2 * 0.1;
                     this.world.spawnEntity(entityitem);
                     this.getAngler().world.spawnEntity(new EntityXPOrb(this.getAngler().world, this.getAngler().posX, this.getAngler().posY + 0.5, this.getAngler().posZ + 0.5, this.rand.nextInt(6) + 1));
-                    Item item = itemstack.getItem();
+                    Item item = stack.getItem();
 
                     if (item == Items.FISH || item == Items.COOKED_FISH) {
                         this.getAngler().addStat(StatList.FISH_CAUGHT, 1);
