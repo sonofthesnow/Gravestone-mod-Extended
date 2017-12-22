@@ -32,7 +32,7 @@ public class Recipes {
                 'w', Items.WATER_BUCKET,
                 's', GSItem.TOXIC_SLIME);
 
-        GameRegistry.addShapedRecipe(new ResourceLocation(ModInfo.ID, "toxic_slime"), GROUP, new ItemStack(GSBlock.PILE_OF_BONES),
+        GameRegistry.addShapedRecipe(new ResourceLocation(ModInfo.ID, "bonefish_to_bones"), GROUP, new ItemStack(GSBlock.PILE_OF_BONES),
                 "b",
                 'b', new ItemStack(GSItem.FISH, 1, ItemFish.EnumFishType.BONE_FISH.ordinal()));
 
