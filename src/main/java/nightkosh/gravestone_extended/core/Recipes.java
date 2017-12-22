@@ -10,6 +10,7 @@ import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidUtil;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import nightkosh.gravestone_extended.block.enums.EnumExecution;
+import nightkosh.gravestone_extended.block.enums.EnumPileOfBones;
 import nightkosh.gravestone_extended.block.enums.EnumSkullCandle;
 import nightkosh.gravestone_extended.block.enums.EnumSpawner;
 import nightkosh.gravestone_extended.config.ExtendedConfig;
@@ -48,6 +49,11 @@ public class Recipes {
                 "   ", "s  ", " i ",
                 's', Items.STICK,
                 'i', Items.IRON_INGOT);
+
+        GameRegistry.addShapedRecipe(new ResourceLocation(ModInfo.ID, "bone_fishing_pole"), GROUP, new ItemStack(GSItem.BONE_FISHING_POLE),
+                "p  ", "sp ", "s p",
+                'p', new ItemStack(GSBlock.PILE_OF_BONES, 1, EnumPileOfBones.PILE_OF_BONES.ordinal()),
+                's', Items.STRING);
 
         GameRegistry.addShapedRecipe(new ResourceLocation(ModInfo.ID, "bone_hoe"), GROUP, new ItemStack(GSItem.BONE_HOE),
                 "bs ", " w ", " w ",
