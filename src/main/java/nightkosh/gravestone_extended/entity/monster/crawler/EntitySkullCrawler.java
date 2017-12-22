@@ -263,7 +263,10 @@ public class EntitySkullCrawler extends EntityMob {
     public boolean attackEntityAsMob(Entity entity) {
         if (super.attackEntityAsMob(entity)) {
             if (entity instanceof EntityLivingBase) {
-                ((EntityLivingBase) entity).addPotionEffect(getPotionEffect());
+                PotionEffect effect = getPotionEffect();
+                if (effect != null) {
+                    ((EntityLivingBase) entity).addPotionEffect(effect);
+                }
             }
             return true;
         } else {
