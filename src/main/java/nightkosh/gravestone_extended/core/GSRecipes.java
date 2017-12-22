@@ -23,7 +23,7 @@ import nightkosh.gravestone_extended.item.ItemFish;
  * @author NightKosh
  * @license Lesser GNU Public License v3 (http://www.gnu.org/licenses/lgpl.html)
  */
-public class Recipes {
+public class GSRecipes {
 
     private static final ResourceLocation GROUP = new ResourceLocation(ModInfo.ID);
 

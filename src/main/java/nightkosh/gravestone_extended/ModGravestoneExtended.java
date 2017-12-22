@@ -54,11 +54,11 @@ public class ModGravestoneExtended {
         FluidRegistry.registerFluid(FluidToxicWater.INSTANCE);
         FluidRegistry.addBucketForFluid(FluidToxicWater.INSTANCE);
 
-        Structures.preInit();
+        GSStructures.preInit();
 
         MessageHandler.init();
 
-        Tabs.registration();
+        GSTabs.registration();
         TileEntity.registration();
     }
 
@@ -70,13 +70,13 @@ public class ModGravestoneExtended {
         proxy.registerHandlers();
 
         // reciepes registration
-        Recipes.registration();
+        GSRecipes.registration();
 
         // register structures
-        Structures.registration();
+        GSStructures.registration();
 
         // register entities
-        Entity.registration();
+        GSEntity.registration();
 
         NetworkRegistry.INSTANCE.registerGuiHandler(this, new GuiHandler());
 

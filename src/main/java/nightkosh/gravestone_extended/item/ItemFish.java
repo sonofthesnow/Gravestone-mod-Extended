@@ -4,8 +4,8 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.NonNullList;
+import nightkosh.gravestone_extended.core.GSTabs;
 import nightkosh.gravestone_extended.core.ModInfo;
-import nightkosh.gravestone_extended.core.Tabs;
 
 /**
  * GraveStone mod
@@ -18,7 +18,7 @@ public class ItemFish extends Item {
     public ItemFish() {
         this.setUnlocalizedName("gravestone.fish");
         this.setRegistryName(ModInfo.ID, "gs_fish");
-        this.setCreativeTab(Tabs.otherItemsTab);
+        this.setCreativeTab(GSTabs.otherItemsTab);
     }
 
     public void getSubItems(CreativeTabs tab, NonNullList<ItemStack> items) {

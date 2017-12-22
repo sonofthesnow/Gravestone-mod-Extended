@@ -26,8 +26,8 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import nightkosh.gravestone_extended.block.enums.EnumPileOfBones;
 import nightkosh.gravestone_extended.config.ExtendedConfig;
 import nightkosh.gravestone_extended.core.GSBlock;
+import nightkosh.gravestone_extended.core.GSTabs;
 import nightkosh.gravestone_extended.core.ModInfo;
-import nightkosh.gravestone_extended.core.Tabs;
 import nightkosh.gravestone_extended.entity.monster.crawler.EntitySkullCrawler;
 import nightkosh.gravestone_extended.tileentity.TileEntityPileOfBones;
 
@@ -48,7 +48,7 @@ public class BlockPileOfBones extends BlockContainer {
         this.setSoundType(SoundType.STONE);
         this.setHardness(0.1F);
         this.setResistance(0);
-        this.setCreativeTab(Tabs.otherItemsTab);
+        this.setCreativeTab(GSTabs.otherItemsTab);
         this.setRegistryName(ModInfo.ID, "gspileofbones");
     }
 

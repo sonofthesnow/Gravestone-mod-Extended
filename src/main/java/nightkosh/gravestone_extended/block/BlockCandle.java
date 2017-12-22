@@ -16,9 +16,9 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import nightkosh.gravestone_extended.core.GSTabs;
 import nightkosh.gravestone_extended.core.ModInfo;
-import nightkosh.gravestone_extended.core.Tabs;
-import nightkosh.gravestone_extended.core.TimeHelper;
+import nightkosh.gravestone_extended.helper.TimeHelper;
 import nightkosh.gravestone_extended.particle.EntityGreenFlameFX;
 import nightkosh.gravestone_extended.tileentity.TileEntityCandle;
 
@@ -39,7 +39,7 @@ public class BlockCandle extends BlockContainer {
         this.setHardness(0);
         this.setLightLevel(1);
         this.setResistance(0);
-        this.setCreativeTab(Tabs.otherItemsTab);
+        this.setCreativeTab(GSTabs.otherItemsTab);
         this.setRegistryName(ModInfo.ID, "gscandle");
     }
 

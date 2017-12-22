@@ -15,8 +15,8 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import nightkosh.gravestone_extended.core.GSBlock;
+import nightkosh.gravestone_extended.core.GSTabs;
 import nightkosh.gravestone_extended.core.ModInfo;
-import nightkosh.gravestone_extended.core.Tabs;
 
 import javax.annotation.Nullable;
 import java.util.List;
@@ -32,7 +32,7 @@ public class ItemBoneShield extends ItemShield implements IBoneShiled {
     public ItemBoneShield() {
         this.setUnlocalizedName("gravestone.bone_shield");
         this.setRegistryName(ModInfo.ID, "gs_bone_shield");
-        this.setCreativeTab(Tabs.otherItemsTab);
+        this.setCreativeTab(GSTabs.otherItemsTab);
         this.setMaxDamage(750);
     }
 

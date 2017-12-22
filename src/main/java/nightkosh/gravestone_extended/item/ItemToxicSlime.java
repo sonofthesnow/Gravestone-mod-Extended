@@ -1,8 +1,8 @@
 package nightkosh.gravestone_extended.item;
 
 import net.minecraft.item.Item;
+import nightkosh.gravestone_extended.core.GSTabs;
 import nightkosh.gravestone_extended.core.ModInfo;
-import nightkosh.gravestone_extended.core.Tabs;
 
 /**
  * GraveStone mod
@@ -15,6 +15,6 @@ public class ItemToxicSlime extends Item {
     public ItemToxicSlime() {
         this.setUnlocalizedName("gravestone.toxic_slime");
         this.setRegistryName(ModInfo.ID, "gs_toxic_slime");
-        this.setCreativeTab(Tabs.otherItemsTab);
+        this.setCreativeTab(GSTabs.otherItemsTab);
     }
 }

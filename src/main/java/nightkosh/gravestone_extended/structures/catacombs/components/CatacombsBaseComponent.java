@@ -8,7 +8,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.structure.StructureBoundingBox;
 import net.minecraft.world.gen.structure.StructureComponent;
-import nightkosh.gravestone_extended.core.Structures;
+import nightkosh.gravestone_extended.core.GSStructures;
 import nightkosh.gravestone_extended.structures.ComponentGraveStone;
 import nightkosh.gravestone_extended.structures.ObjectsGenerationHelper;
 import nightkosh.gravestone_extended.structures.catacombs.CatacombsLevel;
@@ -93,7 +93,7 @@ public abstract class CatacombsBaseComponent extends ComponentGraveStone {
     }
 
     public static Block getValuableBlock(Random random) {
-        return Structures.VALUABLE_BLOCKS[random.nextInt(Structures.VALUABLE_BLOCKS.length)];
+        return GSStructures.VALUABLE_BLOCKS[random.nextInt(GSStructures.VALUABLE_BLOCKS.length)];
     }
 
     protected int getGroundLevel(World world, int x, int z) {

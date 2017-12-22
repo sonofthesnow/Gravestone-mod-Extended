@@ -20,7 +20,7 @@ import net.minecraft.util.text.translation.I18n;
 import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.World;
 import net.minecraft.world.storage.loot.LootTableList;
-import nightkosh.gravestone_extended.core.Entity;
+import nightkosh.gravestone_extended.core.GSEntity;
 import nightkosh.gravestone_extended.entity.ai.EntityAINearestAttackableHorse;
 import nightkosh.gravestone_extended.entity.ai.EntityUndeadHorseAINearestAttackableTarget;
 import nightkosh.gravestone_extended.entity.monster.pet.EntityZombieCat;
@@ -157,7 +157,7 @@ public class EntityZombieHorse extends EntityUndeadHorse {
         if (this.hasCustomName()) {
             return this.getCustomNameTag();
         } else {
-            return I18n.translateToLocal("entity." + Entity.MINECRAFT_ZOMBIE_HORSE_NAME + ".name");
+            return I18n.translateToLocal("entity." + GSEntity.MINECRAFT_ZOMBIE_HORSE_NAME + ".name");
         }
     }
 }

@@ -37,8 +37,8 @@ import nightkosh.gravestone.inventory.GraveInventory;
 import nightkosh.gravestone_extended.ModGravestoneExtended;
 import nightkosh.gravestone_extended.block.enums.EnumMemorials;
 import nightkosh.gravestone_extended.core.GSBlock;
+import nightkosh.gravestone_extended.core.GSTabs;
 import nightkosh.gravestone_extended.core.ModInfo;
-import nightkosh.gravestone_extended.core.Tabs;
 import nightkosh.gravestone_extended.structures.MemorialGenerationHelper;
 import nightkosh.gravestone_extended.tileentity.TileEntityMemorial;
 
@@ -224,7 +224,7 @@ public class BlockMemorial extends BlockContainer {
         this.setSoundType(SoundType.STONE);
         this.setHardness(1);
         this.setResistance(5);
-        this.setCreativeTab(Tabs.memorialsTab);
+        this.setCreativeTab(GSTabs.memorialsTab);
         this.setRegistryName(ModInfo.ID, "gsmemorial");
     }
 

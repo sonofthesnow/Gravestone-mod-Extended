@@ -8,7 +8,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.text.translation.I18n;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.World;
-import nightkosh.gravestone_extended.core.Entity;
+import nightkosh.gravestone_extended.core.GSEntity;
 
 /**
  * GraveStone mod
@@ -48,7 +48,7 @@ public class EntityGSSkeleton extends EntitySkeleton {
         if (this.hasCustomName()) {
             return this.getCustomNameTag();
         } else {
-            return I18n.translateToLocal("entity." + Entity.MINECRAFT_SKELETON_NAME + ".name");
+            return I18n.translateToLocal("entity." + GSEntity.MINECRAFT_SKELETON_NAME + ".name");
         }
     }
 

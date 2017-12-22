@@ -12,9 +12,9 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.registries.IForgeRegistry;
 import nightkosh.gravestone_extended.config.ExtendedConfig;
 import nightkosh.gravestone_extended.core.GSItem;
+import nightkosh.gravestone_extended.core.GSRecipes;
+import nightkosh.gravestone_extended.core.GSTabs;
 import nightkosh.gravestone_extended.core.ModInfo;
-import nightkosh.gravestone_extended.core.Recipes;
-import nightkosh.gravestone_extended.core.Tabs;
 
 /**
  * GraveStone mod
@@ -51,16 +51,16 @@ public class CompatibilityForestry {
         if (ExtendedConfig.enableForestryBackpacks) {
             BackpackManager.backpackInterface.registerBackpackDefinition(BACKPACK_UID, new UndertakerBackpack());
             backpackItemT1 = BackpackManager.backpackInterface.createBackpack(BACKPACK_UID, EnumBackpackType.NORMAL);
-            backpackItemT1.setCreativeTab(Tabs.otherItemsTab);
+            backpackItemT1.setCreativeTab(GSTabs.otherItemsTab);
             backpackItemT1.setRegistryName(ModInfo.ID, "gs_undertaker_backpack");
             backpackItemT1.setUnlocalizedName("backpack.undertaker.t1");
 
             backpackItemT2 = BackpackManager.backpackInterface.createBackpack(BACKPACK_UID, EnumBackpackType.WOVEN);
-            backpackItemT2.setCreativeTab(Tabs.otherItemsTab);
+            backpackItemT2.setCreativeTab(GSTabs.otherItemsTab);
             backpackItemT2.setRegistryName(ModInfo.ID, "gs_undertaker_backpack_woven");
             backpackItemT2.setUnlocalizedName("backpack.undertaker.t2");
 
-            Recipes.addForestryBackpack(new ItemStack(backpackItemT1), GSItem.CHISEL);
+            GSRecipes.addForestryBackpack(new ItemStack(backpackItemT1), GSItem.CHISEL);
             ItemStack silk = GameRegistry.makeItemStack("forestry:crafting_material", 3, 1, "");
             if (!silk.isEmpty()) {
                 ItemStack backpackStackT2 = new ItemStack(backpackItemT2);

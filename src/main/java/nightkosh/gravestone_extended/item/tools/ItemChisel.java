@@ -12,8 +12,8 @@ import net.minecraft.world.World;
 import nightkosh.gravestone.tileentity.TileEntityGrave;
 import nightkosh.gravestone_extended.ModGravestoneExtended;
 import nightkosh.gravestone_extended.core.GSBlock;
+import nightkosh.gravestone_extended.core.GSTabs;
 import nightkosh.gravestone_extended.core.ModInfo;
-import nightkosh.gravestone_extended.core.Tabs;
 
 /**
  * GraveStone mod
@@ -26,7 +26,7 @@ public class ItemChisel extends ItemTool {
     public ItemChisel() {
         super(1, 5, ToolMaterial.IRON, null);
         this.setMaxStackSize(1);
-        this.setCreativeTab(Tabs.otherItemsTab);
+        this.setCreativeTab(GSTabs.otherItemsTab);
         this.setUnlocalizedName("gravestone.chisel");
         this.setMaxDamage(50);
         this.setRegistryName(ModInfo.ID, "gschisel");

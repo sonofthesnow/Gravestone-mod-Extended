@@ -13,9 +13,9 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import nightkosh.gravestone_extended.ModGravestoneExtended;
+import nightkosh.gravestone_extended.core.GSTabs;
 import nightkosh.gravestone_extended.core.GuiHandler;
 import nightkosh.gravestone_extended.core.ModInfo;
-import nightkosh.gravestone_extended.core.Tabs;
 import nightkosh.gravestone_extended.tileentity.TileEntityAltar;
 
 /**
@@ -30,7 +30,7 @@ public class BlockAltar extends BlockContainer {
         super(Material.ROCK);
         this.setLightOpacity(0);
         this.setUnlocalizedName("altar");
-        this.setCreativeTab(Tabs.otherItemsTab);
+        this.setCreativeTab(GSTabs.otherItemsTab);
         this.setHarvestLevel("pickaxe", 2);
         this.setRegistryName(ModInfo.ID, "gsaltar");
     }

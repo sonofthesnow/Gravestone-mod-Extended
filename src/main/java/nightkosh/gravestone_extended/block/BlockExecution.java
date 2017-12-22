@@ -35,9 +35,9 @@ import nightkosh.gravestone.inventory.GraveInventory;
 import nightkosh.gravestone_extended.ModGravestoneExtended;
 import nightkosh.gravestone_extended.block.enums.EnumExecution;
 import nightkosh.gravestone_extended.core.GSBlock;
+import nightkosh.gravestone_extended.core.GSTabs;
 import nightkosh.gravestone_extended.core.GuiHandler;
 import nightkosh.gravestone_extended.core.ModInfo;
-import nightkosh.gravestone_extended.core.Tabs;
 import nightkosh.gravestone_extended.particle.EntityBigFlameFX;
 import nightkosh.gravestone_extended.tileentity.TileEntityExecution;
 
@@ -60,7 +60,7 @@ public class BlockExecution extends BlockContainer {
         this.setSoundType(SoundType.WOOD);
         this.setHardness(1);
         this.setResistance(5);
-        this.setCreativeTab(Tabs.otherItemsTab);
+        this.setCreativeTab(GSTabs.otherItemsTab);
         this.setRegistryName(ModInfo.ID, "gsexecution");
     }
 

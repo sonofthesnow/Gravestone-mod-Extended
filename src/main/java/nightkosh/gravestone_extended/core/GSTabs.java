@@ -13,7 +13,7 @@ import nightkosh.gravestone_extended.item.corpse.ZombieCorpseHelper;
  * @author NightKosh
  * @license Lesser GNU Public License v3 (http://www.gnu.org/licenses/lgpl.html)
  */
-public class Tabs extends nightkosh.gravestone.core.Tabs {
+public class GSTabs extends nightkosh.gravestone.core.Tabs {
 
     public static CreativeTabs memorialsTab;
     public static CreativeTabs corpseTab;

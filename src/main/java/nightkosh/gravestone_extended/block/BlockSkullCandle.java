@@ -24,9 +24,9 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import nightkosh.gravestone_extended.block.enums.EnumSkullCandle;
+import nightkosh.gravestone_extended.core.GSTabs;
 import nightkosh.gravestone_extended.core.ModInfo;
-import nightkosh.gravestone_extended.core.Tabs;
-import nightkosh.gravestone_extended.core.TimeHelper;
+import nightkosh.gravestone_extended.helper.TimeHelper;
 import nightkosh.gravestone_extended.particle.EntityGreenFlameFX;
 import nightkosh.gravestone_extended.tileentity.TileEntitySkullCandle;
 
@@ -48,7 +48,7 @@ public class BlockSkullCandle extends BlockContainer {
         this.setHardness(0.5F);
         this.setResistance(5);
         this.setLightLevel(1);
-        this.setCreativeTab(Tabs.otherItemsTab);
+        this.setCreativeTab(GSTabs.otherItemsTab);
         this.setRegistryName(ModInfo.ID, "gsskullcandle");
     }
 

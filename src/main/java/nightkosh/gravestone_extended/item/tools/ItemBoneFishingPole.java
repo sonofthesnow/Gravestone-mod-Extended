@@ -18,8 +18,8 @@ import net.minecraft.util.SoundCategory;
 import net.minecraft.world.World;
 import nightkosh.gravestone_extended.core.GSBlock;
 import nightkosh.gravestone_extended.core.GSEnchantment;
+import nightkosh.gravestone_extended.core.GSTabs;
 import nightkosh.gravestone_extended.core.ModInfo;
-import nightkosh.gravestone_extended.core.Tabs;
 import nightkosh.gravestone_extended.entity.projectile.EntityBoneFishHook;
 import nightkosh.gravestone_extended.entity.projectile.EntityObsidianFishHook;
 
@@ -32,7 +32,7 @@ import nightkosh.gravestone_extended.entity.projectile.EntityObsidianFishHook;
 public class ItemBoneFishingPole extends ItemFishingRod implements IBoneFishingPole {
 
     public ItemBoneFishingPole() {
-        this.setCreativeTab(Tabs.otherItemsTab);
+        this.setCreativeTab(GSTabs.otherItemsTab);
         this.setUnlocalizedName("gravestone.bone_fishing_pole");
         this.setRegistryName(ModInfo.ID, "gs_bone_fishing_pole");
     }

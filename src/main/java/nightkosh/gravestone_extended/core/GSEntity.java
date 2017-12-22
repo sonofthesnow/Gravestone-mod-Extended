@@ -30,11 +30,11 @@ import java.util.List;
  * @author NightKosh
  * @license Lesser GNU Public License v3 (http://www.gnu.org/licenses/lgpl.html)
  */
-public class Entity {
+public class GSEntity {
 
     private static int mobId = 0;
 
-    private Entity() {
+    private GSEntity() {
     }
 
     public static final String SKELETON_NAME = "GSSkeleton";

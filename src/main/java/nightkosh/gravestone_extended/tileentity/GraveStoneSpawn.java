@@ -8,7 +8,7 @@ import nightkosh.gravestone.tileentity.ISpawnerEntity;
 import nightkosh.gravestone.tileentity.TileEntityGraveStone;
 import nightkosh.gravestone_extended.config.ExtendedConfig;
 import nightkosh.gravestone_extended.core.MobSpawn;
-import nightkosh.gravestone_extended.core.TimeHelper;
+import nightkosh.gravestone_extended.helper.TimeHelper;
 import nightkosh.gravestone_extended.entity.helper.EntityGroupOfGravesMobSpawnerHelper;
 
 /**

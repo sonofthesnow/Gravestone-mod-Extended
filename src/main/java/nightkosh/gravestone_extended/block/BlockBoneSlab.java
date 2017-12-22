@@ -7,8 +7,8 @@ import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.item.ItemStack;
+import nightkosh.gravestone_extended.core.GSTabs;
 import nightkosh.gravestone_extended.core.ModInfo;
-import nightkosh.gravestone_extended.core.Tabs;
 
 /**
  * GraveStone mod
@@ -24,7 +24,7 @@ public class BlockBoneSlab extends BlockSlab {
         this.setUnlocalizedName("bone_slab");
         this.setHardness(2);
         this.setResistance(2);
-        this.setCreativeTab(Tabs.otherItemsTab);
+        this.setCreativeTab(GSTabs.otherItemsTab);
         this.setHarvestLevel("pickaxe", 0);
         this.setRegistryName(ModInfo.ID, "gsboneslab");
     }

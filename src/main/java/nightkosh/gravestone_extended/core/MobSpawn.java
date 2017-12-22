@@ -41,32 +41,32 @@ public class MobSpawn {
      * Provides a mapping between entity classes and a string
      */
     public static Map<ResourceLocation, Constructor<EntityLiving>> mobNameToClassMapping = new HashMap<>();
-    public static List<ResourceLocation> MOB_ID = new ArrayList<>(Arrays.asList(Entity.MINECRAFT_ZOMBIE_ID, Entity.SKELETON_ID));
-    public static List<ResourceLocation> DOG_ID = new ArrayList<>(Arrays.asList(Entity.ZOMBIE_DOG_ID, Entity.SKELETON_DOG_ID));
-    public static List<ResourceLocation> CAT_ID = new ArrayList<>(Arrays.asList(Entity.ZOMBIE_CAT_ID, Entity.SKELETON_CAT_ID));
-    public static List<ResourceLocation> HORSE_ID = new ArrayList<>(Arrays.asList(Entity.ZOMBIE_HORSE_ID, Entity.SKELETON_HORSE_ID));
-    public static List<ResourceLocation> HELL_MOB_ID = new ArrayList<>(Arrays.asList(Entity.MINECRAFT_PIGZOMBIE_ID, Entity.SKELETON_ID));
+    public static List<ResourceLocation> MOB_ID = new ArrayList<>(Arrays.asList(GSEntity.MINECRAFT_ZOMBIE_ID, GSEntity.SKELETON_ID));
+    public static List<ResourceLocation> DOG_ID = new ArrayList<>(Arrays.asList(GSEntity.ZOMBIE_DOG_ID, GSEntity.SKELETON_DOG_ID));
+    public static List<ResourceLocation> CAT_ID = new ArrayList<>(Arrays.asList(GSEntity.ZOMBIE_CAT_ID, GSEntity.SKELETON_CAT_ID));
+    public static List<ResourceLocation> HORSE_ID = new ArrayList<>(Arrays.asList(GSEntity.ZOMBIE_HORSE_ID, GSEntity.SKELETON_HORSE_ID));
+    public static List<ResourceLocation> HELL_MOB_ID = new ArrayList<>(Arrays.asList(GSEntity.MINECRAFT_PIGZOMBIE_ID, GSEntity.SKELETON_ID));
     // spawner mobs
     public static List<ResourceLocation> skeletonSpawnerMobs = new ArrayList<>(Arrays.asList(
-            Entity.SKELETON_ID, Entity.SKELETON_ID, Entity.SKELETON_ID, Entity.SKELETON_ID,
-            Entity.SKELETON_DOG_ID,
-            Entity.SKELETON_CAT_ID,
-            Entity.SKELETON_HORSE_ID,
-            Entity.SKELETON_RAIDER_ID
+            GSEntity.SKELETON_ID, GSEntity.SKELETON_ID, GSEntity.SKELETON_ID, GSEntity.SKELETON_ID,
+            GSEntity.SKELETON_DOG_ID,
+            GSEntity.SKELETON_CAT_ID,
+            GSEntity.SKELETON_HORSE_ID,
+            GSEntity.SKELETON_RAIDER_ID
     ));
     public static List<ResourceLocation> zombieSpawnerMobs = new ArrayList<>(Arrays.asList(
-            Entity.MINECRAFT_ZOMBIE_ID, Entity.MINECRAFT_ZOMBIE_ID, Entity.MINECRAFT_ZOMBIE_ID, Entity.MINECRAFT_ZOMBIE_ID, Entity.MINECRAFT_ZOMBIE_ID,
-            Entity.MINECRAFT_HUSK_ID,
-            Entity.ZOMBIE_DOG_ID,
-            Entity.ZOMBIE_CAT_ID,
-            Entity.ZOMBIE_HORSE_ID,
-            Entity.ZOMBIE_RAIDER_ID
+            GSEntity.MINECRAFT_ZOMBIE_ID, GSEntity.MINECRAFT_ZOMBIE_ID, GSEntity.MINECRAFT_ZOMBIE_ID, GSEntity.MINECRAFT_ZOMBIE_ID, GSEntity.MINECRAFT_ZOMBIE_ID,
+            GSEntity.MINECRAFT_HUSK_ID,
+            GSEntity.ZOMBIE_DOG_ID,
+            GSEntity.ZOMBIE_CAT_ID,
+            GSEntity.ZOMBIE_HORSE_ID,
+            GSEntity.ZOMBIE_RAIDER_ID
     ));
     public static List<ResourceLocation> spiderSpawnerMobs = new ArrayList<>(Arrays.asList(
-            Entity.MINECRAFT_SPIDER_ID, Entity.MINECRAFT_CAVE_SPIDER_ID, Entity.MINECRAFT_SPIDER_ID));
+            GSEntity.MINECRAFT_SPIDER_ID, GSEntity.MINECRAFT_CAVE_SPIDER_ID, GSEntity.MINECRAFT_SPIDER_ID));
     // catacombs statues mobs
     public static List<ResourceLocation> catacombsStatuesMobs = new ArrayList<>(Arrays.asList(
-            Entity.SKELETON_ID, Entity.MINECRAFT_ZOMBIE_ID));
+            GSEntity.SKELETON_ID, GSEntity.MINECRAFT_ZOMBIE_ID));
 
 
     /**
@@ -101,7 +101,7 @@ public class MobSpawn {
                 if (canSpawnHellCreatures(world, x, y, z) && world.rand.nextInt(10) == 0) {
                     id = getMobID(world.rand, EnumMobType.HELL_MOBS);
 
-                    if (id.equals(Entity.SKELETON_ID)) {
+                    if (id.equals(GSEntity.SKELETON_ID)) {
                         EntityGSSkeleton skeleton = getSkeleton(world, RANDOM.nextBoolean());
                         skeleton.setSkeletonType(SkeletonType.WITHER);
                         return skeleton;
@@ -109,7 +109,7 @@ public class MobSpawn {
                 } else {
                     id = getMobID(world.rand, EnumMobType.DEFAULT_MOBS);
 
-                    if (id.equals(Entity.SKELETON_ID)) {
+                    if (id.equals(GSEntity.SKELETON_ID)) {
                         EntityGSSkeleton skeleton = getSkeleton(world, RANDOM.nextBoolean());
                         if (RANDOM.nextInt(5) == 0) {
                             skeleton.setSkeletonType(SkeletonType.STRAY);
@@ -117,8 +117,8 @@ public class MobSpawn {
                         return skeleton;
                     }
 
-                    if (id.equals(Entity.MINECRAFT_ZOMBIE_ID) && world.rand.nextInt(5) == 0) {
-                        return EntityList.createEntityByIDFromName(Entity.MINECRAFT_HUSK_ID, world);
+                    if (id.equals(GSEntity.MINECRAFT_ZOMBIE_ID) && world.rand.nextInt(5) == 0) {
+                        return EntityList.createEntityByIDFromName(GSEntity.MINECRAFT_HUSK_ID, world);
                     }
                 }
                 break;
@@ -148,12 +148,12 @@ public class MobSpawn {
 
         switch (spawnerType) {
             case WITHER_SPAWNER:
-                mobId = Entity.MINECRAFT_WITHER_ID;
+                mobId = GSEntity.MINECRAFT_WITHER_ID;
                 break;
             case SKELETON_SPAWNER:
                 mobId = skeletonSpawnerMobs.get(world.rand.nextInt(skeletonSpawnerMobs.size()));
 
-                if (mobId.equals(Entity.SKELETON_ID)) {
+                if (mobId.equals(GSEntity.SKELETON_ID)) {
                     EntityGSSkeleton skeleton = getSkeleton(world, RANDOM.nextBoolean());
                     if (world.rand.nextInt(5) == 0) {
                         skeleton.setSkeletonType(SkeletonType.STRAY);
@@ -191,7 +191,7 @@ public class MobSpawn {
      * Return Skeleton with bow/sword
      */
     public static EntityGSSkeleton getSkeleton(World world, boolean withBow) {
-        EntityGSSkeleton skeleton = (EntityGSSkeleton) EntityList.createEntityByIDFromName(Entity.SKELETON_ID, world);
+        EntityGSSkeleton skeleton = (EntityGSSkeleton) EntityList.createEntityByIDFromName(GSEntity.SKELETON_ID, world);
         if (skeleton != null) {
             if (withBow) {
                 skeleton.setItemStackToSlot(EntityEquipmentSlot.MAINHAND, new ItemStack(Items.BOW, 1));

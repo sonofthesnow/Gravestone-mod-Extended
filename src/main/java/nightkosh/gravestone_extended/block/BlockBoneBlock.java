@@ -17,8 +17,8 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import nightkosh.gravestone_extended.block.enums.EnumBoneBlock;
 import nightkosh.gravestone_extended.config.ExtendedConfig;
 import nightkosh.gravestone_extended.core.GSBlock;
+import nightkosh.gravestone_extended.core.GSTabs;
 import nightkosh.gravestone_extended.core.ModInfo;
-import nightkosh.gravestone_extended.core.Tabs;
 import nightkosh.gravestone_extended.entity.monster.crawler.EntitySkullCrawler;
 
 /**
@@ -36,7 +36,7 @@ public class BlockBoneBlock extends net.minecraft.block.Block {
         this.setSoundType(SoundType.STONE);
         this.setHardness(2);
         this.setResistance(2);
-        this.setCreativeTab(Tabs.otherItemsTab);
+        this.setCreativeTab(GSTabs.otherItemsTab);
         this.setHarvestLevel("pickaxe", 0);
         this.setRegistryName(ModInfo.ID, "gsboneblock");
     }

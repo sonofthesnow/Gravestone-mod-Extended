@@ -16,8 +16,8 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import nightkosh.gravestone_extended.block.enums.EnumCorpse;
+import nightkosh.gravestone_extended.core.GSTabs;
 import nightkosh.gravestone_extended.core.ModInfo;
-import nightkosh.gravestone_extended.core.Tabs;
 import nightkosh.gravestone_extended.item.corpse.CorpseHelper;
 import nightkosh.gravestone_extended.tileentity.TileEntityCorpse;
 
@@ -33,7 +33,7 @@ public class BlockCorpse extends BlockContainer {
         super(Material.CARPET);
         this.setUnlocalizedName("Corpse");
         this.setHardness(0);
-        this.setCreativeTab(Tabs.corpseTab);
+        this.setCreativeTab(GSTabs.corpseTab);
         this.setRegistryName(ModInfo.ID, "gscorpse");
     }
 

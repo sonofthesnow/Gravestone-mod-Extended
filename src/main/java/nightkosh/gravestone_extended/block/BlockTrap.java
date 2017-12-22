@@ -24,9 +24,9 @@ import nightkosh.gravestone_extended.ModGravestoneExtended;
 import nightkosh.gravestone_extended.block.enums.EnumTrap;
 import nightkosh.gravestone_extended.config.ExtendedConfig;
 import nightkosh.gravestone_extended.core.GSPotion;
+import nightkosh.gravestone_extended.core.GSTabs;
 import nightkosh.gravestone_extended.core.ModInfo;
-import nightkosh.gravestone_extended.core.Tabs;
-import nightkosh.gravestone_extended.core.TimeHelper;
+import nightkosh.gravestone_extended.helper.TimeHelper;
 
 import java.util.Random;
 
@@ -46,7 +46,7 @@ public class BlockTrap extends Block {
         this.setSoundType(SoundType.STONE);
         this.setHardness(4.5F);
         this.setResistance(5);
-        this.setCreativeTab(Tabs.otherItemsTab);
+        this.setCreativeTab(GSTabs.otherItemsTab);
         this.setHarvestLevel("pickaxe", 1);
         this.setRegistryName(ModInfo.ID, "gstrap");
     }

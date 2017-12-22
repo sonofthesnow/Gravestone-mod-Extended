@@ -32,8 +32,8 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import nightkosh.gravestone.inventory.GraveInventory;
 import nightkosh.gravestone_extended.block.enums.EnumHauntedChest;
+import nightkosh.gravestone_extended.core.GSTabs;
 import nightkosh.gravestone_extended.core.ModInfo;
-import nightkosh.gravestone_extended.core.Tabs;
 import nightkosh.gravestone_extended.tileentity.TileEntityHauntedChest;
 
 import javax.annotation.Nullable;
@@ -55,7 +55,7 @@ public class BlockHauntedChest extends BlockContainer {
         super(Material.WOOD);
         this.setSoundType(SoundType.STONE);
         this.setHardness(2.5F);
-        this.setCreativeTab(Tabs.otherItemsTab);
+        this.setCreativeTab(GSTabs.otherItemsTab);
         this.setHarvestLevel("axe", 0);
         this.setRegistryName(ModInfo.ID, "gshauntedchest");
     }

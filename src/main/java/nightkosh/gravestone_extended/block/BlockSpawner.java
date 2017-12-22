@@ -26,8 +26,8 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import nightkosh.gravestone_extended.block.enums.EnumSpawner;
 import nightkosh.gravestone_extended.core.GSBlock;
+import nightkosh.gravestone_extended.core.GSTabs;
 import nightkosh.gravestone_extended.core.ModInfo;
-import nightkosh.gravestone_extended.core.Tabs;
 import nightkosh.gravestone_extended.particle.EntityGreenFlameFX;
 import nightkosh.gravestone_extended.tileentity.TileEntitySpawner;
 
@@ -62,7 +62,7 @@ public class BlockSpawner extends BlockMobSpawner {
         this.setLightLevel(0.45F);
         this.setSoundType(SoundType.METAL);
         this.disableStats();
-        this.setCreativeTab(Tabs.otherItemsTab);
+        this.setCreativeTab(GSTabs.otherItemsTab);
         this.setHarvestLevel("pickaxe", 1);
         this.setRegistryName(ModInfo.ID, "gsspawner");
     }

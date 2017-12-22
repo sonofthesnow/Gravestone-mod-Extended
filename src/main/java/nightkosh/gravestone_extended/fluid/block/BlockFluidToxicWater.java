@@ -20,8 +20,8 @@ import net.minecraftforge.fluids.BlockFluidClassic;
 import nightkosh.gravestone_extended.config.ExtendedConfig;
 import nightkosh.gravestone_extended.core.GSPotion;
 import nightkosh.gravestone_extended.core.GSSound;
+import nightkosh.gravestone_extended.core.GSTabs;
 import nightkosh.gravestone_extended.core.ModInfo;
-import nightkosh.gravestone_extended.core.Tabs;
 import nightkosh.gravestone_extended.entity.monster.EntityToxicSludge;
 import nightkosh.gravestone_extended.entity.projectile.EntityBoneFishHook;
 import nightkosh.gravestone_extended.fluid.FluidToxicWater;
@@ -38,7 +38,7 @@ public class BlockFluidToxicWater extends BlockFluidClassic {
 
     public BlockFluidToxicWater() {
         super(FluidToxicWater.INSTANCE, Material.WATER);
-        this.setCreativeTab(Tabs.otherItemsTab);
+        this.setCreativeTab(GSTabs.otherItemsTab);
         this.setRegistryName(ModInfo.ID, FluidToxicWater.INSTANCE.getName());
         this.setTickRandomly(true);
     }

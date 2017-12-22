@@ -19,7 +19,7 @@ import nightkosh.gravestone_extended.structures.village.undertaker.VillageHandle
  * @author NightKosh
  * @license Lesser GNU Public License v3 (http://www.gnu.org/licenses/lgpl.html)
  */
-public class Structures {
+public class GSStructures {
 
     public static final Block[] VALUABLE_BLOCKS = {
             Blocks.GOLD_BLOCK, Blocks.LAPIS_BLOCK, Blocks.REDSTONE_BLOCK,
@@ -27,7 +27,7 @@ public class Structures {
             Blocks.DIAMOND_BLOCK, Blocks.EMERALD_BLOCK
     };
 
-    private Structures() {
+    private GSStructures() {
     }
 
     public static void preInit() {

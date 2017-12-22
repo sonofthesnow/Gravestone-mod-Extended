@@ -10,7 +10,7 @@ import net.minecraft.util.SoundEvent;
 import net.minecraft.util.text.translation.I18n;
 import net.minecraft.world.World;
 import net.minecraft.world.storage.loot.LootTableList;
-import nightkosh.gravestone_extended.core.Entity;
+import nightkosh.gravestone_extended.core.GSEntity;
 
 import javax.annotation.Nullable;
 
@@ -72,7 +72,7 @@ public class EntitySkeletonHorse extends EntityUndeadHorse {
         if (this.hasCustomName()) {
             return this.getCustomNameTag();
         } else {
-            return I18n.translateToLocal("entity." + Entity.MINECRAFT_SKELETON_HORSE_NAME + ".name");
+            return I18n.translateToLocal("entity." + GSEntity.MINECRAFT_SKELETON_HORSE_NAME + ".name");
         }
     }
 }

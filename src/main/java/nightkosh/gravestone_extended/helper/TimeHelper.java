@@ -1,4 +1,4 @@
-package nightkosh.gravestone_extended.core;
+package nightkosh.gravestone_extended.helper;
 
 import net.minecraft.world.World;
 
