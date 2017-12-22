@@ -7,12 +7,8 @@ import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.client.FMLClientHandler;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
-import net.minecraftforge.fml.common.Loader;
 import nightkosh.gravestone.tileentity.TileEntityGrave;
-import nightkosh.gravestone_extended.config.ExtendedConfig;
 import nightkosh.gravestone_extended.core.GSItem;
-import nightkosh.gravestone_extended.core.compatibility.Compatibility;
-import nightkosh.gravestone_extended.core.compatibility.forestry.CompatibilityForestry;
 import nightkosh.gravestone_extended.core.event.RenderEventHandler;
 import nightkosh.gravestone_extended.entity.EntityRaven;
 import nightkosh.gravestone_extended.entity.helper.EntityGroupOfGravesMobSpawnerHelper;
@@ -58,26 +54,6 @@ public class ClientProxy extends CommonProxy {
             }
             return 0xFFFFFF;
         }, GSItem.SPAWN_EGG);
-
-
-        //TODO !!!!!!!!
-        if (Loader.isModLoaded(Compatibility.FORESTRY_ID) && ExtendedConfig.enableForestryBackpacks) {
-            FMLClientHandler.instance().getClient().getItemColors().registerItemColorHandler((stack, tintIndex) -> {
-                if ((tintIndex & 1) == 0) {
-                    return 1842478;
-                } else {
-                    return 3552587;
-                }
-            }, CompatibilityForestry.backpackItemT1);
-
-            FMLClientHandler.instance().getClient().getItemColors().registerItemColorHandler((stack, tintIndex) -> {
-                if ((tintIndex & 1) == 0) {
-                    return 1842478;
-                } else {
-                    return 3552587;
-                }
-            }, CompatibilityForestry.backpackItemT2);
-        }
     }
 
     public void registerTERenderers() {

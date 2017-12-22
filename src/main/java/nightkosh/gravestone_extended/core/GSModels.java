@@ -9,14 +9,10 @@ import net.minecraft.item.Item;
 import net.minecraftforge.client.ForgeHooksClient;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.client.model.ModelLoader;
-import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import nightkosh.gravestone_extended.block.enums.*;
-import nightkosh.gravestone_extended.config.ExtendedConfig;
-import nightkosh.gravestone_extended.core.compatibility.Compatibility;
-import nightkosh.gravestone_extended.core.compatibility.forestry.CompatibilityForestry;
 import nightkosh.gravestone_extended.item.ItemFish;
 import nightkosh.gravestone_extended.item.ItemGSMonsterPlacer;
 import nightkosh.gravestone_extended.tileentity.*;
@@ -150,18 +146,6 @@ public class GSModels {
             });
 
 //            ModelLoader.setCustomModelResourceLocation(item, 0, new ModelResourceLocation(item.getRegistryName(), "inventory"));
-
-            if (Loader.isModLoaded(Compatibility.FORESTRY_ID) && ExtendedConfig.enableForestryBackpacks) {
-                ModelLoader.setCustomModelResourceLocation(CompatibilityForestry.backpackItemT1, 0, new ModelResourceLocation(Compatibility.FORESTRY_ID + ":backpacks/normal_neutral", "inventory"));
-                ModelLoader.setCustomModelResourceLocation(CompatibilityForestry.backpackItemT1, 1, new ModelResourceLocation(Compatibility.FORESTRY_ID + ":backpacks/normal_locked", "inventory"));
-                ModelLoader.setCustomModelResourceLocation(CompatibilityForestry.backpackItemT1, 2, new ModelResourceLocation(Compatibility.FORESTRY_ID + ":backpacks/normal_receive", "inventory"));
-                ModelLoader.setCustomModelResourceLocation(CompatibilityForestry.backpackItemT1, 3, new ModelResourceLocation(Compatibility.FORESTRY_ID + ":backpacks/normal_resupply", "inventory"));
-
-                ModelLoader.setCustomModelResourceLocation(CompatibilityForestry.backpackItemT2, 0, new ModelResourceLocation(Compatibility.FORESTRY_ID + ":backpacks/woven_neutral", "inventory"));
-                ModelLoader.setCustomModelResourceLocation(CompatibilityForestry.backpackItemT2, 1, new ModelResourceLocation(Compatibility.FORESTRY_ID + ":backpacks/woven_locked", "inventory"));
-                ModelLoader.setCustomModelResourceLocation(CompatibilityForestry.backpackItemT2, 2, new ModelResourceLocation(Compatibility.FORESTRY_ID + ":backpacks/woven_receive", "inventory"));
-                ModelLoader.setCustomModelResourceLocation(CompatibilityForestry.backpackItemT2, 3, new ModelResourceLocation(Compatibility.FORESTRY_ID + ":backpacks/woven_resupply", "inventory"));
-            }
         }
 
         private static void registerModelsForTEBlocks(int startMeta, int endMeta, Block block, ModelResourceLocation model, Class TEClass) {

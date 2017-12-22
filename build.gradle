@@ -41,11 +41,10 @@ sourceSets {
 dependencies {
 //    compile fileTree(include: ['*.jar'], dir: 'external_libs')
     compile files("external_libs/GraveStone-1.12-Graves-1.0.12.jar")
-    compile files("external_libs/forestry_1.12.2-5.7.0.213.jar")
+    compile files("external_libs/forestry_1.12.2-5.7.0.218.jar")
 }
 
 jar {
-//    exclude('forestry/**')
     exclude('**/*.db')
     exclude('assets/gravestone-extended/techne_models/**')
     exclude('assets/gravestone-extended/obj_models/**')
