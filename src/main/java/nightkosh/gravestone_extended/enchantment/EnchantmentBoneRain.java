@@ -30,6 +30,11 @@ public class EnchantmentBoneRain extends EnchantmentBase {
     }
 
     @Override
+    public boolean canApplyAtEnchantingTable(ItemStack stack) {
+        return this.canApply(stack);
+    }
+
+    @Override
     public boolean canApply(ItemStack stack) {
         return super.canApply(stack) && stack.getItem() instanceof IBoneHoe;
     }
