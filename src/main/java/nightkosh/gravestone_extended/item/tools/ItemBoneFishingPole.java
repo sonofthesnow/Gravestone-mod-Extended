@@ -32,6 +32,7 @@ import nightkosh.gravestone_extended.entity.projectile.EntityObsidianFishHook;
 public class ItemBoneFishingPole extends ItemFishingRod implements IBoneFishingPole {
 
     public ItemBoneFishingPole() {
+        this.setMaxDamage(250);
         this.setCreativeTab(GSTabs.otherItemsTab);
         this.setUnlocalizedName("gravestone.bone_fishing_pole");
         this.setRegistryName(ModInfo.ID, "gs_bone_fishing_pole");
