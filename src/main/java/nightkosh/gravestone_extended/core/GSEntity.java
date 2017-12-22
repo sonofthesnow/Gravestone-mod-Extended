@@ -102,25 +102,25 @@ public class GSEntity {
         // zombie dog
         registerModEntity(ZOMBIE_DOG_ID, EntityZombieDog.class, ZOMBIE_DOG_NAME);
         if (ExtendedConfig.spawnZombieDogs) {
-            addSpawn(BiomeDictionary.Type.FOREST, EntityZombieDog.class, 2, 1, 1);
+            addSpawn(BiomeDictionary.Type.FOREST, EntityZombieDog.class, 3, 1, 3);
         }
 
         // zombie cat
         registerModEntity(ZOMBIE_CAT_ID, EntityZombieCat.class, ZOMBIE_CAT_NAME);
         if (ExtendedConfig.spawnZombieCats) {
-            addSpawn(BiomeDictionary.Type.JUNGLE, EntityZombieCat.class, 2, 1, 1);
+            addSpawn(BiomeDictionary.Type.JUNGLE, EntityZombieCat.class, 3, 1, 1);
         }
 
         // skeleton dog
         registerModEntity(SKELETON_DOG_ID, EntitySkeletonDog.class, SKELETON_DOG_NAME);
         if (ExtendedConfig.spawnSkeletonDogs) {
-            addSpawn(BiomeDictionary.Type.FOREST, EntityZombieDog.class, 2, 1, 1);
+            addSpawn(BiomeDictionary.Type.FOREST, EntityZombieDog.class, 3, 1, 1);
         }
 
         // skeleton cat
         registerModEntity(SKELETON_CAT_ID, EntitySkeletonCat.class, SKELETON_CAT_NAME);
         if (ExtendedConfig.spawnSkeletonCats) {
-            addSpawn(BiomeDictionary.Type.JUNGLE, EntityZombieCat.class, 2, 1, 1);
+            addSpawn(BiomeDictionary.Type.JUNGLE, EntityZombieCat.class, 3, 1, 1);
         }
 
         // skull crawlers
@@ -169,7 +169,7 @@ public class GSEntity {
                 BiomeDictionary.Type.BEACH,
                 BiomeDictionary.Type.WATER
         ));
-        addSpawn(toxicSludgeBiomes, EntityToxicSludge.class, 1, 1, 1);
+        addSpawn(toxicSludgeBiomes, EntityToxicSludge.class, 3, 1, 1);
 
         registerModEntity(RAVEN_ID, EntityRaven.class, RAVEN_NAME);
 //        EntityRegistry.addSpawn(EntityRaven.class, 1, 3, 10, EnumCreatureType.AMBIENT);//TODO!!!!
