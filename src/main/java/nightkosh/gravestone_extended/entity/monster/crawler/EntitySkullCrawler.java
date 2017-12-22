@@ -312,10 +312,12 @@ public class EntitySkullCrawler extends EntityMob {
     }
 
     public enum SkullCrawlerType {
-        skeleton,
-        wither,
-        zombie,
-        stray
+        SKELETON,
+        WITHER,
+        ZOMBIE,
+        STRAY,
+        HUSK,
+        PIGMAN
     }
 
     public enum WallSide {

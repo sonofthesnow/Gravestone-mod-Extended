@@ -66,9 +66,12 @@ public class Resources extends nightkosh.gravestone.core.Resources{
     public static final ResourceLocation GREEN_ZOMBIE_CAT_SIAMESE = new ResourceLocation(ENTITY_LOCATION + "greenzombiecatsiamese.png");
     public static final ResourceLocation SKELETON_DOG = new ResourceLocation(ENTITY_LOCATION + "skeletondog.png");
     public static final ResourceLocation SKELETON_CAT = new ResourceLocation(ENTITY_LOCATION + "skeletoncat.png");
-    public static final ResourceLocation SKELETON_SKULL_CRAWLER = new ResourceLocation(ENTITY_LOCATION + "skullcrawler.png");
-    public static final ResourceLocation WITHER_SKULL_CRAWLER = new ResourceLocation(ENTITY_LOCATION + "witherskullcrawler.png");
-    public static final ResourceLocation ZOMBIE_SKULL_CRAWLER = new ResourceLocation(ENTITY_LOCATION + "zombieskullcrawler.png");
+    public static final ResourceLocation SKELETON_SKULL_CRAWLER = new ResourceLocation(ENTITY_LOCATION + "crawler/skeleton.png");
+    public static final ResourceLocation STRAY_SKULL_CRAWLER = new ResourceLocation(ENTITY_LOCATION + "crawler/stray.png");
+    public static final ResourceLocation WITHER_SKULL_CRAWLER = new ResourceLocation(ENTITY_LOCATION + "crawler/wither.png");
+    public static final ResourceLocation ZOMBIE_SKULL_CRAWLER = new ResourceLocation(ENTITY_LOCATION + "crawler/zombie.png");
+    public static final ResourceLocation PIGMAN_SKULL_CRAWLER = new ResourceLocation(ENTITY_LOCATION + "crawler/pigman.png");
+    public static final ResourceLocation HUSK_SKULL_CRAWLER = new ResourceLocation(ENTITY_LOCATION + "crawler/husk.png");
     public static final ResourceLocation RAVEN = new ResourceLocation(ENTITY_LOCATION + "raven.png");
     public static final ResourceLocation DAMNED_WARRIOR = new ResourceLocation(ENTITY_LOCATION + "damnedwarrior.png");
     public static final ResourceLocation TOXIC_SLUDGE = new ResourceLocation(ENTITY_LOCATION + "toxic_sludge.png");

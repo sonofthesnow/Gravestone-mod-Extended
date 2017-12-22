@@ -246,6 +246,9 @@ entity.GSSkullCrawler.name=爬行骷髅头颅
 entity.GSStraySkullCrawler.name=Stray Skull Crawler
 entity.GSWitherSkullCrawler.name=爬行凋灵头颅
 entity.GSZombieSkullCrawler.name=爬行僵尸头颅
+##TODO !!!!!!!!!!
+entity.GSHuskSkullCrawler.name=Husk Skull Crawler
+entity.GSPigmanSkullCrawler.name=Zombie Pigman Skull Crawler
 entity.GSRaven.name=乌鸦
 entity.GSSkeletonRaider.name=骷髅掠夺者
 entity.GSZombieRaider.name=僵尸掠夺者

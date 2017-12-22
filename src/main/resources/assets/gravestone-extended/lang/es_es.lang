@@ -254,6 +254,9 @@ entity.GSSkullCrawler.name=Arranca cráneos
 entity.GSStraySkullCrawler.name=Stray Skull Crawler
 entity.GSWitherSkullCrawler.name=Arranca Cráneos Wither
 entity.GSZombieSkullCrawler.name=Arranca Cráneos Zombi
+##TODO !!!!!!!!!!
+entity.GSHuskSkullCrawler.name=Husk Skull Crawler
+entity.GSPigmanSkullCrawler.name=Zombie Pigman Skull Crawler
 entity.GSRaven.name=Cuervo
 ##TODO !!!!!!!!!!
 entity.GSSkeletonRaider.name=Skeleton Raider

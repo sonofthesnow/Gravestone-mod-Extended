@@ -24,8 +24,6 @@ public class ModelSkullCrawler extends ModelBaseAdapter {
     private static final float R_ADV_BASE_Y = (float) Math.PI + ADV_BASE_Y;
 
     private ModelRenderer skull;
-    private ModelRenderer rightLegs;
-    private ModelRenderer leftLegs;
 
     private ModelRenderer rightLeg1;
     private ModelRenderer rightLeg2;
@@ -45,30 +43,30 @@ public class ModelSkullCrawler extends ModelBaseAdapter {
         skull = new ModelRendererSkull(this);
 
         // Right legs
-        rightLeg1 = new ModelRenderer(this, 0, 16);
+        rightLeg1 = new ModelRenderer(this, 0, 17);
         rightLeg1.addBox(0, 0, 0, 3, 1, 1);
         rightLeg1.setRotationPoint(-3.9F, 22, -2.1F);
-        rightLeg2 = new ModelRenderer(this, 0, 16);
+        rightLeg2 = new ModelRenderer(this, 0, 17);
         rightLeg2.addBox(0, 0, 0, 3, 1, 1);
         rightLeg2.setRotationPoint(-3.9F, 22, -0.9F);
-        rightLeg3 = new ModelRenderer(this, 0, 16);
+        rightLeg3 = new ModelRenderer(this, 0, 17);
         rightLeg3.addBox(0, 0, 0, 3, 1, 1);
         rightLeg3.setRotationPoint(-3.9F, 22, 0.4F);
-        rightLeg4 = new ModelRenderer(this, 0, 16);
+        rightLeg4 = new ModelRenderer(this, 0, 17);
         rightLeg4.addBox(0, 0, 0, 3, 1, 1);
         rightLeg4.setRotationPoint(-3.9F, 22, 1.6F);
 
         // Left legs
-        leftLeg1 = new ModelRenderer(this, 0, 16);
+        leftLeg1 = new ModelRenderer(this, 0, 17);
         leftLeg1.addBox(0, 0, 0, 3, 1, 1);
         leftLeg1.setRotationPoint(3.7F, 22, -3.1F);
-        leftLeg2 = new ModelRenderer(this, 0, 16);
+        leftLeg2 = new ModelRenderer(this, 0, 17);
         leftLeg2.addBox(0, 0, 0, 3, 1, 1);
         leftLeg2.setRotationPoint(3.7F, 22, -1.9F);
-        leftLeg3 = new ModelRenderer(this, 0, 16);
+        leftLeg3 = new ModelRenderer(this, 0, 17);
         leftLeg3.addBox(0, 0, 0, 3, 1, 1);
         leftLeg3.setRotationPoint(3.7F, 22, -0.6F);
-        leftLeg4 = new ModelRenderer(this, 0, 16);
+        leftLeg4 = new ModelRenderer(this, 0, 17);
         leftLeg4.addBox(0, 0, 0, 3, 1, 1);
         leftLeg4.setRotationPoint(3.7F, 22, 0.6F);
     }

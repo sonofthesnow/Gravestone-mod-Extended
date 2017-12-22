@@ -247,6 +247,9 @@ entity.GSSkullCrawler.name=Lebkokrab
 entity.GSStraySkullCrawler.name=Stray Skull Crawler
 entity.GSWitherSkullCrawler.name=Witherský lebkokrab
 entity.GSZombieSkullCrawler.name=Zombie lebkokrab
+##TODO !!!!!!!!!!
+entity.GSHuskSkullCrawler.name=Husk Skull Crawler
+entity.GSPigmanSkullCrawler.name=Zombie Pigman Skull Crawler
 entity.GSRaven.name=Havran
 entity.GSSkeletonRaider.name=Kostlivý nájezdník
 entity.GSZombieRaider.name=Zombie nájezdník

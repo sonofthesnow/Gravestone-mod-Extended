@@ -233,6 +233,9 @@ entity.GSSkullCrawler.name=Повзучий череп
 entity.GSStraySkullCrawler.name=Stray Skull Crawler
 entity.GSWitherSkullCrawler.name=Повзучий череп висушувача
 entity.GSZombieSkullCrawler.name=Повзучий череп зомбі
+##TODO !!!!!!!!!!
+entity.GSHuskSkullCrawler.name=Husk Skull Crawler
+entity.GSPigmanSkullCrawler.name=Zombie Pigman Skull Crawler
 entity.GSRaven.name=Ворон
 entity.GSSkeletonRaider.name=Скелет наїзник
 entity.GSZombieRaider.name=Зомбі наїзник

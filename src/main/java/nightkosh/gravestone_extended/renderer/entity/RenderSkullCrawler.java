@@ -33,20 +33,20 @@ public class RenderSkullCrawler extends RenderLiving {
         return this.setSpiderDeathMaxRotation((EntitySkullCrawler) entity);
     }
 
-    /**
-     * Returns the location of an entity's texture. Doesn't seem to be called
-     * unless you call Render.bindEntityTexture.
-     */
     @Override
     protected ResourceLocation getEntityTexture(Entity entity) {
         switch (crawlerType) {
-            case wither:
+            case WITHER:
                 return Resources.WITHER_SKULL_CRAWLER;
-            case zombie:
+            case ZOMBIE:
                 return Resources.ZOMBIE_SKULL_CRAWLER;
-            case stray:
-                return Resources.STRAY_SKULL;
-            case skeleton:
+            case STRAY:
+                return Resources.STRAY_SKULL_CRAWLER;
+            case HUSK:
+                return Resources.HUSK_SKULL_CRAWLER;
+            case PIGMAN:
+                return Resources.PIGMAN_SKULL_CRAWLER;
+            case SKELETON:
             default:
                 return Resources.SKELETON_SKULL_CRAWLER;
         }
