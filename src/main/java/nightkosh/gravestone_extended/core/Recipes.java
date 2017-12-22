@@ -51,9 +51,10 @@ public class Recipes {
                 'i', Items.IRON_INGOT);
 
         GameRegistry.addShapedRecipe(new ResourceLocation(ModInfo.ID, "bone_fishing_pole"), GROUP, new ItemStack(GSItem.BONE_FISHING_POLE),
-                "p  ", "sp ", "s p",
+                "p  ", "tp ", "s p",
                 'p', new ItemStack(GSBlock.PILE_OF_BONES, 1, EnumPileOfBones.PILE_OF_BONES.ordinal()),
-                's', Items.STRING);
+                't', Items.STRING,
+                's', new ItemStack(Items.SKULL, 1, 0));
 
         GameRegistry.addShapedRecipe(new ResourceLocation(ModInfo.ID, "bone_hoe"), GROUP, new ItemStack(GSItem.BONE_HOE),
                 "bs ", " w ", " w ",
