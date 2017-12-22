@@ -26,12 +26,14 @@ import nightkosh.gravestone_extended.entity.monster.pet.EntitySkeletonCat;
 import nightkosh.gravestone_extended.entity.monster.pet.EntitySkeletonDog;
 import nightkosh.gravestone_extended.entity.monster.pet.EntityZombieCat;
 import nightkosh.gravestone_extended.entity.monster.pet.EntityZombieDog;
+import nightkosh.gravestone_extended.entity.projectile.EntityBoneFishHook;
 import nightkosh.gravestone_extended.gui.GSGraveTextGui;
 import nightkosh.gravestone_extended.item.ItemGSMonsterPlacer;
 import nightkosh.gravestone_extended.models.entity.ModelDamnedWarrior;
 import nightkosh.gravestone_extended.models.entity.ModelUndeadCat;
 import nightkosh.gravestone_extended.models.entity.ModelUndeadDog;
 import nightkosh.gravestone_extended.renderer.entity.*;
+import nightkosh.gravestone_extended.renderer.entity.projectile.RendererBoneFishHook;
 import nightkosh.gravestone_extended.renderer.tileentity.*;
 import nightkosh.gravestone_extended.tileentity.*;
 
@@ -172,6 +174,7 @@ public class ClientProxy extends CommonProxy {
 
         // Spawner Helper
         RenderingRegistry.registerEntityRenderingHandler(EntityGroupOfGravesMobSpawnerHelper.class, new RenderSpawnerHelper(renderManager));
+        RenderingRegistry.registerEntityRenderingHandler(EntityBoneFishHook.class, new RendererBoneFishHook(renderManager));
     }
 
     @Override

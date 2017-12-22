@@ -17,6 +17,7 @@ public class Resources extends nightkosh.gravestone.core.Resources{
     protected static final String GUI_LOCATION = EXT_MOD_NAME + ":textures/gui/";
     protected static final String POTIONS_LOCATION = EXT_MOD_NAME + ":textures/potions/";
     protected static final String ENTITY_LOCATION = EXT_MOD_NAME + ":textures/entities/";
+    protected static final String PROJECTILE_LOCATION = ENTITY_LOCATION + "projectile/";
     protected static final String MEMORIALS_LOCATION = EXT_MOD_NAME + ":textures/blocks/memorials/";
     protected static final String EXECUTIONS_LOCATION = EXT_MOD_NAME + ":textures/blocks/execution/";
     protected static final String ARMOR_LOCATION = EXT_MOD_NAME + ":textures/blocks/memorials/armor/";
@@ -204,6 +205,10 @@ public class Resources extends nightkosh.gravestone.core.Resources{
     // haunted chest
     public static final ResourceLocation CHRISTMAS_CHEST = new ResourceLocation("textures/entity/chest/christmas.png");
     public static final ResourceLocation DEFAULT_CHEST = new ResourceLocation("textures/entity/chest/normal.png");
+
+    // bone hook
+    public static final ResourceLocation BONE_HOOK = new ResourceLocation(PROJECTILE_LOCATION + "bone_hook.png");
+    public static final ResourceLocation WITHERED_HOOK = new ResourceLocation(PROJECTILE_LOCATION + "wither_hook.png");
 
     // skull candle
     public static final ResourceLocation SKELETON_SKULL_CANDLE = new ResourceLocation(BLOCK_LOCATION + "skeletonskullcandle.png");
