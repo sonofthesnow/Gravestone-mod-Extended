@@ -25,8 +25,7 @@ public class ResourcesModels extends Resources {
     public static final ModelResourceLocation BONE_SWORD_DIAMOND = new ModelResourceLocation(ModInfo.ID + ":weapon/" + GSItem.BONE_SWORD_DIAMOND.getRegistryName().getResourcePath(), "inventory");
     public static final ModelResourceLocation BONE_SHIELD = new ModelResourceLocation(ModInfo.ID + ":weapon/" + GSItem.BONE_SHIELD.getRegistryName().getResourcePath(), "inventory");
 
-    public static final ModelResourceLocation BONE_FISHING_POLE = new ModelResourceLocation("fishing_rod", "inventory");
-//    public static final ModelResourceLocation BONE_FISHING_POLE = new ModelResourceLocation(ModInfo.ID + ":tools/" + GSItem.BONE_FISHING_POLE.getRegistryName().getResourcePath(), "inventory");
+    public static final ModelResourceLocation BONE_FISHING_POLE = new ModelResourceLocation(ModInfo.ID + ":tools/" + GSItem.BONE_FISHING_POLE.getRegistryName().getResourcePath(), "inventory");
 
     public static final ModelResourceLocation BONE_HOE = new ModelResourceLocation(ModInfo.ID + ":tools/" + GSItem.BONE_HOE.getRegistryName().getResourcePath(), "inventory");
     public static final ModelResourceLocation BONE_HOE_IRON = new ModelResourceLocation(ModInfo.ID + ":tools/" + GSItem.BONE_HOE_IRON.getRegistryName().getResourcePath(), "inventory");
