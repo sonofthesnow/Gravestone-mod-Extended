@@ -50,7 +50,7 @@ public class EnchantmentPainMirror extends EnchantmentBase {
 
     @Override
     public boolean canApply(ItemStack stack) {
-        return super.canApply(stack) && stack.getItem() instanceof IBoneShiled;
+        return stack.getItem() instanceof IBoneShiled;
     }
 
     public static void applyEnchantmentEffect(EntityPlayer player, Entity attacker, ItemStack stack, float amount) {
