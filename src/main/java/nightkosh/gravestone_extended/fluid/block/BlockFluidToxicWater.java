@@ -135,17 +135,17 @@ public class BlockFluidToxicWater extends BlockFluidClassic {
     @Override
     public void randomDisplayTick(IBlockState state, World world, BlockPos pos, Random rand) {
         super.randomDisplayTick(state, world, pos, rand);
+        double x = (double) pos.getX();
+        double y = (double) pos.getY();
+        double z = (double) pos.getZ();
 
         if (world.getBlockState(pos.up()).getMaterial() == Material.AIR && !world.getBlockState(pos.up()).isOpaqueCube()) {
-            double x = (double) pos.getX();
-            double y = (double) pos.getY();
-            double z = (double) pos.getZ();
 
             if (rand.nextInt(300) == 0) {
                 double d8 = x + (double) rand.nextFloat();
                 double d4 = y + state.getBoundingBox(world, pos).maxY;
                 double d6 = z + (double) rand.nextFloat();
-                world.spawnParticle(EnumParticleTypes.SMOKE_LARGE, d8, d4, d6, 0.0D, 0.0D, 0.0D);
+                world.spawnParticle(EnumParticleTypes.SMOKE_LARGE, d8, d4, d6, 0, 0, 0);
                 world.playSound(d8, d4, d6, SoundEvents.BLOCK_LAVA_EXTINGUISH, SoundCategory.BLOCKS, 0.2F + rand.nextFloat() * 0.2F, 0.9F + rand.nextFloat() * 0.15F, false);
             }
 
@@ -154,16 +154,17 @@ public class BlockFluidToxicWater extends BlockFluidClassic {
             }
         }
 
-//        if (rand.nextInt(10) == 0 && world.getBlockState(pos.down()).isTopSolid()) {
-//            Material material = world.getBlockState(pos.down(2)).getMaterial();
-//
-//            if (!material.blocksMovement() && !material.isLiquid()) {
-//                double d3 = x + (double) rand.nextFloat();
-//                double d5 = y - 1.05D;
-//                double d7 = z + (double) rand.nextFloat();
-//
-//                world.spawnParticle(EnumParticleTypes.DRIP_WATER, d3, d5, d7, 0.0D, 0.0D, 0.0D);
-//            }
-//        }
+        if (rand.nextInt(50) == 0 && world.getBlockState(pos.down()).isTopSolid()) {
+            Material material = world.getBlockState(pos.down(2)).getMaterial();
+
+            if (!material.blocksMovement() && !material.isLiquid()) {
+                double d3 = x + rand.nextFloat();
+                double d5 = y - 1.05;
+                double d7 = z + rand.nextFloat();
+
+                world.spawnParticle(EnumParticleTypes.DRIP_WATER, d3, d5, d7, 0, 0, 0);
+                world.playSound(d3, d5, d7, GSSound.DROP_OF_ACID, SoundCategory.BLOCKS, 0.2F + rand.nextFloat() * 0.2F, 0.9F + rand.nextFloat() * 0.15F, false);
+            }
+        }
     }
 }

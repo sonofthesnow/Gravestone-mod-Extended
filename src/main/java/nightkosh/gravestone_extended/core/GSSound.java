@@ -19,6 +19,9 @@ public class GSSound {
     @GameRegistry.ObjectHolder("blocks.fluid.bubbling")
     public static SoundEvent BUBBLING = createSoundEvent("blocks.fluid.bubbling");
 
+    @GameRegistry.ObjectHolder("blocks.fluid.drop_of_acid")
+    public static SoundEvent DROP_OF_ACID = createSoundEvent("blocks.fluid.drop_of_acid");
+
     private static SoundEvent createSoundEvent(final String soundName) {
         final ResourceLocation soundID = new ResourceLocation(ModInfo.ID, soundName);
         return new SoundEvent(soundID).setRegistryName(soundID);
@@ -28,7 +31,7 @@ public class GSSound {
     public static class RegistrationHandler {
         @SubscribeEvent
         public static void registerSoundEvents(final RegistryEvent.Register<SoundEvent> event) {
-            event.getRegistry().registerAll(BUBBLING);
+            event.getRegistry().registerAll(BUBBLING, DROP_OF_ACID);
         }
     }
 }
