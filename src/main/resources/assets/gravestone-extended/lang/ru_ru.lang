@@ -129,6 +129,12 @@ item.gravestone.bone_shield.name=Костяной щит
 ## Other Items
 item.gravestone.toxic_slime.name=Токсичная слизь
 
+## Fish
+item.gravestone.blue_jellyfish.name=Медуза
+item.gravestone.green_jellyfish.name=Зелёная медуза
+item.gravestone.magma_jellyfish.name=Лавовая медуза
+item.gravestone.bone_fish.name=Костяная рыба
+
 ## Corpses
 item.corpse.steve=Труп Стива
 item.corpse.player=Труп игрока

@@ -26,11 +26,16 @@ import net.minecraft.world.World;
 import net.minecraft.world.WorldServer;
 import net.minecraft.world.storage.loot.LootContext;
 import net.minecraft.world.storage.loot.LootTableList;
+import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.event.entity.player.ItemFishedEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import nightkosh.gravestone_extended.core.GSBlock;
+import nightkosh.gravestone_extended.core.GSItem;
+import nightkosh.gravestone_extended.item.ItemFish;
 import nightkosh.gravestone_extended.item.tools.IBoneFishingPole;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -402,11 +407,9 @@ public class EntityBoneFishHook extends EntityFishHook {
                 this.world.setEntityState(this, (byte) 31);
                 i = this.caughtEntity instanceof EntityItem ? 3 : 5;
             } else if (this.ticksCatchable > 0) {
-                LootContext.Builder lootContextBuilder = new LootContext.Builder((WorldServer) this.world);
-                lootContextBuilder.withLuck(this.luck + this.getAngler().getLuck());
-                List<ItemStack> result = this.world.getLootTableManager().getLootTableFromLocation(LootTableList.GAMEPLAY_FISHING).generateLootForPools(this.rand, lootContextBuilder.build());
-                event = new net.minecraftforge.event.entity.player.ItemFishedEvent(result, this.inGround ? 2 : 1, this);
-                net.minecraftforge.common.MinecraftForge.EVENT_BUS.post(event);
+                List<ItemStack> result = this.getCatch();
+                event = new ItemFishedEvent(result, this.inGround ? 2 : 1, this);
+                MinecraftForge.EVENT_BUS.post(event);
 
                 if (event.isCanceled()) {
                     this.setDead();
@@ -444,6 +447,29 @@ public class EntityBoneFishHook extends EntityFishHook {
         } else {
             return 0;
         }
+    }
+
+    protected List<ItemStack> getCatch() {
+        BlockPos pos = new BlockPos(this);
+        IBlockState state = this.world.getBlockState(pos);
+        List<ItemStack> result = new ArrayList<>(1);
+        if (state.getMaterial() == Material.WATER) {
+            if (state.getBlock() == GSBlock.TOXIC_WATER) {
+                if (this.rand.nextBoolean()) {
+                    result.add(new ItemStack(GSItem.FISH, 1, ItemFish.EnumFishType.GREEN_JELLYFISH.ordinal()));
+                } else {
+                    result.add(new ItemStack(GSItem.FISH, 1, ItemFish.EnumFishType.BONE_FISH.ordinal()));
+                }
+            } else {
+                LootContext.Builder lootContextBuilder = new LootContext.Builder((WorldServer) this.world);
+                lootContextBuilder.withLuck(this.luck + this.getAngler().getLuck());
+                result = this.world.getLootTableManager().getLootTableFromLocation(LootTableList.GAMEPLAY_FISHING).generateLootForPools(this.rand, lootContextBuilder.build());
+            }
+        } else if (state.getMaterial() == Material.LAVA) {
+            result.add(new ItemStack(GSItem.FISH, 1, ItemFish.EnumFishType.MAGMA_JELLYFISH.ordinal()));
+        }
+
+        return result;
     }
 
     static enum State {

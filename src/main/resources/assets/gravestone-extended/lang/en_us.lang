@@ -130,6 +130,12 @@ item.gravestone.bone_shield.name=Bone Shield
 ## Other Items
 item.gravestone.toxic_slime.name=Toxic Slime
 
+## Fish
+item.gravestone.blue_jellyfish.name=Jellyfish
+item.gravestone.green_jellyfish.name=Green Jellyfish
+item.gravestone.magma_jellyfish.name=Magma Jellyfish
+item.gravestone.bone_fish.name=Bonefish
+
 ## Corpses
 item.corpse.steve=Steve Corpse
 item.corpse.player=Player Corpse

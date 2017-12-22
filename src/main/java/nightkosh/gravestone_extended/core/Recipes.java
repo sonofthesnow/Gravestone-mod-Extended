@@ -14,6 +14,7 @@ import nightkosh.gravestone_extended.block.enums.EnumSkullCandle;
 import nightkosh.gravestone_extended.block.enums.EnumSpawner;
 import nightkosh.gravestone_extended.config.ExtendedConfig;
 import nightkosh.gravestone_extended.fluid.FluidToxicWater;
+import nightkosh.gravestone_extended.item.ItemFish;
 
 /**
  * GraveStone mod
@@ -30,6 +31,18 @@ public class Recipes {
                 "ws", "ss",
                 'w', Items.WATER_BUCKET,
                 's', GSItem.TOXIC_SLIME);
+
+        GameRegistry.addShapedRecipe(new ResourceLocation(ModInfo.ID, "toxic_slime"), GROUP, new ItemStack(GSBlock.PILE_OF_BONES),
+                "b",
+                'b', new ItemStack(GSItem.FISH, 1, ItemFish.EnumFishType.BONE_FISH.ordinal()));
+
+        GameRegistry.addShapedRecipe(new ResourceLocation(ModInfo.ID, "toxic_slime"), GROUP, new ItemStack(GSItem.TOXIC_SLIME),
+                "j",
+                'j', new ItemStack(GSItem.FISH, 1, ItemFish.EnumFishType.GREEN_JELLYFISH.ordinal()));
+
+        GameRegistry.addShapedRecipe(new ResourceLocation(ModInfo.ID, "magma_cream"), GROUP, new ItemStack(Items.MAGMA_CREAM),
+                "j",
+                'j', new ItemStack(GSItem.FISH, 1, ItemFish.EnumFishType.MAGMA_JELLYFISH.ordinal()));
 
         GameRegistry.addShapedRecipe(new ResourceLocation(ModInfo.ID, "chisel"), GROUP, new ItemStack(GSItem.CHISEL),
                 "   ", "s  ", " i ",

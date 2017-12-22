@@ -11,8 +11,9 @@ import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
-import nightkosh.gravestone_extended.potion.PotionCurse;
+import nightkosh.gravestone_extended.item.ItemFish;
 import nightkosh.gravestone_extended.potion.PotionBoneSkin;
+import nightkosh.gravestone_extended.potion.PotionCurse;
 import nightkosh.gravestone_extended.potion.PotionPurification;
 import nightkosh.gravestone_extended.potion.PotionRust;
 import nightkosh.gravestone_extended.potion.potion_type.PotionTypeBoneSkin;
@@ -48,7 +49,7 @@ public class GSPotion {
         event.getRegistry().registerAll(PURIFICATION_TYPE, RUST_TYPE, BONE_SKIN_TYPE);
         PotionHelper.addMix(PotionTypes.AWKWARD, Items.ENDER_PEARL, PURIFICATION_TYPE);
         PotionHelper.addMix(PotionTypes.AWKWARD, GSItem.TOXIC_SLIME, RUST_TYPE);
-        PotionHelper.addMix(PotionTypes.MUNDANE, Items.BONE, BONE_SKIN_TYPE);
+        PotionHelper.addMix(PotionTypes.AWKWARD, Ingredient.fromStacks(new ItemStack(GSItem.FISH, 1, ItemFish.EnumFishType.BONE_FISH.ordinal())), BONE_SKIN_TYPE);
 
         PotionHelper.addMix(PotionTypes.AWKWARD, Ingredient.fromStacks(new ItemStack(Items.FISH, 1, 2)), PotionType.getPotionTypeForName("luck"));
     }

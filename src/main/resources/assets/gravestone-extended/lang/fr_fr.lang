@@ -147,6 +147,13 @@ item.gravestone.bone_shield.name=Bone Shield
 ## TODO !!!!!!!!!!
 item.gravestone.toxic_slime.name=Toxic Slime
 
+## Fish
+## TODO !!!!!!!!!!
+item.gravestone.blue_jellyfish.name=Jellyfish
+item.gravestone.green_jellyfish.name=Green Jellyfish
+item.gravestone.magma_jellyfish.name=Magma Jellyfish
+item.gravestone.bone_fish.name=Bonefish
+
 ## Corpses
 ## TODO !!!!!!!!!!
 item.corpse.steve=Steve Corpse
