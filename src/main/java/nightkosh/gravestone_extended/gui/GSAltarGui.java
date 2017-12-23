@@ -1,10 +1,10 @@
 package nightkosh.gravestone_extended.gui;
 
 import net.minecraft.client.gui.GuiButton;
-import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.world.GameType;
+import nightkosh.gravestone.gui.GuiContainerBase;
 import nightkosh.gravestone_extended.ModGravestoneExtended;
 import nightkosh.gravestone_extended.core.MessageHandler;
 import nightkosh.gravestone_extended.core.Resources;
@@ -19,7 +19,7 @@ import org.lwjgl.opengl.GL11;
  * @author NightKosh
  * @license Lesser GNU Public License v3 (http://www.gnu.org/licenses/lgpl.html)
  */
-public class GSAltarGui extends GuiContainer {
+public class GSAltarGui extends GuiContainerBase {
 
     private final String requirementsStr = ModGravestoneExtended.proxy.getLocalizedString("gui.altar.requirements");
     private final String resurrectionButtonStr = ModGravestoneExtended.proxy.getLocalizedString("gui.altar.resurrect");
@@ -60,7 +60,11 @@ public class GSAltarGui extends GuiContainer {
         int x = (width - xSize) / 2;
         int y = (height - ySize) / 2;
         this.drawTexturedModalRect(x, y, 0, 0, xSize, ySize);
+    }
 
+    @Override
+    protected void drawGuiContainerForegroundLayer(int mouseX, int mouseY) {
+        super.drawGuiContainerForegroundLayer(mouseX, mouseY);
 
         this.drawString(this.fontRenderer, String.format(requirementsStr, container.getResurrectionLevel()), this.width / 2 - 40, (height - ySize) / 2 + 55, 16777215);
         if (player != null) {

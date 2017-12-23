@@ -1,7 +1,6 @@
 package nightkosh.gravestone_extended.gui;
 
 import net.minecraft.client.gui.GuiButton;
-import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraftforge.fml.client.config.GuiCheckBox;
@@ -10,6 +9,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import nightkosh.gravestone.api.grave.EnumGraveMaterial;
 import nightkosh.gravestone.api.grave.EnumGraveType;
+import nightkosh.gravestone.gui.GuiContainerBase;
 import nightkosh.gravestone_extended.block.enums.EnumMemorials;
 import nightkosh.gravestone_extended.core.Resources;
 import nightkosh.gravestone_extended.gui.container.ChiselContainer;
@@ -24,7 +24,7 @@ import org.lwjgl.opengl.GL11;
  * @license Lesser GNU Public License v3 (http://www.gnu.org/licenses/lgpl.html)
  */
 @SideOnly(Side.CLIENT)
-public class GSChiselCraftingGui extends GuiContainer {
+public class GSChiselCraftingGui extends GuiContainerBase {
 
     private EntityPlayer player;
 

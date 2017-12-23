@@ -1,8 +1,8 @@
 package nightkosh.gravestone_extended.gui;
 
-import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
+import nightkosh.gravestone.gui.GuiContainerBase;
 import nightkosh.gravestone_extended.core.Resources;
 import nightkosh.gravestone_extended.gui.container.ExecutionContainer;
 import nightkosh.gravestone_extended.tileentity.TileEntityExecution;
@@ -14,7 +14,7 @@ import org.lwjgl.opengl.GL11;
  * @author NightKosh
  * @license Lesser GNU Public License v3 (http://www.gnu.org/licenses/lgpl.html)
  */
-public class ExecutionGui extends GuiContainer {
+public class ExecutionGui extends GuiContainerBase {
 
     private ExecutionContainer container;
     private TileEntityExecution tileEntity = null;
