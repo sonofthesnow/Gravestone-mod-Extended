@@ -33,17 +33,45 @@ public class GSRecipes {
                 'w', Items.WATER_BUCKET,
                 's', GSItem.TOXIC_SLIME);
 
-        GameRegistry.addShapedRecipe(new ResourceLocation(ModInfo.ID, "bonefish_to_bones"), GROUP, new ItemStack(GSBlock.PILE_OF_BONES),
-                "b",
-                'b', new ItemStack(GSItem.FISH, 1, ItemFish.EnumFishType.BONE_FISH.ordinal()));
+        // fishes
+        GameRegistry.addShapedRecipe(new ResourceLocation(ModInfo.ID, "fish_to_bones"), GROUP, new ItemStack(GSBlock.PILE_OF_BONES),
+                "f",
+                'f', new ItemStack(GSItem.FISH, 1, ItemFish.EnumFishType.BONE_FISH.ordinal()));
 
-        GameRegistry.addShapedRecipe(new ResourceLocation(ModInfo.ID, "toxic_slime"), GROUP, new ItemStack(GSItem.TOXIC_SLIME),
-                "j",
-                'j', new ItemStack(GSItem.FISH, 1, ItemFish.EnumFishType.GREEN_JELLYFISH.ordinal()));
+        GameRegistry.addShapedRecipe(new ResourceLocation(ModInfo.ID, "fish_to_toxic_slime"), GROUP, new ItemStack(GSItem.TOXIC_SLIME),
+                "f",
+                'f', new ItemStack(GSItem.FISH, 1, ItemFish.EnumFishType.GREEN_JELLYFISH.ordinal()));
 
-        GameRegistry.addShapedRecipe(new ResourceLocation(ModInfo.ID, "magma_cream"), GROUP, new ItemStack(Items.MAGMA_CREAM),
-                "j",
-                'j', new ItemStack(GSItem.FISH, 1, ItemFish.EnumFishType.MAGMA_JELLYFISH.ordinal()));
+        GameRegistry.addShapedRecipe(new ResourceLocation(ModInfo.ID, "fish_to_magma_cream"), GROUP, new ItemStack(Items.MAGMA_CREAM),
+                "f",
+                'f', new ItemStack(GSItem.FISH, 1, ItemFish.EnumFishType.MAGMA_JELLYFISH.ordinal()));
+
+        GameRegistry.addShapedRecipe(new ResourceLocation(ModInfo.ID, "fish_to_obsidian"), GROUP, new ItemStack(Blocks.OBSIDIAN),
+                "ff",
+                "ff",
+                'f', new ItemStack(GSItem.FISH, 1, ItemFish.EnumFishType.OBSIDIFISH.ordinal()));
+
+        GameRegistry.addShapedRecipe(new ResourceLocation(ModInfo.ID, "fish_to_netherrack"), GROUP, new ItemStack(Blocks.NETHERRACK),
+                "f",
+                'f', new ItemStack(GSItem.FISH, 1, ItemFish.EnumFishType.NETHER_SALMON.ordinal()));
+
+        GameRegistry.addShapedRecipe(new ResourceLocation(ModInfo.ID, "fish_to_quartz"), GROUP, new ItemStack(Items.QUARTZ, 4),
+                "f",
+                'f', new ItemStack(GSItem.FISH, 1, ItemFish.EnumFishType.QUARTZ_COD.ordinal()));
+
+        GameRegistry.addShapedRecipe(new ResourceLocation(ModInfo.ID, "fish_to_glowstone_dust"), GROUP, new ItemStack(Items.GLOWSTONE_DUST, 2),
+                "f",
+                'f', new ItemStack(GSItem.FISH, 1, ItemFish.EnumFishType.FLAREFIN_KOI.ordinal()));
+
+        GameRegistry.addShapedRecipe(new ResourceLocation(ModInfo.ID, "fish_to_glowstone_dust"), GROUP, new ItemStack(Items.BLAZE_ROD),
+                "f",
+                'f', new ItemStack(GSItem.FISH, 1, ItemFish.EnumFishType.BLAZE_COD.ordinal()));
+
+        GameRegistry.addShapedRecipe(new ResourceLocation(ModInfo.ID, "fish_to_ender_pearl"), GROUP, new ItemStack(Items.ENDER_PEARL),
+                "f",
+                'f', new ItemStack(GSItem.FISH, 1, ItemFish.EnumFishType.ENDER_BASS.ordinal()));
+
+
 
         GameRegistry.addShapedRecipe(new ResourceLocation(ModInfo.ID, "chisel"), GROUP, new ItemStack(GSItem.CHISEL),
                 "   ", "s  ", " i ",
