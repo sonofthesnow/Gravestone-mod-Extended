@@ -43,6 +43,7 @@ public class ItemFish extends Item {
         MUD_TUNA("mud_tuna"),
         FROST_MINNOW("frost_minnow"),
         PIRANHA("piranha"),
+        GOLDEN_KOI("golden_koi"),
         SPECULAR_FISH("specular_fish"),
         CAVEFISH("cavefish"),
         CURSED_KOI("cursed_koi"),
@@ -52,7 +53,9 @@ public class ItemFish extends Item {
         QUARTZ_COD("quartz_cod"),
         FLAREFIN_KOI("flarefin_koi"),
         BLAZE_COD("blaze_cod"),
-        ENDER_BASS("ender_bass");
+        ENDERFIN("enderfin"),
+        PEARL_BASS("pearl_bass"),
+        CHORUS_KOI("chorus_koi");
 
         private String name;
 
