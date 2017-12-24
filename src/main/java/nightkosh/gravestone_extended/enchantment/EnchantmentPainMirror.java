@@ -5,6 +5,7 @@ import net.minecraft.enchantment.EnumEnchantmentType;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemBook;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTBase;
 import net.minecraft.nbt.NBTTagCompound;
@@ -50,7 +51,7 @@ public class EnchantmentPainMirror extends EnchantmentBase {
 
     @Override
     public boolean canApply(ItemStack stack) {
-        return stack.getItem() instanceof IBoneShiled;
+        return stack.getItem() instanceof IBoneShiled || stack.getItem() instanceof ItemBook;
     }
 
     public static void applyEnchantmentEffect(EntityPlayer player, Entity attacker, ItemStack stack, float amount) {

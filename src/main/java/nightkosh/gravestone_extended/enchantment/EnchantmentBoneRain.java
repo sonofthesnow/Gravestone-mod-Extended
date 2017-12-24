@@ -2,6 +2,7 @@ package nightkosh.gravestone_extended.enchantment;
 
 import net.minecraft.enchantment.EnumEnchantmentType;
 import net.minecraft.inventory.EntityEquipmentSlot;
+import net.minecraft.item.ItemBook;
 import net.minecraft.item.ItemStack;
 import nightkosh.gravestone_extended.core.ModInfo;
 import nightkosh.gravestone_extended.item.tools.IBoneHoe;
@@ -36,6 +37,6 @@ public class EnchantmentBoneRain extends EnchantmentBase {
 
     @Override
     public boolean canApply(ItemStack stack) {
-        return stack.getItem() instanceof IBoneHoe;
+        return stack.getItem() instanceof IBoneHoe || stack.getItem() instanceof ItemBook;
     }
 }
