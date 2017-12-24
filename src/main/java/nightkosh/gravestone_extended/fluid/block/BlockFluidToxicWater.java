@@ -7,8 +7,10 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.EnumCreatureAttribute;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.monster.EntitySlime;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.projectile.EntityFishHook;
 import net.minecraft.init.SoundEvents;
+import net.minecraft.item.ItemStack;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
@@ -25,6 +27,7 @@ import nightkosh.gravestone_extended.core.ModInfo;
 import nightkosh.gravestone_extended.entity.monster.EntityToxicSludge;
 import nightkosh.gravestone_extended.entity.projectile.EntityBoneFishHook;
 import nightkosh.gravestone_extended.fluid.FluidToxicWater;
+import nightkosh.gravestone_extended.item.armor.IBoneArmor;
 
 import java.util.Random;
 
@@ -58,17 +61,20 @@ public class BlockFluidToxicWater extends BlockFluidClassic {
                         }
                     }
 
-//                // TODO check for Bone armor set
-//                Iterable<ItemStack> equipment = entity.getArmorInventoryList();
-//                int wearBoneSet = 0;
-//                if (equipment != null) {
-//                    for (ItemStack stack : equipment) {
-//                        if (stack != null && stack != ItemStack.EMPTY && stack.isItemStackDamageable() && !(stack.getItem() instanceof IBoneItem)) {
-
-//                        }
-//                    }
-//                }
-                    dealDamage = true;
+                    if (entity instanceof EntityPlayer) {
+                        Iterable<ItemStack> equipment = entity.getArmorInventoryList();
+                        int armorParts = 0;
+                        if (equipment != null) {
+                            for (ItemStack stack : equipment) {
+                                if (stack != null && stack != ItemStack.EMPTY && stack.isItemStackDamageable() && !(stack.getItem() instanceof IBoneArmor)) {
+                                    armorParts++;
+                                }
+                            }
+                        }
+                        dealDamage = armorParts != 4;
+                    } else {
+                        dealDamage = true;
+                    }
                 }
             }
         } else if (!(entity instanceof EntityItem) && !(entity instanceof EntityBoneFishHook)) {
