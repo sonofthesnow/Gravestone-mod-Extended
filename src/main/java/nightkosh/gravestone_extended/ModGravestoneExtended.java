@@ -71,6 +71,7 @@ public class ModGravestoneExtended {
 
         // reciepes registration
         GSRecipes.registration();
+        GSRecipes.smeltingRecipesRegistration();
 
         // register structures
         GSStructures.registration();
