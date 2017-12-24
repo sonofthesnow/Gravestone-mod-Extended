@@ -156,6 +156,22 @@ item.gravestone.blue_jellyfish.name=Jellyfish
 item.gravestone.green_jellyfish.name=Green Jellyfish
 item.gravestone.magma_jellyfish.name=Magma Jellyfish
 item.gravestone.bone_fish.name=Bonefish
+item.gravestone.mud_tuna.name=Mud Tuna
+item.gravestone.frost_minnow.name=Frost Minnow
+item.gravestone.piranha.name=Piranha
+item.gravestone.golden_koi.name=Golden Koi
+item.gravestone.specular_fish.name=Specular Fish
+item.gravestone.cavefish.name=Cavefish
+item.gravestone.cursed_koi.name=Cursed Koi
+item.gravestone.spookyfin.name=Spookyfin
+item.gravestone.obsidifish.name=Obsidifish
+item.gravestone.nether_salmon.name=Nether Salmon
+item.gravestone.quartz_cod.name=Quartz Cod
+item.gravestone.flarefin_koi.name=Flarefin Koi
+item.gravestone.blaze_cod.name=Blaze Cod
+item.gravestone.enderfin.name=Enderfin
+item.gravestone.pearl_bass.name=Pearl Bass
+item.gravestone.chorus_koi.name=Chorus Koi
 
 
 ## Corpses
