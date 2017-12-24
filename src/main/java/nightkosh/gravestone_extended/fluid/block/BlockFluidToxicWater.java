@@ -66,7 +66,7 @@ public class BlockFluidToxicWater extends BlockFluidClassic {
                         int armorParts = 0;
                         if (equipment != null) {
                             for (ItemStack stack : equipment) {
-                                if (stack != null && stack != ItemStack.EMPTY && stack.isItemStackDamageable() && !(stack.getItem() instanceof IBoneArmor)) {
+                                if (!stack.isEmpty() && stack.isItemStackDamageable() && stack.getItem() instanceof IBoneArmor) {
                                     armorParts++;
                                 }
                             }
