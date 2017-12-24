@@ -103,6 +103,17 @@ potion.effect.gs_rust_type=Зелье ржавчины
 splash_potion.effect.gs_rust_type=Взрывное зелье ржавчины
 lingering_potion.effect.gs_rust_type=Туманное зелье ржавчины
 
+# Vanilla Potions
+potion.effect.gs_hunger_type=Зелье голода
+splash_potion.effect.gs_hunger_type=Взрывное зелье голода
+lingering_potion.effect.gs_hunger_type=Туманное зелье голода
+potion.effect.gs_blindness_type=Зелье слепоты
+splash_potion.effect.gs_blindness_type=Взрывное зелье слепоты
+lingering_potion.effect.gs_blindness_type=Туманное зелье слепоты
+potion.effect.gs_nausea_type=Зелье тошноты
+splash_potion.effect.gs_nausea_type=Взрывное зелье тошноты
+lingering_potion.effect.gs_nausea_type=Туманное зелье тошноты
+
 
 # Items
 ## Chisel

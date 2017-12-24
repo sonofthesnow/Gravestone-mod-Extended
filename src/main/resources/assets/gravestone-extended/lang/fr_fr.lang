@@ -115,6 +115,18 @@ potion.effect.gs_rust_type=Potion of Rust
 splash_potion.effect.gs_rust_type=Splash Potion of Rust
 lingering_potion.effect.gs_rust_type=Lingering Potion of Rust
 
+# Vanilla Potions
+## TODO !!!!!!!!!!!!
+potion.effect.gs_hunger_type=Potion of Hunger
+splash_potion.effect.gs_hunger_type=Splash Potion of Hunger
+lingering_potion.effect.gs_hunger_type=Lingering Potion of Hunger
+potion.effect.gs_blindness_type=Potion of Blindness
+splash_potion.effect.gs_blindness_type=Splash Potion of Blindness
+lingering_potion.effect.gs_blindness_type=Lingering Potion of Blindness
+potion.effect.gs_nausea_type=Potion of Nausea
+splash_potion.effect.gs_nausea_type=Splash Potion of Nausea
+lingering_potion.effect.gs_nausea_type=Lingering Potion of Nausea
+
 
 # Items
 ## Chisel
