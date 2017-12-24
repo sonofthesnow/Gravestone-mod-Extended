@@ -32,13 +32,15 @@ public class ZombieVillagerCorpseHelper extends CorpseHelper {
         list.add(createCorpse(0, 2)); // Farmer - fisherman
         list.add(createCorpse(0, 3)); // Farmer - shepherd
         list.add(createCorpse(0, 4)); // Farmer - fletcher
-        list.add(createCorpse(1, 1)); // Librarian
-        list.add(createCorpse(2, 1)); // Priest
+        list.add(createCorpse(1, 1)); // Librarian - librarian
+        list.add(createCorpse(1, 2)); // Librarian - cartographer
+        list.add(createCorpse(2, 1)); // Priest - cleric
         list.add(createCorpse(3, 1)); // Smith - armor
         list.add(createCorpse(3, 2)); // Smith - weapon
         list.add(createCorpse(3, 3)); // Smith - tool
         list.add(createCorpse(4, 1)); // Butcher - butcher
         list.add(createCorpse(4, 2)); // Butcher - leather
+        list.add(createCorpse(5, 1)); // Nitwit - nitwit
 
         List<VillagerRegistry.VillagerProfession> villagers = ForgeRegistries.VILLAGER_PROFESSIONS.getValues();
         for (VillagerRegistry.VillagerProfession villagerProfession : villagers) {

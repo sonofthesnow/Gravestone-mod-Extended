@@ -47,13 +47,15 @@ public class VillagerCorpseHelper extends CorpseHelper {
         list.add(getDefaultVillagerCorpse(0, 2)); // Farmer - fisherman
         list.add(getDefaultVillagerCorpse(0, 3)); // Farmer - shepherd
         list.add(getDefaultVillagerCorpse(0, 4)); // Farmer - fletcher
-        list.add(getDefaultVillagerCorpse(1, 1)); // Librarian
-        list.add(getDefaultVillagerCorpse(2, 1)); // Priest
+        list.add(getDefaultVillagerCorpse(1, 1)); // Librarian - librarian
+        list.add(getDefaultVillagerCorpse(1, 2)); // Librarian - cartographer
+        list.add(getDefaultVillagerCorpse(2, 1)); // Priest - cleric
         list.add(getDefaultVillagerCorpse(3, 1)); // Smith - armor
         list.add(getDefaultVillagerCorpse(3, 2)); // Smith - weapon
         list.add(getDefaultVillagerCorpse(3, 3)); // Smith - tool
         list.add(getDefaultVillagerCorpse(4, 1)); // Butcher - butcher
         list.add(getDefaultVillagerCorpse(4, 2)); // Butcher - leather
+        list.add(getDefaultVillagerCorpse(5, 1)); // Nitwit - nitwit
 
         List<VillagerRegistry.VillagerProfession> villagers = ForgeRegistries.VILLAGER_PROFESSIONS.getValues();
         for (VillagerRegistry.VillagerProfession villagerProfession : villagers) {
