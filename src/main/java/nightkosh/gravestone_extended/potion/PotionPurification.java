@@ -22,7 +22,7 @@ import java.util.Map;
  * @author NightKosh
  * @license Lesser GNU Public License v3 (http://www.gnu.org/licenses/lgpl.html)
  */
-public class PotionPurification extends PotionBase {
+public class PotionPurification extends PotionInstant {
 
     public PotionPurification() {
         super(false, 0xffffff);
@@ -46,16 +46,6 @@ public class PotionPurification extends PotionBase {
         if (entity.isBurning()) {
             entity.extinguish();
         }
-    }
-
-    @Override
-    public boolean isInstant() {
-        return true;
-    }
-
-    @Override
-    public boolean hasStatusIcon() {
-        return false;
     }
 
     public static void applyPotionOnBlocks(EntityPotion entityPotion) {
