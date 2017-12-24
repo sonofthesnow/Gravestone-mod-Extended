@@ -119,8 +119,23 @@ public class GSModels {
             ModelLoader.setCustomModelResourceLocation(GSItem.FISH, ItemFish.EnumFishType.GREEN_JELLYFISH.ordinal(), ResourcesModels.GREEN_JELLYFISH);
             ModelLoader.setCustomModelResourceLocation(GSItem.FISH, ItemFish.EnumFishType.MAGMA_JELLYFISH.ordinal(), ResourcesModels.MAGMA_JELLYFISH);
             ModelLoader.setCustomModelResourceLocation(GSItem.FISH, ItemFish.EnumFishType.BONE_FISH.ordinal(), ResourcesModels.BONE_FISH);
+            ModelLoader.setCustomModelResourceLocation(GSItem.FISH, ItemFish.EnumFishType.MUD_TUNA.ordinal(), ResourcesModels.MUD_TUNA);
+            ModelLoader.setCustomModelResourceLocation(GSItem.FISH, ItemFish.EnumFishType.FROST_MINNOW.ordinal(), ResourcesModels.FROST_MINNOW);
+            ModelLoader.setCustomModelResourceLocation(GSItem.FISH, ItemFish.EnumFishType.PIRANHA.ordinal(), ResourcesModels.PIRANHA);
+            ModelLoader.setCustomModelResourceLocation(GSItem.FISH, ItemFish.EnumFishType.SPECULAR_FISH.ordinal(), ResourcesModels.SPECULAR_FISH);
+            ModelLoader.setCustomModelResourceLocation(GSItem.FISH, ItemFish.EnumFishType.CAVEFISH.ordinal(), ResourcesModels.CAVEFISH);
+            ModelLoader.setCustomModelResourceLocation(GSItem.FISH, ItemFish.EnumFishType.CURSED_KOI.ordinal(), ResourcesModels.CURSED_KOI);
+            ModelLoader.setCustomModelResourceLocation(GSItem.FISH, ItemFish.EnumFishType.SPOOKYFIN.ordinal(), ResourcesModels.SPOOKYFIN);
+            ModelLoader.setCustomModelResourceLocation(GSItem.FISH, ItemFish.EnumFishType.OBSIDIFISH.ordinal(), ResourcesModels.OBSIDIFISH);
+            ModelLoader.setCustomModelResourceLocation(GSItem.FISH, ItemFish.EnumFishType.NETHER_SALMON.ordinal(), ResourcesModels.NETHER_SALMON);
+            ModelLoader.setCustomModelResourceLocation(GSItem.FISH, ItemFish.EnumFishType.QUARTZ_COD.ordinal(), ResourcesModels.QUARTZ_COD);
+            ModelLoader.setCustomModelResourceLocation(GSItem.FISH, ItemFish.EnumFishType.FLAREFIN_KOI.ordinal(), ResourcesModels.FLAREFIN_KOI);
+            ModelLoader.setCustomModelResourceLocation(GSItem.FISH, ItemFish.EnumFishType.BLAZE_COD.ordinal(), ResourcesModels.BLAZE_COD);
+            ModelLoader.setCustomModelResourceLocation(GSItem.FISH, ItemFish.EnumFishType.ENDER_BASS.ordinal(), ResourcesModels.ENDER_BASS);
             ModelBakery.registerItemVariants(GSItem.FISH, ResourcesModels.BLUE_JELLYFISH, ResourcesModels.GREEN_JELLYFISH, ResourcesModels.MAGMA_JELLYFISH,
-                    ResourcesModels.BONE_FISH);
+                    ResourcesModels.BONE_FISH, ResourcesModels.MUD_TUNA, ResourcesModels.PIRANHA, ResourcesModels.SPECULAR_FISH, ResourcesModels.CAVEFISH,
+                    ResourcesModels.CURSED_KOI, ResourcesModels.SPOOKYFIN, ResourcesModels.OBSIDIFISH, ResourcesModels.NETHER_SALMON, ResourcesModels.QUARTZ_COD,
+                    ResourcesModels.FLAREFIN_KOI, ResourcesModels.BLAZE_COD, ResourcesModels.ENDER_BASS);
 
             ModelLoader.setCustomModelResourceLocation(GSItem.BONE_SWORD, 0, ResourcesModels.BONE_SWORD);
             ModelLoader.setCustomModelResourceLocation(GSItem.BONE_SWORD_IRON, 0, ResourcesModels.BONE_SWORD_IRON);

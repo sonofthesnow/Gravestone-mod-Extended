@@ -39,7 +39,20 @@ public class ItemFish extends Item {
         BLUE_JELLYFISH("blue_jellyfish"),
         GREEN_JELLYFISH("green_jellyfish"),
         MAGMA_JELLYFISH("magma_jellyfish"),
-        BONE_FISH("bone_fish");
+        BONE_FISH("bone_fish"),
+        MUD_TUNA("mud_tuna"),
+        FROST_MINNOW("frost_minnow"),
+        PIRANHA("piranha"),
+        SPECULAR_FISH("specular_fish"),
+        CAVEFISH("cavefish"),
+        CURSED_KOI("cursed_koi"),
+        SPOOKYFIN("spookyfin"),
+        OBSIDIFISH("obsidifish"),
+        NETHER_SALMON("nether_salmon"),
+        QUARTZ_COD("quartz_cod"),
+        FLAREFIN_KOI("flarefin_koi"),
+        BLAZE_COD("blaze_cod"),
+        ENDER_BASS("ender_bass");
 
         private String name;
 

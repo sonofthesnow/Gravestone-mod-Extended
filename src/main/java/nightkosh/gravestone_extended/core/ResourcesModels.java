@@ -42,6 +42,19 @@ public class ResourcesModels extends Resources {
     public static final ModelResourceLocation GREEN_JELLYFISH = new ModelResourceLocation(ModInfo.ID + ":fish/" + ItemFish.EnumFishType.GREEN_JELLYFISH.getName(), "inventory");
     public static final ModelResourceLocation MAGMA_JELLYFISH = new ModelResourceLocation(ModInfo.ID + ":fish/" + ItemFish.EnumFishType.MAGMA_JELLYFISH.getName(), "inventory");
     public static final ModelResourceLocation BONE_FISH = new ModelResourceLocation(ModInfo.ID + ":fish/" + ItemFish.EnumFishType.BONE_FISH.getName(), "inventory");
+    public static final ModelResourceLocation MUD_TUNA = new ModelResourceLocation(ModInfo.ID + ":fish/" + ItemFish.EnumFishType.MUD_TUNA.getName(), "inventory");
+    public static final ModelResourceLocation FROST_MINNOW = new ModelResourceLocation(ModInfo.ID + ":fish/" + ItemFish.EnumFishType.FROST_MINNOW.getName(), "inventory");
+    public static final ModelResourceLocation PIRANHA = new ModelResourceLocation(ModInfo.ID + ":fish/" + ItemFish.EnumFishType.PIRANHA.getName(), "inventory");
+    public static final ModelResourceLocation SPECULAR_FISH = new ModelResourceLocation(ModInfo.ID + ":fish/" + ItemFish.EnumFishType.SPECULAR_FISH.getName(), "inventory");
+    public static final ModelResourceLocation CAVEFISH = new ModelResourceLocation(ModInfo.ID + ":fish/" + ItemFish.EnumFishType.CAVEFISH.getName(), "inventory");
+    public static final ModelResourceLocation CURSED_KOI = new ModelResourceLocation(ModInfo.ID + ":fish/" + ItemFish.EnumFishType.CURSED_KOI.getName(), "inventory");
+    public static final ModelResourceLocation SPOOKYFIN = new ModelResourceLocation(ModInfo.ID + ":fish/" + ItemFish.EnumFishType.SPOOKYFIN.getName(), "inventory");
+    public static final ModelResourceLocation OBSIDIFISH = new ModelResourceLocation(ModInfo.ID + ":fish/" + ItemFish.EnumFishType.OBSIDIFISH.getName(), "inventory");
+    public static final ModelResourceLocation NETHER_SALMON = new ModelResourceLocation(ModInfo.ID + ":fish/" + ItemFish.EnumFishType.NETHER_SALMON.getName(), "inventory");
+    public static final ModelResourceLocation QUARTZ_COD = new ModelResourceLocation(ModInfo.ID + ":fish/" + ItemFish.EnumFishType.QUARTZ_COD.getName(), "inventory");
+    public static final ModelResourceLocation FLAREFIN_KOI = new ModelResourceLocation(ModInfo.ID + ":fish/" + ItemFish.EnumFishType.FLAREFIN_KOI.getName(), "inventory");
+    public static final ModelResourceLocation BLAZE_COD = new ModelResourceLocation(ModInfo.ID + ":fish/" + ItemFish.EnumFishType.BLAZE_COD.getName(), "inventory");
+    public static final ModelResourceLocation ENDER_BASS = new ModelResourceLocation(ModInfo.ID + ":fish/" + ItemFish.EnumFishType.ENDER_BASS.getName(), "inventory");
 
     public static final ModelResourceLocation MEMORIAL = new ModelResourceLocation(MOD_NAME + ":gsmemorial", "inventory");
     public static final ModelResourceLocation EXECUTION = new ModelResourceLocation(MOD_NAME + ":gsexecution", "inventory");
