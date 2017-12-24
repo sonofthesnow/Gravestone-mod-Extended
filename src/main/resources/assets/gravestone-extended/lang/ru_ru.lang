@@ -80,13 +80,13 @@ enchantment.hellish_angling=Адская рыбалка
 enchantment.gravestone-extended.gs_hellish_angling.desc=Позволяет рыбачить в лаве
 
 ## Enchantments - Curses
-enchantment.starvation_curse=Проклятье истощения
+enchantment.starvation_curse=Проклятие истощения
 enchantment.gravestone-extended.gs_starvation_curse.desc=Накладывает голод на 10 секунд за каждый предмет
-enchantment.awkward_curse=Проклятье неловкости
+enchantment.awkward_curse=Проклятие неловкости
 enchantment.gravestone-extended.gs_awkward_curse.desc=С шансом в 10 процентов вы атакуете самого себя вместо противника
-enchantment.fragility_curse=Проклятье хрупкости
+enchantment.fragility_curse=Проклятие хрупкости
 enchantment.gravestone-extended.gs_fragility_curse.desc=Предмет получает дополнительный урон при использовании
-enchantment.broken_hook_curse=Проклятье сломанного крючка
+enchantment.broken_hook_curse=Проклятие сломанного крючка
 enchantment.gravestone-extended.gs_broken_hook_curse.desc=С шансом в 30 процентов ваш улов будет утерян
 
 # Potions
