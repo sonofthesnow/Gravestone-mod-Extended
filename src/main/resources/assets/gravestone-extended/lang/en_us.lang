@@ -118,6 +118,12 @@ lingering_potion.effect.gs_blindness_type=Lingering Potion of Blindness
 potion.effect.gs_nausea_type=Potion of Nausea
 splash_potion.effect.gs_nausea_type=Splash Potion of Nausea
 lingering_potion.effect.gs_nausea_type=Lingering Potion of Nausea
+potion.effect.gs_resistance_type=Potion of Resistance
+splash_potion.effect.gs_resistance_type=Splash Potion of Resistance
+lingering_potion.effect.gs_resistance_type=Lingering Potion of Resistance
+potion.effect.gs_levitation_type=Potion of Levitation
+splash_potion.effect.gs_levitation_type=Splash Potion of Levitation
+lingering_potion.effect.gs_levitation_type=Lingering Potion of Levitation
 
 # Items
 ## Chisel

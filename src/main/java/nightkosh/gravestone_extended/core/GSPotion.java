@@ -39,6 +39,8 @@ public class GSPotion {
     public static final PotionType HUNGER_TYPE = new PotionTypeHunger();
     public static final PotionType BLINDNESS_TYPE = new PotionTypeBlindness();
     public static final PotionType NAUSEA_TYPE = new PotionTypeNausea();
+    public static final PotionType RESISTANCE_TYPE = new PotionTypeResistance();
+    public static final PotionType LEVITATION_TYPE = new PotionTypeLevitation();
 
     @SubscribeEvent
     public static void registerPotions(final RegistryEvent.Register<Potion> event) {
@@ -48,7 +50,7 @@ public class GSPotion {
     @SubscribeEvent
     public static void registerPotionTypes(final RegistryEvent.Register<PotionType> event) {
         event.getRegistry().registerAll(PURIFICATION_TYPE, RUST_TYPE, BONE_SKIN_TYPE, RECALL_TYPE);
-        event.getRegistry().registerAll(HUNGER_TYPE, BLINDNESS_TYPE, NAUSEA_TYPE);
+        event.getRegistry().registerAll(HUNGER_TYPE, BLINDNESS_TYPE, NAUSEA_TYPE, RESISTANCE_TYPE, LEVITATION_TYPE);
 
         PotionHelper.addMix(PotionTypes.AWKWARD, GSItem.TOXIC_SLIME, RUST_TYPE);
         PotionHelper.addMix(PotionTypes.AWKWARD, Ingredient.fromStacks(new ItemStack(GSItem.FISH, 1, ItemFish.EnumFishType.GOLDEN_KOI.ordinal())), PURIFICATION_TYPE);
@@ -60,5 +62,7 @@ public class GSPotion {
         PotionHelper.addMix(PotionTypes.AWKWARD, Ingredient.fromStacks(new ItemStack(Items.ROTTEN_FLESH, 1)), HUNGER_TYPE);
         PotionHelper.addMix(PotionTypes.AWKWARD, Ingredient.fromStacks(new ItemStack(GSItem.FISH, 1, ItemFish.EnumFishType.BLUE_JELLYFISH.ordinal())), NAUSEA_TYPE);
         PotionHelper.addMix(PotionTypes.AWKWARD, Ingredient.fromStacks(new ItemStack(GSItem.FISH, 1, ItemFish.EnumFishType.SPOOKYFIN.ordinal())), BLINDNESS_TYPE);
+        PotionHelper.addMix(PotionTypes.AWKWARD, Ingredient.fromStacks(new ItemStack(GSItem.FISH, 1, ItemFish.EnumFishType.CAVEFISH.ordinal())), RESISTANCE_TYPE);
+        PotionHelper.addMix(PotionTypes.AWKWARD, Ingredient.fromStacks(new ItemStack(GSItem.FISH, 1, ItemFish.EnumFishType.CHORUS_KOI.ordinal())), LEVITATION_TYPE);
     }
 }

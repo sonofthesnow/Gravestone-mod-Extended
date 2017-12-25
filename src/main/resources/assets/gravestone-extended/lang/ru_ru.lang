@@ -117,6 +117,12 @@ lingering_potion.effect.gs_blindness_type=Туманное зелье слепо
 potion.effect.gs_nausea_type=Зелье тошноты
 splash_potion.effect.gs_nausea_type=Взрывное зелье тошноты
 lingering_potion.effect.gs_nausea_type=Туманное зелье тошноты
+potion.effect.gs_resistance_type=Зелье сопротивления
+splash_potion.effect.gs_resistance_type=Взрывное зелье сопротивления
+lingering_potion.effect.gs_resistance_type=Туманное зелье сопротивления
+potion.effect.gs_levitation_type=Зелье левитации
+splash_potion.effect.gs_levitation_type=Взрывное зелье левитации
+lingering_potion.effect.gs_levitation_type=Туманное зелье левитации
 
 
 # Items
