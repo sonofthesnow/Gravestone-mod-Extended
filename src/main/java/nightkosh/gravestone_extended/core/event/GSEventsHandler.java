@@ -16,10 +16,7 @@ import net.minecraft.potion.PotionType;
 import net.minecraft.potion.PotionUtils;
 import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.event.entity.ProjectileImpactEvent;
-import net.minecraftforge.event.entity.living.LivingAttackEvent;
-import net.minecraftforge.event.entity.living.LivingDamageEvent;
-import net.minecraftforge.event.entity.living.LivingDeathEvent;
-import net.minecraftforge.event.entity.living.LivingEvent;
+import net.minecraftforge.event.entity.living.*;
 import net.minecraftforge.event.entity.player.ItemFishedEvent;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.eventhandler.EventPriority;
@@ -42,6 +39,7 @@ import nightkosh.gravestone_extended.entity.monster.crawler.EntityZombieSkullCra
 import nightkosh.gravestone_extended.item.weapon.IBoneShiled;
 import nightkosh.gravestone_extended.item.weapon.IBoneSword;
 import nightkosh.gravestone_extended.item.weapon.ItemBoneShield;
+import nightkosh.gravestone_extended.potion.PotionBleeding;
 import nightkosh.gravestone_extended.potion.PotionPurification;
 
 /**
@@ -108,6 +106,13 @@ public class GSEventsHandler {
         }
     }
 
+    @SubscribeEvent(priority = EventPriority.HIGHEST)
+    public void livingHealEvent(LivingHealEvent event) {
+        if (PotionBleeding.hasPotion(event.getEntityLiving())) {
+            event.setCanceled(true);
+        }
+    }
+
 //    @SubscribeEvent
 //    public void livingUseItemEvent(LivingEntityUseItemEvent event) {
 //        if (!event.getItem().isEmpty()) {
@@ -120,7 +125,7 @@ public class GSEventsHandler {
 //        }
 //    }
 
-    @SubscribeEvent(priority = EventPriority.HIGH)
+    @SubscribeEvent(priority = EventPriority.HIGHEST)
     public void itemFishedEvent(ItemFishedEvent event) {
         ItemStack stack = event.getEntityPlayer().getHeldItemMainhand();
 

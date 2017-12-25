@@ -111,6 +111,10 @@ potion.burning.title=Sets Target on Fire
 potion.effect.gs_burning_type=Potion of Burning
 splash_potion.effect.gs_burning_type=Splash Potion of Burning
 lingering_potion.effect.gs_burning_type=Lingering Potion of Burning
+potion.bleeding.title=Bleeding
+potion.effect.gs_bleeding_type=Potion of Bleeding
+splash_potion.effect.gs_bleeding_type=Splash Potion of Bleeding
+lingering_potion.effect.gs_bleeding_type=Lingering Potion of Bleeding
 
 # Vanilla Potions
 potion.effect.gs_hunger_type=Potion of Hunger
