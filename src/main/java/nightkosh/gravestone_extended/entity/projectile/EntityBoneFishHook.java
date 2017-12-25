@@ -504,6 +504,7 @@ public class EntityBoneFishHook extends EntityFishHook {
                         } else if (biomeTypesList.contains(BiomeDictionary.Type.JUNGLE)) {
                             tempList.add(new ItemStack(GSItem.FISH, 1, ItemFish.EnumFishType.PIRANHA.ordinal()));
                         } else if (biomeTypesList.contains(BiomeDictionary.Type.END)) {
+                            tempList = new ArrayList<>();
                             tempList.add(new ItemStack(GSItem.FISH, 1, ItemFish.EnumFishType.ENDERFIN.ordinal()));
                         }
                     } else if (chance < 80) {
@@ -512,6 +513,7 @@ public class EntityBoneFishHook extends EntityFishHook {
                         if (biomeTypesList.contains(BiomeDictionary.Type.OCEAN) || biomeTypesList.contains(BiomeDictionary.Type.BEACH)) {
                             tempList.add(new ItemStack(Items.FISH, 1, 3)); //puffer
                         } else if (biomeTypesList.contains(BiomeDictionary.Type.END)) {
+                            tempList = new ArrayList<>();
                             tempList.add(new ItemStack(GSItem.FISH, 1, ItemFish.EnumFishType.PEARL_BASS.ordinal()));
                         } else {
                             tempList.add(new ItemStack(GSItem.FISH, 1, ItemFish.EnumFishType.GOLDEN_KOI.ordinal()));
