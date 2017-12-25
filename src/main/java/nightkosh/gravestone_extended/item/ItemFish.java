@@ -19,6 +19,7 @@ public class ItemFish extends Item {
         this.setUnlocalizedName("gravestone.fish");
         this.setRegistryName(ModInfo.ID, "gs_fish");
         this.setCreativeTab(GSTabs.otherItemsTab);
+        this.setHasSubtypes(true);
     }
 
     public void getSubItems(CreativeTabs tab, NonNullList<ItemStack> items) {

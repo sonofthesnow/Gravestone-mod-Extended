@@ -26,6 +26,7 @@ import net.minecraft.world.World;
 import net.minecraft.world.WorldServer;
 import net.minecraft.world.storage.loot.LootContext;
 import net.minecraft.world.storage.loot.LootTableList;
+import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.entity.player.ItemFishedEvent;
 import net.minecraftforge.fml.relauncher.Side;
@@ -37,6 +38,7 @@ import nightkosh.gravestone_extended.item.tools.IBoneFishingPole;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 /**
  * GraveStone mod
@@ -453,20 +455,124 @@ public class EntityBoneFishHook extends EntityFishHook {
         BlockPos pos = new BlockPos(this);
         IBlockState state = this.world.getBlockState(pos);
         List<ItemStack> result = new ArrayList<>(1);
+        Set<BiomeDictionary.Type> biomeTypesList = BiomeDictionary.getTypes(world.getBiome(pos));
+        float luck = (this.luck + this.getAngler().getLuck()) * 1.5F;
         if (state.getMaterial() == Material.WATER) {
             if (state.getBlock() == GSBlock.TOXIC_WATER) {
-                if (this.rand.nextBoolean()) {
-                    result.add(new ItemStack(GSItem.FISH, 1, ItemFish.EnumFishType.GREEN_JELLYFISH.ordinal()));
-                } else {
-                    result.add(new ItemStack(GSItem.FISH, 1, ItemFish.EnumFishType.BONE_FISH.ordinal()));
+                int chance = this.rand.nextInt(100) + Math.round(luck);
+                List<ItemStack> tempList = new ArrayList<>();
+
+                tempList.add(new ItemStack(GSItem.FISH, 1, ItemFish.EnumFishType.GREEN_JELLYFISH.ordinal()));
+                tempList.add(new ItemStack(GSItem.FISH, 1, ItemFish.EnumFishType.BONE_FISH.ordinal()));
+                if (chance < 50) {
+                    tempList.add(new ItemStack(Items.BONE));
+                    tempList.add(new ItemStack(Items.ROTTEN_FLESH));
+                    tempList.add(new ItemStack(Items.SPIDER_EYE));
+                } else if (chance < 80) {
+                    tempList.add(new ItemStack(GSItem.FISH, 1, ItemFish.EnumFishType.SPOOKYFIN.ordinal()));
+                } else {//if (chance < 95) {
+                    tempList.add(new ItemStack(GSItem.FISH, 1, ItemFish.EnumFishType.CURSED_KOI.ordinal()));
                 }
+//                else {
+////                Skeleton and Zombie Skulls (treasure)
+////                        Enchanted Skull (treasure)
+//                }
+                result.add(tempList.get(this.rand.nextInt(tempList.size())));
             } else {
                 LootContext.Builder lootContextBuilder = new LootContext.Builder((WorldServer) this.world);
                 lootContextBuilder.withLuck(this.luck + this.getAngler().getLuck());
-                result = this.world.getLootTableManager().getLootTableFromLocation(LootTableList.GAMEPLAY_FISHING).generateLootForPools(this.rand, lootContextBuilder.build());
+
+                int chance = this.rand.nextInt(100) + Math.round(luck);
+
+                List<ItemStack> tempList = new ArrayList<>();
+                if (chance < 10) {
+                    result = this.world.getLootTableManager().getLootTableFromLocation(LootTableList.GAMEPLAY_FISHING_JUNK).generateLootForPools(this.rand, lootContextBuilder.build());
+                } else if (chance < 90) {
+//                    result = this.world.getLootTableManager().getLootTableFromLocation(LootTableList.GAMEPLAY_FISHING_FISH).generateLootForPools(this.rand, lootContextBuilder.build());
+                    // 60 25 13 2
+                    chance = this.rand.nextInt(100) + Math.round(luck);
+                    if (chance < 50) {
+                        tempList.add(new ItemStack(Items.FISH, 1, 0)); //cod
+                        if (biomeTypesList.contains(BiomeDictionary.Type.OCEAN) || biomeTypesList.contains(BiomeDictionary.Type.BEACH)) {
+                            tempList.add(new ItemStack(GSItem.FISH, 1, ItemFish.EnumFishType.BLUE_JELLYFISH.ordinal()));
+                        } else if (biomeTypesList.contains(BiomeDictionary.Type.SANDY)) {
+                            tempList.add(new ItemStack(GSItem.FISH, 1, ItemFish.EnumFishType.GOLDEN_KOI.ordinal()));
+                        } else if (biomeTypesList.contains(BiomeDictionary.Type.SNOWY)) {
+                            tempList.add(new ItemStack(GSItem.FISH, 1, ItemFish.EnumFishType.FROST_MINNOW.ordinal()));
+                        } else if (biomeTypesList.contains(BiomeDictionary.Type.SWAMP)) {
+                            tempList.add(new ItemStack(GSItem.FISH, 1, ItemFish.EnumFishType.MUD_TUNA.ordinal()));
+                        } else if (biomeTypesList.contains(BiomeDictionary.Type.JUNGLE)) {
+                            tempList.add(new ItemStack(GSItem.FISH, 1, ItemFish.EnumFishType.PIRANHA.ordinal()));
+                        } else if (biomeTypesList.contains(BiomeDictionary.Type.END)) {
+                            tempList.add(new ItemStack(GSItem.FISH, 1, ItemFish.EnumFishType.ENDERFIN.ordinal()));
+                        }
+                    } else if (chance < 80) {
+                        tempList.add(new ItemStack(Items.FISH, 1, 1)); //salmon
+
+                        if (biomeTypesList.contains(BiomeDictionary.Type.OCEAN) || biomeTypesList.contains(BiomeDictionary.Type.BEACH)) {
+                            tempList.add(new ItemStack(Items.FISH, 1, 3)); //puffer
+                        } else if (biomeTypesList.contains(BiomeDictionary.Type.END)) {
+                            tempList.add(new ItemStack(GSItem.FISH, 1, ItemFish.EnumFishType.PEARL_BASS.ordinal()));
+                        } else {
+                            tempList.add(new ItemStack(GSItem.FISH, 1, ItemFish.EnumFishType.GOLDEN_KOI.ordinal()));
+                            tempList.add(new ItemStack(GSItem.FISH, 1, ItemFish.EnumFishType.MUD_TUNA.ordinal()));
+                        }
+                    } else if (chance < 95) {
+                        if (biomeTypesList.contains(BiomeDictionary.Type.OCEAN) || biomeTypesList.contains(BiomeDictionary.Type.BEACH)) {
+                            tempList.add(new ItemStack(Items.FISH, 1, 2)); // clown
+                        } else if (biomeTypesList.contains(BiomeDictionary.Type.END)) {
+                            tempList.add(new ItemStack(GSItem.FISH, 1, ItemFish.EnumFishType.CHORUS_KOI.ordinal()));
+                        } else {
+                            tempList.add(new ItemStack(Items.FISH, 1, 3)); //puffer
+                            tempList.add(new ItemStack(GSItem.FISH, 1, ItemFish.EnumFishType.BLUE_JELLYFISH.ordinal()));
+                            tempList.add(new ItemStack(GSItem.FISH, 1, ItemFish.EnumFishType.FROST_MINNOW.ordinal()));
+                            tempList.add(new ItemStack(GSItem.FISH, 1, ItemFish.EnumFishType.PIRANHA.ordinal()));
+                        }
+                    } else {
+                        tempList.add(new ItemStack(Items.FISH, 1, 2)); // clown
+                        if (!world.canBlockSeeSky(pos)) {
+//                Angler Fish (at the level of 25 blocks or deeper in the caves) // TODO !!!!
+                            if (pos.getY() < 40) {
+                                tempList.add(new ItemStack(GSItem.FISH, 1, ItemFish.EnumFishType.CAVEFISH.ordinal()));
+                            } else if (pos.getY() < 50) {
+                                tempList.add(new ItemStack(GSItem.FISH, 1, ItemFish.EnumFishType.SPECULAR_FISH.ordinal()));
+                            }
+                        }
+                    }
+
+                    result.add(tempList.get(this.rand.nextInt(tempList.size())));
+                } else {
+                    result = this.world.getLootTableManager().getLootTableFromLocation(LootTableList.GAMEPLAY_FISHING_TREASURE).generateLootForPools(this.rand, lootContextBuilder.build());
+                }
+
             }
         } else if (state.getMaterial() == Material.LAVA) {
-            result.add(new ItemStack(GSItem.FISH, 1, ItemFish.EnumFishType.MAGMA_JELLYFISH.ordinal()));
+            List<ItemStack> tempList = new ArrayList<>();
+            tempList.add(new ItemStack(GSItem.FISH, 1, ItemFish.EnumFishType.OBSIDIFISH.ordinal()));
+
+            int chance = this.rand.nextInt(100) + Math.round(luck);
+            if (chance < 50) {
+                if (biomeTypesList.contains(BiomeDictionary.Type.NETHER)) {
+                    tempList.add(new ItemStack(GSItem.FISH, 1, ItemFish.EnumFishType.NETHER_SALMON.ordinal()));
+                }
+            } else if (chance < 80) {
+                tempList.add(new ItemStack(GSItem.FISH, 1, ItemFish.EnumFishType.MAGMA_JELLYFISH.ordinal()));
+                if (biomeTypesList.contains(BiomeDictionary.Type.NETHER)) {
+                    tempList.add(new ItemStack(GSItem.FISH, 1, ItemFish.EnumFishType.NETHER_SALMON.ordinal()));
+                    tempList.add(new ItemStack(GSItem.FISH, 1, ItemFish.EnumFishType.QUARTZ_COD.ordinal()));
+                }
+            } else if (chance < 95) {
+                if (biomeTypesList.contains(BiomeDictionary.Type.NETHER)) {
+                    tempList.add(new ItemStack(GSItem.FISH, 1, ItemFish.EnumFishType.FLAREFIN_KOI.ordinal()));
+                }
+            } else if (biomeTypesList.contains(BiomeDictionary.Type.NETHER)) {
+                tempList.add(new ItemStack(GSItem.FISH, 1, ItemFish.EnumFishType.BLAZE_COD.ordinal()));
+            }
+
+//            Wither Skeleton Skull (treasure)
+//            Withered Enchanted Skull (treasure)
+
+            result.add(tempList.get(this.rand.nextInt(tempList.size())));
         }
 
         return result;
