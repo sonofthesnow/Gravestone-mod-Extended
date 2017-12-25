@@ -106,6 +106,10 @@ potion.recall.title=Возвращение домой
 potion.effect.gs_recall_type=Зелье возвращения
 splash_potion.effect.gs_recall_type=Взрывное зелье возвращения
 lingering_potion.effect.gs_recall_type=Туманное зелье возвращения
+potion.burning.title=Поджигает цель
+potion.effect.gs_burning_type=Пылающее зелье
+splash_potion.effect.gs_burning_type=Взрывное пылающее зелье
+lingering_potion.effect.gs_burning_type=Туманное пылающее зелье
 
 # Vanilla Potions
 potion.effect.gs_hunger_type=Зелье голода
