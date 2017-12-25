@@ -462,21 +462,21 @@ public class EntityBoneFishHook extends EntityFishHook {
                 int chance = this.rand.nextInt(100) + Math.round(luck);
                 List<ItemStack> tempList = new ArrayList<>();
 
-                tempList.add(new ItemStack(GSItem.FISH, 1, ItemFish.EnumFishType.GREEN_JELLYFISH.ordinal()));
-                tempList.add(new ItemStack(GSItem.FISH, 1, ItemFish.EnumFishType.BONE_FISH.ordinal()));
                 if (chance < 50) {
                     tempList.add(new ItemStack(Items.BONE));
                     tempList.add(new ItemStack(Items.ROTTEN_FLESH));
                     tempList.add(new ItemStack(Items.SPIDER_EYE));
+                    tempList.add(new ItemStack(GSItem.FISH, 1, ItemFish.EnumFishType.GREEN_JELLYFISH.ordinal()));
+                    tempList.add(new ItemStack(GSItem.FISH, 1, ItemFish.EnumFishType.BONE_FISH.ordinal()));
                 } else if (chance < 80) {
                     tempList.add(new ItemStack(GSItem.FISH, 1, ItemFish.EnumFishType.SPOOKYFIN.ordinal()));
-                } else {//if (chance < 95) {
+                } else if (chance < 95) {
                     tempList.add(new ItemStack(GSItem.FISH, 1, ItemFish.EnumFishType.CURSED_KOI.ordinal()));
+                } else {
+                    tempList.add(new ItemStack(Blocks.SKULL, 1, 0)); // SKELETON
+                    tempList.add(new ItemStack(Blocks.SKULL, 1, 2)); // ZOMBIE
+////  TODO                      Enchanted Skull (treasure)
                 }
-//                else {
-////                Skeleton and Zombie Skulls (treasure)
-////                        Enchanted Skull (treasure)
-//                }
                 result.add(tempList.get(this.rand.nextInt(tempList.size())));
             } else {
                 LootContext.Builder lootContextBuilder = new LootContext.Builder((WorldServer) this.world);
@@ -550,29 +550,33 @@ public class EntityBoneFishHook extends EntityFishHook {
             }
         } else if (state.getMaterial() == Material.LAVA) {
             List<ItemStack> tempList = new ArrayList<>();
-            tempList.add(new ItemStack(GSItem.FISH, 1, ItemFish.EnumFishType.OBSIDIFISH.ordinal()));
 
             int chance = this.rand.nextInt(100) + Math.round(luck);
-            if (chance < 50) {
-                if (biomeTypesList.contains(BiomeDictionary.Type.NETHER)) {
-                    tempList.add(new ItemStack(GSItem.FISH, 1, ItemFish.EnumFishType.NETHER_SALMON.ordinal()));
+            if (!biomeTypesList.contains(BiomeDictionary.Type.NETHER)) {
+                if (chance < 80) {
+                    tempList.add(new ItemStack(GSItem.FISH, 1, ItemFish.EnumFishType.OBSIDIFISH.ordinal()));
+                } else if (chance < 95) {
+                    tempList.add(new ItemStack(GSItem.FISH, 1, ItemFish.EnumFishType.MAGMA_JELLYFISH.ordinal()));
+                } else {
+                    tempList.add(new ItemStack(Blocks.SKULL, 1, 2));
+                    //  TODO Withered Enchanted Skull (treasure)
                 }
-            } else if (chance < 80) {
-                tempList.add(new ItemStack(GSItem.FISH, 1, ItemFish.EnumFishType.MAGMA_JELLYFISH.ordinal()));
-                if (biomeTypesList.contains(BiomeDictionary.Type.NETHER)) {
+            } else {
+                if (chance < 50) {
+                    tempList.add(new ItemStack(GSItem.FISH, 1, ItemFish.EnumFishType.OBSIDIFISH.ordinal()));
+                    tempList.add(new ItemStack(GSItem.FISH, 1, ItemFish.EnumFishType.NETHER_SALMON.ordinal()));
+                } else if (chance < 80) {
+                    tempList.add(new ItemStack(GSItem.FISH, 1, ItemFish.EnumFishType.MAGMA_JELLYFISH.ordinal()));
                     tempList.add(new ItemStack(GSItem.FISH, 1, ItemFish.EnumFishType.NETHER_SALMON.ordinal()));
                     tempList.add(new ItemStack(GSItem.FISH, 1, ItemFish.EnumFishType.QUARTZ_COD.ordinal()));
-                }
-            } else if (chance < 95) {
-                if (biomeTypesList.contains(BiomeDictionary.Type.NETHER)) {
+                } else if (chance < 95) {
                     tempList.add(new ItemStack(GSItem.FISH, 1, ItemFish.EnumFishType.FLAREFIN_KOI.ordinal()));
+                    tempList.add(new ItemStack(GSItem.FISH, 1, ItemFish.EnumFishType.BLAZE_COD.ordinal()));
+                } else {
+                    tempList.add(new ItemStack(Blocks.SKULL, 1, 1)); //WITHER SKULL
+                    //  TODO Withered Enchanted Skull (treasure)
                 }
-            } else if (biomeTypesList.contains(BiomeDictionary.Type.NETHER)) {
-                tempList.add(new ItemStack(GSItem.FISH, 1, ItemFish.EnumFishType.BLAZE_COD.ordinal()));
             }
-
-//            Wither Skeleton Skull (treasure)
-//            Withered Enchanted Skull (treasure)
 
             result.add(tempList.get(this.rand.nextInt(tempList.size())));
         }
