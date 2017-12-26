@@ -5,6 +5,7 @@ import net.minecraft.block.BlockLiquid;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
+import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.MoverType;
 import net.minecraft.entity.item.EntityItem;
@@ -26,6 +27,7 @@ import net.minecraft.world.World;
 import net.minecraft.world.WorldServer;
 import net.minecraft.world.storage.loot.LootContext;
 import net.minecraft.world.storage.loot.LootTableList;
+import net.minecraft.world.storage.loot.RandomValueRange;
 import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.entity.player.ItemFishedEvent;
@@ -473,9 +475,12 @@ public class EntityBoneFishHook extends EntityFishHook {
                 } else if (chance < 95) {
                     tempList.add(new ItemStack(GSItem.FISH, 1, ItemFish.EnumFishType.CURSED_KOI.ordinal()));
                 } else {
-                    tempList.add(new ItemStack(Blocks.SKULL, 1, 0)); // SKELETON
-                    tempList.add(new ItemStack(Blocks.SKULL, 1, 2)); // ZOMBIE
-////  TODO                      Enchanted Skull (treasure)
+                    if (chance < 98) {
+                        tempList.add(new ItemStack(Blocks.SKULL, 1, 0)); // SKELETON
+                        tempList.add(new ItemStack(Blocks.SKULL, 1, 2)); // ZOMBIE
+                    } else {
+                        EnchantmentHelper.addRandomEnchantment(rand, new ItemStack(GSItem.ENCHANTED_SKULL, 1, 0), new RandomValueRange(30, 40).generateInt(rand), true);
+                    }
                 }
                 result.add(tempList.get(this.rand.nextInt(tempList.size())));
             } else {
@@ -565,8 +570,11 @@ public class EntityBoneFishHook extends EntityFishHook {
                 } else if (chance < 95) {
                     tempList.add(new ItemStack(GSItem.FISH, 1, ItemFish.EnumFishType.MAGMA_JELLYFISH.ordinal()));
                 } else {
-                    tempList.add(new ItemStack(Blocks.SKULL, 1, 2));
-                    //  TODO Withered Enchanted Skull (treasure)
+                    if (chance < 98) {
+                        tempList.add(new ItemStack(Blocks.SKULL, 1, 1)); //WITHER SKULL
+                    } else {
+                        EnchantmentHelper.addRandomEnchantment(rand, new ItemStack(GSItem.ENCHANTED_SKULL, 1, 1), new RandomValueRange(40, 50).generateInt(rand), true);
+                    }
                 }
             } else {
                 if (chance < 50) {
@@ -580,8 +588,11 @@ public class EntityBoneFishHook extends EntityFishHook {
                     tempList.add(new ItemStack(GSItem.FISH, 1, ItemFish.EnumFishType.FLAREFIN_KOI.ordinal()));
                     tempList.add(new ItemStack(GSItem.FISH, 1, ItemFish.EnumFishType.BLAZE_COD.ordinal()));
                 } else {
-                    tempList.add(new ItemStack(Blocks.SKULL, 1, 1)); //WITHER SKULL
-                    //  TODO Withered Enchanted Skull (treasure)
+                    if (chance < 98) {
+                        tempList.add(new ItemStack(Blocks.SKULL, 1, 1)); //WITHER SKULL
+                    } else {
+                        EnchantmentHelper.addRandomEnchantment(rand, new ItemStack(GSItem.ENCHANTED_SKULL, 1, 1), new RandomValueRange(40, 50).generateInt(rand), true);
+                    }
                 }
             }
 
