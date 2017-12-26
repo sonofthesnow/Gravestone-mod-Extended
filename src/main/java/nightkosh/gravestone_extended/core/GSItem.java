@@ -9,6 +9,7 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.registries.IForgeRegistry;
 import nightkosh.gravestone_extended.core.compatibility.Compatibility;
 import nightkosh.gravestone_extended.core.compatibility.forestry.CompatibilityForestry;
+import nightkosh.gravestone_extended.item.ItemEnchantedSkull;
 import nightkosh.gravestone_extended.item.ItemFish;
 import nightkosh.gravestone_extended.item.ItemGSMonsterPlacer;
 import nightkosh.gravestone_extended.item.ItemToxicSlime;
@@ -40,6 +41,7 @@ public class GSItem {
 
     public static final Item TOXIC_SLIME = new ItemToxicSlime();
     public static final Item FISH = new ItemFish();
+    public static final Item ENCHANTED_SKULL = new ItemEnchantedSkull();
 
     @Mod.EventBusSubscriber(modid = ModInfo.ID)
     public static class RegistrationHandler {
@@ -50,7 +52,7 @@ public class GSItem {
             registry.registerAll(BONE_SWORD, BONE_SWORD_IRON, BONE_SWORD_GOLDEN, BONE_SWORD_DIAMOND, BONE_SHIELD);
             registry.registerAll(CHISEL, BONE_FISHING_POLE,
                     BONE_HOE, BONE_HOE_IRON, BONE_HOE_GOLDEN, BONE_HOE_DIAMOND);
-            registry.registerAll(TOXIC_SLIME, FISH, SPAWN_EGG);
+            registry.registerAll(TOXIC_SLIME, FISH, ENCHANTED_SKULL, SPAWN_EGG);
             if (Loader.isModLoaded(Compatibility.FORESTRY_ID)) {
                 CompatibilityForestry.addBackpack(registry);
             }

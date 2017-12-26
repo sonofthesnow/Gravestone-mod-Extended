@@ -59,6 +59,9 @@ public class ResourcesModels extends Resources {
     public static final ModelResourceLocation PEARL_BASS = new ModelResourceLocation(ModInfo.ID + ":fish/" + ItemFish.EnumFishType.PEARL_BASS.getName(), "inventory");
     public static final ModelResourceLocation CHORUS_KOI = new ModelResourceLocation(ModInfo.ID + ":fish/" + ItemFish.EnumFishType.CHORUS_KOI.getName(), "inventory");
 
+    public static final ModelResourceLocation ENCHANTED_SKULL = new ModelResourceLocation(GSItem.ENCHANTED_SKULL.getRegistryName(), "inventory");
+    public static final ModelResourceLocation ENCHANTED_SKULL_WITHERED = new ModelResourceLocation(GSItem.ENCHANTED_SKULL.getRegistryName() + "_withered", "inventory");
+
     public static final ModelResourceLocation MEMORIAL = new ModelResourceLocation(MOD_NAME + ":gsmemorial", "inventory");
     public static final ModelResourceLocation EXECUTION = new ModelResourceLocation(MOD_NAME + ":gsexecution", "inventory");
     public static final ModelResourceLocation SPAWNER = new ModelResourceLocation(MOD_NAME + ":gsspawner", "inventory");

@@ -157,6 +157,8 @@ item.gravestone.bone_shield.name=Костяной щит
 
 ## Other Items
 item.gravestone.toxic_slime.name=Токсичная слизь
+item.gravestone.enchanted_skull.name=Зачарованный череп
+item.gravestone.enchanted_skull_withered.name=Зачарованный череп иссушителя
 
 ## Fish
 item.gravestone.blue_jellyfish.name=Медуза

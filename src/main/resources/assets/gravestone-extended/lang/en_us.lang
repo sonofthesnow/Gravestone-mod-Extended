@@ -157,6 +157,8 @@ item.gravestone.bone_shield.name=Bone Shield
 
 ## Other Items
 item.gravestone.toxic_slime.name=Toxic Slime
+item.gravestone.enchanted_skull.name=Enchanted Skull
+item.gravestone.enchanted_skull_withered.name=Enchanted Wither Skull
 
 ## Fish
 item.gravestone.blue_jellyfish.name=Jellyfish
