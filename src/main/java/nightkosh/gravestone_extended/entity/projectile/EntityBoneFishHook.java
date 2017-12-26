@@ -531,14 +531,21 @@ public class EntityBoneFishHook extends EntityFishHook {
                             tempList.add(new ItemStack(GSItem.FISH, 1, ItemFish.EnumFishType.PIRANHA.ordinal()));
                         }
                     } else {
-                        tempList.add(new ItemStack(Items.FISH, 1, 2)); // clown
                         if (!world.canBlockSeeSky(pos)) {
-//                Angler Fish (at the level of 25 blocks or deeper in the caves) // TODO !!!!
-                            if (pos.getY() < 40) {
-                                tempList.add(new ItemStack(GSItem.FISH, 1, ItemFish.EnumFishType.CAVEFISH.ordinal()));
-                            } else if (pos.getY() < 50) {
+                            if (pos.getY() < 50) {
                                 tempList.add(new ItemStack(GSItem.FISH, 1, ItemFish.EnumFishType.SPECULAR_FISH.ordinal()));
+                                if (pos.getY() < 40) {
+                                    tempList.add(new ItemStack(GSItem.FISH, 1, ItemFish.EnumFishType.CAVEFISH.ordinal()));
+                                    if (pos.getY() < 25) {
+                                        // TODO Angler Fish
+                                    }
+                                }
+
+                            } else {
+                                tempList.add(new ItemStack(Items.FISH, 1, 2)); // clown
                             }
+                        } else {
+                            tempList.add(new ItemStack(Items.FISH, 1, 2)); // clown
                         }
                     }
 
