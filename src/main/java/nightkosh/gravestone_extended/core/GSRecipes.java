@@ -88,6 +88,10 @@ public class GSRecipes {
                 "f",
                 'f', new ItemStack(GSItem.FISH, 1, ItemFish.EnumFishType.GOLDEN_KOI.ordinal()));
 
+        GameRegistry.addShapedRecipe(new ResourceLocation(ModInfo.ID, "fish_to_clay"), GROUP, new ItemStack(Items.CLAY_BALL, 4),
+                "f",
+                'f', new ItemStack(GSItem.FISH, 1, ItemFish.EnumFishType.MUD_TUNA.ordinal()));
+
 
 
         GameRegistry.addShapedRecipe(new ResourceLocation(ModInfo.ID, "chisel"), GROUP, new ItemStack(GSItem.CHISEL),
