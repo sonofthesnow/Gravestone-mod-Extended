@@ -30,7 +30,7 @@ public class GSRecipes {
     public static void registration() {
         GameRegistry.addShapedRecipe(new ResourceLocation(ModInfo.ID, "toxic_water_bucket"), GROUP, FluidUtil.getFilledBucket(FluidRegistry.getFluidStack(FluidToxicWater.INSTANCE.getName(), 1)),
                 "ws", "ss",
-                'w', Items.WATER_BUCKET,
+                'w', Items.BUCKET,
                 's', GSItem.TOXIC_SLIME);
 
         // fishes
