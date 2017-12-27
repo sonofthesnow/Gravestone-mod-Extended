@@ -161,7 +161,9 @@ public class EntityToxicSludge extends EntitySlime {
         if (!this.world.isRemote && this.getSlimeSize() > 1) {
             IBlockState state = world.getBlockState(this.getPosition());
             if (state.getBlock().isReplaceable(this.world, this.getPosition())) {
-                world.setBlockState(this.getPosition(), GSBlock.TOXIC_WATER.getDefaultState());
+                if (ExtendedConfig.createToxicWaterAtSludgeDeath) {//TODO REMOVE !!!!!!!!!!!!!!!!!!!!!!
+                    world.setBlockState(this.getPosition(), GSBlock.TOXIC_WATER.getDefaultState());
+                }
             }
         }
         super.onDeath(source);
