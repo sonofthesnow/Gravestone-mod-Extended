@@ -1,14 +1,20 @@
 package nightkosh.gravestone_extended.core.proxy;
 
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.block.model.ModelResourceLocation;
+import net.minecraft.client.renderer.block.statemap.StateMapperBase;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.util.text.translation.I18n;
+import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.client.FMLClientHandler;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import nightkosh.gravestone.tileentity.TileEntityGrave;
+import nightkosh.gravestone_extended.core.GSBlock;
 import nightkosh.gravestone_extended.core.GSItem;
+import nightkosh.gravestone_extended.core.ModInfo;
 import nightkosh.gravestone_extended.core.event.RenderEventHandler;
 import nightkosh.gravestone_extended.entity.EntityRaven;
 import nightkosh.gravestone_extended.entity.helper.EntityGroupOfGravesMobSpawnerHelper;
@@ -56,6 +62,7 @@ public class ClientProxy extends CommonProxy {
         }, GSItem.SPAWN_EGG);
     }
 
+    @Override
     public void registerTERenderers() {
         // register Memorials renderers
         ClientRegistry.registerTileEntity(TileEntityMemorial.class, "GSMemorial", new TileEntityMemorialRenderer());
@@ -111,6 +118,17 @@ public class ClientProxy extends CommonProxy {
         ClientRegistry.registerTileEntity(TileEntityAltar.class, "GSAltar", new TileEntityRenderAltar());
     }
 
+    @Override
+    public void registerFluidRenderers() {
+        ModelResourceLocation modelResourceLocation = new ModelResourceLocation(ModInfo.ID + ":" + "fluid", GSBlock.TOXIC_WATER.getFluid().getName());
+        ModelLoader.setCustomStateMapper(GSBlock.TOXIC_WATER, new StateMapperBase() {
+            protected ModelResourceLocation getModelResourceLocation(IBlockState state) {
+                return modelResourceLocation;
+            }
+        });
+    }
+
+    @Override
     public void registerMobsRenderers() {
         RenderManager renderManager = Minecraft.getMinecraft().getRenderManager();
 

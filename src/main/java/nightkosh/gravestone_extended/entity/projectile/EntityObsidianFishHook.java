@@ -13,7 +13,6 @@ import net.minecraftforge.fml.relauncher.SideOnly;
  */
 public class EntityObsidianFishHook extends EntityBoneFishHook {
 
-    @SideOnly(Side.CLIENT)
     public EntityObsidianFishHook(World world) {
         super(world);
         this.isImmuneToFire = true;

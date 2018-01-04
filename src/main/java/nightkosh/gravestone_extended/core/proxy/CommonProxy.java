@@ -32,6 +32,10 @@ public class CommonProxy {
     public void registerHandlers() {
     }
 
+    public void registerFluidRenderers() {
+
+    }
+
     public void registerTERenderers() {
         GameRegistry.registerTileEntity(TileEntityMemorial.class, "Memorial");
         GameRegistry.registerTileEntity(TileEntityExecution.class, "Execution");

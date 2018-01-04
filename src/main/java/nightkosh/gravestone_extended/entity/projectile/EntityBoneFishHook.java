@@ -63,7 +63,6 @@ public class EntityBoneFishHook extends EntityFishHook {
     protected int luck;
     protected int lureSpeed;
 
-    @SideOnly(Side.CLIENT)
     public EntityBoneFishHook(World world) {
         this(world, world.getPlayerEntityByUUID(Minecraft.getMinecraft().getSession().getProfile().getId()));
     }

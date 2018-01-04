@@ -1,10 +1,8 @@
 package nightkosh.gravestone_extended.core;
 
 import net.minecraft.block.Block;
-import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.block.model.ModelBakery;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
-import net.minecraft.client.renderer.block.statemap.StateMapperBase;
 import net.minecraft.item.Item;
 import net.minecraftforge.client.ForgeHooksClient;
 import net.minecraftforge.client.event.ModelRegistryEvent;
@@ -162,11 +160,11 @@ public class GSModels {
             ModelResourceLocation modelResourceLocation = new ModelResourceLocation(ModInfo.ID + ":" + "fluid", GSBlock.TOXIC_WATER.getFluid().getName());
             ModelBakery.registerItemVariants(item);
             ModelLoader.setCustomMeshDefinition(item, stack -> modelResourceLocation);
-            ModelLoader.setCustomStateMapper(GSBlock.TOXIC_WATER, new StateMapperBase() {
-                protected ModelResourceLocation getModelResourceLocation(IBlockState state) {
-                    return modelResourceLocation;
-                }
-            });
+//            ModelLoader.setCustomStateMapper(GSBlock.TOXIC_WATER, new StateMapperBase() {
+//                protected ModelResourceLocation getModelResourceLocation(IBlockState state) {
+//                    return modelResourceLocation;
+//                }
+//            });
 
 //            ModelLoader.setCustomModelResourceLocation(item, 0, new ModelResourceLocation(item.getRegistryName(), "inventory"));
         }
