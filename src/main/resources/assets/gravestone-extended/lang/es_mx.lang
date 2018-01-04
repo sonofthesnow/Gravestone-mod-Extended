@@ -96,11 +96,11 @@ enchantment.gravestone-extended.gs_hellish_angling.desc=Allows one to fish in la
 ## TODO !!!!!!!!!!
 enchantment.starvation_curse=Curse of Starvation
 enchantment.gravestone-extended.gs_starvation_curse.desc=Applies hunger for 10 seconds per item
-enchantment.awkward_curse=Curse of Awkward
+enchantment.awkward_curse=Curse of Awkwardness
 enchantment.gravestone-extended.gs_awkward_curse.desc=Deals damage to yourself instead of enemy with 10 percent chance
 enchantment.fragility_curse=Curse of Fragility
 enchantment.gravestone-extended.gs_fragility_curse.desc=Item get additional damage at usage
-enchantment.broken_hook_curse=Curse of Broken Hook
+enchantment.broken_hook_curse=Curse of the Broken Hook
 enchantment.gravestone-extended.gs_broken_hook_curse.desc=Adds 30 percent chance to lose your catch
 
 # Potions
