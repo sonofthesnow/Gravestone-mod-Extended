@@ -59,7 +59,6 @@ public class ModGravestoneExtended {
         MessageHandler.init();
 
         GSTabs.registration();
-        proxy.registerFluidRenderers();
         TileEntity.registration();
     }
 

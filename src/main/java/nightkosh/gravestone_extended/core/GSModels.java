@@ -10,6 +10,7 @@ import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
+import nightkosh.gravestone_extended.ModGravestoneExtended;
 import nightkosh.gravestone_extended.block.enums.*;
 import nightkosh.gravestone_extended.item.ItemFish;
 import nightkosh.gravestone_extended.item.ItemGSMonsterPlacer;
@@ -160,12 +161,8 @@ public class GSModels {
             ModelResourceLocation modelResourceLocation = new ModelResourceLocation(ModInfo.ID + ":" + "fluid", GSBlock.TOXIC_WATER.getFluid().getName());
             ModelBakery.registerItemVariants(item);
             ModelLoader.setCustomMeshDefinition(item, stack -> modelResourceLocation);
-//            ModelLoader.setCustomStateMapper(GSBlock.TOXIC_WATER, new StateMapperBase() {
-//                protected ModelResourceLocation getModelResourceLocation(IBlockState state) {
-//                    return modelResourceLocation;
-//                }
-//            });
 
+            ModGravestoneExtended.proxy.registerFluidRenderers();
 //            ModelLoader.setCustomModelResourceLocation(item, 0, new ModelResourceLocation(item.getRegistryName(), "inventory"));
         }
 
