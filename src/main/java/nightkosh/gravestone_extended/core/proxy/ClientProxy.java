@@ -20,6 +20,7 @@ import nightkosh.gravestone_extended.entity.EntityRaven;
 import nightkosh.gravestone_extended.entity.helper.EntityGroupOfGravesMobSpawnerHelper;
 import nightkosh.gravestone_extended.entity.monster.EntityDamnedWarrior;
 import nightkosh.gravestone_extended.entity.monster.EntityGSSkeleton;
+import nightkosh.gravestone_extended.entity.monster.EntityPossessedArmor;
 import nightkosh.gravestone_extended.entity.monster.EntityToxicSludge;
 import nightkosh.gravestone_extended.entity.monster.crawler.*;
 import nightkosh.gravestone_extended.entity.monster.crawler.EntitySkullCrawler.SkullCrawlerType;
@@ -162,6 +163,9 @@ public class ClientProxy extends CommonProxy {
 
         // toxic sludge
         RenderingRegistry.registerEntityRenderingHandler(EntityToxicSludge.class, new RendererToxicSludge(renderManager));
+
+        // Possessed armor
+        RenderingRegistry.registerEntityRenderingHandler(EntityPossessedArmor.class, new RendererPossessedArmor(renderManager));
 
         // Damned Warrior
         RenderingRegistry.registerEntityRenderingHandler(EntityDamnedWarrior.class, new RenderDamnedWarrior(renderManager, new ModelDamnedWarrior()));

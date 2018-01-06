@@ -2,6 +2,7 @@ package nightkosh.gravestone_extended.item;
 
 import net.minecraft.block.BlockFence;
 import net.minecraft.block.BlockLiquid;
+import net.minecraft.block.material.MapColor;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityList;
@@ -50,6 +51,8 @@ public class ItemGSMonsterPlacer extends ItemMonsterPlacer {
     public static final int ZOMBIE_PET_FOREGROUND_COLOR = 0x799c65;
     public static final int TOXIC_SLUDGE_BACKGROUND_COLOR = 0x29BF05;
     public static final int TOXIC_SLUDGE_FOREGROUND_COLOR = 0x5DD93F;
+    public static final int POSSESSED_ARMOR_BACKGROUND_COLOR = MapColor.IRON.colorValue;
+    public static final int POSSESSED_ARMOR_FOREGROUND_COLOR = MapColor.GOLD.colorValue;
 
     public static enum EnumEggs {
         ZOMBIE_DOG(GSEntity.ZOMBIE_DOG_NAME, GSEntity.ZOMBIE_DOG_ID, DOG_BACKGROUND_COLOR, ZOMBIE_PET_FOREGROUND_COLOR),
@@ -67,7 +70,8 @@ public class ItemGSMonsterPlacer extends ItemMonsterPlacer {
         SKELETON_HORSE(GSEntity.SKELETON_HORSE_NAME, GSEntity.SKELETON_HORSE_ID, SKELETON_BACKGROUND_COLOR, HORSE_FOREGROUND_COLOR, GSEntity.MINECRAFT_SKELETON_HORSE_NAME),
         ZOMBIE_RAIDER(GSEntity.ZOMBIE_RAIDER_NAME, GSEntity.ZOMBIE_RAIDER_ID, ZOMBIE_BACKGROUND_COLOR, HORSE_FOREGROUND_COLOR),
         SKELETON_RAIDER(GSEntity.SKELETON_RAIDER_NAME, GSEntity.SKELETON_RAIDER_ID, SKELETON_BACKGROUND_COLOR, HORSE_FOREGROUND_COLOR),
-        TOXIC_SLUDGE(GSEntity.TOXIC_SLUDGE_NAME, GSEntity.TOXIC_SLUDGE_ID, TOXIC_SLUDGE_BACKGROUND_COLOR, TOXIC_SLUDGE_FOREGROUND_COLOR);//,
+        TOXIC_SLUDGE(GSEntity.TOXIC_SLUDGE_NAME, GSEntity.TOXIC_SLUDGE_ID, TOXIC_SLUDGE_BACKGROUND_COLOR, TOXIC_SLUDGE_FOREGROUND_COLOR),
+        POSSESSED_ARMOR(GSEntity.POSSESSED_ARMOR_NAME, GSEntity.POSSESSED_ARMOR_ID, POSSESSED_ARMOR_BACKGROUND_COLOR, POSSESSED_ARMOR_FOREGROUND_COLOR);//,
 //        DAMNED_WARRIOR(Entity.DAMNED_WARRIOR_NAME, SKELETON_BACKGROUND_COLOR, SKELETON_FOREGROUND_COLOR),
 //        RAVEN(nightkosh.gravestone_extended.core.Entity.RAVEN_NAME, RAVEN_BACKGROUND_COLOR, RAVEN_FOREGROUND_COLOR);
 

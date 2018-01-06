@@ -76,6 +76,7 @@ public class Resources extends nightkosh.gravestone.core.Resources{
     public static final ResourceLocation RAVEN = new ResourceLocation(ENTITY_LOCATION + "raven.png");
     public static final ResourceLocation DAMNED_WARRIOR = new ResourceLocation(ENTITY_LOCATION + "damnedwarrior.png");
     public static final ResourceLocation TOXIC_SLUDGE = new ResourceLocation(ENTITY_LOCATION + "toxic_sludge.png");
+    public static final ResourceLocation POSSESSED_ARMOR = new ResourceLocation(ENTITY_LOCATION + "possessed_armor.png");
 
     public static final ResourceLocation VILLAGER = new ResourceLocation("textures/entity/villager/villager.png");
     public static final ResourceLocation VILLAGER_FARMER = new ResourceLocation("textures/entity/villager/farmer.png");

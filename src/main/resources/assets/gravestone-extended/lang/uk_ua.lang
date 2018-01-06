@@ -287,6 +287,8 @@ entity.GSZombieRaider.name=Зомбі наїзник
 entity.GSSkeleton.name=Скелет
 entity.Villager.gravestone-extended:undertaker=Трунар
 entity.GSToxicSludge.name=токсичний слимак
+## TODO !!!!!!!!!!
+entity.GSPossessedArmor.name=Possessed Armor
 
 # Fluids
 fluid.gs_toxic_water=Токсична вода

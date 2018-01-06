@@ -32,6 +32,21 @@ import java.util.List;
  */
 public class GSEntity {
 
+    private static final List<BiomeDictionary.Type> OVERWORLD_BIOMES = new ArrayList<>(Arrays.asList(
+            BiomeDictionary.Type.MESA,
+            BiomeDictionary.Type.FOREST,
+            BiomeDictionary.Type.JUNGLE,
+            BiomeDictionary.Type.PLAINS,
+            BiomeDictionary.Type.MOUNTAIN,
+            BiomeDictionary.Type.HILLS,
+            BiomeDictionary.Type.SWAMP,
+            BiomeDictionary.Type.SANDY,
+            BiomeDictionary.Type.SNOWY,
+            BiomeDictionary.Type.WASTELAND,
+            BiomeDictionary.Type.BEACH,
+            BiomeDictionary.Type.WATER
+    ));
+
     private static int mobId = 0;
 
     private GSEntity() {
@@ -53,6 +68,7 @@ public class GSEntity {
     public static final String SKELETON_RAIDER_NAME = "GSSkeletonRaider";
     public static final String ZOMBIE_RAIDER_NAME = "GSZombieRaider";
     public static final String TOXIC_SLUDGE_NAME = "GSToxicSludge";
+    public static final String POSSESSED_ARMOR_NAME = "GSPossessedArmor";
     public static final String RAVEN_NAME = "GSRaven";
     public static final String DAMNED_WARRIOR_NAME = "GSDamnedWarrior";
     public static final String SPAWNER_HELPER_NAME = "GSSpawnerHelper";
@@ -88,6 +104,7 @@ public class GSEntity {
     public static final ResourceLocation SKELETON_RAIDER_ID = new ResourceLocation(ModInfo.ID + ":" + SKELETON_RAIDER_NAME);
     public static final ResourceLocation ZOMBIE_RAIDER_ID = new ResourceLocation(ModInfo.ID + ":" + ZOMBIE_RAIDER_NAME);
     public static final ResourceLocation TOXIC_SLUDGE_ID = new ResourceLocation(ModInfo.ID + ":" + TOXIC_SLUDGE_NAME);
+    public static final ResourceLocation POSSESSED_ARMOR_ID = new ResourceLocation(ModInfo.ID + ":" + POSSESSED_ARMOR_NAME);
     public static final ResourceLocation DAMNED_WARRIOR_ID = new ResourceLocation(ModInfo.ID + ":" + DAMNED_WARRIOR_NAME);
     public static final ResourceLocation RAVEN_ID = new ResourceLocation(ModInfo.ID + ":" + RAVEN_NAME);
     public static final ResourceLocation SPAWNER_HELPER_ID = new ResourceLocation(ModInfo.ID + ":spawner_helper");
@@ -153,23 +170,11 @@ public class GSEntity {
             addSpawn(BiomeDictionary.Type.PLAINS, EntitySkeletonRaider.class, 1, 1, 1);
         }
 
-
         registerModEntity(TOXIC_SLUDGE_ID, EntityToxicSludge.class, TOXIC_SLUDGE_NAME);
-        List<BiomeDictionary.Type> toxicSludgeBiomes = new ArrayList<>(Arrays.asList(
-                BiomeDictionary.Type.MESA,
-                BiomeDictionary.Type.FOREST,
-                BiomeDictionary.Type.JUNGLE,
-                BiomeDictionary.Type.PLAINS,
-                BiomeDictionary.Type.MOUNTAIN,
-                BiomeDictionary.Type.HILLS,
-                BiomeDictionary.Type.SWAMP,
-                BiomeDictionary.Type.SANDY,
-                BiomeDictionary.Type.SNOWY,
-                BiomeDictionary.Type.WASTELAND,
-                BiomeDictionary.Type.BEACH,
-                BiomeDictionary.Type.WATER
-        ));
-        addSpawn(toxicSludgeBiomes, EntityToxicSludge.class, 3, 1, 1);
+        addSpawn(OVERWORLD_BIOMES, EntityToxicSludge.class, 3, 1, 1);
+
+        registerModEntity(POSSESSED_ARMOR_ID, EntityPossessedArmor.class, POSSESSED_ARMOR_NAME);
+        addSpawn(OVERWORLD_BIOMES, EntityPossessedArmor.class, 10, 1, 1);
 
         registerModEntity(RAVEN_ID, EntityRaven.class, RAVEN_NAME);
 //        EntityRegistry.addSpawn(EntityRaven.class, 1, 3, 10, EnumCreatureType.AMBIENT);//TODO!!!!

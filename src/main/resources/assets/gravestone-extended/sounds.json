@@ -14,5 +14,29 @@
             "name" : "gravestone-extended:blocks/fluid/drop_of_acid",
             "stream" : true
         }]
+    },
+    "entity.possessed_armor.step1" : {
+        "category": "entity",
+        "subtitle": "entity.possessed_armor.step1",
+        "sounds" : [{
+            "name" : "gravestone-extended:entity/possessed_armor/step1",
+            "stream" : true
+        }]
+    },
+    "entity.possessed_armor.step2" : {
+        "category": "entity",
+        "subtitle": "entity.possessed_armor.step2",
+        "sounds" : [{
+            "name" : "gravestone-extended:entity/possessed_armor/step2",
+            "stream" : true
+        }]
+    },
+    "entity.possessed_armor.hurt" : {
+        "category": "entity",
+        "subtitle": "entity.possessed_armor.hurt",
+        "sounds" : [{
+            "name" : "gravestone-extended:entity/possessed_armor/hurt",
+            "stream" : true
+        }]
     }
 }
