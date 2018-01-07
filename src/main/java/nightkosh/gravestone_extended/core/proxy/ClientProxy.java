@@ -2,6 +2,7 @@ package nightkosh.gravestone_extended.core.proxy;
 
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.RenderItem;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.client.renderer.block.statemap.StateMapperBase;
 import net.minecraft.client.renderer.entity.RenderManager;
@@ -18,6 +19,7 @@ import nightkosh.gravestone_extended.core.ModInfo;
 import nightkosh.gravestone_extended.core.event.RenderEventHandler;
 import nightkosh.gravestone_extended.entity.EntityRaven;
 import nightkosh.gravestone_extended.entity.helper.EntityGroupOfGravesMobSpawnerHelper;
+import nightkosh.gravestone_extended.entity.item.EntityFireproofItem;
 import nightkosh.gravestone_extended.entity.monster.*;
 import nightkosh.gravestone_extended.entity.monster.crawler.*;
 import nightkosh.gravestone_extended.entity.monster.crawler.EntitySkullCrawler.SkullCrawlerType;
@@ -33,6 +35,7 @@ import nightkosh.gravestone_extended.models.entity.ModelDamnedWarrior;
 import nightkosh.gravestone_extended.models.entity.ModelUndeadCat;
 import nightkosh.gravestone_extended.models.entity.ModelUndeadDog;
 import nightkosh.gravestone_extended.renderer.entity.*;
+import nightkosh.gravestone_extended.renderer.entity.item.RendererFireproofItem;
 import nightkosh.gravestone_extended.renderer.entity.projectile.RendererBoneFishHook;
 import nightkosh.gravestone_extended.renderer.tileentity.*;
 import nightkosh.gravestone_extended.tileentity.*;
@@ -129,6 +132,7 @@ public class ClientProxy extends CommonProxy {
     @Override
     public void registerMobsRenderers() {
         RenderManager renderManager = Minecraft.getMinecraft().getRenderManager();
+        RenderItem renderItem = Minecraft.getMinecraft().getRenderItem();
 
         // zombie dog
         RenderingRegistry.registerEntityRenderingHandler(EntityZombieDog.class, new RenderUndeadDog(renderManager, new ModelUndeadDog(), new ModelUndeadDog()));
@@ -172,7 +176,10 @@ public class ClientProxy extends CommonProxy {
 
         // Spawner Helper
         RenderingRegistry.registerEntityRenderingHandler(EntityGroupOfGravesMobSpawnerHelper.class, new RenderSpawnerHelper(renderManager));
+
         RenderingRegistry.registerEntityRenderingHandler(EntityBoneFishHook.class, new RendererBoneFishHook(renderManager));
+
+        RenderingRegistry.registerEntityRenderingHandler(EntityFireproofItem.class, new RendererFireproofItem(renderManager, renderItem));
     }
 
     @Override

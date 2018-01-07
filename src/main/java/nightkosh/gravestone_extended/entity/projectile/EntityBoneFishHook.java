@@ -35,6 +35,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import nightkosh.gravestone_extended.core.GSBlock;
 import nightkosh.gravestone_extended.core.GSItem;
+import nightkosh.gravestone_extended.entity.item.EntityFireproofItem;
 import nightkosh.gravestone_extended.item.ItemFish;
 import nightkosh.gravestone_extended.item.tools.IBoneFishingPole;
 
@@ -420,7 +421,7 @@ public class EntityBoneFishHook extends EntityFishHook {
                 }
 
                 for (ItemStack stack : result) {
-                    EntityItem entityitem = new EntityItem(this.world, this.posX, this.posY + 1.5, this.posZ, stack);// TODO + 1.5
+                    EntityItem entityitem = new EntityFireproofItem(this.world, this.posX, this.posY + 0.5, this.posZ, stack);
                     double d0 = this.getAngler().posX - this.posX;
                     double d1 = this.getAngler().posY - this.posY;
                     double d2 = this.getAngler().posZ - this.posZ;
