@@ -38,5 +38,13 @@
             "name" : "gravestone-extended:entity/possessed_armor/hurt",
             "stream" : true
         }]
+    },
+    "entity.mummy.ambient" : {
+        "category": "entity",
+        "subtitle": "entity.mummy.ambient",
+        "sounds" : [{
+            "name" : "gravestone-extended:entity/mummy/ambient",
+            "stream" : true
+        }]
     }
 }

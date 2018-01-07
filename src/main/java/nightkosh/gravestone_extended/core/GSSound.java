@@ -31,6 +31,10 @@ public class GSSound {
     @GameRegistry.ObjectHolder("entity.possessed_armor.hurt")
     public static SoundEvent ENTITY_POSSESSED_ARMOR_HURT = createSoundEvent("entity.possessed_armor.hurt");
 
+    // MUMMY
+    @GameRegistry.ObjectHolder("entity.mummy.ambient")
+    public static SoundEvent ENTITY_MUMMY_AMBIENT = createSoundEvent("entity.mummy.ambient");
+
     private static SoundEvent createSoundEvent(final String soundName) {
         final ResourceLocation soundID = new ResourceLocation(ModInfo.ID, soundName);
         return new SoundEvent(soundID).setRegistryName(soundID);
@@ -42,7 +46,8 @@ public class GSSound {
         public static void registerSoundEvents(final RegistryEvent.Register<SoundEvent> event) {
             event.getRegistry().registerAll(BUBBLING, DROP_OF_ACID);
 
-            event.getRegistry().registerAll(ENTITY_POSSESSED_ARMOR_STEP_1, ENTITY_POSSESSED_ARMOR_STEP_2);
+            event.getRegistry().registerAll(ENTITY_POSSESSED_ARMOR_STEP_1, ENTITY_POSSESSED_ARMOR_STEP_2,
+                    ENTITY_MUMMY_AMBIENT);
         }
     }
 }

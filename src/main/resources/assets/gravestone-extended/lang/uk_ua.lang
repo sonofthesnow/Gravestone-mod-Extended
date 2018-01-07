@@ -289,6 +289,7 @@ entity.Villager.gravestone-extended:undertaker=Трунар
 entity.GSToxicSludge.name=токсичний слимак
 ## TODO !!!!!!!!!!
 entity.GSPossessedArmor.name=Possessed Armor
+entity.GSMummy.name=Mummy
 
 # Fluids
 fluid.gs_toxic_water=Токсична вода

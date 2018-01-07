@@ -301,6 +301,7 @@ entity.Villager.gravestone-extended:undertaker=Totengräber
 ## TODO !!!!!!!!!!
 entity.GSToxicSludge.name=Toxic Sludge
 entity.GSPossessedArmor.name=Possessed Armor
+entity.GSMummy.name=Mummy
 
 # Fluids
 ## TODO !!!!!!!!!!
