@@ -497,44 +497,11 @@ public class EntityBoneFishHook extends EntityFishHook {
                     // 60 25 13 2
                     chance = this.rand.nextInt(100) + Math.round(luck);
                     if (chance < 50) {
-                        tempList.add(new ItemStack(Items.FISH, 1, 0)); //cod
-                        if (biomeTypesList.contains(BiomeDictionary.Type.OCEAN) || biomeTypesList.contains(BiomeDictionary.Type.BEACH)) {
-                            tempList.add(new ItemStack(GSItem.FISH, 1, ItemFish.EnumFishType.BLUE_JELLYFISH.ordinal()));
-                        } else if (biomeTypesList.contains(BiomeDictionary.Type.SANDY)) {
-                            tempList.add(new ItemStack(GSItem.FISH, 1, ItemFish.EnumFishType.GOLDEN_KOI.ordinal()));
-                        } else if (biomeTypesList.contains(BiomeDictionary.Type.SNOWY)) {
-                            tempList.add(new ItemStack(GSItem.FISH, 1, ItemFish.EnumFishType.FROST_MINNOW.ordinal()));
-                        } else if (biomeTypesList.contains(BiomeDictionary.Type.SWAMP)) {
-                            tempList.add(new ItemStack(GSItem.FISH, 1, ItemFish.EnumFishType.MUD_TUNA.ordinal()));
-                        } else if (biomeTypesList.contains(BiomeDictionary.Type.JUNGLE)) {
-                            tempList.add(new ItemStack(GSItem.FISH, 1, ItemFish.EnumFishType.PIRANHA.ordinal()));
-                        } else if (biomeTypesList.contains(BiomeDictionary.Type.END)) {
-                            tempList = new ArrayList<>();
-                            tempList.add(new ItemStack(GSItem.FISH, 1, ItemFish.EnumFishType.ENDERFIN.ordinal()));
-                        }
+                        tier1(tempList, biomeTypesList);
                     } else if (chance < 80) {
-                        tempList.add(new ItemStack(Items.FISH, 1, 1)); //salmon
-
-                        if (biomeTypesList.contains(BiomeDictionary.Type.OCEAN) || biomeTypesList.contains(BiomeDictionary.Type.BEACH)) {
-                            tempList.add(new ItemStack(Items.FISH, 1, 3)); //puffer
-                        } else if (biomeTypesList.contains(BiomeDictionary.Type.END)) {
-                            tempList = new ArrayList<>();
-                            tempList.add(new ItemStack(GSItem.FISH, 1, ItemFish.EnumFishType.PEARL_BASS.ordinal()));
-                        } else {
-                            tempList.add(new ItemStack(GSItem.FISH, 1, ItemFish.EnumFishType.GOLDEN_KOI.ordinal()));
-                            tempList.add(new ItemStack(GSItem.FISH, 1, ItemFish.EnumFishType.MUD_TUNA.ordinal()));
-                        }
+                        tier2(tempList, biomeTypesList);
                     } else if (chance < 95) {
-                        if (biomeTypesList.contains(BiomeDictionary.Type.OCEAN) || biomeTypesList.contains(BiomeDictionary.Type.BEACH)) {
-                            tempList.add(new ItemStack(Items.FISH, 1, 2)); // clown
-                        } else if (biomeTypesList.contains(BiomeDictionary.Type.END)) {
-                            tempList.add(new ItemStack(GSItem.FISH, 1, ItemFish.EnumFishType.CHORUS_KOI.ordinal()));
-                        } else {
-                            tempList.add(new ItemStack(Items.FISH, 1, 3)); //puffer
-                            tempList.add(new ItemStack(GSItem.FISH, 1, ItemFish.EnumFishType.BLUE_JELLYFISH.ordinal()));
-                            tempList.add(new ItemStack(GSItem.FISH, 1, ItemFish.EnumFishType.FROST_MINNOW.ordinal()));
-                            tempList.add(new ItemStack(GSItem.FISH, 1, ItemFish.EnumFishType.PIRANHA.ordinal()));
-                        }
+                        tier3(tempList, biomeTypesList);
                     } else {
                         if (!world.canBlockSeeSky(pos)) {
                             if (pos.getY() < 50) {
@@ -542,15 +509,15 @@ public class EntityBoneFishHook extends EntityFishHook {
                                 if (pos.getY() < 40) {
                                     tempList.add(new ItemStack(GSItem.FISH, 1, ItemFish.EnumFishType.CAVEFISH.ordinal()));
                                     if (pos.getY() < 25) {
-                                        // TODO Angler Fish
+                                        tempList.add(new ItemStack(GSItem.FISH, 1, ItemFish.EnumFishType.ANGLER_FISH.ordinal()));
                                     }
                                 }
 
                             } else {
-                                tempList.add(new ItemStack(Items.FISH, 1, 2)); // clown
+                                tier4(tempList, biomeTypesList);
                             }
                         } else {
-                            tempList.add(new ItemStack(Items.FISH, 1, 2)); // clown
+                            tier4(tempList, biomeTypesList);
                         }
                     }
 
@@ -577,13 +544,12 @@ public class EntityBoneFishHook extends EntityFishHook {
                     }
                 }
             } else {
-                if (chance < 50) {
-                    tempList.add(new ItemStack(GSItem.FISH, 1, ItemFish.EnumFishType.OBSIDIFISH.ordinal()));
+                if (chance < 40) {
                     tempList.add(new ItemStack(GSItem.FISH, 1, ItemFish.EnumFishType.NETHER_SALMON.ordinal()));
                 } else if (chance < 80) {
                     tempList.add(new ItemStack(GSItem.FISH, 1, ItemFish.EnumFishType.MAGMA_JELLYFISH.ordinal()));
-                    tempList.add(new ItemStack(GSItem.FISH, 1, ItemFish.EnumFishType.NETHER_SALMON.ordinal()));
                     tempList.add(new ItemStack(GSItem.FISH, 1, ItemFish.EnumFishType.QUARTZ_COD.ordinal()));
+                    tempList.add(new ItemStack(GSItem.FISH, 1, ItemFish.EnumFishType.WITHERED_CRUCIAN.ordinal()));
                 } else if (chance < 95) {
                     tempList.add(new ItemStack(GSItem.FISH, 1, ItemFish.EnumFishType.FLAREFIN_KOI.ordinal()));
                     tempList.add(new ItemStack(GSItem.FISH, 1, ItemFish.EnumFishType.BLAZE_COD.ordinal()));
@@ -600,6 +566,77 @@ public class EntityBoneFishHook extends EntityFishHook {
         }
 
         return result;
+    }
+
+    private void tier1(List<ItemStack> tempList, Set<BiomeDictionary.Type> biomeTypesList) {
+        if (biomeTypesList.contains(BiomeDictionary.Type.OCEAN) || biomeTypesList.contains(BiomeDictionary.Type.BEACH)) {
+            tempList.add(new ItemStack(GSItem.FISH, 1, ItemFish.EnumFishType.BLUE_JELLYFISH.ordinal()));
+            tempList.add(new ItemStack(GSItem.FISH, 1, ItemFish.EnumFishType.ANGELFISH.ordinal()));
+            tempList.add(new ItemStack(GSItem.FISH, 1, ItemFish.EnumFishType.SQUID.ordinal()));
+        }
+        if (biomeTypesList.contains(BiomeDictionary.Type.END)) {
+            tempList.add(new ItemStack(GSItem.FISH, 1, ItemFish.EnumFishType.ENDERFIN.ordinal()));
+        }
+        if (tempList.isEmpty()) {
+            tempList.add(new ItemStack(Items.FISH, 1, 0)); //cod
+            tempList.add(new ItemStack(GSItem.FISH, 1, ItemFish.EnumFishType.SQUID.ordinal()));
+        }
+    }
+
+    private void tier2(List<ItemStack> tempList, Set<BiomeDictionary.Type> biomeTypesList) {
+        if (biomeTypesList.contains(BiomeDictionary.Type.OCEAN) || biomeTypesList.contains(BiomeDictionary.Type.BEACH)) {
+            tempList.add(new ItemStack(Items.FISH, 1, 3)); //puffer
+        }
+        if (biomeTypesList.contains(BiomeDictionary.Type.END)) {
+            tempList.add(new ItemStack(GSItem.FISH, 1, ItemFish.EnumFishType.PEARL_BASS.ordinal()));
+        }
+        if (biomeTypesList.contains(BiomeDictionary.Type.SANDY)) {
+            tempList.add(new ItemStack(GSItem.FISH, 1, ItemFish.EnumFishType.SANDY_BASS.ordinal()));
+        }
+        if (biomeTypesList.contains(BiomeDictionary.Type.SNOWY)) {
+            tempList.add(new ItemStack(GSItem.FISH, 1, ItemFish.EnumFishType.SNOWY_CRUCIAN.ordinal()));
+        }
+        if (biomeTypesList.contains(BiomeDictionary.Type.SWAMP)) {
+            tempList.add(new ItemStack(GSItem.FISH, 1, ItemFish.EnumFishType.RUFFE.ordinal()));
+        }
+        if (biomeTypesList.contains(BiomeDictionary.Type.JUNGLE)) {
+            tempList.add(new ItemStack(GSItem.FISH, 1, ItemFish.EnumFishType.PIRANHA.ordinal()));
+        }
+        if (tempList.isEmpty()) {
+            tempList.add(new ItemStack(Items.FISH, 1, 1)); //salmon
+        }
+    }
+
+    private void tier3(List<ItemStack> tempList, Set<BiomeDictionary.Type> biomeTypesList) {
+        if (biomeTypesList.contains(BiomeDictionary.Type.OCEAN) || biomeTypesList.contains(BiomeDictionary.Type.BEACH)) {
+            tempList.add(new ItemStack(Items.FISH, 1, 2)); // clown
+        }
+        if (biomeTypesList.contains(BiomeDictionary.Type.END)) {
+            tempList.add(new ItemStack(GSItem.FISH, 1, ItemFish.EnumFishType.CHORUS_KOI.ordinal()));
+        }
+        if (biomeTypesList.contains(BiomeDictionary.Type.SANDY)) {
+            tempList.add(new ItemStack(GSItem.FISH, 1, ItemFish.EnumFishType.GOLDEN_KOI.ordinal()));
+        }
+        if (biomeTypesList.contains(BiomeDictionary.Type.SNOWY)) {
+            tempList.add(new ItemStack(GSItem.FISH, 1, ItemFish.EnumFishType.FROST_MINNOW.ordinal()));
+        }
+        if (biomeTypesList.contains(BiomeDictionary.Type.SWAMP)) {
+            tempList.add(new ItemStack(GSItem.FISH, 1, ItemFish.EnumFishType.MUD_TUNA.ordinal()));
+        }
+        if (biomeTypesList.contains(BiomeDictionary.Type.JUNGLE)) {
+            tempList.add(new ItemStack(GSItem.FISH, 1, ItemFish.EnumFishType.SPARKLING_EEL.ordinal()));
+        }
+        if (tempList.isEmpty()) {
+            tempList.add(new ItemStack(GSItem.FISH, 1, ItemFish.EnumFishType.EXPLOSIVE_CRUCIAN.ordinal()));
+        }
+    }
+
+    private void tier4(List<ItemStack> tempList, Set<BiomeDictionary.Type> biomeTypesList) {
+        if (biomeTypesList.contains(BiomeDictionary.Type.OCEAN) || biomeTypesList.contains(BiomeDictionary.Type.BEACH)) {
+            tempList.add(new ItemStack(GSItem.FISH, 1, ItemFish.EnumFishType.SPONGE_EATER.ordinal()));
+        } else {
+            tier3(tempList, biomeTypesList);
+        }
     }
 
     static enum State {
