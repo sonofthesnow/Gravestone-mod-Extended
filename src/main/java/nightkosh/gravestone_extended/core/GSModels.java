@@ -134,11 +134,23 @@ public class GSModels {
             ModelLoader.setCustomModelResourceLocation(GSItem.FISH, ItemFish.EnumFishType.ENDERFIN.ordinal(), ResourcesModels.ENDERFIN);
             ModelLoader.setCustomModelResourceLocation(GSItem.FISH, ItemFish.EnumFishType.PEARL_BASS.ordinal(), ResourcesModels.PEARL_BASS);
             ModelLoader.setCustomModelResourceLocation(GSItem.FISH, ItemFish.EnumFishType.CHORUS_KOI.ordinal(), ResourcesModels.CHORUS_KOI);
+            ModelLoader.setCustomModelResourceLocation(GSItem.FISH, ItemFish.EnumFishType.EXPLOSIVE_CRUCIAN.ordinal(), ResourcesModels.EXPLOSIVE_CRUCIAN);
+            ModelLoader.setCustomModelResourceLocation(GSItem.FISH, ItemFish.EnumFishType.RUFFE.ordinal(), ResourcesModels.RUFFE);
+            ModelLoader.setCustomModelResourceLocation(GSItem.FISH, ItemFish.EnumFishType.SPARKLING_EEL.ordinal(), ResourcesModels.SPARKLING_EEL);
+            ModelLoader.setCustomModelResourceLocation(GSItem.FISH, ItemFish.EnumFishType.ANGELFISH.ordinal(), ResourcesModels.ANGELFISH);
+            ModelLoader.setCustomModelResourceLocation(GSItem.FISH, ItemFish.EnumFishType.ANGLER_FISH.ordinal(), ResourcesModels.ANGLER_FISH);
+            ModelLoader.setCustomModelResourceLocation(GSItem.FISH, ItemFish.EnumFishType.SPONGE_EATER.ordinal(), ResourcesModels.SPONGE_EATER);
+            ModelLoader.setCustomModelResourceLocation(GSItem.FISH, ItemFish.EnumFishType.SNOWY_CRUCIAN.ordinal(), ResourcesModels.SNOWY_CRUCIAN);
+            ModelLoader.setCustomModelResourceLocation(GSItem.FISH, ItemFish.EnumFishType.SQUID.ordinal(), ResourcesModels.SQUID);
+            ModelLoader.setCustomModelResourceLocation(GSItem.FISH, ItemFish.EnumFishType.WITHERED_CRUCIAN.ordinal(), ResourcesModels.WITHERED_CRUCIAN);
+            ModelLoader.setCustomModelResourceLocation(GSItem.FISH, ItemFish.EnumFishType.SANDY_BASS.ordinal(), ResourcesModels.SANDY_BASS);
             ModelBakery.registerItemVariants(GSItem.FISH, ResourcesModels.BLUE_JELLYFISH, ResourcesModels.GREEN_JELLYFISH, ResourcesModels.MAGMA_JELLYFISH,
                     ResourcesModels.BONE_FISH, ResourcesModels.MUD_TUNA, ResourcesModels.PIRANHA, ResourcesModels.GOLDEN_KOI, ResourcesModels.SPECULAR_FISH,
                     ResourcesModels.CAVEFISH, ResourcesModels.CURSED_KOI, ResourcesModels.SPOOKYFIN, ResourcesModels.OBSIDIFISH, ResourcesModels.NETHER_SALMON,
                     ResourcesModels.QUARTZ_COD, ResourcesModels.FLAREFIN_KOI, ResourcesModels.BLAZE_COD, ResourcesModels.ENDERFIN, ResourcesModels.PEARL_BASS,
-                    ResourcesModels.CHORUS_KOI);
+                    ResourcesModels.CHORUS_KOI, ResourcesModels.EXPLOSIVE_CRUCIAN, ResourcesModels.RUFFE, ResourcesModels.SPARKLING_EEL, ResourcesModels.ANGELFISH,
+                    ResourcesModels.ANGLER_FISH, ResourcesModels.SPONGE_EATER, ResourcesModels.SNOWY_CRUCIAN, ResourcesModels.SQUID, ResourcesModels.WITHERED_CRUCIAN,
+                    ResourcesModels.SANDY_BASS);
 
             ModelLoader.setCustomModelResourceLocation(GSItem.ENCHANTED_SKULL, 0, ResourcesModels.ENCHANTED_SKULL);
             ModelLoader.setCustomModelResourceLocation(GSItem.ENCHANTED_SKULL, 1, ResourcesModels.ENCHANTED_SKULL_WITHERED);

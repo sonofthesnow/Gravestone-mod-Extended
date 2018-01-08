@@ -58,6 +58,16 @@ public class ResourcesModels extends Resources {
     public static final ModelResourceLocation ENDERFIN = new ModelResourceLocation(ModInfo.ID + ":fish/" + ItemFish.EnumFishType.ENDERFIN.getName(), "inventory");
     public static final ModelResourceLocation PEARL_BASS = new ModelResourceLocation(ModInfo.ID + ":fish/" + ItemFish.EnumFishType.PEARL_BASS.getName(), "inventory");
     public static final ModelResourceLocation CHORUS_KOI = new ModelResourceLocation(ModInfo.ID + ":fish/" + ItemFish.EnumFishType.CHORUS_KOI.getName(), "inventory");
+    public static final ModelResourceLocation EXPLOSIVE_CRUCIAN = new ModelResourceLocation(ModInfo.ID + ":fish/" + ItemFish.EnumFishType.EXPLOSIVE_CRUCIAN.getName(), "inventory");
+    public static final ModelResourceLocation RUFFE = new ModelResourceLocation(ModInfo.ID + ":fish/" + ItemFish.EnumFishType.RUFFE.getName(), "inventory");
+    public static final ModelResourceLocation SPARKLING_EEL = new ModelResourceLocation(ModInfo.ID + ":fish/" + ItemFish.EnumFishType.SPARKLING_EEL.getName(), "inventory");
+    public static final ModelResourceLocation ANGELFISH = new ModelResourceLocation(ModInfo.ID + ":fish/" + ItemFish.EnumFishType.ANGELFISH.getName(), "inventory");
+    public static final ModelResourceLocation ANGLER_FISH = new ModelResourceLocation(ModInfo.ID + ":fish/" + ItemFish.EnumFishType.ANGLER_FISH.getName(), "inventory");
+    public static final ModelResourceLocation SPONGE_EATER = new ModelResourceLocation(ModInfo.ID + ":fish/" + ItemFish.EnumFishType.SPONGE_EATER.getName(), "inventory");
+    public static final ModelResourceLocation SNOWY_CRUCIAN = new ModelResourceLocation(ModInfo.ID + ":fish/" + ItemFish.EnumFishType.SNOWY_CRUCIAN.getName(), "inventory");
+    public static final ModelResourceLocation SQUID = new ModelResourceLocation(ModInfo.ID + ":fish/" + ItemFish.EnumFishType.SQUID.getName(), "inventory");
+    public static final ModelResourceLocation WITHERED_CRUCIAN = new ModelResourceLocation(ModInfo.ID + ":fish/" + ItemFish.EnumFishType.WITHERED_CRUCIAN.getName(), "inventory");
+    public static final ModelResourceLocation SANDY_BASS = new ModelResourceLocation(ModInfo.ID + ":fish/" + ItemFish.EnumFishType.SANDY_BASS.getName(), "inventory");
 
     public static final ModelResourceLocation ENCHANTED_SKULL = new ModelResourceLocation(GSItem.ENCHANTED_SKULL.getRegistryName(), "inventory");
     public static final ModelResourceLocation ENCHANTED_SKULL_WITHERED = new ModelResourceLocation(GSItem.ENCHANTED_SKULL.getRegistryName() + "_withered", "inventory");

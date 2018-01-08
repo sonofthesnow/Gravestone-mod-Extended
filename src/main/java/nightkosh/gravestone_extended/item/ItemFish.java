@@ -56,7 +56,17 @@ public class ItemFish extends Item {
         BLAZE_COD("blaze_cod"),
         ENDERFIN("enderfin"),
         PEARL_BASS("pearl_bass"),
-        CHORUS_KOI("chorus_koi");
+        CHORUS_KOI("chorus_koi"),
+        EXPLOSIVE_CRUCIAN("explosive_crucian"),
+        RUFFE("ruffe"),
+        SPARKLING_EEL("sparkling_eel"),
+        ANGELFISH("angelfish"),
+        ANGLER_FISH("angler_fish"),
+        SPONGE_EATER("sponge_eater"),
+        SNOWY_CRUCIAN("snowy_crucian"),
+        SQUID("squid"),
+        WITHERED_CRUCIAN("withered_crucian"),
+        SANDY_BASS("sandy_bass");
 
         private String name;
 

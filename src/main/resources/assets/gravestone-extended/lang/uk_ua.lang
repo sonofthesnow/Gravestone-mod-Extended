@@ -181,6 +181,17 @@ item.gravestone.blaze_cod.name=Вогняна тріска
 item.gravestone.enderfin.name=Плавець краю
 item.gravestone.pearl_bass.name=Перловий окунь
 item.gravestone.chorus_koi.name=Коі коруса
+## TODO !!!!!!!!!!
+item.gravestone.explosive_crucian.name=Explosive Crucian
+item.gravestone.ruffe.name=Ruffe
+item.gravestone.sparkling_eel.name=Sparkling Eel
+item.gravestone.angelfish.name=Angelfish
+item.gravestone.angler_fish.name=Angler Fish
+item.gravestone.sponge_eater.name=Sponge Eater
+item.gravestone.snowy_crucian.name=Snowy Crucian
+item.gravestone.squid.name=Squid
+item.gravestone.withered_crucian.name=Withered Crucian
+item.gravestone.sandy_bass.name=Sandy Bass
 
 ## Corpses
 item.corpse.steve=Труп Стіва

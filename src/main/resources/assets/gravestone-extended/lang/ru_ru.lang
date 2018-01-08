@@ -181,6 +181,16 @@ item.gravestone.blaze_cod.name=Огненная треска
 item.gravestone.enderfin.name=Плавник края
 item.gravestone.pearl_bass.name=Жемчужный окунь
 item.gravestone.chorus_koi.name=Кои коруса
+item.gravestone.explosive_crucian.name=Взрывной карась
+item.gravestone.ruffe.name=Ёрш
+item.gravestone.sparkling_eel.name=Искрящийся угорь
+item.gravestone.angelfish.name=Скалярия
+item.gravestone.angler_fish.name=Удильщик
+item.gravestone.sponge_eater.name=Губкоед
+item.gravestone.snowy_crucian.name=Снежный карась
+item.gravestone.squid.name=Кальмар
+item.gravestone.withered_crucian.name=Иссушённый карась
+item.gravestone.sandy_bass.name=Песчаный окунь
 
 ## Corpses
 item.corpse.steve=Труп Стива
