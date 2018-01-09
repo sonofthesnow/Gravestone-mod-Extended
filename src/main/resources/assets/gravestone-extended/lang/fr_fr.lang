@@ -323,15 +323,15 @@ entity.GSPigmanSkullCrawler.name=Zombie Pigman Skull Crawler
 entity.GSRaven.name=Corbeau
 ##TODO !!!!!!!!!!
 entity.GSSkeletonRaider.name=Skeleton Raider
-##TODO !!!!!!!!!!
 entity.GSZombieRaider.name=Zombie Raider
-##TODO !!!!!!!!!!
 entity.GSSkeleton.name=Skeleton
 entity.Villager.gravestone-extended:undertaker=Croque-mort
 ## TODO !!!!!!!!!!
 entity.GSToxicSludge.name=Toxic Sludge
 entity.GSPossessedArmor.name=Possessed Armor
 entity.GSMummy.name=Mummy
+entity.GSDrowned.name=Drowned
+entity.GSPhantomDiver.name=Phantom Diver
 
 # Fluids
 ## TODO !!!!!!!!!!

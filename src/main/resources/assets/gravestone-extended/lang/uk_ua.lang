@@ -301,6 +301,8 @@ entity.GSToxicSludge.name=токсичний слимак
 ## TODO !!!!!!!!!!
 entity.GSPossessedArmor.name=Possessed Armor
 entity.GSMummy.name=Mummy
+entity.GSDrowned.name=Drowned
+entity.GSPhantomDiver.name=Phantom Diver
 
 # Fluids
 fluid.gs_toxic_water=Токсична вода
