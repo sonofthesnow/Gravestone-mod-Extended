@@ -27,13 +27,18 @@ public class GSSound {
     public static SoundEvent ENTITY_POSSESSED_ARMOR_STEP_1 = createSoundEvent("entity.possessed_armor.step1");
     @GameRegistry.ObjectHolder("entity.possessed_armor.step2")
     public static SoundEvent ENTITY_POSSESSED_ARMOR_STEP_2 = createSoundEvent("entity.possessed_armor.step2");
-
     @GameRegistry.ObjectHolder("entity.possessed_armor.hurt")
     public static SoundEvent ENTITY_POSSESSED_ARMOR_HURT = createSoundEvent("entity.possessed_armor.hurt");
 
     // MUMMY
     @GameRegistry.ObjectHolder("entity.mummy.ambient")
     public static SoundEvent ENTITY_MUMMY_AMBIENT = createSoundEvent("entity.mummy.ambient");
+
+    // DROWNED
+    @GameRegistry.ObjectHolder("entity.drowned.ambient")
+    public static SoundEvent ENTITY_DROWNED_AMBIENT = createSoundEvent("entity.drowned.ambient");
+    @GameRegistry.ObjectHolder("entity.drowned.bubbles")
+    public static SoundEvent ENTITY_DROWNED_BUBBLES = createSoundEvent("entity.drowned.bubbles");
 
     private static SoundEvent createSoundEvent(final String soundName) {
         final ResourceLocation soundID = new ResourceLocation(ModInfo.ID, soundName);
@@ -46,8 +51,9 @@ public class GSSound {
         public static void registerSoundEvents(final RegistryEvent.Register<SoundEvent> event) {
             event.getRegistry().registerAll(BUBBLING, DROP_OF_ACID);
 
-            event.getRegistry().registerAll(ENTITY_POSSESSED_ARMOR_STEP_1, ENTITY_POSSESSED_ARMOR_STEP_2,
-                    ENTITY_MUMMY_AMBIENT);
+            event.getRegistry().registerAll(ENTITY_POSSESSED_ARMOR_STEP_1, ENTITY_POSSESSED_ARMOR_STEP_2, ENTITY_POSSESSED_ARMOR_HURT,
+                    ENTITY_MUMMY_AMBIENT,
+                    ENTITY_DROWNED_AMBIENT, ENTITY_DROWNED_BUBBLES);
         }
     }
 }

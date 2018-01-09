@@ -46,5 +46,21 @@
             "name" : "gravestone-extended:entity/mummy/ambient",
             "stream" : true
         }]
+    },
+    "entity.drowned.ambient" : {
+        "category": "entity",
+        "subtitle": "entity.drowned.ambient",
+        "sounds" : [{
+            "name" : "gravestone-extended:entity/drowned/ambient",
+            "stream" : true
+        }]
+    },
+    "entity.drowned.bubbles" : {
+        "category": "entity",
+        "subtitle": "entity.drowned.bubbles",
+        "sounds" : [{
+            "name" : "gravestone-extended:entity/drowned/bubbles",
+            "stream" : true
+        }]
     }
 }

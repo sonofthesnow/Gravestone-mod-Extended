@@ -84,7 +84,11 @@ public class EntityDrowned extends EntityMob {
 
     @Override
     protected SoundEvent getAmbientSound() {
-        return this.isInWater() ? GSSound.BUBBLING : GSSound.ENTITY_MUMMY_AMBIENT;
+        if (this.isInWater()) {
+            return this.rand.nextBoolean() ? GSSound.ENTITY_DROWNED_BUBBLES : GSSound.ENTITY_DROWNED_AMBIENT;
+        } else {
+            return GSSound.ENTITY_DROWNED_AMBIENT;
+        }
     }
 
     @Override
