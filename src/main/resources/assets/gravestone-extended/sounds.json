@@ -62,5 +62,21 @@
             "name" : "gravestone-extended:entity/drowned/bubbles",
             "stream" : true
         }]
+    },
+    "entity.drowned.step_1" : {
+        "category": "entity",
+        "subtitle": "entity.drowned.step_1",
+        "sounds" : [{
+            "name" : "gravestone-extended:entity/drowned/step_1",
+            "stream" : true
+        }]
+    },
+    "entity.drowned.step_2" : {
+        "category": "entity",
+        "subtitle": "entity.drowned.step_2",
+        "sounds" : [{
+            "name" : "gravestone-extended:entity/drowned/step_2",
+            "stream" : true
+        }]
     }
 }
