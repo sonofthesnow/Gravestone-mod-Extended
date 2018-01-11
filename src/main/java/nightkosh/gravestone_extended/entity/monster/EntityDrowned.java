@@ -2,7 +2,6 @@ package nightkosh.gravestone_extended.entity.monster;
 
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.EnumCreatureAttribute;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.*;
@@ -80,7 +79,7 @@ public class EntityDrowned extends EntityMob {
     public boolean attackEntityAsMob(Entity entity) {
         if (super.attackEntityAsMob(entity)) {
             if (entity instanceof EntityPlayer) {
-                ((EntityLivingBase) entity).addPotionEffect(new PotionEffect(GSPotion.CHOKE, 400));
+                ((EntityPlayer) entity).addPotionEffect(new PotionEffect(GSPotion.CHOKE, 400));
             }
             return true;
         } else {
