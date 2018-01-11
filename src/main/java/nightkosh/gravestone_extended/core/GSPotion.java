@@ -32,6 +32,7 @@ public class GSPotion {
     public static final Potion RECALL = new PotionRecall();
     public static final Potion BURNING = new PotionBurning();
     public static final Potion BLEEDING = new PotionBleeding();
+    public static final Potion CHOKE = new PotionChoke();
 
     public static final PotionType PURIFICATION_TYPE = new PotionTypePurification();
     public static final PotionType RUST_TYPE = new PotionTypeRust();
@@ -48,7 +49,7 @@ public class GSPotion {
 
     @SubscribeEvent
     public static void registerPotions(final RegistryEvent.Register<Potion> event) {
-        event.getRegistry().registerAll(CURSE, PURIFICATION, RUST, BONE_SKIN, RECALL, BURNING, BLEEDING);
+        event.getRegistry().registerAll(CURSE, PURIFICATION, RUST, BONE_SKIN, RECALL, BURNING, BLEEDING, CHOKE);
     }
 
     @SubscribeEvent

@@ -1,6 +1,7 @@
 package nightkosh.gravestone_extended;
 
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.common.capabilities.CapabilityManager;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.Mod;
@@ -12,6 +13,9 @@ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
 import nightkosh.gravestone.tileentity.TileEntityGraveStone;
+import nightkosh.gravestone_extended.capability.Choke;
+import nightkosh.gravestone_extended.capability.ChokeStorage;
+import nightkosh.gravestone_extended.capability.IChoke;
 import nightkosh.gravestone_extended.config.ExtendedConfig;
 import nightkosh.gravestone_extended.core.*;
 import nightkosh.gravestone_extended.core.commands.ExtendedCommands;
@@ -60,12 +64,15 @@ public class ModGravestoneExtended {
 
         GSTabs.registration();
         TileEntity.registration();
+
+        CapabilityManager.INSTANCE.register(IChoke.class, new ChokeStorage(), Choke.class);
     }
 
     @Mod.EventHandler
     public void load(FMLInitializationEvent event) {
         // register death event
         MinecraftForge.EVENT_BUS.register(new GSEventsHandler());
+        MinecraftForge.EVENT_BUS.register(new CapabilityHandler());
         FMLCommonHandler.instance().bus().register(new TickEventHandler());
         proxy.registerHandlers();
 

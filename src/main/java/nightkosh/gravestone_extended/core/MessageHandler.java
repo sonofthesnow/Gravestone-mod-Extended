@@ -1,12 +1,9 @@
 package nightkosh.gravestone_extended.core;
 
-import nightkosh.gravestone_extended.packets.AltarMessageToClient;
-import nightkosh.gravestone_extended.packets.AltarMessageToServer;
-import nightkosh.gravestone_extended.packets.ChiselMessageToServer;
-import nightkosh.gravestone_extended.packets.GraveDeathMessageToServer;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.minecraftforge.fml.common.network.simpleimpl.SimpleNetworkWrapper;
 import net.minecraftforge.fml.relauncher.Side;
+import nightkosh.gravestone_extended.packets.*;
 
 /**
  * GraveStone mod
@@ -22,5 +19,6 @@ public class MessageHandler {
         networkWrapper.registerMessage(AltarMessageToServer.class, AltarMessageToServer.class, 1, Side.SERVER);
         networkWrapper.registerMessage(AltarMessageToClient.class, AltarMessageToClient.class, 2, Side.CLIENT);
         networkWrapper.registerMessage(ChiselMessageToServer.class, ChiselMessageToServer.class, 3, Side.SERVER);
+        networkWrapper.registerMessage(ChokeMessageToClient.class, ChokeMessageToClient.class, 4, Side.CLIENT);
     }
 }

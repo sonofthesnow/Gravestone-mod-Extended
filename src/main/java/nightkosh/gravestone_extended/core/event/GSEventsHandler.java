@@ -1,5 +1,7 @@
 package nightkosh.gravestone_extended.core.event;
 
+import net.minecraft.block.material.Material;
+import net.minecraft.client.gui.ScaledResolution;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
@@ -15,12 +17,19 @@ import net.minecraft.nbt.NBTTagList;
 import net.minecraft.potion.PotionType;
 import net.minecraft.potion.PotionUtils;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.MathHelper;
+import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.event.entity.ProjectileImpactEvent;
 import net.minecraftforge.event.entity.living.*;
 import net.minecraftforge.event.entity.player.ItemFishedEvent;
+import net.minecraftforge.fml.client.FMLClientHandler;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
+import nightkosh.gravestone_extended.capability.ChokeProvider;
+import nightkosh.gravestone_extended.capability.IChoke;
 import nightkosh.gravestone_extended.config.ExtendedConfig;
 import nightkosh.gravestone_extended.core.GSBlock;
 import nightkosh.gravestone_extended.core.GSEnchantment;
@@ -41,6 +50,7 @@ import nightkosh.gravestone_extended.item.weapon.IBoneSword;
 import nightkosh.gravestone_extended.item.weapon.ItemBoneShield;
 import nightkosh.gravestone_extended.potion.PotionBleeding;
 import nightkosh.gravestone_extended.potion.PotionPurification;
+import org.lwjgl.opengl.GL11;
 
 /**
  * GraveStone mod
@@ -180,6 +190,32 @@ public class GSEventsHandler {
                 if (potionType == GSPotion.PURIFICATION_TYPE) {
                     PotionPurification.applyPotionOnBlocks(entityPotion);
                 }
+            }
+        }
+    }
+
+    @SubscribeEvent
+    @SideOnly(Side.CLIENT)
+    public void onTick(RenderGameOverlayEvent.Pre event) {
+        if (event.getType() == RenderGameOverlayEvent.ElementType.AIR) {
+
+            EntityPlayer player = FMLClientHandler.instance().getClient().player;
+            IChoke choke = player.getCapability(ChokeProvider.AIR_CAP, null);
+            int air = choke.getAir();
+
+            if (choke.isActive() && !player.isInsideOfMaterial(Material.WATER)) {
+                final ScaledResolution res = new ScaledResolution(FMLClientHandler.instance().getClient());
+                GL11.glEnable(GL11.GL_BLEND);
+
+                final int left = res.getScaledWidth() / 2 + 91;
+                final int top = res.getScaledHeight() - 49;
+                final int full = MathHelper.ceil((air - 2) * 10 / 300D);
+                final int partial = MathHelper.ceil(air * 10 / 300D) - full;
+
+                for (int i = 0; i < full + partial; i++) {
+                    FMLClientHandler.instance().getClient().ingameGUI.drawTexturedModalRect(left - i * 8 - 9, top, (i < full ? 16 : 25), 18, 9, 9);
+                }
+                GL11.glDisable(GL11.GL_BLEND);
             }
         }
     }
