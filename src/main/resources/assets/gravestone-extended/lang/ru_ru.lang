@@ -114,6 +114,10 @@ potion.bleeding.title=Кровотечение
 potion.effect.gs_bleeding_type=Зелье кровотечения
 splash_potion.effect.gs_bleeding_type=Взрывное зелье кровотечения
 lingering_potion.effect.gs_bleeding_type=Туманное зелье кровотечения
+potion.choke.title=Удушье
+potion.effect.gs_choke_type=Зелье удушья
+splash_potion.effect.gs_choke_type=Взрывное зелье удушья
+lingering_potion.effect.gs_choke_type=Туманное зелье удушья
 
 # Vanilla Potions
 potion.effect.gs_hunger_type=Зелье голода

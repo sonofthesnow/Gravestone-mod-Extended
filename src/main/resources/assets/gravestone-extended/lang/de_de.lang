@@ -117,6 +117,10 @@ potion.bleeding.title=Bleeding
 potion.effect.gs_bleeding_type=Potion of Bleeding
 splash_potion.effect.gs_bleeding_type=Splash Potion of Bleeding
 lingering_potion.effect.gs_bleeding_type=Lingering Potion of Bleeding
+potion.choke.title=Breathlessness
+potion.effect.gs_choke_type=Potion of Breathlessness
+splash_potion.effect.gs_choke_type=Splash Potion of Breathlessness
+lingering_potion.effect.gs_choke_type=Lingering Potion of Breathlessness
 
 # Vanilla Potions
 ## TODO !!!!!!!!!!!!
