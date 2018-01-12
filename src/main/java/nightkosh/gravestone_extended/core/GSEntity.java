@@ -1,6 +1,7 @@
 package nightkosh.gravestone_extended.core;
 
 import net.minecraft.entity.EntityLiving;
+import net.minecraft.entity.EntitySpawnPlacementRegistry;
 import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.biome.Biome;
@@ -128,25 +129,25 @@ public class GSEntity {
         // zombie dog
         registerModEntity(ZOMBIE_DOG_ID, EntityZombieDog.class, ZOMBIE_DOG_NAME);
         if (ExtendedConfig.spawnZombieDogs) {
-            addSpawn(BiomeDictionary.Type.FOREST, EntityZombieDog.class, 3, 1, 3);
+            addSpawn(BiomeDictionary.Type.FOREST, EntityZombieDog.class, 50, 1, 3);
         }
 
         // zombie cat
         registerModEntity(ZOMBIE_CAT_ID, EntityZombieCat.class, ZOMBIE_CAT_NAME);
         if (ExtendedConfig.spawnZombieCats) {
-            addSpawn(BiomeDictionary.Type.JUNGLE, EntityZombieCat.class, 3, 1, 1);
+            addSpawn(BiomeDictionary.Type.JUNGLE, EntityZombieCat.class, 50, 1, 1);
         }
 
         // skeleton dog
         registerModEntity(SKELETON_DOG_ID, EntitySkeletonDog.class, SKELETON_DOG_NAME);
         if (ExtendedConfig.spawnSkeletonDogs) {
-            addSpawn(BiomeDictionary.Type.FOREST, EntityZombieDog.class, 3, 1, 1);
+            addSpawn(BiomeDictionary.Type.FOREST, EntityZombieDog.class, 50, 1, 1);
         }
 
         // skeleton cat
         registerModEntity(SKELETON_CAT_ID, EntitySkeletonCat.class, SKELETON_CAT_NAME);
         if (ExtendedConfig.spawnSkeletonCats) {
-            addSpawn(BiomeDictionary.Type.JUNGLE, EntityZombieCat.class, 3, 1, 1);
+            addSpawn(BiomeDictionary.Type.JUNGLE, EntityZombieCat.class, 50, 1, 1);
         }
 
         // skull crawlers
@@ -154,47 +155,47 @@ public class GSEntity {
         registerModEntity(STRAY_SKULL_CRAWLER_ID, EntityStraySkullCrawler.class, STRAY_SKULL_CRAWLER_NAME);
         // wither
         registerModEntity(WITHER_SKULL_CRAWLER_ID, EntityWitherSkullCrawler.class, WITHER_SKULL_CRAWLER_NAME);
-        addSpawn(BiomeDictionary.Type.NETHER, EntityWitherSkullCrawler.class, 3, 1, 4);
+        addSpawn(BiomeDictionary.Type.NETHER, EntityWitherSkullCrawler.class, 5, 1, 4);
         // zombie
         registerModEntity(ZOMBIE_SKULL_CRAWLER_ID, EntityZombieSkullCrawler.class, ZOMBIE_SKULL_CRAWLER_NAME);
         registerModEntity(HUSK_SKULL_CRAWLER_ID, EntityHuskSkullCrawler.class, HUSK_SKULL_CRAWLER_NAME);
         registerModEntity(PIGMAN_SKULL_CRAWLER_ID, EntityPigmanSkullCrawler.class, PIGMAN_SKULL_CRAWLER_NAME);
 
         registerModEntity(SKELETON_ID, EntityGSSkeleton.class, SKELETON_NAME);
-        EntityRegistry.addSpawn(EntityGSSkeleton.class, 1, 1, 3, EnumCreatureType.MONSTER);
+        EntityRegistry.addSpawn(EntityGSSkeleton.class, 40, 1, 3, EnumCreatureType.MONSTER);
 
         registerModEntity(ZOMBIE_HORSE_ID, EntityZombieHorse.class, ZOMBIE_HORSE_NAME);
         registerModEntity(SKELETON_HORSE_ID, EntitySkeletonHorse.class, SKELETON_HORSE_NAME);
         if (ExtendedConfig.spawnUndeadHorses) {
-            addSpawn(BiomeDictionary.Type.PLAINS, EntityZombieHorse.class, 2, 1, 3);
-            addSpawn(BiomeDictionary.Type.PLAINS, EntitySkeletonHorse.class, 2, 1, 3);
+            addSpawn(BiomeDictionary.Type.PLAINS, EntityZombieHorse.class, 5, 1, 3);
+            addSpawn(BiomeDictionary.Type.PLAINS, EntitySkeletonHorse.class, 5, 1, 3);
         }
 
         registerModEntity(ZOMBIE_RAIDER_ID, EntityZombieRaider.class, ZOMBIE_RAIDER_NAME);
         if (ExtendedConfig.spawnZombieRaiders) {
-            addSpawn(BiomeDictionary.Type.PLAINS, EntityZombieRaider.class, 1, 1, 1);
+            addSpawn(BiomeDictionary.Type.PLAINS, EntityZombieRaider.class, 2, 1, 1);
         }
         registerModEntity(SKELETON_RAIDER_ID, EntitySkeletonRaider.class, SKELETON_RAIDER_NAME);
         if (ExtendedConfig.spawnSkeletonRaiders) {
-            addSpawn(BiomeDictionary.Type.PLAINS, EntitySkeletonRaider.class, 1, 1, 1);
+            addSpawn(BiomeDictionary.Type.PLAINS, EntitySkeletonRaider.class, 2, 1, 1);
         }
 
         registerModEntity(TOXIC_SLUDGE_ID, EntityToxicSludge.class, TOXIC_SLUDGE_NAME);
-        addSpawn(OVERWORLD_BIOMES, EntityToxicSludge.class, 3, 1, 1);
+        addSpawn(OVERWORLD_BIOMES, EntityToxicSludge.class, 5, 1, 1);
 
         registerModEntity(POSSESSED_ARMOR_ID, EntityPossessedArmor.class, POSSESSED_ARMOR_NAME);
-        addSpawn(OVERWORLD_BIOMES, EntityPossessedArmor.class, 10, 1, 1);
+        addSpawn(OVERWORLD_BIOMES, EntityPossessedArmor.class, 20, 1, 1);
 
         registerModEntity(MUMMY_ID, EntityMummy.class, MUMMY_NAME);
-        addSpawn(BiomeDictionary.Type.SANDY, EntityMummy.class, 10, 1, 1);
+        addSpawn(BiomeDictionary.Type.SANDY, EntityMummy.class, 20, 1, 1);
 
         registerModEntity(DROWNED_ID, EntityDrowned.class, DROWNED_NAME);
-        addSpawn(new ArrayList<>(Arrays.asList(
+        addSpawnWater(new ArrayList<>(Arrays.asList(
                 BiomeDictionary.Type.BEACH, BiomeDictionary.Type.RIVER, BiomeDictionary.Type.SWAMP
-        )), EntityDrowned.class, 10, 1, 1);
+        )), EntityDrowned.class, 20, 1, 1);
 
         registerModEntity(PHANTOM_DIVER_ID, EntityPhantomDiver.class, PHANTOM_DIVER_NAME);
-        addSpawn(BiomeDictionary.Type.OCEAN, EntityPhantomDiver.class, 10, 1, 1);
+        addSpawnWater(BiomeDictionary.Type.OCEAN, EntityPhantomDiver.class, 10, 1, 1);
 
         registerModEntity(RAVEN_ID, EntityRaven.class, RAVEN_NAME);
 //        EntityRegistry.addSpawn(EntityRaven.class, 1, 3, 10, EnumCreatureType.AMBIENT);//TODO!!!!
@@ -207,6 +208,17 @@ public class GSEntity {
         registerModEntity(BONE_FISH_HOOK_ID, EntityBoneFishHook.class, BONE_FISH_HOOK_NAME);
         registerModEntity(OBSIDIAN_FISH_HOOK_ID, EntityObsidianFishHook.class, OBSIDIAN_FISH_HOOK_NAME);
         registerModEntity(FIREPROOF_ITEM_ID, EntityFireproofItem.class, FIREPROOF_ITEM_NAME);
+    }
+
+    private static void addSpawnWater(BiomeDictionary.Type biomeType, Class<? extends EntityLiving> entityClass,
+                                 int spawnProbability, int spawnMinCount, int spawnMaxCount) {
+        addSpawnWater(Arrays.asList(biomeType), entityClass, spawnProbability, spawnMinCount, spawnMaxCount);
+    }
+
+    private static void addSpawnWater(List<BiomeDictionary.Type> biomeTypes, Class<? extends EntityLiving> entityClass,
+                                 int spawnProbability, int spawnMinCount, int spawnMaxCount) {
+        addSpawn(biomeTypes, entityClass, EnumCreatureType.WATER_CREATURE, spawnProbability, spawnMinCount, spawnMaxCount);
+        EntitySpawnPlacementRegistry.setPlacementType(entityClass, EntityLiving.SpawnPlacementType.IN_WATER);
     }
 
     private static void addSpawn(BiomeDictionary.Type biomeType, Class<? extends EntityLiving> entityClass,
