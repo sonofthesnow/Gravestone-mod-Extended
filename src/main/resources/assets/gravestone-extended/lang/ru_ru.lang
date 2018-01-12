@@ -321,6 +321,7 @@ entity.GSPossessedArmor.name=Одержимые доспехи
 entity.GSMummy.name=Мумия
 entity.GSDrowned.name=Утопленник
 entity.GSPhantomDiver.name=Фантомный дайвер
+entity.GSVampireBat.name=Летучая мышь-вампир
 
 # Fluids
 fluid.gs_toxic_water=Токсичная вода

@@ -177,6 +177,9 @@ public class ClientProxy extends CommonProxy {
         RenderingRegistry.registerEntityRenderingHandler(EntityDrowned.class, new RenderDrowned(renderManager));
         RenderingRegistry.registerEntityRenderingHandler(EntityPhantomDiver.class, new RenderPhantomDiver(renderManager));
 
+        // Vampire Bat
+        RenderingRegistry.registerEntityRenderingHandler(EntityVampireBat.class, new RenderVampireBat(renderManager));
+
         // Damned Warrior
         RenderingRegistry.registerEntityRenderingHandler(EntityDamnedWarrior.class, new RenderDamnedWarrior(renderManager, new ModelDamnedWarrior()));
 

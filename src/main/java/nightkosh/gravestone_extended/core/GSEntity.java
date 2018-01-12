@@ -75,6 +75,7 @@ public class GSEntity {
     public static final String MUMMY_NAME = "GSMummy";
     public static final String DROWNED_NAME = "GSDrowned";
     public static final String PHANTOM_DIVER_NAME = "GSPhantomDiver";
+    public static final String VAMPIRE_BAT_NAME = "GSVampireBat";
     public static final String RAVEN_NAME = "GSRaven";
     public static final String DAMNED_WARRIOR_NAME = "GSDamnedWarrior";
     public static final String SPAWNER_HELPER_NAME = "GSSpawnerHelper";
@@ -116,6 +117,7 @@ public class GSEntity {
     public static final ResourceLocation MUMMY_ID = new ResourceLocation(ModInfo.ID + ":" + MUMMY_NAME);
     public static final ResourceLocation DROWNED_ID = new ResourceLocation(ModInfo.ID + ":" + DROWNED_NAME);
     public static final ResourceLocation PHANTOM_DIVER_ID = new ResourceLocation(ModInfo.ID + ":" + PHANTOM_DIVER_NAME);
+    public static final ResourceLocation VAMPIRE_BAT_ID = new ResourceLocation(ModInfo.ID + ":" + VAMPIRE_BAT_NAME);
     public static final ResourceLocation DAMNED_WARRIOR_ID = new ResourceLocation(ModInfo.ID + ":" + DAMNED_WARRIOR_NAME);
     public static final ResourceLocation RAVEN_ID = new ResourceLocation(ModInfo.ID + ":" + RAVEN_NAME);
     public static final ResourceLocation SPAWNER_HELPER_ID = new ResourceLocation(ModInfo.ID + ":spawner_helper");
@@ -199,6 +201,9 @@ public class GSEntity {
 
         registerModEntity(PHANTOM_DIVER_ID, EntityPhantomDiver.class, PHANTOM_DIVER_NAME);
         addSpawnWater(BiomeDictionary.Type.OCEAN, EntityPhantomDiver.class, 10, 1, 1);
+
+        registerModEntity(VAMPIRE_BAT_ID, EntityVampireBat.class, VAMPIRE_BAT_NAME);
+        addSpawnWater(OVERWORLD_BIOMES, EntityVampireBat.class, 30, 1, 5);
 
         registerModEntity(RAVEN_ID, EntityRaven.class, RAVEN_NAME);
 //        EntityRegistry.addSpawn(EntityRaven.class, 1, 3, 10, EnumCreatureType.AMBIENT);//TODO!!!!
