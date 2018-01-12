@@ -159,6 +159,10 @@ item.gravestone.bone_sword_diamond.name=Diamond Bone Sword
 ## Shield
 item.gravestone.bone_shield.name=Bone Shield
 
+## Armor
+item.gravestone.diving_helmet.name=Diving Helmet
+item.gravestone.diving_helmet.tooltip=Provides unlimited breath under the water
+
 ## Other Items
 item.gravestone.toxic_slime.name=Toxic Slime
 item.gravestone.enchanted_skull.name=Enchanted Skull

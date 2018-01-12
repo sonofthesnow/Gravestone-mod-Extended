@@ -159,6 +159,10 @@ item.gravestone.bone_sword_diamond.name=Алмазный Костяной меч
 ## Shield
 item.gravestone.bone_shield.name=Костяной щит
 
+## Armor
+item.gravestone.diving_helmet.name=Водолазный шлем
+item.gravestone.diving_helmet.tooltip=Позволяет дышать под водой
+
 ## Other Items
 item.gravestone.toxic_slime.name=Токсичная слизь
 item.gravestone.enchanted_skull.name=Зачарованный череп

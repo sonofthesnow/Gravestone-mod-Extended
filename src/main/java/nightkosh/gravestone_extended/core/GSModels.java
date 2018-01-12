@@ -156,6 +156,8 @@ public class GSModels {
             ModelLoader.setCustomModelResourceLocation(GSItem.ENCHANTED_SKULL, 1, ResourcesModels.ENCHANTED_SKULL_WITHERED);
             ModelBakery.registerItemVariants(GSItem.ENCHANTED_SKULL, ResourcesModels.ENCHANTED_SKULL, ResourcesModels.ENCHANTED_SKULL_WITHERED);
 
+            ModelLoader.setCustomModelResourceLocation(GSItem.DIVING_HELMET, 0, ResourcesModels.DIVING_HELMET);
+
             ModelLoader.setCustomModelResourceLocation(GSItem.BONE_SWORD, 0, ResourcesModels.BONE_SWORD);
             ModelLoader.setCustomModelResourceLocation(GSItem.BONE_SWORD_IRON, 0, ResourcesModels.BONE_SWORD_IRON);
             ModelLoader.setCustomModelResourceLocation(GSItem.BONE_SWORD_GOLDEN, 0, ResourcesModels.BONE_SWORD_GOLDEN);

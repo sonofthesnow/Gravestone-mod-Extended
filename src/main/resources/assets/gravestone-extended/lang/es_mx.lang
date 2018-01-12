@@ -180,6 +180,11 @@ item.gravestone.bone_sword_diamond.name=Diamond Bone Sword
 ## TODO !!!!!!!!!!
 item.gravestone.bone_shield.name=Bone Shield
 
+## Armor
+## TODO !!!!!!!!!!
+item.gravestone.diving_helmet.name=Diving Helmet
+item.gravestone.diving_helmet.tooltip=Provides unlimited breath under the water
+
 ## Other Items
 ## TODO !!!!!!!!!!
 item.gravestone.toxic_slime.name=Toxic Slime

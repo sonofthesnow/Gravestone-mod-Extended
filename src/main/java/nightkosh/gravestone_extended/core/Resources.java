@@ -28,6 +28,9 @@ public class Resources extends nightkosh.gravestone.core.Resources{
     public static final ResourceLocation CANDLE = new ResourceLocation(BLOCK_LOCATION + "candle.png");
     public static final ResourceLocation PILE_OF_BONES = new ResourceLocation(BLOCK_LOCATION + "pileofbones.png");
 
+    // armor
+    public static final String DIVING_HELMET = EXT_MOD_NAME + ":textures/items/armor/diving_helmet.png";
+
     // gui
     public static final ResourceLocation ALTAR_GUI = new ResourceLocation(GUI_LOCATION + "altar_gui.png");
     public static final ResourceLocation CHISEL_GUI = new ResourceLocation(GUI_LOCATION + "chisel_gui.png");
