@@ -40,6 +40,8 @@ public class ResourcesModels extends Resources {
 
     public static final ModelResourceLocation TOXIC_SLIME = new ModelResourceLocation(GSItem.TOXIC_SLIME.getRegistryName(), "inventory");
 
+    public static final ModelResourceLocation BAT_WING = new ModelResourceLocation(GSItem.BAT_WING.getRegistryName(), "inventory");
+
     public static final ModelResourceLocation BLUE_JELLYFISH = new ModelResourceLocation(ModInfo.ID + ":fish/" + ItemFish.EnumFishType.BLUE_JELLYFISH.getName(), "inventory");
     public static final ModelResourceLocation GREEN_JELLYFISH = new ModelResourceLocation(ModInfo.ID + ":fish/" + ItemFish.EnumFishType.GREEN_JELLYFISH.getName(), "inventory");
     public static final ModelResourceLocation MAGMA_JELLYFISH = new ModelResourceLocation(ModInfo.ID + ":fish/" + ItemFish.EnumFishType.MAGMA_JELLYFISH.getName(), "inventory");
