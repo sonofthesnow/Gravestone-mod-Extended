@@ -173,6 +173,7 @@ public class ExtendedConfig {
     // haunted chest
     public static boolean replaceHauntedChest;
     public static boolean createCorpsesForModdedNotVanillaVillagers;
+    public static boolean overrideVanillaFishing;
 
     private static void otherConfigs() {
         // trap blocks
@@ -183,8 +184,10 @@ public class ExtendedConfig {
         // haunted chest
         replaceHauntedChest = config.get(Configuration.CATEGORY_GENERAL, "ReplaceHauntedChest", false).getBoolean(false);
 
-        // potions
         createCorpsesForModdedNotVanillaVillagers = config.get(Configuration.CATEGORY_GENERAL, "CreateCorpsesForModdedNotVanillaVillagers", false).getBoolean(false);
+
+        // override fishing
+        overrideVanillaFishing = config.get(Configuration.CATEGORY_GENERAL, "OverrideVanillaFishing", true).getBoolean(true);
     }
 
     // recipes

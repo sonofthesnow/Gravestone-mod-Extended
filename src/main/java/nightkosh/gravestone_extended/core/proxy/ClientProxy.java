@@ -5,6 +5,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.RenderItem;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.client.renderer.block.statemap.StateMapperBase;
+import net.minecraft.client.renderer.entity.RenderFish;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.util.text.translation.I18n;
 import net.minecraftforge.client.model.ModelLoader;
@@ -29,6 +30,7 @@ import nightkosh.gravestone_extended.entity.monster.pet.EntitySkeletonDog;
 import nightkosh.gravestone_extended.entity.monster.pet.EntityZombieCat;
 import nightkosh.gravestone_extended.entity.monster.pet.EntityZombieDog;
 import nightkosh.gravestone_extended.entity.projectile.EntityBoneFishHook;
+import nightkosh.gravestone_extended.entity.projectile.EntityCustomFishHook;
 import nightkosh.gravestone_extended.gui.GSGraveTextGui;
 import nightkosh.gravestone_extended.item.ItemGSMonsterPlacer;
 import nightkosh.gravestone_extended.models.entity.ModelDamnedWarrior;
@@ -181,6 +183,7 @@ public class ClientProxy extends CommonProxy {
         // Spawner Helper
         RenderingRegistry.registerEntityRenderingHandler(EntityGroupOfGravesMobSpawnerHelper.class, new RenderSpawnerHelper(renderManager));
 
+        RenderingRegistry.registerEntityRenderingHandler(EntityCustomFishHook.class, new RenderFish(renderManager));
         RenderingRegistry.registerEntityRenderingHandler(EntityBoneFishHook.class, new RendererBoneFishHook(renderManager));
 
         RenderingRegistry.registerEntityRenderingHandler(EntityFireproofItem.class, new RendererFireproofItem(renderManager, renderItem));

@@ -20,6 +20,7 @@ import nightkosh.gravestone_extended.entity.monster.pet.EntitySkeletonDog;
 import nightkosh.gravestone_extended.entity.monster.pet.EntityZombieCat;
 import nightkosh.gravestone_extended.entity.monster.pet.EntityZombieDog;
 import nightkosh.gravestone_extended.entity.projectile.EntityBoneFishHook;
+import nightkosh.gravestone_extended.entity.projectile.EntityCustomFishHook;
 import nightkosh.gravestone_extended.entity.projectile.EntityObsidianFishHook;
 
 import java.util.ArrayList;
@@ -77,6 +78,7 @@ public class GSEntity {
     public static final String RAVEN_NAME = "GSRaven";
     public static final String DAMNED_WARRIOR_NAME = "GSDamnedWarrior";
     public static final String SPAWNER_HELPER_NAME = "GSSpawnerHelper";
+    public static final String CUSTOM_FISH_HOOK_NAME = "GSCustomFishHook";
     public static final String BONE_FISH_HOOK_NAME = "GSBoneFishHook";
     public static final String OBSIDIAN_FISH_HOOK_NAME = "GSObsidianFishHook";
     public static final String FIREPROOF_ITEM_NAME = "GSFireproofItem";
@@ -117,6 +119,7 @@ public class GSEntity {
     public static final ResourceLocation DAMNED_WARRIOR_ID = new ResourceLocation(ModInfo.ID + ":" + DAMNED_WARRIOR_NAME);
     public static final ResourceLocation RAVEN_ID = new ResourceLocation(ModInfo.ID + ":" + RAVEN_NAME);
     public static final ResourceLocation SPAWNER_HELPER_ID = new ResourceLocation(ModInfo.ID + ":spawner_helper");
+    public static final ResourceLocation CUSTOM_FISH_HOOK_ID = new ResourceLocation(ModInfo.ID + ":custom_fish_hook");
     public static final ResourceLocation BONE_FISH_HOOK_ID = new ResourceLocation(ModInfo.ID + ":bone_fish_hook");
     public static final ResourceLocation OBSIDIAN_FISH_HOOK_ID = new ResourceLocation(ModInfo.ID + ":obsidian_fish_hook");
     public static final ResourceLocation FIREPROOF_ITEM_ID = new ResourceLocation(ModInfo.ID + ":fireproof_item");
@@ -205,6 +208,7 @@ public class GSEntity {
 
         registerModEntity(SPAWNER_HELPER_ID, EntityGroupOfGravesMobSpawnerHelper.class, SPAWNER_HELPER_NAME);
 
+        registerModEntity(CUSTOM_FISH_HOOK_ID, EntityCustomFishHook.class, CUSTOM_FISH_HOOK_NAME);
         registerModEntity(BONE_FISH_HOOK_ID, EntityBoneFishHook.class, BONE_FISH_HOOK_NAME);
         registerModEntity(OBSIDIAN_FISH_HOOK_ID, EntityObsidianFishHook.class, OBSIDIAN_FISH_HOOK_NAME);
         registerModEntity(FIREPROOF_ITEM_ID, EntityFireproofItem.class, FIREPROOF_ITEM_NAME);

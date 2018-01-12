@@ -79,7 +79,7 @@ public class BlockFluidToxicWater extends BlockFluidClassic {
             }
         } else if (!(entity instanceof EntityItem) && !(entity instanceof EntityBoneFishHook)) {
             dealDamage = true;
-            if (entity.getClass().equals(EntityFishHook.class)) {
+            if (entity instanceof EntityFishHook) {
                 meltEffect(world, pos);
                 if (entity.ticksExisted > 20) {
                     entity.setDead();
