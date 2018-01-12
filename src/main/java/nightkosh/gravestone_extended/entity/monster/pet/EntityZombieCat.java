@@ -22,6 +22,7 @@ import net.minecraft.world.biome.Biome;
 import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import nightkosh.gravestone_extended.config.ExtendedConfig;
 import nightkosh.gravestone_extended.core.Resources;
 import nightkosh.gravestone_extended.entity.ai.EntityAINearestAttackableHorse;
 
@@ -50,15 +51,16 @@ public class EntityZombieCat extends EntityUndeadCat {
         this.tasks.addTask(2, new EntityAIAttackMelee(this, 1, false));
         this.tasks.addTask(4, new EntityAIMoveTowardsRestriction(this, 1));
         this.tasks.addTask(6, new EntityAIWander(this, 1));
-//        this.tasks.addTask(3, new EntityAIAttackOnCollide(this, EntityVillager.class, 1, true));
-//        this.tasks.addTask(3, new EntityAIAttackOnCollide(this, EntityWolf.class, 1, true));
-//        this.tasks.addTask(3, new EntityAIAttackOnCollide(this, EntityOcelot.class, 1, true));
-//        this.tasks.addTask(4, new EntityAIAttackLivingHorse(this, 1, false));
         this.tasks.addTask(5, new EntityAIMoveThroughVillage(this, 1, false));
         this.targetTasks.addTask(2, new EntityAINearestAttackableTarget(this, EntityVillager.class, false));
-        this.targetTasks.addTask(2, new EntityAINearestAttackableTarget(this, EntityWolf.class, false));
-        this.targetTasks.addTask(2, new EntityAINearestAttackableTarget(this, EntityOcelot.class, false));
-        this.targetTasks.addTask(4, new EntityAINearestAttackableTarget(this, EntityChicken.class, false));
+        if (ExtendedConfig.zombiePetsAttackPets) {
+            this.targetTasks.addTask(2, new EntityAINearestAttackableTarget(this, EntityWolf.class, false));
+            this.targetTasks.addTask(2, new EntityAINearestAttackableTarget(this, EntityOcelot.class, false));
+        }
+        if (ExtendedConfig.zombiePetsAttackAnimals) {
+            this.targetTasks.addTask(4, new EntityAINearestAttackableTarget(this, EntityChicken.class, false));
+        }
+
         this.targetTasks.addTask(4, new EntityAINearestAttackableHorse(this, false));
     }
 

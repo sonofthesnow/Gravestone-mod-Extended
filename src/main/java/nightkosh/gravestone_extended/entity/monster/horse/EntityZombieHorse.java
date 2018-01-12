@@ -20,6 +20,7 @@ import net.minecraft.util.text.translation.I18n;
 import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.World;
 import net.minecraft.world.storage.loot.LootTableList;
+import nightkosh.gravestone_extended.config.ExtendedConfig;
 import nightkosh.gravestone_extended.core.GSEntity;
 import nightkosh.gravestone_extended.entity.ai.EntityAINearestAttackableHorse;
 import nightkosh.gravestone_extended.entity.ai.EntityUndeadHorseAINearestAttackableTarget;
@@ -43,8 +44,10 @@ public class EntityZombieHorse extends EntityUndeadHorse {
         this.tasks.addTask(5, new EntityAIMoveThroughVillage(this, 1, false));
 
         this.targetTasks.addTask(2, new EntityUndeadHorseAINearestAttackableTarget(this, EntityVillager.class, false));
-        this.targetTasks.addTask(2, new EntityUndeadHorseAINearestAttackableTarget(this, EntityWolf.class, false));
-        this.targetTasks.addTask(2, new EntityUndeadHorseAINearestAttackableTarget(this, EntityOcelot.class, false));
+        if (ExtendedConfig.zombiePetsAttackPets) {
+            this.targetTasks.addTask(2, new EntityUndeadHorseAINearestAttackableTarget(this, EntityWolf.class, false));
+            this.targetTasks.addTask(2, new EntityUndeadHorseAINearestAttackableTarget(this, EntityOcelot.class, false));
+        }
         this.targetTasks.addTask(4, new EntityAINearestAttackableHorse(this, false));
     }
 
