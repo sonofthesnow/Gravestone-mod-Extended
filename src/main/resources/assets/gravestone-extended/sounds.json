@@ -47,6 +47,14 @@
             "stream" : true
         }]
     },
+    "entity.mummy.step" : {
+        "category": "entity",
+        "subtitle": "entity.mummy.step",
+        "sounds" : [{
+            "name" : "gravestone-extended:entity/mummy/step",
+            "stream" : true
+        }]
+    },
     "entity.drowned.ambient" : {
         "category": "entity",
         "subtitle": "entity.drowned.ambient",

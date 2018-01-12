@@ -110,6 +110,6 @@ public class EntityMummy extends EntityMob {
 
     @Override
     protected void playStepSound(BlockPos pos, Block block) {
-        this.playSound(SoundEvents.ENTITY_HUSK_STEP, 0.15F, 1);
+        this.playSound(GSSound.ENTITY_MUMMY_STEP, 0.15F, 1);
     }
 }
