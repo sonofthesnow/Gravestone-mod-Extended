@@ -133,6 +133,18 @@ potion.choke.title=Breathlessness
 potion.effect.gs_choke_type=Potion of Breathlessness
 splash_potion.effect.gs_choke_type=Splash Potion of Breathlessness
 lingering_potion.effect.gs_choke_type=Lingering Potion of Breathlessness
+potion.inferno.title=Inferno
+potion.effect.gs_inferno_type=Potion of Inferno
+splash_potion.effect.gs_inferno_type=Splash Potion of Inferno
+lingering_potion.effect.gs_inferno_type=Lingering Potion of Inferno
+potion.cursed_inferno.title=Cursed Inferno
+potion.effect.gs_cursed_inferno_type=Potion of Cursed Inferno
+splash_potion.effect.gs_cursed_inferno_type=Splash Potion of Cursed Inferno
+lingering_potion.effect.gs_cursed_inferno_type=Lingering Potion of Cursed Inferno
+potion.cursed_flame.title=Cursed Flame
+potion.effect.gs_cursed_flame_type=Potion of Cursed Flame
+splash_potion.effect.gs_cursed_flame_type=Splash Potion of Cursed Flame
+lingering_potion.effect.gs_cursed_flame_type=Lingering Potion of Cursed Flame
 
 # Vanilla Potions
 ## TODO !!!!!!!!!!!!

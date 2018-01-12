@@ -118,6 +118,18 @@ potion.choke.title=Удушье
 potion.effect.gs_choke_type=Зелье удушья
 splash_potion.effect.gs_choke_type=Взрывное зелье удушья
 lingering_potion.effect.gs_choke_type=Туманное зелье удушья
+potion.inferno.title=Инферно
+potion.effect.gs_inferno_type=Зелье инферно
+splash_potion.effect.gs_inferno_type=Взрывное зелье инферно
+lingering_potion.effect.gs_inferno_type=Туманное зелье инферно
+potion.cursed_inferno.title=Проклятое инферно
+potion.effect.gs_cursed_inferno_type=Зелье проклятого инферно
+splash_potion.effect.gs_cursed_inferno_type=Взрывное зелье проклятого инферно
+lingering_potion.effect.gs_cursed_inferno_type=Туманное зелье проклятого инферно
+potion.cursed_flame.title=Проклятое пламя
+potion.effect.gs_cursed_flame_type=Зелье проклятого пламени
+splash_potion.effect.gs_cursed_flame_type=Взрывное зелье проклятого пламени
+lingering_potion.effect.gs_cursed_flame_type=Туманное зелье проклятого пламени
 
 # Vanilla Potions
 potion.effect.gs_hunger_type=Зелье голода

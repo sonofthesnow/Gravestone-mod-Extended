@@ -50,6 +50,7 @@ public class ExtendedConfig {
         config.load();
         structures();
         gravesConfig();
+        potionsConfigs();
         otherConfigs();
         recipesConfigs();
         entityConfig();
@@ -158,6 +159,13 @@ public class ExtendedConfig {
         isFogEnabled = config.get(Config.CATEGORY_GRAVES, "CemeteryFogEnabled", true).getBoolean(true);
     }
 
+
+    public static boolean infernoDealsDamageToPlayers;
+
+    private static void potionsConfigs() {
+        infernoDealsDamageToPlayers = config.get(CATEGORY_POTIONS, "InfernoDealsDamageToPlayers", false).getBoolean(false);
+    }
+
     // disable/enable time changing by night stone
     public static boolean enableNightStone;
     public static boolean enableThunderStone;
@@ -176,7 +184,6 @@ public class ExtendedConfig {
         replaceHauntedChest = config.get(Configuration.CATEGORY_GENERAL, "ReplaceHauntedChest", false).getBoolean(false);
 
         // potions
-//        cursePotionEffectId = config.get(CATEGORY_POTIONS, "CursePotionEffectId", Potion.CURSE_DEFAULT_ID).getInt();
         createCorpsesForModdedNotVanillaVillagers = config.get(Configuration.CATEGORY_GENERAL, "CreateCorpsesForModdedNotVanillaVillagers", false).getBoolean(false);
     }
 
