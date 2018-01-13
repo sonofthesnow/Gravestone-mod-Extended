@@ -9,6 +9,9 @@ import net.minecraft.entity.ai.EntityAIMoveTowardsRestriction;
 import net.minecraft.entity.ai.EntityAIWanderAvoidWater;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.SoundEvents;
+import net.minecraft.network.datasync.DataParameter;
+import net.minecraft.network.datasync.DataSerializers;
+import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
@@ -19,6 +22,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import nightkosh.gravestone_extended.core.GSSound;
 import nightkosh.gravestone_extended.core.Resources;
+import nightkosh.gravestone_extended.entity.ai.AIBarghestInvisible;
 import nightkosh.gravestone_extended.entity.monster.pet.EntityUndeadDog;
 import nightkosh.gravestone_extended.entity.monster.pet.EnumUndeadMobType;
 
@@ -29,6 +33,10 @@ import nightkosh.gravestone_extended.entity.monster.pet.EnumUndeadMobType;
  * @license Lesser GNU Public License v3 (http://www.gnu.org/licenses/lgpl.html)
  */
 public class EntityBarghest extends EntityUndeadDog {
+
+    protected boolean isBarghestInvisible;
+    private static final DataParameter<Boolean> INVISIBLE_ID = EntityDataManager.createKey(EntityBarghest.class, DataSerializers.BOOLEAN);
+
     public EntityBarghest(World world) {
         super(world);
         this.setSize(1.2F, 1.7F);
@@ -37,14 +45,30 @@ public class EntityBarghest extends EntityUndeadDog {
 
     @Override
     public ResourceLocation getTexture() {
-        return Resources.BARGHEST;
+        if (this.isBarghestInvisible()) {
+            return Resources.BARGHEST_INVISIBLE;
+        } else {
+            return Resources.BARGHEST;
+        }
     }
 
     @Override
     protected void initEntityAI() {
+        this.tasks.addTask(1, new AIBarghestInvisible(this));
         this.tasks.addTask(2, new EntityAIAttackMelee(this, 1, false));
         this.tasks.addTask(5, new EntityAIMoveTowardsRestriction(this, 1));
         this.tasks.addTask(8, new EntityAIWanderAvoidWater(this, 1));
+    }
+
+    @Override
+    protected void updateAITasks() {
+        this.dataManager.set(INVISIBLE_ID, isBarghestInvisible);
+    }
+
+    @Override
+    protected void entityInit() {
+        super.entityInit();
+        this.dataManager.register(INVISIBLE_ID, isBarghestInvisible);
     }
 
     @Override
@@ -64,15 +88,12 @@ public class EntityBarghest extends EntityUndeadDog {
     @Override
     public void onLivingUpdate() {
         if (this.world.isRemote) {
-            for (int i = 0; i < 10; i++) {
-                double x = 1.5 - this.rand.nextDouble() * 3;
-                double y = 0.5 + this.rand.nextDouble() * 1.5;
-                double z = 1.5 - this.rand.nextDouble() * 3;
-                this.world.spawnParticle(EnumParticleTypes.SUSPENDED_DEPTH,
-//                this.world.spawnParticle(EnumParticleTypes.SMOKE_NORMAL,
-                        this.posX + x,
-                        this.posY + y,
-                        this.posZ + z,
+            int count = this.isBarghestInvisible() ? 5 : 10;
+            for (int i = 0; i < count; i++) {
+                this.world.spawnParticle(EnumParticleTypes.SMOKE_NORMAL,
+                        this.posX + 1.5 - this.rand.nextDouble() * 3,
+                        this.posY + 0.5 + this.rand.nextDouble() * 1.5,
+                        this.posZ + 1.5 - this.rand.nextDouble() * 3,
                         0, 0, 0);
             }
         }
@@ -90,6 +111,14 @@ public class EntityBarghest extends EntityUndeadDog {
         } else {
             return false;
         }
+    }
+
+    public void setBarghestInvisible(boolean isInvisible) {
+        this.isBarghestInvisible = isInvisible;
+    }
+
+    public boolean isBarghestInvisible() {
+        return this.dataManager.get(INVISIBLE_ID).booleanValue();
     }
 
     @Override
