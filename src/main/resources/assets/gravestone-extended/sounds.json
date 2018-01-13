@@ -15,18 +15,14 @@
             "stream" : true
         }]
     },
-    "entity.possessed_armor.step1" : {
+    "entity.possessed_armor.step" : {
         "category": "entity",
-        "subtitle": "entity.possessed_armor.step1",
+        "subtitle": "entity.possessed_armor.step",
         "sounds" : [{
             "name" : "gravestone-extended:entity/possessed_armor/step1",
             "stream" : true
-        }]
-    },
-    "entity.possessed_armor.step2" : {
-        "category": "entity",
-        "subtitle": "entity.possessed_armor.step2",
-        "sounds" : [{
+        },
+        {
             "name" : "gravestone-extended:entity/possessed_armor/step2",
             "stream" : true
         }]
@@ -71,18 +67,14 @@
             "stream" : true
         }]
     },
-    "entity.drowned.step_1" : {
+    "entity.drowned.step" : {
         "category": "entity",
-        "subtitle": "entity.drowned.step_1",
+        "subtitle": "entity.drowned.step",
         "sounds" : [{
             "name" : "gravestone-extended:entity/drowned/step_1",
             "stream" : true
-        }]
-    },
-    "entity.drowned.step_2" : {
-        "category": "entity",
-        "subtitle": "entity.drowned.step_2",
-        "sounds" : [{
+        },
+        {
             "name" : "gravestone-extended:entity/drowned/step_2",
             "stream" : true
         }]

@@ -157,6 +157,6 @@ public class EntityPossessedArmor extends EntityMob {
 
     @Override
     protected void playStepSound(BlockPos pos, Block block) {
-        this.playSound(this.rand.nextBoolean() ? GSSound.ENTITY_POSSESSED_ARMOR_STEP_1 : GSSound.ENTITY_POSSESSED_ARMOR_STEP_2, 0.15F, 1);
+        this.playSound(GSSound.ENTITY_POSSESSED_ARMOR_STEP, 0.15F, 1);
     }
 }
