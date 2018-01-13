@@ -63,7 +63,7 @@ public class Resources extends nightkosh.gravestone.core.Resources{
     public static final ResourceLocation BARGHEST_EYES = new ResourceLocation(ENTITY_LOCATION + "barghest/eyes.png");
     public static final ResourceLocation ZOMBIE_DOG = new ResourceLocation(ENTITY_LOCATION + "undead_pets/dog/zombie.png");
     public static final ResourceLocation GREEN_ZOMBIE_DOG = new ResourceLocation(ENTITY_LOCATION + "undead_pets/dog/zombie_green.png");
-    public static final ResourceLocation ZOMBIE_OZELOT = new ResourceLocation(ENTITY_LOCATION + "undead_pets/zombie_ozelot.png");
+    public static final ResourceLocation ZOMBIE_OZELOT = new ResourceLocation(ENTITY_LOCATION + "undead_pets/cat/zombie_ozelot.png");
     public static final ResourceLocation ZOMBIE_CAT_BLACK = new ResourceLocation(ENTITY_LOCATION + "undead_pets/cat/zombie_black.png");
     public static final ResourceLocation ZOMBIE_CAT_RED = new ResourceLocation(ENTITY_LOCATION + "undead_pets/cat/zombie_red.png");
     public static final ResourceLocation ZOMBIE_CAT_SIAMESE = new ResourceLocation(ENTITY_LOCATION + "undead_pets/cat/zombie_siamese.png");
