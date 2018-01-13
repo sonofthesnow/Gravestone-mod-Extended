@@ -200,7 +200,7 @@ public class GSEntity {
         )), EntityDrowned.class, 20, 1, 1);
 
         registerModEntity(PHANTOM_DIVER_ID, EntityPhantomDiver.class, PHANTOM_DIVER_NAME);
-        addSpawnWater(BiomeDictionary.Type.OCEAN, EntityPhantomDiver.class, 10, 1, 1);
+        addSpawnWater(BiomeDictionary.Type.OCEAN, EntityPhantomDiver.class, 20, 1, 1);
 
         registerModEntity(VAMPIRE_BAT_ID, EntityVampireBat.class, VAMPIRE_BAT_NAME);
         addSpawnWater(OVERWORLD_BIOMES, EntityVampireBat.class, 30, 1, 5);

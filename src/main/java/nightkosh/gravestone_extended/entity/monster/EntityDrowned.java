@@ -140,4 +140,9 @@ public class EntityDrowned extends EntityMob {
     public boolean getCanSpawnHere() {
         return this.posY < this.world.getSeaLevel() && super.getCanSpawnHere();
     }
+
+    @Override
+    public boolean isNotColliding() {
+        return this.world.checkNoEntityCollision(this.getEntityBoundingBox(), this) && this.world.getCollisionBoxes(this, this.getEntityBoundingBox()).isEmpty();
+    }
 }
