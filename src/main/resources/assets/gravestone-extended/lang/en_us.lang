@@ -323,6 +323,7 @@ entity.GSMummy.name=Mummy
 entity.GSDrowned.name=Drowned
 entity.GSPhantomDiver.name=Phantom Diver
 entity.GSVampireBat.name=Vampire Bat
+entity.GSBarghest.name=Barghest
 
 # Fluids
 fluid.gs_toxic_water=Toxic Water

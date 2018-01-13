@@ -1,7 +1,5 @@
 package nightkosh.gravestone_extended.renderer.entity;
 
-import nightkosh.gravestone_extended.entity.monster.pet.EntityUndeadDog;
-import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.renderer.entity.RenderLiving;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.entity.Entity;
@@ -9,6 +7,8 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import nightkosh.gravestone_extended.entity.monster.pet.EntityUndeadDog;
+import nightkosh.gravestone_extended.models.entity.ModelUndeadDog;
 
 /**
  * GraveStone mod
@@ -19,7 +19,11 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 @SideOnly(Side.CLIENT)
 public class RenderUndeadDog extends RenderLiving {
 
-    public RenderUndeadDog(RenderManager renderManager, ModelBase model, ModelBase model2) {
+    public RenderUndeadDog(RenderManager renderManager) {
+        this(renderManager, new ModelUndeadDog());
+    }
+
+    public RenderUndeadDog(RenderManager renderManager, ModelUndeadDog model) {
         super(renderManager, model, 0.5F);
     }
 
@@ -27,9 +31,6 @@ public class RenderUndeadDog extends RenderLiving {
         return undeadDog.getTailRotation();
     }
 
-    /**
-     * Defines what float the third param in setRotationAngles of ModelBase is
-     */
     @Override
     protected float handleRotationFloat(EntityLivingBase entityLiving, float par2) {
         return this.getTailRotation((EntityUndeadDog) entityLiving, par2);

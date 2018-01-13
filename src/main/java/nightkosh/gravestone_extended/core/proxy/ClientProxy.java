@@ -137,13 +137,13 @@ public class ClientProxy extends CommonProxy {
         RenderItem renderItem = Minecraft.getMinecraft().getRenderItem();
 
         // zombie dog
-        RenderingRegistry.registerEntityRenderingHandler(EntityZombieDog.class, new RenderUndeadDog(renderManager, new ModelUndeadDog(), new ModelUndeadDog()));
+        RenderingRegistry.registerEntityRenderingHandler(EntityZombieDog.class, new RenderUndeadDog(renderManager));
 
         // zombie cat
         RenderingRegistry.registerEntityRenderingHandler(EntityZombieCat.class, new RenderUndeadCat(renderManager, new ModelUndeadCat(), 0));
 
         // skeleton dog
-        RenderingRegistry.registerEntityRenderingHandler(EntitySkeletonDog.class, new RenderUndeadDog(renderManager, new ModelUndeadDog(), new ModelUndeadDog()));
+        RenderingRegistry.registerEntityRenderingHandler(EntitySkeletonDog.class, new RenderUndeadDog(renderManager));
 
         // zombie cat
         RenderingRegistry.registerEntityRenderingHandler(EntitySkeletonCat.class, new RenderUndeadCat(renderManager, new ModelUndeadCat(), 0));
@@ -179,6 +179,9 @@ public class ClientProxy extends CommonProxy {
 
         // Vampire Bat
         RenderingRegistry.registerEntityRenderingHandler(EntityVampireBat.class, new RenderVampireBat(renderManager));
+
+        // Barghest
+        RenderingRegistry.registerEntityRenderingHandler(EntityBarghest.class, new RenderBarghest(renderManager));
 
         // Damned Warrior
         RenderingRegistry.registerEntityRenderingHandler(EntityDamnedWarrior.class, new RenderDamnedWarrior(renderManager, new ModelDamnedWarrior()));

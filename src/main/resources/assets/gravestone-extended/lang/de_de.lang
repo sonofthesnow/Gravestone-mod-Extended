@@ -337,6 +337,7 @@ entity.GSMummy.name=Mummy
 entity.GSDrowned.name=Drowned
 entity.GSPhantomDiver.name=Phantom Diver
 entity.GSVampireBat.name=Vampire Bat
+entity.GSBarghest.name=Barghest
 
 # Fluids
 ## TODO !!!!!!!!!!

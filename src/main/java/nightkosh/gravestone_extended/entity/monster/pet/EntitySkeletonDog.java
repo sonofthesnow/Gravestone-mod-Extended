@@ -35,6 +35,7 @@ public class EntitySkeletonDog extends EntityUndeadDog {
         this.tasks.addTask(2, new EntityAIAttackMelee(this, 1, false));
         this.tasks.addTask(4, new EntityAIMoveTowardsRestriction(this, 1));
         this.tasks.addTask(6, new EntityAIWander(this, 1));
+        this.tasks.addTask(7, new EntityAIWanderAvoidWater(this, 1));
     }
 
     @Override

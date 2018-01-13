@@ -17,7 +17,6 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
-import net.minecraft.pathfinding.PathNavigateGround;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
@@ -41,8 +40,6 @@ public abstract class EntityUndeadPet extends EntityMob {
 
     public EntityUndeadPet(World world) {
         super(world);
-        ((PathNavigateGround) this.getNavigator()).setCanSwim(true);
-        this.tasks.addTask(1, new EntityAISwimming(this));
         this.tasks.addTask(7, new EntityAILeapAtTarget(this, 0.3F));
         this.tasks.addTask(7, new EntityAIWatchClosest(this, EntityPlayer.class, 8));
         this.tasks.addTask(7, new EntityAILookIdle(this));
@@ -80,16 +77,6 @@ public abstract class EntityUndeadPet extends EntityMob {
         } else {
             return false;
         }
-    }
-
-    /**
-     * Drop 0-2 items of this living's type.
-     *
-     * @param par1 - Whether this entity has recently been hit by a player.
-     * @param par2 - Level of Looting used to kill this mob.
-     */
-    @Override
-    protected void dropFewItems(boolean par1, int par2) {
     }
 
     /**

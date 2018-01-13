@@ -11,6 +11,7 @@ import net.minecraft.entity.passive.EntityWolf;
 import net.minecraft.init.Items;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.item.Item;
+import net.minecraft.pathfinding.PathNavigateGround;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
@@ -44,6 +45,8 @@ public class EntityZombieDog extends EntityUndeadDog {
 
         this.setMobType(isHusk ? EnumUndeadMobType.HUSK : EnumUndeadMobType.ZOMBIE);
 
+        ((PathNavigateGround) this.getNavigator()).setCanSwim(true);
+        this.tasks.addTask(1, new EntityAISwimming(this));
         this.tasks.addTask(2, new EntityAIAttackMelee(this, 1, false));
         this.tasks.addTask(4, new EntityAIMoveTowardsRestriction(this, 1));
         this.tasks.addTask(6, new EntityAIWander(this, 1));
