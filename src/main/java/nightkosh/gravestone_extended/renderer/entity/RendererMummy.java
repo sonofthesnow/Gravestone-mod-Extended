@@ -6,6 +6,7 @@ import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.util.ResourceLocation;
 import nightkosh.gravestone_extended.core.Resources;
 import nightkosh.gravestone_extended.entity.monster.EntityMummy;
+import nightkosh.gravestone_extended.renderer.entity.layers.LayerMummy;
 
 /**
  * GraveStone mod
@@ -17,6 +18,8 @@ public class RendererMummy extends RenderBiped<EntityMummy> {
 
     public RendererMummy(RenderManager renderManager) {
         super(renderManager, new ModelZombie(0, true), 0.5F);
+
+        this.addLayer(new LayerMummy(this));
     }
 
     @Override

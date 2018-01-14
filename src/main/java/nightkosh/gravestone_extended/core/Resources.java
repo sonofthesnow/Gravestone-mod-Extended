@@ -83,7 +83,8 @@ public class Resources extends nightkosh.gravestone.core.Resources{
     public static final ResourceLocation DAMNED_WARRIOR = new ResourceLocation(ENTITY_LOCATION + "damnedwarrior.png");
     public static final ResourceLocation TOXIC_SLUDGE = new ResourceLocation(ENTITY_LOCATION + "toxic_sludge/toxic_sludge.png");
     public static final ResourceLocation POSSESSED_ARMOR = new ResourceLocation(ENTITY_LOCATION + "possessed_armor.png");
-    public static final ResourceLocation MUMMY = new ResourceLocation(ENTITY_LOCATION + "mummy.png");
+    public static final ResourceLocation MUMMY = new ResourceLocation(ENTITY_LOCATION + "mummy/mummy.png");
+    public static final ResourceLocation MUMMY_OVERLAY = new ResourceLocation(ENTITY_LOCATION + "mummy/overlay.png");
     public static final ResourceLocation DROWNED = new ResourceLocation(ENTITY_LOCATION + "drowned.png");
     public static final ResourceLocation PHANTOM_DIVER = new ResourceLocation(ENTITY_LOCATION + "phantom_diver/phantom_diver.png");
     public static final ResourceLocation PHANTOM_DIVER_FACE = new ResourceLocation(ENTITY_LOCATION + "phantom_diver/face.png");
