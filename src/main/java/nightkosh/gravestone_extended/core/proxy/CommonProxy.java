@@ -47,4 +47,6 @@ public class CommonProxy {
         GameRegistry.registerTileEntity(TileEntityAltar.class, "GSAltarTE");
         GameRegistry.registerTileEntity(TileEntityCorpse.class, "GSTECorpse");
     }
+
+
 }

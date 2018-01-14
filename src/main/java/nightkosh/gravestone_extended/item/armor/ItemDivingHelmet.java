@@ -16,7 +16,7 @@ import nightkosh.gravestone_extended.ModGravestoneExtended;
 import nightkosh.gravestone_extended.core.GSTabs;
 import nightkosh.gravestone_extended.core.ModInfo;
 import nightkosh.gravestone_extended.core.Resources;
-import nightkosh.gravestone_extended.models.armor.ModelDivingHelmet;
+import nightkosh.gravestone_extended.models.armor.ArmorModelsHelper;
 
 import javax.annotation.Nullable;
 import java.util.List;
@@ -28,9 +28,6 @@ import java.util.List;
  * @license Lesser GNU Public License v3 (http://www.gnu.org/licenses/lgpl.html)
  */
 public class ItemDivingHelmet extends ItemArmor {
-
-    @SideOnly(Side.CLIENT)
-    private static final ModelDivingHelmet model = new ModelDivingHelmet();
 
     public ItemDivingHelmet() {
         super(ArmorMaterial.IRON, 1, EntityEquipmentSlot.HEAD);
@@ -63,7 +60,7 @@ public class ItemDivingHelmet extends ItemArmor {
     @SideOnly(Side.CLIENT)
     public ModelBiped getArmorModel(EntityLivingBase entityLiving, ItemStack stack, EntityEquipmentSlot armorSlot, ModelBiped defaultModel) {
         if (!stack.isEmpty() && stack.getItem() instanceof ItemArmor) {
-            return model;
+            return ArmorModelsHelper.DIVING_HELMET;
         }
         return null;
     }
