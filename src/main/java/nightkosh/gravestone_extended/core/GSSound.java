@@ -46,6 +46,10 @@ public class GSSound {
     @GameRegistry.ObjectHolder("entity.barghest.growl")
     public static SoundEvent ENTITY_BARGHEST_GROWL = createSoundEvent("entity.barghest.growl");
 
+    // SWAMP THING
+    @GameRegistry.ObjectHolder("entity.swamp_thing.growl")
+    public static SoundEvent ENTITY_SWAMP_THING_GROWL = createSoundEvent("entity.swamp_thing.growl");
+
     private static SoundEvent createSoundEvent(final String soundName) {
         final ResourceLocation soundID = new ResourceLocation(ModInfo.ID, soundName);
         return new SoundEvent(soundID).setRegistryName(soundID);
@@ -60,7 +64,8 @@ public class GSSound {
             event.getRegistry().registerAll(ENTITY_POSSESSED_ARMOR_STEP, ENTITY_POSSESSED_ARMOR_HURT,
                     ENTITY_MUMMY_AMBIENT, ENTITY_MUMMY_STEP,
                     ENTITY_DROWNED_AMBIENT, ENTITY_DROWNED_BUBBLES, ENTITY_DROWNED_STEP,
-                    ENTITY_BARGHEST_GROWL);
+                    ENTITY_BARGHEST_GROWL,
+                    ENTITY_SWAMP_THING_GROWL);
         }
     }
 }

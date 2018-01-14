@@ -35,7 +35,6 @@ import nightkosh.gravestone_extended.gui.GSGraveTextGui;
 import nightkosh.gravestone_extended.item.ItemGSMonsterPlacer;
 import nightkosh.gravestone_extended.models.entity.ModelDamnedWarrior;
 import nightkosh.gravestone_extended.models.entity.ModelUndeadCat;
-import nightkosh.gravestone_extended.models.entity.ModelUndeadDog;
 import nightkosh.gravestone_extended.renderer.entity.*;
 import nightkosh.gravestone_extended.renderer.entity.item.RendererFireproofItem;
 import nightkosh.gravestone_extended.renderer.entity.projectile.RendererBoneFishHook;
@@ -182,6 +181,9 @@ public class ClientProxy extends CommonProxy {
 
         // Barghest
         RenderingRegistry.registerEntityRenderingHandler(EntityBarghest.class, new RenderBarghest(renderManager));
+
+        // Swamp Thing
+        RenderingRegistry.registerEntityRenderingHandler(EntitySwampThing.class, new RenderSwampThing(renderManager));
 
         // Damned Warrior
         RenderingRegistry.registerEntityRenderingHandler(EntityDamnedWarrior.class, new RenderDamnedWarrior(renderManager, new ModelDamnedWarrior()));

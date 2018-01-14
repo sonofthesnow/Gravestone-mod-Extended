@@ -86,5 +86,13 @@
             "name" : "gravestone-extended:entity/barghest/growl",
             "stream" : true
         }]
+    },
+    "entity.swamp_thing.growl" : {
+        "category": "entity",
+        "subtitle": "entity.swamp_thing.growl",
+        "sounds" : [{
+            "name" : "gravestone-extended:entity/swamp_thing/growl",
+            "stream" : true
+        }]
     }
 }
