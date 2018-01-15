@@ -126,4 +126,9 @@ public class EntitySwampThing extends EntityMob {
     protected float getWaterSlowDown() {
         return 1;
     }
+
+    @Override
+    public boolean isNotColliding() {
+        return this.world.checkNoEntityCollision(this.getEntityBoundingBox(), this) && this.world.getCollisionBoxes(this, this.getEntityBoundingBox()).isEmpty();
+    }
 }
