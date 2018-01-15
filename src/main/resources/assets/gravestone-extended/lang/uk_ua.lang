@@ -94,60 +94,85 @@ potion.purification.title=Знімає всі негативні ефекти
 potion.effect.gs_purification_type=Зілля очищення
 splash_potion.effect.gs_purification_type=Вибухове зілля очищення
 lingering_potion.effect.gs_purification_type=Туманне зілля очищення
+## TODO !!!!!!!!!!!!
+tipped_arrow.effect.gs_purification_type=Arrow of Purification
 potion.bone_skin.title=Кістяна шкіра
 potion.effect.gs_bone_skin_type=Зілля кістяної шкіри
 splash_potion.effect.gs_bone_skin_type=Вибухове зілля кістяної шкіри
 lingering_potion.effect.gs_bone_skin_type=Туманне зілля кістяної шкіри
+## TODO !!!!!!!!!!!!
+tipped_arrow.effect.gs_bone_skin_type=Arrow of Bone Skin
 potion.rust.title=Іржа
 potion.effect.gs_rust_type=Зілля іржі
 splash_potion.effect.gs_rust_type=Вибухове зілля іржі
 lingering_potion.effect.gs_rust_type=Туманне зілля іржі
+## TODO !!!!!!!!!!!!
+tipped_arrow.effect.gs_rust_type=Arrow of Rust
 potion.recall.title=Повернення додому
 potion.effect.gs_recall_type=Зілля повернення
 splash_potion.effect.gs_recall_type=Вибухове зілля повернення
 lingering_potion.effect.gs_recall_type=Туманне зілля повернення
+## TODO !!!!!!!!!!!!
+tipped_arrow.effect.gs_recall_type=Arrow of Recall
 potion.burning.title=Підпалює ціль
 potion.effect.gs_burning_type=Палаюче зілля
 splash_potion.effect.gs_burning_type=Вибухове палаюче зілля
 lingering_potion.effect.gs_burning_type=Туманне палаюче зілля
+## TODO !!!!!!!!!!!!
+tipped_arrow.effect.gs_burning_type=Arrow of Burning
 potion.bleeding.title=Кровотеча
 potion.effect.gs_bleeding_type=Зілля кровотечі
 splash_potion.effect.gs_bleeding_type=Вибухове зілля кровотечі
 lingering_potion.effect.gs_bleeding_type=Туманне зілля кровотечі
 ## TODO !!!!!!!!!!!!
+tipped_arrow.effect.gs_bleeding_type=Arrow of Bleeding
 potion.choke.title=Breathlessness
 potion.effect.gs_choke_type=Potion of Breathlessness
 splash_potion.effect.gs_choke_type=Splash Potion of Breathlessness
 lingering_potion.effect.gs_choke_type=Lingering Potion of Breathlessness
+tipped_arrow.effect.gs_choke_type=Arrow of Breathlessness
 potion.inferno.title=Inferno
 potion.effect.gs_inferno_type=Potion of Inferno
 splash_potion.effect.gs_inferno_type=Splash Potion of Inferno
 lingering_potion.effect.gs_inferno_type=Lingering Potion of Inferno
+tipped_arrow.effect.gs_inferno_type=Arrow of Inferno
 potion.cursed_inferno.title=Cursed Inferno
 potion.effect.gs_cursed_inferno_type=Potion of Cursed Inferno
 splash_potion.effect.gs_cursed_inferno_type=Splash Potion of Cursed Inferno
 lingering_potion.effect.gs_cursed_inferno_type=Lingering Potion of Cursed Inferno
+tipped_arrow.effect.gs_cursed_inferno_type=Arrow of Cursed Inferno
 potion.cursed_flame.title=Cursed Flame
 potion.effect.gs_cursed_flame_type=Potion of Cursed Flame
 splash_potion.effect.gs_cursed_flame_type=Splash Potion of Cursed Flame
 lingering_potion.effect.gs_cursed_flame_type=Lingering Potion of Cursed Flame
+tipped_arrow.effect.gs_cursed_flame_type=Arrow of Cursed Flame
 
 # Vanilla Potions
 potion.effect.gs_hunger_type=Зілля голоду
 splash_potion.effect.gs_hunger_type=Вибухове зілля голоду
 lingering_potion.effect.gs_hunger_type=Туманне зілля голоду
+## TODO !!!!!!!!!!!!
+tipped_arrow.effect.gs_hunger_type=Arrow of Hunger
 potion.effect.gs_blindness_type=Зілля сліпоти
 splash_potion.effect.gs_blindness_type=Вибухове зілля сліпоти
 lingering_potion.effect.gs_blindness_type=Туманне зілля сліпоти
+## TODO !!!!!!!!!!!!
+tipped_arrow.effect.gs_blindness_type=Arrow of Blindness
 potion.effect.gs_nausea_type=Зілля нудоти
 splash_potion.effect.gs_nausea_type=Вибухове зілля нудоти
 lingering_potion.effect.gs_nausea_type=Туманне зілля нудоти
+## TODO !!!!!!!!!!!!
+tipped_arrow.effect.gs_nausea_type=Arrow of Nausea
 potion.effect.gs_resistance_type=Зілля опору
 splash_potion.effect.gs_resistance_type=Вибухове зілля опору
 lingering_potion.effect.gs_resistance_type=Туманне зілля опору
+## TODO !!!!!!!!!!!!
+tipped_arrow.effect.gs_resistance_type=Arrow of Resistance
 potion.effect.gs_levitation_type=Зілля левітації
 splash_potion.effect.gs_levitation_type=Вибухове зілля левітації
 lingering_potion.effect.gs_levitation_type=Туманне зілля левітації
+## TODO !!!!!!!!!!!!
+tipped_arrow.effect.gs_levitation_type=Arrow of Levitation
 
 
 # Items
