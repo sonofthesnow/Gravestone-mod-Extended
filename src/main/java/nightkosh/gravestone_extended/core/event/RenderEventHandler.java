@@ -61,6 +61,8 @@ public class RenderEventHandler {
             if (fogDensity > 0) {
                 GL11.glFogi(GL11.GL_FOG_MODE, GL11.GL_EXP);
                 GL11.glFogf(GL11.GL_FOG_DENSITY, fogDensity);
+            } else {
+                GL11.glFogi(GL11.GL_FOG_MODE, GL11.GL_LINEAR);
             }
         }
     }
