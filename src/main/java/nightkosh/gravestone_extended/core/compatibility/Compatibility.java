@@ -40,6 +40,11 @@ public class Compatibility {
             CompatibilitySophisticatedWolves.isInstalled = true;
         }
 
+        if (Loader.isModLoaded(CompatibilityInfernalMobs.ID)) {
+            CompatibilityInfernalMobs.isInstalled = true;
+            CompatibilityInfernalMobs.disableInfernalMobs();
+        }
+
 
         if (Loader.isModLoaded("antiqueatlas")) {
             CompatibilityAntiqueAtlas.isInstalled = true;

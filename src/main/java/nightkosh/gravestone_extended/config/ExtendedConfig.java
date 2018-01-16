@@ -250,6 +250,7 @@ public class ExtendedConfig {
     public static boolean spawnMoCreaturesMobs;
     public static boolean enableForestryBackpacks;
     public static boolean enableAntiqueAtlasDeathMarkers;//TODO ????
+    public static boolean disableInfernalMobs;
 
     private static void compatibilityConfigs() {
         spawnMoCreaturesMobs = config.get(Config.CATEGORY_COMPATIBILITY, "SpawnMoCreaturesMobs", true).getBoolean(true);
@@ -257,6 +258,8 @@ public class ExtendedConfig {
         enableForestryBackpacks = config.get(Config.CATEGORY_COMPATIBILITY, "EnableForestryBackpacks", true).getBoolean(true);
 
         enableAntiqueAtlasDeathMarkers = config.get(Config.CATEGORY_COMPATIBILITY, "EnableAntiqueAtlasDeathMarkers", true).getBoolean(true);
+
+        disableInfernalMobs = config.get(Config.CATEGORY_COMPATIBILITY, "DisableInfernalMobs", true).getBoolean(true);
     }
 
 
