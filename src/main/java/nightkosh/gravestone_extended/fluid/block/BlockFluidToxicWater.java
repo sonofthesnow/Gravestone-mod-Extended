@@ -41,6 +41,7 @@ public class BlockFluidToxicWater extends BlockFluidClassic {
 
     public BlockFluidToxicWater() {
         super(FluidToxicWater.INSTANCE, Material.WATER);
+        this.setUnlocalizedName("gs_toxic_water");
         this.setCreativeTab(GSTabs.otherItemsTab);
         this.setRegistryName(ModInfo.ID, FluidToxicWater.INSTANCE.getName());
         this.setTickRandomly(true);

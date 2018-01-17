@@ -1,5 +1,6 @@
 package nightkosh.gravestone_extended.core.proxy;
 
+import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import nightkosh.gravestone.tileentity.TileEntityGrave;
 import nightkosh.gravestone_extended.tileentity.*;
@@ -32,7 +33,7 @@ public class CommonProxy {
     public void registerHandlers() {
     }
 
-    public void registerFluidRenderers() {
+    public void registerFluidRenderers(ModelResourceLocation modelResourceLocation) {
 
     }
 

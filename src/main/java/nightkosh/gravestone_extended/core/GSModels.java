@@ -173,13 +173,12 @@ public class GSModels {
             ModelLoader.setCustomModelResourceLocation(GSItem.BONE_HOE_GOLDEN, 0, ResourcesModels.BONE_HOE_GOLDEN);
             ModelLoader.setCustomModelResourceLocation(GSItem.BONE_HOE_DIAMOND, 0, ResourcesModels.BONE_HOE_DIAMOND);
 
-            Item item = Item.getItemFromBlock(GSBlock.TOXIC_WATER);
-            ModelResourceLocation modelResourceLocation = new ModelResourceLocation(ModInfo.ID + ":" + "fluid", GSBlock.TOXIC_WATER.getFluid().getName());
+
+            Item item = GSBlock.TOXIC_WATER_IB;
+            ModelResourceLocation modelResourceLocation = new ModelResourceLocation(ModInfo.ID + ":" + GSBlock.TOXIC_WATER.getFluid().getName(), "fluid");
             ModelBakery.registerItemVariants(item);
             ModelLoader.setCustomMeshDefinition(item, stack -> modelResourceLocation);
-
-            ModGravestoneExtended.proxy.registerFluidRenderers();
-//            ModelLoader.setCustomModelResourceLocation(item, 0, new ModelResourceLocation(item.getRegistryName(), "inventory"));
+            ModGravestoneExtended.proxy.registerFluidRenderers(modelResourceLocation);
         }
 
         private static void registerModelsForTEBlocks(int startMeta, int endMeta, Block block, ModelResourceLocation model, Class TEClass) {

@@ -16,7 +16,6 @@ import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import nightkosh.gravestone.tileentity.TileEntityGrave;
 import nightkosh.gravestone_extended.core.GSBlock;
 import nightkosh.gravestone_extended.core.GSItem;
-import nightkosh.gravestone_extended.core.ModInfo;
 import nightkosh.gravestone_extended.core.event.RenderEventHandler;
 import nightkosh.gravestone_extended.entity.EntityRaven;
 import nightkosh.gravestone_extended.entity.helper.EntityGroupOfGravesMobSpawnerHelper;
@@ -121,8 +120,7 @@ public class ClientProxy extends CommonProxy {
     }
 
     @Override
-    public void registerFluidRenderers() {
-        ModelResourceLocation modelResourceLocation = new ModelResourceLocation(ModInfo.ID + ":" + "fluid", GSBlock.TOXIC_WATER.getFluid().getName());
+    public void registerFluidRenderers(ModelResourceLocation modelResourceLocation) {
         ModelLoader.setCustomStateMapper(GSBlock.TOXIC_WATER, new StateMapperBase() {
             protected ModelResourceLocation getModelResourceLocation(IBlockState state) {
                 return modelResourceLocation;
