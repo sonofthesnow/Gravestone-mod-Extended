@@ -382,6 +382,7 @@ entity.GSSwampThing.name=Swamp Thing
 
 # Fluids
 ## TODO !!!!!!!!!!
+tile.gs_toxic_water.name=Toxic Water
 fluid.gs_toxic_water=Toxic Water
 
 

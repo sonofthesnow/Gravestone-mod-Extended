@@ -342,6 +342,7 @@ entity.GSBarghest.name=Баргест
 entity.GSSwampThing.name=Болотная тварь
 
 # Fluids
+tile.gs_toxic_water.name=Токсичная вода
 fluid.gs_toxic_water=Токсичная вода
 
 
