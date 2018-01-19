@@ -53,10 +53,6 @@ public class EntityCustomFishHook extends EntityFishHook {
     protected int ticksCaughtDelay;
     protected int ticksCatchableDelay;
     protected float fishApproachAngle;
-    public Entity caughtEntity;
-    protected State currentState = State.FLYING;
-    protected int luck;
-    protected int lureSpeed;
 
     public EntityCustomFishHook(World world) {
         this(world, world.getPlayerEntityByUUID(Minecraft.getMinecraft().getSession().getProfile().getId()));
@@ -69,16 +65,6 @@ public class EntityCustomFishHook extends EntityFishHook {
 
     public EntityCustomFishHook(World world, EntityPlayer player) {
         super(world, player);
-    }
-
-    @Override
-    public void setLureSpeed(int lureSpeed) {
-        this.lureSpeed = lureSpeed;
-    }
-
-    @Override
-    public void setLuck(int luck) {
-        this.luck = luck;
     }
 
     @Override
@@ -242,75 +228,6 @@ public class EntityCustomFishHook extends EntityFishHook {
 
     protected boolean isFishingPoleStack(ItemStack stack) {
         return stack.getItem() == Items.FISHING_ROD;
-    }
-
-    protected void updateRotation() {
-        float f = MathHelper.sqrt(this.motionX * this.motionX + this.motionZ * this.motionZ);
-        this.rotationYaw = (float) (MathHelper.atan2(this.motionX, this.motionZ) * (180 / Math.PI));
-
-        for (this.rotationPitch = (float) (MathHelper.atan2(this.motionY, f) * (180 / Math.PI)); this.rotationPitch - this.prevRotationPitch < -180; this.prevRotationPitch -= 360) {
-            ;
-        }
-
-        while (this.rotationPitch - this.prevRotationPitch >= 180) {
-            this.prevRotationPitch += 360;
-        }
-
-        while (this.rotationYaw - this.prevRotationYaw < -180) {
-            this.prevRotationYaw -= 360;
-        }
-
-        while (this.rotationYaw - this.prevRotationYaw >= 180) {
-            this.prevRotationYaw += 360;
-        }
-
-        this.rotationPitch = this.prevRotationPitch + (this.rotationPitch - this.prevRotationPitch) * 0.2F;
-        this.rotationYaw = this.prevRotationYaw + (this.rotationYaw - this.prevRotationYaw) * 0.2F;
-    }
-
-    protected void checkCollision() {
-        Vec3d vec = new Vec3d(this.posX, this.posY, this.posZ);
-        Vec3d vec2 = new Vec3d(this.posX + this.motionX, this.posY + this.motionY, this.posZ + this.motionZ);
-        RayTraceResult raytraceresult = this.world.rayTraceBlocks(vec, vec2, false, true, false);
-        vec = new Vec3d(this.posX, this.posY, this.posZ);
-        vec2 = new Vec3d(this.posX + this.motionX, this.posY + this.motionY, this.posZ + this.motionZ);
-
-        if (raytraceresult != null) {
-            vec2 = new Vec3d(raytraceresult.hitVec.x, raytraceresult.hitVec.y, raytraceresult.hitVec.z);
-        }
-
-        Entity entity = null;
-        List<Entity> list = this.world.getEntitiesWithinAABBExcludingEntity(this, this.getEntityBoundingBox().expand(this.motionX, this.motionY, this.motionZ).grow(1));
-        double d0 = 0;
-
-        for (Entity entity1 : list) {
-            if (this.canBeHooked(entity1) && (entity1 != this.getAngler() || this.ticksInAir >= 5)) {
-                AxisAlignedBB axisalignedbb = entity1.getEntityBoundingBox().grow(0.3);
-                RayTraceResult result = axisalignedbb.calculateIntercept(vec, vec2);
-
-                if (result != null) {
-                    double distance = vec.squareDistanceTo(result.hitVec);
-
-                    if (distance < d0 || d0 == 0) {
-                        entity = entity1;
-                        d0 = distance;
-                    }
-                }
-            }
-        }
-
-        if (entity != null) {
-            raytraceresult = new RayTraceResult(entity);
-        }
-
-        if (raytraceresult != null && raytraceresult.typeOfHit != RayTraceResult.Type.MISS) {
-            if (raytraceresult.typeOfHit == RayTraceResult.Type.ENTITY) {
-                this.caughtEntity = raytraceresult.entityHit;
-                this.setHookedEntity();
-            } else {
-                this.inGround = true;
-            }
-        }
     }
 
     protected void catchingFish(BlockPos pos) {
@@ -686,11 +603,5 @@ public class EntityCustomFishHook extends EntityFishHook {
         } else {
             tier3(tempList, biomeTypesList);
         }
-    }
-
-    public static enum State {
-        FLYING,
-        HOOKED_IN_ENTITY,
-        BOBBING
     }
 }
