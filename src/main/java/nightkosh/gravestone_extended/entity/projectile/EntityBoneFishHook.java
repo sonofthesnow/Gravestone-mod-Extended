@@ -1,6 +1,5 @@
 package nightkosh.gravestone_extended.entity.projectile;
 
-import net.minecraft.client.Minecraft;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
@@ -28,7 +27,7 @@ import java.util.Set;
 public class EntityBoneFishHook extends EntityCustomFishHook {
 
     public EntityBoneFishHook(World world) {
-        this(world, world.getPlayerEntityByUUID(Minecraft.getMinecraft().getSession().getProfile().getId()));
+        super(world);
     }
 
     @SideOnly(Side.CLIENT)

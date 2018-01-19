@@ -48,6 +48,10 @@ jar {
     exclude('**/*.db')
     exclude('assets/gravestone-extended/techne_models/**')
     exclude('assets/gravestone-extended/obj_models/**')
+
+    manifest {
+        attributes 'FMLAT': 'Gravestone_mod_Extended_at.cfg'
+    }
 }
 
 processResources {

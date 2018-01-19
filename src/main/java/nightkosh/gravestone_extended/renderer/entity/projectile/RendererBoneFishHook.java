@@ -87,9 +87,10 @@ public class RendererBoneFishHook extends Render<EntityBoneFishHook> {
                 double yawCos = MathHelper.cos(rendYaw);
                 double d2 = side * 0.35;
 
-                playerX -= yawCos * (d2 + xx) + yawSin * 0.8;//-0.8
-                playerY -= 0.45 + (player.isSneaking() ? -0.1875 : 0) + yy;
-                playerZ += yawCos * 0.8 - yawSin * (d2 + zz);
+                //2.4 -0.1 -0.3
+                playerX -= yawCos * (d2 + 2.4 + xx) + yawSin * 0.8;//-0.8
+                playerY -= 0.45 + (player.isSneaking() ? -0.1875 : 0)  -0.1 + yy;
+                playerZ += yawCos * 0.8 - yawSin * (d2 + zz - 0.3);
             }
 
             double hookX = hook.prevPosX + (hook.posX - hook.prevPosX) * ticks;

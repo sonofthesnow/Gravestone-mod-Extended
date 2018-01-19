@@ -47,7 +47,7 @@ import java.util.Set;
  */
 public class EntityCustomFishHook extends EntityFishHook {
 
-    protected static final DataParameter<Integer> DATA_HOOKED_ENTITY = EntityDataManager.createKey(EntityCustomFishHook.class, DataSerializers.VARINT);
+    protected static final DataParameter<Integer> PLAYER_ID = EntityDataManager.createKey(EntityCustomFishHook.class, DataSerializers.VARINT);
     protected boolean inGround;
     protected int ticksInGround;
     protected int ticksInAir;
@@ -73,7 +73,6 @@ public class EntityCustomFishHook extends EntityFishHook {
         super(world, player);
     }
 
-
     @Override
     public void setLureSpeed(int lureSpeed) {
         this.lureSpeed = lureSpeed;
@@ -86,17 +85,36 @@ public class EntityCustomFishHook extends EntityFishHook {
 
     @Override
     protected void entityInit() {
-        this.getDataManager().register(DATA_HOOKED_ENTITY, 0);
+        super.entityInit();
+        this.dataManager.register(PLAYER_ID, this.getAngler() == null ? 0 : this.getAngler().getEntityId());
     }
 
     @Override
     public void notifyDataManagerChange(DataParameter<?> key) {
-        if (DATA_HOOKED_ENTITY.equals(key)) {
-            int i = this.getDataManager().get(DATA_HOOKED_ENTITY);
-            this.caughtEntity = i > 0 ? this.world.getEntityByID(i - 1) : null;
+        if (PLAYER_ID.equals(key)) {
+            if (this.world.isRemote) {
+                Entity entity = world.getEntityByID(this.dataManager.get(PLAYER_ID));
+                if (entity instanceof EntityPlayer) {
+                    EntityPlayer player = (EntityPlayer) entity;
+                    if (player != null) {
+                        this.getAngler().fishEntity = null;
+                        this.angler = player;
+                        this.angler.fishEntity = this;
+                    }
+                }
+            }
         }
 
         super.notifyDataManagerChange(key);
+    }
+
+    @Override
+    public void onEntityUpdate() {
+        super.onEntityUpdate();
+
+        if (!this.world.isRemote && this.getAngler() != null) {
+            this.getDataManager().set(PLAYER_ID, this.getAngler().getEntityId());
+        }
     }
 
     @Override
@@ -295,10 +313,6 @@ public class EntityCustomFishHook extends EntityFishHook {
                 this.inGround = true;
             }
         }
-    }
-
-    protected void setHookedEntity() {
-        this.getDataManager().set(DATA_HOOKED_ENTITY, this.caughtEntity.getEntityId() + 1);
     }
 
     protected void catchingFish(BlockPos pos) {
