@@ -9,6 +9,8 @@ import net.minecraft.item.ItemSword;
 import net.minecraft.item.ItemTool;
 import nightkosh.gravestone_extended.block.BlockCorpse;
 import nightkosh.gravestone_extended.block.enums.EnumCorpse;
+import nightkosh.gravestone_extended.entity.monster.pet.EnumUndeadMobType;
+import nightkosh.gravestone_extended.item.corpse.CorpseHelper;
 
 /**
  * GraveStone mod
@@ -24,7 +26,8 @@ public class AltarSlot extends Slot {
 
     @Override
     public boolean isItemValid(ItemStack stack) {
-        return (Block.getBlockFromItem(stack.getItem()) instanceof BlockCorpse && EnumCorpse.getById((byte) stack.getItemDamage()).canBeResurrected() ||
+        return (Block.getBlockFromItem(stack.getItem()) instanceof BlockCorpse &&
+                EnumCorpse.getById((byte) stack.getItemDamage()).canBeResurrected() && CorpseHelper.getMobType(stack.getTagCompound()) == EnumUndeadMobType.OTHER ||
                 stack.getItem() instanceof ItemTool ||
                 stack.getItem() instanceof ItemArmor ||
                 stack.getItem() instanceof ItemSword);
