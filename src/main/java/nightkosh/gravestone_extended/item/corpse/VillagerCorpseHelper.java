@@ -71,6 +71,7 @@ public class VillagerCorpseHelper extends CorpseHelper {
         NBTTagCompound nbtTag = new NBTTagCompound();
         nbtTag.setInteger("Profession", profession);
         nbtTag.setInteger("Career", career);
+        nbtTag.setInteger("CareerLevel", 1);
 
         corpse.setTagCompound(nbtTag);
         return corpse;
@@ -119,6 +120,8 @@ public class VillagerCorpseHelper extends CorpseHelper {
 
         NBTTagCompound nbt = new NBTTagCompound();
         villager.writeEntityToNBT(nbt);
+        nbt.setInteger("Career", nbtTag.getInteger("Career"));
+        nbt.setInteger("CareerLevel", nbtTag.getInteger("CareerLevel"));
         if (nbtTag.hasKey("Offers")) {
             nbt.setTag("Offers", nbtTag.getCompoundTag("Offers"));
         }
