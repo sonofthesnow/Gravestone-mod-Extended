@@ -35,9 +35,7 @@ import nightkosh.gravestone_extended.core.GSBlock;
 import nightkosh.gravestone_extended.core.GSItem;
 import nightkosh.gravestone_extended.item.ItemFish;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 /**
  * GraveStone mod
@@ -340,36 +338,34 @@ public class EntityCustomFishHook extends EntityFishHook {
         } else if (this.ticksCatchableDelay > 0) {
             this.ticksCatchableDelay -= i;
 
+            int minY = MathHelper.floor(this.getEntityBoundingBox().minY);
+            Block liquidBlock = worldserver.getBlockState(new BlockPos(this.posX, minY, this.posZ)).getBlock();
             if (this.ticksCatchableDelay > 0) {
                 this.fishApproachAngle = (float) (this.fishApproachAngle + this.rand.nextGaussian() * 4);
-                float f = this.fishApproachAngle * 0.017453292F;
-                float f1 = MathHelper.sin(f);
-                float f2 = MathHelper.cos(f);
-                double d0 = this.posX + f1 * this.ticksCatchableDelay * 0.1;
-                double d1 = MathHelper.floor(this.getEntityBoundingBox().minY) + 1;
-                double d2 = this.posZ + f2 * this.ticksCatchableDelay * 0.1;
-                Block block = worldserver.getBlockState(new BlockPos(d0, d1 - 1, d2)).getBlock();
+                float angle = this.fishApproachAngle * 0.0175F;
+                float sin = MathHelper.sin(angle);
+                float cos = MathHelper.cos(angle);
+                double xPos = this.posX + sin * this.ticksCatchableDelay * 0.1;
+                double yPos = minY + 1;
+                double zPos = this.posZ + cos * this.ticksCatchableDelay * 0.1;
 
-                //TODO toxic water
-                //TODO lava
-                if (block == Blocks.WATER || block == Blocks.FLOWING_WATER || block == Blocks.LAVA || block == Blocks.FLOWING_LAVA || block == GSBlock.TOXIC_WATER) {
+                if (MATERIAL_SET.contains(worldserver.getBlockState(new BlockPos(xPos, minY, zPos)).getMaterial())) {
                     if (this.rand.nextFloat() < 0.15) {
-                        worldserver.spawnParticle(EnumParticleTypes.WATER_BUBBLE, d0, d1 - 0.1, d2, 1, f1, 0.1, f2, 0);
+                        BUBBLE_PARTICLES.getOrDefault(liquidBlock, EntityCustomFishHook::spawnWaterBubbleParticles).spawn(worldserver, xPos, yPos - 0.1, zPos, 1, sin, 0.1, cos, 0);
                     }
 
-                    float f3 = f1 * 0.04F;
-                    float f4 = f2 * 0.04F;
-                    worldserver.spawnParticle(EnumParticleTypes.WATER_WAKE, d0, d1, d2, 0, f4, 0.01, -f3, 1);
-                    worldserver.spawnParticle(EnumParticleTypes.WATER_WAKE, d0, d1, d2, 0, -f4, 0.01, f3, 1);
+                    float zOffset = sin * 0.04F;
+                    float xOffset = cos * 0.04F;
+                    WAKE_PARTICLES.getOrDefault(liquidBlock, EntityCustomFishHook::spawnWaterWakeParticles).spawn(worldserver, xPos, yPos, zPos, 0, xOffset, 0.01, -zOffset, 1);
+                    WAKE_PARTICLES.getOrDefault(liquidBlock, EntityCustomFishHook::spawnWaterWakeParticles).spawn(worldserver, xPos, yPos, zPos, 0, -xOffset, 0.01, zOffset, 1);
                 }
             } else {
                 this.motionY = -0.4 * MathHelper.nextFloat(this.rand, 0.6F, 1);
                 this.playSound(SoundEvents.ENTITY_BOBBER_SPLASH, 0.25F, 1 + (this.rand.nextFloat() - this.rand.nextFloat()) * 0.4F);
                 double d3 = this.getEntityBoundingBox().minY + 0.5;
-                //TODO toxic water
-                //TODO lava
-                worldserver.spawnParticle(EnumParticleTypes.WATER_BUBBLE, this.posX, d3, this.posZ, (int) (1 + this.width * 20), this.width, 0, this.width, 0.2);
-                worldserver.spawnParticle(EnumParticleTypes.WATER_WAKE, this.posX, d3, this.posZ, (int) (1 + this.width * 20), this.width, 0, this.width, 0.2);
+
+                BUBBLE_PARTICLES.getOrDefault(liquidBlock, EntityCustomFishHook::spawnWaterBubbleParticles).spawn(worldserver, this.posX, d3, this.posZ, (int) (1 + this.width * 20), this.width, 0, this.width, 0.2);
+                WAKE_PARTICLES.getOrDefault(liquidBlock, EntityCustomFishHook::spawnWaterWakeParticles).spawn(worldserver, this.posX, d3, this.posZ, (int) (1 + this.width * 20), this.width, 0, this.width, 0.2);
                 this.ticksCatchable = MathHelper.getInt(this.rand, 20, 40);
             }
         } else if (this.ticksCaughtDelay > 0) {
@@ -387,20 +383,14 @@ public class EntityCustomFishHook extends EntityFishHook {
             if (this.rand.nextFloat() < f5) {
                 float f6 = MathHelper.nextFloat(this.rand, 0, 360) * 0.017453292F;
                 float f7 = MathHelper.nextFloat(this.rand, 25, 60);
-                double d4 = this.posX + MathHelper.sin(f6) * f7 * 0.1;
-                double d5 = MathHelper.floor(this.getEntityBoundingBox().minY) + 1;
-                double d6 = this.posZ + MathHelper.cos(f6) * f7 * 0.1;
-                Block block1 = worldserver.getBlockState(new BlockPos((int) d4, (int) d5 - 1, (int) d6)).getBlock();
+                int minY = MathHelper.floor(this.getEntityBoundingBox().minY);
+                double xPos = this.posX + MathHelper.sin(f6) * f7 * 0.1;
+                double yPos = minY + 1;
+                double zPos = this.posZ + MathHelper.cos(f6) * f7 * 0.1;
 
-
-                if (block1 == Blocks.WATER || block1 == Blocks.FLOWING_WATER) {
-                    worldserver.spawnParticle(EnumParticleTypes.WATER_SPLASH, d4, d5, d6, 2 + this.rand.nextInt(2), 0.1, 0, 0.1, 0);
-                }
-                if (block1 == GSBlock.TOXIC_WATER) {//TODO toxic water
-                    worldserver.spawnParticle(EnumParticleTypes.WATER_SPLASH, d4, d5, d6, 2 + this.rand.nextInt(2), 0.1, 0, 0.1, 0);
-                }
-                if (block1 == Blocks.LAVA || block1 == Blocks.FLOWING_LAVA) { //TODO lava
-                    worldserver.spawnParticle(EnumParticleTypes.WATER_SPLASH, d4, d5, d6, 2 + this.rand.nextInt(2), 0.1, 0, 0.1, 0);
+                if (MATERIAL_SET.contains(worldserver.getBlockState(new BlockPos(xPos, minY, zPos)).getMaterial())) {
+                    SPLASH_PARTICLES.getOrDefault(worldserver.getBlockState(new BlockPos(this.posX, minY, this.posZ)), EntityCustomFishHook::spawnWaterSplashParticles)
+                            .spawn(worldserver, this.rand, xPos, yPos, zPos);
                 }
             }
 
@@ -412,6 +402,92 @@ public class EntityCustomFishHook extends EntityFishHook {
             this.ticksCaughtDelay = MathHelper.getInt(this.rand, 100, 600);
             this.ticksCaughtDelay -= this.lureSpeed * 20 * 5;
         }
+    }
+
+    @FunctionalInterface
+    interface ISpawnSplashParticles {
+        public void spawn(WorldServer world, Random rand, double x, double y, double z);
+    }
+
+    @FunctionalInterface
+    interface ISpawnBubbleParticles {
+        public void spawn(WorldServer world, double x, double y, double z, int num, double xOffset, double yOffset, double zOffset, double speed);
+    }
+
+    @FunctionalInterface
+    interface ISpawnWakeParticles {
+        public void spawn(WorldServer world, double x, double y, double z, int num, double xOffset, double yOffset, double zOffset, double speed);
+    }
+
+    protected static final Set<Material> MATERIAL_SET = new HashSet<>();
+    protected static final Map<Block, ISpawnSplashParticles> SPLASH_PARTICLES = new HashMap<>();
+    protected static final Map<Block, ISpawnBubbleParticles> BUBBLE_PARTICLES = new HashMap<>();
+    protected static final Map<Block, ISpawnWakeParticles> WAKE_PARTICLES = new HashMap<>();
+
+    static {
+        MATERIAL_SET.addAll(Arrays.asList(Material.WATER, Material.LAVA));
+
+        SPLASH_PARTICLES.put(Blocks.WATER, EntityCustomFishHook::spawnWaterSplashParticles);
+        SPLASH_PARTICLES.put(Blocks.FLOWING_WATER, EntityCustomFishHook::spawnWaterSplashParticles);
+        SPLASH_PARTICLES.put(Blocks.LAVA, EntityCustomFishHook::spawnLavaSplashParticles);
+        SPLASH_PARTICLES.put(Blocks.FLOWING_LAVA, EntityCustomFishHook::spawnLavaSplashParticles);
+        SPLASH_PARTICLES.put(GSBlock.TOXIC_WATER, EntityCustomFishHook::spawnToxicWaterSplashParticles);
+
+        BUBBLE_PARTICLES.put(Blocks.WATER, EntityCustomFishHook::spawnWaterBubbleParticles);
+        BUBBLE_PARTICLES.put(Blocks.FLOWING_WATER, EntityCustomFishHook::spawnWaterBubbleParticles);
+        BUBBLE_PARTICLES.put(Blocks.LAVA, EntityCustomFishHook::spawnLavaBubbleParticles);
+        BUBBLE_PARTICLES.put(Blocks.FLOWING_LAVA, EntityCustomFishHook::spawnLavaBubbleParticles);
+        BUBBLE_PARTICLES.put(GSBlock.TOXIC_WATER, EntityCustomFishHook::spawnToxicWaterBubbleParticles);
+
+        WAKE_PARTICLES.put(Blocks.WATER, EntityCustomFishHook::spawnWaterWakeParticles);
+        WAKE_PARTICLES.put(Blocks.FLOWING_WATER, EntityCustomFishHook::spawnWaterWakeParticles);
+        WAKE_PARTICLES.put(Blocks.LAVA, EntityCustomFishHook::spawnLavaWakeParticles);
+        WAKE_PARTICLES.put(Blocks.FLOWING_LAVA, EntityCustomFishHook::spawnLavaWakeParticles);
+        WAKE_PARTICLES.put(GSBlock.TOXIC_WATER, EntityCustomFishHook::spawnToxicWaterWakeParticles);
+    }
+
+    protected static void spawnWaterSplashParticles(WorldServer world, Random rand, double x, double y, double z) {
+        world.spawnParticle(EnumParticleTypes.WATER_SPLASH, x, y, z, 2 + rand.nextInt(2), 0.1, 0, 0.1, 0);
+    }
+
+    protected static void spawnLavaSplashParticles(WorldServer world, Random rand, double x, double y, double z) {
+        int num = 2 + rand.nextInt(2);
+        world.spawnParticle(EnumParticleTypes.SMOKE_NORMAL, x, y, z, num, 0.1, 0, 0.1, 0);
+        world.spawnParticle(EnumParticleTypes.LAVA, x, y, z, num, 0.1, 0, 0.1, 0);
+    }
+
+    // TODO !!!!
+    protected static void spawnToxicWaterSplashParticles(WorldServer world, Random rand, double x, double y, double z) {
+        world.spawnParticle(EnumParticleTypes.WATER_SPLASH, x, y, z, 2 + rand.nextInt(2), 0.1, 0, 0.1, 0);
+    }
+
+
+    protected static void spawnWaterBubbleParticles(WorldServer world, double x, double y, double z, int num, double xOffset, double yOffset, double zOffset, double speed) {
+        world.spawnParticle(EnumParticleTypes.WATER_BUBBLE, x, y, z, num, xOffset, yOffset, zOffset, speed);
+    }
+
+    protected static void spawnLavaBubbleParticles(WorldServer world, double x, double y, double z, int num, double xOffset, double yOffset, double zOffset, double speed) {
+        world.spawnParticle(EnumParticleTypes.SMOKE_NORMAL, x, y, z, num, xOffset, yOffset, zOffset, speed);
+    }
+
+    // TODO !!!!
+    protected static void spawnToxicWaterBubbleParticles(WorldServer world, double x, double y, double z, int num, double xOffset, double yOffset, double zOffset, double speed) {
+        world.spawnParticle(EnumParticleTypes.WATER_BUBBLE, x, y, z, num, xOffset, yOffset, zOffset, speed);
+    }
+
+
+    protected static void spawnWaterWakeParticles(WorldServer world, double x, double y, double z, int num, double xOffset, double yOffset, double zOffset, double speed) {
+        world.spawnParticle(EnumParticleTypes.WATER_WAKE, x, y, z, num, xOffset, yOffset, zOffset, speed);
+    }
+
+    protected static void spawnLavaWakeParticles(WorldServer world, double x, double y, double z, int num, double xOffset, double yOffset, double zOffset, double speed) {
+        world.spawnParticle(EnumParticleTypes.SMOKE_LARGE, x, y, z, num, xOffset, yOffset, zOffset, speed);
+        world.spawnParticle(EnumParticleTypes.LAVA, x, y, z, num, xOffset, yOffset, zOffset, speed);
+    }
+
+    // TODO !!!!
+    protected static void spawnToxicWaterWakeParticles(WorldServer world, double x, double y, double z, int num, double xOffset, double yOffset, double zOffset, double speed) {
+        world.spawnParticle(EnumParticleTypes.WATER_WAKE, x, y, z, num, xOffset, yOffset, zOffset, speed);
     }
 
     @Override
