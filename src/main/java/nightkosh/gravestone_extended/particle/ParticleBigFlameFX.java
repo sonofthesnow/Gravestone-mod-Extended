@@ -11,16 +11,16 @@ import net.minecraft.world.World;
  * @author NightKosh
  * @license Lesser GNU Public License v3 (http://www.gnu.org/licenses/lgpl.html)
  */
-public class EntityBigFlameFX extends ParticleFlame {
+public class ParticleBigFlameFX extends ParticleFlame {
 
     private float scale;
 
-    public EntityBigFlameFX(World world, double xPos, double yPos, double zPos) {
+    public ParticleBigFlameFX(World world, double xPos, double yPos, double zPos) {
         super(world, xPos, yPos, zPos, 0, 0, 0);
         this.scale = 3.5F;
     }
 
-    public EntityBigFlameFX(World world, double xPos, double yPos, double zPos, float scale, float red, float green, float blue) {
+    public ParticleBigFlameFX(World world, double xPos, double yPos, double zPos, float scale, float red, float green, float blue) {
         super(world, xPos, yPos, zPos, 0, 0, 0);
 
         this.scale = scale;

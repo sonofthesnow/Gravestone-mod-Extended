@@ -39,7 +39,7 @@ import nightkosh.gravestone_extended.core.GSBlock;
 import nightkosh.gravestone_extended.core.GSTabs;
 import nightkosh.gravestone_extended.core.GuiHandler;
 import nightkosh.gravestone_extended.core.ModInfo;
-import nightkosh.gravestone_extended.particle.EntityBigFlameFX;
+import nightkosh.gravestone_extended.particle.ParticleBigFlameFX;
 import nightkosh.gravestone_extended.tileentity.TileEntityExecution;
 
 import javax.annotation.Nullable;
@@ -214,7 +214,7 @@ public class BlockExecution extends BlockContainer {
                 xPos = pos.getX() + 0.5 + Math.sin(angle * 0.2792) * 0.75;
                 zPos = pos.getZ() + 0.5 + Math.cos(angle * 0.2792) * 0.75;
 
-                Particle entityfx = new EntityBigFlameFX(world, xPos, yPos, zPos);
+                Particle entityfx = new ParticleBigFlameFX(world, xPos, yPos, zPos);
                 Minecraft.getMinecraft().effectRenderer.addEffect(entityfx);
             }
 
@@ -223,7 +223,7 @@ public class BlockExecution extends BlockContainer {
                 xPos = pos.getX() + 0.5 + Math.sin(angle * 0.5584) * 0.5;
                 zPos = pos.getZ() + 0.5 + Math.cos(angle * 0.5584) * 0.5;
 
-                Particle entityfx = new EntityBigFlameFX(world, xPos, yPos, zPos);
+                Particle entityfx = new ParticleBigFlameFX(world, xPos, yPos, zPos);
                 Minecraft.getMinecraft().effectRenderer.addEffect(entityfx);
             }
 
@@ -232,7 +232,7 @@ public class BlockExecution extends BlockContainer {
                 xPos = pos.getX() + 0.5 + Math.sin(angle * 1.1168) * 0.2;
                 zPos = pos.getZ() + 0.5 + Math.cos(angle * 1.1168) * 0.2;
 
-                Particle entityfx = new EntityBigFlameFX(world, xPos, yPos, zPos);
+                Particle entityfx = new ParticleBigFlameFX(world, xPos, yPos, zPos);
                 Minecraft.getMinecraft().effectRenderer.addEffect(entityfx);
                 world.spawnParticle(EnumParticleTypes.LAVA, xPos, yPos, zPos, 0, 0, 0);
                 world.spawnParticle(EnumParticleTypes.SMOKE_LARGE, xPos, yPos, zPos, 0, 0, 0);

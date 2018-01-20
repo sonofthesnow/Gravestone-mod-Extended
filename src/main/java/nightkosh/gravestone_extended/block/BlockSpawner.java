@@ -30,7 +30,7 @@ import nightkosh.gravestone_extended.block.enums.EnumSpawner;
 import nightkosh.gravestone_extended.core.GSBlock;
 import nightkosh.gravestone_extended.core.GSTabs;
 import nightkosh.gravestone_extended.core.ModInfo;
-import nightkosh.gravestone_extended.particle.EntityGreenFlameFX;
+import nightkosh.gravestone_extended.particle.ParticleGreenFlameFX;
 import nightkosh.gravestone_extended.tileentity.TileEntitySpawner;
 
 import java.util.ArrayList;
@@ -140,7 +140,7 @@ public class BlockSpawner extends BlockMobSpawner {
                 dx = -Math.sin(rotation) * d;
                 dz = Math.cos(rotation) * d;
                 world.spawnParticle(EnumParticleTypes.SMOKE_NORMAL, xPos + dx, yPos, zPos + dz, 0, 0, 0);
-                Particle entityfx = new EntityGreenFlameFX(world, xPos + dx, yPos, zPos + dz, 0, 0, 0);
+                Particle entityfx = new ParticleGreenFlameFX(world, xPos + dx, yPos, zPos + dz, 0, 0, 0);
                 Minecraft.getMinecraft().effectRenderer.addEffect(entityfx);
                 rotation += dRotation;
             }

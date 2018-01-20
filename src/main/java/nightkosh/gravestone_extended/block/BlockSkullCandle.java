@@ -29,7 +29,7 @@ import nightkosh.gravestone_extended.block.enums.EnumSkullCandle;
 import nightkosh.gravestone_extended.core.GSTabs;
 import nightkosh.gravestone_extended.core.ModInfo;
 import nightkosh.gravestone_extended.helper.TimeHelper;
-import nightkosh.gravestone_extended.particle.EntityGreenFlameFX;
+import nightkosh.gravestone_extended.particle.ParticleGreenFlameFX;
 import nightkosh.gravestone_extended.tileentity.TileEntitySkullCandle;
 
 import java.util.Random;
@@ -161,7 +161,7 @@ public class BlockSkullCandle extends BlockContainer {
             if (dayTime < TimeHelper.SUN_SET || dayTime > TimeHelper.SUN_RISING) {
                 world.spawnParticle(EnumParticleTypes.FLAME, xPos + dx, yPos, zPos + dz, 0, 0, 0);
             } else {
-                Particle entityfx = new EntityGreenFlameFX(world, xPos + dx, yPos, zPos + dz, 0, 0, 0);
+                Particle entityfx = new ParticleGreenFlameFX(world, xPos + dx, yPos, zPos + dz, 0, 0, 0);
                 Minecraft.getMinecraft().effectRenderer.addEffect(entityfx);
             }
 

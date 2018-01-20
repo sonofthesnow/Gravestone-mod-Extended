@@ -9,7 +9,7 @@ import net.minecraft.entity.EntityLiving;
 import net.minecraft.util.ResourceLocation;
 import nightkosh.gravestone_extended.core.Resources;
 import nightkosh.gravestone_extended.models.entity.ModelDamnedWarrior;
-import nightkosh.gravestone_extended.particle.EntityBigFlameFX;
+import nightkosh.gravestone_extended.particle.ParticleBigFlameFX;
 
 /**
  * GraveStone mod
@@ -37,7 +37,7 @@ public class RenderDamnedWarrior extends RenderLiving {
         super.doRender(entity, x, y, z, entityYaw, partialTicks);
 
         if (ticks > 40) {
-            Particle chestFlame = new EntityBigFlameFX(entity.getEntityWorld(), entity.posX, entity.posY + 2.1, entity.posZ, 3, 0.1F, 0.85F, 0.1F);
+            Particle chestFlame = new ParticleBigFlameFX(entity.getEntityWorld(), entity.posX, entity.posY + 2.1, entity.posZ, 3, 0.1F, 0.85F, 0.1F);
             Minecraft.getMinecraft().effectRenderer.addEffect(chestFlame);
 
 
@@ -45,10 +45,10 @@ public class RenderDamnedWarrior extends RenderLiving {
             double dy = Math.sin(model.getSkull().rotateAngleY);
             double dx = 0.65 * Math.cos(Math.toRadians(45) + model.getSkull().rotateAngleX) * dy;
 
-            Particle leftEyeFlame = new EntityBigFlameFX(entity.getEntityWorld(), entity.posX - dx, entity.posY + 2.82 - dy, entity.posZ + dz, 0.9F, 0.1F, 0.85F, 0.1F);
+            Particle leftEyeFlame = new ParticleBigFlameFX(entity.getEntityWorld(), entity.posX - dx, entity.posY + 2.82 - dy, entity.posZ + dz, 0.9F, 0.1F, 0.85F, 0.1F);
             Minecraft.getMinecraft().effectRenderer.addEffect(leftEyeFlame);
 
-            Particle rightEyeFlame = new EntityBigFlameFX(entity.getEntityWorld(), entity.posX + dx, entity.posY + 2.82 - dy, entity.posZ + dz, 0.9F, 0.1F, 0.85F, 0.1F);
+            Particle rightEyeFlame = new ParticleBigFlameFX(entity.getEntityWorld(), entity.posX + dx, entity.posY + 2.82 - dy, entity.posZ + dz, 0.9F, 0.1F, 0.85F, 0.1F);
             Minecraft.getMinecraft().effectRenderer.addEffect(rightEyeFlame);
             ticks = 0;
         } else {
