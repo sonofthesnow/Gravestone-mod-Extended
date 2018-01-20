@@ -15,6 +15,8 @@ import nightkosh.gravestone_extended.core.GSBlock;
 import nightkosh.gravestone_extended.core.GSTabs;
 import nightkosh.gravestone_extended.core.ModInfo;
 
+import java.util.HashSet;
+
 /**
  * GraveStone mod
  *
@@ -24,7 +26,7 @@ import nightkosh.gravestone_extended.core.ModInfo;
 public class ItemChisel extends ItemTool {
 
     public ItemChisel() {
-        super(1, 5, ToolMaterial.IRON, null);
+        super(1, 5, ToolMaterial.IRON, new HashSet<>());
         this.setMaxStackSize(1);
         this.setCreativeTab(GSTabs.otherItemsTab);
         this.setUnlocalizedName("gravestone.chisel");
