@@ -307,7 +307,7 @@ public class EntityCustomFishHook extends EntityFishHook {
                 double zPos = this.posZ + MathHelper.cos(f6) * f7 * 0.1;
 
                 if (MATERIAL_SET.contains(worldserver.getBlockState(new BlockPos(xPos, minY, zPos)).getMaterial())) {
-                    SPLASH_PARTICLES.getOrDefault(worldserver.getBlockState(new BlockPos(this.posX, minY, this.posZ)), EntityCustomFishHook::spawnWaterSplashParticles)
+                    SPLASH_PARTICLES.getOrDefault(worldserver.getBlockState(new BlockPos(this.posX, minY, this.posZ)).getBlock(), EntityCustomFishHook::spawnWaterSplashParticles)
                             .spawn(worldserver, this.rand, xPos, yPos, zPos);
                 }
             }
