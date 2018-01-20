@@ -131,4 +131,9 @@ public class EntitySwampThing extends EntityMob {
     public boolean isNotColliding() {
         return this.world.checkNoEntityCollision(this.getEntityBoundingBox(), this) && this.world.getCollisionBoxes(this, this.getEntityBoundingBox()).isEmpty();
     }
+
+    @Override
+    public int getMaxSpawnedInChunk() {
+        return 3;
+    }
 }

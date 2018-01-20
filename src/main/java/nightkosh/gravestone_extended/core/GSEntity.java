@@ -201,10 +201,10 @@ public class GSEntity {
         registerModEntity(DROWNED_ID, EntityDrowned.class, DROWNED_NAME);
         addSpawnWater(new ArrayList<>(Arrays.asList(
                 BiomeDictionary.Type.BEACH, BiomeDictionary.Type.RIVER, BiomeDictionary.Type.SWAMP
-        )), EntityDrowned.class, 20, 1, 3);
+        )), EntityDrowned.class, 15, 1, 1);
 
         registerModEntity(PHANTOM_DIVER_ID, EntityPhantomDiver.class, PHANTOM_DIVER_NAME);
-        addSpawnWater(BiomeDictionary.Type.OCEAN, EntityPhantomDiver.class, 20, 1, 1);
+        addSpawnWater(BiomeDictionary.Type.OCEAN, EntityPhantomDiver.class, 10, 1, 1);
 
         registerModEntity(VAMPIRE_BAT_ID, EntityVampireBat.class, VAMPIRE_BAT_NAME);
         addSpawn(OVERWORLD_BIOMES, EntityVampireBat.class, 30, 1, 5);
@@ -213,7 +213,7 @@ public class GSEntity {
         addSpawn(BiomeDictionary.Type.FOREST, EntityBarghest.class, 5, 1, 1);
 
         registerModEntity(SWAMP_THING_ID, EntitySwampThing.class, SWAMP_THING_NAME);
-        addSpawnWater(BiomeDictionary.Type.SWAMP, EntitySwampThing.class, 70, 1, 5);
+        addSpawnWater(BiomeDictionary.Type.SWAMP, EntitySwampThing.class, 50, 1, 3);
 
         registerModEntity(RAVEN_ID, EntityRaven.class, RAVEN_NAME);
 //        EntityRegistry.addSpawn(EntityRaven.class, 1, 3, 10, EnumCreatureType.AMBIENT);//TODO!!!!
