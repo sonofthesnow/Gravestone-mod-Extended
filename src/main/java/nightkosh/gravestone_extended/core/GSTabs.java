@@ -23,13 +23,13 @@ public class GSTabs extends nightkosh.gravestone.core.Tabs {
         memorialsTab = new CreativeTabs("tabGSMemorials") {
             @Override
             public ItemStack getIconItemStack() {
-                return new ItemStack(GSBlock.MEMORIAL, 1, EnumMemorials.STONE_CREEPER_STATUE.ordinal());
+                return new ItemStack(GSBlock.MEMORIAL, 1, EnumMemorials.STONE_CELTIC_CROSS.ordinal());
             }
 
             @Override
             @SideOnly(Side.CLIENT)
             public ItemStack getTabIconItem() {
-                return new ItemStack(GSBlock.MEMORIAL, 1, EnumMemorials.STONE_CREEPER_STATUE.ordinal());
+                return new ItemStack(GSBlock.MEMORIAL, 1, EnumMemorials.STONE_CELTIC_CROSS.ordinal());
             }
         };
 
@@ -49,13 +49,13 @@ public class GSTabs extends nightkosh.gravestone.core.Tabs {
         otherItemsTab = new CreativeTabs("tabGSOther") {
             @Override
             public ItemStack getIconItemStack() {
-                return new ItemStack(GSBlock.SKULL_CANDLE, 1, 1);
+                return new ItemStack(GSItem.ENCHANTED_SKULL, 1, 1);
             }
 
             @Override
             @SideOnly(Side.CLIENT)
             public ItemStack getTabIconItem() {
-                return new ItemStack(GSBlock.SKULL_CANDLE, 1, 1);
+                return new ItemStack(GSItem.ENCHANTED_SKULL, 1, 1);
             }
         };
     }
