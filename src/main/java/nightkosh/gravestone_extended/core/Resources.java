@@ -16,6 +16,7 @@ public class Resources extends nightkosh.gravestone.core.Resources{
     protected static final String FLUID_LOCATION = EXT_MOD_NAME + ":blocks/fluids/";
     protected static final String GUI_LOCATION = EXT_MOD_NAME + ":textures/gui/";
     protected static final String POTIONS_LOCATION = EXT_MOD_NAME + ":textures/potions/";
+    protected static final String PARTICLES_LOCATION = EXT_MOD_NAME + ":textures/particles/";
     protected static final String ENTITY_LOCATION = EXT_MOD_NAME + ":textures/entities/";
     protected static final String PROJECTILE_LOCATION = ENTITY_LOCATION + "projectile/";
     protected static final String MEMORIALS_LOCATION = EXT_MOD_NAME + ":textures/blocks/memorials/";
@@ -37,6 +38,9 @@ public class Resources extends nightkosh.gravestone.core.Resources{
 
     //potions
     public static final ResourceLocation POTIONS = new ResourceLocation(POTIONS_LOCATION + "potions.png");
+
+    //particles
+    public static final ResourceLocation PARTICLES = new ResourceLocation(PARTICLES_LOCATION + "particles.png");
 
     // entities
     public static final ResourceLocation EMPTY = new ResourceLocation("textures/entity/empty.png");

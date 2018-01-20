@@ -21,7 +21,8 @@ import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.stats.StatList;
 import net.minecraft.util.EnumParticleTypes;
-import net.minecraft.util.math.*;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldServer;
 import net.minecraft.world.storage.loot.LootContext;
@@ -348,19 +349,16 @@ public class EntityCustomFishHook extends EntityFishHook {
         SPLASH_PARTICLES.put(Blocks.FLOWING_WATER, EntityCustomFishHook::spawnWaterSplashParticles);
         SPLASH_PARTICLES.put(Blocks.LAVA, EntityCustomFishHook::spawnLavaSplashParticles);
         SPLASH_PARTICLES.put(Blocks.FLOWING_LAVA, EntityCustomFishHook::spawnLavaSplashParticles);
-        SPLASH_PARTICLES.put(GSBlock.TOXIC_WATER, EntityCustomFishHook::spawnToxicWaterSplashParticles);
 
         BUBBLE_PARTICLES.put(Blocks.WATER, EntityCustomFishHook::spawnWaterBubbleParticles);
         BUBBLE_PARTICLES.put(Blocks.FLOWING_WATER, EntityCustomFishHook::spawnWaterBubbleParticles);
         BUBBLE_PARTICLES.put(Blocks.LAVA, EntityCustomFishHook::spawnLavaBubbleParticles);
         BUBBLE_PARTICLES.put(Blocks.FLOWING_LAVA, EntityCustomFishHook::spawnLavaBubbleParticles);
-        BUBBLE_PARTICLES.put(GSBlock.TOXIC_WATER, EntityCustomFishHook::spawnToxicWaterBubbleParticles);
 
         WAKE_PARTICLES.put(Blocks.WATER, EntityCustomFishHook::spawnWaterWakeParticles);
         WAKE_PARTICLES.put(Blocks.FLOWING_WATER, EntityCustomFishHook::spawnWaterWakeParticles);
         WAKE_PARTICLES.put(Blocks.LAVA, EntityCustomFishHook::spawnLavaWakeParticles);
         WAKE_PARTICLES.put(Blocks.FLOWING_LAVA, EntityCustomFishHook::spawnLavaWakeParticles);
-        WAKE_PARTICLES.put(GSBlock.TOXIC_WATER, EntityCustomFishHook::spawnToxicWaterWakeParticles);
     }
 
     protected static void spawnWaterSplashParticles(WorldServer world, Random rand, double x, double y, double z) {
@@ -373,12 +371,6 @@ public class EntityCustomFishHook extends EntityFishHook {
         world.spawnParticle(EnumParticleTypes.LAVA, x, y, z, num, 0.1, 0, 0.1, 0);
     }
 
-    // TODO !!!!
-    protected static void spawnToxicWaterSplashParticles(WorldServer world, Random rand, double x, double y, double z) {
-        world.spawnParticle(EnumParticleTypes.WATER_SPLASH, x, y, z, 2 + rand.nextInt(2), 0.1, 0, 0.1, 0);
-    }
-
-
     protected static void spawnWaterBubbleParticles(WorldServer world, double x, double y, double z, int num, double xOffset, double yOffset, double zOffset, double speed) {
         world.spawnParticle(EnumParticleTypes.WATER_BUBBLE, x, y, z, num, xOffset, yOffset, zOffset, speed);
     }
@@ -387,12 +379,6 @@ public class EntityCustomFishHook extends EntityFishHook {
         world.spawnParticle(EnumParticleTypes.SMOKE_NORMAL, x, y, z, num, xOffset, yOffset, zOffset, speed);
     }
 
-    // TODO !!!!
-    protected static void spawnToxicWaterBubbleParticles(WorldServer world, double x, double y, double z, int num, double xOffset, double yOffset, double zOffset, double speed) {
-        world.spawnParticle(EnumParticleTypes.WATER_BUBBLE, x, y, z, num, xOffset, yOffset, zOffset, speed);
-    }
-
-
     protected static void spawnWaterWakeParticles(WorldServer world, double x, double y, double z, int num, double xOffset, double yOffset, double zOffset, double speed) {
         world.spawnParticle(EnumParticleTypes.WATER_WAKE, x, y, z, num, xOffset, yOffset, zOffset, speed);
     }
@@ -400,11 +386,6 @@ public class EntityCustomFishHook extends EntityFishHook {
     protected static void spawnLavaWakeParticles(WorldServer world, double x, double y, double z, int num, double xOffset, double yOffset, double zOffset, double speed) {
         world.spawnParticle(EnumParticleTypes.SMOKE_LARGE, x, y, z, num, xOffset, yOffset, zOffset, speed);
         world.spawnParticle(EnumParticleTypes.LAVA, x, y, z, num, xOffset, yOffset, zOffset, speed);
-    }
-
-    // TODO !!!!
-    protected static void spawnToxicWaterWakeParticles(WorldServer world, double x, double y, double z, int num, double xOffset, double yOffset, double zOffset, double speed) {
-        world.spawnParticle(EnumParticleTypes.WATER_WAKE, x, y, z, num, xOffset, yOffset, zOffset, speed);
     }
 
     @Override
