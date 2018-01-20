@@ -322,6 +322,38 @@ public class EntityCustomFishHook extends EntityFishHook {
         }
     }
 
+    @Override
+    protected void doWaterSplashEffect() {
+        Entity entity = this.isBeingRidden() && this.getControllingPassenger() != null ? this.getControllingPassenger() : this;
+        float f = (entity == this) ? 0.2F : 0.9F;
+        float f1 = MathHelper.sqrt(entity.motionX * entity.motionX * 0.2 + entity.motionY * entity.motionY + entity.motionZ * entity.motionZ * 0.2) * f;
+
+        if (f1 > 1) {
+            f1 = 1;
+        }
+
+        this.playSound(this.getSplashSound(), f1, 1 + (this.rand.nextFloat() - this.rand.nextFloat()) * 0.4F);
+
+        if (!this.world.isRemote) {
+            float minY = (float) MathHelper.floor(this.getEntityBoundingBox().minY);
+            Block liquidBlock = this.world.getBlockState(new BlockPos(this.posX, minY, this.posZ)).getBlock();
+            for (int i = 0; i < 1 + this.width * 20; i++) {
+                float f3 = (this.rand.nextFloat() * 2 - 1) * this.width;
+                float f4 = (this.rand.nextFloat() * 2 - 1) * this.width;
+                BUBBLE_PARTICLES.getOrDefault(liquidBlock, EntityCustomFishHook::spawnWaterBubbleParticles).spawn((WorldServer) this.world, this.posX + f3, minY + 1, this.posZ + f4,
+                        1, this.motionX, this.motionY - this.rand.nextFloat() * 0.2F, this.motionZ, 0);
+            }
+
+            for (int j = 0; j < 1 + this.width * 20; j++) {
+                float f5 = (this.rand.nextFloat() * 2 - 1) * this.width;
+                float f6 = (this.rand.nextFloat() * 2 - 1) * this.width;
+
+                SPLASH_PARTICLES.getOrDefault(liquidBlock, EntityCustomFishHook::spawnWaterSplashParticles)
+                        .spawn((WorldServer) this.world, this.rand, this.posX + f5, minY + 1, this.posZ + f6);
+            }
+        }
+    }
+
     @FunctionalInterface
     interface ISpawnSplashParticles {
         public void spawn(WorldServer world, Random rand, double x, double y, double z);
