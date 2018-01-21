@@ -5,6 +5,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldServer;
 import net.minecraft.world.storage.loot.RandomValueRange;
@@ -48,9 +49,9 @@ public class EntityBoneFishHook extends EntityCustomFishHook {
         return stack.getItem() instanceof IBoneFishingPole;
     }
 
-    protected List<ItemStack> getToxicWaterCatch(Set<BiomeDictionary.Type> biomeTypesList) {
+    protected static List<ItemStack> getToxicWaterCatch(World world, BlockPos pos, Set<BiomeDictionary.Type> biomeTypesList, float luck) {
         List<ItemStack> tempList = new ArrayList<>();
-        int chance = this.rand.nextInt(100) + Math.round(luck);
+        int chance = world.rand.nextInt(100) + Math.round(luck);
 
         if (chance < 50) {
             tempList.add(new ItemStack(Items.BONE));
@@ -67,7 +68,7 @@ public class EntityBoneFishHook extends EntityCustomFishHook {
                 tempList.add(new ItemStack(Blocks.SKULL, 1, 0)); // SKELETON
                 tempList.add(new ItemStack(Blocks.SKULL, 1, 2)); // ZOMBIE
             } else {
-                EnchantmentHelper.addRandomEnchantment(rand, new ItemStack(GSItem.ENCHANTED_SKULL, 1, 0), new RandomValueRange(30, 40).generateInt(rand), true);
+                EnchantmentHelper.addRandomEnchantment(world.rand, new ItemStack(GSItem.ENCHANTED_SKULL, 1, 0), new RandomValueRange(30, 40).generateInt(world.rand), true);
             }
         }
         return tempList;
@@ -77,6 +78,8 @@ public class EntityBoneFishHook extends EntityCustomFishHook {
         SPLASH_PARTICLES.put(GSBlock.TOXIC_WATER, EntityBoneFishHook::spawnToxicWaterSplashParticles);
         BUBBLE_PARTICLES.put(GSBlock.TOXIC_WATER, EntityBoneFishHook::spawnToxicWaterBubbleParticles);
         WAKE_PARTICLES.put(GSBlock.TOXIC_WATER, EntityBoneFishHook::spawnToxicWaterWakeParticles);
+
+        CATCH.put(GSBlock.TOXIC_WATER, EntityBoneFishHook::getToxicWaterCatch);
     }
 
     protected static void spawnToxicWaterSplashParticles(WorldServer world, Random rand, double x, double y, double z) {

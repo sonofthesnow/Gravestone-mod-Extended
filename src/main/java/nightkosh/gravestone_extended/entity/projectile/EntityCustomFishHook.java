@@ -5,6 +5,7 @@ import net.minecraft.block.BlockLiquid;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
+import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.MoverType;
 import net.minecraft.entity.item.EntityItem;
@@ -27,12 +28,12 @@ import net.minecraft.world.World;
 import net.minecraft.world.WorldServer;
 import net.minecraft.world.storage.loot.LootContext;
 import net.minecraft.world.storage.loot.LootTableList;
+import net.minecraft.world.storage.loot.RandomValueRange;
 import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.entity.player.ItemFishedEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import nightkosh.gravestone_extended.core.GSBlock;
 import nightkosh.gravestone_extended.core.GSItem;
 import nightkosh.gravestone_extended.item.ItemFish;
 
@@ -369,10 +370,16 @@ public class EntityCustomFishHook extends EntityFishHook {
         public void spawn(WorldServer world, double x, double y, double z, int num, double xOffset, double yOffset, double zOffset, double speed);
     }
 
+    @FunctionalInterface
+    interface ICatch {
+        public List<ItemStack> getCatch(World world, BlockPos pos, Set<BiomeDictionary.Type> biomeTypesList, float luck);
+    }
+
     protected static final Set<Material> MATERIAL_SET = new HashSet<>();
     protected static final Map<Block, ISpawnSplashParticles> SPLASH_PARTICLES = new HashMap<>();
     protected static final Map<Block, ISpawnBubbleParticles> BUBBLE_PARTICLES = new HashMap<>();
     protected static final Map<Block, ISpawnWakeParticles> WAKE_PARTICLES = new HashMap<>();
+    protected static final Map<Block, ICatch> CATCH = new HashMap<>();
 
     static {
         MATERIAL_SET.addAll(Arrays.asList(Material.WATER, Material.LAVA));
@@ -391,6 +398,12 @@ public class EntityCustomFishHook extends EntityFishHook {
         WAKE_PARTICLES.put(Blocks.FLOWING_WATER, EntityCustomFishHook::spawnWaterWakeParticles);
         WAKE_PARTICLES.put(Blocks.LAVA, EntityCustomFishHook::spawnLavaWakeParticles);
         WAKE_PARTICLES.put(Blocks.FLOWING_LAVA, EntityCustomFishHook::spawnLavaWakeParticles);
+
+        CATCH.put(Blocks.WATER, EntityCustomFishHook::getWaterCatch);
+        CATCH.put(Blocks.FLOWING_WATER, EntityCustomFishHook::getWaterCatch);
+        CATCH.put(Blocks.LAVA, EntityCustomFishHook::getLavaCatch);
+        CATCH.put(Blocks.FLOWING_LAVA, EntityCustomFishHook::getLavaCatch);
+
     }
 
     protected static void spawnWaterSplashParticles(WorldServer world, Random rand, double x, double y, double z) {
@@ -478,76 +491,98 @@ public class EntityCustomFishHook extends EntityFishHook {
     }
 
     protected List<ItemStack> getCatch() {
-        BlockPos pos = new BlockPos(this);
-        IBlockState state = this.world.getBlockState(pos);
         List<ItemStack> result = new ArrayList<>(1);
-        Set<BiomeDictionary.Type> biomeTypesList = BiomeDictionary.getTypes(world.getBiome(pos));
-        float luck = (this.luck + this.getAngler().getLuck()) * 1.5F;
-        if (state.getMaterial() == Material.WATER) {
-            if (state.getBlock() == GSBlock.TOXIC_WATER) {
-                List<ItemStack> tempList = getToxicWaterCatch(biomeTypesList);
-                result.add(tempList.get(this.rand.nextInt(tempList.size())));
-            } else {
-                LootContext.Builder lootContextBuilder = new LootContext.Builder((WorldServer) this.world);
-                lootContextBuilder.withLuck(this.luck + this.getAngler().getLuck());
 
-                int chance = this.rand.nextInt(100) + Math.round(luck);
-
-                List<ItemStack> tempList = new ArrayList<>();
-                if (chance < 10) {
-                    result = this.world.getLootTableManager().getLootTableFromLocation(LootTableList.GAMEPLAY_FISHING_JUNK).generateLootForPools(this.rand, lootContextBuilder.build());
-                } else if (chance < 90) {
-//                    result = this.world.getLootTableManager().getLootTableFromLocation(LootTableList.GAMEPLAY_FISHING_FISH).generateLootForPools(this.rand, lootContextBuilder.build());
-                    // 60 25 13 2
-                    chance = this.rand.nextInt(100) + Math.round(luck);
-                    if (chance < 50) {
-                        tier1(tempList, biomeTypesList);
-                    } else if (chance < 80) {
-                        tier2(tempList, biomeTypesList);
-                    } else if (chance < 95) {
-                        tier3(tempList, biomeTypesList);
-                    } else {
-                        if (!world.canBlockSeeSky(pos)) {
-                            if (pos.getY() < 50) {
-                                tempList.add(new ItemStack(GSItem.FISH, 1, ItemFish.EnumFishType.SPECULAR_FISH.ordinal()));
-                                if (pos.getY() < 40) {
-                                    tempList.add(new ItemStack(GSItem.FISH, 1, ItemFish.EnumFishType.CAVEFISH.ordinal()));
-                                    if (pos.getY() < 25) {
-                                        tempList.add(new ItemStack(GSItem.FISH, 1, ItemFish.EnumFishType.ANGLER_FISH.ordinal()));
-                                    }
-                                }
-
-                            } else {
-                                tier4(tempList, biomeTypesList);
-                            }
-                        } else {
-                            tier4(tempList, biomeTypesList);
-                        }
-                    }
-
-                    result.add(tempList.get(this.rand.nextInt(tempList.size())));
-                } else {
-                    result = this.world.getLootTableManager().getLootTableFromLocation(LootTableList.GAMEPLAY_FISHING_TREASURE).generateLootForPools(this.rand, lootContextBuilder.build());
-                }
-
-            }
-        } else if (state.getMaterial() == Material.LAVA) {
-            List<ItemStack> tempList = getLavaCatch(biomeTypesList);
-            result.add(tempList.get(this.rand.nextInt(tempList.size())));
-        }
+        List<ItemStack> tempList = CATCH.getOrDefault(this.world.getBlockState(this.getPosition()).getBlock(), EntityCustomFishHook::getWaterCatch)
+                .getCatch(world, this.getPosition(), BiomeDictionary.getTypes(world.getBiome(this.getPosition())), (this.luck + this.getAngler().getLuck()) * 1.5F);
+        result.add(tempList.get(this.rand.nextInt(tempList.size())));
 
         return result;
     }
 
-    protected List<ItemStack> getToxicWaterCatch(Set<BiomeDictionary.Type> biomeTypesList) {
-        return new ArrayList<>();
+    protected static List<ItemStack> getWaterCatch(World world, BlockPos pos, Set<BiomeDictionary.Type> biomeTypesList, float luck) {
+        LootContext.Builder lootContextBuilder = new LootContext.Builder((WorldServer) world);
+        lootContextBuilder.withLuck(luck);
+
+        int chance = world.rand.nextInt(100) + Math.round(luck);
+
+        List<ItemStack> list = new ArrayList<>();
+        if (chance < 10) {
+            list = world.getLootTableManager().getLootTableFromLocation(LootTableList.GAMEPLAY_FISHING_JUNK).generateLootForPools(world.rand, lootContextBuilder.build());
+        } else if (chance < 90) {
+//                    result = this.world.getLootTableManager().getLootTableFromLocation(LootTableList.GAMEPLAY_FISHING_FISH).generateLootForPools(this.rand, lootContextBuilder.build());
+            // 60 25 13 2
+            chance = world.rand.nextInt(100) + Math.round(luck);
+            if (chance < 50) {
+                tier1(list, biomeTypesList);
+            } else if (chance < 80) {
+                tier2(list, biomeTypesList);
+            } else if (chance < 95) {
+                tier3(list, biomeTypesList);
+            } else {
+                if (!world.canBlockSeeSky(pos)) {
+                    if (pos.getY() < 50) {
+                        list.add(new ItemStack(GSItem.FISH, 1, ItemFish.EnumFishType.SPECULAR_FISH.ordinal()));
+                        if (pos.getY() < 40) {
+                            list.add(new ItemStack(GSItem.FISH, 1, ItemFish.EnumFishType.CAVEFISH.ordinal()));
+                            if (pos.getY() < 25) {
+                                list.add(new ItemStack(GSItem.FISH, 1, ItemFish.EnumFishType.ANGLER_FISH.ordinal()));
+                            }
+                        }
+
+                    } else {
+                        tier4(list, biomeTypesList);
+                    }
+                } else {
+                    tier4(list, biomeTypesList);
+                }
+            }
+
+            list.add(list.get(world.rand.nextInt(list.size())));
+        } else {
+            list = world.getLootTableManager().getLootTableFromLocation(LootTableList.GAMEPLAY_FISHING_TREASURE).generateLootForPools(world.rand, lootContextBuilder.build());
+        }
+        return list;
     }
 
-    protected List<ItemStack> getLavaCatch(Set<BiomeDictionary.Type> biomeTypesList) {
-        return new ArrayList<>();
+    protected static List<ItemStack> getLavaCatch(World world, BlockPos pos, Set<BiomeDictionary.Type> biomeTypesList, float luck) {
+        List<ItemStack> tempList = new ArrayList<>();
+
+        int chance = world.rand.nextInt(100) + Math.round(luck);
+        if (!biomeTypesList.contains(BiomeDictionary.Type.NETHER)) {
+            if (chance < 80) {
+                tempList.add(new ItemStack(GSItem.FISH, 1, ItemFish.EnumFishType.OBSIDIFISH.ordinal()));
+            } else if (chance < 95) {
+                tempList.add(new ItemStack(GSItem.FISH, 1, ItemFish.EnumFishType.MAGMA_JELLYFISH.ordinal()));
+            } else {
+                if (chance < 98) {
+                    tempList.add(new ItemStack(Blocks.SKULL, 1, 1)); //WITHER SKULL
+                } else {
+                    EnchantmentHelper.addRandomEnchantment(world.rand, new ItemStack(GSItem.ENCHANTED_SKULL, 1, 1), new RandomValueRange(40, 50).generateInt(world.rand), true);
+                }
+            }
+        } else {
+            if (chance < 40) {
+                tempList.add(new ItemStack(GSItem.FISH, 1, ItemFish.EnumFishType.NETHER_SALMON.ordinal()));
+            } else if (chance < 80) {
+                tempList.add(new ItemStack(GSItem.FISH, 1, ItemFish.EnumFishType.MAGMA_JELLYFISH.ordinal()));
+                tempList.add(new ItemStack(GSItem.FISH, 1, ItemFish.EnumFishType.QUARTZ_COD.ordinal()));
+                tempList.add(new ItemStack(GSItem.FISH, 1, ItemFish.EnumFishType.WITHERED_CRUCIAN.ordinal()));
+            } else if (chance < 95) {
+                tempList.add(new ItemStack(GSItem.FISH, 1, ItemFish.EnumFishType.FLAREFIN_KOI.ordinal()));
+                tempList.add(new ItemStack(GSItem.FISH, 1, ItemFish.EnumFishType.BLAZE_COD.ordinal()));
+            } else {
+                if (chance < 98) {
+                    tempList.add(new ItemStack(Blocks.SKULL, 1, 1)); //WITHER SKULL
+                } else {
+                    EnchantmentHelper.addRandomEnchantment(world.rand, new ItemStack(GSItem.ENCHANTED_SKULL, 1, 1), new RandomValueRange(40, 50).generateInt(world.rand), true);
+                }
+            }
+        }
+        return tempList;
     }
 
-    protected void tier1(List<ItemStack> tempList, Set<BiomeDictionary.Type> biomeTypesList) {
+    protected static void tier1(List<ItemStack> tempList, Set<BiomeDictionary.Type> biomeTypesList) {
         if (biomeTypesList.contains(BiomeDictionary.Type.OCEAN) || biomeTypesList.contains(BiomeDictionary.Type.BEACH)) {
             tempList.add(new ItemStack(GSItem.FISH, 1, ItemFish.EnumFishType.BLUE_JELLYFISH.ordinal()));
             tempList.add(new ItemStack(GSItem.FISH, 1, ItemFish.EnumFishType.ANGELFISH.ordinal()));
@@ -562,7 +597,7 @@ public class EntityCustomFishHook extends EntityFishHook {
         }
     }
 
-    protected void tier2(List<ItemStack> tempList, Set<BiomeDictionary.Type> biomeTypesList) {
+    protected static void tier2(List<ItemStack> tempList, Set<BiomeDictionary.Type> biomeTypesList) {
         if (biomeTypesList.contains(BiomeDictionary.Type.OCEAN) || biomeTypesList.contains(BiomeDictionary.Type.BEACH)) {
             tempList.add(new ItemStack(Items.FISH, 1, 3)); //puffer
         }
@@ -586,7 +621,7 @@ public class EntityCustomFishHook extends EntityFishHook {
         }
     }
 
-    protected void tier3(List<ItemStack> tempList, Set<BiomeDictionary.Type> biomeTypesList) {
+    protected static void tier3(List<ItemStack> tempList, Set<BiomeDictionary.Type> biomeTypesList) {
         if (biomeTypesList.contains(BiomeDictionary.Type.OCEAN) || biomeTypesList.contains(BiomeDictionary.Type.BEACH)) {
             tempList.add(new ItemStack(Items.FISH, 1, 2)); // clown
         }
@@ -610,7 +645,7 @@ public class EntityCustomFishHook extends EntityFishHook {
         }
     }
 
-    protected void tier4(List<ItemStack> tempList, Set<BiomeDictionary.Type> biomeTypesList) {
+    protected static void tier4(List<ItemStack> tempList, Set<BiomeDictionary.Type> biomeTypesList) {
         if (biomeTypesList.contains(BiomeDictionary.Type.OCEAN) || biomeTypesList.contains(BiomeDictionary.Type.BEACH)) {
             tempList.add(new ItemStack(GSItem.FISH, 1, ItemFish.EnumFishType.SPONGE_EATER.ordinal()));
         } else {
