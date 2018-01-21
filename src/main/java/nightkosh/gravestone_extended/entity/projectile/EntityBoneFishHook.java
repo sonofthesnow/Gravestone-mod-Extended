@@ -83,7 +83,7 @@ public class EntityBoneFishHook extends EntityCustomFishHook {
     }
 
     protected static void spawnToxicWaterSplashParticles(WorldServer world, Random rand, double x, double y, double z) {
-        ModGravestoneExtended.proxy.spawnToxicWaterSplashParticles(world, x, y, z, 2 + rand.nextInt(2), 0.1, 0);
+        ModGravestoneExtended.proxy.spawnToxicWaterSplashParticles(world, x, y, z, 0, 0.1, 0);
     }
 
     protected static void spawnToxicWaterBubbleParticles(WorldServer world, double x, double y, double z, int num, double xOffset, double yOffset, double zOffset, double speed) {
