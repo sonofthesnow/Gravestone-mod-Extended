@@ -8,6 +8,7 @@ import net.minecraft.client.renderer.block.statemap.StateMapperBase;
 import net.minecraft.client.renderer.entity.RenderFish;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.util.text.translation.I18n;
+import net.minecraft.world.WorldServer;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.client.FMLClientHandler;
@@ -35,6 +36,9 @@ import nightkosh.gravestone_extended.gui.GSGraveTextGui;
 import nightkosh.gravestone_extended.item.ItemGSMonsterPlacer;
 import nightkosh.gravestone_extended.models.entity.ModelDamnedWarrior;
 import nightkosh.gravestone_extended.models.entity.ModelUndeadCat;
+import nightkosh.gravestone_extended.particle.ParticleToxicWaterBubble;
+import nightkosh.gravestone_extended.particle.ParticleToxicWaterSplash;
+import nightkosh.gravestone_extended.particle.ParticleToxicWaterWake;
 import nightkosh.gravestone_extended.renderer.entity.*;
 import nightkosh.gravestone_extended.renderer.entity.item.RendererFireproofItem;
 import nightkosh.gravestone_extended.renderer.entity.projectile.RendererBoneFishHook;
@@ -215,5 +219,20 @@ public class ClientProxy extends CommonProxy {
     @Override
     public void registerHandlers() {
         MinecraftForge.EVENT_BUS.register(new RenderEventHandler());
+    }
+
+    @Override
+    public void spawnToxicWaterSplashParticles(WorldServer world, double x, double y, double z, double xOffset, double yOffset, double zOffset) {
+        Minecraft.getMinecraft().effectRenderer.addEffect(new ParticleToxicWaterSplash(world, x, y, z, xOffset, yOffset, zOffset));
+    }
+
+    @Override
+    public void spawnToxicWaterBubbleParticles(WorldServer world, double x, double y, double z, double xOffset, double yOffset, double zOffset) {
+        Minecraft.getMinecraft().effectRenderer.addEffect(new ParticleToxicWaterBubble(world, x, y, z, xOffset, yOffset, zOffset));
+    }
+
+    @Override
+    public void spawnToxicWaterWakeParticles(WorldServer world, double x, double y, double z, double xOffset, double yOffset, double zOffset) {
+        Minecraft.getMinecraft().effectRenderer.addEffect(new ParticleToxicWaterWake(world, x, y, z, xOffset, yOffset, zOffset));
     }
 }

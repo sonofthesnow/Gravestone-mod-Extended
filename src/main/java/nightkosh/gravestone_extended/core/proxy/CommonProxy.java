@@ -1,6 +1,7 @@
 package nightkosh.gravestone_extended.core.proxy;
 
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
+import net.minecraft.world.WorldServer;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import nightkosh.gravestone.tileentity.TileEntityGrave;
 import nightkosh.gravestone_extended.tileentity.*;
@@ -47,5 +48,17 @@ public class CommonProxy {
         GameRegistry.registerTileEntity(TileEntityPileOfBones.class, "GSTEPileOfBones");
         GameRegistry.registerTileEntity(TileEntityAltar.class, "GSAltarTE");
         GameRegistry.registerTileEntity(TileEntityCorpse.class, "GSTECorpse");
+    }
+
+    public void spawnToxicWaterSplashParticles(WorldServer world, double x, double y, double z, double xOffset, double yOffset, double zOffset) {
+
+    }
+
+    public void spawnToxicWaterBubbleParticles(WorldServer world, double x, double y, double z, double xOffset, double yOffset, double zOffset) {
+
+    }
+
+    public void spawnToxicWaterWakeParticles(WorldServer world, double x, double y, double z, double xOffset, double yOffset, double zOffset) {
+
     }
 }

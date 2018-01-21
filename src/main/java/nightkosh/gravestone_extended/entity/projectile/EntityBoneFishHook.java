@@ -1,6 +1,5 @@
 package nightkosh.gravestone_extended.entity.projectile;
 
-import net.minecraft.client.Minecraft;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
@@ -12,13 +11,11 @@ import net.minecraft.world.storage.loot.RandomValueRange;
 import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import nightkosh.gravestone_extended.ModGravestoneExtended;
 import nightkosh.gravestone_extended.core.GSBlock;
 import nightkosh.gravestone_extended.core.GSItem;
 import nightkosh.gravestone_extended.item.ItemFish;
 import nightkosh.gravestone_extended.item.tools.IBoneFishingPole;
-import nightkosh.gravestone_extended.particle.ParticleToxicWaterBubble;
-import nightkosh.gravestone_extended.particle.ParticleToxicWaterSplash;
-import nightkosh.gravestone_extended.particle.ParticleToxicWaterWake;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -83,14 +80,14 @@ public class EntityBoneFishHook extends EntityCustomFishHook {
     }
 
     protected static void spawnToxicWaterSplashParticles(WorldServer world, Random rand, double x, double y, double z) {
-        Minecraft.getMinecraft().effectRenderer.addEffect(new ParticleToxicWaterSplash(world, x, y, z, 2 + rand.nextInt(2), 0.1, 0));
+        ModGravestoneExtended.proxy.spawnToxicWaterSplashParticles(world, x, y, z, 2 + rand.nextInt(2), 0.1, 0);
     }
 
     protected static void spawnToxicWaterBubbleParticles(WorldServer world, double x, double y, double z, int num, double xOffset, double yOffset, double zOffset, double speed) {
-        Minecraft.getMinecraft().effectRenderer.addEffect(new ParticleToxicWaterBubble(world, x, y, z, xOffset, yOffset, zOffset));
+        ModGravestoneExtended.proxy.spawnToxicWaterBubbleParticles(world, x, y, z, xOffset, yOffset, zOffset);
     }
 
     protected static void spawnToxicWaterWakeParticles(WorldServer world, double x, double y, double z, int num, double xOffset, double yOffset, double zOffset, double speed) {
-        Minecraft.getMinecraft().effectRenderer.addEffect(new ParticleToxicWaterWake(world, x, y, z, xOffset, yOffset, zOffset));
+        ModGravestoneExtended.proxy.spawnToxicWaterWakeParticles(world, x, y, z, xOffset, yOffset, zOffset);
     }
 }
