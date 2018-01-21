@@ -15,8 +15,8 @@ import nightkosh.gravestone_extended.core.Resources;
  */
 public class ParticleToxicWaterWake extends ParticleWaterWake {
 
-    public ParticleToxicWaterWake(World world, double x, double y, double z, double xSpeed, double ySpeed, double zSpeed) {
-        super(world, x, y, z, 0, 0, 0);
+    public ParticleToxicWaterWake(World world, double x, double y, double z, double motionX, double motionY, double motionZ) {
+        super(world, x, y, z, motionX, motionY, motionZ);
     }
 
     @Override
