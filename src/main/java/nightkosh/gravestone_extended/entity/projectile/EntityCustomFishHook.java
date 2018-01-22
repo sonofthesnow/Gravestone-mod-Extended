@@ -492,8 +492,9 @@ public class EntityCustomFishHook extends EntityFishHook {
 
     protected List<ItemStack> getCatch() {
         List<ItemStack> result = new ArrayList<>(1);
+        Block liquidBlock = this.world.getBlockState(new BlockPos(this.posX, MathHelper.floor(this.getEntityBoundingBox().minY), this.posZ)).getBlock();
 
-        List<ItemStack> tempList = CATCH.getOrDefault(this.world.getBlockState(this.getPosition()).getBlock(), EntityCustomFishHook::getWaterCatch)
+        List<ItemStack> tempList = CATCH.getOrDefault(liquidBlock, EntityCustomFishHook::getWaterCatch)
                 .getCatch(world, this.getPosition(), BiomeDictionary.getTypes(world.getBiome(this.getPosition())), (this.luck + this.getAngler().getLuck()) * 1.5F);
         result.add(tempList.get(this.rand.nextInt(tempList.size())));
 
