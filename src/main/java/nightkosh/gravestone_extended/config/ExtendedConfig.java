@@ -3,6 +3,7 @@ package nightkosh.gravestone_extended.config;
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.common.config.Property;
 import nightkosh.gravestone.config.Config;
+import nightkosh.gravestone_extended.core.GSParticles;
 import nightkosh.gravestone_extended.core.logger.GSLogger;
 import nightkosh.gravestone_extended.structures.GraveStoneWorldGenerator;
 import nightkosh.gravestone_extended.structures.catacombs.CatacombsGenerator;
@@ -31,6 +32,7 @@ public class ExtendedConfig {
     public static final String CATEGORY_POTIONS = "potions";
     public static final String CATEGORY_RECIPES = "recipes";
     public static final String CATEGORY_MOBS = "mobs";
+    public static final String CATEGORY_PARTICLES = "particles";
     public static final String CATEGORY_DEBUG = "debug"; //TODO move to graves module
 
     private ExtendedConfig(String path, File configFile) {
@@ -55,6 +57,7 @@ public class ExtendedConfig {
         recipesConfigs();
         entityConfig();
         compatibilityConfigs();
+        particlesConfigs();
         debugConfigs();
         config.save();
     }
@@ -260,6 +263,17 @@ public class ExtendedConfig {
         enableAntiqueAtlasDeathMarkers = config.get(Config.CATEGORY_COMPATIBILITY, "EnableAntiqueAtlasDeathMarkers", true).getBoolean(true);
 
         disableInfernalMobs = config.get(Config.CATEGORY_COMPATIBILITY, "DisableInfernalMobs", true).getBoolean(true);
+    }
+
+
+    public static int particleToxicWaterSplashId;
+    public static int particleToxicWaterBubbleId;
+    public static int particleToxicWaterWakeId;
+
+    private static void particlesConfigs() {
+        particleToxicWaterSplashId = config.get(CATEGORY_PARTICLES, "ParticleToxicWaterSplashId", GSParticles.TOXIC_WATER_SPLASH_DEFAULT_ID).getInt();
+        particleToxicWaterBubbleId = config.get(CATEGORY_PARTICLES, "ParticleToxicWaterBubbleId", GSParticles.TOXIC_WATER_BUBBLE_DEFAULT_ID).getInt();
+        particleToxicWaterWakeId = config.get(CATEGORY_PARTICLES, "ParticleToxicWaterWakeId", GSParticles.TOXIC_WATER_WAKE_DEFAULT_ID).getInt();
     }
 
 

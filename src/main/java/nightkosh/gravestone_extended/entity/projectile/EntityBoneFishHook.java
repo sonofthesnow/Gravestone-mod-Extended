@@ -5,6 +5,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldServer;
@@ -12,9 +13,9 @@ import net.minecraft.world.storage.loot.RandomValueRange;
 import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import nightkosh.gravestone_extended.ModGravestoneExtended;
 import nightkosh.gravestone_extended.core.GSBlock;
 import nightkosh.gravestone_extended.core.GSItem;
+import nightkosh.gravestone_extended.core.GSParticles;
 import nightkosh.gravestone_extended.item.ItemFish;
 import nightkosh.gravestone_extended.item.tools.IBoneFishingPole;
 
@@ -83,14 +84,17 @@ public class EntityBoneFishHook extends EntityCustomFishHook {
     }
 
     protected static void spawnToxicWaterSplashParticles(WorldServer world, Random rand, double x, double y, double z) {
-        ModGravestoneExtended.proxy.spawnToxicWaterSplashParticles(world, x, y, z, 0, 0.1, 0);
+        int num = 2 + rand.nextInt(2);
+        world.spawnParticle(EnumParticleTypes.SMOKE_NORMAL, x, y, z, num, 0.1, 0, 0.1, 0);
+        world.spawnParticle(GSParticles.TOXIC_WATER_SPLASH, x, y, z, num, 0.1, 0, 0.1, 0);
     }
 
     protected static void spawnToxicWaterBubbleParticles(WorldServer world, double x, double y, double z, int num, double xOffset, double yOffset, double zOffset, double speed) {
-        ModGravestoneExtended.proxy.spawnToxicWaterBubbleParticles(world, x, y, z, xOffset, yOffset, zOffset);
+        world.spawnParticle(GSParticles.TOXIC_WATER_BUBBLE, x, y, z, num, xOffset, yOffset, zOffset, speed);
     }
 
     protected static void spawnToxicWaterWakeParticles(WorldServer world, double x, double y, double z, int num, double xOffset, double yOffset, double zOffset, double speed) {
-        ModGravestoneExtended.proxy.spawnToxicWaterWakeParticles(world, x, y, z, xOffset, yOffset, zOffset);
+        world.spawnParticle(EnumParticleTypes.SMOKE_NORMAL, x, y, z, num, xOffset, yOffset, zOffset, speed);
+        world.spawnParticle(GSParticles.TOXIC_WATER_WAKE, x, y, z, num, xOffset, yOffset, zOffset, speed);
     }
 }

@@ -86,6 +86,8 @@ public class ModGravestoneExtended {
         // register entities
         GSEntity.registration();
 
+        GSParticles.registration();
+
         NetworkRegistry.INSTANCE.registerGuiHandler(this, new GuiHandler());
 
         proxy.registerMobsRenderers();

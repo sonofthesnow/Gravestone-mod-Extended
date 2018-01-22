@@ -8,7 +8,6 @@ import net.minecraft.client.renderer.block.statemap.StateMapperBase;
 import net.minecraft.client.renderer.entity.RenderFish;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.util.text.translation.I18n;
-import net.minecraft.world.WorldServer;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.client.FMLClientHandler;
@@ -17,6 +16,7 @@ import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import nightkosh.gravestone.tileentity.TileEntityGrave;
 import nightkosh.gravestone_extended.core.GSBlock;
 import nightkosh.gravestone_extended.core.GSItem;
+import nightkosh.gravestone_extended.core.GSParticles;
 import nightkosh.gravestone_extended.core.event.RenderEventHandler;
 import nightkosh.gravestone_extended.entity.EntityRaven;
 import nightkosh.gravestone_extended.entity.helper.EntityGroupOfGravesMobSpawnerHelper;
@@ -221,18 +221,11 @@ public class ClientProxy extends CommonProxy {
         MinecraftForge.EVENT_BUS.register(new RenderEventHandler());
     }
 
-    @Override
-    public void spawnToxicWaterSplashParticles(WorldServer world, double x, double y, double z, double xOffset, double yOffset, double zOffset) {
-        Minecraft.getMinecraft().effectRenderer.addEffect(new ParticleToxicWaterSplash(world, x, y, z, xOffset, yOffset, zOffset));
-    }
 
     @Override
-    public void spawnToxicWaterBubbleParticles(WorldServer world, double x, double y, double z, double xOffset, double yOffset, double zOffset) {
-        Minecraft.getMinecraft().effectRenderer.addEffect(new ParticleToxicWaterBubble(world, x, y, z, xOffset, yOffset, zOffset));
-    }
-
-    @Override
-    public void spawnToxicWaterWakeParticles(WorldServer world, double x, double y, double z, double xOffset, double yOffset, double zOffset) {
-        Minecraft.getMinecraft().effectRenderer.addEffect(new ParticleToxicWaterWake(world, x, y, z, xOffset, yOffset, zOffset));
+    public void registerParticles() {
+        Minecraft.getMinecraft().effectRenderer.registerParticle(GSParticles.TOXIC_WATER_SPLASH.getParticleID(), new ParticleToxicWaterSplash.Factory());
+        Minecraft.getMinecraft().effectRenderer.registerParticle(GSParticles.TOXIC_WATER_BUBBLE.getParticleID(), new ParticleToxicWaterBubble.Factory());
+        Minecraft.getMinecraft().effectRenderer.registerParticle(GSParticles.TOXIC_WATER_WAKE.getParticleID(), new ParticleToxicWaterWake.Factory());
     }
 }
