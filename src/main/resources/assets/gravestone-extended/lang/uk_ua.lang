@@ -94,85 +94,74 @@ potion.purification.title=Знімає всі негативні ефекти
 potion.effect.gs_purification_type=Зілля очищення
 splash_potion.effect.gs_purification_type=Вибухове зілля очищення
 lingering_potion.effect.gs_purification_type=Туманне зілля очищення
-## TODO !!!!!!!!!!!!
-tipped_arrow.effect.gs_purification_type=Arrow of Purification
+tipped_arrow.effect.gs_purification_type=Стріла очищення
 potion.bone_skin.title=Кістяна шкіра
 potion.effect.gs_bone_skin_type=Зілля кістяної шкіри
 splash_potion.effect.gs_bone_skin_type=Вибухове зілля кістяної шкіри
 lingering_potion.effect.gs_bone_skin_type=Туманне зілля кістяної шкіри
-## TODO !!!!!!!!!!!!
-tipped_arrow.effect.gs_bone_skin_type=Arrow of Bone Skin
+tipped_arrow.effect.gs_bone_skin_type=Стріла кістяної шкіри
 potion.rust.title=Іржа
 potion.effect.gs_rust_type=Зілля іржі
 splash_potion.effect.gs_rust_type=Вибухове зілля іржі
 lingering_potion.effect.gs_rust_type=Туманне зілля іржі
-## TODO !!!!!!!!!!!!
-tipped_arrow.effect.gs_rust_type=Arrow of Rust
+tipped_arrow.effect.gs_rust_type=Стріла іржі
 potion.recall.title=Повернення додому
 potion.effect.gs_recall_type=Зілля повернення
 splash_potion.effect.gs_recall_type=Вибухове зілля повернення
 lingering_potion.effect.gs_recall_type=Туманне зілля повернення
-## TODO !!!!!!!!!!!!
-tipped_arrow.effect.gs_recall_type=Arrow of Recall
+tipped_arrow.effect.gs_recall_type=Стріла повернення
 potion.burning.title=Підпалює ціль
 potion.effect.gs_burning_type=Палаюче зілля
 splash_potion.effect.gs_burning_type=Вибухове палаюче зілля
 lingering_potion.effect.gs_burning_type=Туманне палаюче зілля
-## TODO !!!!!!!!!!!!
-tipped_arrow.effect.gs_burning_type=Arrow of Burning
+tipped_arrow.effect.gs_burning_type=Палаюча стріла
 potion.bleeding.title=Кровотеча
 potion.effect.gs_bleeding_type=Зілля кровотечі
 splash_potion.effect.gs_bleeding_type=Вибухове зілля кровотечі
 lingering_potion.effect.gs_bleeding_type=Туманне зілля кровотечі
-## TODO !!!!!!!!!!!!
-tipped_arrow.effect.gs_bleeding_type=Arrow of Bleeding
-potion.choke.title=Breathlessness
-potion.effect.gs_choke_type=Potion of Breathlessness
-splash_potion.effect.gs_choke_type=Splash Potion of Breathlessness
-lingering_potion.effect.gs_choke_type=Lingering Potion of Breathlessness
-tipped_arrow.effect.gs_choke_type=Arrow of Breathlessness
-potion.inferno.title=Inferno
-potion.effect.gs_inferno_type=Potion of Inferno
-splash_potion.effect.gs_inferno_type=Splash Potion of Inferno
-lingering_potion.effect.gs_inferno_type=Lingering Potion of Inferno
-tipped_arrow.effect.gs_inferno_type=Arrow of Inferno
-potion.cursed_inferno.title=Cursed Inferno
-potion.effect.gs_cursed_inferno_type=Potion of Cursed Inferno
-splash_potion.effect.gs_cursed_inferno_type=Splash Potion of Cursed Inferno
-lingering_potion.effect.gs_cursed_inferno_type=Lingering Potion of Cursed Inferno
-tipped_arrow.effect.gs_cursed_inferno_type=Arrow of Cursed Inferno
-potion.cursed_flame.title=Cursed Flame
-potion.effect.gs_cursed_flame_type=Potion of Cursed Flame
-splash_potion.effect.gs_cursed_flame_type=Splash Potion of Cursed Flame
-lingering_potion.effect.gs_cursed_flame_type=Lingering Potion of Cursed Flame
-tipped_arrow.effect.gs_cursed_flame_type=Arrow of Cursed Flame
+tipped_arrow.effect.gs_bleeding_type=Стріла кровотечі
+potion.choke.title=Задуха
+potion.effect.gs_choke_type=Зілля задухи
+splash_potion.effect.gs_choke_type=Вибухове зілля задухи
+lingering_potion.effect.gs_choke_type=Туманне зілля задухи
+tipped_arrow.effect.gs_choke_type=Стріла задухи
+potion.inferno.title=Інферно
+potion.effect.gs_inferno_type=Зілля інферно
+splash_potion.effect.gs_inferno_type=Вибухове зілля інферно
+lingering_potion.effect.gs_inferno_type=Туманне зілля інферно
+tipped_arrow.effect.gs_inferno_type=Стріла інферно
+potion.cursed_inferno.title=Прокляте інферно
+potion.effect.gs_cursed_inferno_type=Зілля проклятого інферно
+splash_potion.effect.gs_cursed_inferno_type=Вибухове зілля проклятого інферно
+lingering_potion.effect.gs_cursed_inferno_type=Туманне зілля проклятого інферно
+tipped_arrow.effect.gs_cursed_inferno_type=Стріла проклятого інферно
+potion.cursed_flame.title=Прокляте полум'я
+potion.effect.gs_cursed_flame_type=Зілля проклятого полум'я
+splash_potion.effect.gs_cursed_flame_type=Вибухове зілля проклятого полум'я
+lingering_potion.effect.gs_cursed_flame_type=Туманне зілля проклятого полум'я
+tipped_arrow.effect.gs_cursed_flame_type=Стріла проклятого полум'я
 
 # Vanilla Potions
 potion.effect.gs_hunger_type=Зілля голоду
 splash_potion.effect.gs_hunger_type=Вибухове зілля голоду
 lingering_potion.effect.gs_hunger_type=Туманне зілля голоду
-## TODO !!!!!!!!!!!!
-tipped_arrow.effect.gs_hunger_type=Arrow of Hunger
+tipped_arrow.effect.gs_hunger_type=Стріла голоду
 potion.effect.gs_blindness_type=Зілля сліпоти
 splash_potion.effect.gs_blindness_type=Вибухове зілля сліпоти
 lingering_potion.effect.gs_blindness_type=Туманне зілля сліпоти
-## TODO !!!!!!!!!!!!
-tipped_arrow.effect.gs_blindness_type=Arrow of Blindness
+tipped_arrow.effect.gs_blindness_type=Стріла сліпоти
 potion.effect.gs_nausea_type=Зілля нудоти
 splash_potion.effect.gs_nausea_type=Вибухове зілля нудоти
 lingering_potion.effect.gs_nausea_type=Туманне зілля нудоти
-## TODO !!!!!!!!!!!!
-tipped_arrow.effect.gs_nausea_type=Arrow of Nausea
+tipped_arrow.effect.gs_nausea_type=Стріла нудоти
 potion.effect.gs_resistance_type=Зілля опору
 splash_potion.effect.gs_resistance_type=Вибухове зілля опору
 lingering_potion.effect.gs_resistance_type=Туманне зілля опору
-## TODO !!!!!!!!!!!!
-tipped_arrow.effect.gs_resistance_type=Arrow of Resistance
+tipped_arrow.effect.gs_resistance_type=Стріла опору
 potion.effect.gs_levitation_type=Зілля левітації
 splash_potion.effect.gs_levitation_type=Вибухове зілля левітації
 lingering_potion.effect.gs_levitation_type=Туманне зілля левітації
-## TODO !!!!!!!!!!!!
-tipped_arrow.effect.gs_levitation_type=Arrow of Levitation
+tipped_arrow.effect.gs_levitation_type=Стріла левітації
 
 
 # Items
@@ -198,14 +187,12 @@ item.gravestone.bone_sword_diamond.name=Алмазний Кістяний меч
 item.gravestone.bone_shield.name=Кістяний щит
 
 ## Armor
-## TODO !!!!!!!!!!
-item.gravestone.diving_helmet.name=Diving Helmet
-item.gravestone.diving_helmet.tooltip=Provides unlimited breath under the water
+item.gravestone.diving_helmet.name=Водолазний шолом
+item.gravestone.diving_helmet.tooltip=Дозволяє дихати під водою
 
 ## Other Items
 item.gravestone.toxic_slime.name=Токсичний слиз
-## TODO !!!!!!!!!!
-item.gravestone.bat_wing.name=Bat Wing
+item.gravestone.bat_wing.name=Крило кажана
 item.gravestone.enchanted_skull.name=Зачарований череп
 item.gravestone.enchanted_skull_withered.name=Зачарований череп висушувача
 
@@ -230,17 +217,16 @@ item.gravestone.blaze_cod.name=Вогняна тріска
 item.gravestone.enderfin.name=Плавець краю
 item.gravestone.pearl_bass.name=Перловий окунь
 item.gravestone.chorus_koi.name=Коі коруса
-## TODO !!!!!!!!!!
-item.gravestone.explosive_crucian.name=Explosive Crucian
-item.gravestone.ruffe.name=Ruffe
-item.gravestone.sparkling_eel.name=Sparkling Eel
-item.gravestone.angelfish.name=Angelfish
-item.gravestone.angler_fish.name=Angler Fish
-item.gravestone.sponge_eater.name=Sponge Eater
-item.gravestone.snowy_crucian.name=Snowy Crucian
-item.gravestone.squid.name=Squid
-item.gravestone.withered_crucian.name=Withered Crucian
-item.gravestone.sandy_bass.name=Sandy Bass
+item.gravestone.explosive_crucian.name=Вибуховий карась
+item.gravestone.ruffe.name=Йорж
+item.gravestone.sparkling_eel.name=Іскристий вугор
+item.gravestone.angelfish.name=Скалярия
+item.gravestone.angler_fish.name=Вудильник
+item.gravestone.sponge_eater.name=Губкоїд
+item.gravestone.snowy_crucian.name=Сніговий карась
+item.gravestone.squid.name=Кальмар
+item.gravestone.withered_crucian.name=Висушений карась
+item.gravestone.sandy_bass.name=Піщаний окунь
 
 ## Corpses
 item.corpse.steve=Труп Стіва
@@ -347,14 +333,13 @@ entity.GSZombieRaider.name=Зомбі наїзник
 entity.GSSkeleton.name=Скелет
 entity.Villager.gravestone-extended:undertaker=Трунар
 entity.GSToxicSludge.name=токсичний слимак
-## TODO !!!!!!!!!!
-entity.GSPossessedArmor.name=Possessed Armor
-entity.GSMummy.name=Mummy
-entity.GSDrowned.name=Drowned
-entity.GSPhantomDiver.name=Phantom Diver
-entity.GSVampireBat.name=Vampire Bat
-entity.GSBarghest.name=Barghest
-entity.GSSwampThing.name=Swamp Thing
+entity.GSPossessedArmor.name=Одержимі обладунки
+entity.GSMummy.name=Мумія
+entity.GSDrowned.name=Потопельник
+entity.GSPhantomDiver.name=Фантомний дайвер
+entity.GSVampireBat.name=Летюча миша-вампір
+entity.GSBarghest.name=Баргест
+entity.GSSwampThing.name=Болотна тварина
 
 # Fluids
 tile.gs_toxic_water.name=Токсична вода
