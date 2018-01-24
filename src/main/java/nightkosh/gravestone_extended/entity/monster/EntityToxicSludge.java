@@ -56,6 +56,7 @@ public class EntityToxicSludge extends EntitySlime {
             Item.getItemFromBlock(Blocks.AIR)
     };
     private static final List<ItemStack> CORPSE_LIST = new ArrayList<>();
+
     static {
         for (int meta = 1; meta < EnumCorpse.values().length; meta++) {
             if (EnumCorpse.values()[meta] != EnumCorpse.HORSE) {
@@ -161,9 +162,7 @@ public class EntityToxicSludge extends EntitySlime {
         if (!this.world.isRemote && this.getSlimeSize() > 1) {
             IBlockState state = world.getBlockState(this.getPosition());
             if (state.getBlock().isReplaceable(this.world, this.getPosition())) {
-                if (ExtendedConfig.createToxicWaterAtSludgeDeath) {//TODO REMOVE !!!!!!!!!!!!!!!!!!!!!!
-                    world.setBlockState(this.getPosition(), GSBlock.TOXIC_WATER.getDefaultState());
-                }
+                world.setBlockState(this.getPosition(), GSBlock.TOXIC_WATER.getDefaultState());
             }
         }
         super.onDeath(source);

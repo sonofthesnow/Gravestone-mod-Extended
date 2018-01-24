@@ -1,25 +1,15 @@
 {
     "forge_marker": 1,
     "defaults": {
-        "model": "forge:fluid",
-        "transform": "forge:default-item"
+        "model": "forge:fluid"
     },
     "variants": {
-        "gs_toxic_water": [{
-            "custom": { "fluid": "gs_toxic_water" }
-        }]
-    },
-    "inventory": {
-        "model": "forge:forge_bucket",
-        "textures": {
-            "base": "forge:items/bucket_base",
-            "fluid": "gravestone-extended:items/toxic_water_bucket",
-            "cover": "forge:items/bucket_cover"
-        },
-        "transform": "forge:default-item",
-        "custom": {
-            "fluid": "gs_toxic_water",
-            "flipGas": true
-        }
+        "gs_toxic_water": [
+            {
+                "custom": {
+                    "fluid": "gs_toxic_water"
+                }
+            }
+        ]
     }
 }

@@ -23,7 +23,6 @@ import nightkosh.gravestone_extended.core.compatibility.Compatibility;
 import nightkosh.gravestone_extended.core.event.GSEventsHandler;
 import nightkosh.gravestone_extended.core.event.TickEventHandler;
 import nightkosh.gravestone_extended.core.proxy.CommonProxy;
-import nightkosh.gravestone_extended.fluid.FluidToxicWater;
 import nightkosh.gravestone_extended.helper.FogHandler;
 import nightkosh.gravestone_extended.helper.GraveGenerationHelper;
 import nightkosh.gravestone_extended.helper.GraveSpawnerHelper;
@@ -54,9 +53,6 @@ public class ModGravestoneExtended {
     @Mod.EventHandler
     public void preInit(FMLPreInitializationEvent event) {
         ExtendedConfig.getInstance(event.getModConfigurationDirectory().getAbsolutePath() + "/GraveStoneMod/", "GraveStone.cfg");
-
-        FluidRegistry.registerFluid(FluidToxicWater.INSTANCE);
-        FluidRegistry.addBucketForFluid(FluidToxicWater.INSTANCE);
 
         GSStructures.preInit();
 

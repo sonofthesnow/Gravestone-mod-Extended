@@ -278,10 +278,8 @@ public class ExtendedConfig {
 
 
     public static boolean debugMode;
-    public static boolean createToxicWaterAtSludgeDeath;
 
     private static void debugConfigs() {
         debugMode = config.get(CATEGORY_DEBUG, "DebugMode", false).getBoolean(false);
-        createToxicWaterAtSludgeDeath = config.get(CATEGORY_DEBUG, "CreateToxicWaterAtSludgeDeath", false).getBoolean(false);
     }
 }

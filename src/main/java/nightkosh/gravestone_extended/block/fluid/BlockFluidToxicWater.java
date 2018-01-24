@@ -1,4 +1,4 @@
-package nightkosh.gravestone_extended.fluid.block;
+package nightkosh.gravestone_extended.block.fluid;
 
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -20,13 +20,9 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fluids.BlockFluidClassic;
 import nightkosh.gravestone_extended.config.ExtendedConfig;
-import nightkosh.gravestone_extended.core.GSPotion;
-import nightkosh.gravestone_extended.core.GSSound;
-import nightkosh.gravestone_extended.core.GSTabs;
-import nightkosh.gravestone_extended.core.ModInfo;
+import nightkosh.gravestone_extended.core.*;
 import nightkosh.gravestone_extended.entity.monster.EntityToxicSludge;
 import nightkosh.gravestone_extended.entity.projectile.EntityBoneFishHook;
-import nightkosh.gravestone_extended.fluid.FluidToxicWater;
 import nightkosh.gravestone_extended.item.armor.IBoneArmor;
 
 import java.util.Random;
@@ -40,10 +36,10 @@ import java.util.Random;
 public class BlockFluidToxicWater extends BlockFluidClassic {
 
     public BlockFluidToxicWater() {
-        super(FluidToxicWater.INSTANCE, Material.WATER);
+        super(GSFluids.TOXIC_WATER, Material.WATER);
         this.setUnlocalizedName("gs_toxic_water");
         this.setCreativeTab(GSTabs.otherItemsTab);
-        this.setRegistryName(ModInfo.ID, FluidToxicWater.INSTANCE.getName());
+        this.setRegistryName(ModInfo.ID, GSFluids.TOXIC_WATER.getName());
         this.setTickRandomly(true);
     }
 

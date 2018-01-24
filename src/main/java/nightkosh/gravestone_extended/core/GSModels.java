@@ -7,6 +7,7 @@ import net.minecraft.item.Item;
 import net.minecraftforge.client.ForgeHooksClient;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.client.model.ModelLoader;
+import net.minecraftforge.fluids.BlockFluidClassic;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
@@ -173,12 +174,17 @@ public class GSModels {
             ModelLoader.setCustomModelResourceLocation(GSItem.BONE_HOE_GOLDEN, 0, ResourcesModels.BONE_HOE_GOLDEN);
             ModelLoader.setCustomModelResourceLocation(GSItem.BONE_HOE_DIAMOND, 0, ResourcesModels.BONE_HOE_DIAMOND);
 
+            registerFluidModel(GSBlock.TOXIC_WATER);
+        }
 
-            Item item = GSBlock.TOXIC_WATER_IB;
-            ModelResourceLocation modelResourceLocation = new ModelResourceLocation(ModInfo.ID + ":" + GSBlock.TOXIC_WATER.getFluid().getName(), "fluid");
+        private static void registerFluidModel(BlockFluidClassic block) {
+            final Item item = Item.getItemFromBlock(block);
+            assert item != null;
+
             ModelBakery.registerItemVariants(item);
+            final ModelResourceLocation modelResourceLocation = new ModelResourceLocation(ModInfo.ID + ":fluid", block.getFluid().getName());
             ModelLoader.setCustomMeshDefinition(item, stack -> modelResourceLocation);
-            ModGravestoneExtended.proxy.registerFluidRenderers(modelResourceLocation);
+            ModGravestoneExtended.proxy.registerFluidRenderers(block, modelResourceLocation);
         }
 
         private static void registerModelsForTEBlocks(int startMeta, int endMeta, Block block, ModelResourceLocation model, Class TEClass) {

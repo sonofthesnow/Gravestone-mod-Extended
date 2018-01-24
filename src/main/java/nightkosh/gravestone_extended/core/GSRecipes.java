@@ -14,7 +14,6 @@ import nightkosh.gravestone_extended.block.enums.EnumPileOfBones;
 import nightkosh.gravestone_extended.block.enums.EnumSkullCandle;
 import nightkosh.gravestone_extended.block.enums.EnumSpawner;
 import nightkosh.gravestone_extended.config.ExtendedConfig;
-import nightkosh.gravestone_extended.fluid.FluidToxicWater;
 import nightkosh.gravestone_extended.item.ItemFish;
 
 /**
@@ -28,7 +27,7 @@ public class GSRecipes {
     private static final ResourceLocation GROUP = new ResourceLocation(ModInfo.ID);
 
     public static void registration() {
-        GameRegistry.addShapedRecipe(new ResourceLocation(ModInfo.ID, "toxic_water_bucket"), GROUP, FluidUtil.getFilledBucket(FluidRegistry.getFluidStack(FluidToxicWater.INSTANCE.getName(), 1)),
+        GameRegistry.addShapedRecipe(new ResourceLocation(ModInfo.ID, "toxic_water_bucket"), GROUP, FluidUtil.getFilledBucket(FluidRegistry.getFluidStack(GSFluids.TOXIC_WATER.getName(), 1)),
                 "ws", "ss",
                 'w', Items.BUCKET,
                 's', GSItem.TOXIC_SLIME);

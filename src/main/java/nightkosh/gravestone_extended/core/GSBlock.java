@@ -9,7 +9,7 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.registries.IForgeRegistry;
 import nightkosh.gravestone_extended.block.*;
-import nightkosh.gravestone_extended.fluid.block.BlockFluidToxicWater;
+import nightkosh.gravestone_extended.block.fluid.BlockFluidToxicWater;
 import nightkosh.gravestone_extended.item.itemblock.*;
 
 /**
@@ -62,7 +62,6 @@ public class GSBlock extends nightkosh.gravestone.core.GSBlock {
     public static final ItemBlock CORPSE_IB = new ItemBlockCorpse(CORPSE);
 
     public static final BlockFluidToxicWater TOXIC_WATER = new BlockFluidToxicWater();
-    public static final ItemBlock TOXIC_WATER_IB = new ItemBlockToxicWater(TOXIC_WATER);
 
     @Mod.EventBusSubscriber(modid = ModInfo.ID)
     public static class RegistrationHandler {
@@ -81,8 +80,6 @@ public class GSBlock extends nightkosh.gravestone.core.GSBlock {
             registry.registerAll(MEMORIAL_IB, EXECUTION_IB, SPAWNER_IB, TRAP_IB, PILE_OF_BONES_IB,
                     BONE_BLOCK_IB, BONE_SLAB_IB, BONE_STAIRS_IB, HAUNTED_CHEST_IB, CANDLE_IB, SKULL_CANDLE_IB,
                     ALTAR_IB, CORPSE_IB);
-
-            registry.register(TOXIC_WATER_IB);
         }
     }
 }
