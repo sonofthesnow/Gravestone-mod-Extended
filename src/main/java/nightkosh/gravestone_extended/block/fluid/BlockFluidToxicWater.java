@@ -1,5 +1,6 @@
 package nightkosh.gravestone_extended.block.fluid;
 
+import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
@@ -9,6 +10,7 @@ import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.monster.EntitySlime;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.projectile.EntityFishHook;
+import net.minecraft.init.Blocks;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.Potion;
@@ -136,24 +138,27 @@ public class BlockFluidToxicWater extends BlockFluidClassic {
     }
 
     @Override
+    public boolean displaceIfPossible(World world, BlockPos pos) {
+        Block block = world.getBlockState(pos).getBlock();
+        return !(block == Blocks.WATER || block == Blocks.FLOWING_WATER) && super.displaceIfPossible(world, pos);
+    }
+
+    @Override
     public void randomDisplayTick(IBlockState state, World world, BlockPos pos, Random rand) {
         super.randomDisplayTick(state, world, pos, rand);
-        double x = (double) pos.getX();
-        double y = (double) pos.getY();
-        double z = (double) pos.getZ();
 
         if (world.getBlockState(pos.up()).getMaterial() == Material.AIR && !world.getBlockState(pos.up()).isOpaqueCube()) {
 
             if (rand.nextInt(300) == 0) {
-                double d8 = x + (double) rand.nextFloat();
-                double d4 = y + state.getBoundingBox(world, pos).maxY;
-                double d6 = z + (double) rand.nextFloat();
-                world.spawnParticle(EnumParticleTypes.SMOKE_LARGE, d8, d4, d6, 0, 0, 0);
-                world.playSound(d8, d4, d6, SoundEvents.BLOCK_LAVA_EXTINGUISH, SoundCategory.BLOCKS, 0.2F + rand.nextFloat() * 0.2F, 0.9F + rand.nextFloat() * 0.15F, false);
+                double x = pos.getX() + (double) rand.nextFloat();
+                double y = pos.getY() + state.getBoundingBox(world, pos).maxY;
+                double z = pos.getZ() + (double) rand.nextFloat();
+                world.spawnParticle(EnumParticleTypes.SMOKE_LARGE, x, y, z, 0, 0, 0);
+                world.playSound(x, y, z, SoundEvents.BLOCK_LAVA_EXTINGUISH, SoundCategory.BLOCKS, 0.2F + rand.nextFloat() * 0.2F, 0.9F + rand.nextFloat() * 0.15F, false);
             }
 
             if (rand.nextInt(100) == 0) {
-                world.playSound(x, y, z, GSSound.BUBBLING, SoundCategory.BLOCKS, 0.2F + rand.nextFloat() * 0.2F, 0.9F + rand.nextFloat() * 0.15F, false);
+                world.playSound(pos.getX(), pos.getY(), pos.getZ(), GSSound.BUBBLING, SoundCategory.BLOCKS, 0.2F + rand.nextFloat() * 0.2F, 0.9F + rand.nextFloat() * 0.15F, false);
             }
         }
 
@@ -161,12 +166,12 @@ public class BlockFluidToxicWater extends BlockFluidClassic {
             Material material = world.getBlockState(pos.down(2)).getMaterial();
 
             if (!material.blocksMovement() && !material.isLiquid()) {
-                double d3 = x + rand.nextFloat();
-                double d5 = y - 1.05;
-                double d7 = z + rand.nextFloat();
+                double x = pos.getX() + rand.nextFloat();
+                double y = pos.getY() - 1.05;
+                double z = pos.getZ() + rand.nextFloat();
 
-                world.spawnParticle(EnumParticleTypes.DRIP_WATER, d3, d5, d7, 0, 0, 0);
-                world.playSound(d3, d5, d7, GSSound.DROP_OF_ACID, SoundCategory.BLOCKS, 0.2F + rand.nextFloat() * 0.2F, 0.9F + rand.nextFloat() * 0.15F, false);
+                world.spawnParticle(EnumParticleTypes.DRIP_WATER, x, y, z, 0, 0, 0);
+                world.playSound(x, y, z, GSSound.DROP_OF_ACID, SoundCategory.BLOCKS, 0.2F + rand.nextFloat() * 0.2F, 0.9F + rand.nextFloat() * 0.15F, false);
             }
         }
     }
