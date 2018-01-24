@@ -117,6 +117,7 @@ public class StateHelper {
     public static final IBlockState HAUNTED_CHEST = GSBlock.HAUNTED_CHEST.getDefaultState();
     public static final IBlockState BONE_STAIRS = GSBlock.BONE_STAIRS.getDefaultState();
     public static final IBlockState BONE_STAIRS_TOP = BONE_STAIRS.withProperty(BlockStairs.HALF, BlockStairs.EnumHalf.TOP);
+    public static final IBlockState TOXIC_WATER = GSBlock.TOXIC_WATER.getDefaultState();
 
     public static IBlockState getNetherBrickStairs(EnumFacing direction) {
         switch (direction) {

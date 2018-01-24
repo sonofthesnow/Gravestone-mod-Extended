@@ -70,7 +70,7 @@ public class CreeperRoom extends CatacombsBaseComponent {
         this.fillWithBlocks(world, boundingBox, 0, 0, 0, 10, 0, 10, StateHelper.NETHER_BRICK);
 
         // lava
-        this.fillWithBlocks(world, boundingBox, 1, 1, 1, 9, 2, 9, StateHelper.LAVA);
+        this.fillWithBlocks(world, boundingBox, 1, 1, 1, 9, 2, 9, StateHelper.TOXIC_WATER);
 
         // bottom walls
         this.fillWithBlocks(world, boundingBox, 0, 1, 0, 10, 8, 0, StateHelper.NETHER_BRICK);

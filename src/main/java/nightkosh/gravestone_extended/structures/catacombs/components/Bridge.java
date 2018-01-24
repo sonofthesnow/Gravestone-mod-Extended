@@ -75,7 +75,7 @@ public class Bridge extends CatacombsBaseComponent {
         GraveGenerationHelper.fillGraves(this, world, random, 1, 9, 1, 1, 9, 6, StateHelper.getGravestone(this.getLeftDirectionForBlocks()), spawnerHelper);
         GraveGenerationHelper.fillGraves(this, world, random, 11, 9, 1, 11, 9, 6, StateHelper.getGravestone(this.getRightDirectionForBlocks()), spawnerHelper);
         // lava
-        this.fillWithBlocks(world, boundingBox, 3, 1, 1, 9, 2, 6, StateHelper.LAVA);
+        this.fillWithBlocks(world, boundingBox, 3, 1, 1, 9, 2, 6, StateHelper.TOXIC_WATER);
         // bridge
         this.fillWithBlocks(world, boundingBox, 6, 8, 1, 6, 8, 6, StateHelper.NETHERBRICK_SLAB_TOP);
 

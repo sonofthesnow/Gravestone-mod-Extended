@@ -74,28 +74,28 @@ public class WitherHall extends CatacombsBaseComponent {
         this.fillWithBlocks(world, boundingBox, 10, 4, 0, 12, 4, 0, StateHelper.NETHER_BRICK);
 
         // lava floor
-        this.fillWithBlocks(world, boundingBox, 1, 0, 2, 9, 0, 4, StateHelper.LAVA);
-        this.fillWithBlocks(world, boundingBox, 1, 0, 5, 4, 0, 19, StateHelper.LAVA);
-        this.fillWithBlocks(world, boundingBox, 1, 0, 20, 8, 0, 22, StateHelper.LAVA);
-        this.fillWithBlocks(world, boundingBox, 13, 0, 2, 21, 0, 4, StateHelper.LAVA);
-        this.fillWithBlocks(world, boundingBox, 18, 0, 5, 21, 0, 19, StateHelper.LAVA);
-        this.fillWithBlocks(world, boundingBox, 14, 0, 20, 21, 0, 22, StateHelper.LAVA);
+        this.fillWithBlocks(world, boundingBox, 1, 0, 2, 9, 0, 4, StateHelper.TOXIC_WATER);
+        this.fillWithBlocks(world, boundingBox, 1, 0, 5, 4, 0, 19, StateHelper.TOXIC_WATER);
+        this.fillWithBlocks(world, boundingBox, 1, 0, 20, 8, 0, 22, StateHelper.TOXIC_WATER);
+        this.fillWithBlocks(world, boundingBox, 13, 0, 2, 21, 0, 4, StateHelper.TOXIC_WATER);
+        this.fillWithBlocks(world, boundingBox, 18, 0, 5, 21, 0, 19, StateHelper.TOXIC_WATER);
+        this.fillWithBlocks(world, boundingBox, 14, 0, 20, 21, 0, 22, StateHelper.TOXIC_WATER);
 
         // lava walls
-        this.placeBlockAtCurrentPosition(world, StateHelper.FLOWING_LAVA, 0, 6, 3, boundingBox);
-        this.placeBlockAtCurrentPosition(world, StateHelper.FLOWING_LAVA, 0, 6, 9, boundingBox);
-        this.placeBlockAtCurrentPosition(world, StateHelper.FLOWING_LAVA, 0, 6, 15, boundingBox);
-        this.placeBlockAtCurrentPosition(world, StateHelper.FLOWING_LAVA, 0, 6, 21, boundingBox);
-        this.placeBlockAtCurrentPosition(world, StateHelper.FLOWING_LAVA, 22, 6, 3, boundingBox);
-        this.placeBlockAtCurrentPosition(world, StateHelper.FLOWING_LAVA, 22, 6, 9, boundingBox);
-        this.placeBlockAtCurrentPosition(world, StateHelper.FLOWING_LAVA, 22, 6, 15, boundingBox);
-        this.placeBlockAtCurrentPosition(world, StateHelper.FLOWING_LAVA, 22, 6, 21, boundingBox);
-        this.placeBlockAtCurrentPosition(world, StateHelper.FLOWING_LAVA, 4, 6, 23, boundingBox);
-        this.placeBlockAtCurrentPosition(world, StateHelper.FLOWING_LAVA, 18, 6, 23, boundingBox);
-        this.placeBlockAtCurrentPosition(world, StateHelper.FLOWING_LAVA, 4, 6, 1, boundingBox);
-        this.placeBlockAtCurrentPosition(world, StateHelper.FLOWING_LAVA, 18, 6, 1, boundingBox);
-        this.placeBlockAtCurrentPosition(world, StateHelper.FLOWING_LAVA, 9, 6, 1, boundingBox);
-        this.placeBlockAtCurrentPosition(world, StateHelper.FLOWING_LAVA, 13, 6, 1, boundingBox);
+        this.placeBlockAtCurrentPosition(world, StateHelper.TOXIC_WATER, 0, 6, 3, boundingBox);
+        this.placeBlockAtCurrentPosition(world, StateHelper.TOXIC_WATER, 0, 6, 9, boundingBox);
+        this.placeBlockAtCurrentPosition(world, StateHelper.TOXIC_WATER, 0, 6, 15, boundingBox);
+        this.placeBlockAtCurrentPosition(world, StateHelper.TOXIC_WATER, 0, 6, 21, boundingBox);
+        this.placeBlockAtCurrentPosition(world, StateHelper.TOXIC_WATER, 22, 6, 3, boundingBox);
+        this.placeBlockAtCurrentPosition(world, StateHelper.TOXIC_WATER, 22, 6, 9, boundingBox);
+        this.placeBlockAtCurrentPosition(world, StateHelper.TOXIC_WATER, 22, 6, 15, boundingBox);
+        this.placeBlockAtCurrentPosition(world, StateHelper.TOXIC_WATER, 22, 6, 21, boundingBox);
+        this.placeBlockAtCurrentPosition(world, StateHelper.TOXIC_WATER, 4, 6, 23, boundingBox);
+        this.placeBlockAtCurrentPosition(world, StateHelper.TOXIC_WATER, 18, 6, 23, boundingBox);
+        this.placeBlockAtCurrentPosition(world, StateHelper.TOXIC_WATER, 4, 6, 1, boundingBox);
+        this.placeBlockAtCurrentPosition(world, StateHelper.TOXIC_WATER, 18, 6, 1, boundingBox);
+        this.placeBlockAtCurrentPosition(world, StateHelper.TOXIC_WATER, 9, 6, 1, boundingBox);
+        this.placeBlockAtCurrentPosition(world, StateHelper.TOXIC_WATER, 13, 6, 1, boundingBox);
 
         // fire
         buildFire(world, 6, 1, 6);
