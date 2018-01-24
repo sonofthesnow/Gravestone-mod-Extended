@@ -195,7 +195,7 @@ public class ExtendedConfig {
         overrideVanillaFishing = config.get(Configuration.CATEGORY_GENERAL, "OverrideVanillaFishing", true).getBoolean(true);
 
         spreadToxicWater = config.get(Configuration.CATEGORY_GENERAL, "SpreadToxicWater", true).getBoolean(true);
-        removeToxicWater = config.get(Configuration.CATEGORY_GENERAL, "RemoveToxicWater", true).getBoolean(true);
+        removeToxicWater = config.get(Configuration.CATEGORY_GENERAL, "RemoveToxicWater", false).getBoolean(false);
     }
 
     // recipes
