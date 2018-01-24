@@ -177,6 +177,8 @@ public class ExtendedConfig {
     public static boolean replaceHauntedChest;
     public static boolean createCorpsesForModdedNotVanillaVillagers;
     public static boolean overrideVanillaFishing;
+    public static boolean spreadToxicWater;
+    public static boolean removeToxicWater;
 
     private static void otherConfigs() {
         // trap blocks
@@ -191,6 +193,9 @@ public class ExtendedConfig {
 
         // override fishing
         overrideVanillaFishing = config.get(Configuration.CATEGORY_GENERAL, "OverrideVanillaFishing", true).getBoolean(true);
+
+        spreadToxicWater = config.get(Configuration.CATEGORY_GENERAL, "SpreadToxicWater", true).getBoolean(true);
+        removeToxicWater = config.get(Configuration.CATEGORY_GENERAL, "RemoveToxicWater", true).getBoolean(true);
     }
 
     // recipes

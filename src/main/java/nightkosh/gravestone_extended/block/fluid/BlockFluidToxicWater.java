@@ -25,8 +25,11 @@ import nightkosh.gravestone_extended.config.ExtendedConfig;
 import nightkosh.gravestone_extended.core.*;
 import nightkosh.gravestone_extended.entity.monster.EntityToxicSludge;
 import nightkosh.gravestone_extended.entity.projectile.EntityBoneFishHook;
+import nightkosh.gravestone_extended.helper.StateHelper;
 import nightkosh.gravestone_extended.item.armor.IBoneArmor;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 /**
@@ -139,40 +142,75 @@ public class BlockFluidToxicWater extends BlockFluidClassic {
 
     @Override
     public boolean displaceIfPossible(World world, BlockPos pos) {
-        Block block = world.getBlockState(pos).getBlock();
-        return !(block == Blocks.WATER || block == Blocks.FLOWING_WATER) && super.displaceIfPossible(world, pos);
+        return !isWaterBlock(world, pos) && super.displaceIfPossible(world, pos);
     }
 
     @Override
     public void randomDisplayTick(IBlockState state, World world, BlockPos pos, Random rand) {
         super.randomDisplayTick(state, world, pos, rand);
 
-        if (world.getBlockState(pos.up()).getMaterial() == Material.AIR && !world.getBlockState(pos.up()).isOpaqueCube()) {
+        if (ExtendedConfig.removeToxicWater) {
+            world.setBlockState(pos, StateHelper.AIR, 3);
+        } else {
+            if (world.getBlockState(pos.up()).getMaterial() == Material.AIR && !world.getBlockState(pos.up()).isOpaqueCube()) {
 
-            if (rand.nextInt(300) == 0) {
-                double x = pos.getX() + (double) rand.nextFloat();
-                double y = pos.getY() + state.getBoundingBox(world, pos).maxY;
-                double z = pos.getZ() + (double) rand.nextFloat();
-                world.spawnParticle(EnumParticleTypes.SMOKE_LARGE, x, y, z, 0, 0, 0);
-                world.playSound(x, y, z, SoundEvents.BLOCK_LAVA_EXTINGUISH, SoundCategory.BLOCKS, 0.2F + rand.nextFloat() * 0.2F, 0.9F + rand.nextFloat() * 0.15F, false);
+                if (rand.nextInt(300) == 0) {
+                    double x = pos.getX() + (double) rand.nextFloat();
+                    double y = pos.getY() + state.getBoundingBox(world, pos).maxY;
+                    double z = pos.getZ() + (double) rand.nextFloat();
+                    world.spawnParticle(EnumParticleTypes.SMOKE_LARGE, x, y, z, 0, 0, 0);
+                    world.playSound(x, y, z, SoundEvents.BLOCK_LAVA_EXTINGUISH, SoundCategory.BLOCKS, 0.2F + rand.nextFloat() * 0.2F, 0.9F + rand.nextFloat() * 0.15F, false);
+                }
+
+                if (rand.nextInt(100) == 0) {
+                    world.playSound(pos.getX(), pos.getY(), pos.getZ(), GSSound.BUBBLING, SoundCategory.BLOCKS, 0.2F + rand.nextFloat() * 0.2F, 0.9F + rand.nextFloat() * 0.15F, false);
+                }
             }
 
-            if (rand.nextInt(100) == 0) {
-                world.playSound(pos.getX(), pos.getY(), pos.getZ(), GSSound.BUBBLING, SoundCategory.BLOCKS, 0.2F + rand.nextFloat() * 0.2F, 0.9F + rand.nextFloat() * 0.15F, false);
+            if (rand.nextInt(50) == 0 && world.getBlockState(pos.down()).isTopSolid()) {
+                Material material = world.getBlockState(pos.down(2)).getMaterial();
+
+                if (!material.blocksMovement() && !material.isLiquid()) {
+                    double x = pos.getX() + rand.nextFloat();
+                    double y = pos.getY() - 1.05;
+                    double z = pos.getZ() + rand.nextFloat();
+
+                    world.spawnParticle(EnumParticleTypes.DRIP_WATER, x, y, z, 0, 0, 0);
+                    world.playSound(x, y, z, GSSound.DROP_OF_ACID, SoundCategory.BLOCKS, 0.2F + rand.nextFloat() * 0.2F, 0.9F + rand.nextFloat() * 0.15F, false);
+                }
+            }
+
+
+            if (ExtendedConfig.spreadToxicWater && rand.nextInt(3600) == 0) {
+                List<BlockPos> replacePos = new ArrayList<>();
+                if (isWaterBlock(world, pos.up())) {
+                    replacePos.add(pos.up());
+                }
+                if (isWaterBlock(world, pos.down())) {
+                    replacePos.add(pos.down());
+                }
+                if (isWaterBlock(world, pos.west())) {
+                    replacePos.add(pos.west());
+                }
+                if (isWaterBlock(world, pos.east())) {
+                    replacePos.add(pos.east());
+                }
+                if (isWaterBlock(world, pos.north())) {
+                    replacePos.add(pos.north());
+                }
+                if (isWaterBlock(world, pos.south())) {
+                    replacePos.add(pos.south());
+                }
+
+                if (!replacePos.isEmpty()) {
+                    world.setBlockState(replacePos.get(rand.nextInt(replacePos.size())), this.getBlockState().getBaseState(), 3);
+                }
             }
         }
+    }
 
-        if (rand.nextInt(50) == 0 && world.getBlockState(pos.down()).isTopSolid()) {
-            Material material = world.getBlockState(pos.down(2)).getMaterial();
-
-            if (!material.blocksMovement() && !material.isLiquid()) {
-                double x = pos.getX() + rand.nextFloat();
-                double y = pos.getY() - 1.05;
-                double z = pos.getZ() + rand.nextFloat();
-
-                world.spawnParticle(EnumParticleTypes.DRIP_WATER, x, y, z, 0, 0, 0);
-                world.playSound(x, y, z, GSSound.DROP_OF_ACID, SoundCategory.BLOCKS, 0.2F + rand.nextFloat() * 0.2F, 0.9F + rand.nextFloat() * 0.15F, false);
-            }
-        }
+    private static boolean isWaterBlock(World world, BlockPos pos) {
+        Block block = world.getBlockState(pos).getBlock();
+        return block == Blocks.WATER || block == Blocks.FLOWING_WATER;
     }
 }
