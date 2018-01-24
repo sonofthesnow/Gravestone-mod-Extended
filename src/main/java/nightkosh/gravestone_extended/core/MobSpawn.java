@@ -66,7 +66,7 @@ public class MobSpawn {
             GSEntity.MINECRAFT_SPIDER_ID, GSEntity.MINECRAFT_CAVE_SPIDER_ID, GSEntity.MINECRAFT_SPIDER_ID));
     // catacombs statues mobs
     public static List<ResourceLocation> catacombsStatuesMobs = new ArrayList<>(Arrays.asList(
-            GSEntity.SKELETON_ID, GSEntity.MINECRAFT_ZOMBIE_ID));
+            GSEntity.SKELETON_ID, GSEntity.MINECRAFT_ZOMBIE_ID, GSEntity.POSSESSED_ARMOR_ID));
 
 
     /**
