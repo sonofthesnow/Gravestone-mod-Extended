@@ -29,6 +29,7 @@ public class StateHelper {
     public static final IBlockState FIRE = Blocks.FIRE.getDefaultState();
     public static final IBlockState LAVA = Blocks.LAVA.getDefaultState();
     public static final IBlockState FLOWING_LAVA = Blocks.FLOWING_LAVA.getDefaultState();
+    public static final IBlockState FLOWING_WATER = Blocks.FLOWING_WATER.getDefaultState();
     public static final IBlockState OBSIDIAN = Blocks.OBSIDIAN.getDefaultState();
     public static final IBlockState PORTAL = Blocks.PORTAL.getDefaultState();
     public static final IBlockState DIAMOND = Blocks.DIAMOND_BLOCK.getDefaultState();

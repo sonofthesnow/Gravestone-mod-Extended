@@ -20,7 +20,10 @@ import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import net.minecraft.world.WorldServer;
 import net.minecraftforge.fluids.BlockFluidClassic;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import nightkosh.gravestone_extended.config.ExtendedConfig;
 import nightkosh.gravestone_extended.core.*;
 import nightkosh.gravestone_extended.entity.monster.EntityToxicSludge;
@@ -82,7 +85,7 @@ public class BlockFluidToxicWater extends BlockFluidClassic {
         } else if (!(entity instanceof EntityItem) && !(entity instanceof EntityBoneFishHook)) {
             dealDamage = true;
             if (entity instanceof EntityFishHook) {
-                meltEffect(world, pos);
+                meltEffect(world, entity.posX, entity.posY, entity.posZ);
                 if (entity.ticksExisted > 20) {
                     entity.setDead();
                 }
@@ -91,35 +94,20 @@ public class BlockFluidToxicWater extends BlockFluidClassic {
         }
         if (dealDamage) {
             entity.attackEntityFrom(DamageSource.MAGIC, 1);
-            //TODO no particles for mobs!!??
-            meltEffect(world, pos);
+            meltEffect(world, entity.posX, entity.posY, entity.posZ);
         }
     }
 
-    public void meltEffect(World world, BlockPos pos) {
-        world.spawnParticle(EnumParticleTypes.SMOKE_LARGE, pos.getX(), pos.getY() + 1, pos.getZ(), 0, 0, 0);
-        world.playSound(null, pos.getX(), pos.getY() + 1, pos.getZ(), SoundEvents.BLOCK_LAVA_EXTINGUISH, SoundCategory.BLOCKS, 0.4F, ((world.rand.nextFloat() - world.rand.nextFloat()) * 0.2F + 1) / 0.8F);
+    public static void meltEffect(World world, double x, double y, double z) {
+        if (!world.isRemote) {
+            ((WorldServer) world).spawnParticle(EnumParticleTypes.SMOKE_LARGE, x, y + 1, z, 2, 0.1, 0, 0.1, 0);
+            world.playSound(null, x, y + 1, z, SoundEvents.BLOCK_LAVA_EXTINGUISH, SoundCategory.BLOCKS, 0.2F + world.rand.nextFloat() * 0.2F, 0.9F + world.rand.nextFloat() * 0.15F);
+        }
     }
 
     public void melt(World world, BlockPos liquidPos, BlockPos replacedPos) {
         if (EntityToxicSludge.replaceBlock(world, replacedPos)) {
-//        for (int j = 0; j < 8; ++j) {
-//            float f = world.rand.nextFloat() * ((float) Math.PI * 2F);
-//            float f1 = world.rand.nextFloat() * 0.5F + 0.5F;
-//            float f2 = MathHelper.sin(f) * 1 * 0.5F * f1;
-//            float f3 = MathHelper.cos(f) * 1 * 0.5F * f1;
-//            double d0 = replacedPos.getX() + (double) f2;
-//            double d1 = replacedPos.getZ() + (double) f3;
-//            world.spawnParticle(EnumParticleTypes.SMOKE_LARGE, d0, replacedPos.getY(), d1, 0, 0, 0);
-//        }
-//        this.playSound(SoundEvents.BLOCK_LAVA_EXTINGUISH, this.getSoundVolume(), ((this.rand.nextFloat() - this.rand.nextFloat()) * 0.2F + 1.0F) / 0.8F);
-//
-
-//            world.spawnParticle(EnumParticleTypes.SMOKE_LARGE, replacedPos.getX(), replacedPos.getY() + 1, replacedPos.getZ(), 0, 0, 0);
-//            world.playSound(replacedPos.getX(), replacedPos.getY() + 1, replacedPos.getZ(), SoundEvents.BLOCK_LAVA_EXTINGUISH, SoundCategory.BLOCKS, 0.2F + world.rand.nextFloat() * 0.2F, 0.9F + world.rand.nextFloat() * 0.15F, false);
-//
-//
-            meltEffect(world, replacedPos.up());
+            meltEffect(world, replacedPos.getX() + 0.5, replacedPos.getY() + 0.5, replacedPos.getZ() + 0.5);
         }
     }
 
@@ -133,10 +121,6 @@ public class BlockFluidToxicWater extends BlockFluidClassic {
             melt(world, pos, pos.west());
             melt(world, pos, pos.south());
             melt(world, pos, pos.north());
-
-            //TODO particles !!!!!!!!!!!!
-            world.spawnParticle(EnumParticleTypes.SMOKE_LARGE, pos.getX(), pos.getY() + 1, pos.getZ(), 0, 0, 0);
-            world.playSound(pos.getX(), pos.getY() + 1, pos.getZ(), SoundEvents.BLOCK_LAVA_EXTINGUISH, SoundCategory.BLOCKS, 0.2F + world.rand.nextFloat() * 0.2F, 0.9F + world.rand.nextFloat() * 0.15F, false);
         }
     }
 
@@ -146,42 +130,12 @@ public class BlockFluidToxicWater extends BlockFluidClassic {
     }
 
     @Override
-    public void randomDisplayTick(IBlockState state, World world, BlockPos pos, Random rand) {
-        super.randomDisplayTick(state, world, pos, rand);
-
-        if (ExtendedConfig.removeToxicWater) {
-            world.setBlockState(pos, StateHelper.AIR, 3);
-        } else {
-            if (world.getBlockState(pos.up()).getMaterial() == Material.AIR && !world.getBlockState(pos.up()).isOpaqueCube()) {
-
-                if (rand.nextInt(300) == 0) {
-                    double x = pos.getX() + (double) rand.nextFloat();
-                    double y = pos.getY() + state.getBoundingBox(world, pos).maxY;
-                    double z = pos.getZ() + (double) rand.nextFloat();
-                    world.spawnParticle(EnumParticleTypes.SMOKE_LARGE, x, y, z, 0, 0, 0);
-                    world.playSound(x, y, z, SoundEvents.BLOCK_LAVA_EXTINGUISH, SoundCategory.BLOCKS, 0.2F + rand.nextFloat() * 0.2F, 0.9F + rand.nextFloat() * 0.15F, false);
-                }
-
-                if (rand.nextInt(100) == 0) {
-                    world.playSound(pos.getX(), pos.getY(), pos.getZ(), GSSound.BUBBLING, SoundCategory.BLOCKS, 0.2F + rand.nextFloat() * 0.2F, 0.9F + rand.nextFloat() * 0.15F, false);
-                }
-            }
-
-            if (rand.nextInt(50) == 0 && world.getBlockState(pos.down()).isTopSolid()) {
-                Material material = world.getBlockState(pos.down(2)).getMaterial();
-
-                if (!material.blocksMovement() && !material.isLiquid()) {
-                    double x = pos.getX() + rand.nextFloat();
-                    double y = pos.getY() - 1.05;
-                    double z = pos.getZ() + rand.nextFloat();
-
-                    world.spawnParticle(EnumParticleTypes.DRIP_WATER, x, y, z, 0, 0, 0);
-                    world.playSound(x, y, z, GSSound.DROP_OF_ACID, SoundCategory.BLOCKS, 0.2F + rand.nextFloat() * 0.2F, 0.9F + rand.nextFloat() * 0.15F, false);
-                }
-            }
-
-
-            if (ExtendedConfig.spreadToxicWater && rand.nextInt(3600) == 0) {
+    public void updateTick(World world, BlockPos pos, IBlockState state, Random rand) {
+        super.updateTick(world, pos, state, rand);
+        if (!world.isRemote) {
+            if (ExtendedConfig.removeToxicWater) {
+                world.setBlockState(pos, StateHelper.FLOWING_WATER);
+            } else if (ExtendedConfig.spreadToxicWater && rand.nextInt(600) == 0) {
                 List<BlockPos> replacePos = new ArrayList<>();
                 if (isWaterBlock(world, pos.up())) {
                     replacePos.add(pos.up());
@@ -203,8 +157,41 @@ public class BlockFluidToxicWater extends BlockFluidClassic {
                 }
 
                 if (!replacePos.isEmpty()) {
-                    world.setBlockState(replacePos.get(rand.nextInt(replacePos.size())), this.getBlockState().getBaseState(), 3);
+                    world.setBlockState(replacePos.get(rand.nextInt(replacePos.size())), StateHelper.TOXIC_WATER);
                 }
+            }
+        }
+    }
+
+    @Override
+    @SideOnly(Side.CLIENT)
+    public void randomDisplayTick(IBlockState state, World world, BlockPos pos, Random rand) {
+        super.randomDisplayTick(state, world, pos, rand);
+        if (world.getBlockState(pos.up()).getMaterial() == Material.AIR && !world.getBlockState(pos.up()).isOpaqueCube()) {
+
+            if (rand.nextInt(300) == 0) {
+                double x = pos.getX() + rand.nextFloat();
+                double y = pos.getY() + state.getBoundingBox(world, pos).maxY;
+                double z = pos.getZ() + rand.nextFloat();
+                world.spawnParticle(EnumParticleTypes.SMOKE_LARGE, x, y, z, 0, 0, 0);
+                world.playSound(x, y, z, SoundEvents.BLOCK_LAVA_EXTINGUISH, SoundCategory.BLOCKS, 0.2F + rand.nextFloat() * 0.2F, 0.9F + rand.nextFloat() * 0.15F, false);
+            }
+
+            if (rand.nextInt(100) == 0) {
+                world.playSound(pos.getX(), pos.getY(), pos.getZ(), GSSound.BUBBLING, SoundCategory.BLOCKS, 0.2F + rand.nextFloat() * 0.2F, 0.9F + rand.nextFloat() * 0.15F, false);
+            }
+        }
+
+        if (rand.nextInt(50) == 0 && world.getBlockState(pos.down()).isTopSolid()) {
+            Material material = world.getBlockState(pos.down(2)).getMaterial();
+
+            if (!material.blocksMovement() && !material.isLiquid()) {
+                double x = pos.getX() + rand.nextFloat();
+                double y = pos.getY() - 1.05;
+                double z = pos.getZ() + rand.nextFloat();
+
+                world.spawnParticle(EnumParticleTypes.DRIP_WATER, x, y, z, 0, 0, 0);
+                world.playSound(x, y, z, GSSound.DROP_OF_ACID, SoundCategory.BLOCKS, 0.2F + rand.nextFloat() * 0.2F, 0.9F + rand.nextFloat() * 0.15F, false);
             }
         }
     }
