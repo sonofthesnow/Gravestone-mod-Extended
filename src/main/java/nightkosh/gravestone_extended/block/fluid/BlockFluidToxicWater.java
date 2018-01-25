@@ -135,7 +135,7 @@ public class BlockFluidToxicWater extends BlockFluidClassic {
         if (!world.isRemote) {
             if (ExtendedConfig.removeToxicWater) {
                 world.setBlockState(pos, StateHelper.FLOWING_WATER);
-            } else if (ExtendedConfig.spreadToxicWater && rand.nextInt(5) == 0) {
+            } else if (ExtendedConfig.spreadToxicWater && rand.nextInt(10) == 0) {
                 List<BlockPos> replacePos = new ArrayList<>();
                 if (isWaterBlock(world, pos.up())) {
                     replacePos.add(pos.up());

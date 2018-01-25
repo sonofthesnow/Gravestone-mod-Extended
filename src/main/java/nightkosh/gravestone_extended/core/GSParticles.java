@@ -25,7 +25,6 @@ public class GSParticles {
         Class<?>[] particlesParams = {
                 String.class, int.class, boolean.class
         };
-        int id = EnumParticleTypes.values().length;
 
         TOXIC_WATER_SPLASH = EnumHelper.addEnum(EnumParticleTypes.class, "TOXIC_WATER_SPLASH", particlesParams, "toxicWaterSplash", ExtendedConfig.particleToxicWaterSplashId, false);
         TOXIC_WATER_BUBBLE = EnumHelper.addEnum(EnumParticleTypes.class, "TOXIC_WATER_BUBBLE", particlesParams, "toxicWaterBubble", ExtendedConfig.particleToxicWaterBubbleId, false);
