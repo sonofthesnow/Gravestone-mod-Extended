@@ -230,25 +230,41 @@ public class ExtendedConfig {
     public static boolean spawnUndeadHorses;
     public static boolean spawnSkeletonRaiders;
     public static boolean spawnZombieRaiders;
+    public static boolean spawnPossessedArmor;
+    public static boolean spawnMummy;
+    public static boolean spawnDrowned;
+    public static boolean spawnPhantomDiver;
+    public static boolean spawnVampireBat;
+    public static boolean spawnBarghest;
+    public static boolean spawnSwampThing;
     public static boolean toxicSludgeAndWaterChangeBlocks;
     public static boolean zombiePetsAttackAnimals;
     public static boolean zombiePetsAttackPets;
 
     private static void entityConfig() {
+        //mob spawn
         spawnZombieDogs = config.get(CATEGORY_MOBS, "SpawnZombieDogsInTheWorld", true).getBoolean(true);
         spawnZombieCats = config.get(CATEGORY_MOBS, "SpawnZombieCatsInTheWorld", true).getBoolean(true);
         spawnSkeletonDogs = config.get(CATEGORY_MOBS, "SpawnSkeletonDogsInTheWorld", true).getBoolean(true);
         spawnSkeletonCats = config.get(CATEGORY_MOBS, "SpawnSkeletonCatsInTheWorld", true).getBoolean(true);
         spawnUndeadHorses = config.get(CATEGORY_MOBS, "SpawnUndeadHorses", true).getBoolean(true);
-        zombiePetsAttackAnimals = config.get(CATEGORY_MOBS, "ZombiePetsAttackAnimals", true).getBoolean(true);
-        zombiePetsAttackPets = config.get(CATEGORY_MOBS, "ZombiePetsAttackPets", true).getBoolean(true);
-        //raiders
         spawnSkeletonRaiders = config.get(CATEGORY_MOBS, "SpawnSkeletonRaidersInTheWorld", true).getBoolean(true);
         spawnZombieRaiders = config.get(CATEGORY_MOBS, "SpawnZombieRaidersInTheWorld", true).getBoolean(true);
+        spawnPossessedArmor = config.get(CATEGORY_MOBS, "SpawnPossessedArmorInTheWorld", true).getBoolean(true);
+        spawnMummy = config.get(CATEGORY_MOBS, "SpawnMummyInTheWorld", true).getBoolean(true);
+        spawnDrowned = config.get(CATEGORY_MOBS, "SpawnDrownedInTheWorld", true).getBoolean(true);
+        spawnPhantomDiver = config.get(CATEGORY_MOBS, "SpawnPhantomDiverInTheWorld", true).getBoolean(true);
+        spawnVampireBat = config.get(CATEGORY_MOBS, "SpawnVampireBatInTheWorld", true).getBoolean(true);
+        spawnBarghest = config.get(CATEGORY_MOBS, "SpawnBarghestTheWorld", true).getBoolean(true);
+        spawnSwampThing = config.get(CATEGORY_MOBS, "SpawnSwampThingTheWorld", true).getBoolean(true);
+
 
         spawnSkullCrawlersAtMobsDeath = config.get(CATEGORY_MOBS, "SpawnSkullCrawlersAtMobsDeath", true).getBoolean(true);
         spawnSkullCrawlersAtBoneBlockDestruction = config.get(CATEGORY_MOBS, "SpawnSkullCrawlersAnBoneBlockDestruction", true).getBoolean(true);
         spawnSkullCrawlersAtPileBonesDestruction = config.get(CATEGORY_MOBS, "SpawnSkullCrawlersAtPileBonesDestruction", true).getBoolean(true);
+
+        zombiePetsAttackAnimals = config.get(CATEGORY_MOBS, "ZombiePetsAttackAnimals", true).getBoolean(true);
+        zombiePetsAttackPets = config.get(CATEGORY_MOBS, "ZombiePetsAttackPets", true).getBoolean(true);
 
         // toxic sludge and water
         toxicSludgeAndWaterChangeBlocks = config.get(CATEGORY_MOBS, "ToxicSludgeAndWaterChangeBlocks", true).getBoolean(true);

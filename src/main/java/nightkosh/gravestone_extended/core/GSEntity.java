@@ -193,27 +193,41 @@ public class GSEntity {
         addSpawn(OVERWORLD_BIOMES, EntityToxicSludge.class, 5, 1, 2);
 
         registerModEntity(POSSESSED_ARMOR_ID, EntityPossessedArmor.class, POSSESSED_ARMOR_NAME);
-        addSpawn(OVERWORLD_BIOMES, EntityPossessedArmor.class, 20, 1, 3);
+        if (ExtendedConfig.spawnPossessedArmor) {
+            addSpawn(OVERWORLD_BIOMES, EntityPossessedArmor.class, 20, 1, 3);
+        }
 
         registerModEntity(MUMMY_ID, EntityMummy.class, MUMMY_NAME);
-        addSpawn(BiomeDictionary.Type.SANDY, EntityMummy.class, 20, 1, 3);
+        if (ExtendedConfig.spawnMummy) {
+            addSpawn(BiomeDictionary.Type.SANDY, EntityMummy.class, 20, 1, 3);
+        }
 
         registerModEntity(DROWNED_ID, EntityDrowned.class, DROWNED_NAME);
-        addSpawnWater(new ArrayList<>(Arrays.asList(
-                BiomeDictionary.Type.BEACH, BiomeDictionary.Type.RIVER, BiomeDictionary.Type.SWAMP
-        )), EntityDrowned.class, 15, 1, 1);
+        if (ExtendedConfig.spawnDrowned) {
+            addSpawnWater(new ArrayList<>(Arrays.asList(
+                    BiomeDictionary.Type.BEACH, BiomeDictionary.Type.RIVER, BiomeDictionary.Type.SWAMP
+            )), EntityDrowned.class, 15, 1, 1);
+        }
 
         registerModEntity(PHANTOM_DIVER_ID, EntityPhantomDiver.class, PHANTOM_DIVER_NAME);
-        addSpawnWater(BiomeDictionary.Type.OCEAN, EntityPhantomDiver.class, 10, 1, 1);
+        if (ExtendedConfig.spawnPhantomDiver) {
+            addSpawnWater(BiomeDictionary.Type.OCEAN, EntityPhantomDiver.class, 10, 1, 1);
+        }
 
         registerModEntity(VAMPIRE_BAT_ID, EntityVampireBat.class, VAMPIRE_BAT_NAME);
-        addSpawn(OVERWORLD_BIOMES, EntityVampireBat.class, 30, 1, 5);
+        if (ExtendedConfig.spawnVampireBat) {
+            addSpawn(OVERWORLD_BIOMES, EntityVampireBat.class, 30, 1, 5);
+        }
 
         registerModEntity(BARGHEST_ID, EntityBarghest.class, BARGHEST_NAME);
-        addSpawn(BiomeDictionary.Type.FOREST, EntityBarghest.class, 5, 1, 1);
+        if (ExtendedConfig.spawnBarghest) {
+            addSpawn(BiomeDictionary.Type.FOREST, EntityBarghest.class, 5, 1, 1);
+        }
 
         registerModEntity(SWAMP_THING_ID, EntitySwampThing.class, SWAMP_THING_NAME);
-        addSpawnWater(BiomeDictionary.Type.SWAMP, EntitySwampThing.class, 50, 1, 3);
+        if (ExtendedConfig.spawnSwampThing) {
+            addSpawnWater(BiomeDictionary.Type.SWAMP, EntitySwampThing.class, 50, 1, 3);
+        }
 
         registerModEntity(RAVEN_ID, EntityRaven.class, RAVEN_NAME);
 //        EntityRegistry.addSpawn(EntityRaven.class, 1, 3, 10, EnumCreatureType.AMBIENT);//TODO!!!!
