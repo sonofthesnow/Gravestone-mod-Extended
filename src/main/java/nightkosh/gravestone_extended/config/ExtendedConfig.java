@@ -256,8 +256,8 @@ public class ExtendedConfig {
         spawnDrowned = config.get(CATEGORY_MOBS, "SpawnDrownedInTheWorld", true).getBoolean(true);
         spawnPhantomDiver = config.get(CATEGORY_MOBS, "SpawnPhantomDiverInTheWorld", true).getBoolean(true);
         spawnVampireBat = config.get(CATEGORY_MOBS, "SpawnVampireBatInTheWorld", true).getBoolean(true);
-        spawnBarghest = config.get(CATEGORY_MOBS, "SpawnBarghestTheWorld", true).getBoolean(true);
-        spawnSwampThing = config.get(CATEGORY_MOBS, "SpawnSwampThingTheWorld", true).getBoolean(true);
+        spawnBarghest = config.get(CATEGORY_MOBS, "SpawnBarghestInTheWorld", true).getBoolean(true);
+        spawnSwampThing = config.get(CATEGORY_MOBS, "SpawnSwampThingInTheWorld", true).getBoolean(true);
 
         phantomDiverSpawnWeight = config.get(CATEGORY_MOBS, "PhantomDiverSpawnWeight", 5).getInt();
 
