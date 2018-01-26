@@ -240,6 +240,7 @@ public class ExtendedConfig {
     public static boolean toxicSludgeAndWaterChangeBlocks;
     public static boolean zombiePetsAttackAnimals;
     public static boolean zombiePetsAttackPets;
+    public static int phantomDiverSpawnWeight;
 
     private static void entityConfig() {
         //mob spawn
@@ -257,6 +258,8 @@ public class ExtendedConfig {
         spawnVampireBat = config.get(CATEGORY_MOBS, "SpawnVampireBatInTheWorld", true).getBoolean(true);
         spawnBarghest = config.get(CATEGORY_MOBS, "SpawnBarghestTheWorld", true).getBoolean(true);
         spawnSwampThing = config.get(CATEGORY_MOBS, "SpawnSwampThingTheWorld", true).getBoolean(true);
+
+        phantomDiverSpawnWeight = config.get(CATEGORY_MOBS, "PhantomDiverSpawnWeight", 5).getInt();
 
 
         spawnSkullCrawlersAtMobsDeath = config.get(CATEGORY_MOBS, "SpawnSkullCrawlersAtMobsDeath", true).getBoolean(true);
