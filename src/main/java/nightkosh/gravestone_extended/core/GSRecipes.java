@@ -125,6 +125,13 @@ public class GSRecipes {
                 'f', new ItemStack(GSItem.FISH, 1, ItemFish.EnumFishType.SQUID.ordinal()));
 
 
+        GameRegistry.addShapedRecipe(new ResourceLocation(ModInfo.ID, "imp_skull"), GROUP, new ItemStack(GSItem.IMP_SKULL),
+                "qqq", "qsq", "gcg",
+                'q', Items.QUARTZ,
+                's', new ItemStack(Items.SKULL, 1, 0),
+                'g', Items.GLOWSTONE_DUST,
+                'c', Items.COMPASS);
+
         GameRegistry.addShapedRecipe(new ResourceLocation(ModInfo.ID, "chisel"), GROUP, new ItemStack(GSItem.CHISEL),
                 "   ", "s  ", " i ",
                 's', Items.STICK,

@@ -195,6 +195,8 @@ item.gravestone.toxic_slime.name=Токсичний слиз
 item.gravestone.bat_wing.name=Крило кажана
 item.gravestone.enchanted_skull.name=Зачарований череп
 item.gravestone.enchanted_skull_withered.name=Зачарований череп висушувача
+## TODO !!!!!!!!!!
+item.gravestone.imp_skull.name=Imp Skull
 
 ## Fish
 item.gravestone.blue_jellyfish.name=Медуза
