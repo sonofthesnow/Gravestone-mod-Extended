@@ -125,10 +125,24 @@ public class GSRecipes {
                 'f', new ItemStack(GSItem.FISH, 1, ItemFish.EnumFishType.SQUID.ordinal()));
 
 
+        GameRegistry.addShapedRecipe(new ResourceLocation(ModInfo.ID, "slime_chunk"), GROUP, new ItemStack(GSItem.SLIME_CHUNK),
+                "bsb", "scs", "bsb",
+                'b', Items.BONE,
+                's', GSItem.TOXIC_SLIME,
+                'c', Items.COMPASS);
+
         GameRegistry.addShapedRecipe(new ResourceLocation(ModInfo.ID, "imp_skull"), GROUP, new ItemStack(GSItem.IMP_SKULL),
                 "qqq", "qsq", "gcg",
                 'q', Items.QUARTZ,
                 's', new ItemStack(Items.SKULL, 1, 0),
+                'g', Items.GLOWSTONE_DUST,
+                'c', Items.COMPASS);
+
+        GameRegistry.addShapedRecipe(new ResourceLocation(ModInfo.ID, "ender_skull"), GROUP, new ItemStack(GSItem.ENDER_SKULL),
+                "yey", "ysy", "gcg",
+                'y', Items.ENDER_EYE,
+                'e', Items.END_CRYSTAL,
+                's', new ItemStack(Items.SKULL, 1, 1),
                 'g', Items.GLOWSTONE_DUST,
                 'c', Items.COMPASS);
 
