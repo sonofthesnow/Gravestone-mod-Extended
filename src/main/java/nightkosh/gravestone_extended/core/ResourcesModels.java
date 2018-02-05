@@ -76,6 +76,7 @@ public class ResourcesModels extends Resources {
     public static final ModelResourceLocation ENCHANTED_SKULL = new ModelResourceLocation(GSItem.ENCHANTED_SKULL.getRegistryName(), "inventory");
     public static final ModelResourceLocation ENCHANTED_SKULL_WITHERED = new ModelResourceLocation(GSItem.ENCHANTED_SKULL.getRegistryName() + "_withered", "inventory");
 
+    public static final ModelResourceLocation SLIME_CHUNK = new ModelResourceLocation(ModInfo.ID + ":compasses/slime_chunk/" + GSItem.SLIME_CHUNK.getRegistryName().getResourcePath(), "inventory");
     public static final ModelResourceLocation IMP_SKULL = new ModelResourceLocation(ModInfo.ID + ":compasses/imp_skull/" + GSItem.IMP_SKULL.getRegistryName().getResourcePath(), "inventory");
     public static final ModelResourceLocation ENDER_SKULL = new ModelResourceLocation(ModInfo.ID + ":compasses/ender_skull/" + GSItem.ENDER_SKULL.getRegistryName().getResourcePath(), "inventory");
 
