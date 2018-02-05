@@ -3,6 +3,16 @@
 	"textures": {
 		"texture": "gravestone-extended:items/slime_chunk"
 	},
+    "overrides": [
+        { "predicate": { "size": 0 }, "model": "gravestone-extended:item/compasses/slime_chunk/gs_slime_chunk" },
+        { "predicate": { "size": 1 }, "model": "gravestone-extended:item/compasses/slime_chunk/gs_slime_chunk_0" },
+        { "predicate": { "size": 2 }, "model": "gravestone-extended:item/compasses/slime_chunk/gs_slime_chunk_1" },
+        { "predicate": { "size": 3 }, "model": "gravestone-extended:item/compasses/slime_chunk/gs_slime_chunk_2" },
+        { "predicate": { "size": 4 }, "model": "gravestone-extended:item/compasses/slime_chunk/gs_slime_chunk_3" },
+        { "predicate": { "size": 5 }, "model": "gravestone-extended:item/compasses/slime_chunk/gs_slime_chunk_2" },
+        { "predicate": { "size": 6 }, "model": "gravestone-extended:item/compasses/slime_chunk/gs_slime_chunk_1" },
+        { "predicate": { "size": 7 }, "model": "gravestone-extended:item/compasses/slime_chunk/gs_slime_chunk_0" }
+    ],
 	"elements": [
 		{
 			"name": "cube",
