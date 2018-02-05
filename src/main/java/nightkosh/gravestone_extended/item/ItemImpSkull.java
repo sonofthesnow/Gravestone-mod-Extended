@@ -28,10 +28,24 @@ public class ItemImpSkull extends Item {
 
     public ItemImpSkull() {
         this.setUnlocalizedName("gravestone.imp_skull");
-        this.setRegistryName(ModInfo.ID, "gs_imp_skull");
+        this.setRegistryName(ModInfo.ID, getItemRegistryName());
         this.setCreativeTab(GSTabs.otherItemsTab);
 
-        this.addPropertyOverride(new ResourceLocation("angle"), new IItemPropertyGetter() {
+        this.addPropertyOverride(new ResourceLocation("angle"), getPropertyGetter());
+    }
+
+    @Nullable
+    @Override
+    public EntityEquipmentSlot getEquipmentSlot(ItemStack stack) {
+        return EntityEquipmentSlot.HEAD;
+    }
+
+    protected String getItemRegistryName() {
+        return "gs_imp_skull";
+    }
+
+    protected IItemPropertyGetter getPropertyGetter() {
+        return new IItemPropertyGetter() {
             @SideOnly(Side.CLIENT)
             double rotation;
             @SideOnly(Side.CLIENT)
@@ -94,12 +108,6 @@ public class ItemImpSkull extends Item {
                 BlockPos blockpos = world.getSpawnPoint();
                 return Math.atan2(blockpos.getZ() - entity.posZ, blockpos.getX() - entity.posX);
             }
-        });
-    }
-
-    @Nullable
-    @Override
-    public EntityEquipmentSlot getEquipmentSlot(ItemStack stack) {
-        return EntityEquipmentSlot.HEAD;
+        };
     }
 }
