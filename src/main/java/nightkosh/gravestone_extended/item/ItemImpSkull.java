@@ -1,7 +1,7 @@
 package nightkosh.gravestone_extended.item;
 
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.IItemPropertyGetter;
 import net.minecraft.item.Item;
@@ -14,6 +14,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import nightkosh.gravestone_extended.core.GSTabs;
 import nightkosh.gravestone_extended.core.ModInfo;
+import nightkosh.gravestone_extended.helper.VanillaStructuresPosition;
 
 import javax.annotation.Nullable;
 
@@ -49,16 +50,13 @@ public class ItemImpSkull extends Item {
 
     protected IItemPropertyGetter getPropertyGetter() {
         return new IItemPropertyGetter() {
-            @SideOnly(Side.CLIENT)
             double rotation;
-            @SideOnly(Side.CLIENT)
             double rota;
-            @SideOnly(Side.CLIENT)
             long lastUpdateTick;
 
             @SideOnly(Side.CLIENT)
             public float apply(ItemStack stack, @Nullable World world, @Nullable EntityLivingBase entity) {
-                if (entity == null || stack.isOnItemFrame()) {
+                if (entity == null || !(entity instanceof EntityPlayer) || stack.isOnItemFrame()) {
                     return 0;
                 } else {
                     if (world == null) {
@@ -69,7 +67,7 @@ public class ItemImpSkull extends Item {
 
                     if (isCorrectDimension(world)) {
                         double rotationYaw = MathHelper.positiveModulo(entity.rotationYaw / 360D, 1);
-                        double d2 = this.getSpawnToAngle(world, entity) / (Math.PI * 2);
+                        double d2 = this.getPosToAngle((EntityPlayer) entity) / (Math.PI * 2);
                         d0 = 0.5 - (rotationYaw - 0.25 - d2);
                     } else {
                         d0 = Math.random();
@@ -93,9 +91,9 @@ public class ItemImpSkull extends Item {
             }
 
             @SideOnly(Side.CLIENT)
-            private double getSpawnToAngle(World world, Entity entity) {
-                BlockPos pos = getPos(world);
-                return Math.atan2(pos.getZ() - entity.posZ, pos.getX() - entity.posX);
+            private double getPosToAngle(EntityPlayer player) {
+                BlockPos pos = getPos(player);
+                return Math.atan2(pos.getZ() - player.posZ, pos.getX() - player.posX);
             }
         };
     }
@@ -104,8 +102,7 @@ public class ItemImpSkull extends Item {
         return world.provider.isNether();
     }
 
-    protected BlockPos getPos(World world) {
-        //BlockPos pos = world.getChunkProvider().getNearestStructurePos(world, "Fortress", new BlockPos(entity), false);
-        return world.getSpawnPoint();
+    protected BlockPos getPos(EntityPlayer player) {
+        return VanillaStructuresPosition.getNetherFortress(player);
     }
 }

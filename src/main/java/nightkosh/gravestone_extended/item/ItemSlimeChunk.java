@@ -36,11 +36,8 @@ public class ItemSlimeChunk extends ItemImpSkull {
 
     protected IItemPropertyGetter getPropertyGetter() {
         return new IItemPropertyGetter() {
-            @SideOnly(Side.CLIENT)
             long lastUpdateTick;
-            @SideOnly(Side.CLIENT)
             byte tick = 0;
-            @SideOnly(Side.CLIENT)
             byte size = 0;
 
             @SideOnly(Side.CLIENT)

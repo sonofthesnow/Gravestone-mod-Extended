@@ -1,7 +1,9 @@
 package nightkosh.gravestone_extended.item;
 
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import nightkosh.gravestone_extended.helper.VanillaStructuresPosition;
 
 /**
  * GraveStone mod
@@ -26,8 +28,7 @@ public class ItemEnderSkull extends ItemImpSkull {
     }
 
     @Override
-    protected BlockPos getPos(World world) {
-        //BlockPos pos = world.getChunkProvider().getNearestStructurePos(world, "Stronghold", new BlockPos(entity), false);
-        return world.getSpawnPoint();
+    protected BlockPos getPos(EntityPlayer player) {
+        return VanillaStructuresPosition.getStrongHold(player);
     }
 }
