@@ -2,7 +2,6 @@ package nightkosh.gravestone_extended.item;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.item.EntityItemFrame;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.IItemPropertyGetter;
 import net.minecraft.item.Item;
@@ -31,7 +30,7 @@ public class ItemImpSkull extends Item {
         this.setRegistryName(ModInfo.ID, getItemRegistryName());
         this.setCreativeTab(GSTabs.otherItemsTab);
 
-        this.addPropertyOverride(new ResourceLocation("angle"), getPropertyGetter());
+        this.addPropertyOverride(new ResourceLocation(getPropertyName()), getPropertyGetter());
     }
 
     @Nullable
@@ -44,6 +43,10 @@ public class ItemImpSkull extends Item {
         return "gs_imp_skull";
     }
 
+    protected String getPropertyName() {
+        return "angle";
+    }
+
     protected IItemPropertyGetter getPropertyGetter() {
         return new IItemPropertyGetter() {
             @SideOnly(Side.CLIENT)
@@ -54,42 +57,33 @@ public class ItemImpSkull extends Item {
             long lastUpdateTick;
 
             @SideOnly(Side.CLIENT)
-            public float apply(ItemStack stack, @Nullable World world, @Nullable EntityLivingBase entityIn) {
-                if (entityIn == null && !stack.isOnItemFrame()) {
+            public float apply(ItemStack stack, @Nullable World world, @Nullable EntityLivingBase entity) {
+                if (entity == null || stack.isOnItemFrame()) {
                     return 0;
                 } else {
-                    boolean flag = entityIn != null;
-                    Entity entity = flag ? entityIn : stack.getItemFrame();
-
                     if (world == null) {
                         world = entity.world;
                     }
 
                     double d0;
 
-                    if (world.provider.isSurfaceWorld()) {
-                        double d1 = flag ? entity.rotationYaw : this.getFrameRotation((EntityItemFrame) entity);
-                        d1 = MathHelper.positiveModulo(d1 / 360D, 1);
+                    if (isCorrectDimension(world)) {
+                        double rotationYaw = MathHelper.positiveModulo(entity.rotationYaw / 360D, 1);
                         double d2 = this.getSpawnToAngle(world, entity) / (Math.PI * 2);
-                        d0 = 0.5 - (d1 - 0.25 - d2);
+                        d0 = 0.5 - (rotationYaw - 0.25 - d2);
                     } else {
                         d0 = Math.random();
                     }
 
-                    if (flag) {
-                        d0 = this.wobble(world, d0);
-                    }
-
-                    return MathHelper.positiveModulo((float) d0, 1);
+                    return MathHelper.positiveModulo((float) this.wobble(world, d0), 1);
                 }
             }
 
             @SideOnly(Side.CLIENT)
-            private double wobble(World world, double p_185093_2_) {
+            private double wobble(World world, double d0) {
                 if (world.getTotalWorldTime() != this.lastUpdateTick) {
                     this.lastUpdateTick = world.getTotalWorldTime();
-                    double d0 = p_185093_2_ - this.rotation;
-                    d0 = MathHelper.positiveModulo(d0 + 0.5, 1) - 0.5;
+                    d0 = MathHelper.positiveModulo(d0 - this.rotation + 0.5, 1) - 0.5;
                     this.rota += d0 * 0.1;
                     this.rota *= 0.8;
                     this.rotation = MathHelper.positiveModulo(this.rotation + this.rota, 1);
@@ -99,15 +93,19 @@ public class ItemImpSkull extends Item {
             }
 
             @SideOnly(Side.CLIENT)
-            private double getFrameRotation(EntityItemFrame frame) {
-                return (double) MathHelper.wrapDegrees(180 + frame.facingDirection.getHorizontalIndex() * 90);
-            }
-
-            @SideOnly(Side.CLIENT)
             private double getSpawnToAngle(World world, Entity entity) {
-                BlockPos blockpos = world.getSpawnPoint();
-                return Math.atan2(blockpos.getZ() - entity.posZ, blockpos.getX() - entity.posX);
+                BlockPos pos = getPos(world);
+                return Math.atan2(pos.getZ() - entity.posZ, pos.getX() - entity.posX);
             }
         };
+    }
+
+    protected boolean isCorrectDimension(World world) {
+        return world.provider.isNether();
+    }
+
+    protected BlockPos getPos(World world) {
+        //BlockPos pos = world.getChunkProvider().getNearestStructurePos(world, "Fortress", new BlockPos(entity), false);
+        return world.getSpawnPoint();
     }
 }
