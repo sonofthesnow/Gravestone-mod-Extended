@@ -51,9 +51,11 @@ public class StrongholdMessageToServer implements IMessage, IMessageHandler<Stro
                 return null;
             }
             EntityPlayerMP player = (EntityPlayerMP) world.getEntityByID(message.playerID);
-            BlockPos pos = world.getChunkProvider().getNearestStructurePos(world, "Stronghold", new BlockPos(player), false);
-            if (pos != null) {
-                MessageHandler.networkWrapper.sendTo(new StrongholdMessageToClient(pos), player);
+            if (player != null) {
+                BlockPos pos = world.getChunkProvider().getNearestStructurePos(world, "Stronghold", new BlockPos(player), false);
+                if (pos != null) {
+                    MessageHandler.networkWrapper.sendTo(new StrongholdMessageToClient(pos), player);
+                }
             }
         }
         return null;

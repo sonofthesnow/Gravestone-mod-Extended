@@ -51,9 +51,11 @@ public class NetherFortressMessageToServer implements IMessage, IMessageHandler<
                 return null;
             }
             EntityPlayerMP player = (EntityPlayerMP) world.getEntityByID(message.playerID);
-            BlockPos pos = world.getChunkProvider().getNearestStructurePos(world, "Fortress", new BlockPos(player), false);
-            if (pos != null) {
-                MessageHandler.networkWrapper.sendTo(new NetherFortressMessageToClient(pos), player);
+            if (player != null) {
+                BlockPos pos = world.getChunkProvider().getNearestStructurePos(world, "Fortress", new BlockPos(player), false);
+                if (pos != null) {
+                    MessageHandler.networkWrapper.sendTo(new NetherFortressMessageToClient(pos), player);
+                }
             }
         }
         return null;
