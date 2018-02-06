@@ -1,0 +1,6 @@
+{
+    "parent": "block/pane_noside",
+    "textures": {
+        "pane": "gravestone-extended:blocks/withered_glass"
+    }
+}

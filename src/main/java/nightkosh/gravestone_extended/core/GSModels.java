@@ -80,6 +80,9 @@ public class GSModels {
             ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(GSBlock.TRAP), EnumTrap.THUNDER_STONE.ordinal(), ResourcesModels.THUNDER_STONE);
             ModelBakery.registerItemVariants(Item.getItemFromBlock(GSBlock.TRAP), ResourcesModels.NIGHT_STONE, ResourcesModels.THUNDER_STONE);
 
+            ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(GSBlock.WITHERED_GLASS), 0, ResourcesModels.WITHERED_GLASS);
+            ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(GSBlock.WITHERED_GLASS_PANE), 0, ResourcesModels.WITHERED_GLASS_PANE);
+
             //bone blocks
             ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(GSBlock.BONE_BLOCK), EnumBoneBlock.BONE_BLOCK.ordinal(), ResourcesModels.BONE_BLOCK);
             ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(GSBlock.BONE_BLOCK), EnumBoneBlock.SKULL_BONE_BLOCK.ordinal(), ResourcesModels.BONE_BLOCK_WITH_SKULL);

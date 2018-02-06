@@ -208,6 +208,16 @@ public class GSRecipes {
                 'b', GSBlock.BONE_BLOCK,
                 'c', Items.SHIELD);
 
+        GameRegistry.addShapedRecipe(new ResourceLocation(ModInfo.ID, "withered_glass"), GROUP, new ItemStack(GSBlock.WITHERED_GLASS, 6),
+                "ggg", "sos", "ggg",
+                'g', Blocks.GLASS,
+                's', Blocks.SOUL_SAND,
+                'o', Blocks.OBSIDIAN);
+
+        GameRegistry.addShapedRecipe(new ResourceLocation(ModInfo.ID, "withered_glass_pane"), GROUP, new ItemStack(GSBlock.WITHERED_GLASS_PANE, 16),
+                "ggg", "ggg",
+                'g', GSBlock.WITHERED_GLASS);
+
         GameRegistry.addShapedRecipe(new ResourceLocation(ModInfo.ID, "pile_of_bones"), GROUP, new ItemStack(GSBlock.PILE_OF_BONES, 1, 0),
                 "bb", "bb",
                 'b', Items.BONE);

@@ -33,6 +33,12 @@ public class GSBlock extends nightkosh.gravestone.core.GSBlock {
     public static final BlockTrap TRAP = new BlockTrap();
     public static final ItemBlock TRAP_IB = new ItemBlockGSTrap(TRAP);
 
+    public static final Block WITHERED_GLASS = new BlockWitheredGlass();
+    public static final ItemBlock WITHERED_GLASS_IB = new ItemBlockWitheredGlass(WITHERED_GLASS);
+
+    public static final Block WITHERED_GLASS_PANE = new BlockWitheredPane();
+    public static final ItemBlock WITHERED_GLASS_PANE_IB = new ItemBlockWitheredPane(WITHERED_GLASS_PANE);
+
     public static final BlockPileOfBones PILE_OF_BONES = new BlockPileOfBones();
     public static final ItemBlock PILE_OF_BONES_IB = new ItemBlockGSPileOfBones(PILE_OF_BONES);
 
@@ -69,16 +75,16 @@ public class GSBlock extends nightkosh.gravestone.core.GSBlock {
         @SubscribeEvent
         public static void registerBlocks(final RegistryEvent.Register<Block> event) {
             final IForgeRegistry<Block> registry = event.getRegistry();
-            registry.registerAll(MEMORIAL, EXECUTION, SPAWNER, TRAP, PILE_OF_BONES, BONE_BLOCK,
-                    BONE_SLAB, BONE_STAIRS, HAUNTED_CHEST, CANDLE, SKULL_CANDLE, ALTAR,
+            registry.registerAll(MEMORIAL, EXECUTION, SPAWNER, TRAP, WITHERED_GLASS, PILE_OF_BONES, WITHERED_GLASS_PANE,
+                    BONE_BLOCK, BONE_SLAB, BONE_STAIRS, HAUNTED_CHEST, CANDLE, SKULL_CANDLE, ALTAR,
                     INVISIBLE_WALL, CORPSE, TOXIC_WATER);
         }
 
         @SubscribeEvent
         public static void registerItemBlocks(final RegistryEvent.Register<Item> event) {
             final IForgeRegistry<Item> registry = event.getRegistry();
-            registry.registerAll(MEMORIAL_IB, EXECUTION_IB, SPAWNER_IB, TRAP_IB, PILE_OF_BONES_IB,
-                    BONE_BLOCK_IB, BONE_SLAB_IB, BONE_STAIRS_IB, HAUNTED_CHEST_IB, CANDLE_IB, SKULL_CANDLE_IB,
+            registry.registerAll(MEMORIAL_IB, EXECUTION_IB, SPAWNER_IB, TRAP_IB, WITHERED_GLASS_IB, WITHERED_GLASS_PANE_IB,
+                    PILE_OF_BONES_IB, BONE_BLOCK_IB, BONE_SLAB_IB, BONE_STAIRS_IB, HAUNTED_CHEST_IB, CANDLE_IB, SKULL_CANDLE_IB,
                     ALTAR_IB, CORPSE_IB);
         }
     }

@@ -87,6 +87,9 @@ public class ResourcesModels extends Resources {
     public static final ModelResourceLocation NIGHT_STONE = new ModelResourceLocation(MOD_NAME + ":gstrap_night_stone", "inventory");
     public static final ModelResourceLocation THUNDER_STONE = new ModelResourceLocation(MOD_NAME + ":gstrap_thunder_stone", "inventory");
 
+    public static final ModelResourceLocation WITHERED_GLASS = new ModelResourceLocation(GSBlock.WITHERED_GLASS.getRegistryName(), "inventory");
+    public static final ModelResourceLocation WITHERED_GLASS_PANE = new ModelResourceLocation(GSBlock.WITHERED_GLASS_PANE.getRegistryName(), "inventory");
+
     public static final ModelResourceLocation PILE_OF_BONES = new ModelResourceLocation(MOD_NAME + ":gspileofbones", "inventory");
     //bone blocks
     public static final ModelResourceLocation BONE_BLOCK = new ModelResourceLocation(MOD_NAME + ":gsboneblock", "inventory");
