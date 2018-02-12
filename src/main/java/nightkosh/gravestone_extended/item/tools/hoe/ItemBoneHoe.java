@@ -1,4 +1,4 @@
-package nightkosh.gravestone_extended.item.tools;
+package nightkosh.gravestone_extended.item.tools.hoe;
 
 import net.minecraft.block.BlockGrass;
 import net.minecraft.block.IGrowable;

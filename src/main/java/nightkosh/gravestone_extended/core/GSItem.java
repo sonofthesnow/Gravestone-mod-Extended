@@ -16,6 +16,10 @@ import nightkosh.gravestone_extended.item.tools.axe.ItemBoneAxe;
 import nightkosh.gravestone_extended.item.tools.axe.ItemDiamondBoneAxe;
 import nightkosh.gravestone_extended.item.tools.axe.ItemGoldenBoneAxe;
 import nightkosh.gravestone_extended.item.tools.axe.ItemIronBoneAxe;
+import nightkosh.gravestone_extended.item.tools.hoe.ItemBoneHoe;
+import nightkosh.gravestone_extended.item.tools.hoe.ItemDiamondBoneHoe;
+import nightkosh.gravestone_extended.item.tools.hoe.ItemGoldenBoneHoe;
+import nightkosh.gravestone_extended.item.tools.hoe.ItemIronBoneHoe;
 import nightkosh.gravestone_extended.item.weapon.*;
 
 /**

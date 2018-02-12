@@ -5,7 +5,7 @@ import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.ItemBook;
 import net.minecraft.item.ItemStack;
 import nightkosh.gravestone_extended.core.ModInfo;
-import nightkosh.gravestone_extended.item.tools.IBoneHoe;
+import nightkosh.gravestone_extended.item.tools.hoe.IBoneHoe;
 
 /**
  * GraveStone mod

@@ -1,4 +1,6 @@
-package nightkosh.gravestone_extended.item.tools;
+package nightkosh.gravestone_extended.item.tools.hoe;
+
+import nightkosh.gravestone_extended.item.tools.IBoneTool;
 
 /**
  * GraveStone mod
