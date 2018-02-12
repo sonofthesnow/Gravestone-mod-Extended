@@ -157,6 +157,27 @@ public class GSRecipes {
                 't', Items.STRING,
                 's', new ItemStack(Items.SKULL, 1, 0));
 
+        GameRegistry.addShapedRecipe(new ResourceLocation(ModInfo.ID, "bone_axe"), GROUP, new ItemStack(GSItem.BONE_AXE),
+                "bs ", "bw ", " w ",
+                'b', GSBlock.BONE_BLOCK,
+                's', new ItemStack(Items.SKULL, 1, 0),
+                'w', Items.STICK);
+
+        GameRegistry.addShapedRecipe(new ResourceLocation(ModInfo.ID, "bone_axe_iron"), GROUP, new ItemStack(GSItem.BONE_AXE_IRON),
+                "bi",
+                'b', GSItem.BONE_AXE,
+                'i', Items.IRON_AXE);
+
+        GameRegistry.addShapedRecipe(new ResourceLocation(ModInfo.ID, "bone_axe_golden"), GROUP, new ItemStack(GSItem.BONE_AXE_GOLDEN),
+                "bg",
+                'b', GSItem.BONE_AXE,
+                'g', Items.GOLDEN_AXE);
+
+        GameRegistry.addShapedRecipe(new ResourceLocation(ModInfo.ID, "bone_axe_diamond"), GROUP, new ItemStack(GSItem.BONE_AXE_DIAMOND),
+                "bd",
+                'b', GSItem.BONE_AXE,
+                'd', Items.DIAMOND_AXE);
+
         GameRegistry.addShapedRecipe(new ResourceLocation(ModInfo.ID, "bone_hoe"), GROUP, new ItemStack(GSItem.BONE_HOE),
                 "bs ", " w ", " w ",
                 'b', GSBlock.BONE_BLOCK,

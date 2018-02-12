@@ -175,6 +175,12 @@ item.gravestone.chisel.name=Gravestone Chisel
 ## Fishing Pole
 item.gravestone.bone_fishing_pole.name=Bone Fishing Pole
 
+## Axe
+item.gravestone.bone_axe.name=Bone Axe
+item.gravestone.bone_axe_iron.name=Iron Bone Axe
+item.gravestone.bone_axe_golden.name=Golden Bone Axe
+item.gravestone.bone_axe_diamond.name=Diamond Bone Axe
+
 ## Hoe
 item.gravestone.bone_hoe.name=Bone Hoe
 item.gravestone.bone_hoe_iron.name=Iron Bone Hoe

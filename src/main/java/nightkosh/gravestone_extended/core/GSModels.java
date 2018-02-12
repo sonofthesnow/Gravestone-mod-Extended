@@ -181,6 +181,11 @@ public class GSModels {
             ModelLoader.setCustomModelResourceLocation(GSItem.BONE_HOE_GOLDEN, 0, ResourcesModels.BONE_HOE_GOLDEN);
             ModelLoader.setCustomModelResourceLocation(GSItem.BONE_HOE_DIAMOND, 0, ResourcesModels.BONE_HOE_DIAMOND);
 
+            ModelLoader.setCustomModelResourceLocation(GSItem.BONE_AXE, 0, ResourcesModels.BONE_AXE);
+            ModelLoader.setCustomModelResourceLocation(GSItem.BONE_AXE_IRON, 0, ResourcesModels.BONE_AXE_IRON);
+            ModelLoader.setCustomModelResourceLocation(GSItem.BONE_AXE_GOLDEN, 0, ResourcesModels.BONE_AXE_GOLDEN);
+            ModelLoader.setCustomModelResourceLocation(GSItem.BONE_AXE_DIAMOND, 0, ResourcesModels.BONE_AXE_DIAMOND);
+
             registerFluidModel(GSBlock.TOXIC_WATER);
         }
 

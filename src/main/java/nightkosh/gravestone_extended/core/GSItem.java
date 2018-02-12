@@ -12,6 +12,10 @@ import nightkosh.gravestone_extended.core.compatibility.forestry.CompatibilityFo
 import nightkosh.gravestone_extended.item.*;
 import nightkosh.gravestone_extended.item.armor.ItemDivingHelmet;
 import nightkosh.gravestone_extended.item.tools.*;
+import nightkosh.gravestone_extended.item.tools.axe.ItemBoneAxe;
+import nightkosh.gravestone_extended.item.tools.axe.ItemDiamondBoneAxe;
+import nightkosh.gravestone_extended.item.tools.axe.ItemGoldenBoneAxe;
+import nightkosh.gravestone_extended.item.tools.axe.ItemIronBoneAxe;
 import nightkosh.gravestone_extended.item.weapon.*;
 
 /**
@@ -37,6 +41,11 @@ public class GSItem {
     public static final Item BONE_HOE_GOLDEN = new ItemGoldenBoneHoe();
     public static final Item BONE_HOE_DIAMOND = new ItemDiamondBoneHoe();
 
+    public static final Item BONE_AXE = new ItemBoneAxe();
+    public static final Item BONE_AXE_IRON = new ItemIronBoneAxe();
+    public static final Item BONE_AXE_GOLDEN = new ItemGoldenBoneAxe();
+    public static final Item BONE_AXE_DIAMOND = new ItemDiamondBoneAxe();
+
     public static final Item DIVING_HELMET = new ItemDivingHelmet();
 
     public static final Item SLIME_CHUNK = new ItemSlimeChunk();
@@ -56,6 +65,7 @@ public class GSItem {
             final IForgeRegistry<Item> registry = event.getRegistry();
             registry.registerAll(BONE_SWORD, BONE_SWORD_IRON, BONE_SWORD_GOLDEN, BONE_SWORD_DIAMOND, BONE_SHIELD);
             registry.registerAll(CHISEL, BONE_FISHING_POLE,
+                    BONE_AXE, BONE_AXE_IRON, BONE_AXE_GOLDEN, BONE_AXE_DIAMOND,
                     BONE_HOE, BONE_HOE_IRON, BONE_HOE_GOLDEN, BONE_HOE_DIAMOND);
             registry.registerAll(DIVING_HELMET, SLIME_CHUNK, IMP_SKULL, ENDER_SKULL);
             registry.registerAll(TOXIC_SLIME, BAT_WING, FISH);

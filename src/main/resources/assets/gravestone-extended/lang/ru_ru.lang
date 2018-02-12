@@ -175,11 +175,17 @@ item.gravestone.chisel.name=Резец для надгробий
 ## Fishing Pole
 item.gravestone.bone_fishing_pole.name=Костяная удочка
 
+## Axe
+item.gravestone.bone_axe.name=Костяной топор
+item.gravestone.bone_axe_iron.name=Железный костяной топор
+item.gravestone.bone_axe_golden.name=Золотой костяной топор
+item.gravestone.bone_axe_diamond.name=Алмазный костяной топор
+
 ## Hoe
 item.gravestone.bone_hoe.name=Костяная мотыга
-item.gravestone.bone_hoe_iron.name=Костяная железная мотыга
-item.gravestone.bone_hoe_golden.name=Костяная золотая мотыга
-item.gravestone.bone_hoe_diamond.name=Костяная алмазная мотыга
+item.gravestone.bone_hoe_iron.name=Железная костяная мотыга
+item.gravestone.bone_hoe_golden.name=Золотая костяная мотыга
+item.gravestone.bone_hoe_diamond.name=Алмазная костяная мотыга
 
 ## Swords
 item.gravestone.bone_sword.name=Костяной мечь

@@ -34,6 +34,11 @@ public class ResourcesModels extends Resources {
     public static final ModelResourceLocation BONE_HOE_GOLDEN = new ModelResourceLocation(ModInfo.ID + ":tools/hoe/" + GSItem.BONE_HOE_GOLDEN.getRegistryName().getResourcePath(), "inventory");
     public static final ModelResourceLocation BONE_HOE_DIAMOND = new ModelResourceLocation(ModInfo.ID + ":tools/hoe/" + GSItem.BONE_HOE_DIAMOND.getRegistryName().getResourcePath(), "inventory");
 
+    public static final ModelResourceLocation BONE_AXE = new ModelResourceLocation(ModInfo.ID + ":tools/axe/" + GSItem.BONE_AXE.getRegistryName().getResourcePath(), "inventory");
+    public static final ModelResourceLocation BONE_AXE_IRON = new ModelResourceLocation(ModInfo.ID + ":tools/axe/" + GSItem.BONE_AXE_IRON.getRegistryName().getResourcePath(), "inventory");
+    public static final ModelResourceLocation BONE_AXE_GOLDEN = new ModelResourceLocation(ModInfo.ID + ":tools/axe/" + GSItem.BONE_AXE_GOLDEN.getRegistryName().getResourcePath(), "inventory");
+    public static final ModelResourceLocation BONE_AXE_DIAMOND = new ModelResourceLocation(ModInfo.ID + ":tools/axe/" + GSItem.BONE_AXE_DIAMOND.getRegistryName().getResourcePath(), "inventory");
+
     public static final ModelResourceLocation CORPSE = new ModelResourceLocation(MOD_NAME + ":gscorpse", "inventory");
 
     public static final ModelResourceLocation SPAWN_EGG_MODEL = new ModelResourceLocation(GSItem.SPAWN_EGG.getRegistryName(), "inventory");
