@@ -1,6 +1,5 @@
 package nightkosh.gravestone_extended.core;
 
-import nightkosh.gravestone.core.GSTileEntity;
 import nightkosh.gravestone_extended.ModGravestoneExtended;
 
 /**
@@ -9,7 +8,7 @@ import nightkosh.gravestone_extended.ModGravestoneExtended;
  * @author NightKosh
  * @license Lesser GNU Public License v3 (http://www.gnu.org/licenses/lgpl.html)
  */
-public class TileEntity extends GSTileEntity{
+public class GSTileEntity extends nightkosh.gravestone.core.GSTileEntity {
 
     public static void registration() {
         ModGravestoneExtended.proxy.registerTERenderers();

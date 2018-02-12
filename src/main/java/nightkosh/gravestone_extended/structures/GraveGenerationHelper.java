@@ -3,6 +3,7 @@ package nightkosh.gravestone_extended.structures;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3i;
 import net.minecraft.world.World;
@@ -10,6 +11,7 @@ import net.minecraft.world.gen.structure.StructureBoundingBox;
 import nightkosh.gravestone.helper.GraveGenerationHelper.EnumGraveTypeByEntity;
 import nightkosh.gravestone.tileentity.TileEntityGraveStone;
 import nightkosh.gravestone_extended.core.GSBlock;
+import nightkosh.gravestone_extended.core.logger.GSLogger;
 import nightkosh.gravestone_extended.entity.helper.EntityGroupOfGravesMobSpawnerHelper;
 import nightkosh.gravestone_extended.helper.GraveInventoryHelper;
 import nightkosh.gravestone_extended.helper.GraveStoneHelper;
@@ -62,13 +64,15 @@ public class GraveGenerationHelper {
     }
 
     private static void placeGrave(IComponentGraveStone component, World world, int x, int y, int z,
-                                  IBlockState graveState, GraveWorldGenerationHelper.GraveGenerationInfo graveInfo, EntityGroupOfGravesMobSpawnerHelper spanwerHelper) {
+                                   IBlockState graveState, GraveWorldGenerationHelper.GraveGenerationInfo graveInfo, EntityGroupOfGravesMobSpawnerHelper spanwerHelper) {
         component.placeBlockAtCurrentPosition(world, graveState, x, y, z, component.getIBoundingBox());
-        TileEntityGraveStone tileEntity = (TileEntityGraveStone) world.getTileEntity(new BlockPos(component.getIXWithOffset(x, z), component.getIYWithOffset(y), component.getIZWithOffset(x, z)));
-
-        if (tileEntity != null) {
+        TileEntity te = world.getTileEntity(new BlockPos(component.getIXWithOffset(x, z), component.getIYWithOffset(y), component.getIZWithOffset(x, z)));
+        if (te != null && te instanceof TileEntityGraveStone) {
+            TileEntityGraveStone tileEntity = (TileEntityGraveStone) te;
             setGraveInfo(graveInfo, tileEntity);
             tileEntity.setSpawnerHelper(spanwerHelper);
+        } else {
+            GSLogger.logInfo("Error at grave generation at " + x + "x " + y + "y " + z + "z");
         }
     }
 

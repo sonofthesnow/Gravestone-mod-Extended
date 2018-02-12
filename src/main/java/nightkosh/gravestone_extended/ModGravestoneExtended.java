@@ -59,7 +59,7 @@ public class ModGravestoneExtended {
         MessageHandler.init();
 
         GSTabs.registration();
-        TileEntity.registration();
+        GSTileEntity.registration();
 
         CapabilityManager.INSTANCE.register(IChoke.class, new ChokeStorage(), Choke.class);
     }
