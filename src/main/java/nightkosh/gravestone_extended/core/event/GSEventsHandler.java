@@ -28,6 +28,7 @@ import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.event.entity.ProjectileImpactEvent;
 import net.minecraftforge.event.entity.living.*;
 import net.minecraftforge.event.entity.player.ItemFishedEvent;
+import net.minecraftforge.event.world.BlockEvent;
 import net.minecraftforge.fml.client.FMLClientHandler;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.eventhandler.EventPriority;
@@ -41,6 +42,7 @@ import nightkosh.gravestone_extended.core.GSBlock;
 import nightkosh.gravestone_extended.core.GSEnchantment;
 import nightkosh.gravestone_extended.core.GSPotion;
 import nightkosh.gravestone_extended.core.MobSpawn;
+import nightkosh.gravestone_extended.enchantment.EnchantmentBloodyReplication;
 import nightkosh.gravestone_extended.enchantment.EnchantmentNecroticCorrosion;
 import nightkosh.gravestone_extended.enchantment.EnchantmentPainMirror;
 import nightkosh.gravestone_extended.enchantment.EnchantmentVampiricTouch;
@@ -90,6 +92,13 @@ public class GSEventsHandler {
                 // drop creeper statue if entity is a charged creeper
                 GSBlock.MEMORIAL.dropCreeperMemorial(event.getEntity().getEntityWorld(), new BlockPos(event.getEntity()));
             }
+        }
+    }
+
+    @SubscribeEvent(priority = EventPriority.HIGHEST)
+    public void breakBlockEvent(BlockEvent.BreakEvent event) {
+        if (EnchantmentBloodyReplication.applyEffect(event.getPlayer(), event.getState(), event.getPos())) {
+            event.setCanceled(true);
         }
     }
 

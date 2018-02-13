@@ -29,6 +29,7 @@ public class GSEnchantment {
     public static final Enchantment PAIN_MIRROR = new EnchantmentPainMirror();
     public static final Enchantment BONE_RAIN = new EnchantmentBoneRain();
     public static final Enchantment HELLISH_ANGLING = new EnchantmentHellishAngling();
+    public static final Enchantment BLOODY_REPLICATION = new EnchantmentBloodyReplication();
 
     // CURSES
     public static final Enchantment CURSE_STARVATION = new EnchantmentStarvationCurse();
@@ -44,7 +45,7 @@ public class GSEnchantment {
             final IForgeRegistry<Enchantment> registry = event.getRegistry();
             registry.registerAll(VAMPIRIC_TOUCH, POISONED_BLADE, WITHERED_BLADE, SHADOW_OF_DEATH, NECROTIC_CORROSION);
             registry.registerAll(PAIN_MIRROR);
-            registry.registerAll(BONE_RAIN, HELLISH_ANGLING);
+            registry.registerAll(BONE_RAIN, HELLISH_ANGLING, BLOODY_REPLICATION);
             registry.registerAll(CURSE_STARVATION, CURSE_AWKWARD, CURSE_BROKEN_HOOK);
         }
     }
