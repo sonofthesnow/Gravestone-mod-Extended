@@ -179,6 +179,13 @@ item.gravestone.chisel.name=Різець для надгробків
 ## Fishing Pole
 item.gravestone.bone_fishing_pole.name=Кістяна вудка
 
+## Pickaxe
+## TODO !!!!!!!!!!
+item.gravestone.bone_pickaxe.name=Bone Pickaxe
+item.gravestone.bone_pickaxe_iron.name=Iron Bone Pickaxe
+item.gravestone.bone_pickaxe_golden.name=Golden Bone Pickaxe
+item.gravestone.bone_pickaxe_diamond.name=Diamond Bone Pickaxe
+
 ## Axe
 ## TODO !!!!!!!!!!
 item.gravestone.bone_axe.name=Bone Axe

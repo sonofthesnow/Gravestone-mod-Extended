@@ -11,7 +11,8 @@ import nightkosh.gravestone_extended.core.compatibility.Compatibility;
 import nightkosh.gravestone_extended.core.compatibility.forestry.CompatibilityForestry;
 import nightkosh.gravestone_extended.item.*;
 import nightkosh.gravestone_extended.item.armor.ItemDivingHelmet;
-import nightkosh.gravestone_extended.item.tools.*;
+import nightkosh.gravestone_extended.item.tools.ItemBoneFishingPole;
+import nightkosh.gravestone_extended.item.tools.ItemChisel;
 import nightkosh.gravestone_extended.item.tools.axe.ItemBoneAxe;
 import nightkosh.gravestone_extended.item.tools.axe.ItemDiamondBoneAxe;
 import nightkosh.gravestone_extended.item.tools.axe.ItemGoldenBoneAxe;
@@ -20,6 +21,10 @@ import nightkosh.gravestone_extended.item.tools.hoe.ItemBoneHoe;
 import nightkosh.gravestone_extended.item.tools.hoe.ItemDiamondBoneHoe;
 import nightkosh.gravestone_extended.item.tools.hoe.ItemGoldenBoneHoe;
 import nightkosh.gravestone_extended.item.tools.hoe.ItemIronBoneHoe;
+import nightkosh.gravestone_extended.item.tools.pickaxe.ItemBonePickaxe;
+import nightkosh.gravestone_extended.item.tools.pickaxe.ItemDiamondBonePickaxe;
+import nightkosh.gravestone_extended.item.tools.pickaxe.ItemGoldenBonePickaxe;
+import nightkosh.gravestone_extended.item.tools.pickaxe.ItemIronBonePickaxe;
 import nightkosh.gravestone_extended.item.weapon.*;
 
 /**
@@ -50,6 +55,11 @@ public class GSItem {
     public static final Item BONE_AXE_GOLDEN = new ItemGoldenBoneAxe();
     public static final Item BONE_AXE_DIAMOND = new ItemDiamondBoneAxe();
 
+    public static final Item BONE_PICKAXE = new ItemBonePickaxe();
+    public static final Item BONE_PICKAXE_IRON = new ItemIronBonePickaxe();
+    public static final Item BONE_PICKAXE_GOLDEN = new ItemGoldenBonePickaxe();
+    public static final Item BONE_PICKAXE_DIAMOND = new ItemDiamondBonePickaxe();
+
     public static final Item DIVING_HELMET = new ItemDivingHelmet();
 
     public static final Item SLIME_CHUNK = new ItemSlimeChunk();
@@ -69,6 +79,7 @@ public class GSItem {
             final IForgeRegistry<Item> registry = event.getRegistry();
             registry.registerAll(BONE_SWORD, BONE_SWORD_IRON, BONE_SWORD_GOLDEN, BONE_SWORD_DIAMOND, BONE_SHIELD);
             registry.registerAll(CHISEL, BONE_FISHING_POLE,
+                    BONE_PICKAXE, BONE_PICKAXE_IRON, BONE_PICKAXE_GOLDEN, BONE_PICKAXE_DIAMOND,
                     BONE_AXE, BONE_AXE_IRON, BONE_AXE_GOLDEN, BONE_AXE_DIAMOND,
                     BONE_HOE, BONE_HOE_IRON, BONE_HOE_GOLDEN, BONE_HOE_DIAMOND);
             registry.registerAll(DIVING_HELMET, SLIME_CHUNK, IMP_SKULL, ENDER_SKULL);
