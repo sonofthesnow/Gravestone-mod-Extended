@@ -38,12 +38,12 @@ public class EnchantmentBloodyReplication extends EnchantmentBase {
 
     @Override
     public int getMaxEnchantability(int enchantmentLevel) {
-        return super.getMinEnchantability(enchantmentLevel) + 50;
+        return super.getMinEnchantability(enchantmentLevel) + 60;
     }
 
     @Override
     public int getMaxLevel() {
-        return 3;
+        return 4;
     }
 
     @Override
@@ -61,7 +61,7 @@ public class EnchantmentBloodyReplication extends EnchantmentBase {
                         if (((NBTTagCompound) nbt).getInteger("id") == Enchantment.getEnchantmentID(GSEnchantment.BLOODY_REPLICATION)) {
                             Block block = state.getBlock();
                             int level = ((NBTTagCompound) nbt).getInteger("lvl");
-                            if (!(level == 3 && entity.getHealth() < 0.3) && block instanceof BlockLog) {
+                            if (!(level == 4 && entity.getHealth() < 0.3) && block instanceof BlockLog) {
                                 block.dropBlockAsItem(entity.world, entity.getPosition(), state, 0);
                                 float damage;
                                 switch (level) {
@@ -72,6 +72,8 @@ public class EnchantmentBloodyReplication extends EnchantmentBase {
                                         damage = 1;
                                         break;
                                     case 3:
+                                        damage = 0.6F;
+                                        break;
                                     default:
                                         damage = 0.25F;
                                         break;
