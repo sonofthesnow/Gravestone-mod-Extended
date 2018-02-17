@@ -112,4 +112,6 @@ public class ResourcesModels extends Resources {
     public static final ModelResourceLocation CANDLE = new ModelResourceLocation(MOD_NAME + ":gscandle", "inventory");
     public static final ModelResourceLocation SKULL_CANDLE = new ModelResourceLocation(MOD_NAME + ":gsskullcandle", "inventory");
     public static final ModelResourceLocation ALTAR = new ModelResourceLocation(MOD_NAME + ":gsaltar", "inventory");
+
+    public static final ModelResourceLocation CATACOMBS_PORTAL = new ModelResourceLocation(GSBlock.CATACOMBS_PORTAL.getRegistryName(), "inventory");
 }

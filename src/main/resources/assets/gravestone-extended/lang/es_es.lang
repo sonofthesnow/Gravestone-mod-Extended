@@ -78,6 +78,10 @@ block.skull_candle.zombie.name=Vela en Cabeza de Zombi
 ##TODO !!!!!!!!!!
 tile.altar.name=Altar
 
+## Portal
+## TODO !!!!!!!!!!
+tile.catacombs_portal.name=Catacombs Portal
+
 # Enchantments
 ## TODO !!!!!!!!!!
 enchantment.shadow_of_death=Shadow of Death

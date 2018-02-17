@@ -66,6 +66,10 @@ block.skull_candle.zombie.name=Череп зомбі зі свічкою
 ## Altar
 tile.altar.name=Вівтар
 
+## Portal
+## TODO !!!!!!!!!!
+tile.catacombs_portal.name=Catacombs Portal
+
 # Enchantments
 enchantment.shadow_of_death=Тінь смерті
 enchantment.gravestone-extended.gs_shadow_of_death.desc=Завдає додаткових 2.5 шкоди за рівень істотам, які не є павуками або нежиттю

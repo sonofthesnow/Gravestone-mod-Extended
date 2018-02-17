@@ -70,6 +70,10 @@ block.skull_candle.zombie.name=僵尸头颅蜡烛
 ## Altar
 tile.altar.name=祭坛
 
+## Portal
+## TODO !!!!!!!!!!
+tile.catacombs_portal.name=Catacombs Portal
+
 # Enchantments
 ## TODO !!!!!!!!!!
 enchantment.shadow_of_death=Shadow of Death
