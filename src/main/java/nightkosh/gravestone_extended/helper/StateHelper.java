@@ -88,6 +88,9 @@ public class StateHelper {
     public static final IBlockState DARK_OAK_STAIRS = Blocks.DARK_OAK_STAIRS.getDefaultState();
     public static final IBlockState WOODEN_SLAB = Blocks.WOODEN_SLAB.getDefaultState();
     public static final IBlockState WOODEN_SLAB_DARK_OAK = WOODEN_SLAB.withProperty(BlockWoodSlab.VARIANT, BlockPlanks.EnumType.DARK_OAK);
+    public static final IBlockState SEA_LANTERN = Blocks.SEA_LANTERN.getDefaultState();
+    public static final IBlockState STAINED_GLASS = Blocks.STAINED_GLASS.getDefaultState();
+    public static final IBlockState STAINED_GLASS_LIME = STAINED_GLASS.withProperty(BlockStainedGlass.COLOR, EnumDyeColor.LIME);
 
 
     public static final IBlockState NIGHTSTONE = GSBlock.TRAP.getDefaultState();
@@ -119,6 +122,11 @@ public class StateHelper {
     public static final IBlockState BONE_STAIRS = GSBlock.BONE_STAIRS.getDefaultState();
     public static final IBlockState BONE_STAIRS_TOP = BONE_STAIRS.withProperty(BlockStairs.HALF, BlockStairs.EnumHalf.TOP);
     public static final IBlockState TOXIC_WATER = GSBlock.TOXIC_WATER.getDefaultState();
+    public static final IBlockState CATACOMBS_PORTAL = GSBlock.CATACOMBS_PORTAL.getDefaultState();
+
+    public static IBlockState getCatacombsPortal(EnumFacing facing) {
+        return CATACOMBS_PORTAL.withProperty(BlockPortal.AXIS, facing.getAxis());
+    }
 
     public static IBlockState getNetherBrickStairs(EnumFacing direction) {
         switch (direction) {
